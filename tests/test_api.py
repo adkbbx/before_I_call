@@ -94,6 +94,17 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(result['romaji'], 'mizumore shite imasu.')
         self.assertEqual(annotate('日本へ行きます。水を飲みます。')['romaji'], 'nippon e ikimasu.mizu o nomimasu.')
 
+    def test_card_contains_only_actual_transcript_phrases_and_words(self):
+        messages = [{'role': 'user', 'text': '水が漏れています。'}, {'role': 'assistant', 'text': '写真を送ってください。'}]
+        data = self.client.post('/api/call-card', json={'messages': messages}).json()
+        self.assertEqual([phrase['japanese'] for phrase in data['phrases']], [message['text'] for message in messages])
+        self.assertEqual(data['phrases'][0]['romaji'], 'mizu ga morete imasu.')
+        words = [word['japanese'] for word in data['words']]
+        self.assertIn('写真', words)
+        self.assertNotIn('洗濯機', words)
+        self.assertNotIn('予約', words)
+        self.assertEqual(self.client.post('/api/call-card', json={'messages': []}).json(), {'phrases': [], 'words': []})
+
 
 if __name__ == '__main__':
     unittest.main()

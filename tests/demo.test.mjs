@@ -17,11 +17,11 @@ test('demo reaches completion only after all four answers and has playable local
 });
 
 test('export preserves the user situation and transcript, and never claims a booking', () => {
-  const card = buildCallCard({ scenario: demo.scenario, opening: demo.opening, messages: [{ role: 'user', text: '夜７時以降なら家にいます。' }] });
+  const card = buildCallCard({ scenario: demo.scenario, messages: [{ role: 'user', text: '夜７時以降なら家にいます。' }] });
   assert.ok(card.includes(demo.scenario));
   assert.ok(card.includes('夜７時以降なら家にいます。'));
   assert.ok(card.includes('No real appointment has been booked.'));
-  assert.ok(card.includes('もう一度お願いできますか？'));
+  assert.ok(!card.includes('もう一度お願いできますか？'));
 });
 
 test('prepared learner replies have playable local audio', () => {
@@ -40,15 +40,12 @@ test('curated readings cover every kanji in the scripted dialogue and answers', 
   }
 });
 
-test('call card exports pronunciation and useful vocabulary with English meanings', async () => {
-  const { repairOpening, repairWords, politeOpening, slowPhrase, repeatPhrase } = await import('../src/call-phrases.mjs');
-  for (const opening of [repairOpening, politeOpening]) {
-    const card = buildCallCard({ scenario: demo.scenario, messages: [], opening: opening.japanese, openingRomaji: opening.romaji, openingMeaning: opening.meaning, words: repairWords });
-    for (const phrase of [opening, slowPhrase, repeatPhrase]) {
-      assert.ok(card.includes(phrase.japanese));
-      assert.ok(card.includes(phrase.romaji));
-      assert.ok(card.includes(phrase.meaning));
-    }
-    assert.ok(card.includes('排水 · haisui · draining water'));
-  }
+test('call card exports only the supplied conversation content', () => {
+  const phrase = { japanese: '水が漏れています。', romaji: 'mizu ga morete imasu.', role: 'user', turn: 1 };
+  const card = buildCallCard({ scenario: 'Repair', messages: [{ role: 'user', text: phrase.japanese }], phrases: [phrase], words: [{ japanese: '水', romaji: 'mizu', meaning: 'water' }] });
+  assert.ok(card.includes(phrase.japanese));
+  assert.ok(card.includes(phrase.romaji));
+  assert.ok(card.includes('水 · mizu · water'));
+  assert.ok(!card.includes('もう一度'));
+  assert.ok(!card.includes('排水'));
 });

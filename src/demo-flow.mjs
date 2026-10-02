@@ -1,18 +1,16 @@
-import { slowPhrase, repeatPhrase, callWords } from './call-phrases.mjs';
-
 // Pure transitions shared by the UI and meaningful scenario checks.
 export function nextTurn(index, turnCount) {
   if (!Number.isInteger(index) || index < 0 || index >= turnCount) throw new RangeError('Invalid demo turn');
   return index + 1 < turnCount ? { kind: 'turn', index: index + 1 } : { kind: 'finished' };
 }
 
-export function buildCallCard({ scenario, messages, opening, openingRomaji = '', openingMeaning = '', words = callWords }) {
+/** @param {{scenario: string, messages: {role: string, text: string}[], phrases?: {role: string, turn: number, japanese: string, romaji: string}[], words?: {japanese: string, romaji: string, meaning: string}[]}} card */
+export function buildCallCard({ scenario, messages, phrases = [], words = [] }) {
   return [
     'BEFORE I CALL · Practice card',
     '', 'My situation', scenario,
-    '', 'Useful opening', opening, openingRomaji, openingMeaning,
-    '', 'Ask them to slow down', slowPhrase.japanese, slowPhrase.romaji, slowPhrase.meaning,
-    '', 'Ask them to repeat', repeatPhrase.japanese, repeatPhrase.romaji, repeatPhrase.meaning,
+    '', 'Phrases from this conversation',
+    ...phrases.flatMap(phrase => [`Turn ${phrase.turn} · ${phrase.role === 'user' ? 'You' : 'Practice partner'}`, phrase.japanese, phrase.romaji]),
     '', 'Useful words',
     ...words.map(word => `${word.japanese} · ${word.romaji} · ${word.meaning}`),
     '', 'Practice transcript',

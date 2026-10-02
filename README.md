@@ -4,7 +4,7 @@ Japanese conversation practice for residents navigating everyday life in Japan. 
 
 ## Situations
 
-Choose home repairs, a clinic appointment, missed delivery, a city-office visit, dietary requests, lost property, bills, or your own situation. Presets are editable rehearsal examples, not verified case studies or official guidance. Live practice uses the selected role, greeting, and situation; call cards include relevant vocabulary, romaji, and English meanings. The guided demo remains one polished four-turn repair rehearsal with locally synthesized audio for both sides.
+Choose home repairs, a clinic appointment, missed delivery, a city-office visit, dietary requests, lost property, bills, or your own situation. Presets are editable rehearsal examples, not verified case studies or official guidance. Live practice uses the selected role, greeting, and situation; call cards extract actual transcript phrases and vocabulary with romaji and known English word meanings. No preset opening or unrelated vocabulary is inserted. The guided demo remains one polished four-turn repair rehearsal with locally synthesized audio for both sides.
 
 ## Local setup
 
@@ -42,8 +42,9 @@ MAX_CALL_SECONDS sets the browser's end timer and server admission-lease expiry.
 
 Native ruby shows furigana. Curated vocabulary includes English meanings; pykakasi supplies dictionary readings for unfamiliar kanji without another model API. Those readings can be ambiguous, especially names. Unfamiliar words direct the learner to Explain that rather than inventing English meanings. Hover, focus and tap reveal meanings; Escape/blur dismisses the tooltip. Layouts support narrow phones, system dark mode and reduced motion.
 
-Transcripts stay in browser memory for the call card. The app does not save recordings. ElevenLabs retention follows the agent's privacy settings. Use placeholders rather than real addresses, tracking IDs or account details in practice.
+Transcripts stay in browser memory. At completion, the browser sends the transcript to the local app server for word and pronunciation extraction; the server does not persist it or send it to another AI service. The app does not save recordings. ElevenLabs retention follows the agent's privacy settings. Use placeholders rather than real addresses, tracking IDs or account details in practice.
 
 ## Checks
 
 `npm test`, `npm run build`, and `.venv/Scripts/python.exe -m unittest discover -s tests -p test_api.py -v` check scripted flow, audio, card exports, token boundaries, provider failures, concurrency leases, and annotations. A real browser voice call must also be tested with an accessible configured agent; compilation and token issuance alone do not prove microphone/audio quality or latency.
+
