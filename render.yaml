@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: before-i-call
+    runtime: docker
+    plan: starter
+    healthCheckPath: /api/health
+    envVars:
+      - key: DAILY_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: ELEVENLABS_API_KEY
+        sync: false
+      - key: ELEVENLABS_VOICE_ID
+        sync: false
+      - key: LLM_MODEL
+        value: openai/gpt-oss-20b
+      - key: APP_ORIGIN
+        sync: false
+      - key: LIVE_ACCESS_CODE
+        sync: false
+      - key: MAX_CONCURRENT_CALLS
+        value: '2'
+      - key: MAX_CALL_SECONDS
+        value: '300'
