@@ -4,7 +4,7 @@ Japanese conversation practice for residents navigating everyday life in Japan. 
 
 ## Situations
 
-Choose home repairs, a clinic appointment, missed delivery, a city-office visit, dietary requests, lost property, bills, or your own situation. Presets are editable rehearsal examples, not verified case studies or official guidance. Live practice uses the selected role, greeting, and situation; call cards extract actual transcript phrases and vocabulary with romaji and known English word meanings. No preset opening or unrelated vocabulary is inserted. The guided demo remains one polished four-turn repair rehearsal with locally synthesized audio for both sides.
+Choose home repairs, a clinic appointment, missed delivery, a city-office visit, dietary requests, lost property, bills, or your own situation. Presets are editable rehearsal examples, not verified case studies or official guidance. Live practice uses the selected role, greeting, and situation; call cards extract actual transcript phrases and vocabulary with romaji and known English word meanings. No preset opening or unrelated vocabulary is inserted. Three guided demos cover home repairs, clinic booking and parcel redelivery. Both sides use saved ElevenLabs Japanese audio, so playback needs no credentials.
 
 ## Local setup
 
@@ -47,4 +47,5 @@ Transcripts stay in browser memory. At completion, the browser sends the transcr
 ## Checks
 
 `npm test`, `npm run build`, and `.venv/Scripts/python.exe -m unittest discover -s tests -p test_api.py -v` check scripted flow, audio, card exports, token boundaries, provider failures, concurrency leases, and annotations. A real browser voice call must also be tested with an accessible configured agent; compilation and token issuance alone do not prove microphone/audio quality or latency.
+
 

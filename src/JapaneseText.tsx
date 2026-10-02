@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { z } from 'zod';
 import lexicon from './japanese-lexicon.json';
 import demo from './demo.json';
+import extraDemos from './extra-demos.json';
 import scenarios from './scenarios.json';
 import { repairOpening, politeOpening, slowPhrase, repeatPhrase, callWords } from './call-phrases.mjs';
 import { request } from './api';
@@ -11,7 +12,7 @@ const segmentSchema = z.object({ text: z.string(), reading: z.string(), meaning:
 const annotationSchema = z.object({ segments: z.array(segmentSchema), romaji: z.string() });
 type Segment = z.infer<typeof segmentSchema>;
 const knownRomaji = new Map<string, string>([
-  ...demo.turns.flatMap(turn => [[turn.japanese, turn.romaji], [turn.answer, turn.answerRomaji]] satisfies [string, string][]),
+  ...[demo, ...extraDemos].flatMap(item => item.turns).flatMap(turn => [[turn.japanese, turn.romaji], [turn.answer, turn.answerRomaji]] satisfies [string, string][]),
   ...[repairOpening, politeOpening, slowPhrase, repeatPhrase, ...callWords, ...scenarios.flatMap(item => item.words)].map(item => [item.japanese, item.romaji] satisfies [string, string]),
   ['もしもし。', 'Moshi moshi.'], ['大丈夫。', 'Daijōbu.'],
 ]);

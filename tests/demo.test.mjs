@@ -49,3 +49,20 @@ test('call card exports only the supplied conversation content', () => {
   assert.ok(!card.includes('もう一度'));
   assert.ok(!card.includes('排水'));
 });
+
+test('every guided scenario has distinct playable partner and learner audio', () => {
+  const extra = JSON.parse(readFileSync(new URL('../src/extra-demos.json', import.meta.url), 'utf8'));
+  const ids = new Set();
+  for (const scenario of [demo, ...extra]) {
+    for (const turn of scenario.turns) {
+      assert.ok(!ids.has(turn.id)); ids.add(turn.id);
+      assert.ok(turn.romaji && turn.answerRomaji && turn.meaning && turn.answerMeaning);
+      for (const suffix of ['', '-reply']) {
+        const audio = readFileSync(new URL(`../public/audio/${turn.id}${suffix}.wav`, import.meta.url));
+        assert.equal(audio.subarray(0, 4).toString(), 'RIFF');
+        assert.equal(audio.readUInt32LE(24), 24000);
+        assert.ok(audio.length > 10000);
+      }
+    }
+  }
+});

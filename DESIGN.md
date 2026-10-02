@@ -12,3 +12,5 @@ The demo plays a prepared learner reply before advancing to the next partner tur
 
 Live setup uses a responsive preset picker with editable details. Partner labels follow demo/live mode rather than naming every service a building manager.
 
+
+The landing page prioritizes starting a real practice session and offers three selectable, contextual guided previews. The call exit is a red, labeled phone button in the sticky conversation header. Completed cards initially show three transcript phrases and six words; expandable sections retain the remaining content, and downloads retain the full transcript. Guided audio uses saved ElevenLabs Multilingual v2 speech with a short pause between replies.
