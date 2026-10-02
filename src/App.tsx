@@ -18,6 +18,10 @@ type View = { kind: 'home' } | { kind: 'setup' } | { kind: 'demo'; demoId: strin
 type Phase = z.infer<typeof snapshotSchema>['status'];
 
 const statusLabels: Record<Phase, string> = { connecting: 'Connecting your practice partner', listening: 'Your turn. Take your time.', thinking: 'Considering your answer', speaking: 'Your partner is speaking', paused: 'Paused. There is no rush.', ended: 'Practice finished', error: 'The connection was interrupted' };
+const explanationReadingsSchema = z.object({
+  segments: z.array(z.object({ text: z.string(), reading: z.string(), meaning: z.string() })),
+  romaji: z.string(),
+});
 
 function Brand({ onClick, inCall }: { onClick: () => void; inCall: boolean }) {
   const content = <><span className="brand-mark"><AudioLines size={20} /></span>before i call<span className="brand-dot">.</span></>;
@@ -193,11 +197,15 @@ function LiveCall({ call, scenario, onFinish }: { call: StartedCall; scenario: s
       } else if (kind === 'explain') {
         replayAudio.current?.pause(); helpMode.current = true; pausedRef.current = false; setPaused(false); setMic(false);
         setHelp('Your partner is preparing an explanation…'); conversation.current.setVolume({ volume: 1 });
-        conversation.current.sendUserMessage(`Pause the role-play. Explain this exact sentence in ${call.language}, then suggest one Japanese reply with romaji and meaning: ${lastReply}`); setPhase('thinking');
+        setBusy(true);
+        const readings = await request('/api/readings', explanationReadingsSchema, { method: 'POST', body: JSON.stringify({ text: lastReply }) });
+        const glossary = readings.segments.filter(word => word.meaning && !word.meaning.startsWith('Reading shown.')).map(word => `${word.text} (${word.reading}): ${word.meaning}`).join('\n');
+        if (ending.current) return;
+        conversation.current.sendUserMessage(`Pause the role-play. Explain ONLY the exact Japanese sentence below in ${call.language}. Use the Japanese reading and verified vocabulary below; do not reinterpret kanji as Chinese or substitute similar-sounding words. If a meaning is uncertain, say so. Then suggest one Japanese reply with romaji and meaning.\nSentence: ${lastReply}\nJapanese pronunciation: ${readings.romaji}\nVerified Japanese vocabulary:\n${glossary}`); setPhase('thinking');
       } else {
         resume(); conversation.current.sendUserMessage('Please repeat your last role-play question exactly, slowly, so I can try again.'); setPhase('thinking');
       }
-    } catch (e) { setError(errorMessage(e)); } finally { setBusy(false); }
+    } catch (e) { if (kind === 'explain') resume(); setError(errorMessage(e)); } finally { setBusy(false); }
   };
   return <CallLayout mode="live" scenario={scenario} phase={phase} messages={messages} onEnd={() => void end()} controls={<><button className="control-button" disabled={terminal || busy || !lastReply} onClick={() => void action('explain')}><HelpCircle size={18} /> Explain that</button><button className="control-button" disabled={terminal || busy || !lastReply} onClick={() => void action('slow')}><Volume2 size={18} /> Speak slower</button><button className="control-button" disabled={terminal || busy || !lastReply} onClick={() => void action('retry')}><RotateCcw size={18} /> Try again</button></>} explanation={help !== null && <Explanation onClose={resume}><h3>A little help.</h3><p className="live-explanation">{help.split('\n').map((line, i) => <span className="help-line" key={i}>{/[\u3040-\u30ff\u4e00-\u9fff]/.test(line) ? <JapaneseText text={line} sessionId={call.session_id} /> : line}</span>)}</p><button className="back-link" onClick={resume} disabled={terminal}>Resume practice <ArrowRight size={16} /></button></Explanation>}><p className="speaker-label">Your ElevenLabs AI practice partner</p><h2 className="japanese-reply" lang="ja"><JapaneseText text={lastReply || call.greeting} sessionId={call.session_id} /></h2><p className="romaji">Speak in Japanese or English. Your partner will wait for your answer.</p><div className="live-mic-row"><button className={`mic-button ${!muted ? 'on' : ''}`} disabled={terminal || phase === 'connecting' || paused || help !== null} aria-label={muted ? 'Turn microphone on' : 'Mute microphone'} onClick={() => setMic(muted)}>{muted ? <MicOff size={23} /> : <Mic size={23} />}</button><span>{muted ? 'Microphone off' : 'Microphone on. Take your time.'}</span></div><button className="audio-replay" disabled={terminal || phase === 'connecting'} onClick={paused ? resume : pause}>{paused ? <Play size={16} /> : <Pause size={16} />}{paused ? 'Resume practice' : 'Pause practice'}</button>{error && <p className="error" role="alert">{error}</p>}<form className="typed-answer" onSubmit={event => { event.preventDefault(); if (!text.trim() || !conversation.current) return; resume(); conversation.current.sendUserMessage(text.trim()); setText(''); setPhase('thinking'); }}><label htmlFor="typed-answer">Or type your answer</label><div><input id="typed-answer" value={text} onChange={event => { setText(event.target.value); conversation.current?.sendUserActivity(); }} maxLength={1000} disabled={terminal || phase === 'connecting'} placeholder="Japanese or English is fine" /><button disabled={terminal || phase === 'connecting' || !text.trim()} aria-label="Send typed answer"><Send size={18} /></button></div></form></CallLayout>;
 }
