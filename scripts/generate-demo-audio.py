@@ -13,7 +13,7 @@ async def generate(client, turn, reply):
         # Keep kanji in the UI, but make the intended name reading explicit
         # in speech input rather than asking the voice model to guess it.
         speech_text = (turn['answer'] if reply else turn['japanese']).replace('田中', 'たなか')
-        response = await client.post('https://api.elevenlabs.io/v1/text-to-speech/' + os.environ['ELEVENLABS_VOICE_ID'], params={'output_format': 'pcm_24000'}, headers={'xi-api-key': os.environ['ELEVENLABS_API_KEY']}, json={'text': speech_text, 'model_id': 'eleven_multilingual_v2', 'language_code': 'ja', 'voice_settings': {'stability': 0.45, 'similarity_boost': 0.75, 'style': 0.2, 'speed': 0.95 if reply else 0.9}})
+        response = await client.post('https://api.elevenlabs.io/v1/text-to-speech/' + os.environ['ELEVENLABS_VOICE_ID'], params={'output_format': 'pcm_24000'}, headers={'xi-api-key': os.environ['ELEVENLABS_API_KEY']}, json={'text': speech_text, 'model_id': 'eleven_multilingual_v2', 'language_code': 'ja', 'voice_settings': {'stability': 0.7, 'similarity_boost': 0.75, 'style': 0, 'speed': 0.95}})
         if not response.is_success:
             raise RuntimeError(f'{name}: ElevenLabs status {response.status_code}')
         if len(response.content) < 1000:

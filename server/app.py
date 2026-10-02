@@ -229,7 +229,7 @@ async def replay(session_id: str, payload: TextRequest, request: Request):
         raise HTTPException(503, 'Set ELEVENLABS_VOICE_ID to enable slow audio replay.')
     async with httpx.AsyncClient(timeout=25) as client:
         try:
-            response = await client.post('https://api.elevenlabs.io/v1/text-to-speech/' + voice, headers={'xi-api-key': os.environ['ELEVENLABS_API_KEY']}, json={'text': payload.text, 'model_id': 'eleven_flash_v2_5', 'language_code': 'ja', 'voice_settings': {'speed': 0.7}})
+            response = await client.post('https://api.elevenlabs.io/v1/text-to-speech/' + voice, headers={'xi-api-key': os.environ['ELEVENLABS_API_KEY']}, json={'text': payload.text, 'model_id': 'eleven_flash_v2_5', 'language_code': 'ja', 'voice_settings': {'speed': 0.7, 'stability': 0.7, 'similarity_boost': 0.75, 'style': 0}})
             response.raise_for_status()
         except httpx.HTTPStatusError as error:
             status = error.response.status_code
@@ -249,4 +249,5 @@ async def replay(session_id: str, payload: TextRequest, request: Request):
 
 if (ROOT / 'dist').exists():
     app.mount('/', StaticFiles(directory=ROOT / 'dist', html=True), name='frontend')
+
 
