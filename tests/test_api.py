@@ -1,61 +1,98 @@
-import unittest
 import json
+import os
+import time
+import unittest
+from pathlib import Path
+from unittest.mock import patch
+import httpx
 from fastapi.testclient import TestClient
-from server.app import app, sessions, Session, validate_readings
+from server.app import app, sessions, Session, annotate, practice_prompt, StartRequest
 
 
 class ApiTests(unittest.TestCase):
     def setUp(self):
         self.client = TestClient(app)
+        sessions.clear()
 
-    def test_demo_health_without_credentials_and_live_rejects(self):
-        response = self.client.get('/api/health')
-        self.assertEqual(response.status_code, 200)
-        self.assertTrue(response.json()['ok'])
-        if not response.json()['live_available']:
-            response = self.client.post('/api/start', json={'scenario': 'My washing machine leaks.'})
-            self.assertEqual(response.status_code, 503)
+    def tearDown(self):
+        sessions.clear()
 
-    def test_input_bounds_origin_and_expired_session(self):
+    def test_health_only_requires_elevenlabs_agent_settings(self):
+        with patch.dict(os.environ, {'ELEVENLABS_API_KEY': 'test-key', 'ELEVENLABS_AGENT_ID': 'test-agent'}, clear=True):
+            data = self.client.get('/api/health').json()
+            self.assertTrue(data['live_available'])
+            self.assertEqual(data['provider'], 'elevenlabs')
+        with patch.dict(os.environ, {}, clear=True):
+            self.assertFalse(self.client.get('/api/health').json()['live_available'])
+            self.assertEqual(self.client.post('/api/start', json={'scenario': 'Book a clinic visit'}).status_code, 503)
+
+    def test_input_origin_and_access_code(self):
         self.assertEqual(self.client.post('/api/start', json={'scenario': 'x'}).status_code, 422)
-        self.assertEqual(self.client.post('/api/start', json={'scenario': 'x' * 2001}).status_code, 422)
-        self.assertEqual(self.client.post('/api/start', headers={'Origin': 'https://unrelated.example'}, json={'scenario': 'My washing machine leaks.'}).status_code, 403)
-        self.assertEqual(self.client.get('/api/sessions/not-a-session').status_code, 404)
+        self.assertEqual(self.client.post('/api/start', headers={'Origin': 'https://unrelated.example'}, json={'scenario': 'Book a clinic visit'}).status_code, 403)
+        with patch.dict(os.environ, {'LIVE_ACCESS_CODE': 'private-code'}):
+            self.assertEqual(self.client.post('/api/start', json={'scenario': 'Book a clinic visit'}).status_code, 403)
 
-    def test_readings_preserve_original_sentence_and_reject_malformed_output(self):
-        source = '明日です。'
-        data = {'segments': [{'text': '明日', 'reading': 'あした', 'meaning': 'tomorrow'}, {'text': 'です。', 'reading': '', 'meaning': ''}]}
-        self.assertEqual(validate_readings(json.dumps(data), source), data)
-        with self.assertRaises(ValueError):
-            validate_readings(json.dumps(data), '明日は？')
-        with self.assertRaises(ValueError):
-            validate_readings('{"segments":[{"text":"明日"}]}', source)
-        self.assertEqual(self.client.get('/api/sessions/missing/readings', params={'text': source}).status_code, 404)
+    def provider(self, status=200):
+        def handler(request):
+            self.assertEqual(request.url.path, '/v1/convai/conversation/token')
+            self.assertEqual(request.url.params['agent_id'], 'test-agent')
+            self.assertEqual(request.headers['xi-api-key'], 'test-key')
+            return httpx.Response(status, json={'token': 'short-lived-conversation-token'})
+        real_client = httpx.AsyncClient
+        return patch('server.app.httpx.AsyncClient', side_effect=lambda **kwargs: real_client(transport=httpx.MockTransport(handler), **kwargs))
 
-    def test_readings_only_annotate_session_text_and_reuse_cache(self):
-        session = Session('reading-test', 'Repair', 'English', '', '', '')
-        session.last_reply = '明日です。'
-        cached = {'segments': [{'text': session.last_reply, 'reading': '', 'meaning': ''}]}
-        session.readings[session.last_reply] = cached
-        sessions[session.id] = session
-        try:
-            self.assertEqual(self.client.get('/api/sessions/reading-test/readings', params={'text': session.last_reply}).json(), cached)
-            self.assertEqual(self.client.get('/api/sessions/reading-test/readings', params={'text': 'Unrelated input'}).status_code, 422)
-        finally:
-            sessions.pop(session.id)
-
-    def test_ending_is_idempotent_and_transcript_remains_available(self):
-        session = Session('test', 'Washing machine repair', 'English', '', '', '')
-        session.messages = [{'role': 'user', 'text': 'After seven', 'at': 1}]
-        sessions['test'] = session
-        try:
+    def test_token_issue_scope_and_scenario_prompt(self):
+        with patch.dict(os.environ, {'ELEVENLABS_API_KEY': 'test-key', 'ELEVENLABS_AGENT_ID': 'test-agent'}, clear=True), self.provider():
+            response = self.client.post('/api/start', headers={'Origin': 'http://testserver'}, json={'scenario': 'I missed a parcel and need redelivery.', 'partner': 'delivery staff', 'greeting': 'もしもし。', 'language': 'Hindi'})
+            self.assertEqual(response.status_code, 200)
+            data = response.json()
+            self.assertEqual(data['conversation_token'], 'short-lived-conversation-token')
+            self.assertNotIn('test-key', response.text)
+            self.assertIn('delivery staff', data['prompt'])
+            self.assertIn('Hindi', data['prompt'])
+            self.assertIn('redelivery', data['prompt'])
             for _ in range(2):
-                self.assertEqual(self.client.delete('/api/sessions/test').status_code, 200)
-            snapshot = self.client.get('/api/sessions/test').json()
-            self.assertEqual(snapshot['status'], 'ended')
-            self.assertEqual(snapshot['messages'][0]['text'], 'After seven')
-        finally:
-            sessions.pop('test', None)
+                self.assertEqual(self.client.delete('/api/sessions/' + data['session_id']).status_code, 200)
+
+    def test_provider_permission_failure_has_actionable_message(self):
+        with patch.dict(os.environ, {'ELEVENLABS_API_KEY': 'test-key', 'ELEVENLABS_AGENT_ID': 'test-agent'}, clear=True), self.provider(403):
+            response = self.client.post('/api/start', json={'scenario': 'Book a clinic appointment'})
+            self.assertEqual(response.status_code, 502)
+            self.assertIn('Read permission', response.json()['detail'])
+            self.assertEqual(len(sessions), 0)
+
+    def test_concurrency_limit_and_expired_lease(self):
+        with patch.dict(os.environ, {'ELEVENLABS_API_KEY': 'test-key', 'ELEVENLABS_AGENT_ID': 'test-agent', 'MAX_CONCURRENT_CALLS': '1'}, clear=True), self.provider():
+            sessions['busy'] = Session('busy')
+            self.assertEqual(self.client.post('/api/start', json={'scenario': 'Book a clinic appointment'}).status_code, 429)
+            sessions['busy'].created = time.time() - 1000
+            self.assertEqual(self.client.post('/api/start', json={'scenario': 'Book a clinic appointment'}).status_code, 200)
+
+    def test_annotations_keep_original_and_cover_scenario_vocabulary(self):
+        presets = json.loads(Path('src/scenarios.json').read_text(encoding='utf-8'))
+        for scenario in presets:
+            for word in scenario['words']:
+                segments = annotate(word['japanese'])['segments']
+                self.assertEqual(''.join(item['text'] for item in segments), word['japanese'])
+                self.assertTrue(any(item['reading'] for item in segments))
+        source = 'はい、金曜日の午後に予約できます。\n初めてのご来院ですか？\nEnglish too!'
+        response = self.client.post('/api/readings', json={'text': source})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(''.join(item['text'] for item in response.json()['segments']), source)
+        self.assertEqual(self.client.post('/api/readings', json={'text': 'x' * 2001}).status_code, 422)
+
+    def test_replay_rejects_unknown_or_ended_session(self):
+        self.assertEqual(self.client.post('/api/sessions/missing/speech', json={'text': 'もしもし。'}).status_code, 404)
+        sessions['ended'] = Session('ended', ended=True)
+        self.assertEqual(self.client.post('/api/sessions/ended/speech', json={'text': 'もしもし。'}).status_code, 404)
+
+    def test_romaji_uses_particle_pronunciation_and_complete_words(self):
+        self.assertEqual(annotate('明日の午後はご在宅ですか？')['romaji'], 'ashita no gogo wa go-zaitaku desu ka?')
+        self.assertEqual(annotate('水が漏れています。')['romaji'], 'mizu ga morete imasu.')
+        result = annotate('水漏れしています。')
+        self.assertEqual(result['segments'][0]['meaning'], 'water leak')
+        self.assertEqual(result['romaji'], 'mizumore shite imasu.')
+        self.assertEqual(annotate('日本へ行きます。水を飲みます。')['romaji'], 'nippon e ikimasu.mizu o nomimasu.')
 
 
 if __name__ == '__main__':
