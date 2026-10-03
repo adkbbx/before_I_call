@@ -5,8 +5,10 @@ import json
 import os
 import re
 import secrets
+import threading
 import time
 from dataclasses import dataclass, field
+from datetime import date
 from functools import lru_cache
 from pathlib import Path
 from typing import Literal
@@ -24,6 +26,7 @@ from server.llm_proxy import router as llm_proxy_router, configured as llm_proxy
 from server.cost_limits import reserve, release
 from server.speech_cache import SpeechCache
 from server.call_opening import call_opening
+from server.call_card_pdf import render_call_card
 from server.vocabulary import select_words
 from server.preparation import router as preparation_router, configured as preparation_configured
 from pydantic import BaseModel, Field
@@ -91,6 +94,26 @@ class CardRequest(BaseModel):
     target_language: Literal['ja', 'en'] = 'ja'
     messages: list[TranscriptMessage] = Field(max_length=100)
     enrich_vocabulary: bool = False
+
+
+class CardPdfMessage(TranscriptMessage):
+    romaji: str = Field(default='', max_length=6000)
+    meaning: str = Field(default='', max_length=2000)
+
+
+class CardPdfWord(BaseModel):
+    japanese: str = Field(min_length=1, max_length=200)
+    romaji: str = Field(default='', max_length=400)
+    meaning: str = Field(default='', max_length=500)
+
+
+class CardPdfRequest(BaseModel):
+    scenario: str = Field(default='', max_length=2000)
+    target_language: Literal['ja', 'en'] = 'ja'
+    mode: Literal['demo', 'live'] = 'live'
+    practiced_on: date | None = None
+    messages: list[CardPdfMessage] = Field(max_length=100)
+    words: list[CardPdfWord] = Field(default=[], max_length=60)
 
 
 def configured():
@@ -353,6 +376,32 @@ async def call_card(payload: CardRequest, request: Request, response: Response):
             ranked.setdefault(text, word)
         return {'phrases': phrases, 'words': list(ranked.values()), 'vocabulary_source': status}
     return {'phrases': phrases, 'words': list(words.values())}
+
+
+MAX_PDF_CHARACTERS = 60000
+# reportlab shares font state between documents, so cards render one at a time, off the event loop.
+pdf_lock = threading.Lock()
+
+
+def render_locked(**card) -> bytes:
+    with pdf_lock:
+        return render_call_card(**card)
+
+
+@app.post('/api/call-card.pdf')
+async def call_card_pdf(payload: CardPdfRequest, request: Request):
+    check_origin(request)
+    if len(payload.scenario) + sum(len(message.text) + len(message.romaji) + len(message.meaning) for message in payload.messages) > MAX_PDF_CHARACTERS:
+        raise HTTPException(413, 'This conversation is too long for a PDF call card.')
+    messages = []
+    for message in payload.messages:
+        text = message.text.strip()
+        if not text:
+            continue
+        japanese = payload.target_language == 'ja' and bool(re.search(r'[぀-ヿ一-鿿]', text))
+        messages.append({'role': message.role, 'text': text, 'romaji': message.romaji.strip() or (romanize(text) if japanese else ''), 'meaning': message.meaning.strip(), 'segments': annotate(text)['segments'] if japanese else None})
+    pdf = await asyncio.to_thread(render_locked, scenario=payload.scenario, target_language=payload.target_language, mode=payload.mode, practiced_on=payload.practiced_on or date.today(), messages=messages, words=[word.model_dump() for word in payload.words])
+    return Response(pdf, media_type='application/pdf', headers={'Content-Disposition': 'attachment; filename="before-i-call-practice-card.pdf"', 'Cache-Control': 'no-store'})
 
 
 REPORT_REASONS = {'misheard': 'Misheard me', 'wrong_language': 'Unnatural or wrong wording', 'made_up': 'Made something up', 'did_not_end': "Didn't end the call", 'too_hard': 'Too hard to understand', 'other': 'Something else'}
