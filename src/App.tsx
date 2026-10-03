@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import type { VoiceConversation } from '@elevenlabs/client';
 import scenarios from './scenarios.json';
-import { ArrowLeft, ArrowRight, AudioLines, Check, ChevronDown, Download, Headphones, HelpCircle, Mic, MicOff, Moon, Sun, Monitor, Pause, Phone, PhoneOff, Play, RotateCcw, Send, Volume2, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, AudioLines, Check, ChevronDown, Download, Headphones, HelpCircle, Mic, MicOff, Moon, Sun, Pause, Phone, PhoneOff, Play, RotateCcw, Send, Volume2, X } from 'lucide-react';
 import { z } from 'zod';
 import demo from './demo.json';
 import audioVersions from './audio-versions.json';
@@ -80,7 +80,7 @@ function PracticeApp() {
   const home = () => setView({ kind: 'home' });
   const inCall = view.kind === 'demo' || view.kind === 'live';
   return <div className="app-shell">
-    <header className="site-header"><Brand onClick={home} inCall={inCall} /><div className="header-tools"><span className="header-note">Japanese & English call practice</span><button className="theme-toggle" aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'} title={dark ? 'Switch to light mode' : 'Switch to dark mode'} onClick={() => setTheme(dark ? 'light' : 'dark')}>{dark ? <Sun size={18} /> : <Moon size={18} />}</button>{theme !== 'system' && <button className="theme-system" onClick={() => setTheme('system')} aria-label="Use system theme" title="Use system theme"><Monitor size={16} /><span>System</span></button>}</div></header>
+    <header className="site-header"><Brand onClick={home} inCall={inCall} /><div className="header-tools"><span className="header-note">Japanese & English call practice</span><button className="theme-toggle" aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'} title={dark ? 'Switch to light mode' : 'Switch to dark mode'} onClick={() => setTheme(dark ? 'light' : 'dark')}>{dark ? <Sun size={18} /> : <Moon size={18} />}</button></div></header>
     <main>
       {view.kind === 'home' && <Home onDemo={(demoId) => setView({ kind: 'demo', demoId })} onLive={(targetLanguage) => setView({ kind: 'setup', targetLanguage })} />}
       {view.kind === 'setup' && <Setup initialTarget={view.targetLanguage ?? 'ja'} health={health} onBack={home} onDemo={() => setView({ kind: 'demo', demoId: 'repair' })} onStart={(call, scenario) => setView({ kind: 'live', call, scenario })} />}
