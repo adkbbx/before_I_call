@@ -384,13 +384,30 @@ function Finished({ scenario, messages, mode, onLive, targetLanguage, onHome, tr
   const message = messages[cardPage];
   const phrase = message ? phrases.find(item => item.role === message.role && item.japanese === message.text) : undefined;
   const card = buildCallCard({ scenario, messages, phrases: cardState.kind === 'ready' ? cardState.data.phrases : [], words: cardState.kind === 'ready' ? cardState.data.words : [] });
-  const download = () => {
+  const [downloading, setDownloading] = useState(false);
+  const download = async () => {
     track('action', { action: 'download', mode, language: targetLanguage });
-    const url = URL.createObjectURL(new Blob([card], { type: 'text/plain;charset=utf-8' }));
-    const link = document.createElement('a'); link.href = url; link.download = 'before-i-call-practice-card.txt'; link.click();
+    setDownloading(true);
+    let file = new Blob([card], { type: 'text/plain;charset=utf-8' });
+    let name = 'before-i-call-practice-card.txt';
+    try {
+      const today = new Date();
+      const response = await fetch('/api/call-card.pdf', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
+        scenario, mode, target_language: targetLanguage,
+        practiced_on: `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`,
+        messages: messages.filter(item => item.text.trim()).slice(-100).map(item => {
+          const match = phrases.find(entry => entry.role === item.role && entry.japanese === item.text);
+          return { role: item.role, text: item.text, romaji: match?.romaji ?? '', meaning: match?.meaning ?? '' };
+        }),
+        words: words.slice(0, 60),
+      }) });
+      if (response.ok) { file = await response.blob(); name = 'before-i-call-practice-card.pdf'; }
+    } catch { /* The text card still downloads when the PDF service is unreachable. */ } finally { setDownloading(false); }
+    const url = URL.createObjectURL(file);
+    const link = document.createElement('a'); link.href = url; link.download = name; link.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
-  return <section className="finished-layout"><div className="finished-summary"><button className="back-link" onClick={onHome}><ArrowLeft size={16} />Back to home</button><div className="completion-label"><Check size={18} aria-hidden="true" /><span>Practice finished</span></div><h1>Keep what you learned.</h1><p>Review your conversation or save it for your next call.</p><div className="home-actions finished-actions"><button className="button primary" disabled={cardState.kind === 'loading'} onClick={download}><Download size={17} />Download call card</button><button className="button text-button" onClick={onLive}>Practice another call<ArrowRight size={17} /></button></div><p className="small-note">Practice only. No real call or booking was made.</p></div><div className="finished-card compact-call-card"><h2>Your call card</h2><p>Review what you said. The download includes everything.</p><div className="card-view-options" role="group" aria-label="Call card view"><button aria-pressed={cardView === 'conversation'} onClick={() => { setCardView('conversation'); setCardPage(0); }}>Conversation</button><button aria-pressed={cardView === 'words'} onClick={() => { setCardView('words'); setCardPage(0); }}>Words</button></div><div className="card-page-content">
+  return <section className="finished-layout"><div className="finished-summary"><button className="back-link" onClick={onHome}><ArrowLeft size={16} />Back to home</button><div className="completion-label"><Check size={18} aria-hidden="true" /><span>Practice finished</span></div><h1>Keep what you learned.</h1><p>Review your conversation or save it for your next call.</p><div className="home-actions finished-actions"><button className="button primary" disabled={cardState.kind === 'loading' || downloading} onClick={() => void download()}><Download size={17} />{downloading ? 'Preparing PDF…' : 'Download call card'}</button><button className="button text-button" onClick={onLive}>Practice another call<ArrowRight size={17} /></button></div><p className="small-note">Practice only. No real call or booking was made.</p></div><div className="finished-card compact-call-card"><h2>Your call card</h2><p>Review what you said. The download includes everything.</p><div className="card-view-options" role="group" aria-label="Call card view"><button aria-pressed={cardView === 'conversation'} onClick={() => { setCardView('conversation'); setCardPage(0); }}>Conversation</button><button aria-pressed={cardView === 'words'} onClick={() => { setCardView('words'); setCardPage(0); }}>Words</button></div><div className="card-page-content">
       {cardView === 'words' && cardState.kind === 'loading' && <p role="status">Preparing your call card…</p>}
       {cardState.kind === 'error' && <p role="alert">Reading support is unavailable. Your conversation is still shown below.</p>}
 
