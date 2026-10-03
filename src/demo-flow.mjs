@@ -4,17 +4,17 @@ export function nextTurn(index, turnCount) {
   return index + 1 < turnCount ? { kind: 'turn', index: index + 1 } : { kind: 'finished' };
 }
 
-/** @param {{scenario: string, messages: {role: string, text: string}[], phrases?: {role: string, turn: number, japanese: string, romaji: string}[], words?: {japanese: string, romaji: string, meaning: string}[]}} card */
+/** @param {{scenario: string, messages: {role: string, text: string}[], phrases?: {role: string, turn: number, japanese: string, romaji: string, meaning?: string}[], words?: {japanese: string, romaji: string, meaning: string}[]}} card */
 export function buildCallCard({ scenario, messages, phrases = [], words = [] }) {
   return [
     'BEFORE I CALL · Practice card',
     '', 'My situation', scenario,
-    '', 'Phrases from this conversation',
-    ...phrases.flatMap(phrase => [`Turn ${phrase.turn} · ${phrase.role === 'user' ? 'You' : 'Practice partner'}`, phrase.japanese, phrase.romaji, ...(phrase.meaning ? [phrase.meaning] : [])]),
-    '', 'Useful words',
-    ...words.map(word => [word.japanese, word.romaji, word.meaning].filter(Boolean).join(' · ')),
-    '', 'Practice transcript',
-    ...messages.map(message => `${message.role === 'assistant' ? 'Practice partner' : 'You'}: ${message.text}`),
+    '', 'Your conversation',
+    ...messages.flatMap((message, index) => {
+      const phrase = phrases.find(item => item.role === message.role && item.japanese === message.text);
+      return ['', `${message.role === 'assistant' ? 'Practice partner' : 'You'}: ${message.text}`, ...[phrase?.romaji, phrase?.meaning].filter(Boolean)];
+    }),
+    ...(words.length ? ['', 'Useful words', ...words.map(word => [word.japanese, word.romaji, word.meaning].filter(Boolean).join(' · '))] : []),
     '', 'This was an AI or guided rehearsal. No real appointment has been booked.',
   ].join('\n');
 }

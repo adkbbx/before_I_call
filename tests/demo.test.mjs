@@ -48,6 +48,10 @@ test('call card exports only the supplied conversation content', () => {
   assert.ok(card.includes('水 · mizu · water'));
   assert.ok(!card.includes('もう一度'));
   assert.ok(!card.includes('排水'));
+  assert.equal(card.split(phrase.japanese).length - 1, 1);
+  assert.ok(card.includes('Your conversation'));
+  assert.ok(!card.includes('Practice transcript'));
+  assert.ok(!card.includes('Phrases from this conversation'));
 });
 
 test('every guided scenario has distinct playable partner and learner audio', () => {
