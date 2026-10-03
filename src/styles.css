@@ -405,3 +405,80 @@ rt { font-family: var(--font-japanese); font-size: .46em; letter-spacing: .025em
 .demo-answer .answer-actions > .button { align-self: flex-end; }
 .demo-history .history-speaker { font-size: 12px; font-weight: 600; color: var(--muted); margin: 12px 0 6px; }
 .demo-history .history-speaker + p { font-size: 18px; line-height: 1.7; }
+
+/* Keep audio attached to each question; spare height follows the controls. */
+.demo-question-active, .demo-question-reserve { display: flow-root; }
+.demo-question-active .call-wave { margin-top: 24px; }
+.demo-audio-reserve { height: 142px; }
+
+.live-input-activity { margin-top: 24px; }
+.live-input-wave { height: 36px; }
+.live-input-wave span { height: 32px; transform: scaleY(.1); }
+.live-input-wave.inactive { color: var(--muted); opacity: .6; }
+
+.finished-layout { align-items: start; }
+.compact-call-card { padding: 24px; }
+.compact-call-card h2 { font-size: 26px; }
+.card-view-options { display: flex; gap: 4px; margin-top: 20px; padding: 4px; border-radius: 10px; background: var(--control-bg); }
+.card-view-options button { flex: 1; min-height: 44px; border-radius: 7px; background: transparent; color: var(--muted); font-size: 14px; }
+.card-view-options button[aria-pressed=true] { background: var(--surface); color: var(--accent); font-weight: 600; }
+.card-page-content { min-height: 280px; padding-top: 16px; }
+.card-page-content .call-card-phrase { border-bottom: 0; padding: 12px 0; }
+.compact-vocabulary > div { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.compact-vocabulary > div > p:first-child { font-size: 20px; line-height: 1.8; }
+.card-pagination { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+.card-pagination > span { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+@media(min-width:768px) and (max-height:800px) { .finished-layout { padding-top: 24px; } .card-page-content { min-height: 240px; } }
+
+.compact-call-card > .card-view-options { padding: 4px; border-top: 0; }
+.compact-call-card > .card-page-content { padding: 16px 0; border-top: 0; }
+.compact-call-card .compact-vocabulary p[lang] { font-size: 18px; line-height: 1.7; margin-top: 0; }
+.compact-call-card .compact-vocabulary .card-romaji { margin-top: 4px; }
+.compact-call-card .compact-vocabulary .card-meaning { margin-top: 4px; }
+
+.simple-setup { grid-template-columns: minmax(0,560px); justify-content: center; gap: 24px; padding-top: 24px; }
+.simple-setup .setup-intro h1 { font-size: 34px; margin-top: 12px; }
+.simple-setup .setup-intro > p { margin-top: 12px; max-width: none; }
+.simple-setup .setup-form { padding: 24px; }
+.situation-dropdown { position: relative; }
+.situation-dropdown > summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; padding: 12px 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--page); cursor: pointer; list-style: none; }
+.situation-dropdown summary::-webkit-details-marker { display: none; }
+.situation-dropdown[open] > summary { border-color: var(--accent); }
+.situation-options { position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 10; padding: 6px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); box-shadow: 0 12px 24px #0002; max-height: 360px; overflow-y: auto; }
+.situation-options button { display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 44px; padding: 10px 12px; border-radius: 6px; background: transparent; text-align: left; font-size: 14px; }
+.situation-options button:hover, .situation-options button[aria-pressed=true] { background: var(--tint); color: var(--accent); }
+.setup-disclosure { margin-bottom: 18px; border-bottom: 1px solid var(--line); }
+.setup-disclosure > summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; padding: 8px 0 16px; font-size: 14px; cursor: pointer; }
+.setup-disclosure[open] > summary svg { transform: rotate(180deg); }
+.setup-disclosure[open] > label { margin-top: 12px; }
+.setup-privacy { margin-top: 16px; color: var(--muted); font-size: 12px; }
+.setup-privacy > summary { cursor: pointer; min-height: 32px; }
+@media(max-width:767px) { .simple-setup .setup-intro h1 { font-size: 30px; } .simple-setup .setup-form { padding: 20px; } }
+
+/* Quiet, consistent scrollbars for conversation and selection panels. */
+.demo-history-list, .transcript > div, .situation-options {
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted) transparent;
+  scrollbar-gutter: stable;
+}
+.demo-history-list { padding-right: 12px; }
+.demo-history-list::-webkit-scrollbar, .transcript > div::-webkit-scrollbar, .situation-options::-webkit-scrollbar { width: 6px; }
+.demo-history-list::-webkit-scrollbar-track, .transcript > div::-webkit-scrollbar-track, .situation-options::-webkit-scrollbar-track { background: transparent; }
+.demo-history-list::-webkit-scrollbar-thumb, .transcript > div::-webkit-scrollbar-thumb, .situation-options::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 999px; }
+.demo-history-list::-webkit-scrollbar-thumb:hover, .transcript > div::-webkit-scrollbar-thumb:hover, .situation-options::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+.demo-history-list::-webkit-scrollbar-button, .transcript > div::-webkit-scrollbar-button, .situation-options::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
+
+@supports selector(::-webkit-scrollbar) {
+  .demo-history-list, .transcript > div, .situation-options { scrollbar-width: auto; scrollbar-color: auto; }
+}
+
+.finished-summary > .back-link { margin-bottom: 32px; }
+.completion-label { display: flex; align-items: center; gap: 8px; color: var(--accent); font-size: 13px; }
+.finished-summary h1 { margin-top: 14px; font-size: clamp(30px,3.2vw,40px); line-height: 1.2; }
+.finished-layout .finished-summary > p { margin-top: 16px; max-width: 34ch; }
+.finished-actions { flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 24px; }
+.finished-actions .text-button { min-height: 44px; font-weight: 500; }
+.finished-summary > .small-note { margin-top: 24px !important; font-size: 12px !important; }
+@media(max-width:767px) { .finished-summary > .back-link { margin-bottom: 20px; } .finished-actions .primary { width: auto; } }
+.demo-situation-stack { display: grid; min-width: 0; }
+.demo-situation-stack > p { grid-area: 1 / 1; min-width: 0; }
