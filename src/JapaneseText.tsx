@@ -40,7 +40,7 @@ export function JapaneseText({ text, sessionId, showRomaji = true }: { text: str
   }, [text, sessionId, showRomaji]);
   const segments = annotation?.text === text ? annotation.segments : annotateJapanese(text);
   const romaji = knownRomaji.get(text) ?? (annotation?.text === text ? annotation.romaji : '');
-  return <span className="japanese-text notranslate" lang="ja" translate="no">{segments.map((segment, i) => segment.reading && segment.meaning ? <Word key={`${text}-${i}`} segment={segment} /> : <span key={i}>{segment.text}</span>)}{showRomaji && romaji && <span className="japanese-romaji" lang="ja-Latn">{romaji}</span>}</span>;
+  return <span className={`japanese-text notranslate ${/[\u3040-\u30ff\u4e00-\u9fff]/.test(text) ? '' : 'english-text'}`} lang={/[\u3040-\u30ff\u4e00-\u9fff]/.test(text) ? 'ja' : 'en'} translate="no">{segments.map((segment, i) => segment.reading && segment.meaning ? <Word key={`${text}-${i}`} segment={segment} /> : <span key={i}>{segment.text}</span>)}{showRomaji && romaji && <span className="japanese-romaji" lang="ja-Latn">{romaji}</span>}</span>;
 }
 
 function Word({ segment }: { segment: Segment }) {

@@ -12,7 +12,7 @@ export function buildCallCard({ scenario, messages, phrases = [], words = [] }) 
     '', 'Phrases from this conversation',
     ...phrases.flatMap(phrase => [`Turn ${phrase.turn} · ${phrase.role === 'user' ? 'You' : 'Practice partner'}`, phrase.japanese, phrase.romaji]),
     '', 'Useful words',
-    ...words.map(word => `${word.japanese} · ${word.romaji} · ${word.meaning}`),
+    ...words.map(word => [word.japanese, word.romaji, word.meaning].filter(Boolean).join(' · ')),
     '', 'Practice transcript',
     ...messages.map(message => `${message.role === 'assistant' ? 'Practice partner' : 'You'}: ${message.text}`),
     '', 'This was an AI or guided rehearsal. No real appointment has been booked.',

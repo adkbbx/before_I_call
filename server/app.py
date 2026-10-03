@@ -17,6 +17,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 from pykakasi import kakasi
 from janome.tokenizer import Tokenizer
+from server.number_readings import PATTERN as NUMBER_PATTERN, READINGS as NUMBER_READINGS, words as number_words
 
 load_dotenv()
 ROOT = Path(__file__).resolve().parents[1]
@@ -33,6 +34,7 @@ class Session:
     id: str
     created: float = field(default_factory=time.time)
     ended: bool = False
+    target_language: str = 'ja'
 
 
 sessions: dict[str, Session] = {}
@@ -41,7 +43,8 @@ sessions: dict[str, Session] = {}
 class StartRequest(BaseModel):
     scenario: str = Field(min_length=10, max_length=2000)
     scenario_id: Literal['repair', 'clinic', 'delivery', 'city', 'food', 'lost', 'bill', 'custom'] = 'custom'
-    language: Literal['English', 'Hindi'] = 'English'
+    language: Literal['English', 'Japanese'] = 'English'
+    target_language: Literal['ja', 'en'] = 'ja'
     access_code: str = Field(default='', max_length=100)
     partner: str = Field(default='service staff', max_length=100)
     greeting: str = Field(default='もしもし。どうされましたか？', max_length=300)
@@ -57,6 +60,7 @@ class TranscriptMessage(BaseModel):
 
 
 class CardRequest(BaseModel):
+    target_language: Literal['ja', 'en'] = 'ja'
     messages: list[TranscriptMessage] = Field(max_length=100)
 
 
@@ -79,12 +83,22 @@ def get_session(session_id: str):
 
 
 def practice_prompt(payload: StartRequest):
+    if payload.target_language == 'en':
+        return f"""You are a patient English-speaking {payload.partner} helping a non-native English speaker rehearse an everyday call.
+Situation: {payload.scenario}
+Speak clear, natural English at a measured pace. Use short sentences, common words, and one question per turn. Accept hesitant English and Japanese replies. Keep the role-play in English; avoid unsolicited grammar lectures or scores.
+When asked to explain, explain only the provided sentence in {payload.language}, then offer one short English reply and its meaning. Do not provide Japanese romaji for English. If the learner responds in Japanese, help them express the same intent in simple English.
+Preserve numbers exactly, spell out numerical values for speech, and confirm important times or quantities one at a time. Ask for repetition if unclear instead of guessing.
+This is a rehearsal; never claim to make a real booking or invent private details, policies, medical guidance or guaranteed availability. Use fictional placeholders.
+Once the goal is addressed, summarize the next step and ask if they need anything else. If they have no more questions, say goodbye or explicitly ask to finish, call end_call with a short English farewell. Do not end for a casual thank-you mid-conversation. Remain in help mode until they resume practice.
+"""
     return f'''You are a patient Japanese {payload.partner} in a conversation rehearsal for a resident of Japan.
 This is practice with an AI, not an actual service. Never make real bookings, submit forms, claim an item was found, or promise a real outcome.
 Use the learner's situation below to select a realistic role and ask relevant follow-up questions. Do not always discuss repairs.
 Use invented placeholders for personal details; do not request real names, dates of birth, addresses, tracking numbers or account identifiers.
 For spoken Japanese, write the name 田中 as たなか in your responses so it is pronounced ta-na-ka. Never replace it with テンポカ or a similar-sounding name.
-Speak natural, polite Japanese. Use one or two short sentences and one question per turn. Wait for the learner. Accept hesitant Japanese or English responses. Do not grade or lecture.
+For spoken numbers, write complete Japanese counter readings in kana rather than digits or kanji. Minutes: 1=いっぷん, 2=にふん, 3=さんぷん, 4=よんぷん, 5=ごふん, 6=ろっぷん, 7=ななふん, 8=はっぷん, 9=きゅうふん, 10=じゅっぷん, 15=じゅうごふん, 30=さんじゅっぷん. Clock hours: 4=よじ, 7=しちじ, 9=くじ. People: 1=ひとり, 2=ふたり. Preserve the learner's number exactly; never swap five for six. Say one numerical detail at a time, with a brief pause after it. Read important times, durations or quantities back and ask the learner to confirm. If you did not hear a number clearly, ask them to repeat it rather than guessing.
+Speak natural, polite Japanese. Use one or two short sentences and one question per turn. Wait for the learner. Accept hesitant Japanese or English responses. Do not grade or lecture. Once the stated rehearsal goal has been addressed, do not introduce new tasks or unrelated questions. Briefly summarize the agreed next step and ask whether the learner needs anything else. If they say no, say goodbye, or explicitly want to finish, call end_call with a short Japanese farewell. Do not end merely because they say thank you mid-conversation. Never end while explaining a sentence unless the learner explicitly asks to finish.
 This is Japanese practice: interpret kanji and vocabulary in Japanese context, never as Chinese or Mandarin. Use Japanese readings and Japanese meanings. For example 水漏れ (mizumore) means water leak; 水が漏れています (mizu ga morete imasu) means water is leaking. Romaji uses spoken Japanese particle pronunciations: は is wa, へ is e, を is o.
 Use only facts provided by the learner. Never invent addresses, prices, dates, medical advice, legal requirements or dietary guarantees. Confirm uncertain official procedures with the actual service.
 When asked to explain, explain the previous Japanese sentence in {payload.language}, then give one short Japanese suggested reply with romaji and its meaning. Use supplied verified Japanese vocabulary to ground the explanation. 水 (みず, mizu) is water; 誰 (だれ, dare) is who. Never confuse them. Translate the provided sentence, not an inferred or misheard replacement. Do not add facts to the suggested reply. Remain in help mode until the learner resumes practice.
@@ -124,9 +138,9 @@ async def start_call(payload: StartRequest, request: Request):
                     raise ValueError('Invalid session token')
             except (httpx.HTTPError, KeyError, ValueError):
                 raise HTTPException(502, 'The ElevenLabs conversation could not start. Check the Agent ID and retry.')
-        session = Session(secrets.token_urlsafe(32))
+        session = Session(secrets.token_urlsafe(32), target_language=payload.target_language)
         sessions[session.id] = session
-    return {'session_id': session.id, 'conversation_token': token, 'max_call_seconds': int(os.getenv('MAX_CALL_SECONDS', '300')), 'prompt': practice_prompt(payload), 'greeting': payload.greeting, 'language': payload.language, 'scenario_id': payload.scenario_id}
+    return {'session_id': session.id, 'conversation_token': token, 'max_call_seconds': int(os.getenv('MAX_CALL_SECONDS', '300')), 'prompt': practice_prompt(payload), 'greeting': payload.greeting, 'language': payload.language, 'scenario_id': payload.scenario_id, 'target_language': payload.target_language, 'voice_id': os.getenv('ELEVENLABS_ENGLISH_VOICE_ID', 'EXAVITQu4vr4xnSDxMaL') if payload.target_language == 'en' else os.getenv('ELEVENLABS_VOICE_ID', '')}
 
 
 @app.delete('/api/sessions/{session_id}')
@@ -140,16 +154,17 @@ async def end_call(session_id: str, request: Request):
 
 @lru_cache(maxsize=256)
 def annotate(text: str):
+    contextual_words = sorted(number_words(text) + lexicon, key=lambda item: len(item['text']), reverse=True)
     segments = []
     offset = 0
     while offset < len(text):
-        word = next((item for item in lexicon if text.startswith(item['text'], offset)), None)
+        word = next((item for item in contextual_words if text.startswith(item['text'], offset)), None)
         if word:
             segments.append(word.copy())
             offset += len(word['text'])
         else:
             end = offset + 1
-            while end < len(text) and not any(text.startswith(item['text'], end) for item in lexicon):
+            while end < len(text) and not any(text.startswith(item['text'], end) for item in contextual_words):
                 end += 1
             # The dictionary converter duplicates preceding punctuation around newlines.
             # Keep all whitespace outside conversion so annotations preserve exact input.
@@ -167,6 +182,17 @@ def annotate(text: str):
 
 
 def romanize(text: str) -> str:
+    output = []
+    offset = 0
+    for match in NUMBER_PATTERN.finditer(text):
+        output.append(_romanize_words(text[offset:match.start()]))
+        output.append(''.join(item['hepburn'] for item in reader.convert(NUMBER_READINGS[match.group()])))
+        offset = match.end()
+    output.append(_romanize_words(text[offset:]))
+    return ' '.join(part for part in output if part).replace(' .', '.').replace(' ?', '?').replace(' ,', ',')
+
+
+def _romanize_words(text: str) -> str:
     # Analyze complete Japanese runs, not the display's kanji fragments.
     # Pronunciation distinguishes particles は/へ/を from their kana spelling.
     result = []
@@ -208,12 +234,17 @@ async def call_card(payload: CardRequest, request: Request):
     words = {}
     seen = set()
     for index, message in enumerate(payload.messages):
-        if not re.search(r'[\u3040-\u30ff\u4e00-\u9fff]', message.text):
+        if payload.target_language == 'ja' and not re.search(r'[\u3040-\u30ff\u4e00-\u9fff]', message.text):
             continue
-        annotation = annotate(message.text)
+        annotation = annotate(message.text) if payload.target_language == 'ja' else {'romaji': '', 'segments': []}
         if message.text not in seen:
             phrases.append({'japanese': message.text, 'romaji': annotation['romaji'], 'role': message.role, 'turn': index + 1})
             seen.add(message.text)
+        if payload.target_language == 'en':
+            dictionary = {'appointment': 'a planned meeting or visit; 予約', 'repair': 'fixing something broken; 修理', 'delivery': 'bringing a parcel to you; 配達', 'available': 'free or possible at that time; 都合がつく', 'confirm': 'check that details are correct; 確認する', 'reschedule': 'change the date or time; 日程を変更する', 'refund': 'money returned after a purchase; 返金', 'evening': 'the later part of the day; 夕方・夜', 'afternoon': 'the time after midday; 午後'}
+            for word, meaning in dictionary.items():
+                if re.search(r'\b' + word + r'\b', message.text, re.I):
+                    words.setdefault(word, {'japanese': word, 'romaji': '', 'meaning': meaning})
         for segment in annotation['segments']:
             if segment['meaning'] and not segment['meaning'].startswith('Reading shown.'):
                 words.setdefault(segment['text'], {'japanese': segment['text'], 'romaji': romanize(segment['text']), 'meaning': segment['meaning']})
@@ -223,13 +254,13 @@ async def call_card(payload: CardRequest, request: Request):
 @app.post('/api/sessions/{session_id}/speech')
 async def replay(session_id: str, payload: TextRequest, request: Request):
     check_origin(request)
-    get_session(session_id)
-    voice = os.getenv('ELEVENLABS_VOICE_ID')
+    session = get_session(session_id)
+    voice = os.getenv('ELEVENLABS_ENGLISH_VOICE_ID', 'EXAVITQu4vr4xnSDxMaL') if session.target_language == 'en' else os.getenv('ELEVENLABS_VOICE_ID')
     if not voice:
         raise HTTPException(503, 'Set ELEVENLABS_VOICE_ID to enable slow audio replay.')
     async with httpx.AsyncClient(timeout=25) as client:
         try:
-            response = await client.post('https://api.elevenlabs.io/v1/text-to-speech/' + voice, headers={'xi-api-key': os.environ['ELEVENLABS_API_KEY']}, json={'text': payload.text, 'model_id': 'eleven_flash_v2_5', 'language_code': 'ja', 'voice_settings': {'speed': 0.7, 'stability': 0.7, 'similarity_boost': 0.75, 'style': 0}})
+            response = await client.post('https://api.elevenlabs.io/v1/text-to-speech/' + voice, headers={'xi-api-key': os.environ['ELEVENLABS_API_KEY']}, json={'text': payload.text, 'model_id': 'eleven_flash_v2_5', 'language_code': session.target_language, 'voice_settings': {'speed': 0.7, 'stability': 0.7, 'similarity_boost': 0.75, 'style': 0}})
             response.raise_for_status()
         except httpx.HTTPStatusError as error:
             status = error.response.status_code

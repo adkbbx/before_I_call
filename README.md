@@ -4,7 +4,7 @@ Japanese conversation practice for residents navigating everyday life in Japan. 
 
 ## Situations
 
-Choose home repairs, a clinic appointment, missed delivery, a city-office visit, dietary requests, lost property, bills, or your own situation. Presets are editable rehearsal examples, not verified case studies or official guidance. Live practice uses the selected role, greeting, and situation; call cards extract actual transcript phrases and vocabulary with romaji and known English word meanings. No preset opening or unrelated vocabulary is inserted. Three guided demos cover home repairs, clinic booking and parcel redelivery. Both sides use saved ElevenLabs Japanese audio, so playback needs no credentials.
+Choose home repairs, a clinic appointment, missed delivery, a city-office visit, dietary requests, lost property, bills, or your own situation. Presets are editable rehearsal examples, not verified case studies or official guidance. Live practice uses the selected role, greeting, and situation; call cards extract actual transcript phrases and vocabulary with romaji and known English word meanings. No preset opening or unrelated vocabulary is inserted. Three guided situations cover home repairs, clinic booking and parcel redelivery in both Japanese and English. Both sides use saved ElevenLabs Japanese audio, so playback needs no credentials.
 
 ## Local setup
 
@@ -26,7 +26,7 @@ Set ELEVENLABS_API_KEY and ELEVENLABS_AGENT_ID on the server. ELEVENLABS_VOICE_I
 
 The key needs ElevenAgents Read for conversation-token issuance, and Text to Speech Access for slow replay. Agent creation or configuration through the API additionally needs ElevenAgents Write. Speech to Text Access is not required by this app anymore; recognition is handled inside Agents.
 
-Configure a dedicated agent with Japanese language, a Japanese voice, a hosted LLM, a maximum conversation duration of 300 seconds, authentication enabled, and voice recording disabled. In Security allow System prompt, First message, and Language overrides. These let one agent play the selected service role. Do not leave a fixed washing-machine prompt as the only configuration. The application supplies the prompt at session start.
+Configure a dedicated agent with Japanese language, a Japanese voice, a hosted LLM, a maximum conversation duration of 300 seconds, authentication enabled, and voice recording disabled. In Security allow System prompt, First message, Language and TTS Voice ID overrides. Enable the built-in End Call tool. Run `.venv/Scripts/python.exe scripts/configure-agent.py` with ElevenAgents Write permission to apply these settings and match the provider duration to MAX_CALL_SECONDS. These let one agent play the selected service role. Do not leave a fixed washing-machine prompt as the only configuration. The application supplies the prompt at session start.
 
 The browser gets a conversation token from /api/start, never the API key. The official @elevenlabs/client SDK establishes WebRTC directly with ElevenLabs. It delivers audio, transcripts, microphone muting, typed responses and conversation state. Explain that asks the same agent for help in the selected language; help is part of that conversation's context and transcript. Resume returns to role-play. Pause mutes local input and output; the provider session and billing continue until End practice. Slow replay synthesizes the last role-play question separately.
 
@@ -49,3 +49,5 @@ Transcripts stay in browser memory. At completion, the browser sends the transcr
 `npm test`, `npm run build`, and `.venv/Scripts/python.exe -m unittest discover -s tests -p test_api.py -v` check scripted flow, audio, card exports, token boundaries, provider failures, concurrency leases, and annotations. A real browser voice call must also be tested with an accessible configured agent; compilation and token issuance alone do not prove microphone/audio quality or latency.
 
 
+
+English practice uses Sarah (EXAVITQu4vr4xnSDxMaL) by default; override with ELEVENLABS_ENGLISH_VOICE_ID. Call language is separate from explanation language (English or Japanese). No Hindi option is included. The live timer displays elapsed and remaining session time; reaching the limit or a provider-led conclusion opens the transcript card. Pause does not stop this timer.

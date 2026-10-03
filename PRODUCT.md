@@ -17,7 +17,7 @@ Practice an everyday call, understand a reply, and resume the same conversation.
 Guided demo without login or microphone. Live voice conversation with an AI, not a telephone call. Explain the last reply, replay it slowly, retry, and export a call card. Live credentials remain on the server. Guided content must be labeled scripted. No fabricated user interviews or outcomes. Render hosting is required. Demo must remain usable without provider configuration.
 
 ## Open decisions
-Explanation language: English first, confirmed by the user. Hindi is an optional live-practice setting. The dedicated Japanese ElevenLabs agent is configured and accessible. A real WebRTC browser session with simulated microphone input passed; human speech quality and latency still need participant testing.
+Explanation language: English first, confirmed by the user. Call practice and explanations each offer English and Japanese; Hindi is not included. The dedicated Japanese ElevenLabs agent is configured and accessible. A real WebRTC browser session with simulated microphone input passed; human speech quality and latency still need participant testing.
 
 ## Evidence on hand
 User-supplied challenge brief and the conversation. No real participant test or case study yet.

@@ -43,13 +43,13 @@ class ApiTests(unittest.TestCase):
 
     def test_token_issue_scope_and_scenario_prompt(self):
         with patch.dict(os.environ, {'ELEVENLABS_API_KEY': 'test-key', 'ELEVENLABS_AGENT_ID': 'test-agent'}, clear=True), self.provider():
-            response = self.client.post('/api/start', headers={'Origin': 'http://testserver'}, json={'scenario': 'I missed a parcel and need redelivery.', 'partner': 'delivery staff', 'greeting': 'もしもし。', 'language': 'Hindi'})
+            response = self.client.post('/api/start', headers={'Origin': 'http://testserver'}, json={'scenario': 'I missed a parcel and need redelivery.', 'partner': 'delivery staff', 'greeting': 'もしもし。', 'language': 'Japanese'})
             self.assertEqual(response.status_code, 200)
             data = response.json()
             self.assertEqual(data['conversation_token'], 'short-lived-conversation-token')
             self.assertNotIn('test-key', response.text)
             self.assertIn('delivery staff', data['prompt'])
-            self.assertIn('Hindi', data['prompt'])
+            self.assertIn('Japanese', data['prompt'])
             self.assertIn('redelivery', data['prompt'])
             for _ in range(2):
                 self.assertEqual(self.client.delete('/api/sessions/' + data['session_id']).status_code, 200)
@@ -104,6 +104,24 @@ class ApiTests(unittest.TestCase):
         self.assertNotIn('洗濯機', words)
         self.assertNotIn('予約', words)
         self.assertEqual(self.client.post('/api/call-card', json={'messages': []}).json(), {'phrases': [], 'words': []})
+
+    def test_counter_readings_preserve_quantities_and_irregular_pronunciation(self):
+        cases = {'五分': 'gofun', '5分': 'gofun', '５分': 'gofun', '六分': 'roppun', '1分': 'ippun', '10分': 'juppun', '15分': 'juugofun', '30分': 'sanjuppun', '四時': 'yoji', '7時': 'shichiji', '9時': 'kuji', '二人': 'futari'}
+        for text, expected in cases.items():
+            data = annotate(text)
+            self.assertEqual(data['romaji'], expected)
+            self.assertEqual(''.join(segment['text'] for segment in data['segments']), text)
+        self.assertEqual(annotate('5分')['segments'][0]['meaning'], '5 minutes')
+
+    def test_english_mode_uses_english_roleplay_and_transcript_card(self):
+        prompt = practice_prompt(StartRequest(scenario='Book a routine appointment', target_language='en', language='Japanese'))
+        self.assertIn('Keep the role-play in English', prompt)
+        self.assertIn('explain only the provided sentence in Japanese', prompt)
+        data = self.client.post('/api/call-card', json={'target_language': 'en', 'messages': [{'role': 'user', 'text': 'Could I book an appointment for Friday afternoon?'}]}).json()
+        self.assertEqual(len(data['phrases']), 1)
+        self.assertEqual(data['phrases'][0]['romaji'], '')
+        self.assertIn('appointment', [word['japanese'] for word in data['words']])
+        self.assertEqual(self.client.post('/api/start', json={'scenario': 'Book an appointment', 'language': 'Hindi'}).status_code, 422)
 
 
 if __name__ == '__main__':
