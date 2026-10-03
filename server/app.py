@@ -19,6 +19,7 @@ from fastapi.responses import FileResponse
 from server.analytics import router as analytics_router
 from server.cost_limits import reserve, release
 from server.speech_cache import SpeechCache
+from server.call_opening import call_opening
 from server.preparation import router as preparation_router, configured as preparation_configured
 from pydantic import BaseModel, Field
 from pykakasi import kakasi
@@ -63,7 +64,7 @@ class StartRequest(BaseModel):
     target_language: Literal['ja', 'en'] = 'ja'
     access_code: str = Field(default='', max_length=100)
     partner: str = Field(default='service staff', max_length=100)
-    greeting: str = Field(default='もしもし。どうされましたか？', max_length=300)
+    greeting: str = Field(default='', max_length=300)
 
 
 class TextRequest(BaseModel):
@@ -168,7 +169,7 @@ async def start_call(payload: StartRequest, request: Request, browser_response: 
         session = Session(ticket, target_language=payload.target_language)
         sessions[session.id] = session
     browser_response.set_cookie('bic-practice-visitor', visitor, max_age=31536000, httponly=True, samesite='strict', secure=request.url.scheme == 'https' or os.getenv('APP_ORIGIN', '').startswith('https://'))
-    return {'session_id': session.id, 'conversation_token': token, 'max_call_seconds': int(os.getenv('MAX_CALL_SECONDS', '120')), 'prompt': practice_prompt(payload), 'greeting': payload.greeting, 'language': payload.language, 'scenario_id': payload.scenario_id, 'target_language': payload.target_language, 'voice_id': os.getenv('ELEVENLABS_ENGLISH_VOICE_ID', 'EXAVITQu4vr4xnSDxMaL') if payload.target_language == 'en' else os.getenv('ELEVENLABS_VOICE_ID', '')}
+    return {'session_id': session.id, 'conversation_token': token, 'max_call_seconds': int(os.getenv('MAX_CALL_SECONDS', '120')), 'prompt': practice_prompt(payload), 'greeting': call_opening(payload.scenario, payload.scenario_id, payload.target_language), 'language': payload.language, 'scenario_id': payload.scenario_id, 'target_language': payload.target_language, 'voice_id': os.getenv('ELEVENLABS_ENGLISH_VOICE_ID', 'EXAVITQu4vr4xnSDxMaL') if payload.target_language == 'en' else os.getenv('ELEVENLABS_VOICE_ID', '')}
 
 
 @app.delete('/api/sessions/{session_id}')
