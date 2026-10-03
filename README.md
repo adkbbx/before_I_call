@@ -54,6 +54,8 @@ English practice uses Sarah (EXAVITQu4vr4xnSDxMaL) by default; override with ELE
 
 ## Japanese pronunciation corrections
 
+See [pronunciation coverage and research](docs/pronunciation.md) for the supported date/counter ranges, context limits, sources and importable dictionary export. Use `scripts/generate-demo-audio.py --japanese-only` to regenerate both Japanese demo voices with the shared corrections.
+
 `server/pronunciation.py` contains the shared kana aliases used by demo generation and Japanese slow replay. English replay preserves the original text. Corrections match longer phrases first, so words such as 水曜日 keep their intended readings.
 
 Run `.venv/Scripts/python.exe scripts/configure-pronunciation.py` to install these aliases as a pronunciation dictionary on the live ElevenLabs agent. The API key needs pronunciation dictionary Read/Write and ElevenAgents Read/Write access. The script preserves other attached dictionaries and verifies the saved agent configuration. Rerun it after editing the shared readings. Restart or redeploy the backend to apply replay changes; start a new live call after updating the agent. Verify pronunciation with the selected voice in an actual call.
@@ -69,3 +71,5 @@ Open `/analytics` and enter `ANALYTICS_ADMIN_KEY` to see the last 30 days of lan
 For an existing Render Blueprint, sync the updated `render.yaml` to attach the 1 GB persistent disk and generate `ANALYTICS_ADMIN_KEY`. Retrieve that key from your service's Environment settings. `ANALYTICS_DB_PATH` must point to `/var/data/analytics.sqlite3`; files outside the disk disappear on deployments. Locally, use the key from your ignored `.env`. Keep one service instance. Back up the SQLite database if you need long-term recovery.
 
 Guided demos use different voices for each speaker: Kaito asks and Nao replies in Japanese; Sarah asks and Roger replies in English. To regenerate only learner audio, run `.venv/Scripts/python.exe scripts/generate-demo-audio.py --replies-only`. Optional `ELEVENLABS_JAPANESE_REPLY_VOICE_ID` and `ELEVENLABS_ENGLISH_REPLY_VOICE_ID` select replacement learner voices. Partner and learner IDs must differ. Playback uses bundled files and content hashes, so deployed demos need no extra voice settings.
+
+Live question help opens a separate, short-lived ElevenLabs text-only session while the voice call is muted. The explanation shows a meaning, note, and suggested reply; only the reply receives Japanese reading support. Speech is generated only on the optional Listen action. The main voice call stays connected, so its time limit and applicable billing continue. Help is cancelled when dismissed or the call closes, and is not added to the role-play transcript. Agent security must allow Conversation → Text only overrides; `scripts/configure-agent.py` enables that setting.

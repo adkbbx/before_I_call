@@ -36,6 +36,12 @@ def configure(client, agent_id):
         dictionary = response.json()
         locator = {'pronunciation_dictionary_id': dictionary['id'], 'version_id': dictionary['version_id']}
     desired = [locator, *keep]
+    response = client.get('https://api.elevenlabs.io/v1/pronunciation-dictionaries/' + locator['pronunciation_dictionary_id'])
+    response.raise_for_status()
+    saved = response.json()
+    saved_rules = [{key: rule[key] for key in ('type', 'string_to_replace', 'alias')} for rule in saved['rules']]
+    if saved['latest_version_id'] != locator['version_id'] or saved_rules != rules:
+        raise RuntimeError('Saved pronunciation rules or their order differ from the shared dictionary')
     if desired != current:
         response = client.patch(url, json={'conversation_config': {'tts': {'pronunciation_dictionary_locators': desired}}})
         response.raise_for_status()

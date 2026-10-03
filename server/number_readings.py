@@ -26,7 +26,7 @@ for number in range(60):
             hour = ((DIGITS[tens] if tens > 1 else '') + 'じゅう' if tens else '') + {4: 'よ', 7: 'しち', 9: 'く'}[units]
         values['時'] = hour + 'じ'
     if 1 <= number <= 10:
-        values['人'] = {1: 'ひとり', 2: 'ふたり'}.get(number, cardinal(number) + 'にん')
+        values['人'] = {1: 'ひとり', 2: 'ふたり', 4: 'よにん'}.get(number, cardinal(number) + 'にん')
     for unit, reading in values.items():
         for spelling in (str(number), ''.join(chr(ord(char) + 0xFEE0) for char in str(number)), kanji(number)):
             READINGS[spelling + unit] = reading

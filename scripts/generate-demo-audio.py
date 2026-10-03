@@ -12,9 +12,14 @@ turns = english if '--english-only' in sys.argv else original + english
 limit = asyncio.Semaphore(2)
 parser = argparse.ArgumentParser()
 parser.add_argument('--english-only', action='store_true')
+parser.add_argument('--japanese-only', action='store_true', help='Regenerate Japanese audio without changing English recordings')
 parser.add_argument('--replies-only', action='store_true', help='Regenerate learner replies without changing partner recordings')
 parser.add_argument('--only', nargs='+', help='Recording IDs to regenerate, such as timing or appointment')
 args = parser.parse_args()
+if args.english_only and args.japanese_only:
+    parser.error('Choose either --english-only or --japanese-only')
+if args.japanese_only:
+    turns = original
 def voice_for(language, reply):
     if language == 'en':
         partner = os.getenv('ELEVENLABS_ENGLISH_VOICE_ID', 'EXAVITQu4vr4xnSDxMaL')
@@ -32,7 +37,9 @@ async def generate(client, turn, reply):
         # Keep kanji in the UI, but make the intended reading explicit
         # in speech input rather than asking the voice model to guess it.
         spoken = speech_text(turn['answer'] if reply else turn['japanese'], 'en' if name.startswith('en-') else 'ja')
-        response = await client.post('https://api.elevenlabs.io/v1/text-to-speech/' + voice_for('en' if name.startswith('en-') else 'ja', reply), params={'output_format': 'pcm_24000'}, headers={'xi-api-key': os.environ['ELEVENLABS_API_KEY']}, json={'text': spoken, 'model_id': 'eleven_multilingual_v2', 'language_code': 'en' if name.startswith('en-') else 'ja', 'voice_settings': {'stability': 0.7, 'similarity_boost': 0.75, 'style': 0, 'speed': 0.95}})
+        # This voice's Multilingual v2 recording repeatedly mispronounces okutte.
+        model = 'eleven_v3' if name == 'photo' else 'eleven_multilingual_v2'
+        response = await client.post('https://api.elevenlabs.io/v1/text-to-speech/' + voice_for('en' if name.startswith('en-') else 'ja', reply), params={'output_format': 'pcm_24000'}, headers={'xi-api-key': os.environ['ELEVENLABS_API_KEY']}, json={'text': spoken, 'model_id': model, 'language_code': 'en' if name.startswith('en-') else 'ja', 'voice_settings': {'stability': 1.0 if model == 'eleven_v3' else 0.7, 'similarity_boost': 0.75, 'style': 0, 'speed': 0.95}})
         if not response.is_success:
             raise RuntimeError(f'{name}: ElevenLabs status {response.status_code}')
         if len(response.content) < 1000:
