@@ -66,3 +66,12 @@ test('every guided scenario has distinct playable partner and learner audio', ()
     }
   }
 });
+
+test('demo audio URLs have content versions matching the actual recordings', async () => {
+  const { createHash } = await import('node:crypto');
+  const versions = JSON.parse(readFileSync(new URL('../src/audio-versions.json', import.meta.url), 'utf8'));
+  for (const [id, version] of Object.entries(versions)) {
+    const bytes = readFileSync(new URL(`../public/audio/${id}.wav`, import.meta.url));
+    assert.equal(version, createHash('sha256').update(bytes).digest('hex').slice(0, 12));
+  }
+});

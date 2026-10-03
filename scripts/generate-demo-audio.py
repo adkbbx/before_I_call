@@ -1,4 +1,4 @@
-import asyncio, json, os, wave
+import asyncio, hashlib, json, os, re, wave
 from pathlib import Path
 import httpx
 from dotenv import load_dotenv
@@ -12,7 +12,8 @@ async def generate(client, turn, reply):
     async with limit:
         # Keep kanji in the UI, but make the intended name reading explicit
         # in speech input rather than asking the voice model to guess it.
-        speech_text = (turn['answer'] if reply else turn['japanese']).replace('田中', 'たなか')
+        readings = {'田中': 'たなか', '水漏れ': 'みずもれ', '排水': 'はいすい', '水曜日': 'すいようび', '水': 'みず'}
+        speech_text = re.sub('|'.join(readings), lambda match: readings[match.group()], turn['answer'] if reply else turn['japanese'])
         response = await client.post('https://api.elevenlabs.io/v1/text-to-speech/' + os.environ['ELEVENLABS_VOICE_ID'], params={'output_format': 'pcm_24000'}, headers={'xi-api-key': os.environ['ELEVENLABS_API_KEY']}, json={'text': speech_text, 'model_id': 'eleven_multilingual_v2', 'language_code': 'ja', 'voice_settings': {'stability': 0.7, 'similarity_boost': 0.75, 'style': 0, 'speed': 0.95}})
         if not response.is_success:
             raise RuntimeError(f'{name}: ElevenLabs status {response.status_code}')
@@ -29,5 +30,7 @@ async def generate(client, turn, reply):
 async def main():
     async with httpx.AsyncClient(timeout=90) as client:
         await asyncio.gather(*(generate(client, turn, reply) for turn in turns for reply in (False, True)))
+    versions = {path.stem: hashlib.sha256(path.read_bytes()).hexdigest()[:12] for path in Path('public/audio').glob('*.wav')}
+    Path('src/audio-versions.json').write_text(json.dumps(versions, indent=2) + '\n')
 
 asyncio.run(main())

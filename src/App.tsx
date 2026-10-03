@@ -4,6 +4,8 @@ import scenarios from './scenarios.json';
 import { ArrowLeft, ArrowRight, AudioLines, Check, ChevronDown, Download, Headphones, HelpCircle, Mic, MicOff, Pause, Phone, PhoneOff, Play, RotateCcw, Send, Volume2, X } from 'lucide-react';
 import { z } from 'zod';
 import demo from './demo.json';
+import audioVersions from './audio-versions.json';
+const audioVersion = new Map(Object.entries(audioVersions));
 import extraDemos from './extra-demos.json';
 const demos = [{ ...demo, id: 'repair', title: 'Home repair', partner: 'Tanaka / building manager' }, ...extraDemos];
 type Demo = typeof demos[number];
@@ -104,7 +106,7 @@ function DemoCall({ demo, onFinish }: { demo: Demo; onFinish: (messages: Message
   const stop = useCallback(() => { if (nextReply.current) { clearTimeout(nextReply.current); nextReply.current = null; } if (audio.current) { audio.current.onended = null; audio.current.pause(); audio.current = null; } setReplying(false); }, []);
   const play = useCallback((id: string, speaker: 'partner' | 'you' = 'partner', slow = false, complete?: () => void) => {
     if (audio.current) { audio.current.onended = null; audio.current.pause(); }
-    const sound = new Audio(`/audio/${id}.wav`);
+    const sound = new Audio(`/audio/${id}.wav?v=${audioVersion.get(id) ?? ''}`);
     audio.current = sound; sound.playbackRate = slow ? 0.72 : 1;
     setVoice(speaker); setError(''); setPhase('speaking');
     sound.onended = () => { setPhase('listening'); if (complete) nextReply.current = setTimeout(complete, 550); else setReplying(false); };
@@ -239,3 +241,4 @@ function Finished({ scenario, messages, mode, onDemo, onLive }: { scenarioId?: s
 
 function errorMessage(error: unknown): string { return error instanceof Error ? error.message : 'Something went wrong. Please try again.'; }
 export default App;
+
