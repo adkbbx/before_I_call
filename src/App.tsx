@@ -246,7 +246,7 @@ function LiveCall({ call, scenario, onFinish }: { call: StartedCall; scenario: s
     const ticker = setInterval(() => setElapsed(Math.min(call.max_call_seconds, Math.floor((Date.now() - startedAt) / 1000))), 1000);
     const timer = setTimeout(() => { void end('timeout'); }, call.max_call_seconds * 1000);
     void import('@elevenlabs/client').then(({ Conversation }) => Conversation.startSession({
-      conversationToken: call.conversation_token, connectionType: 'webrtc', textOnly: false,
+      conversationToken: call.conversation_token, connectionType: 'webrtc', textOnly: false, customLlmExtraBody: { purpose: 'call', conversation: call.conversation_ref },
       overrides: { agent: { prompt: { prompt: call.prompt }, firstMessage: call.greeting, language: call.target_language }, ...(call.voice_id ? { tts: { voiceId: call.voice_id } } : {}) },
       onConnect: () => { if (!stopped) { track('live_connected', { mode: 'live', language: call.target_language }); setPhase('listening'); } },
       onModeChange: ({ mode }) => { if (!stopped && !pausedRef.current) { setPhase(mode === 'speaking' ? 'speaking' : 'listening'); if (mode === 'listening' && completionPending) void end('completed'); } },
@@ -325,7 +325,7 @@ function LiveCall({ call, scenario, onFinish }: { call: StartedCall; scenario: s
         helpRequest.current?.abort();
         const controller = new AbortController(); helpRequest.current = controller;
         try {
-          const result = await explainQuestion(call.session_id, lastReply, call.target_language, call.language, controller.signal);
+          const result = await explainQuestion(call.session_id, lastReply, call.target_language, call.language, controller.signal, call.conversation_ref);
           if (controller.signal.aborted || ending.current) return;
           if (helpCache.current.size >= 20) helpCache.current.clear();
           helpCache.current.set(cacheKey, result);

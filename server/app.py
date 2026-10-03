@@ -17,7 +17,9 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, Request, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+from server import llm_tracing
 from server.analytics import router as analytics_router
+from server.llm_proxy import router as llm_proxy_router, configured as llm_proxy_configured
 from server.cost_limits import reserve, release
 from server.speech_cache import SpeechCache
 from server.call_opening import call_opening
@@ -30,10 +32,12 @@ from server.number_readings import PATTERN as NUMBER_PATTERN, READINGS as NUMBER
 from server.pronunciation import speech_text
 
 load_dotenv()
+llm_tracing.init()
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED = ('ELEVENLABS_API_KEY', 'ELEVENLABS_AGENT_ID')
 app = FastAPI(title='Before I Call')
 app.include_router(analytics_router)
+app.include_router(llm_proxy_router)
 app.include_router(preparation_router)
 start_lock = asyncio.Lock()
 help_lock = asyncio.Lock()
@@ -180,7 +184,7 @@ You: お電話ありがとうございました。失礼いたします。
 
 @app.get('/api/health')
 async def health():
-    return {'ok': True, 'preparation_available': preparation_configured(), 'live_available': configured(), 'max_call_seconds': int(os.getenv('MAX_CALL_SECONDS', '120')), 'access_code_required': bool(os.getenv('LIVE_ACCESS_CODE')), 'provider': 'elevenlabs', 'missing_settings': [key for key in REQUIRED if not os.getenv(key)]}
+    return {'ok': True, 'tracing_available': llm_tracing.enabled(), 'llm_proxy_available': llm_proxy_configured(), 'preparation_available': preparation_configured(), 'live_available': configured(), 'max_call_seconds': int(os.getenv('MAX_CALL_SECONDS', '120')), 'access_code_required': bool(os.getenv('LIVE_ACCESS_CODE')), 'provider': 'elevenlabs', 'missing_settings': [key for key in REQUIRED if not os.getenv(key)]}
 
 
 @app.post('/api/start')
@@ -218,7 +222,7 @@ async def start_call(payload: StartRequest, request: Request, browser_response: 
         session = Session(ticket, target_language=payload.target_language)
         sessions[session.id] = session
     browser_response.set_cookie('bic-practice-visitor', visitor, max_age=31536000, httponly=True, samesite='strict', secure=request.url.scheme == 'https' or os.getenv('APP_ORIGIN', '').startswith('https://'))
-    return {'session_id': session.id, 'conversation_token': token, 'max_call_seconds': int(os.getenv('MAX_CALL_SECONDS', '120')), 'prompt': practice_prompt(payload), 'greeting': call_opening(payload.scenario, payload.scenario_id, payload.target_language), 'language': payload.language, 'scenario_id': payload.scenario_id, 'target_language': payload.target_language, 'voice_id': os.getenv('ELEVENLABS_ENGLISH_VOICE_ID', 'EXAVITQu4vr4xnSDxMaL') if payload.target_language == 'en' else os.getenv('ELEVENLABS_VOICE_ID', '')}
+    return {'session_id': session.id, 'conversation_ref': llm_tracing.conversation_ref(session.id), 'conversation_token': token, 'max_call_seconds': int(os.getenv('MAX_CALL_SECONDS', '120')), 'prompt': practice_prompt(payload), 'greeting': call_opening(payload.scenario, payload.scenario_id, payload.target_language), 'language': payload.language, 'scenario_id': payload.scenario_id, 'target_language': payload.target_language, 'voice_id': os.getenv('ELEVENLABS_ENGLISH_VOICE_ID', 'EXAVITQu4vr4xnSDxMaL') if payload.target_language == 'en' else os.getenv('ELEVENLABS_VOICE_ID', '')}
 
 
 @app.delete('/api/sessions/{session_id}')
