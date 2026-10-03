@@ -25,7 +25,8 @@ url = 'https://api.elevenlabs.io/v1/convai/agents/' + os.environ['ELEVENLABS_AGE
 with httpx.Client(headers={'xi-api-key': os.environ['ELEVENLABS_API_KEY']}, timeout=30) as client:
     agent = client.get(url)
     agent.raise_for_status()
-    custom = agent.json()['conversation_config']['agent']['prompt']['custom_llm']
+    prompt = agent.json()['conversation_config']['agent']['prompt']
+    custom = prompt['custom_llm']
     if args.rollback:
         saved = json.loads(SAVED.read_text(encoding='utf-8'))
         custom.update(url=saved['url'], api_key={'secret_id': saved['secret_id']})
@@ -41,7 +42,8 @@ with httpx.Client(headers={'xi-api-key': os.environ['ELEVENLABS_API_KEY']}, time
         custom.update(url=args.origin.rstrip('/') + '/llm/v1/', api_key={'secret_id': secret.json()['secret_id']})
         # Lets the browser label each request as a practice call or question help, with a hashed conversation reference.
         platform = {'platform_settings': {'overrides': {'custom_llm_extra_body': True}}}
-    response = client.patch(url, json={'conversation_config': {'agent': {'prompt': {'custom_llm': custom}}}, **platform})
+    # ElevenLabs validates custom_llm only together with the selected llm type.
+    response = client.patch(url, json={'conversation_config': {'agent': {'prompt': {'llm': prompt['llm'], 'custom_llm': custom}}}, **platform})
     response.raise_for_status()
     saved = client.get(url).json()['conversation_config']['agent']['prompt']['custom_llm']
     if saved['url'] != custom['url'] or saved['api_key'] != custom['api_key']:
