@@ -10,6 +10,7 @@ from dataclasses import dataclass, field
 from functools import lru_cache
 from pathlib import Path
 from typing import Literal
+from uuid import UUID, uuid4
 
 import httpx
 from dotenv import load_dotenv
@@ -20,6 +21,7 @@ from server.analytics import router as analytics_router
 from server.cost_limits import reserve, release
 from server.speech_cache import SpeechCache
 from server.call_opening import call_opening
+from server.vocabulary import select_words
 from server.preparation import router as preparation_router, configured as preparation_configured
 from pydantic import BaseModel, Field
 from pykakasi import kakasi
@@ -82,6 +84,7 @@ class TranscriptMessage(BaseModel):
 class CardRequest(BaseModel):
     target_language: Literal['ja', 'en'] = 'ja'
     messages: list[TranscriptMessage] = Field(max_length=100)
+    enrich_vocabulary: bool = False
 
 
 def configured():
@@ -258,7 +261,9 @@ async def readings(payload: TextRequest, request: Request):
 
 
 @app.post('/api/call-card')
-async def call_card(payload: CardRequest, request: Request):
+async def call_card(payload: CardRequest, request: Request, response: Response):
+    if payload.enrich_vocabulary:
+        check_origin(request)
     phrases = []
     words = {}
     seen = set()
@@ -278,6 +283,17 @@ async def call_card(payload: CardRequest, request: Request):
         for segment in annotation['segments']:
             if segment['meaning'] and not segment['meaning'].startswith('Reading shown.'):
                 words.setdefault(segment['text'], {'japanese': segment['text'], 'romaji': romanize(segment['text']), 'meaning': segment['meaning']})
+    if payload.enrich_vocabulary:
+        try:
+            visitor = str(UUID(request.cookies.get('bic-practice-visitor', '')))
+        except ValueError:
+            visitor = str(uuid4())
+        response.set_cookie('bic-practice-visitor', visitor, max_age=31536000, httponly=True, samesite='strict', secure=request.url.scheme == 'https' or os.getenv('APP_ORIGIN', '').startswith('https://'))
+        selected, status = await select_words(payload.messages, payload.target_language, visitor)
+        ranked = {item['text']: {'japanese': item['text'], 'romaji': romanize(item['text']) if payload.target_language == 'ja' else '', 'meaning': item['meaning']} for item in selected}
+        for text, word in words.items():
+            ranked.setdefault(text, word)
+        return {'phrases': phrases, 'words': list(ranked.values()), 'vocabulary_source': status}
     return {'phrases': phrases, 'words': list(words.values())}
 
 
