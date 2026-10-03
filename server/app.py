@@ -266,6 +266,21 @@ async def end_call(session_id: str, request: Request):
     return {'ok': True}
 
 
+# Readings are CPU-bound. A two-minute call is a few thousand characters; this bound is several
+# times that and caps the work any one request can ask for.
+MAX_TRANSCRIPT_CHARACTERS = 20000
+# Readings run in a worker thread so a long card never stalls live calls or health checks, and one
+# at a time so the shared converter and tokenizer are never used by two threads at once.
+annotation_lock = threading.Lock()
+
+
+async def off_loop(work, *args):
+    def locked():
+        with annotation_lock:
+            return work(*args)
+    return await asyncio.to_thread(locked)
+
+
 @lru_cache(maxsize=256)
 def annotate(text: str):
     contextual_words = sorted(number_words(text) + lexicon, key=lambda item: len(item['text']), reverse=True)
@@ -338,25 +353,23 @@ def _romanize_words(text: str) -> str:
 @app.post('/api/readings')
 async def readings(payload: TextRequest, request: Request):
     # Local, bounded text annotation has no provider credentials or paid calls.
-    return annotate(payload.text)
+    return await off_loop(annotate, payload.text)
 
 
-@app.post('/api/call-card')
-async def call_card(payload: CardRequest, request: Request, response: Response):
-    if payload.enrich_vocabulary:
-        check_origin(request)
+def card_entries(messages: list[TranscriptMessage], target_language: str, selected: list[dict]):
+    """Transcript phrases and words with readings. Words Gemma selected come first."""
     phrases = []
     words = {}
     seen = set()
-    for index, message in enumerate(payload.messages):
-        if payload.target_language == 'ja' and not re.search(r'[\u3040-\u30ff\u4e00-\u9fff]', message.text):
+    for index, message in enumerate(messages):
+        if target_language == 'ja' and not re.search(r'[\u3040-\u30ff\u4e00-\u9fff]', message.text):
             continue
-        annotation = annotate(message.text) if payload.target_language == 'ja' else {'romaji': '', 'segments': []}
+        annotation = annotate(message.text) if target_language == 'ja' else {'romaji': '', 'segments': []}
         if message.text not in seen:
-            prepared = prepared_phrases.get(message.text, {}) if payload.target_language == 'ja' else {}
+            prepared = prepared_phrases.get(message.text, {}) if target_language == 'ja' else {}
             phrases.append({'japanese': message.text, 'romaji': prepared.get('romaji', annotation['romaji']), 'meaning': prepared.get('meaning', ''), 'role': message.role, 'turn': index + 1})
             seen.add(message.text)
-        if payload.target_language == 'en':
+        if target_language == 'en':
             dictionary = {'appointment': 'a planned meeting or visit; 予約', 'repair': 'fixing something broken; 修理', 'delivery': 'bringing a parcel to you; 配達', 'available': 'free or possible at that time; 都合がつく', 'confirm': 'check that details are correct; 確認する', 'reschedule': 'change the date or time; 日程を変更する', 'refund': 'money returned after a purchase; 返金', 'evening': 'the later part of the day; 夕方・夜', 'afternoon': 'the time after midday; 午後'}
             for word, meaning in dictionary.items():
                 if re.search(r'\b' + word + r'\b', message.text, re.I):
@@ -364,18 +377,29 @@ async def call_card(payload: CardRequest, request: Request, response: Response):
         for segment in annotation['segments']:
             if segment['meaning'] and not segment['meaning'].startswith('Reading shown.'):
                 words.setdefault(segment['text'], {'japanese': segment['text'], 'romaji': romanize(segment['text']), 'meaning': segment['meaning']})
+    ranked = {item['text']: {'japanese': item['text'], 'romaji': romanize(item['text']) if target_language == 'ja' else '', 'meaning': item['meaning']} for item in selected}
+    for text, word in words.items():
+        ranked.setdefault(text, word)
+    return phrases, list(ranked.values())
+
+
+@app.post('/api/call-card')
+async def call_card(payload: CardRequest, request: Request, response: Response):
     if payload.enrich_vocabulary:
-        try:
-            visitor = str(UUID(request.cookies.get('bic-practice-visitor', '')))
-        except ValueError:
-            visitor = str(uuid4())
-        response.set_cookie('bic-practice-visitor', visitor, max_age=31536000, httponly=True, samesite='strict', secure=request.url.scheme == 'https' or os.getenv('APP_ORIGIN', '').startswith('https://'))
-        selected, status = await select_words(payload.messages, payload.target_language, visitor)
-        ranked = {item['text']: {'japanese': item['text'], 'romaji': romanize(item['text']) if payload.target_language == 'ja' else '', 'meaning': item['meaning']} for item in selected}
-        for text, word in words.items():
-            ranked.setdefault(text, word)
-        return {'phrases': phrases, 'words': list(ranked.values()), 'vocabulary_source': status}
-    return {'phrases': phrases, 'words': list(words.values())}
+        check_origin(request)
+    if sum(len(message.text) for message in payload.messages) > MAX_TRANSCRIPT_CHARACTERS:
+        raise HTTPException(413, 'This conversation is too long for a call card.')
+    if not payload.enrich_vocabulary:
+        phrases, words = await off_loop(card_entries, payload.messages, payload.target_language, [])
+        return {'phrases': phrases, 'words': words}
+    try:
+        visitor = str(UUID(request.cookies.get('bic-practice-visitor', '')))
+    except ValueError:
+        visitor = str(uuid4())
+    response.set_cookie('bic-practice-visitor', visitor, max_age=31536000, httponly=True, samesite='strict', secure=request.url.scheme == 'https' or os.getenv('APP_ORIGIN', '').startswith('https://'))
+    selected, status = await select_words(payload.messages, payload.target_language, visitor)
+    phrases, words = await off_loop(card_entries, payload.messages, payload.target_language, selected)
+    return {'phrases': phrases, 'words': words, 'vocabulary_source': status}
 
 
 MAX_PDF_CHARACTERS = 60000
@@ -388,18 +412,23 @@ def render_locked(**card) -> bytes:
         return render_call_card(**card)
 
 
-@app.post('/api/call-card.pdf')
-async def call_card_pdf(payload: CardPdfRequest, request: Request):
-    check_origin(request)
-    if len(payload.scenario) + sum(len(message.text) + len(message.romaji) + len(message.meaning) for message in payload.messages) > MAX_PDF_CHARACTERS:
-        raise HTTPException(413, 'This conversation is too long for a PDF call card.')
-    messages = []
-    for message in payload.messages:
+def pdf_messages(messages: list[CardPdfMessage], target_language: str) -> list[dict]:
+    entries = []
+    for message in messages:
         text = message.text.strip()
         if not text:
             continue
-        japanese = payload.target_language == 'ja' and bool(re.search(r'[぀-ヿ一-鿿]', text))
-        messages.append({'role': message.role, 'text': text, 'romaji': message.romaji.strip() or (romanize(text) if japanese else ''), 'meaning': message.meaning.strip(), 'segments': annotate(text)['segments'] if japanese else None})
+        japanese = target_language == 'ja' and bool(re.search(r'[぀-ヿ一-鿿]', text))
+        entries.append({'role': message.role, 'text': text, 'romaji': message.romaji.strip() or (romanize(text) if japanese else ''), 'meaning': message.meaning.strip(), 'segments': annotate(text)['segments'] if japanese else None})
+    return entries
+
+
+@app.post('/api/call-card.pdf')
+async def call_card_pdf(payload: CardPdfRequest, request: Request):
+    check_origin(request)
+    if len(payload.scenario) + sum(len(message.text) + len(message.romaji) + len(message.meaning) for message in payload.messages) > MAX_PDF_CHARACTERS or sum(len(message.text) for message in payload.messages) > MAX_TRANSCRIPT_CHARACTERS:
+        raise HTTPException(413, 'This conversation is too long for a PDF call card.')
+    messages = await off_loop(pdf_messages, payload.messages, payload.target_language)
     pdf = await asyncio.to_thread(render_locked, scenario=payload.scenario, target_language=payload.target_language, mode=payload.mode, practiced_on=payload.practiced_on or date.today(), messages=messages, words=[word.model_dump() for word in payload.words])
     return Response(pdf, media_type='application/pdf', headers={'Content-Disposition': 'attachment; filename="before-i-call-practice-card.pdf"', 'Cache-Control': 'no-store'})
 

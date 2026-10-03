@@ -64,6 +64,8 @@ class CallCardPdfTests(unittest.TestCase):
         self.assertEqual(self.client.post('/api/call-card.pdf', headers={'Origin': 'https://unrelated.example'}, json={'messages': []}).status_code, 403)
         turn = {'role': 'user', 'text': 'あ' * 2000, 'romaji': 'a' * 6000, 'meaning': 'x' * 2000}
         self.assertEqual(self.card(messages=[turn] * 10).status_code, 413)
+        # Under the overall size limit, but more transcript than any card needs to annotate.
+        self.assertEqual(self.card(messages=[{'role': 'user', 'text': 'あ' * 2000}] * 11).status_code, 413)
 
     def test_furigana_sits_over_kanji_and_leaves_okurigana_plain(self):
         self.assertEqual(ruby_parts('漏れて', 'もれて'), [('漏', 'も'), ('れて', '')])

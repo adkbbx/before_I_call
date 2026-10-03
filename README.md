@@ -18,7 +18,7 @@ python -m venv .venv
 .venv/Scripts/python.exe -m uvicorn server.app:app --host 127.0.0.1 --port 8000
 ```
 
-Open http://127.0.0.1:8000. Use `npm run dev` for frontend development; Vite proxies /api and /audio to port 8000. The demo requires no credentials. `.env` is excluded from Git.
+Open http://127.0.0.1:8000. Use `npm run dev` for frontend development; Vite proxies /api to port 8000 and serves the demo audio from `public/`. The demo requires no credentials. `.env` is excluded from Git.
 
 ## ElevenLabs live configuration
 
@@ -44,11 +44,11 @@ MAX_CALL_SECONDS sets the browser's end timer and server admission-lease expiry.
 
 Native ruby shows furigana. Curated vocabulary includes English meanings; pykakasi supplies dictionary readings for unfamiliar kanji without another model API. Those readings can be ambiguous, especially names. Unfamiliar words direct the learner to Explain that rather than inventing English meanings. Hover, focus and tap reveal meanings; Escape/blur dismisses the tooltip. Layouts support narrow phones, system dark mode and reduced motion.
 
-Transcripts stay in browser memory. At completion, the browser sends the transcript to the local app server for word and pronunciation extraction; the server does not persist it or send it to another AI service. The app does not save recordings. ElevenLabs retention follows the agent's privacy settings. Use placeholders rather than real addresses, tracking IDs or account details in practice.
+Transcripts stay in browser memory. ElevenLabs processes live-call audio. Live conversation text, explanations and situation enhancement go to Gemma on DigitalOcean. At completion, the browser sends the transcript to this app's server for word and pronunciation extraction; after live practice the server also sends up to 6,000 characters of it to Gemma to pick call-card vocabulary. The server does not persist transcripts, and the app does not save recordings. ElevenLabs and DigitalOcean retention follow their own privacy settings. Use placeholders rather than real addresses, tracking IDs or account details in practice.
 
 ## Checks
 
-`npm test`, `npm run build`, and `.venv/Scripts/python.exe -m unittest discover -s tests -p test_api.py -v` check scripted flow, audio, card exports, token boundaries, provider failures, concurrency leases, and annotations. A real browser voice call must also be tested with an accessible configured agent; compilation and token issuance alone do not prove microphone/audio quality or latency.
+`npm test`, `npm run build`, and `.venv/Scripts/python.exe -m unittest discover -s tests` check scripted flow, audio, card exports, token boundaries, provider failures, concurrency leases, and annotations. A real browser voice call must also be tested with an accessible configured agent; compilation and token issuance alone do not prove microphone/audio quality or latency.
 
 
 
@@ -78,7 +78,7 @@ Live question help opens a separate, short-lived ElevenLabs text-only session wh
 
 ## Agent tracing
 
-Sentry traces every Gemma request: live turns, explanations, situation enhancement and vocabulary, with time to first token, tokens, estimated cost, tool calls and quality flags such as tool syntax spoken as dialogue. No conversation text is sent to Sentry. Set `SENTRY_DSN` and `LLM_PROXY_KEY`, then run `scripts/configure-llm-proxy.py`. See [agent tracing](docs/AGENT_TRACING.md).
+Sentry traces every Gemma request: live turns, explanations, situation enhancement and vocabulary, with time to first token, tokens, estimated cost, tool calls and quality flags such as tool syntax spoken as dialogue. Traces carry no conversation text. Learners can report a partner reply from the call card; a report includes the reason and any note they write, and the reply text only if they choose to attach it. Set `SENTRY_DSN` and `LLM_PROXY_KEY`, then run `scripts/configure-llm-proxy.py`. See [agent tracing](docs/AGENT_TRACING.md).
 
 ## License
 

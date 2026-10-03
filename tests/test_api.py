@@ -1,3 +1,4 @@
+import asyncio
 import json
 import os
 import time
@@ -110,6 +111,24 @@ class ApiTests(unittest.TestCase):
         self.assertNotIn('洗濯機', words)
         self.assertNotIn('予約', words)
         self.assertEqual(self.client.post('/api/call-card', json={'messages': []}).json(), {'phrases': [], 'words': []})
+
+    def test_long_cards_are_refused_and_readings_never_block_the_event_loop(self):
+        turn = {'role': 'user', 'text': 'あ' * 2000}
+        self.assertEqual(self.client.post('/api/call-card', json={'messages': [turn] * 10}).status_code, 200)
+        self.assertEqual(self.client.post('/api/call-card', json={'messages': [turn] * 11}).status_code, 413)
+        on_event_loop = []
+
+        def recording(text):
+            try:
+                asyncio.get_running_loop()
+                on_event_loop.append(True)
+            except RuntimeError:
+                on_event_loop.append(False)
+            return annotate(text)
+        with patch('server.app.annotate', side_effect=recording):
+            self.client.post('/api/readings', json={'text': '水が漏れています。'})
+            self.client.post('/api/call-card', json={'messages': [{'role': 'user', 'text': '写真を送ってください。'}]})
+        self.assertEqual(on_event_loop, [False, False])
 
     def test_counter_readings_preserve_quantities_and_irregular_pronunciation(self):
         cases = {'五分': 'gofun', '5分': 'gofun', '５分': 'gofun', '六分': 'roppun', '1分': 'ippun', '10分': 'juppun', '15分': 'juugofun', '30分': 'sanjuppun', '四時': 'yoji', '7時': 'shichiji', '9時': 'kuji', '二人': 'futari'}

@@ -46,7 +46,7 @@ Provider failures (unreachable, HTTP errors, interrupted streams) are captured a
 
 ## Privacy
 
-`send_default_pii` is off, request bodies are never attached, local variables are not captured and trace headers are not sent to providers. Reply text is scanned for the flags above in server memory and discarded. Tests assert that captured Sentry payloads contain no conversation text or keys.
+`send_default_pii` is off, request bodies are never attached, local variables are not captured and trace headers are not sent to providers. Reply text is scanned for the flags above in server memory and discarded. Tests assert that captured Sentry payloads contain no conversation text or keys. The one exception is a learner's reply report, which includes the reply text only when the learner chooses to attach it.
 
 ## Setup and rollback
 
