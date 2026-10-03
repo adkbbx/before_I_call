@@ -20,7 +20,7 @@ def reserve(ticket: str, visitor: str | None, seconds: int) -> str:
         count = connection.execute('SELECT COUNT(*) FROM call_budget WHERE day=? AND visitor=?', (day, browser)).fetchone()[0]
         if count >= int(os.getenv('MAX_CALLS_PER_VISITOR_DAY', '3')):
             raise HTTPException(429, 'You’ve used today’s live practices. You can keep practising with the guided examples. Live practice resets at midnight UTC.')
-        if total + seconds > int(os.getenv('MAX_DAILY_CALL_SECONDS', '1800')):
+        if total + seconds > int(os.getenv('MAX_DAILY_CALL_SECONDS', '12000')):
             raise HTTPException(429, 'Today’s live practice budget is used up. The guided examples are still available. Live practice resets at midnight UTC.')
         connection.execute('INSERT INTO call_budget VALUES (?,?,?,?)', (ticket, day, browser, seconds))
     return browser

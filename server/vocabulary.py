@@ -29,7 +29,7 @@ def reserve(visitor):
         db.execute('DELETE FROM vocabulary_budget WHERE day<?',(day,))
         total=db.execute('SELECT COUNT(*) FROM vocabulary_budget WHERE day=?',(day,)).fetchone()[0]
         count=db.execute('SELECT COUNT(*) FROM vocabulary_budget WHERE day=? AND visitor=?',(day,visitor)).fetchone()[0]
-        if count>=int(os.getenv('MAX_VOCABULARY_PER_VISITOR_DAY','3')) or total>=int(os.getenv('MAX_VOCABULARY_PER_DAY','30')):
+        if count>=int(os.getenv('MAX_VOCABULARY_PER_VISITOR_DAY','3')) or total>=int(os.getenv('MAX_VOCABULARY_PER_DAY','100')):
             return False
         db.execute('INSERT INTO vocabulary_budget VALUES (?,?)',(day,visitor))
         return True

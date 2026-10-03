@@ -42,7 +42,7 @@ def reserve(visitor):
         db.execute('DELETE FROM preparation_budget WHERE day<?', (day,))
         total = db.execute('SELECT COUNT(*) FROM preparation_budget WHERE day=?', (day,)).fetchone()[0]
         count = db.execute('SELECT COUNT(*) FROM preparation_budget WHERE day=? AND visitor=?', (day, visitor)).fetchone()[0]
-        if count >= int(os.getenv('MAX_PREPARATIONS_PER_VISITOR_DAY', '5')) or total >= int(os.getenv('MAX_PREPARATIONS_PER_DAY', '50')):
+        if count >= int(os.getenv('MAX_PREPARATIONS_PER_VISITOR_DAY', '5')) or total >= int(os.getenv('MAX_PREPARATIONS_PER_DAY', '100')):
             raise HTTPException(429, 'Today’s preparation limit has been reached. You can still edit your situation and start practice. Resets at midnight UTC.')
         db.execute('INSERT INTO preparation_budget VALUES (?,?)', (day, visitor))
 
