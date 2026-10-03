@@ -101,12 +101,6 @@ function Home({ onDemo, onLive }: { onDemo: (id: string) => void; onLive: (langu
   </section>;
 }
 
-function SituationDropdown({ value, onChange, disabled }: { value: string; onChange: (id: string) => void; disabled: boolean }) {
-  const menu = useRef<HTMLDetailsElement | null>(null);
-  const title = scenarios.find(item => item.id === value)?.title ?? 'Your own situation';
-  return <details className="situation-dropdown" ref={menu} onKeyDown={event => { if (event.key === 'Escape' && menu.current) { menu.current.open = false; menu.current.querySelector('summary')?.focus(); } }} onBlur={event => { if (!(event.relatedTarget instanceof Node) || !event.currentTarget.contains(event.relatedTarget)) event.currentTarget.open = false; }}><summary aria-disabled={disabled} onClick={event => { if (disabled) event.preventDefault(); }}><span>{title}</span><ChevronDown size={17} /></summary><div className="situation-options" role="group" aria-label="Choose a situation">{scenarios.map(item => <button type="button" key={item.id} disabled={disabled} aria-pressed={value === item.id} onClick={() => { onChange(item.id); if (menu.current) { menu.current.open = false; menu.current.querySelector('summary')?.focus(); } }}><span>{item.title}</span>{value === item.id && <Check size={16} />}</button>)}</div></details>;
-}
-
 function Setup({ initialTarget, health, onBack, onDemo, onStart }: { initialTarget: 'ja' | 'en'; health: Health | null; onBack: () => void; onDemo: () => void; onStart: (call: StartedCall, scenario: string) => void }) {
   const [selected, setSelected] = useState('custom');
   const [scenario, setScenario] = useState('');
@@ -375,11 +369,11 @@ function Finished({ scenario, messages, mode, onLive, targetLanguage, onHome }: 
   const [cardState, setCardState] = useState<{ kind: 'loading' } | { kind: 'ready'; data: z.infer<typeof callCardSchema> } | { kind: 'error'; message: string }>({ kind: 'loading' });
   useEffect(() => {
     const controller = new AbortController();
-    request('/api/call-card', callCardSchema, { method: 'POST', body: JSON.stringify({ enrich_vocabulary: true, target_language: targetLanguage, messages: messages.filter(message => message.text.trim()).slice(-100) }), signal: controller.signal })
+    request('/api/call-card', callCardSchema, { method: 'POST', body: JSON.stringify({ enrich_vocabulary: mode === 'live', target_language: targetLanguage, messages: messages.filter(message => message.text.trim()).slice(-100) }), signal: controller.signal })
       .then(data => setCardState({ kind: 'ready', data }))
       .catch(error => { if (!controller.signal.aborted) setCardState({ kind: 'error', message: errorMessage(error) }); });
     return () => controller.abort();
-  }, [messages, targetLanguage]);
+  }, [messages, targetLanguage, mode]);
   const phrases = cardState.kind === 'ready' ? cardState.data.phrases : [];
   const [cardView, setCardView] = useState<'conversation' | 'words'>('conversation');
   const [cardPage, setCardPage] = useState(0);

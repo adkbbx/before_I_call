@@ -10,6 +10,10 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="description" content="Rehearse the Japanese call you've been putting off. A patient voice partner, explanations when you need them, and a call card to take with you." />
     <title>Before I Call · Japanese call practice</title>
+    <script>
+      // Apply a saved light/dark choice before first paint; App.tsx owns it afterwards.
+      try { const theme = localStorage.getItem('before-i-call-theme'); if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme; } catch { /* Storage can be unavailable. */ }
+    </script>
   </head>
   <body>
     <div id="root"></div>

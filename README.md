@@ -22,19 +22,21 @@ Open http://127.0.0.1:8000. Use `npm run dev` for frontend development; Vite pro
 
 ## ElevenLabs live configuration
 
-Set ELEVENLABS_API_KEY and ELEVENLABS_AGENT_ID on the server. ELEVENLABS_VOICE_ID enables slow replay. No Daily account, Groq key, Ollama service, or native audio transport is required.
+Set ELEVENLABS_API_KEY and ELEVENLABS_AGENT_ID on the server. ELEVENLABS_VOICE_ID enables slow replay.
 
 The key needs ElevenAgents Read for conversation-token issuance, and Text to Speech Access for slow replay. Agent creation or configuration through the API additionally needs ElevenAgents Write. Speech to Text Access is not required by this app anymore; recognition is handled inside Agents.
 
-Configure a dedicated agent with Japanese language, a Japanese voice, a hosted LLM, a maximum conversation duration of 300 seconds, authentication enabled, and voice recording disabled. In Security allow System prompt, First message, Language and TTS Voice ID overrides. Enable the built-in End Call tool. Run `.venv/Scripts/python.exe scripts/configure-agent.py` with ElevenAgents Write permission to apply these settings and match the provider duration to MAX_CALL_SECONDS. These let one agent play the selected service role. Do not leave a fixed washing-machine prompt as the only configuration. The application supplies the prompt at session start.
+Configure a dedicated agent with Japanese language, a Japanese voice, a maximum conversation duration of 120 seconds, authentication enabled, and voice recording disabled. In Security allow System prompt, First message, Language, TTS Voice ID and Conversation → Text only overrides.
 
-The browser gets a conversation token from /api/start, never the API key. The official @elevenlabs/client SDK establishes WebRTC directly with ElevenLabs. It delivers audio, transcripts, microphone muting, typed responses and conversation state. Explain that asks the same agent for help in the selected language; help is part of that conversation's context and transcript. Resume returns to role-play. Pause mutes local input and output; the provider session and billing continue until End practice. Slow replay synthesizes the last role-play question separately.
+The agent's LLM is Gemma 4 on DigitalOcean serverless inference, connected as an ElevenLabs Custom LLM: server URL `https://inference.do-ai.run/v1/`, model `gemma-4-31B-it`, Chat Completions API, with a DigitalOcean model access key saved as an ElevenLabs secret. Set the backup LLM to Disabled so a provider error ends the turn instead of silently switching to a different model. Calls, question explanations, situation enhancement and call-card vocabulary all use the same Gemma model; the last two call DigitalOcean directly with `GRADIENT_MODEL_ACCESS_KEY` (see [cost controls](docs/COST_CONTROLS.md)). Enable the built-in End Call tool. Run `.venv/Scripts/python.exe scripts/configure-agent.py` with ElevenAgents Write permission to apply these settings and match the provider duration to MAX_CALL_SECONDS. These let one agent play the selected service role. Do not leave a fixed washing-machine prompt as the only configuration. The application supplies the prompt at session start.
+
+The browser gets a conversation token from /api/start, never the API key. The official @elevenlabs/client SDK establishes WebRTC directly with ElevenLabs. It delivers audio, transcripts, microphone muting, typed responses and conversation state. Explain opens a separate text-only session (described below), so help stays out of the role-play transcript. Resume returns to role-play. Pause mutes local input and output; the provider session and billing continue until End practice. Slow replay synthesizes the last role-play question separately.
 
 ## Render
 
 Connect the repository as a Blueprint using render.yaml. The Dockerfile installs the lightweight backend and builds the frontend. Start with the included Starter plan and measure actual memory use; there is no local LLM in this configuration. Use one instance because session admission leases are in memory.
 
-Set ELEVENLABS_API_KEY, ELEVENLABS_AGENT_ID, ELEVENLABS_VOICE_ID, and APP_ORIGIN to the exact Render origin without a trailing slash. Local .env values do not transfer automatically. LIVE_ACCESS_CODE can restrict token issuance. Remove old DAILY_API_KEY, GROQ_API_KEY and LLM_MODEL settings from the Render service.
+Set ELEVENLABS_API_KEY, ELEVENLABS_AGENT_ID, ELEVENLABS_VOICE_ID, GRADIENT_MODEL_ACCESS_KEY (enables situation enhancement and call-card vocabulary), and APP_ORIGIN to the exact Render origin without a trailing slash. Local .env values do not transfer automatically. LIVE_ACCESS_CODE can restrict token issuance.
 
 MAX_CALL_SECONDS sets the browser's end timer and server admission-lease expiry. Also set the agent's provider-side maximum duration to the same limit, because a browser timer is not authoritative. MAX_CONCURRENT_CALLS limits admission leases on this one app instance, not all sessions started elsewhere on the ElevenLabs account.
 
@@ -73,3 +75,7 @@ For an existing Render Blueprint, sync the updated `render.yaml` to attach the 1
 Guided demos use different voices for each speaker: Kaito asks and Nao replies in Japanese; Sarah asks and Roger replies in English. To regenerate only learner audio, run `.venv/Scripts/python.exe scripts/generate-demo-audio.py --replies-only`. Optional `ELEVENLABS_JAPANESE_REPLY_VOICE_ID` and `ELEVENLABS_ENGLISH_REPLY_VOICE_ID` select replacement learner voices. Partner and learner IDs must differ. Playback uses bundled files and content hashes, so deployed demos need no extra voice settings.
 
 Live question help opens a separate, short-lived ElevenLabs text-only session while the voice call is muted. The explanation shows a meaning, note, and suggested reply; only the reply receives Japanese reading support. Speech is generated only on the optional Listen action. The main voice call stays connected, so its time limit and applicable billing continue. Help is cancelled when dismissed or the call closes, and is not added to the role-play transcript. Agent security must allow Conversation → Text only overrides; `scripts/configure-agent.py` enables that setting.
+
+## License
+
+MIT. See [LICENSE](LICENSE).

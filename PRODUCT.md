@@ -29,4 +29,4 @@ User experience first. Give learners time to think. Preserve the conversation wh
 Keyboard controls, visible transcripts, typed responses, reduced-motion support, responsive mobile layout. Microphone permissions only after choosing live practice.
 
 ## October 3 integration revision
-Live voice uses ElevenLabs Agents directly. Presets cover repairs, clinic booking, redelivery, city-office questions, dietary requests, lost property and bills, plus custom situations. The guided repair demo remains available. Help is part of the agent conversation; pause mutes local audio without ending provider billing. No Daily/Groq integration remains.
+Live voice uses ElevenLabs Agents with Gemma 4 on DigitalOcean as the agent's LLM. Presets cover repairs, clinic booking, redelivery, city-office questions, dietary requests, lost property and bills, plus custom situations. The guided repair demo remains available. Help opens a separate text-only session; pause mutes local audio without ending provider billing.
