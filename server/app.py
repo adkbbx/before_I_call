@@ -30,8 +30,8 @@ app.include_router(analytics_router)
 start_lock = asyncio.Lock()
 reader = kakasi()
 tokenizer = Tokenizer()
-lexicon = sorted(json.loads((ROOT / 'src/japanese-lexicon.json').read_text()), key=lambda item: len(item['text']), reverse=True)
-demo_turns = json.loads((ROOT / 'src/demo.json').read_text())['turns'] + [turn for demo in json.loads((ROOT / 'src/extra-demos.json').read_text()) for turn in demo['turns']]
+lexicon = sorted(json.loads((ROOT / 'src/japanese-lexicon.json').read_text(encoding='utf-8')), key=lambda item: len(item['text']), reverse=True)
+demo_turns = json.loads((ROOT / 'src/demo.json').read_text(encoding='utf-8'))['turns'] + [turn for demo in json.loads((ROOT / 'src/extra-demos.json').read_text(encoding='utf-8')) for turn in demo['turns']]
 prepared_phrases = {text: {'romaji': turn[reading], 'meaning': turn[meaning]} for turn in demo_turns for text, reading, meaning in [(turn['japanese'], 'romaji', 'meaning'), (turn['answer'], 'answerRomaji', 'answerMeaning')]}
 
 
@@ -58,6 +58,9 @@ class StartRequest(BaseModel):
 
 class TextRequest(BaseModel):
     text: str = Field(min_length=1, max_length=2000)
+
+class SpeechRequest(TextRequest):
+    language: Literal['ja', 'en'] | None = None
 
 
 class TranscriptMessage(BaseModel):
@@ -103,6 +106,7 @@ This is practice with an AI, not an actual service. Never make real bookings, su
 Use the learner's situation below to select a realistic role and ask relevant follow-up questions. Do not always discuss repairs.
 Use invented placeholders for personal details; do not request real names, dates of birth, addresses, tracking numbers or account identifiers.
 For spoken Japanese, write the name 田中 as たなか in your responses so it is pronounced ta-na-ka. Never replace it with テンポカ or a similar-sounding name.
+Write complete dates and counters in spoken kana when their kanji or digits are ambiguous. The first of a month is ついたち; a duration of one day is いちにち. April, July and September are しがつ, しちがつ and くがつ; dates 14, 20 and 24 are じゅうよっか, はつか and にじゅうよっか. Distinguish clock times from durations and fractions. 十分 meaning enough is じゅうぶん; ten minutes is じゅっぷん. Do not use slash dates or colon times in spoken output. Preserve every numerical value; never choose a date or counter interpretation that changes the learner's meaning. Ask for clarification when it is ambiguous. Use こんにちは for the greeting rather than the ambiguous spelling 今日は.
 For spoken numbers, write complete Japanese counter readings in kana rather than digits or kanji. Minutes: 1=いっぷん, 2=にふん, 3=さんぷん, 4=よんぷん, 5=ごふん, 6=ろっぷん, 7=ななふん, 8=はっぷん, 9=きゅうふん, 10=じゅっぷん, 15=じゅうごふん, 30=さんじゅっぷん. Clock hours: 4=よじ, 7=しちじ, 9=くじ. People: 1=ひとり, 2=ふたり. Preserve the learner's number exactly; never swap five for six. Say one numerical detail at a time, with a brief pause after it. Read important times, durations or quantities back and ask the learner to confirm. If you did not hear a number clearly, ask them to repeat it rather than guessing.
 Speak natural, polite Japanese. Use one or two short sentences and one question per turn. Wait for the learner. Accept hesitant Japanese or English responses. Do not grade or lecture. Once the stated rehearsal goal has been addressed, do not introduce new tasks or unrelated questions. Briefly summarize the agreed next step and ask whether the learner needs anything else. If they say no, say goodbye, or explicitly want to finish, call end_call with a short Japanese farewell. Do not end merely because they say thank you mid-conversation. Never end while explaining a sentence unless the learner explicitly asks to finish.
 This is Japanese practice: interpret kanji and vocabulary in Japanese context, never as Chinese or Mandarin. Use Japanese readings and Japanese meanings. For example 水漏れ (mizumore) means water leak; 水が漏れています (mizu ga morete imasu) means water is leaking. Romaji uses spoken Japanese particle pronunciations: は is wa, へ is e, を is o.
@@ -257,16 +261,31 @@ async def call_card(payload: CardRequest, request: Request):
     return {'phrases': phrases, 'words': list(words.values())}
 
 
+@app.post('/api/sessions/{session_id}/help-token')
+async def help_token(session_id: str, request: Request):
+    check_origin(request)
+    get_session(session_id)
+    async with httpx.AsyncClient(timeout=20) as client:
+        try:
+            response = await client.get('https://api.elevenlabs.io/v1/convai/conversation/get-signed-url', params={'agent_id': os.environ['ELEVENLABS_AGENT_ID']}, headers={'xi-api-key': os.environ['ELEVENLABS_API_KEY']})
+            response.raise_for_status()
+            signed_url = response.json()['signed_url']
+        except (httpx.HTTPError, KeyError, ValueError):
+            raise HTTPException(502, 'Text help could not connect to ElevenLabs. Try again.')
+    return {'signed_url': signed_url}
+
+
 @app.post('/api/sessions/{session_id}/speech')
-async def replay(session_id: str, payload: TextRequest, request: Request):
+async def replay(session_id: str, payload: SpeechRequest, request: Request):
     check_origin(request)
     session = get_session(session_id)
-    voice = os.getenv('ELEVENLABS_ENGLISH_VOICE_ID', 'EXAVITQu4vr4xnSDxMaL') if session.target_language == 'en' else os.getenv('ELEVENLABS_VOICE_ID')
+    language = payload.language or session.target_language
+    voice = os.getenv('ELEVENLABS_ENGLISH_VOICE_ID', 'EXAVITQu4vr4xnSDxMaL') if language == 'en' else os.getenv('ELEVENLABS_VOICE_ID')
     if not voice:
         raise HTTPException(503, 'Set ELEVENLABS_VOICE_ID to enable slow audio replay.')
     async with httpx.AsyncClient(timeout=25) as client:
         try:
-            response = await client.post('https://api.elevenlabs.io/v1/text-to-speech/' + voice, headers={'xi-api-key': os.environ['ELEVENLABS_API_KEY']}, json={'text': speech_text(payload.text, session.target_language), 'model_id': 'eleven_flash_v2_5', 'language_code': session.target_language, 'voice_settings': {'speed': 0.7, 'stability': 0.7, 'similarity_boost': 0.75, 'style': 0}})
+            response = await client.post('https://api.elevenlabs.io/v1/text-to-speech/' + voice, headers={'xi-api-key': os.environ['ELEVENLABS_API_KEY']}, json={'text': speech_text(payload.text, language), 'model_id': 'eleven_flash_v2_5', 'language_code': language, 'voice_settings': {'speed': 0.7, 'stability': 0.7, 'similarity_boost': 0.75, 'style': 0}})
             response.raise_for_status()
         except httpx.HTTPStatusError as error:
             status = error.response.status_code

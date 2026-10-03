@@ -14,6 +14,7 @@ with httpx.Client(headers=headers, timeout=30) as client:
     overrides = platform['overrides']['conversation_config_override']
     overrides['agent'] = {'first_message': True, 'language': True, 'prompt': {'prompt': True}}
     overrides['tts'] = {'voice_id': True}
+    overrides['conversation'] = {'text_only': True}
     prompt = current['conversation_config']['agent']['prompt']
     tools = prompt.get('built_in_tools') or {}
     tools['end_call'] = {'type': 'system', 'name': 'end_call', 'description': 'End after the rehearsal goal is addressed and the learner confirms no further help is needed, or explicitly asks to finish. Do not end for a casual thank-you.', 'params': {'system_tool_type': 'end_call'}}
