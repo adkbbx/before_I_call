@@ -10,7 +10,7 @@ export function buildCallCard({ scenario, messages, phrases = [], words = [] }) 
     'BEFORE I CALL · Practice card',
     '', 'My situation', scenario,
     '', 'Phrases from this conversation',
-    ...phrases.flatMap(phrase => [`Turn ${phrase.turn} · ${phrase.role === 'user' ? 'You' : 'Practice partner'}`, phrase.japanese, phrase.romaji]),
+    ...phrases.flatMap(phrase => [`Turn ${phrase.turn} · ${phrase.role === 'user' ? 'You' : 'Practice partner'}`, phrase.japanese, phrase.romaji, ...(phrase.meaning ? [phrase.meaning] : [])]),
     '', 'Useful words',
     ...words.map(word => [word.japanese, word.romaji, word.meaning].filter(Boolean).join(' · ')),
     '', 'Practice transcript',

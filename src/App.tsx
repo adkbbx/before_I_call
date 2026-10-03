@@ -11,6 +11,8 @@ const demos = [{ ...demo, id: 'repair', title: 'Home repair', partner: 'Tanaka /
 const englishDemos = demos.map(item => ({ ...item, id: 'en-' + item.id, turns: item.turns.map(turn => ({ ...turn, id: 'en-' + turn.id, japanese: turn.meaning, meaning: turn.japanese, romaji: '', answer: turn.answerMeaning, answerMeaning: turn.answer, answerRomaji: '' })) }));
 const allDemos = [...demos, ...englishDemos];
 type Demo = typeof demos[number];
+import { AnalyticsDashboard } from './AnalyticsDashboard';
+import { track, trackVisit } from './analytics';
 import { JapaneseText } from './JapaneseText';
 import { buildCallCard, nextTurn } from './demo-flow.mjs';
 import { healthSchema, request, snapshotSchema, startSchema } from './api';
@@ -33,14 +35,29 @@ function Brand({ onClick, inCall }: { onClick: () => void; inCall: boolean }) {
 }
 
 function App() {
+  if (window.location.pathname === '/analytics') return <AnalyticsDashboard />;
+  return <PracticeApp />;
+}
+
+function PracticeApp() {
   const [view, setView] = useState<View>({ kind: 'home' });
+  const [visits, setVisits] = useState<number | null>(null);
+  const lastView = useRef<View | null>(null);
+  useEffect(() => { trackVisit(); const timer = setTimeout(() => { request('/api/analytics/count', z.object({ visits: z.number() })).then(data => setVisits(data.visits)).catch(() => {}); }, 500); return () => clearTimeout(timer); }, []);
   const [health, setHealth] = useState<Health | null>(null);
   useEffect(() => { request('/api/health', healthSchema).then(setHealth).catch(() => setHealth(null)); }, []);
   const finish = useCallback((scenario: string, messages: Message[], mode: 'demo' | 'live', scenarioId?: string, targetLanguage: 'ja' | 'en' = 'ja') => setView({ kind: 'finished', scenario, messages, mode, scenarioId, targetLanguage }), []);
+  useEffect(() => {
+    if (lastView.current === view) return;
+    lastView.current = view;
+    track('page', { page: view.kind });
+    if (view.kind === 'demo') track('demo_start', { mode: 'demo', language: view.demoId.startsWith('en-') ? 'en' : 'ja', scenario: analyticsScenario(view.demoId.replace('en-', '')) });
+    if (view.kind === 'live') track('live_start', { mode: 'live', language: view.call.target_language, scenario: analyticsScenario(view.call.scenario_id) });
+  }, [view]);
   const home = () => setView({ kind: 'home' });
   const inCall = view.kind === 'demo' || view.kind === 'live';
   return <div className="app-shell">
-    <header className="site-header"><Brand onClick={home} inCall={inCall} /><span className="header-note">Japanese & English call practice</span><span className="language-label">日本語 <span>/</span> EN</span></header>
+    <header className="site-header"><Brand onClick={home} inCall={inCall} /><span className="header-note">Japanese & English call practice</span></header>
     <main>
       {view.kind === 'home' && <Home onDemo={(demoId) => setView({ kind: 'demo', demoId })} onLive={(targetLanguage) => setView({ kind: 'setup', targetLanguage })} />}
       {view.kind === 'setup' && <Setup initialTarget={view.targetLanguage ?? 'ja'} health={health} onBack={home} onDemo={() => setView({ kind: 'demo', demoId: 'repair' })} onStart={(call, scenario) => setView({ kind: 'live', call, scenario })} />}
@@ -48,7 +65,7 @@ function App() {
       {view.kind === 'live' && <LiveCall call={view.call} scenario={view.scenario} onFinish={(messages) => finish(view.scenario, messages, 'live', view.call.scenario_id, view.call.target_language)} />}
       {view.kind === 'finished' && <Finished onHome={home} targetLanguage={view.targetLanguage} scenarioId={view.scenarioId} scenario={view.scenario} messages={view.messages} mode={view.mode} onDemo={() => setView({ kind: 'demo', demoId: 'repair' })} onLive={() => setView({ kind: 'setup' })} />}
     </main>
-    <footer className="site-footer"><span>A rehearsal, before the real conversation.</span><span>Built for everyday life in Japan</span></footer>
+    <footer className="site-footer product-footer"><div><p>Built by Akshay Dilip Kumar</p><nav aria-label="Creator and contribution links"><a href="https://www.linkedin.com/in/akshaydilipkumar/" target="_blank" rel="noopener noreferrer" onClick={() => track('action', { action: 'linkedin' })}>LinkedIn</a><a href="https://github.com/adkbbx" target="_blank" rel="noopener noreferrer" onClick={() => track('action', { action: 'github' })}>GitHub</a><a href="https://github.com/adkbbx/before_I_call-/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" onClick={() => track('action', { action: 'contribute' })}>Contribute</a></nav></div><div className="footer-support"><a href="https://github.com/adkbbx/before_I_call-" target="_blank" rel="noopener noreferrer" onClick={() => track('action', { action: 'star' })}>Finding it useful? Star the repo ↗</a><span>{visits === null ? 'Visit count loading…' : `${visits.toLocaleString()} visits`}</span><small>Anonymous usage counts. No audio or transcripts.</small><a href="/analytics" className="analytics-link">Owner analytics</a></div></footer>
   </div>;
 }
 
@@ -108,6 +125,7 @@ function DemoCall({ demo, onFinish }: { demo: Demo; onFinish: (messages: Message
   const audio = useRef<HTMLAudioElement | null>(null);
   const nextReply = useRef<ReturnType<typeof setTimeout> | null>(null);
   const turn = demo.turns[index];
+  const demoStarted = useRef(Date.now());
   const stop = useCallback(() => { if (nextReply.current) { clearTimeout(nextReply.current); nextReply.current = null; } if (audio.current) { audio.current.onended = null; audio.current.pause(); audio.current = null; } setReplying(false); }, []);
   const play = useCallback((id: string, speaker: 'partner' | 'you' = 'partner', slow = false, complete?: () => void) => {
     if (audio.current) { audio.current.onended = null; audio.current.pause(); }
@@ -125,12 +143,12 @@ function DemoCall({ demo, onFinish }: { demo: Demo; onFinish: (messages: Message
     stop();
     const updated: Message[] = [...messages, { role: 'user', text: turn.answer }];
     const target = nextTurn(index, demo.turns.length);
-    if (target.kind === 'finished') { onFinish(updated); return; }
+    if (target.kind === 'finished') { track('practice_finish', { mode: 'demo', result: 'completed', language: demo.id.startsWith('en-') ? 'en' : 'ja', duration: Math.floor((Date.now() - demoStarted.current) / 1000) }); onFinish(updated); return; }
     setMessages([...updated, { role: 'assistant', text: demo.turns[target.index].japanese }]);
     setIndex(target.index); setExplain(false); play(demo.turns[target.index].id);
   };
-  const next = () => { if (replying) return; setReplying(true); setExplain(false); play(`${turn.id}-reply`, 'you', false, advance); };
-  return <CallLayout mode="demo" demoTitle={demo.partner} turnCount={demo.turns.length} speakingLabel={voice === 'you' ? 'Your prepared reply is playing' : undefined} scenario={demo.scenario} phase={phase} step={index} messages={messages} onEnd={() => { stop(); onFinish(messages); }} controls={<><button className="control-button" onClick={() => { pause(); setExplain(true); }}><HelpCircle size={18} /> Explain that</button><button className="control-button" onClick={() => { stop(); play(turn.id, 'partner', true); }}><Volume2 size={18} /> Speak slower</button><button className="control-button" onClick={() => { stop(); setExplain(false); play(turn.id); }}><RotateCcw size={18} /> Try again</button></>} explanation={explain && <Explanation onClose={() => { setExplain(false); setPhase('listening'); }}><h3>Here’s what they mean.</h3><p>{turn.meaning}</p><p className="explanation-note">{turn.note}</p><div className="suggested-reply"><span>You could say</span><p lang="ja"><JapaneseText text={turn.answer} /></p><p>{turn.answerMeaning}</p></div><button className="back-link" onClick={() => { setExplain(false); setPhase('listening'); }}>Back to the call <ArrowRight size={16} /></button></Explanation>}><p className="speaker-label">{phase === 'speaking' && voice === 'you' ? 'Listen to your prepared reply.' : `${demo.partner} asks…`}</p><h2 lang="ja" className="japanese-reply"><JapaneseText text={turn.japanese} /></h2><div className={`waveform call-wave ${phase === 'speaking' ? 'active' : ''}`} aria-hidden="true">{Array.from({ length: 23 }, (_, i) => <span key={i} style={{ height: `${7 + ((i * 17 + 3) % 27)}px`, animationDelay: `${i * 0.037}s` }} />)}</div><button className="audio-replay" onClick={() => { if (phase === 'speaking') pause(); else play(turn.id); }}>{phase === 'speaking' ? <Pause size={16} /> : <Play size={16} />}{phase === 'speaking' ? 'Pause audio' : 'Hear the reply'}</button>{error && <div className="error" role="alert"><p>{error}</p><button onClick={advance}>Continue without audio <ArrowRight size={16} /></button></div>}<div className="demo-answer"><p className="eyebrow">YOUR TURN · PREPARED DEMO REPLY</p><p lang="ja" className="answer-japanese"><JapaneseText text={turn.answer} /></p><p className="answer-meaning">{turn.answerMeaning}</p><p className="demo-next-hint">{replying ? 'Your answer is playing. The next question follows automatically.' : 'Tap the blue button to play your reply and continue.'}</p><div className="answer-actions"><button className="control-button" disabled={replying} onClick={() => play(`${turn.id}-reply`, 'you')}><Volume2 size={18} /> Hear my reply</button><button className="button primary" disabled={replying} onClick={next}><Play size={17} />{replying ? 'Playing your reply…' : 'Reply'} <ArrowRight size={18} /></button></div></div></CallLayout>;
+  const next = () => { if (replying) return; track('action', { mode: 'demo', action: 'reply' }); setReplying(true); setExplain(false); play(`${turn.id}-reply`, 'you', false, advance); };
+  return <CallLayout mode="demo" demoTitle={demo.partner} turnCount={demo.turns.length} speakingLabel={voice === 'you' ? 'Your prepared reply is playing' : undefined} scenario={demo.scenario} phase={phase} step={index} messages={messages} onEnd={() => { track('practice_finish', { mode: 'demo', result: 'ended', language: demo.id.startsWith('en-') ? 'en' : 'ja', duration: Math.floor((Date.now() - demoStarted.current) / 1000) }); stop(); onFinish(messages); }} controls={<><button className="control-button" onClick={() => { track('action', { mode: 'demo', action: 'explain' }); pause(); setExplain(true); }}><HelpCircle size={18} /> Explain that</button><button className="control-button" onClick={() => { track('action', { mode: 'demo', action: 'slow' }); stop(); play(turn.id, 'partner', true); }}><Volume2 size={18} /> Speak slower</button><button className="control-button" onClick={() => { track('action', { mode: 'demo', action: 'retry' }); stop(); setExplain(false); play(turn.id); }}><RotateCcw size={18} /> Try again</button></>} explanation={explain && <Explanation onClose={() => { setExplain(false); setPhase('listening'); }}><h3>Here’s what they mean.</h3><p>{turn.meaning}</p><p className="explanation-note">{turn.note}</p><div className="suggested-reply"><span>You could say</span><p lang="ja"><JapaneseText text={turn.answer} /></p><p>{turn.answerMeaning}</p></div><button className="back-link" onClick={() => { setExplain(false); setPhase('listening'); }}>Back to the call <ArrowRight size={16} /></button></Explanation>}><p className="speaker-label">{phase === 'speaking' && voice === 'you' ? 'Listen to your prepared reply.' : `${demo.partner} asks…`}</p><h2 lang="ja" className="japanese-reply"><JapaneseText text={turn.japanese} /></h2><div className={`waveform call-wave ${phase === 'speaking' ? 'active' : ''}`} aria-hidden="true">{Array.from({ length: 23 }, (_, i) => <span key={i} style={{ height: `${7 + ((i * 17 + 3) % 27)}px`, animationDelay: `${i * 0.037}s` }} />)}</div><button className="audio-replay" onClick={() => { if (phase === 'speaking') pause(); else play(turn.id); }}>{phase === 'speaking' ? <Pause size={16} /> : <Play size={16} />}{phase === 'speaking' ? 'Pause audio' : 'Hear the reply'}</button>{error && <div className="error" role="alert"><p>{error}</p><button onClick={advance}>Continue without audio <ArrowRight size={16} /></button></div>}<div className="demo-answer"><p className="eyebrow">YOUR TURN · PREPARED DEMO REPLY</p><p lang="ja" className="answer-japanese"><JapaneseText text={turn.answer} /></p><p className="answer-meaning">{turn.answerMeaning}</p><p className="demo-next-hint">{replying ? 'Your answer is playing. The next question follows automatically.' : 'Tap the blue button to play your reply and continue.'}</p><div className="answer-actions"><button className="control-button" disabled={replying} onClick={() => play(`${turn.id}-reply`, 'you')}><Volume2 size={18} /> Hear my reply</button><button className="button primary" disabled={replying} onClick={next}><Play size={17} />{replying ? 'Playing your reply…' : 'Reply'} <ArrowRight size={18} /></button></div></div></CallLayout>;
 }
 
 function Explanation({ children, onClose }: { children: ReactNode; onClose: () => void }) {
@@ -155,16 +173,17 @@ function LiveCall({ call, scenario, onFinish }: { call: StartedCall; scenario: s
   const replayAudio = useRef<HTMLAudioElement | null>(null);
   const replayUrl = useRef<string | null>(null);
   const ending = useRef(false);
+  const liveStarted = useRef(Date.now());
   useEffect(() => {
     let stopped = false;
     let client: VoiceConversation | null = null;
     const startedAt = Date.now();
     const ticker = setInterval(() => setElapsed(Math.min(call.max_call_seconds, Math.floor((Date.now() - startedAt) / 1000))), 1000);
-    const timer = setTimeout(() => { void end(); }, call.max_call_seconds * 1000);
+    const timer = setTimeout(() => { void end('timeout'); }, call.max_call_seconds * 1000);
     void import('@elevenlabs/client').then(({ Conversation }) => Conversation.startSession({
       conversationToken: call.conversation_token, connectionType: 'webrtc', textOnly: false,
       overrides: { agent: { prompt: { prompt: call.prompt }, firstMessage: call.greeting, language: call.target_language }, ...(call.voice_id ? { tts: { voiceId: call.voice_id } } : {}) },
-      onConnect: () => { if (!stopped) setPhase('listening'); },
+      onConnect: () => { if (!stopped) { track('live_connected', { mode: 'live', language: call.target_language }); setPhase('listening'); } },
       onModeChange: ({ mode }) => { if (!stopped && !pausedRef.current) setPhase(mode === 'speaking' ? 'speaking' : 'listening'); },
       onMessage: ({ message, source, event_id }) => {
         if (stopped) return;
@@ -175,18 +194,19 @@ function LiveCall({ call, scenario, onFinish }: { call: StartedCall; scenario: s
         setMessages([...savedMessages.current]);
         if (source === 'ai') { if (helpMode.current) setHelp(message); else setLastReply(message); }
       },
-      onDisconnect: ({ reason }) => { if (!stopped) { if (reason !== 'error' && !ending.current) { ending.current = true; onFinish([...savedMessages.current]); return; } setPhase(reason === 'error' ? 'error' : 'ended'); setMuted(true); if (reason === 'error') setError('The voice connection ended. Your transcript is still available.'); } },
-      onError: () => { if (!stopped) { setError('ElevenLabs could not connect. Check your agent’s authentication and allow prompt, first-message and language overrides in its Security settings.'); setPhase('error'); } },
+      onDisconnect: ({ reason }) => { if (!stopped) { if (reason !== 'error' && !ending.current) { ending.current = true; track('practice_finish', { mode: 'live', result: 'completed', language: call.target_language, duration: Math.floor((Date.now() - liveStarted.current) / 1000) }); onFinish([...savedMessages.current]); return; } setPhase(reason === 'error' ? 'error' : 'ended'); setMuted(true); if (reason === 'error') setError('The voice connection ended. Your transcript is still available.'); } },
+      onError: () => { if (!stopped) { track('call_error', { mode: 'live', result: 'error' }); setError('ElevenLabs could not connect. Check your agent’s authentication and allow prompt, first-message and language overrides in its Security settings.'); setPhase('error'); } },
     })).then(async value => { client = value; if (stopped) { await value.endSession(); return; } conversation.current = value; }).catch(() => { if (!stopped) { setPhase('error'); setError('Voice could not start. Check microphone permission and your ElevenLabs agent configuration, then start a new practice.'); } });
     const eventMessages = new Map<number, number>();
     return () => { stopped = true; clearTimeout(timer); clearInterval(ticker); replayAudio.current?.pause(); if (replayUrl.current) URL.revokeObjectURL(replayUrl.current); void client?.endSession(); conversation.current = null; void fetch(`/api/sessions/${call.session_id}`, { method: 'DELETE', keepalive: true }); };
   }, [call]);
   const terminal = phase === 'ended' || phase === 'error';
-  const end = async () => { if (ending.current) return; ending.current = true; replayAudio.current?.pause(); try { await conversation.current?.endSession(); } finally { onFinish([...savedMessages.current]); } };
+  const end = async (result: 'ended' | 'timeout' = 'ended') => { if (ending.current) return; ending.current = true; track('practice_finish', { mode: 'live', result, language: call.target_language, duration: Math.floor((Date.now() - liveStarted.current) / 1000) }); replayAudio.current?.pause(); try { await conversation.current?.endSession(); } finally { onFinish([...savedMessages.current]); } };
   const setMic = (enabled: boolean) => { conversation.current?.setMicMuted(!enabled); setMuted(!enabled); };
-  const pause = () => { pausedRef.current = true; setPaused(true); setMic(false); conversation.current?.setVolume({ volume: 0 }); conversation.current?.sendUserActivity(); setPhase('paused'); };
+  const pause = () => { track('action', { mode: 'live', action: 'pause' }); pausedRef.current = true; setPaused(true); setMic(false); conversation.current?.setVolume({ volume: 0 }); conversation.current?.sendUserActivity(); setPhase('paused'); };
   const resume = () => { replayAudio.current?.pause(); helpMode.current = false; pausedRef.current = false; setPaused(false); setHelp(null); conversation.current?.setVolume({ volume: 1 }); setMic(true); conversation.current?.sendContextualUpdate('The learner has left help mode. Continue the same role-play situation.'); setPhase('listening'); };
   const action = async (kind: 'explain' | 'slow' | 'retry') => {
+    track('action', { mode: 'live', action: kind, language: call.target_language });
     if (!conversation.current) return;
     setError('');
     try {
@@ -221,7 +241,7 @@ function LiveCall({ call, scenario, onFinish }: { call: StartedCall; scenario: s
 }
 
 const callCardSchema = z.object({
-  phrases: z.array(z.object({ japanese: z.string(), romaji: z.string(), role: z.enum(['user', 'assistant']), turn: z.number().int() })),
+  phrases: z.array(z.object({ japanese: z.string(), romaji: z.string(), meaning: z.string().optional(), role: z.enum(['user', 'assistant']), turn: z.number().int() })),
   words: z.array(z.object({ japanese: z.string(), romaji: z.string(), meaning: z.string() })),
 });
 
@@ -237,15 +257,18 @@ function Finished({ scenario, messages, mode, onDemo, onLive, targetLanguage, on
   const phrases = cardState.kind === 'ready' ? cardState.data.phrases : [];
   const preview = [...phrases.filter(item => item.role === 'user'), ...phrases.filter(item => item.role === 'assistant')].slice(0, 3).sort((a, b) => a.turn - b.turn);
   const remaining = phrases.filter(item => !preview.includes(item));
-  const renderPhrase = (phrase: z.infer<typeof callCardSchema>['phrases'][number]) => <div className="call-card-phrase" key={phrase.turn}><span>Turn {phrase.turn} · {phrase.role === 'user' ? 'You said' : 'Your partner said'}</span><p lang="ja"><JapaneseText text={phrase.japanese} showRomaji={false} /></p><p className="card-romaji">{phrase.romaji}</p></div>;
+  const renderPhrase = (phrase: z.infer<typeof callCardSchema>['phrases'][number]) => <div className="call-card-phrase" key={phrase.turn}><span>Turn {phrase.turn} · {phrase.role === 'user' ? 'You said' : 'Your partner said'}</span><p lang={targetLanguage}><JapaneseText text={phrase.japanese} showRomaji={false} /></p>{phrase.romaji && <p className="card-romaji">{phrase.romaji}</p>}{phrase.meaning && <p className="card-meaning">{phrase.meaning}</p>}</div>;
   const card = buildCallCard({ scenario, messages, phrases: cardState.kind === 'ready' ? cardState.data.phrases : [], words: cardState.kind === 'ready' ? cardState.data.words : [] });
   const download = () => {
+    track('action', { action: 'download', mode, language: targetLanguage });
     const url = URL.createObjectURL(new Blob([card], { type: 'text/plain;charset=utf-8' }));
     const link = document.createElement('a'); link.href = url; link.download = 'before-i-call-practice-card.txt'; link.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
-  return <section className="finished-layout"><div><span className="finished-check"><Check size={26} /></span><h1>That’s one call<br />under your belt.</h1><p>You can give yourself time to find the words. Take the useful phrases with you, and give yourself time to think.</p><div className="home-actions"><button className="button primary" disabled={cardState.kind === 'loading'} onClick={download}><Download size={17} /> Download my call card</button><button className="button text-button" onClick={mode === 'demo' ? onLive : onDemo}>{mode === 'demo' ? 'Practice my own call' : 'Try the guided demo'} <ArrowRight size={17} /></button></div><button className="back-link finished-home" onClick={onHome}><ArrowLeft size={16} />Back to home</button><p className="small-note">This was a rehearsal. No real appointment was booked.</p></div><div className="finished-card"><h2>Your conversation, to keep.</h2><p>Selected directly from what you and your partner said.</p>{cardState.kind === 'loading' && <p role="status">Preparing your conversation card…</p>}{cardState.kind === 'error' && <p role="alert">Your transcript is saved below. Pronunciation could not be prepared: {cardState.message}</p>}{cardState.kind === 'ready' && <>{cardState.data.phrases.length === 0 ? <p>No phrases were spoken in this practice yet.</p> : <div className="transcript-phrases"><h3>Phrases from your call</h3>{preview.map(renderPhrase)}{remaining.length > 0 && <details className="card-more"><summary>View {remaining.length} more phrases <ChevronDown size={15} /></summary>{remaining.map(renderPhrase)}</details>}</div>}{cardState.data.words.length > 0 && <div className="card-vocabulary"><h3>Words from your call</h3><table><caption className="visually-hidden">Japanese words used in this conversation</caption><thead><tr><th scope="col">{targetLanguage === 'en' ? 'Word' : 'Japanese'}</th>{targetLanguage === 'ja' && <th scope="col">Romaji</th>}<th scope="col">Meaning</th></tr></thead><tbody>{cardState.data.words.slice(0, 6).map(word => <tr key={word.japanese}><th scope="row"><JapaneseText text={word.japanese} showRomaji={false} /></th>{targetLanguage === 'ja' && <td className="word-romaji">{word.romaji}</td>}<td>{word.meaning}</td></tr>)}</tbody></table>{cardState.data.words.length > 6 && <details className="card-more"><summary>View {cardState.data.words.length - 6} more words <ChevronDown size={15} /></summary><dl>{cardState.data.words.slice(6).map(word => <div key={word.japanese}><dt><JapaneseText text={word.japanese} showRomaji={false} /> · {word.romaji}</dt><dd>{word.meaning}</dd></div>)}</dl></details>}</div>}</>}<details><summary>Your practice transcript <ChevronDown size={15} /></summary>{messages.map((message, i) => <p key={i}><strong>{message.role === 'assistant' ? (mode === 'demo' ? 'Partner' : 'Partner') : 'You'}:</strong> <JapaneseText text={message.text} /></p>)}</details></div></section>;
+  return <section className="finished-layout"><div><span className="finished-check"><Check size={26} /></span><h1>That’s one call<br />under your belt.</h1><p>Keep the phrases you can reuse. Review them before your real call, or try the conversation in your own words.</p><div className="home-actions"><button className="button primary" disabled={cardState.kind === 'loading'} onClick={download}><Download size={17} /> Download my call card</button><button className="button text-button" onClick={mode === 'demo' ? onLive : onDemo}>{mode === 'demo' ? 'Practice my own call' : 'Try the guided demo'} <ArrowRight size={17} /></button></div><button className="back-link finished-home" onClick={onHome}><ArrowLeft size={16} />Back to home</button><p className="small-note">This was a rehearsal. No real appointment was booked.</p></div><div className="finished-card"><h2>Your conversation, to keep.</h2><p>Selected directly from what you and your partner said.</p>{cardState.kind === 'loading' && <p role="status">Preparing your conversation card…</p>}{cardState.kind === 'error' && <p role="alert">Your conversation is still available below. Reading support could not be prepared: {cardState.message}</p>}{cardState.kind === 'ready' && <>{cardState.data.phrases.length === 0 ? <p>No phrases were spoken in this practice yet.</p> : <div className="transcript-phrases"><h3>Phrases from your call</h3>{preview.map(renderPhrase)}{remaining.length > 0 && <details className="card-more"><summary>View {remaining.length} more phrases <ChevronDown size={15} /></summary>{remaining.map(renderPhrase)}</details>}</div>}{cardState.data.words.length > 0 && <div className="card-vocabulary"><h3>Words from your call</h3><table><caption className="visually-hidden">Japanese words used in this conversation</caption><thead><tr><th scope="col">{targetLanguage === 'en' ? 'Word' : 'Japanese'}</th>{targetLanguage === 'ja' && <th scope="col">Romaji</th>}<th scope="col">Meaning</th></tr></thead><tbody>{cardState.data.words.slice(0, 6).map(word => <tr key={word.japanese}><th scope="row"><JapaneseText text={word.japanese} showRomaji={false} /></th>{targetLanguage === 'ja' && <td className="word-romaji">{word.romaji}</td>}<td>{word.meaning}</td></tr>)}</tbody></table>{cardState.data.words.length > 6 && <details className="card-more"><summary>View {cardState.data.words.length - 6} more words <ChevronDown size={15} /></summary><dl>{cardState.data.words.slice(6).map(word => <div key={word.japanese}><dt><JapaneseText text={word.japanese} showRomaji={false} /> · {word.romaji}</dt><dd>{word.meaning}</dd></div>)}</dl></details>}</div>}</>}<details open={cardState.kind === 'error' ? true : undefined}><summary>Your practice transcript <ChevronDown size={15} /></summary>{messages.map((message, i) => <p key={i}><strong>{message.role === 'assistant' ? (mode === 'demo' ? 'Partner' : 'Partner') : 'You'}:</strong> <JapaneseText text={message.text} /></p>)}</details></div></section>;
 }
+
+function analyticsScenario(value: string): 'repair' | 'clinic' | 'delivery' | 'city' | 'food' | 'lost' | 'bill' | 'custom' { switch (value) { case 'repair': case 'clinic': case 'delivery': case 'city': case 'food': case 'lost': case 'bill': return value; default: return 'custom'; } }
 
 function formatTime(seconds: number): string { return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`; }
 

@@ -51,3 +51,11 @@ Transcripts stay in browser memory. At completion, the browser sends the transcr
 
 
 English practice uses Sarah (EXAVITQu4vr4xnSDxMaL) by default; override with ELEVENLABS_ENGLISH_VOICE_ID. Call language is separate from explanation language (English or Japanese). No Hindi option is included. The live timer displays elapsed and remaining session time; reaching the limit or a provider-led conclusion opens the transcript card. Pause does not stop this timer.
+
+## Anonymous usage analytics
+
+The footer shows lifetime visits. A random browser identifier estimates returning visitors; a session identifier groups actions into journeys. These are estimates, not a count of individual people. Clearing browser storage or automated traffic can affect totals.
+
+Open `/analytics` and enter `ANALYTICS_ADMIN_KEY` to see the last 30 days of language and situation choices, demo/live starts, successful live connections, completions, exits, practice durations, help actions, downloads, and recent visit journeys. The key stays in memory in the dashboard. Event payloads accept only predefined categories and numbers; audio, transcripts, custom situations, IP addresses and referrers are not stored by this analytics feature. Detailed events expire after 90 days; lifetime visit/browser counts remain.
+
+For an existing Render Blueprint, sync the updated `render.yaml` to attach the 1 GB persistent disk and generate `ANALYTICS_ADMIN_KEY`. Retrieve that key from your service's Environment settings. `ANALYTICS_DB_PATH` must point to `/var/data/analytics.sqlite3`; files outside the disk disappear on deployments. Locally, use the key from your ignored `.env`. Keep one service instance. Back up the SQLite database if you need long-term recovery.

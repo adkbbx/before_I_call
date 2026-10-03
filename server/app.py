@@ -14,6 +14,8 @@ import httpx
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, Request, Response
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+from server.analytics import router as analytics_router
 from pydantic import BaseModel, Field
 from pykakasi import kakasi
 from janome.tokenizer import Tokenizer
@@ -23,10 +25,13 @@ load_dotenv()
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED = ('ELEVENLABS_API_KEY', 'ELEVENLABS_AGENT_ID')
 app = FastAPI(title='Before I Call')
+app.include_router(analytics_router)
 start_lock = asyncio.Lock()
 reader = kakasi()
 tokenizer = Tokenizer()
 lexicon = sorted(json.loads((ROOT / 'src/japanese-lexicon.json').read_text()), key=lambda item: len(item['text']), reverse=True)
+demo_turns = json.loads((ROOT / 'src/demo.json').read_text())['turns'] + [turn for demo in json.loads((ROOT / 'src/extra-demos.json').read_text()) for turn in demo['turns']]
+prepared_phrases = {text: {'romaji': turn[reading], 'meaning': turn[meaning]} for turn in demo_turns for text, reading, meaning in [(turn['japanese'], 'romaji', 'meaning'), (turn['answer'], 'answerRomaji', 'answerMeaning')]}
 
 
 @dataclass
@@ -223,13 +228,12 @@ def _romanize_words(text: str) -> str:
 
 @app.post('/api/readings')
 async def readings(payload: TextRequest, request: Request):
-    check_origin(request)
+    # Local, bounded text annotation has no provider credentials or paid calls.
     return annotate(payload.text)
 
 
 @app.post('/api/call-card')
 async def call_card(payload: CardRequest, request: Request):
-    check_origin(request)
     phrases = []
     words = {}
     seen = set()
@@ -238,7 +242,8 @@ async def call_card(payload: CardRequest, request: Request):
             continue
         annotation = annotate(message.text) if payload.target_language == 'ja' else {'romaji': '', 'segments': []}
         if message.text not in seen:
-            phrases.append({'japanese': message.text, 'romaji': annotation['romaji'], 'role': message.role, 'turn': index + 1})
+            prepared = prepared_phrases.get(message.text, {}) if payload.target_language == 'ja' else {}
+            phrases.append({'japanese': message.text, 'romaji': prepared.get('romaji', annotation['romaji']), 'meaning': prepared.get('meaning', ''), 'role': message.role, 'turn': index + 1})
             seen.add(message.text)
         if payload.target_language == 'en':
             dictionary = {'appointment': 'a planned meeting or visit; 予約', 'repair': 'fixing something broken; 修理', 'delivery': 'bringing a parcel to you; 配達', 'available': 'free or possible at that time; 都合がつく', 'confirm': 'check that details are correct; 確認する', 'reschedule': 'change the date or time; 日程を変更する', 'refund': 'money returned after a purchase; 返金', 'evening': 'the later part of the day; 夕方・夜', 'afternoon': 'the time after midday; 午後'}
@@ -276,6 +281,11 @@ async def replay(session_id: str, payload: TextRequest, request: Request):
     if not response.content:
         raise HTTPException(502, 'ElevenLabs returned no replay audio. Your live partner can repeat the question.')
     return Response(response.content, media_type='audio/mpeg', headers={'Cache-Control': 'no-store'})
+
+
+@app.get('/analytics')
+def analytics_page():
+    return FileResponse(ROOT / 'dist/index.html')
 
 
 if (ROOT / 'dist').exists():
