@@ -259,16 +259,17 @@ function LiveCall({ call, scenario, onFinish }: { call: StartedCall; scenario: s
         const text = source === 'ai' ? spokenText(message) : message;
         if (!text) return;
         const item: Message = { role: source === 'ai' ? 'assistant' : 'user', text };
-        const existing = eventMessages.get(event_id);
+        const eventKey = `${source}:${event_id}`;
+        const existing = eventMessages.get(eventKey);
         if (existing !== undefined) savedMessages.current[existing] = item;
-        else { eventMessages.set(event_id, savedMessages.current.length); savedMessages.current.push(item); }
+        else { eventMessages.set(eventKey, savedMessages.current.length); savedMessages.current.push(item); }
         setMessages([...savedMessages.current]);
         if (source === 'ai' && !pausedRef.current) setLastReply(text);
       },
       onDisconnect: ({ reason }) => { if (!stopped) { if (reason !== 'error' && !ending.current) { ending.current = true; track('practice_finish', { mode: 'live', result: 'completed', language: call.target_language, duration: Math.floor((Date.now() - liveStarted.current) / 1000) }); onFinish([...savedMessages.current]); return; } setPhase(reason === 'error' ? 'error' : 'ended'); setMuted(true); if (reason === 'error') setError('The voice connection ended. Your transcript is still available.'); } },
       onError: () => { if (!stopped) { track('call_error', { mode: 'live', result: 'error' }); setError('ElevenLabs could not connect. Check your agent’s authentication and allow prompt, first-message and language overrides in its Security settings.'); setPhase('error'); } },
     })).then(async value => { client = value; if (stopped) { await value.endSession(); return; } conversation.current = value; }).catch(() => { if (!stopped) { setPhase('error'); setError('Voice could not start. Check microphone permission and your ElevenLabs agent configuration, then start a new practice.'); } });
-    const eventMessages = new Map<number, number>();
+    const eventMessages = new Map<string, number>();
     return () => { stopped = true; helpRequest.current?.abort(); clearTimeout(timer); clearInterval(ticker); replayAudio.current?.pause(); if (replayUrl.current) URL.revokeObjectURL(replayUrl.current); void client?.endSession(); conversation.current = null; void fetch(`/api/sessions/${call.session_id}`, { method: 'DELETE', keepalive: true }); };
   }, [call]);
   const terminal = phase === 'ended' || phase === 'error';
