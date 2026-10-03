@@ -19,6 +19,7 @@ def init():
         environment=os.getenv('SENTRY_ENVIRONMENT', 'production'),
         release=os.getenv('RENDER_GIT_COMMIT') or None,
         traces_sample_rate=float(os.getenv('SENTRY_TRACES_SAMPLE_RATE', '1.0')),
+        debug=os.getenv('SENTRY_DEBUG') == '1',
         # Situations, transcripts and help text stay with the providers that process them.
         send_default_pii=False,
         max_request_body_size='never',
