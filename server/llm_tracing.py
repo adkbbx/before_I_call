@@ -31,7 +31,8 @@ def init():
 
 
 def enabled():
-    return sentry_sdk.get_client().is_active()
+    client = sentry_sdk.get_client()
+    return client.is_active() and bool(client.dsn)
 
 
 def conversation_ref(session_id: str) -> str:
@@ -49,10 +50,15 @@ def estimated_cost(model, input_tokens, output_tokens, cached_tokens=0):
 class Turn:
     """One model request: an invoke_agent span with a chat child, plus a span for each tool the model requests."""
 
-    def __init__(self, agent: str, model: str, streaming: bool = False, conversation: str | None = None):
+    def __init__(self, agent: str, model: str, streaming: bool = False, conversation: str | None = None, attributes: dict | None = None):
         self.agent, self.model, self.done = agent, model, False
         self.started = time.perf_counter()
         self.first_token = None
+        # Searchable on spans and copied to rule issues: prompt version, turn number, live or evaluation traffic.
+        self.attributes = {key: value for key, value in (attributes or {}).items() if value is not None}
+        self.tags = {key: str(value) for key, value in self.attributes.items()}
+        if conversation:
+            self.tags['gen_ai.conversation.id'] = conversation
         self.span = sentry_sdk.start_span(op='gen_ai.invoke_agent', name=f'invoke_agent {agent}')
         self.chat = self.span.start_child(op='gen_ai.chat', name=f'chat {model}')
         for span, operation in ((self.span, 'invoke_agent'), (self.chat, 'chat')):
@@ -62,7 +68,14 @@ class Turn:
             span.set_data('gen_ai.request.model', model)
             if conversation:
                 span.set_data('gen_ai.conversation.id', conversation)
+            for key, value in self.attributes.items():
+                span.set_data(key, value)
         self.chat.set_data('gen_ai.response.streaming', streaming)
+
+    def set(self, key: str, value):
+        """Record a result on both spans, e.g. whether the learner said goodbye."""
+        self.chat.set_data(key, value)
+        self.span.set_data(key, value)
 
     def first_chunk(self):
         if self.first_token is None:
@@ -104,8 +117,9 @@ class Turn:
             if cost is not None:
                 self.chat.set_data('app.estimated_cost_usd', round(cost, 8))
         for flag in flags:
-            self.chat.set_data('app.' + flag, True)
-            sentry_sdk.capture_message(f'{self.agent}: {flag.replace("_", " ")}', level='warning')
+            self.set('app.' + flag, True)
+            # One issue per agent and rule, so counts and prompt versions are comparable over time.
+            sentry_sdk.capture_message(f'{self.agent}: {flag.replace("_", " ")}', level='warning', tags={**self.tags, 'rule': flag, 'gen_ai.agent.name': self.agent}, fingerprint=['agent-rule', self.agent, flag])
         for name in tools:
             # ElevenLabs executes the tool; this span records that Gemma requested it in this turn.
             tool = self.span.start_child(op='gen_ai.execute_tool', name=f'execute_tool {name}')

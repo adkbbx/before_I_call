@@ -13,6 +13,7 @@ from typing import Literal
 from uuid import UUID, uuid4
 
 import httpx
+import sentry_sdk
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, Request, Response
 from fastapi.staticfiles import StaticFiles
@@ -182,6 +183,13 @@ You: お電話ありがとうございました。失礼いたします。
 {situation}'''
 
 
+@lru_cache
+def prompt_version(target_language: str) -> str:
+    # Fingerprint of the role-play template, the same for every learner, so Sentry can compare prompt edits.
+    template = practice_prompt(StartRequest(scenario='{situation placeholder}', partner='{partner}', target_language=target_language))
+    return hashlib.sha256(template.encode()).hexdigest()[:8]
+
+
 @app.get('/api/health')
 async def health():
     return {'ok': True, 'tracing_available': llm_tracing.enabled(), 'llm_proxy_available': llm_proxy_configured(), 'preparation_available': preparation_configured(), 'live_available': configured(), 'max_call_seconds': int(os.getenv('MAX_CALL_SECONDS', '120')), 'access_code_required': bool(os.getenv('LIVE_ACCESS_CODE')), 'provider': 'elevenlabs', 'missing_settings': [key for key in REQUIRED if not os.getenv(key)]}
@@ -222,7 +230,7 @@ async def start_call(payload: StartRequest, request: Request, browser_response: 
         session = Session(ticket, target_language=payload.target_language)
         sessions[session.id] = session
     browser_response.set_cookie('bic-practice-visitor', visitor, max_age=31536000, httponly=True, samesite='strict', secure=request.url.scheme == 'https' or os.getenv('APP_ORIGIN', '').startswith('https://'))
-    return {'session_id': session.id, 'conversation_ref': llm_tracing.conversation_ref(session.id), 'conversation_token': token, 'max_call_seconds': int(os.getenv('MAX_CALL_SECONDS', '120')), 'prompt': practice_prompt(payload), 'greeting': call_opening(payload.scenario, payload.scenario_id, payload.target_language), 'language': payload.language, 'scenario_id': payload.scenario_id, 'target_language': payload.target_language, 'voice_id': os.getenv('ELEVENLABS_ENGLISH_VOICE_ID', 'EXAVITQu4vr4xnSDxMaL') if payload.target_language == 'en' else os.getenv('ELEVENLABS_VOICE_ID', '')}
+    return {'session_id': session.id, 'conversation_ref': llm_tracing.conversation_ref(session.id), 'prompt_version': prompt_version(payload.target_language), 'conversation_token': token, 'max_call_seconds': int(os.getenv('MAX_CALL_SECONDS', '120')), 'prompt': practice_prompt(payload), 'greeting': call_opening(payload.scenario, payload.scenario_id, payload.target_language), 'language': payload.language, 'scenario_id': payload.scenario_id, 'target_language': payload.target_language, 'voice_id': os.getenv('ELEVENLABS_ENGLISH_VOICE_ID', 'EXAVITQu4vr4xnSDxMaL') if payload.target_language == 'en' else os.getenv('ELEVENLABS_VOICE_ID', '')}
 
 
 @app.delete('/api/sessions/{session_id}')
@@ -345,6 +353,43 @@ async def call_card(payload: CardRequest, request: Request, response: Response):
             ranked.setdefault(text, word)
         return {'phrases': phrases, 'words': list(ranked.values()), 'vocabulary_source': status}
     return {'phrases': phrases, 'words': list(words.values())}
+
+
+REPORT_REASONS = {'misheard': 'Misheard me', 'wrong_language': 'Unnatural or wrong wording', 'made_up': 'Made something up', 'did_not_end': "Didn't end the call", 'too_hard': 'Too hard to understand', 'other': 'Something else'}
+report_counts: dict[str, int] = {}
+
+
+class ReplyReport(BaseModel):
+    conversation: str = Field(pattern=r'^[0-9a-f]{16}$')
+    prompt_version: str = Field(default='', pattern=r'^[0-9a-f]{0,16}$')
+    reply_number: int = Field(ge=1, le=200)
+    reason: Literal['misheard', 'wrong_language', 'made_up', 'did_not_end', 'too_hard', 'other']
+    language: Literal['ja', 'en'] = 'ja'
+    note: str = Field(default='', max_length=500)
+    reply: str = Field(default='', max_length=1000)
+
+
+@app.post('/api/reports')
+async def report_reply(payload: ReplyReport, request: Request):
+    """A learner flags a partner reply; Sentry links it to that call's traced Gemma turns."""
+    check_origin(request)
+    if not llm_tracing.enabled():
+        raise HTTPException(503, 'Reporting is unavailable right now.')
+    day = time.strftime('%Y-%m-%d', time.gmtime())
+    if report_counts.get('day') != day:
+        report_counts.clear()
+        report_counts['day'] = day
+    if report_counts.get(payload.conversation, 0) >= 5 or report_counts.get('total', 0) >= int(os.getenv('MAX_REPORTS_PER_DAY', '200')):
+        raise HTTPException(429, 'Thanks, we already have enough reports for now.')
+    report_counts[payload.conversation] = report_counts.get(payload.conversation, 0) + 1
+    report_counts['total'] = report_counts.get('total', 0) + 1
+    # The note is written for the developer; the reply text is included only when the learner ticks the box.
+    sentry_sdk.capture_message(
+        f'Learner reported a partner reply: {REPORT_REASONS[payload.reason]}', level='info', fingerprint=['learner-report', payload.reason],
+        tags={'report.reason': payload.reason, 'gen_ai.conversation.id': payload.conversation, 'app.prompt_version': payload.prompt_version or 'unknown', 'app.turn': str(payload.reply_number), 'app.language': payload.language},
+        contexts={'learner_report': {'reply_number': payload.reply_number, 'note': payload.note or None, 'reply': payload.reply or None, 'find_the_turn': f'Explore → Traces: gen_ai.conversation.id:{payload.conversation} app.turn:{payload.reply_number}'}},
+    )
+    return {'ok': True}
 
 
 @app.post('/api/sessions/{session_id}/help-token')

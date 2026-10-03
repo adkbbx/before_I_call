@@ -17,7 +17,7 @@ CHUNKS = [
     {'choices': [{'delta': {'content': 'お電話ありがとうございました。'}}]},
     {'choices': [{'delta': {'content': '失礼いたします。'}}]},
     {'choices': [{'delta': {'tool_calls': [{'index': 0, 'id': 'call-1', 'type': 'function', 'function': {'name': 'end_call', 'arguments': ''}}]}}]},
-    {'choices': [{'delta': {'tool_calls': [{'index': 0, 'function': {'arguments': '{"reason": "goodbye"}'}}]}}]},
+    {'choices': [{'delta': {'tool_calls': [{'index': 0, 'function': {'arguments': '{"reason": "caller-finished-xyz"}'}}]}}]},
     {'choices': [{'delta': {}, 'finish_reason': 'tool_calls'}]},
     {'choices': [], 'usage': {'prompt_tokens': 84, 'completion_tokens': 27, 'total_tokens': 111, 'cache_read_input_tokens': 64}},
 ]
@@ -83,7 +83,7 @@ class LlmProxyTests(unittest.TestCase):
                 yield payload[start:start + 37]
 
         with self.upstream(lambda: httpx.Response(200, headers={'content-type': 'text/event-stream'}, content=split())):
-            response = self.post({'model': 'gemma-4-31B-it', 'stream': True, 'user_id': 'u', 'messages': [{'role': 'user', 'content': '以上です。さようなら。'}], 'elevenlabs_extra_body': {'purpose': 'call', 'conversation': 'ref-123'}})
+            response = self.post({'model': 'gemma-4-31B-it', 'stream': True, 'user_id': 'u', 'messages': [{'role': 'system', 'content': 'rules'}, {'role': 'assistant', 'content': 'クリニックの受付です。'}, {'role': 'user', 'content': '以上です。さようなら。'}], 'elevenlabs_extra_body': {'purpose': 'call', 'conversation': 'ref-123', 'prompt_version': 'abcd1234', 'traffic': 'evaluation'}})
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.content, payload)
         headers, forwarded = self.sent[0]
@@ -101,8 +101,11 @@ class LlmProxyTests(unittest.TestCase):
         self.assertAlmostEqual(chat['data']['app.estimated_cost_usd'], (20 * 0.18 + 64 * 0.036 + 27 * 0.50) / 1_000_000)
         self.assertEqual(tool['data']['gen_ai.tool.name'], 'end_call')
         self.assertEqual(tool['parent_span_id'], agent['span_id'])
+        self.assertEqual((chat['data']['app.prompt_version'], chat['data']['app.traffic'], chat['data']['app.turn']), ('abcd1234', 'evaluation', 2))
+        self.assertTrue(chat['data']['app.learner_said_goodbye'] and chat['data']['app.hung_up'])
+        self.assertEqual([item for item in self.transport.items if item.get('level') == 'warning'], [])
         sent_to_sentry = json.dumps(self.transport.items, ensure_ascii=False)
-        for text in ('さようなら', '失礼いたします', 'goodbye', 'proxy-secret', 'do-key'):
+        for text in ('さようなら', '失礼いたします', 'caller-finished-xyz', 'proxy-secret', 'do-key'):
             self.assertNotIn(text, sent_to_sentry)
 
     def test_flags_tool_syntax_spoken_as_dialogue(self):
@@ -110,9 +113,26 @@ class LlmProxyTests(unittest.TestCase):
         with self.upstream(httpx.Response(200, headers={'content-type': 'text/event-stream'}, content=sse(spoken))):
             self.post({'model': 'gemma-4-31B-it', 'stream': True, 'messages': []})
         warnings = [item for item in self.transport.items if item.get('level') == 'warning']
-        self.assertEqual([item['message'] for item in warnings], ['Practice partner: tool syntax in speech'])
+        # Code in a Japanese reply breaks two rules: it is tool syntax, and the Japanese voice mispronounces Latin letters.
+        self.assertEqual([item['message'] for item in warnings], ['Practice partner: tool syntax in speech', 'Practice partner: english in japanese speech'])
         self.assertTrue(self.spans('gen_ai.chat')[0]['data']['app.tool_syntax_in_speech'])
         self.assertNotIn('finished', json.dumps(self.transport.items))
+
+    def test_goodbye_without_end_call_becomes_a_tagged_issue(self):
+        reply = [{'choices': [{'delta': {'content': 'ほかに何かございますか？'}, 'finish_reason': 'stop'}]}]
+        with self.upstream(httpx.Response(200, headers={'content-type': 'text/event-stream'}, content=sse(reply))):
+            self.post({'model': 'gemma-4-31B-it', 'stream': True, 'messages': [{'role': 'user', 'content': '以上です。さようなら。'}], 'elevenlabs_extra_body': {'purpose': 'call', 'conversation': 'ref-9', 'prompt_version': 'a1d0'}})
+        warning, = [item for item in self.transport.items if item.get('level') == 'warning']
+        self.assertEqual(warning['message'], 'Practice partner: missed hang up')
+        self.assertEqual((warning['tags']['rule'], warning['tags']['app.prompt_version'], warning['tags']['gen_ai.conversation.id'], warning['tags']['app.traffic']), ('missed_hang_up', 'a1d0', 'ref-9', 'live'))
+        self.assertNotIn('さようなら', json.dumps(self.transport.items, ensure_ascii=False))
+
+    def test_help_replies_are_not_judged_as_role_play(self):
+        reply = [{'choices': [{'delta': {'content': '{"meaning": "Call at 7 p.m.", "reply": "7時です。"}'}, 'finish_reason': 'stop'}]}]
+        with self.upstream(httpx.Response(200, headers={'content-type': 'text/event-stream'}, content=sse(reply))):
+            self.post({'model': 'gemma-4-31B-it', 'stream': True, 'messages': [{'role': 'user', 'content': '以上です'}], 'elevenlabs_extra_body': {'purpose': 'help'}})
+        self.assertEqual([item for item in self.transport.items if item.get('level') == 'warning'], [])
+        self.assertNotIn('app.turn', self.spans('gen_ai.chat')[0]['data'])
 
     def test_non_streaming_help_turn_and_provider_errors_pass_through(self):
         completion = {'id': 'c2', 'model': 'gemma-4-31B-it', 'choices': [{'message': {'content': '{"meaning": "x"}'}, 'finish_reason': 'stop'}], 'usage': {'prompt_tokens': 10, 'completion_tokens': 5}}

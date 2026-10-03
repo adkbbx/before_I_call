@@ -10,6 +10,7 @@ import sentry_sdk
 from fastapi import APIRouter, HTTPException, Request, Response
 from fastapi.responses import JSONResponse, StreamingResponse
 
+from server import reply_rules
 from server.llm_tracing import Turn
 
 router = APIRouter()
@@ -38,8 +39,8 @@ def flags(text: str):
 class Stream:
     """Reads OpenAI-style SSE chunks for metrics while the bytes pass through unchanged. Text stays in memory only."""
 
-    def __init__(self, turn: Turn):
-        self.turn, self.buffer, self.text = turn, b'', []
+    def __init__(self, turn: Turn, review):
+        self.turn, self.review, self.buffer, self.text = turn, review, b'', []
         self.tools, self.finish_reasons, self.usage, self.id, self.model = [], [], None, None, None
 
     def feed(self, chunk: bytes):
@@ -78,8 +79,12 @@ class Stream:
     def close(self, status='ok'):
         self.parse(self.buffer)
         self.buffer = b''
-        self.turn.finish(self.usage, self.finish_reasons, self.tools, self.id, self.model, flags(''.join(self.text)), status)
+        self.turn.finish(self.usage, self.finish_reasons, self.tools, self.id, self.model, self.review(''.join(self.text), self.tools, status == 'ok'), status)
         self.text = []
+
+
+def label(value, pattern):
+    return value if isinstance(value, str) and re.fullmatch(pattern, value) else None
 
 
 @router.post('/llm/v1/chat/completions')
@@ -101,11 +106,30 @@ async def chat_completions(request: Request):
         raise HTTPException(400, f'Only {model} is available.')
     extra = body.pop('elevenlabs_extra_body', None)
     extra = extra if isinstance(extra, dict) else {}
-    conversation = extra.get('conversation') if isinstance(extra.get('conversation'), str) else None
+    # The browser supplies these labels, so they only ever name spans; they never change what is sent to the model.
+    purpose = 'help' if extra.get('purpose') == 'help' else 'call'
+    conversation = label(extra.get('conversation'), r'[A-Za-z0-9_-]{1,64}')
+    messages = body.get('messages') if isinstance(body.get('messages'), list) else []
+    learner = reply_rules.last_learner_message(messages) if purpose == 'call' else None
     streaming = body.get('stream') is True
     if streaming:
         body['stream_options'] = {**(body.get('stream_options') or {}), 'include_usage': True}
-    turn = Turn('Question helper' if extra.get('purpose') == 'help' else 'Practice partner', model, streaming, conversation[:64] if conversation else None)
+    turn = Turn('Question helper' if purpose == 'help' else 'Practice partner', model, streaming, conversation, {
+        'app.prompt_version': label(extra.get('prompt_version'), r'[0-9a-f]{4,16}'),
+        'app.traffic': 'evaluation' if extra.get('traffic') == 'evaluation' else 'live',
+        # Matches "Partner reply #N" on the call card: the greeting is reply 1.
+        'app.turn': sum(1 for message in messages if isinstance(message, dict) and message.get('role') == 'assistant') + 1 if purpose == 'call' else None,
+    })
+
+    def review(reply: str, tools, completed: bool):
+        """Quality flags for this reply; practice-call replies are also checked against the role-play rules."""
+        found = flags(reply)
+        if purpose == 'call':
+            broken, goodbye = reply_rules.check(learner, reply, tools, completed)
+            turn.set('app.learner_said_goodbye', goodbye)
+            turn.set('app.hung_up', 'end_call' in tools)
+            found += broken
+        return found
     try:
         response = await upstream().send(upstream().build_request('POST', UPSTREAM, json=body, headers={'Authorization': 'Bearer ' + key, 'Accept-Encoding': 'identity'}), stream=True)
     except httpx.HTTPError:
@@ -123,11 +147,13 @@ async def chat_completions(request: Request):
                 data = json.loads(content)
             except ValueError:
                 data = {}
-            message = ((data.get('choices') or [{}])[0] if isinstance(data, dict) else {}).get('message') or {}
+            choices = data.get('choices') if isinstance(data, dict) and isinstance(data.get('choices'), list) else []
+            message = choices[0].get('message') if choices and isinstance(choices[0], dict) and isinstance(choices[0].get('message'), dict) else {}
+            tools = [call['function']['name'] for call in message.get('tool_calls') or [] if isinstance(call, dict) and (call.get('function') or {}).get('name')]
             turn.first_chunk()
-            turn.finish_completion(data, flags(message.get('content') or '') if isinstance(message.get('content'), str) else ())
+            turn.finish_completion(data, review(reply_rules.text_of(message.get('content')), tools, True))
         return Response(content, status_code=response.status_code, media_type=response.headers.get('content-type', 'application/json'))
-    stream = Stream(turn)
+    stream = Stream(turn, review)
 
     async def relay():
         status = 'ok'

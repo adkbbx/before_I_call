@@ -13,6 +13,7 @@ const allDemos = [...demos, ...englishDemos];
 type Demo = typeof demos[number];
 import { explainQuestion, type QuestionHelp } from './text-help';
 import { Preparation } from './Preparation';
+import { ReportReply } from './ReportReply';
 import { hasEndCallRequest, spokenText } from './spoken-text';
 import { AnalyticsDashboard } from './AnalyticsDashboard';
 import { track, trackVisit } from './analytics';
@@ -23,7 +24,8 @@ import { healthSchema, request, snapshotSchema, startSchema } from './api';
 type Message = { role: 'user' | 'assistant'; text: string };
 type StartedCall = z.infer<typeof startSchema>;
 type Health = z.infer<typeof healthSchema>;
-type View = { kind: 'home' } | { kind: 'setup'; targetLanguage?: 'ja' | 'en' } | { kind: 'demo'; demoId: string } | { kind: 'live'; call: StartedCall; scenario: string } | { kind: 'finished'; scenario: string; messages: Message[]; mode: 'demo' | 'live'; scenarioId?: string; targetLanguage: 'ja' | 'en' };
+type View = { kind: 'home' } | { kind: 'setup'; targetLanguage?: 'ja' | 'en' } | { kind: 'demo'; demoId: string } | { kind: 'live'; call: StartedCall; scenario: string } | { kind: 'finished'; scenario: string; messages: Message[]; mode: 'demo' | 'live'; scenarioId?: string; targetLanguage: 'ja' | 'en'; trace?: CallTrace };
+type CallTrace = { conversation: string; promptVersion?: string };
 type Phase = z.infer<typeof snapshotSchema>['status'];
 
 const statusLabels: Record<Phase, string> = { connecting: 'Connecting your practice partner', listening: 'Your turn. Take your time.', thinking: 'Considering your answer', speaking: 'Your partner is speaking', paused: 'Paused. There is no rush.', ended: 'Practice finished', error: 'The connection was interrupted' };
@@ -67,7 +69,7 @@ function PracticeApp() {
   useEffect(() => { trackVisit(); const timer = setTimeout(() => { request('/api/analytics/count', z.object({ visits: z.number() })).then(data => setVisits(data.visits)).catch(() => {}); }, 500); return () => clearTimeout(timer); }, []);
   const [health, setHealth] = useState<Health | null>(null);
   useEffect(() => { request('/api/health', healthSchema).then(setHealth).catch(() => setHealth(null)); }, []);
-  const finish = useCallback((scenario: string, messages: Message[], mode: 'demo' | 'live', scenarioId?: string, targetLanguage: 'ja' | 'en' = 'ja') => setView({ kind: 'finished', scenario, messages, mode, scenarioId, targetLanguage }), []);
+  const finish = useCallback((scenario: string, messages: Message[], mode: 'demo' | 'live', scenarioId?: string, targetLanguage: 'ja' | 'en' = 'ja', trace?: CallTrace) => setView({ kind: 'finished', scenario, messages, mode, scenarioId, targetLanguage, trace }), []);
   useEffect(() => {
     if (lastView.current === view) return;
     lastView.current = view;
@@ -83,8 +85,8 @@ function PracticeApp() {
       {view.kind === 'home' && <Home onDemo={(demoId) => setView({ kind: 'demo', demoId })} onLive={(targetLanguage) => setView({ kind: 'setup', targetLanguage })} />}
       {view.kind === 'setup' && <Setup initialTarget={view.targetLanguage ?? 'ja'} health={health} onBack={home} onDemo={() => setView({ kind: 'demo', demoId: 'repair' })} onStart={(call, scenario) => setView({ kind: 'live', call, scenario })} />}
       {view.kind === 'demo' && <DemoCall demo={allDemos.find(item => item.id === view.demoId) ?? demos[0]} onFinish={(messages) => finish((allDemos.find(item => item.id === view.demoId) ?? demos[0]).scenario, messages, 'demo', undefined, view.demoId.startsWith('en-') ? 'en' : 'ja')} />}
-      {view.kind === 'live' && <LiveCall call={view.call} scenario={view.scenario} onFinish={(messages) => finish(view.scenario, messages, 'live', view.call.scenario_id, view.call.target_language)} />}
-      {view.kind === 'finished' && <Finished onHome={home} targetLanguage={view.targetLanguage} scenarioId={view.scenarioId} scenario={view.scenario} messages={view.messages} mode={view.mode} onDemo={() => setView({ kind: 'demo', demoId: 'repair' })} onLive={() => setView({ kind: 'setup' })} />}
+      {view.kind === 'live' && <LiveCall call={view.call} scenario={view.scenario} onFinish={(messages) => finish(view.scenario, messages, 'live', view.call.scenario_id, view.call.target_language, view.call.conversation_ref ? { conversation: view.call.conversation_ref, promptVersion: view.call.prompt_version } : undefined)} />}
+      {view.kind === 'finished' && <Finished onHome={home} trace={view.trace} targetLanguage={view.targetLanguage} scenarioId={view.scenarioId} scenario={view.scenario} messages={view.messages} mode={view.mode} onDemo={() => setView({ kind: 'demo', demoId: 'repair' })} onLive={() => setView({ kind: 'setup' })} />}
     </main>
     <footer className="site-footer product-footer"><div><p>Built by Akshay Dilip Kumar</p><nav aria-label="Creator and contribution links"><a href="https://www.linkedin.com/in/akshaydilipkumar/" target="_blank" rel="noopener noreferrer" onClick={() => track('action', { action: 'linkedin' })}>LinkedIn</a><a href="https://github.com/adkbbx" target="_blank" rel="noopener noreferrer" onClick={() => track('action', { action: 'github' })}>GitHub</a><a href="https://github.com/adkbbx/before_I_call-/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" onClick={() => track('action', { action: 'contribute' })}>Contribute</a></nav></div><div className="footer-support"><a href="https://github.com/adkbbx/before_I_call-" target="_blank" rel="noopener noreferrer" onClick={() => track('action', { action: 'star' })}>Finding it useful? Star the repo ↗</a><div className="footer-meta"><span>{visits === null ? 'Visit count loading…' : `${visits.toLocaleString()} visits`}</span><small>Usage analytics don’t store your conversations.</small></div></div></footer>
   </div>;
@@ -246,7 +248,7 @@ function LiveCall({ call, scenario, onFinish }: { call: StartedCall; scenario: s
     const ticker = setInterval(() => setElapsed(Math.min(call.max_call_seconds, Math.floor((Date.now() - startedAt) / 1000))), 1000);
     const timer = setTimeout(() => { void end('timeout'); }, call.max_call_seconds * 1000);
     void import('@elevenlabs/client').then(({ Conversation }) => Conversation.startSession({
-      conversationToken: call.conversation_token, connectionType: 'webrtc', textOnly: false, customLlmExtraBody: { purpose: 'call', conversation: call.conversation_ref },
+      conversationToken: call.conversation_token, connectionType: 'webrtc', textOnly: false, customLlmExtraBody: { purpose: 'call', conversation: call.conversation_ref, prompt_version: call.prompt_version },
       overrides: { agent: { prompt: { prompt: call.prompt }, firstMessage: call.greeting, language: call.target_language }, ...(call.voice_id ? { tts: { voiceId: call.voice_id } } : {}) },
       onConnect: () => { if (!stopped) { track('live_connected', { mode: 'live', language: call.target_language }); setPhase('listening'); } },
       onModeChange: ({ mode }) => { if (!stopped && !pausedRef.current) { setPhase(mode === 'speaking' ? 'speaking' : 'listening'); if (mode === 'listening' && completionPending) void end('completed'); } },
@@ -365,7 +367,7 @@ const callCardSchema = z.object({
   words: z.array(z.object({ japanese: z.string(), romaji: z.string(), meaning: z.string() })),
 });
 
-function Finished({ scenario, messages, mode, onLive, targetLanguage, onHome }: { onHome: () => void; targetLanguage: 'ja' | 'en'; scenarioId?: string; scenario: string; messages: Message[]; mode: 'demo' | 'live'; onDemo: () => void; onLive: () => void }) {
+function Finished({ scenario, messages, mode, onLive, targetLanguage, onHome, trace }: { onHome: () => void; trace?: CallTrace; targetLanguage: 'ja' | 'en'; scenarioId?: string; scenario: string; messages: Message[]; mode: 'demo' | 'live'; onDemo: () => void; onLive: () => void }) {
   const [cardState, setCardState] = useState<{ kind: 'loading' } | { kind: 'ready'; data: z.infer<typeof callCardSchema> } | { kind: 'error'; message: string }>({ kind: 'loading' });
   useEffect(() => {
     const controller = new AbortController();
@@ -393,7 +395,7 @@ function Finished({ scenario, messages, mode, onLive, targetLanguage, onHome }: 
       {cardState.kind === 'error' && <p role="alert">Reading support is unavailable. Your conversation is still shown below.</p>}
 
       {cardView === 'words' && cardState.kind === 'ready' && <div className="compact-vocabulary">{words.length === 0 ? <p>No words yet.</p> : words.slice(cardPage * 3, cardPage * 3 + 3).map(word => <div key={word.japanese}><p lang={targetLanguage}><JapaneseText text={word.japanese} showRomaji={false} /></p>{targetLanguage === 'ja' && <p className="card-romaji">{word.romaji}</p>}<p className="card-meaning">{word.meaning}</p></div>)}</div>}
-      {cardView === 'conversation' && (message ? <div className="call-card-phrase"><span>{message.role === 'assistant' ? 'Partner' : 'You'}</span><p lang={targetLanguage}><JapaneseText text={message.text} showRomaji={!phrase?.romaji} /></p>{phrase?.romaji && <p className="card-romaji">{phrase.romaji}</p>}{phrase?.meaning && <p className="card-meaning">{phrase.meaning}</p>}</div> : <p>No conversation yet.</p>)}
+      {cardView === 'conversation' && (message ? <div className="call-card-phrase"><span>{message.role === 'assistant' ? 'Partner' : 'You'}</span><p lang={targetLanguage}><JapaneseText text={message.text} showRomaji={!phrase?.romaji} /></p>{phrase?.romaji && <p className="card-romaji">{phrase.romaji}</p>}{phrase?.meaning && <p className="card-meaning">{phrase.meaning}</p>}{mode === 'live' && trace && message.role === 'assistant' && <ReportReply key={cardPage} conversation={trace.conversation} promptVersion={trace.promptVersion} replyNumber={messages.slice(0, cardPage + 1).filter(item => item.role === 'assistant').length} reply={message.text} language={targetLanguage} />}</div> : <p>No conversation yet.</p>)}
     </div><nav className="card-pagination" aria-label="Call card pages"><button className="control-button" aria-label="Previous card page" disabled={cardPage === 0} onClick={() => setCardPage(page => page - 1)}><ArrowLeft size={16} /></button><span aria-live="polite">{pageCount > 0 ? `${cardPage + 1} of ${pageCount}` : '0 of 0'}</span><button className="control-button" aria-label="Next card page" disabled={cardPage + 1 >= pageCount} onClick={() => setCardPage(page => page + 1)}><ArrowRight size={16} /></button></nav></div></section>;
 }
 
