@@ -5,7 +5,7 @@ from unittest.mock import patch
 import httpx
 from fastapi.testclient import TestClient
 from server.app import app
-from server.preparation import cache
+from server.preparation import cache, input_language
 
 class PreparationTests(unittest.TestCase):
     def setUp(self):
@@ -42,3 +42,15 @@ class PreparationTests(unittest.TestCase):
         with patch.dict(os.environ,{'LIVE_ACCESS_CODE':'secret'}):
             self.assertEqual(self.send().status_code,403)
         self.assertEqual(len(self.requests),0)
+    def test_language_is_input_not_call_language(self):
+        self.assertEqual(input_language('I want to call my building manager.'),'English')
+        self.assertEqual(input_language('洗濯機から水が漏れています。修理をお願いしたいです。'),'Japanese')
+        self.assertEqual(self.send().status_code,200)
+        import json
+        prompt=json.loads(self.requests[0].content)['messages'][0]['content']
+        self.assertIn('OUTPUT LANGUAGE: English',prompt)
+        self.assertNotIn('target call language',prompt)
+    def test_wrong_language_response_is_not_applied(self):
+        # The mocked provider returns English even for Japanese input.
+        self.assertEqual(self.send('洗濯機から水が漏れています。修理をお願いしたいです。').status_code,502)
+        self.assertEqual(len(cache),0)
