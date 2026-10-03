@@ -13,6 +13,7 @@ const allDemos = [...demos, ...englishDemos];
 type Demo = typeof demos[number];
 import { explainQuestion, type QuestionHelp } from './text-help';
 import { Preparation } from './Preparation';
+import { spokenText } from './spoken-text';
 import { AnalyticsDashboard } from './AnalyticsDashboard';
 import { track, trackVisit } from './analytics';
 import { JapaneseText } from './JapaneseText';
@@ -255,12 +256,14 @@ function LiveCall({ call, scenario, onFinish }: { call: StartedCall; scenario: s
       onModeChange: ({ mode }) => { if (!stopped && !pausedRef.current) setPhase(mode === 'speaking' ? 'speaking' : 'listening'); },
       onMessage: ({ message, source, event_id }) => {
         if (stopped) return;
-        const item: Message = { role: source === 'ai' ? 'assistant' : 'user', text: message };
+        const text = source === 'ai' ? spokenText(message) : message;
+        if (!text) return;
+        const item: Message = { role: source === 'ai' ? 'assistant' : 'user', text };
         const existing = eventMessages.get(event_id);
         if (existing !== undefined) savedMessages.current[existing] = item;
         else { eventMessages.set(event_id, savedMessages.current.length); savedMessages.current.push(item); }
         setMessages([...savedMessages.current]);
-        if (source === 'ai' && !pausedRef.current) setLastReply(message);
+        if (source === 'ai' && !pausedRef.current) setLastReply(text);
       },
       onDisconnect: ({ reason }) => { if (!stopped) { if (reason !== 'error' && !ending.current) { ending.current = true; track('practice_finish', { mode: 'live', result: 'completed', language: call.target_language, duration: Math.floor((Date.now() - liveStarted.current) / 1000) }); onFinish([...savedMessages.current]); return; } setPhase(reason === 'error' ? 'error' : 'ended'); setMuted(true); if (reason === 'error') setError('The voice connection ended. Your transcript is still available.'); } },
       onError: () => { if (!stopped) { track('call_error', { mode: 'live', result: 'error' }); setError('ElevenLabs could not connect. Check your agent’s authentication and allow prompt, first-message and language overrides in its Security settings.'); setPhase('error'); } },
