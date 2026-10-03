@@ -52,6 +52,14 @@ Transcripts stay in browser memory. At completion, the browser sends the transcr
 
 English practice uses Sarah (EXAVITQu4vr4xnSDxMaL) by default; override with ELEVENLABS_ENGLISH_VOICE_ID. Call language is separate from explanation language (English or Japanese). No Hindi option is included. The live timer displays elapsed and remaining session time; reaching the limit or a provider-led conclusion opens the transcript card. Pause does not stop this timer.
 
+## Japanese pronunciation corrections
+
+`server/pronunciation.py` contains the shared kana aliases used by demo generation and Japanese slow replay. English replay preserves the original text. Corrections match longer phrases first, so words such as 水曜日 keep their intended readings.
+
+Run `.venv/Scripts/python.exe scripts/configure-pronunciation.py` to install these aliases as a pronunciation dictionary on the live ElevenLabs agent. The API key needs pronunciation dictionary Read/Write and ElevenAgents Read/Write access. The script preserves other attached dictionaries and verifies the saved agent configuration. Rerun it after editing the shared readings. Restart or redeploy the backend to apply replay changes; start a new live call after updating the agent. Verify pronunciation with the selected voice in an actual call.
+
+Run `.venv/Scripts/python.exe -m unittest discover -s tests -p test_pronunciation.py -v` to check reported readings, replay requests, English preservation and repeatable live dictionary setup.
+
 ## Anonymous usage analytics
 
 The footer shows lifetime visits. A random browser identifier estimates returning visitors; a session identifier groups actions into journeys. These are estimates, not a count of individual people. Clearing browser storage or automated traffic can affect totals.
@@ -59,3 +67,5 @@ The footer shows lifetime visits. A random browser identifier estimates returnin
 Open `/analytics` and enter `ANALYTICS_ADMIN_KEY` to see the last 30 days of language and situation choices, demo/live starts, successful live connections, completions, exits, practice durations, help actions, downloads, and recent visit journeys. The key stays in memory in the dashboard. Event payloads accept only predefined categories and numbers; audio, transcripts, custom situations, IP addresses and referrers are not stored by this analytics feature. Detailed events expire after 90 days; lifetime visit/browser counts remain.
 
 For an existing Render Blueprint, sync the updated `render.yaml` to attach the 1 GB persistent disk and generate `ANALYTICS_ADMIN_KEY`. Retrieve that key from your service's Environment settings. `ANALYTICS_DB_PATH` must point to `/var/data/analytics.sqlite3`; files outside the disk disappear on deployments. Locally, use the key from your ignored `.env`. Keep one service instance. Back up the SQLite database if you need long-term recovery.
+
+Guided demos use different voices for each speaker: Kaito asks and Nao replies in Japanese; Sarah asks and Roger replies in English. To regenerate only learner audio, run `.venv/Scripts/python.exe scripts/generate-demo-audio.py --replies-only`. Optional `ELEVENLABS_JAPANESE_REPLY_VOICE_ID` and `ELEVENLABS_ENGLISH_REPLY_VOICE_ID` select replacement learner voices. Partner and learner IDs must differ. Playback uses bundled files and content hashes, so deployed demos need no extra voice settings.

@@ -20,6 +20,7 @@ from pydantic import BaseModel, Field
 from pykakasi import kakasi
 from janome.tokenizer import Tokenizer
 from server.number_readings import PATTERN as NUMBER_PATTERN, READINGS as NUMBER_READINGS, words as number_words
+from server.pronunciation import speech_text
 
 load_dotenv()
 ROOT = Path(__file__).resolve().parents[1]
@@ -265,7 +266,7 @@ async def replay(session_id: str, payload: TextRequest, request: Request):
         raise HTTPException(503, 'Set ELEVENLABS_VOICE_ID to enable slow audio replay.')
     async with httpx.AsyncClient(timeout=25) as client:
         try:
-            response = await client.post('https://api.elevenlabs.io/v1/text-to-speech/' + voice, headers={'xi-api-key': os.environ['ELEVENLABS_API_KEY']}, json={'text': payload.text, 'model_id': 'eleven_flash_v2_5', 'language_code': session.target_language, 'voice_settings': {'speed': 0.7, 'stability': 0.7, 'similarity_boost': 0.75, 'style': 0}})
+            response = await client.post('https://api.elevenlabs.io/v1/text-to-speech/' + voice, headers={'xi-api-key': os.environ['ELEVENLABS_API_KEY']}, json={'text': speech_text(payload.text, session.target_language), 'model_id': 'eleven_flash_v2_5', 'language_code': session.target_language, 'voice_settings': {'speed': 0.7, 'stability': 0.7, 'similarity_boost': 0.75, 'style': 0}})
             response.raise_for_status()
         except httpx.HTTPStatusError as error:
             status = error.response.status_code
