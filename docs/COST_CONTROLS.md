@@ -22,8 +22,8 @@ Verification uses mocked provider responses, durable-ledger tests and a browser 
 
 ## DigitalOcean preparation
 
-Help me prepare uses the server-only GRADIENT_MODEL_ACCESS_KEY (DIGITALOCEAN_INFERENCE_KEY also accepted), with GRADIENT_MODEL defaulting to gemma-4-31B-it. Add the key separately in Render Environment. Sync the Blueprint to apply MAX_PREPARATIONS_PER_VISITOR_DAY=5 and MAX_PREPARATIONS_PER_DAY=50.
+Enhance prompt uses the server-only GRADIENT_MODEL_ACCESS_KEY (DIGITALOCEAN_INFERENCE_KEY also accepted), with GRADIENT_MODEL defaulting to gemma-4-31B-it. Add the key separately in Render Environment. Sync the Blueprint to apply MAX_PREPARATIONS_PER_VISITOR_DAY=5 and MAX_PREPARATIONS_PER_DAY=50.
 
 Input is limited to 1,000 characters and output to 350 tokens. Each provider attempt, including failures, reserves one request in the persistent SQLite daily ledger. No automatic retries. Budgets reset at midnight UTC. Identical requests for the same browser are cached in memory for ten minutes, up to 100 results, and cache hits do not spend the budget. Cache contents are not written to disk. Clearing cookies resets the browser limit but cannot reset the site-wide budget.
 
-These limits apply only to the preparation endpoint, not Gemma calls made through ElevenLabs or other apps sharing the key. They bound request count, not dollars or all DigitalOcean account spending. Provider billing and any provider-side spending controls remain separate. The app sends situation text to DigitalOcean; users review suggestions before applying them.
+These limits apply only to the preparation endpoint, not Gemma calls made through ElevenLabs or other apps sharing the key. They bound request count, not dollars or all DigitalOcean account spending. Provider billing and any provider-side spending controls remain separate. The app sends situation text to DigitalOcean; enhancement updates the editable situation directly and Undo restores the original. Rewrites preserve the original language and first-person perspective.
