@@ -35,4 +35,4 @@ Provider failures (unreachable, HTTP errors, interrupted streams) are captured a
 2. With the same `LLM_PROXY_KEY` in your local `.env`, run `.venv/Scripts/python.exe scripts/configure-llm-proxy.py https://<your-app>.onrender.com`. It stores the key as an ElevenLabs secret, points the Custom LLM at `/llm/v1/`, allows the extra body override, and saves the previous DigitalOcean settings in `work/llm-proxy-rollback.json`.
 3. To bypass the proxy, run `.venv/Scripts/python.exe scripts/configure-llm-proxy.py --rollback`.
 
-Traces appear under Sentry Insights → AI → Agents. `SENTRY_TRACES_SAMPLE_RATE` defaults to 1.0.
+Traces appear under Sentry Insights → AI → Agents. `SENTRY_TRACES_SAMPLE_RATE` defaults to 1.0. The environment is `production` on Render (which sets `RENDER=true`) and `development` elsewhere unless `SENTRY_ENVIRONMENT` is set, so local scripts and tests never mix with real usage.

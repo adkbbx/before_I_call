@@ -16,7 +16,8 @@ def init():
         return False
     sentry_sdk.init(
         dsn=os.environ['SENTRY_DSN'],
-        environment=os.getenv('SENTRY_ENVIRONMENT', 'production'),
+        # Render sets RENDER=true; anything else (local scripts, tests) must not look like production.
+        environment=os.getenv('SENTRY_ENVIRONMENT') or ('production' if os.getenv('RENDER') else 'development'),
         release=os.getenv('RENDER_GIT_COMMIT') or None,
         traces_sample_rate=float(os.getenv('SENTRY_TRACES_SAMPLE_RATE', '1.0')),
         debug=os.getenv('SENTRY_DEBUG') == '1',
