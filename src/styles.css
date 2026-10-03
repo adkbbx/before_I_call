@@ -261,14 +261,22 @@ rt { font-family: var(--font-japanese); font-size: .46em; letter-spacing: .025em
 .practice-language { display: flex; gap: 8px; margin-top: 20px; }
 .practice-language button { min-height: 44px; padding: 10px 18px; border: 1px solid var(--line); border-radius: 10px; background: transparent; font-size: 14px; color: var(--ink); }
 .practice-language button[aria-pressed=true] { border-color: var(--accent); background: var(--tint); font-weight: 600; }
-.product-footer { align-items: flex-start; gap: 32px; }
-.product-footer p { color: var(--ink); font-weight: 500; margin-bottom: 12px; }
-.product-footer nav { display: flex; flex-wrap: wrap; gap: 16px; }
-.product-footer a { color: var(--accent); text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; gap: 6px; }
+/* Matching rows keep the creator and support columns aligned. */
+.product-footer { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: 32px; padding: 24px 0 32px; }
+.product-footer > div { min-width: 0; }
+.product-footer p { display: flex; align-items: center; min-height: 44px; color: var(--ink); font-weight: 500; }
+.product-footer nav { display: flex; flex-wrap: wrap; gap: 4px 20px; }
+.product-footer a { color: var(--accent); text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
 .product-footer a:hover { text-decoration: underline; text-underline-offset: 4px; }
-.footer-support { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
-.footer-support small { max-width: 36ch; line-height: 1.6; }
-.product-footer .analytics-link { color: var(--muted); font-size: 12px; }
+.footer-support { display: flex; flex-direction: column; align-items: flex-end; text-align: right; }
+.footer-meta { min-height: 44px; display: flex; flex-direction: column; justify-content: center; gap: 6px; padding-top: 8px; }
+.footer-meta span { font-variant-numeric: tabular-nums; }
+.footer-meta small { font-size: 12px; line-height: 1.5; }
+@media(max-width:767px) {
+  .product-footer { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .product-footer .footer-support { align-items: flex-start; text-align: left; border-top: 1px solid var(--line); padding-top: 12px; }
+  .footer-meta { padding-top: 4px; }
+}
 .analytics-shell { max-width: 1120px; margin: auto; padding: 40px 32px; }
 .analytics-shell h1 { font-size: clamp(32px,5vw,48px); margin: 24px 0 16px; }
 .analytics-login { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin: 28px 0; }
