@@ -1,5 +1,6 @@
 """ElevenLabs Agents session credentials. Provider keys stay on the server."""
 import asyncio
+import hashlib
 import json
 import os
 import re
@@ -16,6 +17,8 @@ from fastapi import FastAPI, HTTPException, Request, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from server.analytics import router as analytics_router
+from server.cost_limits import reserve, release
+from server.speech_cache import SpeechCache
 from pydantic import BaseModel, Field
 from pykakasi import kakasi
 from janome.tokenizer import Tokenizer
@@ -28,6 +31,9 @@ REQUIRED = ('ELEVENLABS_API_KEY', 'ELEVENLABS_AGENT_ID')
 app = FastAPI(title='Before I Call')
 app.include_router(analytics_router)
 start_lock = asyncio.Lock()
+help_lock = asyncio.Lock()
+speech_lock = asyncio.Lock()
+speech_cache = SpeechCache()
 reader = kakasi()
 tokenizer = Tokenizer()
 lexicon = sorted(json.loads((ROOT / 'src/japanese-lexicon.json').read_text(encoding='utf-8')), key=lambda item: len(item['text']), reverse=True)
@@ -41,6 +47,8 @@ class Session:
     created: float = field(default_factory=time.time)
     ended: bool = False
     target_language: str = 'ja'
+    help_requests: int = 0
+    speech_requests: int = 0
 
 
 sessions: dict[str, Session] = {}
@@ -86,7 +94,7 @@ def check_origin(request: Request):
 
 def get_session(session_id: str):
     session = sessions.get(session_id)
-    if not session or session.ended or time.time() - session.created > int(os.getenv('MAX_CALL_SECONDS', '300')) + 60:
+    if not session or session.ended or time.time() - session.created > int(os.getenv('MAX_CALL_SECONDS', '120')) + 60:
         raise HTTPException(404, 'This practice session has ended. Start a new one.')
     return session
 
@@ -119,11 +127,11 @@ LEARNER SITUATION (JSON): {json.dumps(payload.scenario, ensure_ascii=False)}'''
 
 @app.get('/api/health')
 async def health():
-    return {'ok': True, 'live_available': configured(), 'max_call_seconds': int(os.getenv('MAX_CALL_SECONDS', '300')), 'access_code_required': bool(os.getenv('LIVE_ACCESS_CODE')), 'provider': 'elevenlabs', 'missing_settings': [key for key in REQUIRED if not os.getenv(key)]}
+    return {'ok': True, 'live_available': configured(), 'max_call_seconds': int(os.getenv('MAX_CALL_SECONDS', '120')), 'access_code_required': bool(os.getenv('LIVE_ACCESS_CODE')), 'provider': 'elevenlabs', 'missing_settings': [key for key in REQUIRED if not os.getenv(key)]}
 
 
 @app.post('/api/start')
-async def start_call(payload: StartRequest, request: Request):
+async def start_call(payload: StartRequest, request: Request, browser_response: Response):
     check_origin(request)
     code = os.getenv('LIVE_ACCESS_CODE')
     if code and not secrets.compare_digest(payload.access_code, code):
@@ -133,24 +141,31 @@ async def start_call(payload: StartRequest, request: Request):
     async with start_lock:
         now = time.time()
         for key, session in list(sessions.items()):
-            if session.ended or now - session.created > int(os.getenv('MAX_CALL_SECONDS', '300')) + 60:
+            if session.ended or now - session.created > int(os.getenv('MAX_CALL_SECONDS', '120')) + 60:
                 del sessions[key]
         if len(sessions) >= int(os.getenv('MAX_CONCURRENT_CALLS', '2')):
             raise HTTPException(429, 'All practice lines are busy. Try again shortly or open the demo.')
-        async with httpx.AsyncClient(timeout=25) as client:
-            try:
-                response = await client.get('https://api.elevenlabs.io/v1/convai/conversation/token', headers={'xi-api-key': os.environ['ELEVENLABS_API_KEY']}, params={'agent_id': os.environ['ELEVENLABS_AGENT_ID']})
-                if response.status_code in (401, 403):
-                    raise HTTPException(502, 'ElevenLabs denied access. Check the API key’s ElevenAgents Read permission and access to this agent.')
-                response.raise_for_status()
-                token = response.json()['token']
-                if not isinstance(token, str) or not token:
-                    raise ValueError('Invalid session token')
-            except (httpx.HTTPError, KeyError, ValueError):
-                raise HTTPException(502, 'The ElevenLabs conversation could not start. Check the Agent ID and retry.')
-        session = Session(secrets.token_urlsafe(32), target_language=payload.target_language)
+        ticket = secrets.token_urlsafe(32)
+        visitor = reserve(ticket, request.cookies.get('bic-practice-visitor'), int(os.getenv('MAX_CALL_SECONDS', '120')))
+        try:
+            async with httpx.AsyncClient(timeout=25) as client:
+                try:
+                    response = await client.get('https://api.elevenlabs.io/v1/convai/conversation/token', headers={'xi-api-key': os.environ['ELEVENLABS_API_KEY']}, params={'agent_id': os.environ['ELEVENLABS_AGENT_ID']})
+                    if response.status_code in (401, 403):
+                        raise HTTPException(502, 'ElevenLabs denied access. Check the API key’s ElevenAgents Read permission and access to this agent.')
+                    response.raise_for_status()
+                    token = response.json()['token']
+                    if not isinstance(token, str) or not token:
+                        raise ValueError('Invalid session token')
+                except (httpx.HTTPError, KeyError, ValueError):
+                    raise HTTPException(502, 'The ElevenLabs conversation could not start. Check the Agent ID and retry.')
+        except BaseException:
+            release(ticket)
+            raise
+        session = Session(ticket, target_language=payload.target_language)
         sessions[session.id] = session
-    return {'session_id': session.id, 'conversation_token': token, 'max_call_seconds': int(os.getenv('MAX_CALL_SECONDS', '300')), 'prompt': practice_prompt(payload), 'greeting': payload.greeting, 'language': payload.language, 'scenario_id': payload.scenario_id, 'target_language': payload.target_language, 'voice_id': os.getenv('ELEVENLABS_ENGLISH_VOICE_ID', 'EXAVITQu4vr4xnSDxMaL') if payload.target_language == 'en' else os.getenv('ELEVENLABS_VOICE_ID', '')}
+    browser_response.set_cookie('bic-practice-visitor', visitor, max_age=31536000, httponly=True, samesite='strict', secure=request.url.scheme == 'https' or os.getenv('APP_ORIGIN', '').startswith('https://'))
+    return {'session_id': session.id, 'conversation_token': token, 'max_call_seconds': int(os.getenv('MAX_CALL_SECONDS', '120')), 'prompt': practice_prompt(payload), 'greeting': payload.greeting, 'language': payload.language, 'scenario_id': payload.scenario_id, 'target_language': payload.target_language, 'voice_id': os.getenv('ELEVENLABS_ENGLISH_VOICE_ID', 'EXAVITQu4vr4xnSDxMaL') if payload.target_language == 'en' else os.getenv('ELEVENLABS_VOICE_ID', '')}
 
 
 @app.delete('/api/sessions/{session_id}')
@@ -159,6 +174,7 @@ async def end_call(session_id: str, request: Request):
     session = sessions.get(session_id)
     if session:
         session.ended = True
+        speech_cache.discard_session(session_id)
     return {'ok': True}
 
 
@@ -264,13 +280,18 @@ async def call_card(payload: CardRequest, request: Request):
 @app.post('/api/sessions/{session_id}/help-token')
 async def help_token(session_id: str, request: Request):
     check_origin(request)
-    get_session(session_id)
+    session = get_session(session_id)
+    async with help_lock:
+        if session.help_requests >= int(os.getenv('MAX_HELP_REQUESTS_PER_CALL', '6')):
+            raise HTTPException(429, 'This practice has reached its text-help limit. You can review previous explanations or use a guided example.')
+        session.help_requests += 1
     async with httpx.AsyncClient(timeout=20) as client:
         try:
             response = await client.get('https://api.elevenlabs.io/v1/convai/conversation/get-signed-url', params={'agent_id': os.environ['ELEVENLABS_AGENT_ID']}, headers={'xi-api-key': os.environ['ELEVENLABS_API_KEY']})
             response.raise_for_status()
             signed_url = response.json()['signed_url']
         except (httpx.HTTPError, KeyError, ValueError):
+            session.help_requests -= 1
             raise HTTPException(502, 'Text help could not connect to ElevenLabs. Try again.')
     return {'signed_url': signed_url}
 
@@ -283,24 +304,35 @@ async def replay(session_id: str, payload: SpeechRequest, request: Request):
     voice = os.getenv('ELEVENLABS_ENGLISH_VOICE_ID', 'EXAVITQu4vr4xnSDxMaL') if language == 'en' else os.getenv('ELEVENLABS_VOICE_ID')
     if not voice:
         raise HTTPException(503, 'Set ELEVENLABS_VOICE_ID to enable slow audio replay.')
-    async with httpx.AsyncClient(timeout=25) as client:
-        try:
-            response = await client.post('https://api.elevenlabs.io/v1/text-to-speech/' + voice, headers={'xi-api-key': os.environ['ELEVENLABS_API_KEY']}, json={'text': speech_text(payload.text, language), 'model_id': 'eleven_flash_v2_5', 'language_code': language, 'voice_settings': {'speed': 0.7, 'stability': 0.7, 'similarity_boost': 0.75, 'style': 0}})
-            response.raise_for_status()
-        except httpx.HTTPStatusError as error:
-            status = error.response.status_code
-            if status in (401, 403):
-                raise HTTPException(502, 'ElevenLabs denied audio replay. Enable Text to Speech access on the server API key.')
-            if status == 404:
-                raise HTTPException(502, 'The configured ElevenLabs replay voice was not found.')
-            if status == 429:
-                raise HTTPException(503, 'ElevenLabs audio replay is temporarily limited. Your live partner can repeat the question.')
-            raise HTTPException(502, 'ElevenLabs could not generate replay audio. Your live partner can repeat the question.')
-        except httpx.HTTPError:
-            raise HTTPException(502, 'Audio replay could not reach ElevenLabs. Your live partner can repeat the question.')
-    if not response.content:
-        raise HTTPException(502, 'ElevenLabs returned no replay audio. Your live partner can repeat the question.')
-    return Response(response.content, media_type='audio/mpeg', headers={'Cache-Control': 'no-store'})
+    cache_key = (session_id, voice, language, hashlib.sha256(speech_text(payload.text, language).encode()).hexdigest())
+    async with speech_lock:
+        get_session(session_id)
+        cached = speech_cache.get(cache_key)
+        if cached is not None:
+            return Response(cached, media_type='audio/mpeg', headers={'Cache-Control': 'no-store'})
+        if session.speech_requests >= int(os.getenv('MAX_SPEECH_REQUESTS_PER_CALL', '6')):
+            raise HTTPException(429, 'This practice has reached its audio-replay limit. You can still read the explanation or finish your call.')
+        session.speech_requests += 1
+        async with httpx.AsyncClient(timeout=25) as client:
+            try:
+                response = await client.post('https://api.elevenlabs.io/v1/text-to-speech/' + voice, headers={'xi-api-key': os.environ['ELEVENLABS_API_KEY']}, json={'text': speech_text(payload.text, language), 'model_id': 'eleven_flash_v2_5', 'language_code': language, 'voice_settings': {'speed': 0.7, 'stability': 0.7, 'similarity_boost': 0.75, 'style': 0}})
+                response.raise_for_status()
+            except httpx.HTTPStatusError as error:
+                status = error.response.status_code
+                if status in (401, 403):
+                    raise HTTPException(502, 'ElevenLabs denied audio replay. Enable Text to Speech access on the server API key.')
+                if status == 404:
+                    raise HTTPException(502, 'The configured ElevenLabs replay voice was not found.')
+                if status == 429:
+                    raise HTTPException(503, 'ElevenLabs audio replay is temporarily limited. Your live partner can repeat the question.')
+                raise HTTPException(502, 'ElevenLabs could not generate replay audio. Your live partner can repeat the question.')
+            except httpx.HTTPError:
+                raise HTTPException(502, 'Audio replay could not reach ElevenLabs. Your live partner can repeat the question.')
+        if not response.content:
+            raise HTTPException(502, 'ElevenLabs returned no replay audio. Your live partner can repeat the question.')
+        speech_cache.put(cache_key, response.content)
+        return Response(response.content, media_type='audio/mpeg', headers={'Cache-Control': 'no-store'})
+
 
 
 @app.get('/analytics')

@@ -2,6 +2,7 @@ import json
 import os
 import time
 import unittest
+import tempfile
 from pathlib import Path
 from unittest.mock import patch
 import httpx
@@ -11,18 +12,23 @@ from server.app import app, sessions, Session, annotate, practice_prompt, StartR
 
 class ApiTests(unittest.TestCase):
     def setUp(self):
+        self.cost_directory = tempfile.TemporaryDirectory()
+        self.cost_env = patch.dict(os.environ, {'ANALYTICS_DB_PATH': self.cost_directory.name + '/usage.sqlite3'})
+        self.cost_env.start()
         self.client = TestClient(app)
         sessions.clear()
 
     def tearDown(self):
+        self.cost_env.stop()
+        self.cost_directory.cleanup()
         sessions.clear()
 
     def test_health_only_requires_elevenlabs_agent_settings(self):
-        with patch.dict(os.environ, {'ELEVENLABS_API_KEY': 'test-key', 'ELEVENLABS_AGENT_ID': 'test-agent'}, clear=True):
+        with patch.dict(os.environ, {'ELEVENLABS_API_KEY': 'test-key', 'ELEVENLABS_AGENT_ID': 'test-agent'}, clear=False):
             data = self.client.get('/api/health').json()
             self.assertTrue(data['live_available'])
             self.assertEqual(data['provider'], 'elevenlabs')
-        with patch.dict(os.environ, {}, clear=True):
+        with patch.dict(os.environ, {'ELEVENLABS_API_KEY': '', 'ELEVENLABS_AGENT_ID': ''}, clear=False):
             self.assertFalse(self.client.get('/api/health').json()['live_available'])
             self.assertEqual(self.client.post('/api/start', json={'scenario': 'Book a clinic visit'}).status_code, 503)
 
@@ -42,7 +48,7 @@ class ApiTests(unittest.TestCase):
         return patch('server.app.httpx.AsyncClient', side_effect=lambda **kwargs: real_client(transport=httpx.MockTransport(handler), **kwargs))
 
     def test_token_issue_scope_and_scenario_prompt(self):
-        with patch.dict(os.environ, {'ELEVENLABS_API_KEY': 'test-key', 'ELEVENLABS_AGENT_ID': 'test-agent'}, clear=True), self.provider():
+        with patch.dict(os.environ, {'ELEVENLABS_API_KEY': 'test-key', 'ELEVENLABS_AGENT_ID': 'test-agent'}, clear=False), self.provider():
             response = self.client.post('/api/start', headers={'Origin': 'http://testserver'}, json={'scenario': 'I missed a parcel and need redelivery.', 'partner': 'delivery staff', 'greeting': 'もしもし。', 'language': 'Japanese'})
             self.assertEqual(response.status_code, 200)
             data = response.json()
@@ -55,14 +61,14 @@ class ApiTests(unittest.TestCase):
                 self.assertEqual(self.client.delete('/api/sessions/' + data['session_id']).status_code, 200)
 
     def test_provider_permission_failure_has_actionable_message(self):
-        with patch.dict(os.environ, {'ELEVENLABS_API_KEY': 'test-key', 'ELEVENLABS_AGENT_ID': 'test-agent'}, clear=True), self.provider(403):
+        with patch.dict(os.environ, {'ELEVENLABS_API_KEY': 'test-key', 'ELEVENLABS_AGENT_ID': 'test-agent'}, clear=False), self.provider(403):
             response = self.client.post('/api/start', json={'scenario': 'Book a clinic appointment'})
             self.assertEqual(response.status_code, 502)
             self.assertIn('Read permission', response.json()['detail'])
             self.assertEqual(len(sessions), 0)
 
     def test_concurrency_limit_and_expired_lease(self):
-        with patch.dict(os.environ, {'ELEVENLABS_API_KEY': 'test-key', 'ELEVENLABS_AGENT_ID': 'test-agent', 'MAX_CONCURRENT_CALLS': '1'}, clear=True), self.provider():
+        with patch.dict(os.environ, {'ELEVENLABS_API_KEY': 'test-key', 'ELEVENLABS_AGENT_ID': 'test-agent', 'MAX_CONCURRENT_CALLS': '1'}, clear=False), self.provider():
             sessions['busy'] = Session('busy')
             self.assertEqual(self.client.post('/api/start', json={'scenario': 'Book a clinic appointment'}).status_code, 429)
             sessions['busy'].created = time.time() - 1000

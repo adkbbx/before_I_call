@@ -19,6 +19,6 @@ with httpx.Client(headers=headers, timeout=30) as client:
     tools = prompt.get('built_in_tools') or {}
     tools['end_call'] = {'type': 'system', 'name': 'end_call', 'description': 'End after the rehearsal goal is addressed and the learner confirms no further help is needed, or explicitly asks to finish. Do not end for a casual thank-you.', 'params': {'system_tool_type': 'end_call'}}
     prompt['built_in_tools'] = tools
-    response = client.patch(url, json={'platform_settings': platform, 'conversation_config': {'agent': {'prompt': prompt}, 'tts': {'speed': 0.85}, 'conversation': {'max_duration_seconds': int(os.getenv('MAX_CALL_SECONDS', '300'))}}})
+    response = client.patch(url, json={'platform_settings': platform, 'conversation_config': {'agent': {'prompt': prompt}, 'tts': {'speed': 0.85}, 'conversation': {'max_duration_seconds': int(os.getenv('MAX_CALL_SECONDS', '120'))}}})
     response.raise_for_status()
     print('Configured language and voice overrides, end-call tool, and duration limit.')
