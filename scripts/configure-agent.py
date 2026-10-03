@@ -1,8 +1,11 @@
 """Apply the app's required voice overrides and completion tool to its agent."""
+import argparse
 import os
 import httpx
 from dotenv import load_dotenv
 
+# This changes the live agent, so --help or a mistyped argument must exit before any request.
+argparse.ArgumentParser(description=__doc__).parse_args()
 load_dotenv()
 headers = {'xi-api-key': os.environ['ELEVENLABS_API_KEY']}
 url = 'https://api.elevenlabs.io/v1/convai/agents/' + os.environ['ELEVENLABS_AGENT_ID']

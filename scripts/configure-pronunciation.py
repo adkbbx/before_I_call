@@ -1,4 +1,5 @@
 """Install shared Japanese speech aliases on the configured live agent."""
+import argparse
 import hashlib
 import json
 import os
@@ -53,6 +54,8 @@ def configure(client, agent_id):
 
 
 if __name__ == '__main__':
+    # This changes the live agent, so --help or a mistyped argument must exit before any request.
+    argparse.ArgumentParser(description=__doc__).parse_args()
     load_dotenv()
     with httpx.Client(headers={'xi-api-key': os.environ['ELEVENLABS_API_KEY']}, timeout=30) as client:
         try:

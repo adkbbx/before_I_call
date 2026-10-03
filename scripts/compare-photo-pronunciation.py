@@ -1,4 +1,5 @@
 """Generate listening candidates for the problematic photo request."""
+import argparse
 import asyncio
 import os
 import wave
@@ -6,6 +7,8 @@ from pathlib import Path
 import httpx
 from dotenv import load_dotenv
 
+# Each run makes paid speech requests, so --help or a mistyped argument must exit before any request.
+argparse.ArgumentParser(description=__doc__).parse_args()
 load_dotenv()
 TEXT = 'では、よるにうかがえるかかくにんします。みずがもれているばしょのしゃしんを、おくっていただけますか？'
 
