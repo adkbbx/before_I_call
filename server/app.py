@@ -19,6 +19,7 @@ from fastapi.responses import FileResponse
 from server.analytics import router as analytics_router
 from server.cost_limits import reserve, release
 from server.speech_cache import SpeechCache
+from server.preparation import router as preparation_router, configured as preparation_configured
 from pydantic import BaseModel, Field
 from pykakasi import kakasi
 from janome.tokenizer import Tokenizer
@@ -30,6 +31,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REQUIRED = ('ELEVENLABS_API_KEY', 'ELEVENLABS_AGENT_ID')
 app = FastAPI(title='Before I Call')
 app.include_router(analytics_router)
+app.include_router(preparation_router)
 start_lock = asyncio.Lock()
 help_lock = asyncio.Lock()
 speech_lock = asyncio.Lock()
@@ -127,7 +129,7 @@ LEARNER SITUATION (JSON): {json.dumps(payload.scenario, ensure_ascii=False)}'''
 
 @app.get('/api/health')
 async def health():
-    return {'ok': True, 'live_available': configured(), 'max_call_seconds': int(os.getenv('MAX_CALL_SECONDS', '120')), 'access_code_required': bool(os.getenv('LIVE_ACCESS_CODE')), 'provider': 'elevenlabs', 'missing_settings': [key for key in REQUIRED if not os.getenv(key)]}
+    return {'ok': True, 'preparation_available': preparation_configured(), 'live_available': configured(), 'max_call_seconds': int(os.getenv('MAX_CALL_SECONDS', '120')), 'access_code_required': bool(os.getenv('LIVE_ACCESS_CODE')), 'provider': 'elevenlabs', 'missing_settings': [key for key in REQUIRED if not os.getenv(key)]}
 
 
 @app.post('/api/start')

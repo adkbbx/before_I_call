@@ -19,3 +19,11 @@ Configuration:
 Sync the Render Blueprint to apply these environment values and ensure `/var/data` is attached. Keep one service instance. Set the ElevenLabs agent's maximum duration to match `MAX_CALL_SECONDS`; `scripts/configure-agent.py` does this without changing its LLM selection. The current configured agent has been updated to 120 seconds. For a monetary backstop, set a credit allowance on the ElevenLabs API key and avoid enabling usage-based overages unintentionally. Calls started outside this app do not pass through its admission limits.
 
 Verification uses mocked provider responses, durable-ledger tests and a browser test with a mocked SDK. No paid audio or live conversations are needed to exercise the controls.
+
+## DigitalOcean preparation
+
+Help me prepare uses the server-only GRADIENT_MODEL_ACCESS_KEY (DIGITALOCEAN_INFERENCE_KEY also accepted), with GRADIENT_MODEL defaulting to gemma-4-31B-it. Add the key separately in Render Environment. Sync the Blueprint to apply MAX_PREPARATIONS_PER_VISITOR_DAY=5 and MAX_PREPARATIONS_PER_DAY=50.
+
+Input is limited to 1,000 characters and output to 350 tokens. Each provider attempt, including failures, reserves one request in the persistent SQLite daily ledger. No automatic retries. Budgets reset at midnight UTC. Identical requests for the same browser are cached in memory for ten minutes, up to 100 results, and cache hits do not spend the budget. Cache contents are not written to disk. Clearing cookies resets the browser limit but cannot reset the site-wide budget.
+
+These limits apply only to the preparation endpoint, not Gemma calls made through ElevenLabs or other apps sharing the key. They bound request count, not dollars or all DigitalOcean account spending. Provider billing and any provider-side spending controls remain separate. The app sends situation text to DigitalOcean; users review suggestions before applying them.
