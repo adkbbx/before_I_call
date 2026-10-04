@@ -33,7 +33,8 @@ from server import local_voice
 from pydantic import BaseModel, Field
 from pykakasi import kakasi
 from janome.tokenizer import Tokenizer
-from server.number_readings import PATTERN as NUMBER_PATTERN, READINGS as NUMBER_READINGS, words as number_words
+from server.number_readings import READINGS as NUMBER_READINGS, words as number_words
+from server.counter_pronunciation import READINGS as COUNTER_READINGS
 from server.pronunciation import speech_text
 
 load_dotenv()
@@ -285,9 +286,69 @@ async def off_loop(work, *args):
     return await asyncio.to_thread(locked)
 
 
+# Every number with its counter that the voice reads (dates, months, durations, counters, clock times, people),
+# so romaji and furigana match the speech. The clock, minute and people readings take precedence, as before.
+SPOKEN_NUMBERS = {**COUNTER_READINGS, **NUMBER_READINGS}
+LONGEST_SPOKEN_NUMBER = max(map(len, SPOKEN_NUMBERS))
+NUMERAL = '0-9０-９一二三四五六七八九十'
+# Never start inside a larger number: 100分 is not 00分.
+NUMBER_START = re.compile(rf'(?<![{NUMERAL}零百千万])[{NUMERAL}]')
+MONTH_NAMES = ('', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December')
+
+
+def spoken_numbers(text: str) -> list[tuple[int, int, str]]:
+    """(start, end, kana) for each number and counter in the text, longest spelling first."""
+    found, taken = [], 0
+    for match in NUMBER_START.finditer(text):
+        start = match.start()
+        if start < taken:
+            continue
+        for end in range(min(len(text), start + LONGEST_SPOKEN_NUMBER), start, -1):
+            reading = SPOKEN_NUMBERS.get(text[start:end])
+            if reading:
+                found.append((start, end, reading))
+                taken = end
+                break
+    return found
+
+
+def numeral(text: str) -> int:
+    text = text.translate(str.maketrans('０１２３４５６７８９', '0123456789'))
+    if text.isdigit():
+        return int(text)
+    digits = '零一二三四五六七八九'
+    tens, ten, units = text.partition('十')
+    if not ten:
+        return digits.index(text)
+    return (digits.index(tens) if tens else 1) * 10 + (digits.index(units) if units else 0)
+
+
+def ordinal(number: int) -> str:
+    return f"{number}{'th' if 10 <= number % 100 <= 20 else {1: 'st', 2: 'nd', 3: 'rd'}.get(number % 10, 'th')}"
+
+
+def date_words(text: str) -> list[dict]:
+    """Dates and day counts with their real readings: 10月 is じゅうがつ and 4日 is よっか, not つき or にち."""
+    words = []
+    for start, end, reading in spoken_numbers(text):
+        spelling = text[start:end]
+        if match := re.fullmatch(rf'([{NUMERAL}]+)月[1１一]日', spelling):
+            meaning = f'{MONTH_NAMES[numeral(match[1])]} 1st'
+        elif (match := re.fullmatch(rf'([{NUMERAL}]+)月', spelling)) and 1 <= numeral(match[1]) <= 12:
+            meaning = MONTH_NAMES[numeral(match[1])]
+        elif match := re.fullmatch(rf'([{NUMERAL}]+)日間', spelling):
+            meaning = f"{numeral(match[1])} day{'' if numeral(match[1]) == 1 else 's'}"
+        elif match := re.fullmatch(rf'([{NUMERAL}]+)日', spelling):
+            meaning = f'the {ordinal(numeral(match[1]))} (date)'
+        else:
+            continue
+        words.append({'text': spelling, 'reading': reading.replace(' ', ''), 'meaning': meaning})
+    return words
+
+
 @lru_cache(maxsize=256)
 def annotate(text: str):
-    contextual_words = sorted(number_words(text) + lexicon, key=lambda item: len(item['text']), reverse=True)
+    contextual_words = sorted(number_words(text) + date_words(text) + lexicon, key=lambda item: len(item['text']), reverse=True)
     segments = []
     offset = 0
     while offset < len(text):
@@ -317,12 +378,17 @@ def annotate(text: str):
 def romanize(text: str) -> str:
     output = []
     offset = 0
-    for match in NUMBER_PATTERN.finditer(text):
-        output.append(_romanize_words(text[offset:match.start()]))
-        output.append(''.join(item['hepburn'] for item in reader.convert(NUMBER_READINGS[match.group()])))
-        offset = match.end()
+    for start, end, reading in spoken_numbers(text):
+        output.append(_romanize_words(text[offset:start]))
+        output.append(' '.join(''.join(item['hepburn'] for item in reader.convert(part)) for part in reading.split()))
+        offset = end
     output.append(_romanize_words(text[offset:]))
-    return ' '.join(part for part in output if part).replace(' .', '.').replace(' ?', '?').replace(' ,', ',')
+    # One space between words and after punctuation, none before it.
+    return re.sub(r'\s+([.,?!])', r'\1', ' '.join(' '.join(output).split()))
+
+
+# Particles the dictionary treats as one word but learners read as two.
+COMPOUND_PARTICLES = {'について': 'ni tsuite', 'に対して': 'ni taishite', 'に対する': 'ni taisuru', 'に関して': 'ni kanshite', 'として': 'to shite', 'によって': 'ni yotte', 'にとって': 'ni totte'}
 
 
 def _romanize_words(text: str) -> str:
@@ -331,7 +397,7 @@ def _romanize_words(text: str) -> str:
     result = []
     for fragment in re.split(r'([\u3040-\u30ff\u4e00-\u9fff]+)', text):
         if not re.fullmatch(r'[\u3040-\u30ff\u4e00-\u9fff]+', fragment):
-            result.append(fragment.translate(str.maketrans({'？': '?', '。': '.', '、': ',', '！': '!'})))
+            result.append(fragment.translate(str.maketrans({'？': '? ', '。': '. ', '、': ', ', '！': '! ', '，': ', ', '．': '. '})))
             continue
         words = []
         previous = None
@@ -340,8 +406,11 @@ def _romanize_words(text: str) -> str:
             if token.part_of_speech.startswith('助詞'):
                 pronunciation = {'は': 'ワ', 'へ': 'エ', 'を': 'オ'}.get(token.surface, pronunciation)
             word = ''.join(item['hepburn'] for item in reader.convert(pronunciation))
+            if token.part_of_speech.startswith('助詞') and token.surface in COMPOUND_PARTICLES:
+                word = COMPOUND_PARTICLES[token.surface]
             suffix = ',接尾,' in token.part_of_speech
-            verb_ending = token.part_of_speech.startswith('助動詞') and token.surface in {'ます', 'まし', 'た', 'ない', 'ん'}
+            # う completes でしょう and ましょう: deshou, ikimashou.
+            verb_ending = token.part_of_speech.startswith('助動詞') and token.surface in {'ます', 'まし', 'ましょ', 'た', 'ない', 'ん', 'う'}
             connective = token.surface in {'て', 'で'} and token.part_of_speech.startswith('助詞,接続助詞')
             if words and (suffix or verb_ending or connective):
                 words[-1] += word

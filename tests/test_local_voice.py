@@ -93,6 +93,30 @@ class LocalVoiceTests(unittest.TestCase):
         self.assertEqual(self.synthesize.call_args.args[0], 'お電話ありがとうございました。失礼いたします。')
         self.transcribe.assert_not_called()
 
+    def test_saying_no_to_anything_else_or_the_partners_farewell_ends_the_call(self):
+        session = self.start()['session_id']
+        with ollama('かしこまりました。担当者に確認いたします。ほかに何かございますか？'):
+            self.assertFalse(self.client.post(f'/api/local/sessions/{session}/turn', json={'text': '修理をお願いします。'}).json()['ended'])
+        with ollama('お電話ありがとうございました。失礼いたします。'):
+            self.assertTrue(self.client.post(f'/api/local/sessions/{session}/turn', json={'text': '大丈夫です。'}).json()['ended'])
+
+    def test_call_ending_rules(self):
+        ask = 'ほかに何かございますか？'
+        # The learner declines "anything else?" in Japanese or English.
+        self.assertTrue(local_voice.call_ends('大丈夫です。', ask, 'はい。', 'はい。'))
+        self.assertTrue(local_voice.call_ends('いいえ、ありがとうございました。', ask, 'はい。', 'はい。'))
+        self.assertTrue(local_voice.call_ends('Nope, thanks.', 'Is there anything else I can help you with?', 'Okay.', 'Okay.'))
+        # The partner says the farewell the prompt asks for, whatever the learner said.
+        self.assertTrue(local_voice.call_ends('ありがとうございました。', '確認いたします。', 'お電話ありがとうございました。失礼いたします。', 'お電話ありがとうございました。失礼いたします。'))
+        self.assertTrue(local_voice.call_ends('Thanks.', 'I will check.', 'Thank you for calling. Goodbye.', 'Thank you for calling. Goodbye.'))
+        # The learner's own goodbye, or tool syntax the model wrote out.
+        self.assertTrue(local_voice.call_ends('以上です。', '確認いたします。', 'はい。', 'はい。'))
+        self.assertTrue(local_voice.call_ends('はい。', '確認いたします。', 'end_call()', ''))
+        # Mid-call reassurance is not an ending, and neither is the greeting's present-tense thanks.
+        self.assertFalse(local_voice.call_ends('大丈夫です。', '水はいつ漏れますか？', 'かしこまりました。', 'かしこまりました。'))
+        self.assertFalse(local_voice.call_ends('はい。', '', 'お電話ありがとうございます。ご用件をお伺いします。', 'お電話ありがとうございます。ご用件をお伺いします。'))
+        self.assertFalse(local_voice.call_ends('失礼ですが、もう一度お願いします。', '確認いたします。', 'かしこまりました。', 'かしこまりました。'))
+
     def test_voice_directions_and_empty_replies_are_cleaned_up(self):
         session = self.start()['session_id']
         with ollama('[slow] **かしこまりました。**'):

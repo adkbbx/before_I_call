@@ -99,7 +99,20 @@ class ApiTests(unittest.TestCase):
         result = annotate('水漏れしています。')
         self.assertEqual(result['segments'][0]['meaning'], 'water leak')
         self.assertEqual(result['romaji'], 'mizumore shite imasu.')
-        self.assertEqual(annotate('日本へ行きます。水を飲みます。')['romaji'], 'nippon e ikimasu.mizu o nomimasu.')
+        self.assertEqual(annotate('日本へ行きます。水を飲みます。')['romaji'], 'nippon e ikimasu. mizu o nomimasu.')
+
+    def test_romaji_reads_dates_joins_endings_and_spaces_punctuation(self):
+        sentence = '10月4日、日曜日でよろしいでしょうか。初診で、どのような症状について診察をご希望ですか。'
+        result = annotate(sentence)
+        self.assertEqual(result['romaji'], 'juugatsu yokka, nichiyoobi de yoroshii deshou ka. shoshin de, dono yoo na shoojoo ni tsuite shinsatsu o go-kiboo desu ka.')
+        dates = {segment['text']: (segment['reading'], segment['meaning']) for segment in result['segments']}
+        self.assertEqual(dates['10月'], ('じゅうがつ', 'October'))
+        self.assertEqual(dates['4日'], ('よっか', 'the 4th (date)'))
+        self.assertEqual(''.join(segment['text'] for segment in result['segments']), sentence)
+        self.assertEqual(annotate('4月1日に行きましょう。')['romaji'], 'shigatsu tsuitachi ni ikimashou.')
+        self.assertEqual(annotate('3日間お休みです。二十日はどうですか？')['romaji'], 'mikkakan o-yasumi desu. hatsuka wa doo desu ka?')
+        # A duration of months is not a month name.
+        self.assertNotIn('March', [segment['meaning'] for segment in annotate('3ヶ月前に買いました。')['segments']])
 
     def test_card_contains_only_actual_transcript_phrases_and_words(self):
         messages = [{'role': 'user', 'text': '水が漏れています。'}, {'role': 'assistant', 'text': '写真を送ってください。'}]

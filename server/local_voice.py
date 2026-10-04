@@ -181,6 +181,17 @@ def local_prompt(prompt: str) -> str:
 
 TOOL_TEXT = re.compile(r'(?:\bcall\s+)?\bend_call\b[\s\S]*$', re.I)
 VOICE_TAG = re.compile(r'\[[A-Za-z][A-Za-z ]{1,20}\]\s*')
+# Without a hang-up tool, these stand in for Gemma's end_call: the partner's farewell from the prompt,
+# or a learner who says no to "anything else?".
+FAREWELL = re.compile(r'失礼(?:いた)?します|お電話ありがとうございました|さようなら|\bgood ?bye\b|\bthank you for calling\b', re.I)
+ANYTHING_ELSE = re.compile(r'ほかに|他に|\banything else\b', re.I)
+NOTHING_MORE = re.compile(r"^\W*(?:いいえ|いや|大丈夫|結構|ないです|ありません|特に|以上|それだけ|no\b|nope\b|nothing\b|that'?s (?:it|all)\b|i'?m (?:good|fine|ok)\b)", re.I)
+
+
+def call_ends(heard: str, previous: str, raw: str, reply: str) -> bool:
+    """Whether this exchange ends the practice once the partner's reply has played."""
+    return (bool(reply_rules.GOODBYE.search(heard)) or bool(ANYTHING_ELSE.search(previous) and NOTHING_MORE.search(heard))
+            or bool(FAREWELL.search(reply)) or bool(TOOL_TEXT.search(raw)))
 
 
 def spoken(reply: str) -> str:
@@ -282,11 +293,11 @@ async def turn(session_id: str, request: Request):
             raise HTTPException(503, f'Local speech recognition failed ({type(error).__name__}). Check the server log.')
         if not heard:
             raise HTTPException(422, 'I could not hear anything. Tap to speak, answer, then tap again to send.')
+    previous = session.messages[-1]['content'] if session.messages and session.messages[-1]['role'] == 'assistant' else ''
     session.messages.append({'role': 'user', 'content': heard})
     raw = await chat([{'role': 'system', 'content': session.prompt}, *session.messages[-30:]])
     reply = spoken(raw) or ('もう一度お願いできますか？' if session.target_language == 'ja' else 'Sorry, could you say that again?')
-    # Without a hang-up tool, the learner's goodbye (the same rule Sentry checks) or written tool syntax ends the call.
-    ended = bool(reply_rules.GOODBYE.search(heard)) or bool(TOOL_TEXT.search(raw))
+    ended = call_ends(heard, previous, raw, reply)
     session.messages.append({'role': 'assistant', 'content': reply})
     audio = await speak(reply, session.target_language)
     return {'heard': heard, 'reply': reply, 'audio': audio_field(audio), 'ended': ended}
