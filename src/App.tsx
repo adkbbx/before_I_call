@@ -11,7 +11,7 @@ const demos = [{ ...demo, id: 'repair', title: 'Home repair', partner: 'Tanaka /
 const englishDemos = demos.map(item => ({ ...item, id: 'en-' + item.id, turns: item.turns.map(turn => ({ ...turn, id: 'en-' + turn.id, japanese: turn.meaning, meaning: turn.japanese, romaji: '', answer: turn.answerMeaning, answerMeaning: turn.answer, answerRomaji: '' })) }));
 const allDemos = [...demos, ...englishDemos];
 type Demo = typeof demos[number];
-import { explainQuestion, type QuestionHelp } from './text-help';
+import { explainQuestion, helpSchema, type QuestionHelp } from './text-help';
 import { Preparation } from './Preparation';
 import { ReportReply } from './ReportReply';
 import { hasEndCallRequest, spokenText } from './spoken-text';
@@ -19,12 +19,13 @@ import { AnalyticsDashboard } from './AnalyticsDashboard';
 import { track, trackVisit } from './analytics';
 import { JapaneseText } from './JapaneseText';
 import { buildCallCard, nextTurn } from './demo-flow.mjs';
-import { healthSchema, request, snapshotSchema, startSchema } from './api';
+import { errorDetail, healthSchema, localStartSchema, localTurnSchema, request, snapshotSchema, startSchema } from './api';
 
 type Message = { role: 'user' | 'assistant'; text: string };
 type StartedCall = z.infer<typeof startSchema>;
+type LocalStarted = z.infer<typeof localStartSchema>;
 type Health = z.infer<typeof healthSchema>;
-type View = { kind: 'home' } | { kind: 'setup'; targetLanguage?: 'ja' | 'en' } | { kind: 'demo'; demoId: string } | { kind: 'live'; call: StartedCall; scenario: string } | { kind: 'finished'; scenario: string; messages: Message[]; mode: 'demo' | 'live'; scenarioId?: string; targetLanguage: 'ja' | 'en'; trace?: CallTrace };
+type View = { kind: 'home' } | { kind: 'setup'; targetLanguage?: 'ja' | 'en' } | { kind: 'demo'; demoId: string } | { kind: 'live'; call: StartedCall; scenario: string } | { kind: 'local'; call: LocalStarted; scenario: string } | { kind: 'finished'; scenario: string; messages: Message[]; mode: 'demo' | 'live'; scenarioId?: string; targetLanguage: 'ja' | 'en'; trace?: CallTrace };
 type CallTrace = { conversation: string; promptVersion?: string };
 type Phase = z.infer<typeof snapshotSchema>['status'];
 
@@ -73,19 +74,20 @@ function PracticeApp() {
   useEffect(() => {
     if (lastView.current === view) return;
     lastView.current = view;
-    track('page', { page: view.kind });
+    track('page', { page: view.kind === 'local' ? 'live' : view.kind });
     if (view.kind === 'demo') track('demo_start', { mode: 'demo', language: view.demoId.startsWith('en-') ? 'en' : 'ja', scenario: analyticsScenario(view.demoId.replace('en-', '')) });
-    if (view.kind === 'live') track('live_start', { mode: 'live', language: view.call.target_language, scenario: analyticsScenario(view.call.scenario_id) });
+    if (view.kind === 'live' || view.kind === 'local') track('live_start', { mode: 'live', language: view.call.target_language, scenario: analyticsScenario(view.call.scenario_id) });
   }, [view]);
   const home = () => setView({ kind: 'home' });
-  const inCall = view.kind === 'demo' || view.kind === 'live';
+  const inCall = view.kind === 'demo' || view.kind === 'live' || view.kind === 'local';
   return <div className="app-shell">
     <header className="site-header"><Brand onClick={home} inCall={inCall} /><div className="header-tools"><span className="header-note">Japanese & English call practice</span><button className="theme-toggle" aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'} title={dark ? 'Switch to light mode' : 'Switch to dark mode'} onClick={() => setTheme(dark ? 'light' : 'dark')}>{dark ? <Sun size={18} /> : <Moon size={18} />}</button></div></header>
     <main>
       {view.kind === 'home' && <Home onDemo={(demoId) => setView({ kind: 'demo', demoId })} onLive={(targetLanguage) => setView({ kind: 'setup', targetLanguage })} />}
-      {view.kind === 'setup' && <Setup initialTarget={view.targetLanguage ?? 'ja'} health={health} onBack={home} onDemo={() => setView({ kind: 'demo', demoId: 'repair' })} onStart={(call, scenario) => setView({ kind: 'live', call, scenario })} />}
+      {view.kind === 'setup' && <Setup initialTarget={view.targetLanguage ?? 'ja'} health={health} onBack={home} onDemo={() => setView({ kind: 'demo', demoId: 'repair' })} onStart={(call, scenario) => setView({ kind: 'live', call, scenario })} onStartLocal={(call, scenario) => setView({ kind: 'local', call, scenario })} />}
       {view.kind === 'demo' && <DemoCall demo={allDemos.find(item => item.id === view.demoId) ?? demos[0]} onFinish={(messages) => finish((allDemos.find(item => item.id === view.demoId) ?? demos[0]).scenario, messages, 'demo', undefined, view.demoId.startsWith('en-') ? 'en' : 'ja')} />}
       {view.kind === 'live' && <LiveCall call={view.call} scenario={view.scenario} onFinish={(messages) => finish(view.scenario, messages, 'live', view.call.scenario_id, view.call.target_language, view.call.conversation_ref ? { conversation: view.call.conversation_ref, promptVersion: view.call.prompt_version } : undefined)} />}
+      {view.kind === 'local' && <LocalCall call={view.call} scenario={view.scenario} onFinish={(messages) => finish(view.scenario, messages, 'live', view.call.scenario_id, view.call.target_language)} />}
       {view.kind === 'finished' && <Finished onHome={home} trace={view.trace} targetLanguage={view.targetLanguage} scenarioId={view.scenarioId} scenario={view.scenario} messages={view.messages} mode={view.mode} onDemo={() => setView({ kind: 'demo', demoId: 'repair' })} onLive={() => setView({ kind: 'setup' })} />}
     </main>
     <footer className="site-footer product-footer"><div><p>Built by Akshay Dilip Kumar</p><nav aria-label="Creator and contribution links"><a href="https://www.linkedin.com/in/akshaydilipkumar/" target="_blank" rel="noopener noreferrer" onClick={() => track('action', { action: 'linkedin' })}>LinkedIn</a><a href="https://github.com/adkbbx" target="_blank" rel="noopener noreferrer" onClick={() => track('action', { action: 'github' })}>GitHub</a><a href="https://github.com/adkbbx/before_I_call-/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" onClick={() => track('action', { action: 'contribute' })}>Contribute</a></nav></div><div className="footer-support"><a href="https://github.com/adkbbx/before_I_call-" target="_blank" rel="noopener noreferrer" onClick={() => track('action', { action: 'star' })}>Finding it useful? Star the repo ↗</a><div className="footer-meta"><span>{visits === null ? 'Visit count loading…' : `${visits.toLocaleString()} visits`}</span><small>Usage analytics don’t store your conversations.</small></div></div></footer>
@@ -103,7 +105,7 @@ function Home({ onDemo, onLive }: { onDemo: (id: string) => void; onLive: (langu
   </section>;
 }
 
-function Setup({ initialTarget, health, onBack, onDemo, onStart }: { initialTarget: 'ja' | 'en'; health: Health | null; onBack: () => void; onDemo: () => void; onStart: (call: StartedCall, scenario: string) => void }) {
+function Setup({ initialTarget, health, onBack, onDemo, onStart, onStartLocal }: { initialTarget: 'ja' | 'en'; health: Health | null; onBack: () => void; onDemo: () => void; onStart: (call: StartedCall, scenario: string) => void; onStartLocal: (call: LocalStarted, scenario: string) => void }) {
   const [selected, setSelected] = useState('custom');
   const [scenario, setScenario] = useState('');
   const preset = scenarios.find(item => item.id === selected);
@@ -112,27 +114,34 @@ function Setup({ initialTarget, health, onBack, onDemo, onStart }: { initialTarg
   const [code, setCode] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
+  const [engine, setEngine] = useState<'cloud' | 'local'>('cloud');
+  // Free local voice is used when it is the only voice, or when the learner picks it.
+  const usesLocal = (available: Health | null) => (available?.local_available ?? false) && (engine === 'local' || !available?.live_available);
+  const local = usesLocal(health);
   const start = async () => {
     setError(''); setBusy(true);
     try {
       const availability = await request('/api/health', healthSchema);
-      if (!availability.live_available) throw new Error('Live voice isn’t connected yet. Open the guided demo below to hear both sides of the repair call.');
+      const useLocal = usesLocal(availability);
+      if (!availability.live_available && !useLocal) throw new Error('Live voice isn’t connected yet. Open the guided demo below to hear both sides of the repair call.');
       if (!navigator.mediaDevices?.getUserMedia) throw new Error('Microphone access requires HTTPS or localhost. You can still try the demo.');
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       stream.getTracks().forEach(track => track.stop());
-      const call = await request('/api/start', startSchema, { method: 'POST', body: JSON.stringify({ scenario, scenario_id: selected, language, target_language: targetLanguage, access_code: code, partner: preset?.partner ?? 'service staff', greeting: targetLanguage === 'en' ? 'Hello, how can I help you today?' : preset?.greeting ?? 'もしもし。どうされましたか？' }) });
+      const body = JSON.stringify({ scenario, scenario_id: selected, language, target_language: targetLanguage, access_code: code, partner: preset?.partner ?? 'service staff', greeting: targetLanguage === 'en' ? 'Hello, how can I help you today?' : preset?.greeting ?? 'もしもし。どうされましたか？' });
+      if (useLocal) { onStartLocal(await request('/api/local/start', localStartSchema, { method: 'POST', body }), scenario); return; }
+      const call = await request('/api/start', startSchema, { method: 'POST', body });
       onStart(call, scenario);
     } catch (e) { setError(e instanceof DOMException && e.name === 'NotAllowedError' ? 'Your microphone was blocked. Allow it in browser settings, then retry, or try the demo.' : errorMessage(e)); }
     finally { setBusy(false); }
   };
-  return <section className="setup-layout simple-setup"><div className="setup-intro"><button className="back-link" onClick={onBack}><ArrowLeft size={16} />Back</button><h1>What call do you want to practice?</h1><p>Tell your AI partner what you need to call about.</p></div><form className="setup-form" onSubmit={event => { event.preventDefault(); void start(); }}><div className="situation-label-row"><label htmlFor="scenario">Your situation</label><details className="setup-example-shortcut"><summary>Choose an example</summary><div className="situation-options" role="group" aria-label="Example situations">{scenarios.map(item => <button key={item.id} type="button" disabled={busy} onClick={event => { setSelected(item.id); setScenario(item.situation); const picker = event.currentTarget.closest('details'); if (picker) picker.open = false; }}><span>{item.title}</span></button>)}</div></details></div><Preparation situation={scenario} language={language} target={targetLanguage} code={code} disabled={busy} available={selected === 'custom' && (health?.preparation_available ?? false)} onApply={value => { setScenario(value); setSelected('custom'); }} /><details className="setup-disclosure"><summary>Options<ChevronDown size={16} /></summary><p className="small-note">Practice language and explanations</p><fieldset className="language-choice setup-language-choice"><legend>Practice language</legend><div role="group" aria-label="Practice language"><button type="button" disabled={busy} aria-pressed={targetLanguage === 'ja'} onClick={() => { setTargetLanguage('ja'); setLanguage('English'); }}>Japanese{targetLanguage === 'ja' && <Check size={16} aria-hidden="true" />}</button><button type="button" disabled={busy} aria-pressed={targetLanguage === 'en'} onClick={() => { setTargetLanguage('en'); setLanguage('Japanese'); }}>English{targetLanguage === 'en' && <Check size={16} aria-hidden="true" />}</button></div></fieldset><fieldset className="language-choice setup-language-choice"><legend>Explain replies in</legend><div role="group" aria-label="Explanation language"><button type="button" disabled={busy} aria-pressed={language === 'English'} onClick={() => setLanguage('English')}>English{language === 'English' && <Check size={16} aria-hidden="true" />}</button><button type="button" disabled={busy} aria-pressed={language === 'Japanese'} onClick={() => setLanguage('Japanese')}>Japanese{language === 'Japanese' && <Check size={16} aria-hidden="true" />}</button></div></fieldset><details className="setup-privacy"><summary>How your audio is handled</summary><p className="small-note">Audio is processed by ElevenLabs. After practice, text from your transcript is sent to DigitalOcean to select useful vocabulary. This app does not save recordings or transcripts to disk; provider retention follows their privacy settings.</p></details></details>{health?.access_code_required && <><label htmlFor="access-code">Practice access code</label><input id="access-code" type="password" value={code} onChange={event => setCode(event.target.value)} disabled={busy} required autoComplete="off" /></>}
-      {(!health || !health.live_available) && <div className="notice"><p>Live practice is unavailable right now.</p><button type="button" className="back-link" onClick={onDemo}>Try a guided example<ArrowRight size={15} /></button></div>}
-      {error && <p className="error" role="alert">{error}</p>}<button className="button primary wide" disabled={busy || scenario.trim().length < 10}><Mic size={18} />{busy ? 'Connecting…' : 'Start voice practice'}</button><p className="small-note">Up to {Math.ceil((health?.max_call_seconds ?? 120) / 60)} minutes per live practice. Allow your microphone when asked.</p>
+  return <section className="setup-layout simple-setup"><div className="setup-intro"><button className="back-link" onClick={onBack}><ArrowLeft size={16} />Back</button><h1>What call do you want to practice?</h1><p>Tell your AI partner what you need to call about.</p></div><form className="setup-form" onSubmit={event => { event.preventDefault(); void start(); }}><div className="situation-label-row"><label htmlFor="scenario">Your situation</label><details className="setup-example-shortcut"><summary>Choose an example</summary><div className="situation-options" role="group" aria-label="Example situations">{scenarios.map(item => <button key={item.id} type="button" disabled={busy} onClick={event => { setSelected(item.id); setScenario(item.situation); const picker = event.currentTarget.closest('details'); if (picker) picker.open = false; }}><span>{item.title}</span></button>)}</div></details></div><Preparation situation={scenario} language={language} target={targetLanguage} code={code} disabled={busy} available={selected === 'custom' && (health?.preparation_available ?? false)} onApply={value => { setScenario(value); setSelected('custom'); }} /><details className="setup-disclosure"><summary>Options<ChevronDown size={16} /></summary><p className="small-note">Practice language and explanations</p>{health?.live_available && health?.local_available && <fieldset className="language-choice setup-language-choice"><legend>Voice</legend><div role="group" aria-label="Voice"><button type="button" disabled={busy} aria-pressed={engine === 'cloud'} onClick={() => setEngine('cloud')}>ElevenLabs{engine === 'cloud' && <Check size={16} aria-hidden="true" />}</button><button type="button" disabled={busy} aria-pressed={engine === 'local'} onClick={() => setEngine('local')}>Free local{engine === 'local' && <Check size={16} aria-hidden="true" />}</button></div></fieldset>}<fieldset className="language-choice setup-language-choice"><legend>Practice language</legend><div role="group" aria-label="Practice language"><button type="button" disabled={busy} aria-pressed={targetLanguage === 'ja'} onClick={() => { setTargetLanguage('ja'); setLanguage('English'); }}>Japanese{targetLanguage === 'ja' && <Check size={16} aria-hidden="true" />}</button><button type="button" disabled={busy} aria-pressed={targetLanguage === 'en'} onClick={() => { setTargetLanguage('en'); setLanguage('Japanese'); }}>English{targetLanguage === 'en' && <Check size={16} aria-hidden="true" />}</button></div></fieldset><fieldset className="language-choice setup-language-choice"><legend>Explain replies in</legend><div role="group" aria-label="Explanation language"><button type="button" disabled={busy} aria-pressed={language === 'English'} onClick={() => setLanguage('English')}>English{language === 'English' && <Check size={16} aria-hidden="true" />}</button><button type="button" disabled={busy} aria-pressed={language === 'Japanese'} onClick={() => setLanguage('Japanese')}>Japanese{language === 'Japanese' && <Check size={16} aria-hidden="true" />}</button></div></fieldset><details className="setup-privacy"><summary>How your audio is handled</summary><p className="small-note">{local ? 'Everything runs on this computer. Whisper hears you, Gemma answers through Ollama and Kokoro speaks. Nothing is sent to a provider, and nothing is saved to disk.' : 'Audio is processed by ElevenLabs. After practice, text from your transcript is sent to DigitalOcean to select useful vocabulary. This app does not save recordings or transcripts to disk; provider retention follows their privacy settings.'}</p></details></details>{health?.access_code_required && <><label htmlFor="access-code">Practice access code</label><input id="access-code" type="password" value={code} onChange={event => setCode(event.target.value)} disabled={busy} required autoComplete="off" /></>}
+      {(!health || (!health.live_available && !health.local_available)) && <div className="notice"><p>Live practice is unavailable right now.</p><button type="button" className="back-link" onClick={onDemo}>Try a guided example<ArrowRight size={15} /></button></div>}
+      {error && <p className="error" role="alert">{error}</p>}<button className="button primary wide" disabled={busy || scenario.trim().length < 10}><Mic size={18} />{busy ? 'Connecting…' : 'Start voice practice'}</button><p className="small-note">{local ? 'Free local voice runs on this computer.' : `Up to ${Math.ceil((health?.max_call_seconds ?? 120) / 60)} minutes per live practice.`} Allow your microphone when asked.</p>
     </form></section>;
 }
 
-function CallLayout({ mode, scenario, phase, onEnd, children, controls, explanation, messages, step, speakingLabel, demoTitle, turnCount, timing }: { mode: 'demo' | 'live'; scenario: string; phase: Phase; onEnd: () => void; children: ReactNode; controls: ReactNode; explanation: ReactNode; messages: Message[]; step?: number; speakingLabel?: string; demoTitle?: string; turnCount?: number; timing?: { elapsed: number; limit: number } }) {
-  return <section className="call-layout"><aside className="scenario-rail"><div className="mode-tag"><Headphones size={16} />{mode === 'demo' ? 'Guided demo · scripted' : 'Live AI practice'}</div><h2>Your practice call</h2><div className="scenario-facts"><span className="rail-label">Your situation</span><p>{scenario}</p></div><div className="rail-tip"><Headphones size={20} /><p>You can pause at any time.<br />Your partner will wait.</p></div>{step !== undefined && <div className="demo-progress"><span>Conversation {step + 1} of {turnCount ?? 4}</span><div>{Array.from({ length: turnCount ?? 4 }, (_, i) => <span key={i} className={i <= step ? 'complete' : ''} />)}</div></div>}</aside><div className="call-workspace"><div className="call-heading"><div className="call-heading-info"><span>{mode === 'demo' ? demoTitle ?? 'Tanaka' : 'Practice partner'} <span className="muted">/ {mode === 'demo' ? 'guided conversation' : 'your chosen situation'}</span></span><span className={`call-status ${phase}`} role="status"><span />{phase === 'speaking' && speakingLabel ? speakingLabel : statusLabels[phase]}</span>{timing && <div className={`call-timer ${timing.limit - timing.elapsed <= 30 ? 'time-low' : ''}`} role="timer" aria-label="Call time"><span>{formatTime(timing.elapsed)} elapsed</span><span>{formatTime(Math.max(0, timing.limit - timing.elapsed))} remaining</span></div>}</div></div><div className="conversation-area">{children}</div><div className={`call-controls ${mode === 'demo' ? 'demo-call-controls' : ''}`}>{controls}<button className="end-call-button" onClick={onEnd}><PhoneOff size={20} aria-hidden="true" />End call</button></div>{explanation}<details className="transcript"><summary>Conversation transcript <ChevronDown size={15} /></summary><div>{messages.map((message, i) => <p key={i}><span>{message.role === 'assistant' ? (mode === 'demo' ? 'Partner' : 'Partner') : 'You'}</span><span lang="ja"><JapaneseText text={message.text} /></span></p>)}{messages.length === 0 && <p>The transcript will appear when the conversation begins.</p>}</div></details></div></section>;
+function CallLayout({ mode, scenario, phase, onEnd, children, controls, explanation, messages, step, speakingLabel, demoTitle, turnCount, timing, modeLabel, statusText }: { mode: 'demo' | 'live'; scenario: string; phase: Phase; onEnd: () => void; children: ReactNode; controls: ReactNode; explanation: ReactNode; messages: Message[]; step?: number; speakingLabel?: string; demoTitle?: string; turnCount?: number; timing?: { elapsed: number; limit: number }; modeLabel?: string; statusText?: string }) {
+  return <section className="call-layout"><aside className="scenario-rail"><div className="mode-tag"><Headphones size={16} />{modeLabel ?? (mode === 'demo' ? 'Guided demo · scripted' : 'Live AI practice')}</div><h2>Your practice call</h2><div className="scenario-facts"><span className="rail-label">Your situation</span><p>{scenario}</p></div><div className="rail-tip"><Headphones size={20} /><p>You can pause at any time.<br />Your partner will wait.</p></div>{step !== undefined && <div className="demo-progress"><span>Conversation {step + 1} of {turnCount ?? 4}</span><div>{Array.from({ length: turnCount ?? 4 }, (_, i) => <span key={i} className={i <= step ? 'complete' : ''} />)}</div></div>}</aside><div className="call-workspace"><div className="call-heading"><div className="call-heading-info"><span>{mode === 'demo' ? demoTitle ?? 'Tanaka' : 'Practice partner'} <span className="muted">/ {mode === 'demo' ? 'guided conversation' : 'your chosen situation'}</span></span><span className={`call-status ${phase}`} role="status"><span />{statusText ?? (phase === 'speaking' && speakingLabel ? speakingLabel : statusLabels[phase])}</span>{timing && <div className={`call-timer ${timing.limit - timing.elapsed <= 30 ? 'time-low' : ''}`} role="timer" aria-label="Call time"><span>{formatTime(timing.elapsed)} elapsed</span><span>{formatTime(Math.max(0, timing.limit - timing.elapsed))} remaining</span></div>}</div></div><div className="conversation-area">{children}</div><div className={`call-controls ${mode === 'demo' ? 'demo-call-controls' : ''}`}>{controls}<button className="end-call-button" onClick={onEnd}><PhoneOff size={20} aria-hidden="true" />End call</button></div>{explanation}<details className="transcript"><summary>Conversation transcript <ChevronDown size={15} /></summary><div>{messages.map((message, i) => <p key={i}><span>{message.role === 'assistant' ? (mode === 'demo' ? 'Partner' : 'Partner') : 'You'}</span><span lang="ja"><JapaneseText text={message.text} /></span></p>)}{messages.length === 0 && <p>The transcript will appear when the conversation begins.</p>}</div></details></div></section>;
 }
 
 function DemoCall({ demo, onFinish }: { demo: Demo; onFinish: (messages: Message[]) => void }) {
@@ -360,6 +369,141 @@ function LiveCall({ call, scenario, onFinish }: { call: StartedCall; scenario: s
     finally { setBusy(false); }
   };
   return <CallLayout mode="live" timing={{ elapsed, limit: call.max_call_seconds }} scenario={scenario} phase={phase} messages={messages} onEnd={() => void end()} controls={<><button className="control-button" disabled={terminal || busy || !lastReply} onClick={() => void action('explain')}><HelpCircle size={18} /> Explain question</button><button className="control-button" disabled={terminal || busy || !lastReply} onClick={() => void action('slow')}><Volume2 size={18} /> Slow replay</button><button className="control-button" disabled={terminal || busy || !lastReply} onClick={() => void action('retry')}><RotateCcw size={18} /> Repeat question</button></>} explanation={help !== null && <Explanation onClose={resume}><h3>What the question means</h3>{helpData ? <><p className="live-explanation">{helpData.meaning}</p>{helpData.note && <p className="explanation-note">{helpData.note}</p>}<div className="suggested-reply"><span>You could say</span><p lang={call.target_language}><JapaneseText text={helpData.reply} /></p><p>{helpData.replyMeaning}</p></div></> : <p role="status">{help}</p>}<div className="explanation-actions">{helpData && <button className="control-button" disabled={terminal || busy} onClick={() => void listenHelp()}>{helpListening ? <Pause size={16} /> : <Volume2 size={16} />}{helpListening ? 'Stop listening' : 'Listen to explanation'}</button>}<button className="button primary" onClick={resume} disabled={terminal}>Resume practice<ArrowRight size={16} /></button></div></Explanation>}><p className="speaker-label">Your AI practice partner</p><h2 className="japanese-reply" lang="ja"><JapaneseText text={lastReply || call.greeting} sessionId={call.session_id} /></h2><p className="romaji">{call.target_language === 'en' ? 'Practice in English. Ask for help in English or Japanese whenever you need it.' : 'Speak in Japanese or English. Your partner will wait for your answer.'}</p><div className="live-input-activity"><div ref={inputWave} className={`waveform live-input-wave ${inputActive ? '' : 'inactive'}`} role="img" aria-label={inputActive ? 'Your microphone voice activity' : 'Microphone activity inactive'}>{Array.from({ length: 23 }, (_, index) => <span key={index} />)}</div></div><div className="live-mic-row"><button className={`mic-button ${!muted ? 'on' : ''}`} disabled={terminal || phase === 'connecting' || paused || help !== null} aria-label={muted ? 'Turn microphone on' : 'Mute microphone'} onClick={() => setMic(muted)}>{muted ? <MicOff size={23} /> : <Mic size={23} />}</button><span>{muted ? 'Microphone off' : 'Microphone on. Take your time.'}</span></div><button className="audio-replay" disabled={terminal || phase === 'connecting'} onClick={paused ? resume : pause}>{paused ? <Play size={16} /> : <Pause size={16} />}{paused ? 'Resume practice' : 'Pause practice'}</button>{error && <p className="error" role="alert">{error}</p>}<form className="typed-answer" onSubmit={event => { event.preventDefault(); if (!text.trim() || !conversation.current) return; resume(); conversation.current.sendUserMessage(text.trim()); setText(''); setPhase('thinking'); }}><label htmlFor="typed-answer">Or type your answer</label><div><input id="typed-answer" value={text} onChange={event => { setText(event.target.value); conversation.current?.sendUserActivity(); }} maxLength={1000} disabled={terminal || phase === 'connecting'} placeholder="Japanese or English is fine" /><button disabled={terminal || phase === 'connecting' || !text.trim()} aria-label="Send typed answer"><Send size={18} /></button></div></form></CallLayout>;
+}
+
+function LocalCall({ call, scenario, onFinish }: { call: LocalStarted; scenario: string; onFinish: (messages: Message[]) => void }) {
+  const [phase, setPhase] = useState<Phase>('speaking');
+  const [messages, setMessages] = useState<Message[]>([{ role: 'assistant', text: call.greeting }]);
+  const [lastReply, setLastReply] = useState(call.greeting);
+  const [recording, setRecording] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
+  const [elapsed, setElapsed] = useState(0);
+  const [help, setHelp] = useState<string | null>(null);
+  const [helpData, setHelpData] = useState<QuestionHelp | null>(null);
+  const [text, setText] = useState('');
+  const savedMessages = useRef<Message[]>([{ role: 'assistant', text: call.greeting }]);
+  const lastAudio = useRef(call.audio);
+  const player = useRef<HTMLAudioElement | null>(null);
+  const objectUrl = useRef<string | null>(null);
+  const recorder = useRef<MediaRecorder | null>(null);
+  const microphone = useRef<MediaStream | null>(null);
+  const meter = useRef<{ context: AudioContext; analyser: AnalyserNode } | null>(null);
+  const inputWave = useRef<HTMLDivElement | null>(null);
+  const ending = useRef(false);
+  const started = useRef(Date.now());
+  const stopAudio = useCallback(() => { if (player.current) { player.current.onended = null; player.current.pause(); player.current = null; } }, []);
+  const play = useCallback((source: string, after?: () => void) => {
+    stopAudio();
+    const sound = new Audio(source); player.current = sound;
+    setPhase('speaking');
+    const done = () => { if (player.current !== sound) return; player.current = null; setPhase('listening'); after?.(); };
+    sound.onended = done;
+    void sound.play().catch(done);
+  }, [stopAudio]);
+  const finish = useRef((result: 'ended' | 'timeout' | 'completed') => { void result; });
+  finish.current = result => {
+    if (ending.current) return;
+    ending.current = true;
+    track('practice_finish', { mode: 'live', result, language: call.target_language, duration: Math.floor((Date.now() - started.current) / 1000) });
+    stopAudio();
+    if (recorder.current) { recorder.current.onstop = null; if (recorder.current.state !== 'inactive') recorder.current.stop(); }
+    onFinish([...savedMessages.current]);
+  };
+  useEffect(() => {
+    play(call.audio);
+    const ticker = setInterval(() => setElapsed(Math.min(call.max_call_seconds, Math.floor((Date.now() - started.current) / 1000))), 1000);
+    const timer = setTimeout(() => finish.current('timeout'), call.max_call_seconds * 1000);
+    return () => {
+      clearInterval(ticker); clearTimeout(timer); stopAudio();
+      if (recorder.current) { recorder.current.onstop = null; if (recorder.current.state !== 'inactive') recorder.current.stop(); }
+      microphone.current?.getTracks().forEach(track => track.stop());
+      void meter.current?.context.close();
+      if (objectUrl.current) URL.revokeObjectURL(objectUrl.current);
+      void fetch(`/api/local/sessions/${call.session_id}`, { method: 'DELETE', keepalive: true });
+    };
+  }, [call, play, stopAudio]);
+  useEffect(() => {
+    const bars = inputWave.current?.querySelectorAll('span');
+    if (!bars) return;
+    const reset = () => bars.forEach(bar => { bar.style.transform = 'scaleY(0.1)'; });
+    reset();
+    const analyser = meter.current?.analyser;
+    if (!recording || !analyser) return;
+    const levels = new Uint8Array(analyser.frequencyBinCount);
+    let frame = 0;
+    const draw = () => {
+      analyser.getByteFrequencyData(levels);
+      bars.forEach((bar, index) => { bar.style.transform = `scaleY(${Math.max(0.1, (levels[Math.floor(index * (levels.length / bars.length))] ?? 0) / 255)})`; });
+      frame = requestAnimationFrame(draw);
+    };
+    frame = requestAnimationFrame(draw);
+    return () => { cancelAnimationFrame(frame); reset(); };
+  }, [recording]);
+  const send = async (body: Blob | string) => {
+    setBusy(true); setError(''); setPhase('thinking');
+    try {
+      const response = await fetch(`/api/local/sessions/${call.session_id}/turn`, typeof body === 'string'
+        ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text: body }) }
+        : { method: 'POST', headers: { 'Content-Type': body.type || 'audio/webm' }, body });
+      if (!response.ok) throw new Error(await errorDetail(response, 'Your answer could not be processed. Try again.'));
+      const result = localTurnSchema.parse(await response.json());
+      if (ending.current) return;
+      savedMessages.current = [...savedMessages.current, { role: 'user', text: result.heard }, { role: 'assistant', text: result.reply }];
+      setMessages(savedMessages.current); setLastReply(result.reply); lastAudio.current = result.audio;
+      if (result.ended) {
+        // Let the farewell play, but never wait on it forever.
+        const fallback = setTimeout(() => finish.current('completed'), 15000);
+        play(result.audio, () => { clearTimeout(fallback); finish.current('completed'); });
+      } else play(result.audio);
+    } catch (e) { if (!ending.current) { setError(errorMessage(e)); setPhase('listening'); } }
+    finally { setBusy(false); }
+  };
+  const toggleRecording = async () => {
+    if (recording) { recorder.current?.stop(); setRecording(false); return; }
+    setError(''); stopAudio(); setPhase('listening');
+    try {
+      if (!microphone.current) {
+        microphone.current = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } });
+        const context = new AudioContext();
+        const analyser = context.createAnalyser(); analyser.fftSize = 64;
+        context.createMediaStreamSource(microphone.current).connect(analyser);
+        meter.current = { context, analyser };
+      }
+      const chunks: Blob[] = [];
+      const next = new MediaRecorder(microphone.current);
+      next.ondataavailable = event => { if (event.data.size) chunks.push(event.data); };
+      next.onstop = () => {
+        recorder.current = null;
+        const blob = new Blob(chunks, { type: next.mimeType || 'audio/webm' });
+        if (blob.size) void send(blob); else setError('Nothing was recorded. Tap to speak and try again.');
+      };
+      recorder.current = next; next.start(); setRecording(true);
+    } catch (e) { setError(e instanceof DOMException && e.name === 'NotAllowedError' ? 'Your microphone was blocked. Allow it in browser settings, or type your answer.' : errorMessage(e)); }
+  };
+  const speak = async (body: { text: string; slow?: boolean; language?: 'ja' | 'en' }) => {
+    setBusy(true); setError('');
+    try {
+      const response = await fetch(`/api/local/sessions/${call.session_id}/speech`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+      if (!response.ok) throw new Error(await errorDetail(response, 'Audio is unavailable right now.'));
+      const url = URL.createObjectURL(await response.blob());
+      if (objectUrl.current) URL.revokeObjectURL(objectUrl.current);
+      objectUrl.current = url;
+      play(url);
+    } catch (e) { setError(errorMessage(e)); } finally { setBusy(false); }
+  };
+  const explain = async () => {
+    track('action', { mode: 'live', action: 'explain', language: call.target_language });
+    stopAudio(); setPhase('paused'); setHelpData(null); setHelp('Preparing a text explanation…'); setBusy(true);
+    try {
+      const response = await fetch(`/api/local/sessions/${call.session_id}/explain`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text: lastReply }) });
+      if (!response.ok) throw new Error(await errorDetail(response, 'The explanation could not be prepared. Try again.'));
+      setHelpData(helpSchema.parse(await response.json())); setHelp('');
+    } catch (e) { setHelp(errorMessage(e)); } finally { setBusy(false); }
+  };
+  const closeHelp = () => { stopAudio(); setHelp(null); setHelpData(null); setPhase('listening'); };
+  const statusText = recording ? 'Recording. Tap again to send.' : phase === 'thinking' ? 'Your partner is thinking…' : undefined;
+  return <CallLayout mode="live" modeLabel="Free local practice" statusText={statusText} timing={{ elapsed, limit: call.max_call_seconds }} scenario={scenario} phase={phase} messages={messages} onEnd={() => finish.current('ended')} controls={<><button className="control-button" disabled={busy || recording} onClick={() => void explain()}><HelpCircle size={18} /> Explain question</button><button className="control-button" disabled={busy || recording} onClick={() => { track('action', { mode: 'live', action: 'slow', language: call.target_language }); void speak({ text: lastReply, slow: true }); }}><Volume2 size={18} /> Slow replay</button><button className="control-button" disabled={busy || recording} onClick={() => { track('action', { mode: 'live', action: 'retry', language: call.target_language }); play(lastAudio.current); }}><RotateCcw size={18} /> Repeat question</button></>} explanation={help !== null && <Explanation onClose={closeHelp}><h3>What the question means</h3>{helpData ? <><p className="live-explanation">{helpData.meaning}</p>{helpData.note && <p className="explanation-note">{helpData.note}</p>}<div className="suggested-reply"><span>You could say</span><p lang={call.target_language}><JapaneseText text={helpData.reply} /></p><p>{helpData.replyMeaning}</p></div></> : <p role="status">{help}</p>}<div className="explanation-actions">{helpData && <button className="control-button" disabled={busy} onClick={() => void speak({ text: `${helpData.meaning} ${helpData.note}`, language: call.language === 'Japanese' ? 'ja' : 'en' })}><Volume2 size={16} />Listen to explanation</button>}<button className="button primary" onClick={closeHelp}>Resume practice<ArrowRight size={16} /></button></div></Explanation>}><p className="speaker-label">Your AI practice partner · running on this computer</p><h2 className="japanese-reply" lang={call.target_language}><JapaneseText text={lastReply} sessionId={call.session_id} /></h2><p className="romaji">{call.target_language === 'en' ? 'Answer in English. Tap the microphone, speak, then tap again to send.' : 'Answer in Japanese or English. Tap the microphone, speak, then tap again to send.'}</p><div className="live-input-activity"><div ref={inputWave} className={`waveform live-input-wave ${recording ? '' : 'inactive'}`} role="img" aria-label={recording ? 'Your microphone voice activity' : 'Microphone activity inactive'}>{Array.from({ length: 23 }, (_, index) => <span key={index} />)}</div></div><div className="live-mic-row"><button className={`mic-button ${recording ? 'on' : ''}`} disabled={busy && !recording} aria-pressed={recording} aria-label={recording ? 'Send your answer' : 'Speak your answer'} onClick={() => void toggleRecording()}>{recording ? <Send size={23} /> : <Mic size={23} />}</button><span>{recording ? 'Recording. Tap to send.' : busy ? 'Your partner is thinking…' : 'Tap to speak.'}</span></div>{error && <p className="error" role="alert">{error}</p>}<form className="typed-answer" onSubmit={event => { event.preventDefault(); if (!text.trim() || busy) return; stopAudio(); void send(text.trim()); setText(''); }}><label htmlFor="typed-answer">Or type your answer</label><div><input id="typed-answer" value={text} onChange={event => setText(event.target.value)} maxLength={1000} disabled={busy || recording} placeholder="Japanese or English is fine" /><button disabled={busy || recording || !text.trim()} aria-label="Send typed answer"><Send size={18} /></button></div></form></CallLayout>;
 }
 
 const callCardSchema = z.object({

@@ -6,7 +6,7 @@ Help people rehearse everyday Japanese and English calls. Start with [the archit
 
 1. Install Node dependencies with `npm install`.
 2. Create a Python virtual environment and install `requirements.txt`.
-3. Copy `.env.example` to `.env`. The saved demos work without ElevenLabs credentials.
+3. Copy `.env.example` to `.env`. The saved demos work without ElevenLabs credentials. For live voice practice with no keys at all, use [free local mode](README.md#free-local-mode-on-your-own-computer): install `requirements-local.txt`, pull the Gemma model in Ollama and set `LOCAL_VOICE=1`.
 4. Run `npm run build`, then `python -m uvicorn server.app:app --port 8000`.
 
 ## Useful contributions

@@ -7,7 +7,8 @@
 ### Rehearse the phone call you've been putting off.
 
 A patient AI voice partner for everyday Japanese and English calls, with furigana on every word,<br>
-help that never interrupts the conversation, and a call card to take with you.
+help that never interrupts the conversation, and a call card to take with you.<br>
+Use it in the cloud, or <b>free and offline on your own computer</b> with Gemma 4, Whisper and Kokoro.
 
 <a href="https://before-i-call.onrender.com"><img src="https://img.shields.io/badge/Try_it_live-before--i--call.onrender.com-315b49?style=for-the-badge" alt="Try it live"></a>
 
@@ -17,10 +18,11 @@ help that never interrupts the conversation, and a call card to take with you.
 <a href="https://docs.sentry.io/product/insights/ai/agents/"><img src="https://img.shields.io/badge/Sentry-agent_tracing-362d59?style=flat-square" alt="Sentry agent tracing"></a>
 <a href="https://render.com"><img src="https://img.shields.io/badge/Render-deployed-46e3b7?style=flat-square" alt="Deployed on Render"></a>
 <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-315b49?style=flat-square" alt="MIT license"></a>
-<img src="https://img.shields.io/badge/tests-77_passing-315b49?style=flat-square" alt="77 tests passing">
+<a href="#free-local-mode-on-your-own-computer"><img src="https://img.shields.io/badge/free_local_mode-Whisper_·_Gemma_·_Kokoro-e0a526?style=flat-square" alt="Free local mode with Whisper, Gemma and Kokoro"></a>
+<img src="https://img.shields.io/badge/tests-87_passing-315b49?style=flat-square" alt="87 tests passing">
 <a href="https://dev.to/challenges/hacktoberfest-weekend-2026-10-01"><img src="https://img.shields.io/badge/Hacktoberfest-2026-3d5f58?style=flat-square" alt="Hacktoberfest 2026"></a>
 
-[**Live app**](https://before-i-call.onrender.com) · [How it works](#how-a-practice-call-works) · [Architecture](docs/ARCHITECTURE.md) · [Run it locally](#run-it-locally)
+[**Live app**](https://before-i-call.onrender.com) · [How it works](#how-a-practice-call-works) · [Free local mode](#free-local-mode-on-your-own-computer) · [Architecture](docs/ARCHITECTURE.md) · [Run it locally](#run-it-locally)
 
 <br>
 
@@ -122,6 +124,42 @@ sequenceDiagram
 
 The full set of diagrams, including help, slow replay, reading support, the call card and the call's state machine, is in [the architecture doc](docs/ARCHITECTURE.md#how-a-conversation-request-runs).
 
+## Free local mode on your own computer
+
+Clone the repo and you can practise for free, offline, with nothing leaving your computer. Set `LOCAL_VOICE=1` and every paid service is swapped for an open model running on your own machine:
+
+| Job | Hosted app | Free local mode | Licence |
+| --- | --- | --- | --- |
+| Hearing you | ElevenLabs Agents | [Whisper](https://github.com/SYSTRAN/faster-whisper) small, through faster-whisper | MIT |
+| The partner's brain | Gemma 4 31B on DigitalOcean | [Gemma 4 E2B](https://ollama.com/library/gemma4) in Ollama | Apache 2.0 |
+| The partner's voice | ElevenLabs | [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M) | Apache 2.0 |
+| Knowing when you've finished | ElevenLabs turn-taking | Tap to speak, tap again to send | |
+
+**Explain question**, **Slow replay**, **Enhance prompt**, call-card vocabulary, furigana and the PDF all work in local mode too, and the daily usage limits switch off because the compute is yours.
+
+<table>
+  <tr>
+    <td width="55%" valign="top">
+
+**Set it up once**
+
+1. Install [Ollama](https://ollama.com), then download the model:<br>`ollama pull gemma4:e2b-it-qat` (4.3 GB)
+2. Install the speech packages into the app's environment. No compiler is needed, Windows included:<br>`.venv/Scripts/python.exe -m pip install -r requirements-local.txt`
+3. Add `LOCAL_VOICE=1` to your `.env` and start the app as usual.
+
+The first run downloads Whisper (464 MB) and Kokoro (313 MB). Both then load in the background when the server starts, so the first call doesn't wait.
+
+**How fast it is** on a laptop with a Ryzen 9 5900HS, Whisper and Kokoro on the CPU, and Gemma on an RTX 3060 with 6 GB: the opening line starts in about 2 seconds, a spoken answer gets a spoken reply in about 6 seconds, and an explanation takes under 2 seconds.
+
+**The trade-offs:** replies are slower than the hosted voice, you tap to talk rather than interrupting naturally, and the small Gemma follows the role-play rules less precisely than the 31B model. With more memory, `gemma4:e4b-it-qat` is noticeably smarter: set `LOCAL_LLM_MODEL`.
+
+  </td>
+    <td width="45%" valign="top">
+      <img src="docs/images/local-call.png" alt="A free local practice call: Gemma's reply with furigana and romaji, a tap-to-speak microphone and the call controls">
+    </td>
+  </tr>
+</table>
+
 ## Architecture
 
 ```mermaid
@@ -164,14 +202,16 @@ flowchart TB
 | **Sentry** | `gen_ai` agent spans for every Gemma request, one issue per broken role-play rule, and learner reports linked to the exact turn |
 | **Render** | Docker deploy from `render.yaml` with a persistent disk for the SQLite ledger |
 | **React 19 + TypeScript + Vite** | The interface, with zod validating every response |
+| **Whisper, Kokoro and Gemma 4 E2B in Ollama** | [Free local mode](#free-local-mode-on-your-own-computer): the same practice with every model running on your own computer |
 
 ## Open-source AI at the core
 
 - **One open-weight model makes every language decision.** Gemma 4 plays the receptionist, explains the question, tidies up the situation and picks the vocabulary. The role-play prompt is written and tuned for Gemma, and the app checks every reply it gives against the rules of the rehearsal: it must hang up when the learner says goodbye, never confirm a booking, and speak counters in kana rather than digits.
 - **Grounded output.** Vocabulary Gemma suggests is kept only if it appears word for word in your transcript.
 - **Reading support needs no model at all.** Furigana and romaji come from the open-source pykakasi and Janome libraries running inside the app, so they are instant, free and private.
+- **Fully open when you run it yourself.** In [free local mode](#free-local-mode-on-your-own-computer), Whisper (MIT) hears you, Gemma 4 (Apache 2.0) answers through Ollama, and Kokoro (Apache 2.0) speaks: no keys, no bills, and your practice never leaves your computer. Swapping a model is one setting.
 - **MIT licensed**, including the prompts, rule checks and pronunciation dictionary.
-- **What isn't open:** the voice layer (ElevenLabs), tracing (Sentry) and hosting (Render) are services.
+- **What isn't open:** in the hosted app, the voice layer (ElevenLabs), tracing (Sentry) and hosting (Render) are services.
 
 ## Privacy and safety
 
@@ -184,7 +224,7 @@ flowchart TB
 
 ## Run it locally
 
-You need Node 22 and Python 3.12. The guided demos work without any keys.
+You need Node 22 and Python 3.12. The guided demos work without any keys, and [free local mode](#free-local-mode-on-your-own-computer) adds voice practice without any keys either.
 
 ```bash
 git clone https://github.com/adkbbx/before_I_call-.git
@@ -232,6 +272,9 @@ Every script accepts `--help`, which prints usage without contacting ElevenLabs.
 | `ANALYTICS_ADMIN_KEY`, `ANALYTICS_DB_PATH` | `/analytics` dashboard and SQLite location | `work/analytics.sqlite3` |
 | `MAX_CALL_SECONDS`, `MAX_CONCURRENT_CALLS` | Call length and simultaneous calls | `120`, `2` |
 | `MAX_CALLS_PER_VISITOR_DAY`, `MAX_DAILY_CALL_SECONDS` | Daily live budget per browser and per site | `3`, `12000` |
+| `LOCAL_VOICE` | `1` turns on free local mode (Whisper, Gemma in Ollama, Kokoro) | off |
+| `LOCAL_LLM_MODEL`, `LOCAL_LLM_URL` | The Ollama model and its OpenAI-compatible address | `gemma4:e2b-it-qat`, `http://127.0.0.1:11434/v1` |
+| `LOCAL_STT_MODEL`, `LOCAL_VOICE_JA`, `LOCAL_VOICE_EN` | Whisper size and Kokoro voices | `small`, `jf_alpha`, `af_heart` |
 
 The full list, including help, replay, enhancement, vocabulary and report limits, is in [`.env.example`](.env.example).
 
@@ -269,10 +312,10 @@ Details are in [cost controls](docs/COST_CONTROLS.md).
 ```bash
 npm test                                              # guided demo flow, call card text, demo audio
 npm run build                                         # strict TypeScript check and production bundle
-.venv/Scripts/python.exe -m unittest discover -s tests  # 70 tests: API, limits, proxy, tracing, readings, PDF
+.venv/Scripts/python.exe -m unittest discover -s tests  # 80 tests: API, limits, proxy, tracing, readings, PDF, local mode
 ```
 
-Provider calls are mocked, so the suites spend no credits. A real voice call still needs a person to judge audio quality and latency.
+Provider calls, Ollama, Whisper and Kokoro are mocked, so the suites spend no credits and need no models. The audio-decoding test runs once `requirements-local.txt` is installed. A real voice call still needs a person to judge audio quality and latency.
 
 ## Documentation
 

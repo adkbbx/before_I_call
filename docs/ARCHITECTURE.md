@@ -6,6 +6,7 @@ This document explains what Before I Call is for, how it is designed, and how ev
 - [System at a glance](#system-at-a-glance)
 - [Components and how each is used](#components-and-how-each-is-used)
 - [How a conversation request runs](#how-a-conversation-request-runs)
+- [Free local mode](#free-local-mode)
 - [Data, privacy and storage](#data-privacy-and-storage)
 - [Cost and abuse controls](#cost-and-abuse-controls)
 - [Observability](#observability)
@@ -311,6 +312,47 @@ stateDiagram-v2
     finished --> [*]
 ```
 
+## Free local mode
+
+`LOCAL_VOICE=1` runs the same practice with every model on the learner's own computer and no provider keys. The app itself takes over the three jobs ElevenLabs Agents does in the hosted version: Whisper hears, Gemma decides what to say, and Kokoro speaks. A tap-to-speak button replaces continuous turn-taking.
+
+| Job | Component | How it is used |
+| --- | --- | --- |
+| Speech recognition | **faster-whisper**, `small` model, int8 on the CPU | The browser records with `MediaRecorder` (WebM/Opus). The server decodes it with PyAV to 16 kHz mono and transcribes with voice-activity filtering |
+| Conversation | **Gemma 4 E2B** (`gemma4:e2b-it-qat`) in **Ollama** | Called through Ollama's OpenAI-compatible Chat Completions API with `reasoning_effort: none`, because Gemma 4 otherwise spends its token budget thinking and returns empty text. The role-play prompt stays on the server |
+| Speech | **Kokoro-82M** (`jf_alpha`, `af_heart`) | Speaks each reply after the shared kana aliases fix dates and counters. Japanese text uses `pyopenjtalk-plus`, which ships prebuilt wheels |
+| Help, enhancement, vocabulary | The same local Gemma | `server/model_endpoint.py` sends every server-side Gemma request to Ollama while local mode is on, and the paid-API daily budgets are skipped |
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor L as Learner
+    participant B as Browser
+    participant S as FastAPI on this computer
+    participant W as Whisper
+    participant G as Gemma 4 E2B in Ollama
+    participant K as Kokoro
+
+    L->>B: Start voice practice
+    B->>S: POST /api/local/start
+    S->>K: Speak the opening line
+    S-->>B: Session ID and opening audio
+    loop Every turn
+        L->>B: Tap to speak, answer, tap again to send
+        B->>S: POST /api/local/sessions/{id}/turn with the recording
+        S->>W: Decode to 16 kHz mono and transcribe
+        W-->>S: The learner's words
+        S->>G: Role-play prompt and the conversation, thinking off
+        G-->>S: The partner's reply
+        S->>K: Speak the reply with the kana aliases
+        S-->>B: Heard text, reply and WAV audio
+        B-->>L: Plays the reply, with furigana and romaji
+    end
+    Note over S,G: A goodbye from the learner ends the call after the farewell
+```
+
+Local mode has no `end_call` tool, so the prompt tells the partner the app hangs up after its farewell, and the server ends the call when the learner says goodbye (the same rule Sentry checks in the hosted version). Any tool syntax or voice direction a small model writes is stripped before it is spoken. Whisper and the Japanese Kokoro voice load in a background thread when the server starts. The speech packages live in `requirements-local.txt` and are imported only when used, so the hosted deployment never installs them.
+
 ## Data, privacy and storage
 
 | Data | Where it lives | Retention |
@@ -323,6 +365,7 @@ stateDiagram-v2
 | Budgets | SQLite: random browser ID, UTC day, reserved seconds or request count | Pruned daily |
 | Analytics | SQLite: random browser and visit IDs, event name, enum-only properties | Events 90 days, lifetime visit counts kept |
 | Traces | Sentry: timing, tokens, cost, tool names, rule flags, hashed conversation reference | Sentry project retention. No conversation text, except a reply a learner chooses to attach to a report |
+| Free local mode | Recordings, transcripts and replies stay in the app's memory on the learner's computer | Until the session ends. Nothing is sent to a provider |
 
 Provider keys exist only as server environment variables. The browser receives a short-lived conversation token or signed URL, never a key. Browser requests that spend money check the `Origin` header, and the optional `LIVE_ACCESS_CODE` restricts live sessions and enhancement.
 
@@ -368,7 +411,7 @@ Keep one instance: live-call admission leases and replay caches are in memory. S
 | Suite | Covers |
 | --- | --- |
 | `npm test` (`tests/demo.test.mjs`) | Demo turn flow, call card text that never claims a booking, curated readings for every scripted kanji, every demo clip present and hash-versioned |
-| `python -m unittest discover -s tests` | Token boundaries, origin checks, admission and budget ledgers, replay cache and limits, readings and romaji, counter pronunciation, call card and PDF, proxy streaming and tracing, reply rules, reports, analytics, preparation, vocabulary grounding, deployment config |
+| `python -m unittest discover -s tests` | Token boundaries, origin checks, admission and budget ledgers, replay cache and limits, readings and romaji, counter pronunciation, call card and PDF, proxy streaming and tracing, reply rules, reports, analytics, preparation, vocabulary grounding, deployment config, and every free local mode endpoint with Ollama, Whisper and Kokoro mocked |
 | `npm run build` | Strict TypeScript check and production bundle |
 
 Provider calls are mocked, so the suites spend no credits. A real voice call still needs a human check for audio quality and latency.
@@ -385,6 +428,8 @@ Provider calls are mocked, so the suites spend no credits. A real voice call sti
 | Full call length reserved at admission | The browser cannot prove when provider billing stopped | Early endings do not refund budget |
 | SQLite on a persistent disk | Durable budgets and analytics with no extra service | One instance only |
 | Guided demos with saved audio | Judges and first-time visitors can try everything with no keys or microphone | Demo content is scripted and labeled as such |
+| Free local mode with Whisper, Gemma 4 E2B and Kokoro | Anyone who clones the repo can practise free, offline and privately, with open models only | Slower turns, tap-to-talk instead of natural interruptions, and a small model that follows the rules less precisely |
+| Kokoro instead of Fish Speech for the local voice | Apache 2.0 weights, Japanese and English, 82M parameters that run on a CPU, installed with pip | Fish Speech sounds richer, but its weights are licensed for non-commercial use and want a GPU and a separate server |
 
 ## Code map
 
@@ -401,6 +446,8 @@ src/
 server/
   app.py                  sessions, prompts, readings, call cards, replay, reports
   llm_proxy.py            Custom LLM proxy to Gemma on DigitalOcean
+  local_voice.py          free local mode: Whisper, Gemma in Ollama, Kokoro
+  model_endpoint.py       sends server-side Gemma requests to DigitalOcean or Ollama
   llm_tracing.py          Sentry gen_ai spans
   reply_rules.py          role-play rule checks
   preparation.py          situation editor

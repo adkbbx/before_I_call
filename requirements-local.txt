@@ -1,0 +1,14 @@
+# Free local voice mode (LOCAL_VOICE=1): Whisper hears, Gemma answers through Ollama, Kokoro speaks.
+# Install into the same environment as the app: pip install -r requirements-local.txt
+-r requirements.txt
+faster-whisper==1.2.1
+kokoro==0.9.4
+# Kokoro's Japanese voice needs pyopenjtalk. This fork ships prebuilt wheels, so no compiler or CMake is needed.
+# Do not install misaki[ja]: it pulls the original pyopenjtalk, which has to be compiled.
+pyopenjtalk-plus==0.4.1.post9
+fugashi==1.5.2
+unidic-lite==1.0.8
+jaconv==0.5.0
+mojimoji==0.0.13
+# Kokoro's English voice loads this spaCy model; installing it here avoids a download on first use.
+en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl

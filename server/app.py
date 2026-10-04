@@ -29,6 +29,7 @@ from server.call_opening import call_opening
 from server.call_card_pdf import render_call_card
 from server.vocabulary import select_words
 from server.preparation import router as preparation_router, configured as preparation_configured
+from server import local_voice
 from pydantic import BaseModel, Field
 from pykakasi import kakasi
 from janome.tokenizer import Tokenizer
@@ -43,6 +44,9 @@ app = FastAPI(title='Before I Call')
 app.include_router(analytics_router)
 app.include_router(llm_proxy_router)
 app.include_router(preparation_router)
+app.include_router(local_voice.router)
+if local_voice.available():
+    threading.Thread(target=local_voice.warm_up, daemon=True).start()
 start_lock = asyncio.Lock()
 help_lock = asyncio.Lock()
 speech_cache = SpeechCache()
@@ -215,7 +219,7 @@ def prompt_version(target_language: str) -> str:
 
 @app.get('/api/health')
 async def health():
-    return {'ok': True, 'tracing_available': llm_tracing.enabled(), 'llm_proxy_available': llm_proxy_configured(), 'preparation_available': preparation_configured(), 'live_available': configured(), 'max_call_seconds': int(os.getenv('MAX_CALL_SECONDS', '120')), 'access_code_required': bool(os.getenv('LIVE_ACCESS_CODE')), 'provider': 'elevenlabs', 'missing_settings': [key for key in REQUIRED if not os.getenv(key)]}
+    return {'ok': True, 'tracing_available': llm_tracing.enabled(), 'llm_proxy_available': llm_proxy_configured(), 'preparation_available': preparation_configured(), 'live_available': configured(), 'local_available': local_voice.available(), 'max_call_seconds': int(os.getenv('MAX_CALL_SECONDS', '120')), 'access_code_required': bool(os.getenv('LIVE_ACCESS_CODE')), 'provider': 'elevenlabs', 'missing_settings': [key for key in REQUIRED if not os.getenv(key)]}
 
 
 @app.post('/api/start')
