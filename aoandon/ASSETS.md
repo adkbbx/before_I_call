@@ -125,3 +125,20 @@ Alt: "A blue paper lantern beside a long row of candles, some blown out with smo
 - [ ] The yokai is eerie, not gory; `tale-rokurokubi` shows no blood, wounds or necks; `tale-hoichi` has no writing-like marks.
 - [ ] Transparent assets have clean alpha with no halo. If the CLI fallback was used, they are on `#0a0c12` with `"blend": "screen"`.
 - [ ] All budgets are met.
+
+## Run log
+
+### Asset generation and verification, 2026-10-29
+
+- Used built-in image_gen throughout. No CLI fallback, dependency changes, or git state changes.
+- Preserved the seven existing raw images on resumption. Generated only tale-hoichi, washi-tile, hanko-frame, shoji-silhouette and og-base.
+- Each asset has one successful raw output. Hoichi also had one host-interrupted call with no returned file. Shoji attempt 1 was rejected at output by the generator safety system, category sexual, and returned no file. Attempt 2 clarified an adult fully clothed in a full-length kimono and passed. Its exact prompt is in raw/shoji-silhouette-2.json and the manifest. No asset failed three times.
+- The tool did not honor every requested raw resolution: room 1672x941, washi and hanko 1254x1254, og-base 1930x815. Raw files remain untouched; Sharp delivers the exact required output dimensions. Room and og-base are upscaled.
+- The output table requires 18 image files from 12 assets, including the six responsive variants. All 18 are delivered; the review checklist's "12 files" is interpreted as 12 asset families.
+- Paper edges were corrected using the prescribed mirrored blend in 96px strips. Inspected the decoded final WebP as a 2x2 composite and at 50% offset: no visible join. Evidence: assets-src/washi-tile-check.png and assets-src/washi-tile-offset-check.png.
+- Implemented scripts/process-assets.mjs with numeric newest-attempt selection and optional assets-src/choices.json overrides, either attempt numbers or raw basenames. It reads the style bible and prompts from this work order, preserves alpha, strips metadata, lowers quality by 5 to meet decimal KB budgets, writes the manifest and labeled contact sheet, and exits 1 for missing assets or exceeded budgets. It processes sequentially with Sharp cache disabled to limit memory.
+- Ran node scripts/process-assets.mjs with Cursor's bundled Node directory added to the command-local PATH. Exit 0. Fontconfig reported an unwritable cache but labels rendered correctly and the contact sheet was inspected.
+- Inspected the contact sheet and all 18 final images at original resolution. No text, characters, signatures, watermarks, gore, wounds, or exposed floating-head necks. Hoichi has irregular ink patterns rather than writing. Room centre and shelf are empty; og-base retains dark title space above the candle row on the left.
+- Inspected all four final alpha assets composited on washi cream, in addition to the dark contact sheet. Clean edges with no matte halo. Normal blend for every output, real alpha for the four transparent assets.
+- All review checks pass. An independent file audit confirms 18 manifest entries match the decoded dimensions and alpha, with no EXIF or ICC metadata.
+- Exact bytes and encoder quality are recorded in assets-src/processing-report.json. The directory listing is recorded in assets-src/public-assets-listing.txt.
