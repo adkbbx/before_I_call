@@ -1,0 +1,14 @@
+# Render Blueprint: the same static site as .do/app.yaml.
+# In Render: New > Blueprint > connect adkbbx/aoandon.
+services:
+  - type: web
+    name: aoandon
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD
+        value: "1"
