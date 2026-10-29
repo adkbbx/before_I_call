@@ -19,12 +19,13 @@ The same rules as P4: write in `pipeline/`, `data/`, `docs/`, `public/tales/`, `
 
 ## AS-IS → TO-BE
 
-1. **Per-level kanji policy** (`config.mjs` plus `retell.mjs`).
-   - N5 keeps the current rule: N5 kanji only, everything else in hiragana, mean density ≤ 0.12.
-   - **N4:** a density band of 0.12–0.20. Use normal kanji for N5 and N4 words; above-level kanji are allowed and get furigana. Retry only when density falls outside the band, or for kanji above N2 (level 0 or 1) that have a simpler common word.
-   - **N3:** a density band of 0.20–0.30, i.e. normal written Japanese. N3-level and below kanji as usual, above-level kanji with furigana. The same retry rule.
-   - Remove the kanjiCoverage retry for N4 and N3, but keep reporting it.
-   - The prompt states the band in plain words, for example: 「N3: write normal Japanese with kanji, as in a newspaper for young people. Do not write words in hiragana just to make them easier.」
+1. **Per-level kanji policy: follow the JLPT kanji list strictly** (`config.mjs` plus `retell.mjs`). The author set this as the goal: "look at the JLPT kanji list and update the stories accordingly".
+   - **The list:** each level may use only kanji from its own **cumulative** JLPT list in `data/jlpt/kanji-levels.json`. N5 uses the N5 kanji; N4 uses N5+N4; N3 uses N5+N4+N3.
+   - **Above-level words:** a word whose kanji are above the level is written in kana. The only exception is story words, which keep their kanji and always show furigana.
+   - **Write at-level words in kanji.** Words whose kanji are all on the level's list must be written in kanji, as normal Japanese does, not in kana. That is what stops the P4 inversion. The prompt gives the model the level's kanji list for N5 and N4. For N3, give the N3-only kanji and say that "all N5 and N4 kanji are also allowed".
+   - **Density bands:** N5 ≤ 0.12, **N4 0.10–0.18**, **N3 0.18–0.28**.
+   - **Retry** when: any non-story token contains a kanji above the level; density falls outside the band (the feedback names words to write in kanji, or to put into kana); or vocabulary coverage is below target.
+   - Keep reporting kanjiCoverage. For non-story tokens it must now reach 1.0 at every level.
 2. **Per-level richness.**
    - **N4:** sentences of 15–28 characters, using ～とき, ～たら, ～ている and ～と思います where natural.
    - **N3:** sentences of 22–40 characters, connected with ～て, ～ので, ～のに, ～ようだ and the passive, and N3 vocabulary when it fits.
@@ -46,8 +47,8 @@ The same rules as P4: write in `pipeline/`, `data/`, `docs/`, `public/tales/`, `
 ## Verification gate
 
 1. `npm test`, `npm run typecheck` and `npm run build` pass, including new tests for the density bands, the ladder check and the number-word rule.
-2. Mean kanji density is N5 ≤ 0.12, N4 in 0.12–0.20 and N3 in 0.20–0.30. Mean sentence length is strictly increasing N5 < N4 < N3. `ladderOk` holds for at least 90% of scenes, with the rest listed.
-3. Hard-kanji tokens without furigana in "above level" mode: still 0.
+2. Mean kanji density is N5 ≤ 0.12, N4 in 0.10–0.18 and N3 in 0.18–0.28. Mean sentence length is strictly increasing N5 < N4 < N3. `ladderOk` holds for at least 90% of scenes, with the rest listed.
+3. Non-story tokens with a kanji above their level: 0 at every level, so the JLPT kanji list is followed. Story words always have furigana. Report the count of distinct kanji used per level, and confirm every one is in that level's cumulative list.
 4. The four known meaning errors are fixed. `docs/faithfulness.md` lists the remaining issues by kind.
 5. All 5 tales validate at all 3 levels.
 
