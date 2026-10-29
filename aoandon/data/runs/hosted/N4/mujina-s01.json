@@ -1,0 +1,983 @@
+{
+  "request": {
+    "model": "gemma-4-31B-it",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are Koizumi Setsu. You are retelling a Japanese ghost story (kaidan) aloud to a foreign friend who is learning Japanese at JLPT N4.\nRetell the scene in simple, natural storytelling Japanese. Use です/ます and polite past forms (～ました).\nRules:\n1. Use only words a JLPT N4 learner knows. If an idea needs a harder word, say it with easier words instead.\n2. Every sentence is at most 35 characters.\n3. Keep every event of the scene, in the same order. Do not add events, people, names, feelings or explanations that are not in the scene.\n4. You may use these story words exactly as written: 貉（むじな）、濠（ほり）、蕎麦（そば）、紀伊国坂（きいのくにざか）、紀国坂（きのくにざか）. Copy every story word exactly in kanji, not in kana.\n5. Write normal Japanese with no spaces between words. Use kanji for words a N4 learner reads in kanji and for every story word; write other words in hiragana. The reader shows furigana, so do not avoid kanji the learner knows. Write numbers as 三十年 or 30年, never as kana.\n6. Then write one question in Japanese at the same level about what happens in this scene, with three short answer options. Exactly one option is correct.\nReturn only JSON: {\"sentences\": [\"...\"], \"question\": {\"prompt\": \"...\", \"options\": [\"...\", \"...\", \"...\"], \"answer\": 0}}"
+      },
+      {
+        "role": "user",
+        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\n東京の、赤坂への道に紀国坂という坂道がある――これは紀伊の国の坂という意である。何故それが紀伊の国の坂と呼ばれているのか、それは私の知らない事である。この坂の一方の側には昔からの深い極わめて広い濠があって、それに添って高い緑の堤が高く立ち、その上が庭地になっている、――道の他の側には皇居の長い宏大な塀が長くつづいている。街灯、人力車の時代以前にあっては、その辺は夜暗くなると非常に寂しかった。ためにおそく通る徒歩者は、日没後に、ひとりでこの紀国坂を登るよりは、むしろ幾哩も〓り道をしたものである。\nこれは皆、その辺をよく歩いた貉のためである。\n貉を見た最後の人は、約三十年前に死んだ京橋方面の年とった商人であった。当人の語った話というのはこうである、――"
+      }
+    ]
+  },
+  "responses": [
+    "{}",
+    "{\"sentences\": [\"東京の赤坂に紀国坂という坂があります。\", \"これは紀伊国坂のことです。\", \"坂の片側には深い濠があります。\", \"そこには高い壁と庭があります。\", \"もう片側には長い壁があります。\", \"昔、夜のこの道はとても寂しかったです。\", \"だから人々は、一人でここを通りませんでした。\", \"遠い道を選んで歩きました。\", \"それは、そこに貉がいたからです。\", \"30年前に、ある商人が貉を見ました。\", \"その商人はもう死にました。\", \"彼が話した話はこうです。\"], \"question\": {\"prompt\": \"昔、人々はなぜ紀国坂を通りませんでしたか。\", \"options\": [\"道が長かったからです。\", \"貉がいたからです。\", \"壁が高かったからです。\"], \"answer\": 1}}",
+    "{\"rewrites\": [{\"index\": 2, \"sentence\": \"坂の右側には深い濠があります。\"}, {\"index\": 4, \"sentence\": \"左側には長い壁があります。\"}, {\"index\": 6, \"sentence\": \"だからみんな、一人でここを通りませんでした。\"}, {\"index\": 9, \"sentence\": \"30年前に、ある店屋さんが貉を見ました。\"}, {\"index\": 10, \"sentence\": \"その店屋さんはもう死にました。\"}]}",
+    "{\"rewrites\": [{\"index\": 2, \"sentence\": \"坂のほうに深い濠があります。\"}, {\"index\": 4, \"sentence\": \"もう一方には長い壁があります。\"}, {\"index\": 9, \"sentence\": \"30年前に、あるお店の人が貉を見ました。\"}, {\"index\": 10, \"sentence\": \"その人はもう死にました。\"}]}",
+    "{\"question\": {\"prompt\": \"昔、みんなはどうして紀国坂を通りませんでしたか。\", \"options\": [\"貉がいたからです。\", \"道が長かったからです。\", \"壁が高かったからです。\"], \"answer\": 0}}"
+  ],
+  "metrics": {
+    "firstCoverage": 0.8717948717948718,
+    "finalCoverage": 0.9736842105263158,
+    "retries": 2,
+    "seconds": 16.377173499999998,
+    "offendingFirst": [
+      "片側",
+      "人々",
+      "商人"
+    ],
+    "ghostWords": [
+      "ほう"
+    ]
+  },
+  "retelling": {
+    "level": "N4",
+    "model": "gemma-4-31B-it",
+    "provider": "hosted",
+    "sentences": [
+      {
+        "tokens": [
+          {
+            "s": "東京",
+            "k": "plain",
+            "r": "とうきょう"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "赤坂",
+            "k": "plain",
+            "r": "あかさか"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "紀国坂",
+            "r": "きのくにざか",
+            "b": "紀国坂",
+            "k": "story",
+            "g": "the source spelling of the hill name"
+          },
+          {
+            "s": "という",
+            "k": "plain"
+          },
+          {
+            "s": "坂",
+            "k": "known",
+            "r": "さか",
+            "b": "坂",
+            "g": "slope, hill",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "あり",
+            "k": "known",
+            "b": "ある",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "これ",
+            "k": "plain"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "紀伊国坂",
+            "r": "きいのくにざか",
+            "b": "紀伊国坂",
+            "k": "story",
+            "g": "the hill named for Kii province"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "こと",
+            "k": "known",
+            "b": "こと",
+            "g": "thing(s), matter(s), fact",
+            "gs": "jlpt"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "坂",
+            "k": "known",
+            "r": "さか",
+            "b": "坂",
+            "g": "slope, hill",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "ほう",
+            "k": "ghost",
+            "b": "ほう",
+            "g": "side",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "深い",
+            "k": "known",
+            "r": "ふかい",
+            "b": "深い",
+            "g": "deep, profound",
+            "gs": "jlpt"
+          },
+          {
+            "s": "濠",
+            "r": "ほり",
+            "b": "濠",
+            "k": "story",
+            "g": "moat"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "あり",
+            "k": "known",
+            "b": "ある",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "そこ",
+            "k": "plain"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "高い",
+            "k": "known",
+            "r": "たかい",
+            "b": "高い",
+            "g": "tall, high; expensive",
+            "gs": "jlpt"
+          },
+          {
+            "s": "壁",
+            "k": "known",
+            "r": "かべ",
+            "b": "壁",
+            "g": "wall",
+            "gs": "jlpt"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "庭",
+            "k": "known",
+            "r": "にわ",
+            "b": "庭",
+            "g": "garden",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "あり",
+            "k": "known",
+            "b": "ある",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "もう",
+            "k": "known",
+            "b": "もう",
+            "g": "already; again; more",
+            "gs": "jlpt"
+          },
+          {
+            "s": "一方",
+            "k": "plain",
+            "r": "いっぽう"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "長い",
+            "k": "known",
+            "r": "ながい",
+            "b": "長い",
+            "g": "long, lengthy",
+            "gs": "jlpt"
+          },
+          {
+            "s": "壁",
+            "k": "known",
+            "r": "かべ",
+            "b": "壁",
+            "g": "wall",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "あり",
+            "k": "known",
+            "b": "ある",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "昔",
+            "k": "known",
+            "r": "むかし",
+            "b": "昔",
+            "g": "old days; past",
+            "gs": "jlpt"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "夜",
+            "k": "known",
+            "r": "よる",
+            "b": "夜",
+            "g": "evening, night",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "この",
+            "k": "plain"
+          },
+          {
+            "s": "道",
+            "k": "known",
+            "r": "みち",
+            "b": "道",
+            "g": "road, street; way, directions",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "とても",
+            "k": "known",
+            "b": "とても",
+            "g": "very (much), greatly, exceedingly",
+            "gs": "jlpt"
+          },
+          {
+            "s": "寂しかっ",
+            "k": "known",
+            "r": "さびしかっ",
+            "b": "寂しい",
+            "g": "lonely, lonesome",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "だから",
+            "k": "plain"
+          },
+          {
+            "s": "みんな",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "一",
+            "k": "plain",
+            "r": "いち"
+          },
+          {
+            "s": "人",
+            "k": "known",
+            "r": "にん",
+            "b": "人",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "で",
+            "k": "plain"
+          },
+          {
+            "s": "ここ",
+            "k": "plain"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "通り",
+            "k": "known",
+            "r": "とおり",
+            "b": "通る",
+            "g": "to pass (by), to go through",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ませ",
+            "k": "plain"
+          },
+          {
+            "s": "ん",
+            "k": "plain"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "遠い",
+            "k": "known",
+            "r": "とおい",
+            "b": "遠い",
+            "g": "far (away), distant",
+            "gs": "jlpt"
+          },
+          {
+            "s": "道",
+            "k": "known",
+            "r": "みち",
+            "b": "道",
+            "g": "road, street; way, directions",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "選ん",
+            "k": "known",
+            "r": "えらん",
+            "b": "選ぶ",
+            "g": "to choose; to select",
+            "gs": "jlpt"
+          },
+          {
+            "s": "で",
+            "k": "plain"
+          },
+          {
+            "s": "歩き",
+            "k": "known",
+            "r": "あるき",
+            "b": "歩く",
+            "g": "to walk",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "それ",
+            "k": "plain"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "そこ",
+            "k": "plain"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "貉",
+            "r": "むじな",
+            "b": "貉",
+            "k": "story",
+            "g": "shape-shifting badger"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "k": "known",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "から",
+            "k": "plain"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "30",
+            "k": "plain"
+          },
+          {
+            "s": "年",
+            "k": "known",
+            "r": "ねん",
+            "b": "年",
+            "g": "year, age",
+            "gs": "jlpt"
+          },
+          {
+            "s": "前",
+            "k": "known",
+            "r": "まえ",
+            "b": "前",
+            "g": "before, in front",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "ある",
+            "k": "plain"
+          },
+          {
+            "s": "お",
+            "k": "plain"
+          },
+          {
+            "s": "店",
+            "k": "known",
+            "r": "みせ",
+            "b": "店",
+            "g": "store, shop",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "k": "known",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "貉",
+            "r": "むじな",
+            "b": "貉",
+            "k": "story",
+            "g": "shape-shifting badger"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "見",
+            "k": "known",
+            "r": "み",
+            "b": "見る",
+            "g": "to see, to look",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "その",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "k": "known",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "もう",
+            "k": "known",
+            "b": "もう",
+            "g": "already; again; more",
+            "gs": "jlpt"
+          },
+          {
+            "s": "死に",
+            "k": "known",
+            "r": "しに",
+            "b": "死ぬ",
+            "g": "to die",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "彼",
+            "k": "plain",
+            "r": "かれ"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "話し",
+            "k": "known",
+            "r": "はなし",
+            "b": "話す",
+            "g": "to speak",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "話",
+            "k": "known",
+            "r": "はなし",
+            "b": "話",
+            "g": "talk (chat), story",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "こう",
+            "k": "known",
+            "b": "こう",
+            "g": "like this, this way",
+            "gs": "jlpt"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      }
+    ],
+    "question": {
+      "prompt": {
+        "tokens": [
+          {
+            "s": "昔",
+            "k": "known",
+            "r": "むかし",
+            "b": "昔",
+            "g": "old days; past",
+            "gs": "jlpt"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "みんな",
+            "k": "plain"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "どうして",
+            "k": "known",
+            "b": "どうして",
+            "g": "why, for what reason",
+            "gs": "jlpt"
+          },
+          {
+            "s": "紀国坂",
+            "r": "きのくにざか",
+            "b": "紀国坂",
+            "k": "story",
+            "g": "the source spelling of the hill name"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "通り",
+            "k": "known",
+            "r": "とおり",
+            "b": "通る",
+            "g": "to pass (by), to go through",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ませ",
+            "k": "plain"
+          },
+          {
+            "s": "ん",
+            "k": "plain"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "か",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      "options": [
+        {
+          "tokens": [
+            {
+              "s": "貉",
+              "r": "むじな",
+              "b": "貉",
+              "k": "story",
+              "g": "shape-shifting badger"
+            },
+            {
+              "s": "が",
+              "k": "plain"
+            },
+            {
+              "s": "い",
+              "k": "known",
+              "b": "いる",
+              "g": "(humble) to be (animate), to exist",
+              "gs": "jlpt"
+            },
+            {
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "から",
+              "k": "plain"
+            },
+            {
+              "s": "です",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "壁",
+              "k": "known",
+              "r": "かべ",
+              "b": "壁",
+              "g": "wall",
+              "gs": "jlpt"
+            },
+            {
+              "s": "が",
+              "k": "plain"
+            },
+            {
+              "s": "高かっ",
+              "k": "known",
+              "r": "たかかっ",
+              "b": "高い",
+              "g": "tall, high; expensive",
+              "gs": "jlpt"
+            },
+            {
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "から",
+              "k": "plain"
+            },
+            {
+              "s": "です",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "道",
+              "k": "known",
+              "r": "みち",
+              "b": "道",
+              "g": "road, street; way, directions",
+              "gs": "jlpt"
+            },
+            {
+              "s": "が",
+              "k": "plain"
+            },
+            {
+              "s": "長かっ",
+              "k": "known",
+              "r": "ながかっ",
+              "b": "長い",
+              "g": "long, lengthy",
+              "gs": "jlpt"
+            },
+            {
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "から",
+              "k": "plain"
+            },
+            {
+              "s": "です",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        }
+      ],
+      "answer": 0
+    },
+    "metrics": {
+      "firstCoverage": 0.8717948717948718,
+      "finalCoverage": 0.9736842105263158,
+      "retries": 2,
+      "seconds": 16.377173499999998,
+      "offendingFirst": [
+        "片側",
+        "人々",
+        "商人"
+      ],
+      "ghostWords": [
+        "ほう"
+      ]
+    }
+  }
+}

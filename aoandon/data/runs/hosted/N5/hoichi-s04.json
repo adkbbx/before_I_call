@@ -1,0 +1,722 @@
+{
+  "request": {
+    "model": "gemma-4-31B-it",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are Koizumi Setsu. You are retelling a Japanese ghost story (kaidan) aloud to a foreign friend who is learning Japanese at JLPT N5.\nRetell the scene in simple, natural storytelling Japanese. Use です/ます and polite past forms (～ました).\nRules:\n1. Use only words a JLPT N5 learner knows. If an idea needs a harder word, say it with easier words instead.\n2. Every sentence is at most 25 characters.\n3. Keep every event of the scene, in the same order. Do not add events, people, names, feelings or explanations that are not in the scene.\n4. You may use these story words exactly as written: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Copy every story word exactly in kanji, not in kana.\n5. Write normal Japanese with no spaces between words. Use kanji for words a N5 learner reads in kanji and for every story word; write other words in hiragana. The reader shows furigana, so do not avoid kanji the learner knows. Write numbers as 三十年 or 30年, never as kana.\n6. Then write one question in Japanese at the same level about what happens in this scene, with three short answer options. Exactly one option is correct.\nReturn only JSON: {\"sentences\": [\"...\"], \"question\": {\"prompt\": \"...\", \"options\": [\"...\", \"...\", \"...\"], \"answer\": 0}}"
+      },
+      {
+        "role": "user",
+        "content": "前の場面（やさしく語り直したもの）: とてもまえ、芳一がいました。芳一は目が見えませんでした。芳一は琵琶をひきました。とても上手でした。平家の話をうたいました。それをきいた人はなきました。芳一はお金がありませんでした。でも、やさしい人がいました。和尚さんです。和尚さんは音楽が好きでした。和尚さんは芳一をよびました。そして、そこに住みました。芳一はとてもしあわせでした。芳一は夜に琵琶をひきました。和尚さんもとてもしあわせでした。\n\n場面（原文）:\nある夏の夜の事、住職は死んだ檀家の家で、仏教の法会を営むように呼ばれたので、芳一だけを寺に残して納所を連れて出て行った。それは暑い晩であったので、盲人芳一は涼もうと思って、寝間の前の縁側に出ていた。この縁側は阿彌陀寺の裏手の小さな庭を見下しているのであった。芳一は住職の帰来を待ち、琵琶を練習しながら自分の孤独を慰めていた。夜半も過ぎたが、住職は帰って来なかった。しかし空気はまだなかなか暑くて、戸の内ではくつろぐわけにはいかない、それで芳一は外に居た。やがて、裏門から近よって来る跫音が聞えた。誰れかが庭を横断して、縁側の処へ進みより、芳一のすぐ前に立ち止った――が、それは住職ではなかった。底力のある声が盲人の名を呼んだ――出し抜けに、無作法に、ちょうど、侍が下下を呼びつけるような風に――"
+      }
+    ]
+  },
+  "responses": [
+    "{\"sentences\": [\"ある夏の夜でした。\", \"和尚さんは出かけました。\", \"芳一は一人でした。\", \"とても暑い夜でした。\", \"芳一は外に出ました。\", \"そこで琵琶をひきました。\", \"夜になりました。\", \"でも和尚さんは来ませんでした。\", \"まだ暑かったです。\", \"すると、足音がきこえました。\", \"だれかが来ました。\", \"その人は芳一をよびました。\", \"和尚さんではありませんでした。\", \"とてもつよい声でした。\"], \"question\": {\"prompt\": \"芳一はどこにいましたか。\", \"options\": [\"お寺の外\", \"お寺の中\", \"和尚さんの家\"], \"answer\": 0}}",
+    "{\"rewrites\": [{\"index\": 9, \"sentence\": \"すると、音がしました。\"}]}",
+    "{\"question\": {\"prompt\": \"芳一はどこにいましたか。\", \"options\": [\"外\", \"中\", \"いえ\"], \"answer\": 0}}"
+  ],
+  "metrics": {
+    "firstCoverage": 0.9259259259259259,
+    "finalCoverage": 0.9629629629629629,
+    "retries": 1,
+    "seconds": 8.717709999999963,
+    "offendingFirst": [
+      "足音",
+      "きこえる"
+    ],
+    "ghostWords": [
+      "音"
+    ]
+  },
+  "retelling": {
+    "level": "N5",
+    "model": "gemma-4-31B-it",
+    "provider": "hosted",
+    "sentences": [
+      {
+        "tokens": [
+          {
+            "s": "ある",
+            "k": "plain"
+          },
+          {
+            "s": "夏",
+            "r": "なつ",
+            "b": "夏",
+            "k": "known",
+            "g": "summer",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "夜",
+            "r": "よる",
+            "b": "夜",
+            "k": "known",
+            "g": "evening, night",
+            "gs": "jlpt"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "和尚",
+            "r": "おしょう",
+            "b": "和尚",
+            "k": "story",
+            "g": "Buddhist head priest"
+          },
+          {
+            "s": "さん",
+            "b": "さん",
+            "k": "known",
+            "g": "Mr. ~, Ms. ~",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "出かけ",
+            "r": "でかけ",
+            "b": "出かける",
+            "k": "known",
+            "g": "to go out; to depart",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "芳一",
+            "r": "ほういち",
+            "b": "芳一",
+            "k": "story",
+            "g": "Hoichi, a blind musician"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "一",
+            "r": "いち",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "r": "にん",
+            "b": "人",
+            "k": "known",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "とても",
+            "b": "とても",
+            "k": "known",
+            "g": "very (much), greatly, exceedingly",
+            "gs": "jlpt"
+          },
+          {
+            "s": "暑い",
+            "r": "あつい",
+            "b": "暑い",
+            "k": "known",
+            "g": "hot (in reference to weather), warm",
+            "gs": "jlpt"
+          },
+          {
+            "s": "夜",
+            "r": "よる",
+            "b": "夜",
+            "k": "known",
+            "g": "evening, night",
+            "gs": "jlpt"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "芳一",
+            "r": "ほういち",
+            "b": "芳一",
+            "k": "story",
+            "g": "Hoichi, a blind musician"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "外",
+            "r": "そと",
+            "b": "外",
+            "k": "known",
+            "g": "outside, exterior",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "出",
+            "r": "で",
+            "b": "出る",
+            "k": "known",
+            "g": "to appear, to leave",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "そこで",
+            "k": "plain"
+          },
+          {
+            "s": "琵琶",
+            "r": "びわ",
+            "b": "琵琶",
+            "k": "story",
+            "g": "Japanese lute"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "ひき",
+            "b": "ひく",
+            "k": "known",
+            "g": "to pull, to draw; subtract",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "夜",
+            "r": "よる",
+            "b": "夜",
+            "k": "known",
+            "g": "evening, night",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "なり",
+            "b": "なる",
+            "k": "known",
+            "g": "to become",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "でも",
+            "k": "plain"
+          },
+          {
+            "s": "和尚",
+            "r": "おしょう",
+            "b": "和尚",
+            "k": "story",
+            "g": "Buddhist head priest"
+          },
+          {
+            "s": "さん",
+            "b": "さん",
+            "k": "known",
+            "g": "Mr. ~, Ms. ~",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "来",
+            "r": "き",
+            "b": "来る",
+            "k": "known",
+            "g": "to come",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ませ",
+            "k": "plain"
+          },
+          {
+            "s": "ん",
+            "k": "plain"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "まだ",
+            "b": "まだ",
+            "k": "known",
+            "g": "yet, still, besides",
+            "gs": "jlpt"
+          },
+          {
+            "s": "暑かっ",
+            "r": "あつかっ",
+            "b": "暑い",
+            "k": "known",
+            "g": "hot (in reference to weather), warm",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "すると",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "音",
+            "r": "おと",
+            "b": "音",
+            "k": "ghost",
+            "g": "sound, note",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "し",
+            "b": "する",
+            "k": "known",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "だれ",
+            "k": "plain"
+          },
+          {
+            "s": "か",
+            "k": "plain"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "来",
+            "r": "き",
+            "b": "来る",
+            "k": "known",
+            "g": "to come",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "その",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "r": "ひと",
+            "b": "人",
+            "k": "known",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "芳一",
+            "r": "ほういち",
+            "b": "芳一",
+            "k": "story",
+            "g": "Hoichi, a blind musician"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "よび",
+            "b": "よぶ",
+            "k": "known",
+            "g": "to call (one's name); to invite",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "和尚",
+            "r": "おしょう",
+            "b": "和尚",
+            "k": "story",
+            "g": "Buddhist head priest"
+          },
+          {
+            "s": "さん",
+            "b": "さん",
+            "k": "known",
+            "g": "Mr. ~, Ms. ~",
+            "gs": "jlpt"
+          },
+          {
+            "s": "で",
+            "k": "plain"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "あり",
+            "b": "ある",
+            "k": "known",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ませ",
+            "k": "plain"
+          },
+          {
+            "s": "ん",
+            "k": "plain"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "とても",
+            "b": "とても",
+            "k": "known",
+            "g": "very (much), greatly, exceedingly",
+            "gs": "jlpt"
+          },
+          {
+            "s": "つよい",
+            "b": "つよい",
+            "k": "known",
+            "g": "strong, powerful",
+            "gs": "jlpt"
+          },
+          {
+            "s": "声",
+            "r": "こえ",
+            "b": "声",
+            "k": "known",
+            "g": "voice",
+            "gs": "jlpt"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      }
+    ],
+    "question": {
+      "prompt": {
+        "tokens": [
+          {
+            "s": "芳一",
+            "r": "ほういち",
+            "b": "芳一",
+            "k": "story",
+            "g": "Hoichi, a blind musician"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "どこ",
+            "k": "plain"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "b": "いる",
+            "k": "known",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "か",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      "options": [
+        {
+          "tokens": [
+            {
+              "s": "いえ",
+              "k": "plain"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "中",
+              "r": "なか",
+              "b": "中",
+              "k": "known",
+              "g": "during, while",
+              "gs": "jlpt"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "外",
+              "r": "そと",
+              "b": "外",
+              "k": "known",
+              "g": "outside, exterior",
+              "gs": "jlpt"
+            }
+          ]
+        }
+      ],
+      "answer": 2
+    },
+    "metrics": {
+      "firstCoverage": 0.9259259259259259,
+      "finalCoverage": 0.9629629629629629,
+      "retries": 1,
+      "seconds": 8.717709999999963,
+      "offendingFirst": [
+        "足音",
+        "きこえる"
+      ],
+      "ghostWords": [
+        "音"
+      ]
+    }
+  }
+}

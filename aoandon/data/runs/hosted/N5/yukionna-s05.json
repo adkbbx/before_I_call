@@ -1,0 +1,843 @@
+{
+  "request": {
+    "model": "gemma-4-31B-it",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are Koizumi Setsu. You are retelling a Japanese ghost story (kaidan) aloud to a foreign friend who is learning Japanese at JLPT N5.\nRetell the scene in simple, natural storytelling Japanese. Use です/ます and polite past forms (～ました).\nRules:\n1. Use only words a JLPT N5 learner knows. If an idea needs a harder word, say it with easier words instead.\n2. Every sentence is at most 25 characters.\n3. Keep every event of the scene, in the same order. Do not add events, people, names, feelings or explanations that are not in the scene.\n4. You may use these story words exactly as written: 茂作（もさく）、巳之吉（みのきち）、お雪（おゆき）、木こり（きこり）、吹雪（ふぶき）. Copy every story word exactly in kanji, not in kana.\n5. Write normal Japanese with no spaces between words. Use kanji for words a N5 learner reads in kanji and for every story word; write other words in hiragana. The reader shows furigana, so do not avoid kanji the learner knows. Write numbers as 三十年 or 30年, never as kana.\n6. Then write one question in Japanese at the same level about what happens in this scene, with three short answer options. Exactly one option is correct.\nReturn only JSON: {\"sentences\": [\"...\"], \"question\": {\"prompt\": \"...\", \"options\": [\"...\", \"...\", \"...\"], \"answer\": 0}}"
+      },
+      {
+        "role": "user",
+        "content": "前の場面（やさしく語り直したもの）: 女は戸から出ました。巳之吉は起きました。外を見ましたが、女はいませんでした。吹雪がとても強かったです。巳之吉は戸を閉めました。木を戸に置きました。風でしたか。あそこは、あたまの中でしたか。白い雪でしたか。巳之吉は茂作を呼びました。茂作は答えませんでした。巳之吉は茂作の顔を見ました。顔はとても冷たかったです。茂作は死んでいました。\n\n場面（原文）:\nあけ方になって吹雪は止んだ。そして日の出の後少ししてから、渡し守がその小屋に戻って来た時、茂作の凍えた死体の側に、巳之吉が知覚を失うて倒れているのを発見した。巳之吉は直ちに介抱された、そして、すぐに正気に帰った、しかし、彼はその恐ろしい夜の寒さの結果、長い間病んでいた。彼はまた老人の死によってひどく驚かされた。しかし、彼は白衣の女の現れた事については何も云わなかった。再び、達者になるとすぐに、彼の職業に帰った、――毎朝、独りで森へ行き、夕方、木の束をもって帰った。彼の母は彼を助けてそれを売った。"
+      }
+    ]
+  },
+  "responses": [
+    "{\"sentences\": [\"朝になりました。\", \"吹雪は止まりました。\", \"渡し守が小屋に来ました。\", \"茂作は死んでいました。\", \"巳之吉は倒れていました。\", \"巳之吉はすぐに起きました。\", \"でも、長い間病気でした。\", \"茂作の死にとても驚きました。\", \"白い女のことは言いませんでした。\", \"巳之吉はまた木こりになりました。\", \"毎朝、一人で森へ行きました。\", \"夕方、木を持って帰りました。\", \"母がそれを売りました。\"], \"question\": {\"prompt\": \"巳之吉は白い女のことを話しましたか。\", \"options\": [\"はい、話しました。\", \"いいえ、話しませんでした。\", \"わかりません。\"], \"answer\": 1}}",
+    "{\"rewrites\": [{\"index\": 2, \"sentence\": \"舟の人が家に来ました。\"}, {\"index\": 4, \"sentence\": \"巳之吉は寝ていました。\"}, {\"index\": 5, \"sentence\": \"巳之吉は早く起きました。\"}, {\"index\": 6, \"sentence\": \"でも、ずっと病気でした。\"}, {\"index\": 7, \"sentence\": \"茂作が死んで、怖かったです。\"}, {\"index\": 8, \"sentence\": \"白い女は言いませんでした。\"}, {\"index\": 10, \"sentence\": \"毎朝、一人で山へ行きました。\"}]}",
+    "{\"rewrites\": [{\"index\": 2, \"sentence\": \"人が家に来ました。\"}, {\"index\": 6, \"sentence\": \"でも、長い日病気でした。\"}, {\"index\": 7, \"sentence\": \"茂作が死んで、大変でした。\"}]}",
+    "{\"question\": {\"prompt\": \"巳之吉は白い女について話しましたか。\", \"options\": [\"いいえ、話しませんでした。\", \"はい、話しました。\", \"わかりません。\"], \"answer\": 0}}"
+  ],
+  "metrics": {
+    "firstCoverage": 0.7575757575757576,
+    "finalCoverage": 1,
+    "retries": 2,
+    "seconds": 15.257308900000004,
+    "offendingFirst": [
+      "渡し守",
+      "小屋",
+      "倒れる",
+      "すぐ",
+      "間",
+      "驚く",
+      "こと",
+      "森"
+    ],
+    "ghostWords": []
+  },
+  "retelling": {
+    "level": "N5",
+    "model": "gemma-4-31B-it",
+    "provider": "hosted",
+    "sentences": [
+      {
+        "tokens": [
+          {
+            "s": "朝",
+            "r": "あさ",
+            "b": "朝",
+            "k": "known",
+            "g": "morning",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "なり",
+            "b": "なる",
+            "k": "known",
+            "g": "to become",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "吹雪",
+            "r": "ふぶき",
+            "b": "吹雪",
+            "k": "story",
+            "g": "snowstorm"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "止まり",
+            "r": "とまり",
+            "b": "止まる",
+            "k": "known",
+            "g": "to come to a halt",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "人",
+            "r": "ひと",
+            "b": "人",
+            "k": "known",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "家",
+            "r": "いえ",
+            "b": "家",
+            "k": "known",
+            "g": "house, home",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "来",
+            "r": "き",
+            "b": "来る",
+            "k": "known",
+            "g": "to come",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "茂作",
+            "r": "もさく",
+            "b": "茂作",
+            "k": "story",
+            "g": "Mosaku, the older woodcutter"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "死ん",
+            "r": "しん",
+            "b": "死ぬ",
+            "k": "known",
+            "g": "to die",
+            "gs": "jlpt"
+          },
+          {
+            "s": "で",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "b": "いる",
+            "k": "known",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "巳之吉",
+            "r": "みのきち",
+            "b": "巳之吉",
+            "k": "story",
+            "g": "Minokichi, the young woodcutter"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "寝",
+            "r": "ね",
+            "b": "寝る",
+            "k": "known",
+            "g": "to sleep; to go to sleep; to go to bed",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "b": "いる",
+            "k": "known",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "巳之吉",
+            "r": "みのきち",
+            "b": "巳之吉",
+            "k": "story",
+            "g": "Minokichi, the young woodcutter"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "早く",
+            "r": "はやく",
+            "b": "早い",
+            "k": "known",
+            "g": "early",
+            "gs": "jlpt"
+          },
+          {
+            "s": "起き",
+            "r": "おき",
+            "b": "起きる",
+            "k": "known",
+            "g": "to get up (e.g., from sleeping); to happen",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "でも",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "長い",
+            "r": "ながい",
+            "b": "長い",
+            "k": "known",
+            "g": "long, lengthy",
+            "gs": "jlpt"
+          },
+          {
+            "s": "日",
+            "r": "ひ",
+            "b": "日",
+            "k": "known",
+            "g": "~ day of the month, for ~ days",
+            "gs": "jlpt"
+          },
+          {
+            "s": "病気",
+            "r": "びょうき",
+            "b": "病気",
+            "k": "known",
+            "g": "illness; sickness",
+            "gs": "jlpt"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "茂作",
+            "r": "もさく",
+            "b": "茂作",
+            "k": "story",
+            "g": "Mosaku, the older woodcutter"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "死ん",
+            "r": "しん",
+            "b": "死ぬ",
+            "k": "known",
+            "g": "to die",
+            "gs": "jlpt"
+          },
+          {
+            "s": "で",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "大変",
+            "r": "たいへん",
+            "b": "大変",
+            "k": "known",
+            "g": "very; difficult, hard",
+            "gs": "jlpt"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "白い",
+            "r": "しろい",
+            "b": "白い",
+            "k": "known",
+            "g": "white",
+            "gs": "jlpt"
+          },
+          {
+            "s": "女",
+            "r": "おんな",
+            "b": "女",
+            "k": "known",
+            "g": "woman, female",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "言い",
+            "r": "いい",
+            "b": "言う",
+            "k": "known",
+            "g": "to say",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ませ",
+            "k": "plain"
+          },
+          {
+            "s": "ん",
+            "k": "plain"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "巳之吉",
+            "r": "みのきち",
+            "b": "巳之吉",
+            "k": "story",
+            "g": "Minokichi, the young woodcutter"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "また",
+            "k": "plain"
+          },
+          {
+            "s": "木こり",
+            "r": "きこり",
+            "b": "木こり",
+            "k": "story",
+            "g": "woodcutter"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "なり",
+            "b": "なる",
+            "k": "known",
+            "g": "to become",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "毎朝",
+            "r": "まいあさ",
+            "b": "毎朝",
+            "k": "known",
+            "g": "every morning",
+            "gs": "jlpt"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "一",
+            "r": "いち",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "r": "にん",
+            "b": "人",
+            "k": "known",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "で",
+            "k": "plain"
+          },
+          {
+            "s": "山",
+            "r": "やま",
+            "b": "山",
+            "k": "known",
+            "g": "mountain",
+            "gs": "jlpt"
+          },
+          {
+            "s": "へ",
+            "k": "plain"
+          },
+          {
+            "s": "行き",
+            "r": "いき",
+            "b": "行く",
+            "k": "known",
+            "g": "to go",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "夕方",
+            "r": "ゆうがた",
+            "b": "夕方",
+            "k": "known",
+            "g": "late afternoon (typically just before dinner time), evening",
+            "gs": "jlpt"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "木",
+            "r": "き",
+            "b": "木",
+            "k": "known",
+            "g": "tree, wood, timber",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "持っ",
+            "r": "もっ",
+            "b": "持つ",
+            "k": "known",
+            "g": "to hold, to carry; to possess",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "帰り",
+            "r": "かえり",
+            "b": "帰る",
+            "k": "known",
+            "g": "to go back, to go home, to return",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "母",
+            "r": "はは",
+            "b": "母",
+            "k": "known",
+            "g": "(my) mother",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "それ",
+            "k": "plain"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "売り",
+            "r": "うり",
+            "b": "売る",
+            "k": "known",
+            "g": "to sell (v.t.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      }
+    ],
+    "question": {
+      "prompt": {
+        "tokens": [
+          {
+            "s": "巳之吉",
+            "r": "みのきち",
+            "b": "巳之吉",
+            "k": "story",
+            "g": "Minokichi, the young woodcutter"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "白い",
+            "r": "しろい",
+            "b": "白い",
+            "k": "known",
+            "g": "white",
+            "gs": "jlpt"
+          },
+          {
+            "s": "女",
+            "r": "おんな",
+            "b": "女",
+            "k": "known",
+            "g": "woman, female",
+            "gs": "jlpt"
+          },
+          {
+            "s": "について",
+            "k": "plain"
+          },
+          {
+            "s": "話し",
+            "r": "はなし",
+            "b": "話す",
+            "k": "known",
+            "g": "to speak",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "か",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      "options": [
+        {
+          "tokens": [
+            {
+              "s": "わかり",
+              "b": "わかる",
+              "k": "known",
+              "g": "to understand",
+              "gs": "jlpt"
+            },
+            {
+              "s": "ませ",
+              "k": "plain"
+            },
+            {
+              "s": "ん",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "いいえ",
+              "k": "plain"
+            },
+            {
+              "s": "、",
+              "k": "plain"
+            },
+            {
+              "s": "話し",
+              "r": "はなし",
+              "b": "話す",
+              "k": "known",
+              "g": "to speak",
+              "gs": "jlpt"
+            },
+            {
+              "s": "ませ",
+              "k": "plain"
+            },
+            {
+              "s": "ん",
+              "k": "plain"
+            },
+            {
+              "s": "でし",
+              "k": "plain"
+            },
+            {
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "はい",
+              "k": "plain"
+            },
+            {
+              "s": "、",
+              "k": "plain"
+            },
+            {
+              "s": "話し",
+              "r": "はなし",
+              "b": "話す",
+              "k": "known",
+              "g": "to speak",
+              "gs": "jlpt"
+            },
+            {
+              "s": "まし",
+              "k": "plain"
+            },
+            {
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        }
+      ],
+      "answer": 1
+    },
+    "metrics": {
+      "firstCoverage": 0.7575757575757576,
+      "finalCoverage": 1,
+      "retries": 2,
+      "seconds": 15.257308900000004,
+      "offendingFirst": [
+        "渡し守",
+        "小屋",
+        "倒れる",
+        "すぐ",
+        "間",
+        "驚く",
+        "こと",
+        "森"
+      ],
+      "ghostWords": []
+    }
+  }
+}

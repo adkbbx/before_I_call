@@ -1,0 +1,1059 @@
+{
+  "request": {
+    "model": "gemma-4-31B-it",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are Koizumi Setsu. You are retelling a Japanese ghost story (kaidan) aloud to a foreign friend who is learning Japanese at JLPT N5.\nRetell the scene in simple, natural storytelling Japanese. Use です/ます and polite past forms (～ました).\nRules:\n1. Use only words a JLPT N5 learner knows. If an idea needs a harder word, say it with easier words instead.\n2. Every sentence is at most 25 characters.\n3. Keep every event of the scene, in the same order. Do not add events, people, names, feelings or explanations that are not in the scene.\n4. You may use these story words exactly as written: 關内（かんない）、式部平内（しきぶへいない）、茶碗（ちゃわん）、侍（さむらい）. Copy every story word exactly in kanji, not in kana.\n5. Write normal Japanese with no spaces between words. Use kanji for words a N5 learner reads in kanji and for every story word; write other words in hiragana. The reader shows furigana, so do not avoid kanji the learner knows. Write numbers as 三十年 or 30年, never as kana.\n6. Then write one question in Japanese at the same level about what happens in this scene, with three short answer options. Exactly one option is correct.\nReturn only JSON: {\"sentences\": [\"...\"], \"question\": {\"prompt\": \"...\", \"options\": [\"...\", \"...\", \"...\"], \"answer\": 0}}"
+      },
+      {
+        "role": "user",
+        "content": "前の場面（やさしく語り直したもの）: 220年前です。侍の人たちが店に行きました。關内さんは飲み物が欲しかったです。關内さんは大きな茶碗でお茶を飲みました。お茶の中に顔がありました。關内さんの顔ではありませんでした。若い侍の顔でした。とてもきれいな顔でした。目は生きていました。關内さんはお茶をないところにしました。茶碗は安い茶碗でした。またお茶を入れました。また顔が出ました。次はいい顔でした。關内さんは平気でした。關内さんはお茶を全部飲みました。変な人を飲んだ気がしました。\n\n場面（原文）:\n同じ日の夕方おそく佐渡守の邸内で当番をしている時、その部屋へ見知らぬ人が、音もさせずに入って来たので、關内は驚いた。この見知らぬ人は立派な身装の侍であったが、關内の真正面に坐って、この若党に軽く一礼をして、云った。\n『式部平内でござる――今日始めてお会い申した……貴殿は某を見覚えならぬようでござるな』\n甚だ低いが、鋭い声で云った。關内は茶碗の中で見て、呑み込んでしまった気味の悪い、美しい顔、――例の妖怪を今眼の前に見て驚いた。あの怪異が微笑した通り、この顔も微笑している、しかし微笑している唇の上の眼の不動の凝視は挑戦であり、同時にまた侮辱でもあった。"
+      }
+    ]
+  },
+  "responses": [
+    "{\"sentences\": [\"同じ日の夕方でした。\", \"關内さんは部屋にいました。\", \"見知らぬ人が来ました。\", \"音はしませんでした。\", \"關内さんは驚きました。\", \"その人は立派な侍でした。\", \"侍は關内さんの前に座りました。\", \"侍は少し頭を下げました。\", \"そして言いました。\", \"「私は式部平内です。」\", \"「今日、初めて会いましたね。」\", \"「私のことを知りませんね。」\", \"声は低くて鋭かったです。\", \"關内さんは驚きました。\", \"茶碗の中にいた顔でした。\", \"目の前に妖怪がいました。\", \"妖怪は笑っていました。\", \"目は關内さんを見ていました。\"], \"question\": {\"prompt\": \"部屋に来た人はだれですか。\", \"options\": [\"關内さん\", \"式部平内\", \"店の人\"], \"answer\": 1}}",
+    "{\"rewrites\": [{\"index\": 3, \"sentence\": \"しずかに来ました。\"}, {\"index\": 4, \"sentence\": \"關内さんはびっくりしました。\"}, {\"index\": 7, \"sentence\": \"侍はあいさつをしました。\"}, {\"index\": 11, \"sentence\": \"「私を知りませんね。」\"}, {\"index\": 12, \"sentence\": \"声は低くて、こわかったです。\"}, {\"index\": 13, \"sentence\": \"關内さんはびっくりしました。\"}, {\"index\": 15, \"sentence\": \"目の前に変な人がいました。\"}, {\"index\": 16, \"sentence\": \"その人はにこにこしていました。\"}]}",
+    "{\"rewrites\": [{\"index\": 4, \"sentence\": \"關内さんはおどろきました。\"}, {\"index\": 7, \"sentence\": \"侍は頭を動かしました。\"}, {\"index\": 12, \"sentence\": \"声は低くて、変でした。\"}, {\"index\": 13, \"sentence\": \"關内さんはおどろきました。\"}, {\"index\": 16, \"sentence\": \"その人は口をあげました。\"}]}"
+  ],
+  "metrics": {
+    "firstCoverage": 0.7954545454545454,
+    "finalCoverage": 0.9302325581395349,
+    "retries": 2,
+    "seconds": 16.090603499999997,
+    "offendingFirst": [
+      "音",
+      "驚く",
+      "下げる",
+      "こと",
+      "鋭い",
+      "妖怪",
+      "笑う"
+    ],
+    "ghostWords": [
+      "おどろく",
+      "動かす"
+    ]
+  },
+  "retelling": {
+    "level": "N5",
+    "model": "gemma-4-31B-it",
+    "provider": "hosted",
+    "sentences": [
+      {
+        "tokens": [
+          {
+            "s": "同じ",
+            "r": "おなじ",
+            "k": "plain"
+          },
+          {
+            "s": "日",
+            "r": "ひ",
+            "b": "日",
+            "k": "known",
+            "g": "~ day of the month, for ~ days",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "夕方",
+            "r": "ゆうがた",
+            "b": "夕方",
+            "k": "known",
+            "g": "late afternoon (typically just before dinner time), evening",
+            "gs": "jlpt"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "關内",
+            "r": "かんない",
+            "b": "關内",
+            "k": "story",
+            "g": "Kannai, a retainer"
+          },
+          {
+            "s": "さん",
+            "b": "さん",
+            "k": "known",
+            "g": "Mr. ~, Ms. ~",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "部屋",
+            "r": "へや",
+            "b": "部屋",
+            "k": "known",
+            "g": "a room",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "b": "いる",
+            "k": "known",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "見知らぬ",
+            "r": "みしらぬ",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "r": "ひと",
+            "b": "人",
+            "k": "known",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "来",
+            "r": "き",
+            "b": "来る",
+            "k": "known",
+            "g": "to come",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "しずか",
+            "b": "しずか",
+            "k": "known",
+            "g": "quiet, calm",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "来",
+            "r": "き",
+            "b": "来る",
+            "k": "known",
+            "g": "to come",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "關内",
+            "r": "かんない",
+            "b": "關内",
+            "k": "story",
+            "g": "Kannai, a retainer"
+          },
+          {
+            "s": "さん",
+            "b": "さん",
+            "k": "known",
+            "g": "Mr. ~, Ms. ~",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "おどろき",
+            "b": "おどろく",
+            "k": "ghost",
+            "g": "to be surprised, to be astonished",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "その",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "r": "ひと",
+            "b": "人",
+            "k": "known",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "立派",
+            "r": "りっぱ",
+            "b": "立派",
+            "k": "known",
+            "g": "splendid, fine",
+            "gs": "jlpt"
+          },
+          {
+            "s": "な",
+            "k": "plain"
+          },
+          {
+            "s": "侍",
+            "r": "さむらい",
+            "b": "侍",
+            "k": "story",
+            "g": "samurai"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "侍",
+            "r": "さむらい",
+            "b": "侍",
+            "k": "story",
+            "g": "samurai"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "關内",
+            "r": "かんない",
+            "b": "關内",
+            "k": "story",
+            "g": "Kannai, a retainer"
+          },
+          {
+            "s": "さん",
+            "b": "さん",
+            "k": "known",
+            "g": "Mr. ~, Ms. ~",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "前",
+            "r": "まえ",
+            "b": "前",
+            "k": "known",
+            "g": "before, in front",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "座り",
+            "r": "すわり",
+            "b": "座る",
+            "k": "known",
+            "g": "to sit",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "侍",
+            "r": "さむらい",
+            "b": "侍",
+            "k": "story",
+            "g": "samurai"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "頭",
+            "r": "あたま",
+            "b": "頭",
+            "k": "known",
+            "g": "head",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "動かし",
+            "r": "うごかし",
+            "b": "動かす",
+            "k": "ghost",
+            "g": "to move, to shift",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "そして",
+            "k": "plain"
+          },
+          {
+            "s": "言い",
+            "r": "いい",
+            "b": "言う",
+            "k": "known",
+            "g": "to say",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "「",
+            "k": "plain"
+          },
+          {
+            "s": "私",
+            "r": "わたし",
+            "k": "plain"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "式部平内",
+            "r": "しきぶへいない",
+            "b": "式部平内",
+            "k": "story",
+            "g": "Shikibu Heinai, a mysterious samurai"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          },
+          {
+            "s": "」",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "「",
+            "k": "plain"
+          },
+          {
+            "s": "今日",
+            "r": "きょう",
+            "b": "今日",
+            "k": "known",
+            "g": "today, this day",
+            "gs": "jlpt"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "初めて",
+            "r": "はじめて",
+            "b": "初めて",
+            "k": "known",
+            "g": "for the first time",
+            "gs": "jlpt"
+          },
+          {
+            "s": "会い",
+            "r": "あい",
+            "b": "会う",
+            "k": "known",
+            "g": "to meet, to see",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "ね",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          },
+          {
+            "s": "」",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "「",
+            "k": "plain"
+          },
+          {
+            "s": "私",
+            "r": "わたし",
+            "k": "plain"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "知り",
+            "r": "しり",
+            "b": "知る",
+            "k": "known",
+            "g": "to know, to understand",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ませ",
+            "k": "plain"
+          },
+          {
+            "s": "ん",
+            "k": "plain"
+          },
+          {
+            "s": "ね",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          },
+          {
+            "s": "」",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "声",
+            "r": "こえ",
+            "b": "声",
+            "k": "known",
+            "g": "voice",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "低く",
+            "r": "ひくく",
+            "b": "低い",
+            "k": "known",
+            "g": "short, low",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "変",
+            "r": "へん",
+            "b": "変",
+            "k": "known",
+            "g": "strange, odd",
+            "gs": "jlpt"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "關内",
+            "r": "かんない",
+            "b": "關内",
+            "k": "story",
+            "g": "Kannai, a retainer"
+          },
+          {
+            "s": "さん",
+            "b": "さん",
+            "k": "known",
+            "g": "Mr. ~, Ms. ~",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "おどろき",
+            "b": "おどろく",
+            "k": "ghost",
+            "g": "to be surprised, to be astonished",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "茶碗",
+            "r": "ちゃわん",
+            "b": "茶碗",
+            "k": "story",
+            "g": "tea bowl"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "中",
+            "r": "なか",
+            "b": "中",
+            "k": "known",
+            "g": "during, while",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "b": "いる",
+            "k": "known",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "顔",
+            "r": "かお",
+            "b": "顔",
+            "k": "known",
+            "g": "face (body part)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "目",
+            "r": "め",
+            "b": "目",
+            "k": "known",
+            "g": "eye(s)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "前",
+            "r": "まえ",
+            "b": "前",
+            "k": "known",
+            "g": "before, in front",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "変",
+            "r": "へん",
+            "b": "変",
+            "k": "known",
+            "g": "strange, odd",
+            "gs": "jlpt"
+          },
+          {
+            "s": "な",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "r": "ひと",
+            "b": "人",
+            "k": "known",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "b": "いる",
+            "k": "known",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "その",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "r": "ひと",
+            "b": "人",
+            "k": "known",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "口",
+            "r": "くち",
+            "b": "口",
+            "k": "known",
+            "g": "job opening; mouth",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "あげ",
+            "b": "あげる",
+            "k": "known",
+            "g": "to raise, to lift",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "目",
+            "r": "め",
+            "b": "目",
+            "k": "known",
+            "g": "eye(s)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "關内",
+            "r": "かんない",
+            "b": "關内",
+            "k": "story",
+            "g": "Kannai, a retainer"
+          },
+          {
+            "s": "さん",
+            "b": "さん",
+            "k": "known",
+            "g": "Mr. ~, Ms. ~",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "見",
+            "r": "み",
+            "b": "見る",
+            "k": "known",
+            "g": "to see, to look",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "b": "いる",
+            "k": "known",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      }
+    ],
+    "question": {
+      "prompt": {
+        "tokens": [
+          {
+            "s": "部屋",
+            "r": "へや",
+            "b": "部屋",
+            "k": "known",
+            "g": "a room",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "来",
+            "r": "き",
+            "b": "来る",
+            "k": "known",
+            "g": "to come",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "r": "ひと",
+            "b": "人",
+            "k": "known",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "だれ",
+            "b": "だれる",
+            "k": "known",
+            "g": "who",
+            "gs": "jlpt"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "か",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      "options": [
+        {
+          "tokens": [
+            {
+              "s": "式部平内",
+              "r": "しきぶへいない",
+              "b": "式部平内",
+              "k": "story",
+              "g": "Shikibu Heinai, a mysterious samurai"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "店",
+              "r": "みせ",
+              "b": "店",
+              "k": "known",
+              "g": "store, shop",
+              "gs": "jlpt"
+            },
+            {
+              "s": "の",
+              "k": "plain"
+            },
+            {
+              "s": "人",
+              "r": "ひと",
+              "b": "人",
+              "k": "known",
+              "g": "counter for people",
+              "gs": "jlpt"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "關内",
+              "r": "かんない",
+              "b": "關内",
+              "k": "story",
+              "g": "Kannai, a retainer"
+            },
+            {
+              "s": "さん",
+              "b": "さん",
+              "k": "known",
+              "g": "Mr. ~, Ms. ~",
+              "gs": "jlpt"
+            }
+          ]
+        }
+      ],
+      "answer": 0
+    },
+    "metrics": {
+      "firstCoverage": 0.7954545454545454,
+      "finalCoverage": 0.9302325581395349,
+      "retries": 2,
+      "seconds": 16.090603499999997,
+      "offendingFirst": [
+        "音",
+        "驚く",
+        "下げる",
+        "こと",
+        "鋭い",
+        "妖怪",
+        "笑う"
+      ],
+      "ghostWords": [
+        "おどろく",
+        "動かす"
+      ]
+    }
+  }
+}

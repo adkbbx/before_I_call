@@ -17,7 +17,7 @@ export function createProvider(config, fetchImpl = fetch) {
     const local = config.name === 'ollama';
     const response = await fetchImpl(`${config.baseUrl.replace(/\/$/,'')}${local ? '/api/chat' : '/chat/completions'}`, {
       method:'POST', headers:{'content-type':'application/json', ...(!local ? {Authorization:`Bearer ${config.apiKey}`} : {})},
-      signal:AbortSignal.timeout(180000), body:JSON.stringify(local ? {model:config.model,messages,stream:false,think:false,format:schema,options:{temperature:0.4,num_ctx:8192}} : {model:config.model,messages,response_format:{type:'json_object'},temperature:0.4})
+      signal:AbortSignal.timeout(180000), body:JSON.stringify(local ? {model:config.model,messages,stream:false,think:false,format:schema,options:{temperature:0.4,num_ctx:8192,num_predict:1536,repeat_penalty:1.15}} : {model:config.model,messages,response_format:{type:'json_object'},temperature:0.4,max_tokens:1536})
     });
     if (!response.ok) throw new Error(`Provider HTTP ${response.status}`);
     const data = await response.json(); const content = local ? data.message?.content : data.choices?.[0]?.message?.content;
@@ -25,7 +25,14 @@ export function createProvider(config, fetchImpl = fetch) {
   } };
 }
 export function repairJson(raw) {
-  try { return JSON.parse(raw); } catch { const clean = raw.replace(/```(?:json)?/g,'').trim(); return JSON.parse(clean.slice(clean.indexOf('{'),clean.lastIndexOf('}')+1)); }
+  try { return JSON.parse(raw); } catch {
+    const clean = raw.replace(/```(?:json)?/g,'').trim();
+    const object = clean.slice(clean.indexOf('{'),clean.lastIndexOf('}')+1);
+    try { return JSON.parse(object); } catch {
+      const repaired = object.replace(/("sentence"\s*:\s*"(?:[^"\\]|\\.)*[。！？」])(\s*\}\s*\]\s*\})$/u, '$1"$2');
+      return JSON.parse(repaired);
+    }
+  }
 }
 export function shuffleQuestion(question, seed) {
   let state = 2166136261; for (const c of seed) state = Math.imul(state ^ c.charCodeAt(0),16777619) >>> 0;
@@ -39,8 +46,8 @@ Rules:
 1. Use only words a JLPT ${level} learner knows. If an idea needs a harder word, say it with easier words instead.
 2. Every sentence is at most ${sentenceCaps[level]} characters.
 3. Keep every event of the scene, in the same order. Do not add events, people, names, feelings or explanations that are not in the scene.
-4. You may use these story words exactly as written: ${storyWords.map(w=>w.text).join('、') || 'なし'}.
-5. Write kanji only for words a ${level} learner can read in kanji. Write other words in hiragana.
+4. You may use these story words exactly as written: ${storyWords.map(w=>`${w.text}（${w.reading}）`).join('、') || 'なし'}. Copy every story word exactly in kanji, not in kana.
+5. Write normal Japanese with no spaces between words. Use kanji for words a ${level} learner reads in kanji and for every story word; write other words in hiragana. The reader shows furigana, so do not avoid kanji the learner knows. Write numbers as 三十年 or 30年, never as kana.
 6. Then write one question in Japanese at the same level about what happens in this scene, with three short answer options. Exactly one option is correct.
 Return only JSON: {"sentences": ["..."], "question": {"prompt": "...", "options": ["...", "...", "..."], "answer": 0}}`;
 }
@@ -53,7 +60,11 @@ export async function retellScene({ taleId, scene, level, storyWords = [], vocab
   async function ask(shape, schema) {
     for (let attempt=0;attempt<2;attempt++) {
       const raw = await provider.call(messages,schema); responses.push(raw); messages.push({role:'assistant',content:raw});
-      try { return shape.parse(repairJson(raw)); } catch { if (attempt) throw new Error('Invalid model JSON after repair and re-ask'); messages.push({role:'user',content:'The response is invalid. Return only valid JSON matching the requested schema. Correct missing fields and types.'}); }
+      try { return shape.parse(repairJson(raw)); } catch (error) {
+        if (attempt) throw new Error('Invalid model JSON after repair and re-ask');
+        const details = error instanceof z.ZodError ? error.issues.map(issue => issue.message).join('; ') : 'Invalid JSON syntax';
+        messages.push({role:'user',content:`The response is invalid: ${details}. Return only valid JSON matching the requested schema. Correct missing fields and types.`});
+      }
     }
   }
   const check = text => tokenizeForLevel(text,level,{storyWords,vocab});
@@ -65,7 +76,7 @@ export async function retellScene({ taleId, scene, level, storyWords = [], vocab
       const offending = checked.map((s,index)=>({s,index})).filter(({s})=>s.offending.length);
       messages.push({role:'user',content:`These sentences use words above ${level}: ${offending.map(({s,index})=>`${index}: "${draft.sentences[index]}" (avoid: ${s.offending.join(', ')})`).join(' ')} Rewrite only these sentences, with the same meaning and the same rules. Return only JSON: {"rewrites": [{"index": n, "sentence": "..."}]}`});
       const valid = new Set(offending.map(o=>o.index));
-      const shape = z.object({rewrites:z.array(z.object({index:z.number().int(),sentence:string})).refine(rows=>rows.length===valid.size && new Set(rows.map(r=>r.index)).size===valid.size && rows.every(r=>valid.has(r.index)))});
+      const shape = z.object({rewrites:z.array(z.object({index:z.number().int(),sentence:string})).refine(rows=>rows.length===valid.size && new Set(rows.map(r=>r.index)).size===valid.size && rows.every(r=>valid.has(r.index)), {message:`Expected exactly one rewrite for each index: ${[...valid].join(', ')}. Do not include any other indexes`})});
       const result = await ask(shape,rewriteJson);
       for (const row of result.rewrites) draft.sentences[row.index] = row.sentence;
       checked = await Promise.all(draft.sentences.map(check)); retries++;
@@ -81,8 +92,9 @@ export async function retellScene({ taleId, scene, level, storyWords = [], vocab
     const all = [...checked,...qChecked].flatMap(s=>s.tokens);
     const missing = [...new Set(all.filter(t=>t.k==='ghost' && !t.g).map(t=>t.b ?? t.s))];
     if (missing.length) {
-      messages.push({role:'user',content:`Give a short English gloss (at most 6 English words each) for these Japanese words in the scene: ${missing.join('、')}. Return only JSON: {"glosses":{"word":"English gloss"}}`});
-      const shape = z.object({glosses:z.record(string)}).refine(v=>missing.every(w=>v.glosses[w] && v.glosses[w].split(/\s+/).length<=6));
+      const example = JSON.stringify({glosses:Object.fromEntries(missing.map(word => [word, 'English gloss']))});
+      messages.push({role:'user',content:`Give a short English gloss (at most 6 English words each) for these Japanese words in the scene: ${missing.join('、')}. Copy the gloss keys exactly. Return only JSON: ${example}`});
+      const shape = z.object({glosses:z.record(string)}).refine(v=>missing.every(w=>v.glosses[w] && v.glosses[w].split(/\s+/).length<=6), {message:`Provide each required gloss key verbatim: ${missing.join(', ')}. Each gloss must have at most 6 English words`});
       const {glosses} = await ask(shape,{type:'object',properties:{glosses:{type:'object',properties:Object.fromEntries(missing.map(w=>[w,{type:'string'}])),required:missing,additionalProperties:false}},required:['glosses'],additionalProperties:false});
       for (const t of all) if (t.k==='ghost' && !t.g) { t.g = glosses[t.b ?? t.s]; t.gs = 'model'; }
     }

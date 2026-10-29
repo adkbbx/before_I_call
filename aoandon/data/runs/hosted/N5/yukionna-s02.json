@@ -1,0 +1,969 @@
+{
+  "request": {
+    "model": "gemma-4-31B-it",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are Koizumi Setsu. You are retelling a Japanese ghost story (kaidan) aloud to a foreign friend who is learning Japanese at JLPT N5.\nRetell the scene in simple, natural storytelling Japanese. Use です/ます and polite past forms (～ました).\nRules:\n1. Use only words a JLPT N5 learner knows. If an idea needs a harder word, say it with easier words instead.\n2. Every sentence is at most 25 characters.\n3. Keep every event of the scene, in the same order. Do not add events, people, names, feelings or explanations that are not in the scene.\n4. You may use these story words exactly as written: 茂作（もさく）、巳之吉（みのきち）、お雪（おゆき）、木こり（きこり）、吹雪（ふぶき）. Copy every story word exactly in kanji, not in kana.\n5. Write normal Japanese with no spaces between words. Use kanji for words a N5 learner reads in kanji and for every story word; write other words in hiragana. The reader shows furigana, so do not avoid kanji the learner knows. Write numbers as 三十年 or 30年, never as kana.\n6. Then write one question in Japanese at the same level about what happens in this scene, with three short answer options. Exactly one option is correct.\nReturn only JSON: {\"sentences\": [\"...\"], \"question\": {\"prompt\": \"...\", \"options\": [\"...\", \"...\", \"...\"], \"answer\": 0}}"
+      },
+      {
+        "role": "user",
+        "content": "前の場面（やさしく語り直したもの）: ある村に茂作と巳之吉がいました。二人は木こりでした。茂作は年が上でした。巳之吉は18歳でした。二人は毎日山へ行きました。森は村から遠かったです。道に大きな川がありました。そこに水の上を行く物がありました。橋もありましたが、消えました。川の水がとても強かったからです。\n\n場面（原文）:\n茂作と巳之吉はある大層寒い晩、帰り途で大吹雪に遇った。渡し場に着いた、渡し守は船を河の向う側に残したままで、帰った事が分った。泳がれるような日ではなかった。それで木こりは渡し守の小屋に避難した――避難処の見つかった事を僥倖に思いながら。小屋には火鉢はなかった。火をたくべき場処もなかった。窓のない一方口の、二畳敷の小屋であった。茂作と巳之吉は戸をしめて、蓑をきて、休息するために横になった。初めのうちはさほど寒いとも感じなかった。そして、嵐はじきに止むと思った。\n老人はじきに眠りについた。しかし、少年巳之吉は長い間、目をさましていて、恐ろしい風や戸にあたる雪のたえない音を聴いていた。河はゴウゴウと鳴っていた。小屋は海上の和船のようにゆれて、ミシミシ音がした。恐ろしい大吹雪であった。空気は一刻一刻、寒くなって来た、そして、巳之吉は蓑の下でふるえていた。しかし、とうとう寒さにも拘らず、彼もまた寝込んだ。"
+      }
+    ]
+  },
+  "responses": [
+    "{\"sentences\": [\"ある晩、とても寒かったです。\", \"茂作と巳之吉は吹雪に会いました。\", \"渡し場に行きました。\", \"でも船がありませんでした。\", \"二人は小さな小屋に入りました。\", \"小屋に火はありませんでした。\", \"窓もありませんでした。\", \"二人は蓑を着て横になりました。\", \"茂作はすぐに寝ました。\", \"巳之吉は寝ませんでした。\", \"外は風と雪の音がすごかったです。\", \"川の音も大きかったです。\", \"小屋がゆれました。\", \"とても寒くなりました。\", \"巳之吉はふるえていました。\", \"そして、巳之吉も寝ました。\"], \"question\": {\"prompt\": \"二人はどこに入りましたか。\", \"options\": [\"船の中\", \"小屋の中\", \"川の中\"], \"answer\": 1}}",
+    "{\"rewrites\": [{\"index\": 2, \"sentence\": \"川のところに行きました。\"}, {\"index\": 3, \"sentence\": \"でも、いく物がありませんでした。\"}, {\"index\": 4, \"sentence\": \"二人は小さな家にいりました。\"}, {\"index\": 5, \"sentence\": \"家にあったものは何もありません。\"}, {\"index\": 7, \"sentence\": \"二人は蓑を着て横になりました。\"}, {\"index\": 8, \"sentence\": \"茂作はすぐに寝ました。\"}, {\"index\": 10, \"sentence\": \"外は風と雪が大変でした。\"}, {\"index\": 11, \"sentence\": \"川も大きかったです。\"}, {\"index\": 12, \"sentence\": \"家が動きました。\"}, {\"index\": 14, \"sentence\": \"巳之吉はとても寒かったです。\"}]}",
+    "{\"rewrites\": [{\"index\": 7, \"sentence\": \"二人は蓑を着て横になりました。\"}, {\"index\": 8, \"sentence\": \"茂作は早く寝ました。\"}, {\"index\": 12, \"sentence\": \"家がゆらゆらしました。\"}]}",
+    "{\"question\": {\"prompt\": \"二人はどこにいましたか。\", \"options\": [\"小さな家\", \"川\", \"山\"], \"answer\": 0}}",
+    "{\"glosses\": {\"蓑\": \"traditional straw raincoat\", \"ゆらゆら\": \"swaying slowly\"}}"
+  ],
+  "metrics": {
+    "firstCoverage": 0.675,
+    "finalCoverage": 0.9523809523809523,
+    "retries": 2,
+    "seconds": 17.729652999999992,
+    "offendingFirst": [
+      "渡し場",
+      "船",
+      "小屋",
+      "火",
+      "蓑",
+      "すぐ",
+      "音",
+      "すごい",
+      "ゆれる",
+      "ふるえる"
+    ],
+    "ghostWords": [
+      "蓑",
+      "ゆらゆら"
+    ]
+  },
+  "retelling": {
+    "level": "N5",
+    "model": "gemma-4-31B-it",
+    "provider": "hosted",
+    "sentences": [
+      {
+        "tokens": [
+          {
+            "s": "ある",
+            "k": "plain"
+          },
+          {
+            "s": "晩",
+            "r": "ばん",
+            "b": "晩",
+            "k": "known",
+            "g": "evening",
+            "gs": "jlpt"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "とても",
+            "b": "とても",
+            "k": "known",
+            "g": "very (much), greatly, exceedingly",
+            "gs": "jlpt"
+          },
+          {
+            "s": "寒かっ",
+            "r": "さむかっ",
+            "b": "寒い",
+            "k": "known",
+            "g": "cold (in reference to weather)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "茂作",
+            "r": "もさく",
+            "b": "茂作",
+            "k": "story",
+            "g": "Mosaku, the older woodcutter"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "巳之吉",
+            "r": "みのきち",
+            "b": "巳之吉",
+            "k": "story",
+            "g": "Minokichi, the young woodcutter"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "吹雪",
+            "r": "ふぶき",
+            "b": "吹雪",
+            "k": "story",
+            "g": "snowstorm"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "会い",
+            "r": "あい",
+            "b": "会う",
+            "k": "known",
+            "g": "to meet, to see",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "川",
+            "r": "かわ",
+            "b": "川",
+            "k": "known",
+            "g": "river",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "ところ",
+            "b": "ところ",
+            "k": "known",
+            "g": "place",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "行き",
+            "r": "いき",
+            "b": "行く",
+            "k": "known",
+            "g": "to go",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "でも",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "いく",
+            "b": "いく",
+            "k": "known",
+            "g": "to go",
+            "gs": "jlpt"
+          },
+          {
+            "s": "物",
+            "r": "もの",
+            "b": "物",
+            "k": "known",
+            "g": "thing (concrete object)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "あり",
+            "b": "ある",
+            "k": "known",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ませ",
+            "k": "plain"
+          },
+          {
+            "s": "ん",
+            "k": "plain"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "二",
+            "r": "に",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "r": "にん",
+            "b": "人",
+            "k": "known",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "小さな",
+            "r": "ちいさな",
+            "k": "plain"
+          },
+          {
+            "s": "家",
+            "r": "いえ",
+            "b": "家",
+            "k": "known",
+            "g": "house, home",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "いり",
+            "b": "いる",
+            "k": "known",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "家",
+            "r": "いえ",
+            "b": "家",
+            "k": "known",
+            "g": "house, home",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "あっ",
+            "b": "ある",
+            "k": "known",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "もの",
+            "b": "もの",
+            "k": "known",
+            "g": "thing (concrete object)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "何",
+            "r": "なに",
+            "k": "plain"
+          },
+          {
+            "s": "も",
+            "k": "plain"
+          },
+          {
+            "s": "あり",
+            "b": "ある",
+            "k": "known",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ませ",
+            "k": "plain"
+          },
+          {
+            "s": "ん",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "窓",
+            "r": "まど",
+            "b": "窓",
+            "k": "known",
+            "g": "window",
+            "gs": "jlpt"
+          },
+          {
+            "s": "も",
+            "k": "plain"
+          },
+          {
+            "s": "あり",
+            "b": "ある",
+            "k": "known",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ませ",
+            "k": "plain"
+          },
+          {
+            "s": "ん",
+            "k": "plain"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "二",
+            "r": "に",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "r": "にん",
+            "b": "人",
+            "k": "known",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "蓑",
+            "r": "みの",
+            "b": "蓑",
+            "k": "ghost",
+            "g": "traditional straw raincoat",
+            "gs": "model"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "着",
+            "r": "き",
+            "b": "着る",
+            "k": "known",
+            "g": "to put on (clothes above your waist); to wear",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "横",
+            "r": "よこ",
+            "b": "横",
+            "k": "known",
+            "g": "beside; side; width",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "なり",
+            "b": "なる",
+            "k": "known",
+            "g": "to become",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "茂作",
+            "r": "もさく",
+            "b": "茂作",
+            "k": "story",
+            "g": "Mosaku, the older woodcutter"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "早く",
+            "r": "はやく",
+            "b": "早い",
+            "k": "known",
+            "g": "early",
+            "gs": "jlpt"
+          },
+          {
+            "s": "寝",
+            "r": "ね",
+            "b": "寝る",
+            "k": "known",
+            "g": "to sleep; to go to sleep; to go to bed",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "巳之吉",
+            "r": "みのきち",
+            "b": "巳之吉",
+            "k": "story",
+            "g": "Minokichi, the young woodcutter"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "寝",
+            "r": "ね",
+            "b": "寝る",
+            "k": "known",
+            "g": "to sleep; to go to sleep; to go to bed",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ませ",
+            "k": "plain"
+          },
+          {
+            "s": "ん",
+            "k": "plain"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "外",
+            "r": "そと",
+            "b": "外",
+            "k": "known",
+            "g": "outside, exterior",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "風",
+            "r": "かぜ",
+            "b": "風",
+            "k": "known",
+            "g": "wind, breeze",
+            "gs": "jlpt"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "雪",
+            "r": "ゆき",
+            "b": "雪",
+            "k": "known",
+            "g": "snow",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "大変",
+            "r": "たいへん",
+            "b": "大変",
+            "k": "known",
+            "g": "very; difficult, hard",
+            "gs": "jlpt"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "川",
+            "r": "かわ",
+            "b": "川",
+            "k": "known",
+            "g": "river",
+            "gs": "jlpt"
+          },
+          {
+            "s": "も",
+            "k": "plain"
+          },
+          {
+            "s": "大きかっ",
+            "r": "おおきかっ",
+            "b": "大きい",
+            "k": "known",
+            "g": "big, large",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "家",
+            "r": "いえ",
+            "b": "家",
+            "k": "known",
+            "g": "house, home",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "ゆらゆら",
+            "b": "ゆらゆら",
+            "k": "ghost",
+            "g": "swaying slowly",
+            "gs": "model"
+          },
+          {
+            "s": "し",
+            "b": "する",
+            "k": "known",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "とても",
+            "b": "とても",
+            "k": "known",
+            "g": "very (much), greatly, exceedingly",
+            "gs": "jlpt"
+          },
+          {
+            "s": "寒く",
+            "r": "さむく",
+            "b": "寒い",
+            "k": "known",
+            "g": "cold (in reference to weather)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "なり",
+            "b": "なる",
+            "k": "known",
+            "g": "to become",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "巳之吉",
+            "r": "みのきち",
+            "b": "巳之吉",
+            "k": "story",
+            "g": "Minokichi, the young woodcutter"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "とても",
+            "b": "とても",
+            "k": "known",
+            "g": "very (much), greatly, exceedingly",
+            "gs": "jlpt"
+          },
+          {
+            "s": "寒かっ",
+            "r": "さむかっ",
+            "b": "寒い",
+            "k": "known",
+            "g": "cold (in reference to weather)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "そして",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "巳之吉",
+            "r": "みのきち",
+            "b": "巳之吉",
+            "k": "story",
+            "g": "Minokichi, the young woodcutter"
+          },
+          {
+            "s": "も",
+            "k": "plain"
+          },
+          {
+            "s": "寝",
+            "r": "ね",
+            "b": "寝る",
+            "k": "known",
+            "g": "to sleep; to go to sleep; to go to bed",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      }
+    ],
+    "question": {
+      "prompt": {
+        "tokens": [
+          {
+            "s": "二",
+            "r": "に",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "r": "にん",
+            "b": "人",
+            "k": "known",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "どこ",
+            "k": "plain"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "b": "いる",
+            "k": "known",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "か",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      "options": [
+        {
+          "tokens": [
+            {
+              "s": "小さな",
+              "r": "ちいさな",
+              "k": "plain"
+            },
+            {
+              "s": "家",
+              "r": "いえ",
+              "b": "家",
+              "k": "known",
+              "g": "house, home",
+              "gs": "jlpt"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "川",
+              "r": "かわ",
+              "b": "川",
+              "k": "known",
+              "g": "river",
+              "gs": "jlpt"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "山",
+              "r": "やま",
+              "b": "山",
+              "k": "known",
+              "g": "mountain",
+              "gs": "jlpt"
+            }
+          ]
+        }
+      ],
+      "answer": 0
+    },
+    "metrics": {
+      "firstCoverage": 0.675,
+      "finalCoverage": 0.9523809523809523,
+      "retries": 2,
+      "seconds": 17.729652999999992,
+      "offendingFirst": [
+        "渡し場",
+        "船",
+        "小屋",
+        "火",
+        "蓑",
+        "すぐ",
+        "音",
+        "すごい",
+        "ゆれる",
+        "ふるえる"
+      ],
+      "ghostWords": [
+        "蓑",
+        "ゆらゆら"
+      ]
+    }
+  }
+}

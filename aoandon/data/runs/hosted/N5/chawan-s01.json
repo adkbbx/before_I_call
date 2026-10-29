@@ -1,0 +1,696 @@
+{
+  "request": {
+    "model": "gemma-4-31B-it",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are Koizumi Setsu. You are retelling a Japanese ghost story (kaidan) aloud to a foreign friend who is learning Japanese at JLPT N5.\nRetell the scene in simple, natural storytelling Japanese. Use です/ます and polite past forms (～ました).\nRules:\n1. Use only words a JLPT N5 learner knows. If an idea needs a harder word, say it with easier words instead.\n2. Every sentence is at most 25 characters.\n3. Keep every event of the scene, in the same order. Do not add events, people, names, feelings or explanations that are not in the scene.\n4. You may use these story words exactly as written: 關内（かんない）、式部平内（しきぶへいない）、茶碗（ちゃわん）、侍（さむらい）. Copy every story word exactly in kanji, not in kana.\n5. Write normal Japanese with no spaces between words. Use kanji for words a N5 learner reads in kanji and for every story word; write other words in hiragana. The reader shows furigana, so do not avoid kanji the learner knows. Write numbers as 三十年 or 30年, never as kana.\n6. Then write one question in Japanese at the same level about what happens in this scene, with three short answer options. Exactly one option is correct.\nReturn only JSON: {\"sentences\": [\"...\"], \"question\": {\"prompt\": \"...\", \"options\": [\"...\", \"...\", \"...\"], \"answer\": 0}}"
+      },
+      {
+        "role": "user",
+        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\n読者はどこか古い塔の階段を上って、真黒の中をまったてに上って行って、さてその真黒の真中に、蜘蛛の巣のかかった処が終りで外には何もないことを見出したことがありませんか。あるいは絶壁に沿うて切り開いてある海ぞいの道をたどって行って、結局一つ曲るとすぐごつごつした断崖になっていることを見出したことはありませんか。こういう経験の感情的価値は――文学上から見れば――その時起された感覚の強さと、その感覚の記憶の鮮かさによってきまる。\nところで日本の古い話し本に、今云った事と殆んど同じ感情的経験を起させる小説の断片が、不思議にも残っている。……多分、作者は無精だったのであろう、あるいは出版書肆と喧嘩したのであろう、いや事によれば作者はその小さな机から不意に呼ばれて、かえって来なかったのであろう、あるいはまたその文章の丁度真中で死の神が筆を止めさせたのであろう。とにかく何故この話が結末をつけないで、そのままになっているのか、誰にも分らない。……私は一つ代表的なのを選ぶ。\n＊"
+      }
+    ]
+  },
+  "responses": [
+    "{\"sentences\": [\"ふるい塔の階段があります。\", \"上に行きます。\", \"でも、上には何もありません。\", \"海のみちを歩きます。\", \"でも、最後は崖です。\", \"日本にふるい本があります。\", \"そこに、ふしぎな話があります。\", \"でも、話は終わりません。\", \"なぜ終わりませんか。\", \"だれもわかりません。\", \"わたしは一つ選びます。\"], \"question\": {\"prompt\": \"日本のふるい本の話はどうなっていますか。\", \"options\": [\"とても長いです。\", \"終わりがありません。\", \"とてもおもしろいです。\"], \"answer\": 1}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"ふるい高い建物があります。\"}, {\"index\": 4, \"sentence\": \"でも、そこに道はありません。\"}, {\"index\": 6, \"sentence\": \"そこに、変な話があります。\"}, {\"index\": 7, \"sentence\": \"でも、話は止まります。\"}, {\"index\": 8, \"sentence\": \"なぜ止まりましたか。\"}, {\"index\": 10, \"sentence\": \"わたしは一つにします。\"}]}",
+    "{\"question\": {\"prompt\": \"日本のふるい本の話はどうですか。\", \"options\": [\"話が止まっています。\", \"とても長いです。\", \"とてもおもしろいです。\"], \"answer\": 0}}"
+  ],
+  "metrics": {
+    "firstCoverage": 0.7307692307692307,
+    "finalCoverage": 1,
+    "retries": 1,
+    "seconds": 15.647108299999992,
+    "offendingFirst": [
+      "塔",
+      "最後",
+      "崖",
+      "ふしぎ",
+      "終わる",
+      "選ぶ"
+    ],
+    "ghostWords": []
+  },
+  "retelling": {
+    "level": "N5",
+    "model": "gemma-4-31B-it",
+    "provider": "hosted",
+    "sentences": [
+      {
+        "tokens": [
+          {
+            "s": "ふるい",
+            "b": "ふるい",
+            "k": "known",
+            "g": "old (in reference to objects, not people), aged, ancient",
+            "gs": "jlpt"
+          },
+          {
+            "s": "高い",
+            "r": "たかい",
+            "b": "高い",
+            "k": "known",
+            "g": "tall, high; expensive",
+            "gs": "jlpt"
+          },
+          {
+            "s": "建物",
+            "r": "たてもの",
+            "b": "建物",
+            "k": "known",
+            "g": "building",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "あり",
+            "b": "ある",
+            "k": "known",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "上",
+            "r": "うえ",
+            "b": "上",
+            "k": "known",
+            "g": "above (up, top, etc.), over, on top of",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "行き",
+            "r": "いき",
+            "b": "行く",
+            "k": "known",
+            "g": "to go",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "でも",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "上",
+            "r": "うえ",
+            "b": "上",
+            "k": "known",
+            "g": "above (up, top, etc.), over, on top of",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "何",
+            "r": "なに",
+            "k": "plain"
+          },
+          {
+            "s": "も",
+            "k": "plain"
+          },
+          {
+            "s": "あり",
+            "b": "ある",
+            "k": "known",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ませ",
+            "k": "plain"
+          },
+          {
+            "s": "ん",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "海",
+            "r": "うみ",
+            "b": "海",
+            "k": "known",
+            "g": "sea, beach",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "みち",
+            "b": "みち",
+            "k": "known",
+            "g": "road, street; way, directions",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "歩き",
+            "r": "あるき",
+            "b": "歩く",
+            "k": "known",
+            "g": "to walk",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "でも",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "そこ",
+            "k": "plain"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "道",
+            "r": "みち",
+            "b": "道",
+            "k": "known",
+            "g": "road, street; way, directions",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "あり",
+            "b": "ある",
+            "k": "known",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ませ",
+            "k": "plain"
+          },
+          {
+            "s": "ん",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "日本",
+            "r": "にっぽん",
+            "k": "plain"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "ふるい",
+            "b": "ふるう",
+            "k": "known",
+            "g": "old (in reference to objects, not people), aged, ancient",
+            "gs": "jlpt"
+          },
+          {
+            "s": "本",
+            "r": "ほん",
+            "b": "本",
+            "k": "known",
+            "g": "book",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "あり",
+            "b": "ある",
+            "k": "known",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "そこ",
+            "k": "plain"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "変",
+            "r": "へん",
+            "b": "変",
+            "k": "known",
+            "g": "strange, odd",
+            "gs": "jlpt"
+          },
+          {
+            "s": "な",
+            "k": "plain"
+          },
+          {
+            "s": "話",
+            "r": "はなし",
+            "b": "話",
+            "k": "known",
+            "g": "talk (chat), story",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "あり",
+            "b": "ある",
+            "k": "known",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "でも",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "話",
+            "r": "はなし",
+            "b": "話",
+            "k": "known",
+            "g": "talk (chat), story",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "止まり",
+            "r": "とまり",
+            "b": "止まる",
+            "k": "known",
+            "g": "to come to a halt",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "なぜ",
+            "b": "なぜ",
+            "k": "known",
+            "g": "why (same as どうして)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "止まり",
+            "r": "とまり",
+            "b": "止まる",
+            "k": "known",
+            "g": "to come to a halt",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "か",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "だれ",
+            "k": "plain"
+          },
+          {
+            "s": "も",
+            "k": "plain"
+          },
+          {
+            "s": "わかり",
+            "b": "わかる",
+            "k": "known",
+            "g": "to understand",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ませ",
+            "k": "plain"
+          },
+          {
+            "s": "ん",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "わたし",
+            "k": "plain"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "一つ",
+            "r": "ひとつ",
+            "b": "一つ",
+            "k": "known",
+            "g": "one thing",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "し",
+            "b": "する",
+            "k": "known",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      }
+    ],
+    "question": {
+      "prompt": {
+        "tokens": [
+          {
+            "s": "日本",
+            "r": "にっぽん",
+            "k": "plain"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "ふるい",
+            "b": "ふるい",
+            "k": "known",
+            "g": "old (in reference to objects, not people), aged, ancient",
+            "gs": "jlpt"
+          },
+          {
+            "s": "本",
+            "r": "ほん",
+            "b": "本",
+            "k": "known",
+            "g": "book",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "話",
+            "r": "はなし",
+            "b": "話",
+            "k": "known",
+            "g": "talk (chat), story",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "どう",
+            "b": "どう",
+            "k": "known",
+            "g": "how, in what way",
+            "gs": "jlpt"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "か",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      "options": [
+        {
+          "tokens": [
+            {
+              "s": "とても",
+              "b": "とても",
+              "k": "known",
+              "g": "very (much), greatly, exceedingly",
+              "gs": "jlpt"
+            },
+            {
+              "s": "長い",
+              "r": "ながい",
+              "b": "長い",
+              "k": "known",
+              "g": "long, lengthy",
+              "gs": "jlpt"
+            },
+            {
+              "s": "です",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "とても",
+              "b": "とても",
+              "k": "known",
+              "g": "very (much), greatly, exceedingly",
+              "gs": "jlpt"
+            },
+            {
+              "s": "おもしろい",
+              "b": "おもしろい",
+              "k": "known",
+              "g": "interesting, amusing",
+              "gs": "jlpt"
+            },
+            {
+              "s": "です",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "話",
+              "r": "はなし",
+              "b": "話",
+              "k": "known",
+              "g": "talk (chat), story",
+              "gs": "jlpt"
+            },
+            {
+              "s": "が",
+              "k": "plain"
+            },
+            {
+              "s": "止まっ",
+              "r": "とまっ",
+              "b": "止まる",
+              "k": "known",
+              "g": "to come to a halt",
+              "gs": "jlpt"
+            },
+            {
+              "s": "て",
+              "k": "plain"
+            },
+            {
+              "s": "い",
+              "b": "いる",
+              "k": "known",
+              "g": "(humble) to be (animate), to exist",
+              "gs": "jlpt"
+            },
+            {
+              "s": "ます",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        }
+      ],
+      "answer": 2
+    },
+    "metrics": {
+      "firstCoverage": 0.7307692307692307,
+      "finalCoverage": 1,
+      "retries": 1,
+      "seconds": 15.647108299999992,
+      "offendingFirst": [
+        "塔",
+        "最後",
+        "崖",
+        "ふしぎ",
+        "終わる",
+        "選ぶ"
+      ],
+      "ghostWords": []
+    }
+  }
+}

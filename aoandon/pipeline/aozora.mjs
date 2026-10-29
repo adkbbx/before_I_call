@@ -6,6 +6,8 @@ import iconv from 'iconv-lite';
 import { paths, tales } from './config.mjs';
 export function parseRubyLine(line, warnings = []) {
   line = line.replace(/※［＃([^］]*)］/g, (_, note) => {
+    if (note.includes('感嘆符二つ')) return '‼';
+    if (note.includes('感嘆符三つ')) return '！！！';
     const code = note.match(/U\+([\dA-Fa-f]{4,6})/);
     if (code) { const n = parseInt(code[1], 16); if (n <= 0x10ffff && !(n >= 0xd800 && n <= 0xdfff)) return String.fromCodePoint(n); }
     warnings.push(`Unresolved gaiji: ${note}`); return '〓';

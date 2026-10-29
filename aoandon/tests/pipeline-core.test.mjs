@@ -1,4 +1,4 @@
-﻿import { test } from 'node:test';
+import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { parseRubyLine, stripHeaderAndColophon, splitScenes, parseAozora } from '../pipeline/aozora.mjs';
 import { normalize, parseCsv, vocabFromRows, loadVocab } from '../pipeline/jlpt.mjs';
@@ -75,7 +75,7 @@ test('provider HTTP payloads use correct schemas, timeout and mocked hosted key 
   for(const name of ['hosted','ollama']) {
     const p=createProvider({name,baseUrl:'http://example.invalid/v1/',model:'fake',apiKey:'fake-test-key'},async(url,options)=>{
       assert.ok(options.signal);const body=JSON.parse(options.body);assert.equal(body.model,'fake');
-      if(name==='hosted'){assert.equal(url,'http://example.invalid/v1/chat/completions');assert.equal(options.headers.Authorization,'Bearer fake-test-key');assert.deepEqual(body.response_format,{type:'json_object'});}else{assert.equal(body.think,false);assert.equal(body.stream,false);assert.deepEqual(body.options,{temperature:0.4,num_ctx:8192});assert.deepEqual(body.format,{type:'object'});}
+      if(name==='hosted'){assert.equal(url,'http://example.invalid/v1/chat/completions');assert.equal(options.headers.Authorization,'Bearer fake-test-key');assert.deepEqual(body.response_format,{type:'json_object'});assert.equal(body.max_tokens,1536);}else{assert.equal(body.think,false);assert.equal(body.stream,false);assert.deepEqual(body.options,{temperature:0.4,num_ctx:8192,num_predict:1536,repeat_penalty:1.15});assert.deepEqual(body.format,{type:'object'});}
       return {ok:true,json:async()=>name==='ollama'?{message:{content:'{}'}}:{choices:[{message:{content:'{}'}}]}};
     });assert.equal(await p.call([],{type:'object'}),'{}');
   }
@@ -104,4 +104,31 @@ test('live API health, malformed body, unknown scene, busy 429 and schema-valid 
     assert.equal((await call('GET','/api/health')).body.model,'fake');assert.equal((await call('POST','/api/retell','bad')).status,400);assert.equal((await call('POST','/api/retell',JSON.stringify({taleId:'mujina',sceneId:'s99',level:'N4'}))).status,400);
     const body=JSON.stringify({taleId:'mujina',sceneId:'s01',level:'N4'});const pending=call('POST','/api/retell',body);await begun;assert.equal((await call('POST','/api/retell',body)).status,429);release();const response=await pending;assert.equal(response.status,200);retellingSchema.parse(response.body);
   } finally {release();server.close();}
+});
+
+test('JSON re-ask identifies missing rewrite indexes rather than repeating a generic error',async()=>{
+  const v=vocabFromRows({N5:[{expression:'猫',reading:'ねこ',meaning:'cat'}]});
+  const q={prompt:'猫？',options:['猫','猫。','猫！'],answer:0};
+  const answers=[draft(['猫。','魑魅。'],q),'{"rewrites":[]}','{"rewrites":[{"index":1,"sentence":"猫。"}]}'];
+  let corrected=false;
+  const fake={name:'ollama',model:'fake',async call(messages){if(answers.length===1){assert.match(messages.at(-1).content,/Expected exactly one rewrite for each index: 1/);corrected=true;}return answers.shift();}};
+  const result=await retellScene({taleId:'sample',scene,level:'N4',vocab:v,provider:fake});
+  assert.equal(result.failed,undefined,result.error);assert.equal(corrected,true);assert.equal(result.metrics.retries,1);
+});
+
+test('gloss repair requires the exact requested keys and includes them in the prompt',async()=>{
+  const v=vocabFromRows({N5:[{expression:'猫',reading:'ねこ',meaning:'cat'}]});
+  const q={prompt:'猫？',options:['猫','猫。','猫！'],answer:0};
+  const answers=[draft(['魍魎。'],q),'{"rewrites":[{"index":0,"sentence":"魍魎。"}]}','{"rewrites":[{"index":0,"sentence":"魍魎。"}]}','{"glosses":{"別の語":"wrong key"}}','{"glosses":{"魍魎":"wandering spirit"}}'];
+  const fake={name:'ollama',model:'fake',async call(messages){if(answers.length===2)assert.match(messages.at(-1).content,/"魍魎":"English gloss"/);if(answers.length===1)assert.match(messages.at(-1).content,/required gloss key verbatim: 魍魎/);return answers.shift();}};
+  const result=await retellScene({taleId:'sample',scene,level:'N4',vocab:v,provider:fake});
+  assert.equal(result.failed,undefined,result.error);assert.equal(result.retelling.sentences[0].tokens[0].g,'wandering spirit');
+});
+
+test('local JSON repair restores only a missing final rewrite-string quote',()=>{
+  const broken='{"rewrites":[{"index":14,"sentence":"「昔、武士だったのでしょう。」}]}';
+  assert.deepEqual(repairJson(broken),{rewrites:[{index:14,sentence:'「昔、武士だったのでしょう。」'}]});
+  const valid={rewrites:[{index:0,sentence:'「記号は }]} です。」'}]};assert.deepEqual(repairJson(JSON.stringify(valid)),valid);
+  assert.throws(()=>repairJson('{"rewrites":[{"index":0,"sentence":"unfinished}]}'));
+  assert.throws(()=>repairJson('{"other":"文。}]}'));
 });

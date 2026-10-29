@@ -1,0 +1,718 @@
+{
+  "request": {
+    "model": "gemma-4-31B-it",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are Koizumi Setsu. You are retelling a Japanese ghost story (kaidan) aloud to a foreign friend who is learning Japanese at JLPT N5.\nRetell the scene in simple, natural storytelling Japanese. Use です/ます and polite past forms (～ました).\nRules:\n1. Use only words a JLPT N5 learner knows. If an idea needs a harder word, say it with easier words instead.\n2. Every sentence is at most 25 characters.\n3. Keep every event of the scene, in the same order. Do not add events, people, names, feelings or explanations that are not in the scene.\n4. You may use these story words exactly as written: 茂作（もさく）、巳之吉（みのきち）、お雪（おゆき）、木こり（きこり）、吹雪（ふぶき）. Copy every story word exactly in kanji, not in kana.\n5. Write normal Japanese with no spaces between words. Use kanji for words a N5 learner reads in kanji and for every story word; write other words in hiragana. The reader shows furigana, so do not avoid kanji the learner knows. Write numbers as 三十年 or 30年, never as kana.\n6. Then write one question in Japanese at the same level about what happens in this scene, with three short answer options. Exactly one option is correct.\nReturn only JSON: {\"sentences\": [\"...\"], \"question\": {\"prompt\": \"...\", \"options\": [\"...\", \"...\", \"...\"], \"answer\": 0}}"
+      },
+      {
+        "role": "user",
+        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\n武蔵の国のある村に茂作、巳之吉と云う二人の木こりがいた。この話のあった時分には、茂作は老人であった。そして、彼の年季奉公人であった巳之吉は、十八の少年であった。毎日、彼等は村から約二里離れた森へ一緒に出かけた。その森へ行く道に、越さねばならない大きな河がある。そして、渡し船がある。渡しのある処にたびたび、橋が架けられたが、その橋は洪水のあるたびごとに流された。河の溢れる時には、普通の橋では、その急流を防ぐ事はできない。"
+      }
+    ]
+  },
+  "responses": [
+    "{\"sentences\": [\"ある村に茂作と巳之吉がいました。\", \"二人は木こりでした。\", \"茂作は老人でした。\", \"巳之吉は18歳の少年でした。\", \"二人は毎日森へ行きました。\", \"森は村から遠かったです。\", \"道に大きな川がありました。\", \"そこに船がありました。\", \"橋もありましたが、すぐ流されました。\", \"川の水がとても強かったからです。\"], \"question\": {\"prompt\": \"茂作と巳之吉は、どんな仕事をしていましたか。\", \"options\": [\"木こりでした。\", \"漁師でした。\", \"農家でした。\"], \"answer\": 0}}",
+    "{\"rewrites\": [{\"index\": 2, \"sentence\": \"茂作は年が上でした。\"}, {\"index\": 3, \"sentence\": \"巳之吉は18歳でした。\"}, {\"index\": 4, \"sentence\": \"二人は毎日山へ行きました。\"}, {\"index\": 7, \"sentence\": \"そこに小さな舟がありました。\"}, {\"index\": 8, \"sentence\": \"橋もありましたが、なくなりました。\"}]}",
+    "{\"rewrites\": [{\"index\": 7, \"sentence\": \"そこに水の上を行く物がありました。\"}, {\"index\": 8, \"sentence\": \"橋もありましたが、消えました。\"}]}",
+    "{\"question\": {\"prompt\": \"茂作と巳之吉の仕事は何でしたか。\", \"options\": [\"木こりでした。\", \"先生でした。\", \"医者でした。\"], \"answer\": 0}}"
+  ],
+  "metrics": {
+    "firstCoverage": 0.7307692307692307,
+    "finalCoverage": 1,
+    "retries": 2,
+    "seconds": 11.5323015,
+    "offendingFirst": [
+      "老人",
+      "少年",
+      "森",
+      "船",
+      "すぐ",
+      "流す",
+      "れる"
+    ],
+    "ghostWords": []
+  },
+  "retelling": {
+    "level": "N5",
+    "model": "gemma-4-31B-it",
+    "provider": "hosted",
+    "sentences": [
+      {
+        "tokens": [
+          {
+            "s": "ある",
+            "k": "plain"
+          },
+          {
+            "s": "村",
+            "r": "むら",
+            "b": "村",
+            "k": "known",
+            "g": "village",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "茂作",
+            "r": "もさく",
+            "b": "茂作",
+            "k": "story",
+            "g": "Mosaku, the older woodcutter"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "巳之吉",
+            "r": "みのきち",
+            "b": "巳之吉",
+            "k": "story",
+            "g": "Minokichi, the young woodcutter"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "b": "いる",
+            "k": "known",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "二",
+            "r": "に",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "r": "にん",
+            "b": "人",
+            "k": "known",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "木こり",
+            "r": "きこり",
+            "b": "木こり",
+            "k": "story",
+            "g": "woodcutter"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "茂作",
+            "r": "もさく",
+            "b": "茂作",
+            "k": "story",
+            "g": "Mosaku, the older woodcutter"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "年",
+            "r": "とし",
+            "b": "年",
+            "k": "known",
+            "g": "year, age",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "上",
+            "r": "うえ",
+            "b": "上",
+            "k": "known",
+            "g": "above (up, top, etc.), over, on top of",
+            "gs": "jlpt"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "巳之吉",
+            "r": "みのきち",
+            "b": "巳之吉",
+            "k": "story",
+            "g": "Minokichi, the young woodcutter"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "18",
+            "k": "plain"
+          },
+          {
+            "s": "歳",
+            "r": "さい",
+            "b": "歳",
+            "k": "known",
+            "g": "~ years old",
+            "gs": "jlpt"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "二",
+            "r": "に",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "r": "にん",
+            "b": "人",
+            "k": "known",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "毎日",
+            "r": "まいにち",
+            "b": "毎日",
+            "k": "known",
+            "g": "every day",
+            "gs": "jlpt"
+          },
+          {
+            "s": "山",
+            "r": "やま",
+            "b": "山",
+            "k": "known",
+            "g": "mountain",
+            "gs": "jlpt"
+          },
+          {
+            "s": "へ",
+            "k": "plain"
+          },
+          {
+            "s": "行き",
+            "r": "いき",
+            "b": "行く",
+            "k": "known",
+            "g": "to go",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "森",
+            "r": "もり",
+            "k": "plain"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "村",
+            "r": "むら",
+            "b": "村",
+            "k": "known",
+            "g": "village",
+            "gs": "jlpt"
+          },
+          {
+            "s": "から",
+            "k": "plain"
+          },
+          {
+            "s": "遠かっ",
+            "r": "とおかっ",
+            "b": "遠い",
+            "k": "known",
+            "g": "far (away), distant",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "道",
+            "r": "みち",
+            "b": "道",
+            "k": "known",
+            "g": "road, street; way, directions",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "大きな",
+            "r": "おおきな",
+            "k": "plain"
+          },
+          {
+            "s": "川",
+            "r": "かわ",
+            "b": "川",
+            "k": "known",
+            "g": "river",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "あり",
+            "b": "ある",
+            "k": "known",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "そこ",
+            "k": "plain"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "水の上",
+            "r": "みずのうえ",
+            "k": "plain"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "行く",
+            "r": "いく",
+            "b": "行く",
+            "k": "known",
+            "g": "to go",
+            "gs": "jlpt"
+          },
+          {
+            "s": "物",
+            "r": "もの",
+            "b": "物",
+            "k": "known",
+            "g": "thing (concrete object)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "あり",
+            "b": "ある",
+            "k": "known",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "橋",
+            "r": "はし",
+            "b": "橋",
+            "k": "known",
+            "g": "bridge",
+            "gs": "jlpt"
+          },
+          {
+            "s": "も",
+            "k": "plain"
+          },
+          {
+            "s": "あり",
+            "b": "ある",
+            "k": "known",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "消え",
+            "r": "きえ",
+            "b": "消える",
+            "k": "known",
+            "g": "to vanish, to disappear",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "川",
+            "r": "かわ",
+            "b": "川",
+            "k": "known",
+            "g": "river",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "水",
+            "r": "みず",
+            "b": "水",
+            "k": "known",
+            "g": "water",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "とても",
+            "b": "とても",
+            "k": "known",
+            "g": "very (much), greatly, exceedingly",
+            "gs": "jlpt"
+          },
+          {
+            "s": "強かっ",
+            "r": "つよかっ",
+            "b": "強い",
+            "k": "known",
+            "g": "strong, powerful",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "から",
+            "k": "plain"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      }
+    ],
+    "question": {
+      "prompt": {
+        "tokens": [
+          {
+            "s": "茂作",
+            "r": "もさく",
+            "b": "茂作",
+            "k": "story",
+            "g": "Mosaku, the older woodcutter"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "巳之吉",
+            "r": "みのきち",
+            "b": "巳之吉",
+            "k": "story",
+            "g": "Minokichi, the young woodcutter"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "仕事",
+            "r": "しごと",
+            "b": "仕事",
+            "k": "known",
+            "g": "work, job, occupation, employment",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "何",
+            "r": "なに",
+            "k": "plain"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "か",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      "options": [
+        {
+          "tokens": [
+            {
+              "s": "先生",
+              "r": "せんせい",
+              "b": "先生",
+              "k": "known",
+              "g": "teacher, professor; master; doctor",
+              "gs": "jlpt"
+            },
+            {
+              "s": "でし",
+              "k": "plain"
+            },
+            {
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "木こり",
+              "r": "きこり",
+              "b": "木こり",
+              "k": "story",
+              "g": "woodcutter"
+            },
+            {
+              "s": "でし",
+              "k": "plain"
+            },
+            {
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "医者",
+              "r": "いしゃ",
+              "b": "医者",
+              "k": "known",
+              "g": "doctor; physician",
+              "gs": "jlpt"
+            },
+            {
+              "s": "でし",
+              "k": "plain"
+            },
+            {
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        }
+      ],
+      "answer": 1
+    },
+    "metrics": {
+      "firstCoverage": 0.7307692307692307,
+      "finalCoverage": 1,
+      "retries": 2,
+      "seconds": 11.5323015,
+      "offendingFirst": [
+        "老人",
+        "少年",
+        "森",
+        "船",
+        "すぐ",
+        "流す",
+        "れる"
+      ],
+      "ghostWords": []
+    }
+  }
+}

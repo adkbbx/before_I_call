@@ -1,0 +1,994 @@
+{
+  "request": {
+    "model": "gemma-4-31B-it",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are Koizumi Setsu. You are retelling a Japanese ghost story (kaidan) aloud to a foreign friend who is learning Japanese at JLPT N5.\nRetell the scene in simple, natural storytelling Japanese. Use です/ます and polite past forms (～ました).\nRules:\n1. Use only words a JLPT N5 learner knows. If an idea needs a harder word, say it with easier words instead.\n2. Every sentence is at most 25 characters.\n3. Keep every event of the scene, in the same order. Do not add events, people, names, feelings or explanations that are not in the scene.\n4. You may use these story words exactly as written: 茂作（もさく）、巳之吉（みのきち）、お雪（おゆき）、木こり（きこり）、吹雪（ふぶき）. Copy every story word exactly in kanji, not in kana.\n5. Write normal Japanese with no spaces between words. Use kanji for words a N5 learner reads in kanji and for every story word; write other words in hiragana. The reader shows furigana, so do not avoid kanji the learner knows. Write numbers as 三十年 or 30年, never as kana.\n6. Then write one question in Japanese at the same level about what happens in this scene, with three short answer options. Exactly one option is correct.\nReturn only JSON: {\"sentences\": [\"...\"], \"question\": {\"prompt\": \"...\", \"options\": [\"...\", \"...\", \"...\"], \"answer\": 0}}"
+      },
+      {
+        "role": "user",
+        "content": "前の場面（やさしく語り直したもの）: 巳之吉は言いました。「18歳の時に変なことがありました。」「とても白い女の人に会いました。」「その人はお雪と同じ顔でした。」お雪は顔を上げませんでした。「その人の話をしてください。」「どこで会いましたか。」巳之吉は小さい家の夜の話をしました。白い女の人が近くにいました。茂作は何も言わずに死にました。\n\n場面（原文）:\n『眠っている時にでも起きている時にでも、お前のように綺麗な人を見たのはその時だけだ。もちろんそれは人間じゃなかった。そしてわしはその女が恐ろしかった、――大変恐ろしかった、――がその女は大変白かった。……実際わしが見たのは夢であったかそれとも雪女であったか、分らないでいる』……\nお雪は縫物を投げ捨てて立ち上って巳之吉の坐っている処で、彼の上に屈んで、彼の顔に向って叫んだ、――\n『それは私、私、私でした。……それは雪でした。そしてその時あなたが、その事を一言でも云ったら、私はあなたを殺すと云いました。……そこに眠っている子供等がいなかったら、今すぐあなたを殺すのでした。でも今あなたは子供等を大事に大事になさる方がいい、もし子供等があなたに不平を云うべき理由でもあったら、私はそれ相当にあなたを扱うつもりだから』……\n彼女が叫んでいる最中、彼女の声は細くなって行った、風の叫びのように、――それから彼女は輝いた白い霞となって屋根の棟木の方へ上って、それから煙出しの穴を通ってふるえながら出て行った。……もう再び彼女は見られなかった。"
+      }
+    ]
+  },
+  "responses": [
+    "{\"sentences\": [\"巳之吉は言いました。\", \"その女の人は人間ではありませんでした。\", \"とても白かったです。\", \"とても怖かったです。\", \"夢か雪女か分かりません。\", \"お雪は立ち上がりました。\", \"お雪は叫びました。\", \"それは私でした。\", \"あの時、話をしたら殺しますと言いました。\", \"子供がいないなら、今殺しました。\", \"子供を大切にしてください。\", \"さもないと、あなたを殺します。\", \"お雪の声が小さくなりました。\", \"お雪は白い煙になりました。\", \"屋根から出ました。\", \"もうお雪はいませんでした。\"], \"question\": {\"prompt\": \"お雪はどうなりましたか。\", \"options\": [\"外へ出ました。\", \"眠りました。\", \"料理をしました。\"], \"answer\": 0}}",
+    "{\"rewrites\": [{\"index\": 1, \"sentence\": \"その人は人ではありませんでした。\"}, {\"index\": 3, \"sentence\": \"とても恐ろしい人でした。\"}, {\"index\": 4, \"sentence\": \"本当のことか分かりません。\"}, {\"index\": 5, \"sentence\": \"お雪は立ちました。\"}, {\"index\": 6, \"sentence\": \"お雪は大声で言いました。\"}, {\"index\": 8, \"sentence\": \"あの時、話をしたら、死にますと言いました。\"}, {\"index\": 9, \"sentence\": \"子供がいないなら、今、死なせました。\"}, {\"index\": 11, \"sentence\": \"そうしないなら、あなたを死なせます。\"}, {\"index\": 13, \"sentence\": \"お雪は白い雲になりました。\"}, {\"index\": 14, \"sentence\": \"上の穴から出ました。\"}]}",
+    "{\"rewrites\": [{\"index\": 3, \"sentence\": \"とても、とても怖かったです。\"}, {\"index\": 4, \"sentence\": \"本当か分かりません。\"}, {\"index\": 6, \"sentence\": \"お雪は大きく言いました。\"}, {\"index\": 9, \"sentence\": \"子供がいないなら、今、殺しました。\"}, {\"index\": 11, \"sentence\": \"そうしないなら、あなたを殺します。\"}, {\"index\": 13, \"sentence\": \"お雪は白い色になりました。\"}, {\"index\": 14, \"sentence\": \"上のところから出ました。\"}]}",
+    "{\"question\": {\"prompt\": \"お雪はどうなりましたか。\", \"options\": [\"外へ行きました。\", \"家にいました。\", \"ご飯を食べました。\"], \"answer\": 0}}"
+  ],
+  "metrics": {
+    "firstCoverage": 0.6923076923076923,
+    "finalCoverage": 0.925,
+    "retries": 2,
+    "seconds": 20.64146769999998,
+    "offendingFirst": [
+      "人間",
+      "怖い",
+      "夢",
+      "雪女",
+      "立ち上がる",
+      "叫ぶ",
+      "殺す",
+      "さも",
+      "煙",
+      "屋根"
+    ],
+    "ghostWords": [
+      "怖い",
+      "殺す"
+    ]
+  },
+  "retelling": {
+    "level": "N5",
+    "model": "gemma-4-31B-it",
+    "provider": "hosted",
+    "sentences": [
+      {
+        "tokens": [
+          {
+            "s": "巳之吉",
+            "r": "みのきち",
+            "b": "巳之吉",
+            "k": "story",
+            "g": "Minokichi, the young woodcutter"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "言い",
+            "r": "いい",
+            "b": "言う",
+            "k": "known",
+            "g": "to say",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "その",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "r": "ひと",
+            "b": "人",
+            "k": "known",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "r": "ひと",
+            "b": "人",
+            "k": "known",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "で",
+            "k": "plain"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "あり",
+            "b": "ある",
+            "k": "known",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ませ",
+            "k": "plain"
+          },
+          {
+            "s": "ん",
+            "k": "plain"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "とても",
+            "b": "とても",
+            "k": "known",
+            "g": "very (much), greatly, exceedingly",
+            "gs": "jlpt"
+          },
+          {
+            "s": "白かっ",
+            "r": "しろかっ",
+            "b": "白い",
+            "k": "known",
+            "g": "white",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "とても",
+            "b": "とても",
+            "k": "known",
+            "g": "very (much), greatly, exceedingly",
+            "gs": "jlpt"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "とても",
+            "b": "とても",
+            "k": "known",
+            "g": "very (much), greatly, exceedingly",
+            "gs": "jlpt"
+          },
+          {
+            "s": "怖かっ",
+            "r": "こわかっ",
+            "b": "怖い",
+            "k": "ghost",
+            "g": "scary, frightening",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "本当",
+            "r": "ほんとう",
+            "b": "本当",
+            "k": "known",
+            "g": "real, true",
+            "gs": "jlpt"
+          },
+          {
+            "s": "か",
+            "k": "plain"
+          },
+          {
+            "s": "分かり",
+            "r": "わかり",
+            "b": "分かる",
+            "k": "known",
+            "g": "to understand",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ませ",
+            "k": "plain"
+          },
+          {
+            "s": "ん",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "お雪",
+            "r": "おゆき",
+            "b": "お雪",
+            "k": "story",
+            "g": "Oyuki, a young woman"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "立ち",
+            "r": "たち",
+            "b": "立つ",
+            "k": "known",
+            "g": "to stand up",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "お雪",
+            "r": "おゆき",
+            "b": "お雪",
+            "k": "story",
+            "g": "Oyuki, a young woman"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "大きく",
+            "r": "おおきく",
+            "b": "大きい",
+            "k": "known",
+            "g": "big, large",
+            "gs": "jlpt"
+          },
+          {
+            "s": "言い",
+            "r": "いい",
+            "b": "言う",
+            "k": "known",
+            "g": "to say",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "それ",
+            "k": "plain"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "私",
+            "r": "わたし",
+            "k": "plain"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "あの",
+            "k": "plain"
+          },
+          {
+            "s": "時",
+            "r": "とき",
+            "b": "時",
+            "k": "known",
+            "g": "~ o'clock (time)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "話",
+            "r": "はなし",
+            "b": "話",
+            "k": "known",
+            "g": "talk (chat), story",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "し",
+            "b": "する",
+            "k": "known",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "たら",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "死に",
+            "r": "しに",
+            "b": "死ぬ",
+            "k": "known",
+            "g": "to die",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "言い",
+            "r": "いい",
+            "b": "言う",
+            "k": "known",
+            "g": "to say",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "子供",
+            "r": "こども",
+            "b": "子供",
+            "k": "known",
+            "g": "child(ren)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "b": "いる",
+            "k": "known",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ない",
+            "k": "plain"
+          },
+          {
+            "s": "なら",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "今",
+            "r": "いま",
+            "b": "今",
+            "k": "known",
+            "g": "now",
+            "gs": "jlpt"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "殺し",
+            "r": "ころし",
+            "b": "殺す",
+            "k": "ghost",
+            "g": "to kill",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "子供",
+            "r": "こども",
+            "b": "子供",
+            "k": "known",
+            "g": "child(ren)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "大切",
+            "r": "たいせつ",
+            "b": "大切",
+            "k": "known",
+            "g": "important",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "し",
+            "b": "する",
+            "k": "known",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "ください",
+            "b": "くださる",
+            "k": "known",
+            "g": "(hon.) to give, to confer",
+            "gs": "jlpt"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "そう",
+            "b": "そう",
+            "k": "known",
+            "g": "yes; appears, to be the case",
+            "gs": "jlpt"
+          },
+          {
+            "s": "し",
+            "b": "する",
+            "k": "known",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ない",
+            "k": "plain"
+          },
+          {
+            "s": "なら",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "あなた",
+            "k": "plain"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "殺し",
+            "r": "ころし",
+            "b": "殺す",
+            "k": "ghost",
+            "g": "to kill",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "お雪",
+            "r": "おゆき",
+            "b": "お雪",
+            "k": "story",
+            "g": "Oyuki, a young woman"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "声",
+            "r": "こえ",
+            "b": "声",
+            "k": "known",
+            "g": "voice",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "小さく",
+            "r": "ちいさく",
+            "b": "小さい",
+            "k": "known",
+            "g": "small, little",
+            "gs": "jlpt"
+          },
+          {
+            "s": "なり",
+            "b": "なる",
+            "k": "known",
+            "g": "to become",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "お雪",
+            "r": "おゆき",
+            "b": "お雪",
+            "k": "story",
+            "g": "Oyuki, a young woman"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "白い",
+            "r": "しろい",
+            "b": "白い",
+            "k": "known",
+            "g": "white",
+            "gs": "jlpt"
+          },
+          {
+            "s": "色",
+            "r": "いろ",
+            "b": "色",
+            "k": "known",
+            "g": "color",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "なり",
+            "b": "なる",
+            "k": "known",
+            "g": "to become",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "上",
+            "r": "うえ",
+            "b": "上",
+            "k": "known",
+            "g": "above (up, top, etc.), over, on top of",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "ところ",
+            "b": "ところ",
+            "k": "known",
+            "g": "place",
+            "gs": "jlpt"
+          },
+          {
+            "s": "から",
+            "k": "plain"
+          },
+          {
+            "s": "出",
+            "r": "で",
+            "b": "出る",
+            "k": "known",
+            "g": "to appear, to leave",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "もう",
+            "b": "もう",
+            "k": "known",
+            "g": "already; again; more",
+            "gs": "jlpt"
+          },
+          {
+            "s": "お雪",
+            "r": "おゆき",
+            "b": "お雪",
+            "k": "story",
+            "g": "Oyuki, a young woman"
+          },
+          {
+            "s": "はい",
+            "k": "plain"
+          },
+          {
+            "s": "ませ",
+            "k": "plain"
+          },
+          {
+            "s": "ん",
+            "k": "plain"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      }
+    ],
+    "question": {
+      "prompt": {
+        "tokens": [
+          {
+            "s": "お雪",
+            "r": "おゆき",
+            "b": "お雪",
+            "k": "story",
+            "g": "Oyuki, a young woman"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "どう",
+            "b": "どう",
+            "k": "known",
+            "g": "how, in what way",
+            "gs": "jlpt"
+          },
+          {
+            "s": "なり",
+            "b": "なる",
+            "k": "known",
+            "g": "to become",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "か",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      "options": [
+        {
+          "tokens": [
+            {
+              "s": "家",
+              "r": "いえ",
+              "b": "家",
+              "k": "known",
+              "g": "house, home",
+              "gs": "jlpt"
+            },
+            {
+              "s": "に",
+              "k": "plain"
+            },
+            {
+              "s": "い",
+              "b": "いる",
+              "k": "known",
+              "g": "(humble) to be (animate), to exist",
+              "gs": "jlpt"
+            },
+            {
+              "s": "まし",
+              "k": "plain"
+            },
+            {
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "外",
+              "r": "そと",
+              "b": "外",
+              "k": "known",
+              "g": "outside, exterior",
+              "gs": "jlpt"
+            },
+            {
+              "s": "へ",
+              "k": "plain"
+            },
+            {
+              "s": "行き",
+              "r": "いき",
+              "b": "行く",
+              "k": "known",
+              "g": "to go",
+              "gs": "jlpt"
+            },
+            {
+              "s": "まし",
+              "k": "plain"
+            },
+            {
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "ご飯",
+              "r": "ごはん",
+              "b": "ご飯",
+              "k": "known",
+              "g": "rice (cooked); meal",
+              "gs": "jlpt"
+            },
+            {
+              "s": "を",
+              "k": "plain"
+            },
+            {
+              "s": "食べ",
+              "r": "たべ",
+              "b": "食べる",
+              "k": "known",
+              "g": "to eat",
+              "gs": "jlpt"
+            },
+            {
+              "s": "まし",
+              "k": "plain"
+            },
+            {
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        }
+      ],
+      "answer": 1
+    },
+    "metrics": {
+      "firstCoverage": 0.6923076923076923,
+      "finalCoverage": 0.925,
+      "retries": 2,
+      "seconds": 20.64146769999998,
+      "offendingFirst": [
+        "人間",
+        "怖い",
+        "夢",
+        "雪女",
+        "立ち上がる",
+        "叫ぶ",
+        "殺す",
+        "さも",
+        "煙",
+        "屋根"
+      ],
+      "ghostWords": [
+        "怖い",
+        "殺す"
+      ]
+    }
+  }
+}
