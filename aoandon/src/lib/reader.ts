@@ -1,3 +1,4 @@
+import { plural } from './plural.ts';
 import { levels, type Token, type Tale, type Level, type TaleIndex, type Sentence } from './schema.ts';
 import type { FuriganaMode, WritingMode } from './prefs.ts';
 import { sceneKey, type NightState } from './night.ts';
@@ -21,7 +22,7 @@ export function placeGloss(anchor: Rect, slip: { width: number; height: number }
 }
 export function coverageLine(tale: TaleIndex['tales'][number], level: Level): string {
   const coverage = tale.coverage[level];
-  return coverage === undefined ? `${level} is not available · Available: ${levels.filter(l => tale.coverage[l] !== undefined).join(', ') || 'none yet'}` : `${tale.scenes} scenes · ${Math.round(coverage * 100)}% ${level} words`;
+  return coverage === undefined ? `${level} is not available · Available: ${levels.filter(l => tale.coverage[l] !== undefined).join(', ') || 'none yet'}` : `${plural(tale.scenes, 'scene')} · ${Math.round(coverage * 100)}% ${level} words`;
 }
 export function aggregateMetrics(tales: Tale[]) {
   const groups = new Map<string, { level: Level; model: string; count: number; first: number; final: number; ghosts: number }>();

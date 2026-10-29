@@ -1,95 +1,74 @@
-# Frontend build report
+# Frontend polish report
+
+All seven requested polish items are fixed. No requested check was skipped.
 
 ## Files created or changed
 
-- `src/App.tsx`: routes, loading and error states, persistent night and preferences, top bar and export entry.
-- `src/main.tsx`: required font weights, wordmark subset preloads, styles and generated deckle mask.
-- `src/components/Effects.tsx`: manifest images, lantern, hitodama, candle canvas, shadow, smoke and SVG candle.
-- `src/components/Reader.tsx`: token reader, gloss, original, question, hold and microphone controls, progression and live retelling.
-- `src/components/Screens.tsx`: Room, Shelf, Reveal, About and export panel.
-- `src/components/Room.css`: Room, lantern, seals and candle field styles.
-- `src/components/Shelf.css`: scroll cards and shelf layout.
-- `src/components/Reader.css`: both writing modes, words, questions, candle controls and hold ring.
-- `src/components/Sheets.css`: gloss, original, export, About and metrics table.
-- `src/styles/app.css`: shared stage, top bar, paper, Reveal and breakpoint rules.
-- `src/styles/effects.css`: motion, visibility pause and reduced-motion rules.
-- `src/lib/blow.ts`: pure calibrated detector and microphone wrapper.
-- `src/lib/paper.ts`: deterministic SVG deckle mask.
-- `src/lib/prefs.ts`: guarded preferences storage.
-- `src/lib/reader.ts`: furigana, progression, placement, coverage and metrics helpers.
-- `src/lib/sound.ts`: gesture-gated WebAudio wind, puff and hum.
-- `src/lib/tales.ts`: recoverable loading-error copy.
-- `tests/app-logic.test.ts`: nine pure frontend logic tests.
-- `scripts/screenshots.mjs`: real-data Chromium captures and browser assertions.
-- `package.json`: only Playwright devDependency and screenshots script added.
-- `docs/screenshots/verification.json`: screenshot and browser-check results.
-- `docs/screenshots/report.md`: this report.
-- `docs/screenshots/room-390.png`
-- `docs/screenshots/room-1440.png`
-- `docs/screenshots/shelf-390.png`
-- `docs/screenshots/shelf-1440.png`
-- `docs/screenshots/reader-horizontal-390.png`
-- `docs/screenshots/reader-vertical-1440.png`
-- `docs/screenshots/reader-gloss-390.png`
-- `docs/screenshots/reader-gloss-1440.png`
-- `docs/screenshots/wrong-answer-390.png`
-- `docs/screenshots/wrong-answer-1440.png`
-- `docs/screenshots/reveal-390.png`
-- `docs/screenshots/reveal-1440.png`
-- `docs/screenshots/room-reduced-390.png`
-- `docs/screenshots/room-reduced-1440.png`
-- `docs/screenshots/original-390.png`
-- `docs/screenshots/original-1440.png`
-- `docs/screenshots/about-390.png`
-- `docs/screenshots/about-1440.png`
-- `docs/screenshots/export-390.png`
-- `docs/screenshots/export-1440.png`
+- src/components/Segmented.tsx: typed paper-tab radiogroups with roving focus, arrow keys, Home and End.
+- src/components/Reader.tsx: Writing, Furigana and available-Level tabs; plural counts; preserve tab focus when switching level.
+- src/components/Reader.css: ui typography, seal tabs, 44px targets, 2px sumi selection underline and compact phone wrapping.
+- src/components/Screens.tsx: shared plural counts in Reveal, About and export.
+- src/components/Room.css: clip the hanko texture to the border ring so it cannot cover seal text.
+- src/components/Shelf.css: align text rows and give the five wide-screen scrolls distinct lengths.
+- src/lib/plural.ts: shared count-label helper.
+- src/lib/reader.ts: plural-aware Shelf coverage line.
+- src/styles/base.css: suppress outlines on programmatically focused headings and main only.
+- src/styles/app.css: clear the phone candle label from the lantern; remove obsolete select styling.
+- tests/app-plural.test.ts: zero, singular, plural, irregular and one-scene Shelf checks.
+- scripts/screenshots.mjs: use the new radios; assert contrast, ring clipping, target sizes, tab navigation, five scroll lengths and responsive layouts.
+- package-lock.json: sync playwright and playwright-core 1.64.1 with the existing devDependency.
+- docs/screenshots/report.md: this report.
+- docs/screenshots/verification.json: final browser-check results, with empty skips and errors.
+- docs/screenshots/room-390.png: regenerated and visually reviewed.
+- docs/screenshots/shelf-390.png: regenerated and visually reviewed.
+- docs/screenshots/about-390.png: regenerated and visually reviewed.
+- docs/screenshots/export-390.png: regenerated and visually reviewed.
+- docs/screenshots/reader-horizontal-390.png: regenerated and visually reviewed.
+- docs/screenshots/reader-gloss-390.png: regenerated and visually reviewed.
+- docs/screenshots/original-390.png: regenerated and visually reviewed.
+- docs/screenshots/wrong-answer-390.png: regenerated and visually reviewed.
+- docs/screenshots/reveal-390.png: regenerated and visually reviewed.
+- docs/screenshots/room-reduced-390.png: regenerated and visually reviewed.
+- docs/screenshots/room-1440.png: regenerated and visually reviewed.
+- docs/screenshots/shelf-1440.png: regenerated and visually reviewed.
+- docs/screenshots/about-1440.png: regenerated and visually reviewed.
+- docs/screenshots/export-1440.png: regenerated and visually reviewed.
+- docs/screenshots/reader-vertical-1440.png: regenerated and visually reviewed.
+- docs/screenshots/reader-gloss-1440.png: regenerated and visually reviewed.
+- docs/screenshots/original-1440.png: regenerated and visually reviewed.
+- docs/screenshots/wrong-answer-1440.png: regenerated and visually reviewed.
+- docs/screenshots/reveal-1440.png: regenerated and visually reviewed.
+- docs/screenshots/room-reduced-1440.png: regenerated and visually reviewed.
+- docs/screenshots/shelf-768.png: regenerated and visually reviewed.
 
-The explicitly requested pipeline rebuild generated the current public tale output. No pipeline, source data, assets, schema contract, or design documentation was authored or edited by this frontend work. Fixtures are used only in tests.
+The explicitly requested node pipeline/build-tales.mjs also ran and validated Mujina (4 scenes), In a Cup of Tea (5), Yuki-Onna (9), Rokuro-Kubi (17), and Mimi-Nashi-Hoichi (18). Total: five tales and 53 scenes. Generated tales and index were written by that command only; pipeline code and source data were not edited. package.json and DESIGN.md remain unchanged.
 
 ## Gate results
 
-- `npm test`: 81 passed, 0 failed, 0 skipped, including nine new app tests.
-- `npm run typecheck`: passed.
-- `npm run build -- --configLoader runner`: passed. The normal Vite config bundler hits an ancestor-directory access restriction in this Windows sandbox; the runner loader avoids that restriction without changing the build script. A portable Node 22.22.1 runtime and temporary npm cache were used because the installed runtime is inaccessible to the sandbox.
-- JavaScript gzip: 84.15 KB before, 96.58 KB after. Final raw JS: 318.87 KB. The 180 KB gzip budget passes; fonts excluded.
-- CSS gzip: 293.00 KB before, 235.78 KB after. Final raw CSS: 560.97 KB. These numbers include font-face declarations, not font binaries.
-- `node pipeline/build-tales.mjs` ran before the screenshot gate. Real Mujina N4 became available with four scenes. All 20 captures use real pipeline content and manifest assets.
-- `npm run screenshots`: passed, 20 PNGs, no skips, no browser errors. Every screenshot was opened and reviewed; independent visual review also scored the visual fixes resolved.
-- At 360×740, Room, Shelf, About, Export, Reader, Gloss, Original, wrong-answer state, Reveal and tale summary have no horizontal page scroll.
-- Four-scene completion passed: each hold extinguishes once, Next scene receives focus, the next reading starts at the beginning, and the final summary opens.
-- Keyboard-only demo passed: Tab to the selected level radio; arrow right and left; Tab to Demo night and Enter; Tab to Mujina and Enter; Tab to the correct answer and Enter; Tab to Blow out and hold Space for 800 ms; Reveal appears. Export traps focus and Escape restores it.
-- Reduced motion passed: candle canvas unchanged across frames, no lantern flicker, no smoke, instant room dim and the short Reveal path.
-- Additional browser checks passed: denied/unavailable microphone displays the exact hold fallback; the hold ring is vermilion, centred on the SVG candle, and partially filled at 400 ms.
+- npm test: 86 passed, zero failed, zero skipped.
+- npm run typecheck: passed.
+- Production build: passed with npm run build -- --configLoader runner. The default bundled config loader cannot scan an ancestor directory under this Windows sandbox; runner avoids that environment restriction without modifying the project configuration.
+- JavaScript: 319.93 KB raw, 96.92 KB gzip, below the 180 KB gzip budget. Prior report: 96.58 KB gzip.
+- CSS: 562.21 KB raw, 236.11 KB gzip, including font-face declarations. Prior report: 235.78 KB gzip. Font binaries are excluded from these bundle figures.
+- npm run screenshots: passed; 21 screenshots, zero browser errors, zero skips. Every screenshot was opened and reviewed against the existing design, Two Lights Rule and Paper Rule.
+- No horizontal page scroll at 360 x 740 for Room, Shelf, About, export, Reader, gloss, original, wrong answer, Reveal and tale summary.
+- Keyboard-only demo: Tab to Room level radio; Right then Left; Tab to Demo and Enter; Tab to Mujina and Enter; Tab to the correct answer and Enter; Tab to Blow and hold Space for 850 ms, exceeding the 800 ms threshold; Reveal appears. No pointer action was used for this path.
+- Reduced motion: no smoke, identical candle-canvas pixels across frames, no lantern animation and a zero-second room dim transition.
+- All four Mujina scenes also passed hold-to-blow, Next scene focus, reading-position reset and the final summary check.
 
-## Fixes after visual review
+## Per-item results
 
-- Reserved a centre gap in the desktop candle field so candles do not overlap the seals.
-- Locked background scrolling for dialogs and used viewport captures for overlays and reader states.
-- Removed gloss measurement feedback that clipped the slip.
-- Constrained the phone paper sheet and scrolled story content inside it.
-- Clipped decorative Reveal glow so it cannot create sideways page scroll.
-- Scrolled the wrong-answer result into view for its capture.
-- Kept metrics headers intact and made the comparison table scroll within the paper on phones.
-- Placed Original at the reading end with a 60% scrim; warm paper light follows the right rail in vertical mode.
-- Moved the vermilion hold ring around the active candle.
-- Corrected reduced-motion specificity so dimming is actually instant.
+1. Fixed: hanko texture is confined to the border ring. Unselected shu text on night measures 3.65:1; selected washi-on-vermilion remains intact. Proof: room-1440.png, room-390.png, shelf-1440.png and shelf-390.png.
+2. Fixed: Reveal headline and programmatically focused headings/main have no outline. Real control keyboard focus remains visible, including the Reader's focused N4 tab. Proof: reveal-1440.png and reader-horizontal-390.png; computed Reveal outlineStyle is none.
+3. Fixed: plural() covers numeric tale, scene and word labels in Reveal, Shelf, About, export and Reader summaries/meters. Proof: reveal-1440.png shows 1 tale and 1 scene; reader-horizontal-390.png shows 1 ghost word; about-1440.png and export-390.png cover plural and zero counts. Pure helper and Shelf singular tests pass.
+4. Fixed: paper-tab Writing, Furigana and available-Level radiogroups replace all Reader selects. They use ui type, 44px targets and a 2px sumi active underline; arrow keys wrap and retain focus. Original and the level meter remain. Proof: reader-vertical-1440.png and reader-horizontal-390.png. Phone vertical mode stays disabled to preserve DESIGN.md's horizontal-only phone rule.
+5. Fixed: the count label clears the lantern foot and candle flames. Proof: room-390.png and room-reduced-390.png. Label/lantern separation also passes at widths 360, 680, 681, 1024 and 1440.
+6. Fixed: all five final tales load. Wide scrolls have aligned text rows and distinct lengths; tablet strips scroll to the fifth tale, and phone cards stack. Proof: shelf-1440.png, shelf-768.png and full-page shelf-390.png.
+7. Fixed: npm install completed; lockfile root dependencies and devDependencies match package.json, and both Playwright entries resolve to 1.64.1. No package.json dependency changes. Proof is the lockfile and dependency consistency check, not a screenshot.
 
-## DESIGN.md readings and conflicts
+## Readings and limitations
 
-- The brief's generated SVG deckle takes precedence over DESIGN.md's raster-mask reference. Manifest WebP filenames take precedence over its PNG references.
-- Used 28px for the top-bar brush wordmark because the Calligraphy Rule forbids display type below 28px, while the top-bar paragraph asks for 24px.
-- Story-word ruby remains present even in Off mode, following the explicit statement that story words always have furigana. Known and ghost readings follow the selected mode; plain tokens have no ruby.
-- The Room title and explanation sit above the lantern; seals and actions sit below it. Treating the entire headline/control block as above a lantern at 40% height would overlap at the required viewport. The three mandatory seals are treated as one accent group alongside the primary action.
-- Wrong-answer copy on paper uses sumi-soft rather than moon-dim for paper contrast.
-- Tokens contain a JLPT gloss source but no source-list level. The UI therefore says JLPT list rather than inventing a JLPT N2 attribution.
-- Original text preserves supplied Aozora punctuation and wording verbatim; the UI's own copy follows the copy restrictions.
-
-## Known issues and skipped work
-
-- The real Mujina tokens split とうきょう, and the supplied gloss for とう is "party (political)". This remains an upstream tokenization/gloss error. The frontend preserves the supplied data; pipeline and public tales are outside its write scope. It should be corrected in content generation before publication. The gloss captures use the supplied story word 濠 / moat, while the erroneous fragment remains discoverable in the app and is explicitly disclosed here.
-- Only Mujina N4 was complete at the rebuild; other tales and levels remain content work. No required screenshot or keyboard gate was skipped.
-- Successful live Gemma generation and a physical microphone blow were not exercised. API absence, microphone denial fallback and the pure blow detector were verified.
-- No simulated-fast-4G LCP measurement was performed; the verification gate's JS budget and required build/browser checks passed.
-
-Community research used: [How an Accessibility SaaS Broke Its Own Landing (and How We Fixed It)](https://dev.to/lawebe/how-an-accessibility-saas-broke-its-own-landing-and-how-we-fixed-it-5802), by [@lawebe](https://dev.to/lawebe). It reinforced checking reduced-motion rendered states rather than relying only on CSS declarations.
+- The explicit request to run build-tales was treated as the exception to the generated-tales read-only rule. No generated content was manually edited.
+- DESIGN.md specifies equal-width columns, not equal scroll lengths. Distinct paper tails follow the polish brief while keeping illustration and text rows aligned.
+- Phones retain horizontal writing as required by DESIGN.md; the Vertical tab is visible, disabled and never truncated.
+- The production build requires the runner flag in this sandbox. No requested polish item or browser gate was skipped.

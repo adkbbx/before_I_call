@@ -3,3 +3,13 @@
 .scrolls { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:24px; }
 .scroll-card { display:block; min-width:0; text-decoration:none; border:1px solid var(--color-indigo-line); background:var(--color-night-raised); align-self:start; }
 .scroll-card>img { width:100%; aspect-ratio:3/2; object-fit:cover; }.scroll-copy { padding:24px 16px 32px; }.scroll-card h2 { font:400 32px/1.3 var(--font-display); margin:0 0 12px; }.scroll-card .subtitle-en { min-height:36px; }.coverage,.credit,.available { font-size:12px; line-height:1.7; }.credit,.available { color:var(--color-moon-dim); }.read-mark { display:flex; align-items:center; font:500 12px var(--font-ui); }.read-mark .candle { width:20px; height:36px; }
+
+/* Align the text rows while giving each hanging scroll a distinct paper tail. */
+@media(min-width:1024px) {
+  .scroll-copy { display:grid; grid-template-rows:84px 54px auto auto 42px; row-gap:12px; padding-bottom:calc(32px + var(--scroll-tail, 0px)); }
+  .scroll-copy>p { margin:0; }
+  .scroll-card:nth-child(2) { --scroll-tail:16px; }
+  .scroll-card:nth-child(3) { --scroll-tail:32px; }
+  .scroll-card:nth-child(4) { --scroll-tail:48px; }
+  .scroll-card:nth-child(5) { --scroll-tail:64px; }
+}
