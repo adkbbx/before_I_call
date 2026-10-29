@@ -1,0 +1,149 @@
+/* P0 base layout. P3 extends this per DESIGN.md (Layout, Components, Motion). */
+.app {
+  min-height: 100svh;
+}
+
+.topbar {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 10;
+  height: var(--topbar);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-lg);
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--color-moon);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
+
+.topbar-actions {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.topbar-actions a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.stage {
+  min-height: 100svh;
+  padding: calc(var(--topbar) + var(--space-lg)) var(--space-lg) var(--space-section);
+}
+
+.room {
+  min-height: calc(100svh - var(--topbar) - var(--space-lg) - var(--space-section));
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: var(--space-base);
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 40%, rgba(111, 155, 255, 0.12), transparent 60%);
+  filter: brightness(var(--room-brightness, 1));
+  transition: filter var(--dur-dim) var(--ease-dim);
+}
+
+.room-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--type-display);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0.04em;
+}
+
+.room-line {
+  max-width: 46ch;
+  margin: 0;
+  color: var(--color-moon);
+}
+
+.level-seals {
+  display: flex;
+  gap: var(--space-base);
+}
+
+.level-seal {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-xs);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-moon-dim);
+}
+
+.level-seal-mark {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border: 2px solid var(--color-shu);
+  border-radius: var(--radius-seal);
+  color: var(--color-shu);
+  font-family: var(--font-story);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.level-seal.is-selected .level-seal-mark {
+  background: var(--color-shu);
+  color: var(--color-washi);
+}
+
+.level-seal-name {
+  font-family: var(--font-ui);
+  font-size: var(--type-ui-small);
+  letter-spacing: 0.08em;
+}
+
+.room-actions {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-md);
+}
+
+.room-actions .button-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  text-decoration: none;
+}
+
+.room-demo,
+.room-count {
+  font-family: var(--font-ui);
+  font-size: var(--type-ui-small);
+  letter-spacing: 0.08em;
+  color: var(--color-moon-dim);
+}
+
+.room-demo {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.placeholder {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--space-xl);
+}
+
+@media (max-width: 680px) {
+  .topbar {
+    padding: 0 var(--space-base);
+  }
+
+  .stage {
+    padding-inline: var(--space-base);
+  }
+}
