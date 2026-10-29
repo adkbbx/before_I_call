@@ -1,18 +1,31 @@
-// Local-only API for the "retell again" control. The deployed static site never needs it.
-// GET  /api/health  -> { ok, provider, model }
-// POST /api/retell  { taleId, sceneId, level } -> Retelling (P2 wires this to pipeline/retell.mjs with the ollama provider)
+﻿// Local-only API. A single retell job shares the offline checker loop; dependencies are injectable for tests.
 import { createServer } from 'node:http';
-import { livePort, providers } from '../pipeline/config.mjs';
-
-const send = (response, status, body) => {
-  response.writeHead(status, { 'content-type': 'application/json; charset=utf-8' });
-  response.end(JSON.stringify(body));
-};
-
-const server = createServer((request, response) => {
-  if (request.method === 'GET' && request.url === '/api/health') return send(response, 200, { ok: true, provider: 'ollama', model: providers.ollama.model });
-  if (request.method === 'POST' && request.url === '/api/retell') return send(response, 501, { error: 'Live retelling is built in P2.' });
-  return send(response, 404, { error: 'Not found' });
-});
-
-server.listen(livePort, '127.0.0.1', () => console.log(`Aoandon live API on http://127.0.0.1:${livePort}`));
+import { livePort, providers, tales, levels } from '../pipeline/config.mjs';
+import { createProvider, retellScene, readSource, readStoryWords } from '../pipeline/retell.mjs';
+import { loadVocab } from '../pipeline/jlpt.mjs';
+import { retellingSchema } from '../src/lib/schema.ts';
+const send = (res,status,body) => { res.writeHead(status,{'content-type':'application/json; charset=utf-8'});res.end(JSON.stringify(body)); };
+export function createLiveServer({provider=createProvider(providers.ollama),run=retellScene,source=readSource,storyWords=readStoryWords,vocab}={}) {
+  let busy=false;
+  return createServer(async(req,res)=>{
+    if(req.method==='GET' && req.url==='/api/health') return send(res,200,{ok:true,provider:'ollama',model:provider.model});
+    if(req.method!=='POST' || req.url!=='/api/retell') return send(res,404,{error:'Not found'});
+    let body;
+    try {
+      let raw=''; for await(const chunk of req) { raw+=chunk; if(Buffer.byteLength(raw)>16384) throw new Error('Body too large'); }
+      body=JSON.parse(raw);
+      if(!body || !tales.some(t=>t.id===body.taleId) || !levels.includes(body.level) || !/^s\d{2}$/.test(body.sceneId) || Object.keys(body).some(k=>!['taleId','sceneId','level'].includes(k))) throw new Error('Invalid request');
+    } catch { return send(res,400,{error:'Expected { taleId, sceneId, level }'}); }
+    if(busy) return send(res,429,{error:'A retelling is already running'});
+    let scene;
+    try { scene=source(body.taleId).scenes.find(s=>s.id===body.sceneId); } catch { return send(res,400,{error:'Unknown tale'}); }
+    if(!scene) return send(res,400,{error:'Unknown scene'});
+    busy=true;
+    try {
+      const result=await run({taleId:body.taleId,scene,level:body.level,storyWords:storyWords(body.taleId),vocab:vocab??loadVocab(),provider});
+      if(result.failed) return send(res,502,{error:'Retelling failed'});
+      send(res,200,retellingSchema.parse(result.retelling));
+    } catch { send(res,500,{error:'Retelling failed'}); } finally { busy=false; }
+  });
+}
+if(process.argv[1]?.endsWith('live.mjs')) createLiveServer().listen(livePort,'127.0.0.1',()=>console.log(`Aoandon live API on http://127.0.0.1:${livePort}`));
