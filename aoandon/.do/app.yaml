@@ -1,0 +1,17 @@
+# DigitalOcean App Platform spec: a static site built from this repo.
+# Create it with `doctl apps create --spec .do/app.yaml`, or upload this file in the control panel.
+name: aoandon
+static_sites:
+  - name: web
+    github:
+      repo: adkbbx/aoandon
+      branch: main
+      deploy_on_push: true
+    environment_slug: node-js
+    build_command: npm run build
+    output_dir: dist
+    catchall_document: index.html
+    envs:
+      - key: PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD
+        value: "1"
+        scope: BUILD_TIME
