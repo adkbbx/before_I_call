@@ -4,37 +4,40 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. You are retelling a Japanese ghost story (kaidan) aloud to a foreign friend who is learning Japanese at JLPT N4.\nRetell the scene in simple, natural storytelling Japanese. Use です/ます and polite past forms (～ました).\nRules:\n1. Use only words a JLPT N4 learner knows. If an idea needs a harder word, say it with easier words instead.\n2. Every sentence is at most 35 characters.\n3. Keep every event of the scene, in the same order. Do not add events, people, names, feelings or explanations that are not in the scene.\n4. You may use these story words exactly as written: 武連（たけつら）、囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Copy every story word exactly in kanji, not in kana.\n5. Write normal Japanese with no spaces between words. Use kanji for words a N4 learner reads in kanji and for every story word; write other words in hiragana. The reader shows furigana, so do not avoid kanji the learner knows. Write numbers as 三十年 or 30年, never as kana.\n6. Then write one question in Japanese at the same level about what happens in this scene, with three short answer options. Exactly one option is correct.\nReturn only JSON: {\"sentences\": [\"...\"], \"question\": {\"prompt\": \"...\", \"options\": [\"...\", \"...\", \"...\"], \"answer\": 0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Adds ～とき, ～たら, ～ている, ～と思います, potential forms and ～ても. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Copy every story word exactly in kanji when it is needed; do not insert unused words.\nWrite normal Japanese with no spaces between words. Outside story words, use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: 囘龍は小さな家に入りました。そこには男と女が4人いました。彼らは小さな火で手をあたためていました。囘龍は丁寧に挨拶をしました。お金がない人がきれいな言葉を知っていて、変でした。「いい人たちだ」と囘龍は思いました。「誰かから習ったはずだ」と考えました。それから囘龍は、きこりに言いました。「あなたはとても親切です。やりかたも丁寧です。あなたは前からきこりではなかったでしょう。昔はすごい人でしたね」。きこりは笑って答えました。\n\n場面（原文）:\n『はい、その通りでございます。ただ今は御覧の通りのくらしをしていますが、昔は相当の身分でした。私の一代記は、自業自得で零落したものの一代記です。私はある大名に仕えて、重もい役を務めていました。しかし余りに酒色に耽って、心が狂ったために悪い行をいたしました。自分の我儘から家の破滅を招いて、たくさんの生命を亡ぼす原因をつくりました。その罸があたって、私は長い間この土地に亡命者となっていました。今では何か私の罪ほろぼしができて、祖先の家名を再興する事のできるようにと、祈っています。しかしそう云う事もできそうにありません。ただ、真面目な懺悔をして、できるだけ不幸な人々を助けて、私の悪業の償いをしたいと思っております』\n囘龍はこのよい決心の告白をきいて喜んで主人に云った、\n『若い時につまらぬ事をした人が、後になって非常に熱心に正しい行をするようになる事を、これまでわしは見ています。悪に強い人は、決心の力で、また、善にも強くなる事は御経にも書いてあります。御身は善い心の方である事は疑わない。それでどうかよい運を御身の方へ向わせたい。今夜は御身のために読経をして、これまでの悪業に打ち勝つ力を得られる事を祈りましょう』"
+        "content": "前の場面（やさしく語り直したもの）: 囘龍とあんない人がいえに入りました。なかの火で手をあつくしている人がいました。四人の男の人と女の人がいました。囘龍はていねいに話をしました。この人たちはとてもいいと思いました。だれかから習ったと思いました。そして、いえの人に言いました。あなたはきこりではないと思います。まえはすごい人だったと思います。きこりはわらって答えました。\n\n場面（原文）:\n『はい、その通りでございます。ただ今は御覧の通りのくらしをしていますが、昔は相当の身分でした。私の一代記は、自業自得で零落したものの一代記です。私はある大名に仕えて、重もい役を務めていました。しかし余りに酒色に耽って、心が狂ったために悪い行をいたしました。自分の我儘から家の破滅を招いて、たくさんの生命を亡ぼす原因をつくりました。その罸があたって、私は長い間この土地に亡命者となっていました。今では何か私の罪ほろぼしができて、祖先の家名を再興する事のできるようにと、祈っています。しかしそう云う事もできそうにありません。ただ、真面目な懺悔をして、できるだけ不幸な人々を助けて、私の悪業の償いをしたいと思っております』\n囘龍はこのよい決心の告白をきいて喜んで主人に云った、\n『若い時につまらぬ事をした人が、後になって非常に熱心に正しい行をするようになる事を、これまでわしは見ています。悪に強い人は、決心の力で、また、善にも強くなる事は御経にも書いてあります。御身は善い心の方である事は疑わない。それでどうかよい運を御身の方へ向わせたい。今夜は御身のために読経をして、これまでの悪業に打ち勝つ力を得られる事を祈りましょう』"
       }
     ]
   },
   "responses": [
-    "{}",
-    "{\"sentences\": [\"きこりは「その通りです」と言いました。\", \"昔は高い身分でした。\", \"でも、お酒や遊びが大好きでした。\", \"悪いことをして、家を壊しました。\", \"たくさんの人を死なせました。\", \"それで、長い間ここに逃げてきました。\", \"今は、昔の悪いことを反省しています。\", \"不幸な人を助けて、償いをしたいです。\", \"囘龍は、この話をきいて喜びました。\", \"「悪いことをした人が、正しい人になることはあります」\", \"「あなたには良い心があります」\", \"「今夜は、あなたのために祈ります」\"], \"question\": {\"prompt\": \"きこりは昔、どうして家を壊しましたか。\", \"options\": [\"お酒や遊びが好きだったから\", \"お金がなかったから\", \"勉強しなかったから\"], \"answer\": 0}}",
-    "{\"rewrites\": [{\"index\": 1, \"sentence\": \"昔はすごい人でした。\"}, {\"index\": 2, \"sentence\": \"でも、おさけや遊びが大好きでした。\"}, {\"index\": 4, \"sentence\": \"たくさんの人が死にました。\"}, {\"index\": 6, \"sentence\": \"今は、昔の悪いことを気にしています。\"}, {\"index\": 7, \"sentence\": \"困っている人をたすけて、いいことをしたいです。\"}]}",
-    "{\"question\": {\"prompt\": \"きこりは昔、どうして家を壊しましたか。\", \"options\": [\"おさけや遊びが好きだったから\", \"お金がなかったから\", \"勉強しなかったから\"], \"answer\": 0}}"
+    "{\"sentencesにつながる内容\": \"...\", \"sentences\": [\"きこりは「そうです」と言いました。\", \"まえは高い身分の人でした。\", \"でも悪いことをしました。\", \"だから家がなくなりました。\", \"多くの人が死にました。\", \"長い間ここに逃げていました。\", \"今は前の家を戻したいと思っています。\", \"でもできないと思います。\", \"不幸な人を助けたいと思っています。\", \"囘龍はそれをきいて喜びました。\", \"若い時に悪いことをしてもいいです。\", \"あとで正しいことをすればいいです。\", \"強い心があれば、いい人になれます。\", \"囘龍はいい運をよびたいと思いました。\", \"今夜はお祈りをしたいと思いました。\", \"そうすれば、悪いことをなくせます。\"], \"question\": {\"prompt\": \"きこりはまえに何をしましたか。\", \"options\": [\"いいことをしました。\", \"悪いことをしました。\", \"勉強をしました。\"], \"answer\": 1}}",
+    "{\"rewrites\": [{\"index\": 1, \"sentence\": \"まえはたかいみぶんの人でした。\"}, {\"index\": 4, \"sentence\": \"おおくの人が死にました。\"}, {\"index\": 5, \"sentence\": \"長い間ここににげていました。\"}, {\"index\": 6, \"sentence\": \"今はまえの家をもどしたいです。\"}, {\"index\": 8, \"sentence\": \"ふこうな人をたすけたいです。\"}, {\"index\": 9, \"sentence\": \"囘龍はそれをきいてよろこびました。\"}, {\"index\": 10, \"sentence\": \"わかい時に悪いことをしてもいいです。\"}, {\"index\": 13, \"sentence\": \"囘龍はいいうんをよびたいです。\"}, {\"index\": 14, \"sentence\": \"今夜はおいのりをしたいです。\"}]}",
+    "{\"rewrites\": [{\"index\": 1, \"sentence\": \"まえはすごい人でした。\"}, {\"index\": 6, \"sentence\": \"今はまえの家に戻りたいです。\"}, {\"index\": 8, \"sentence\": \"かなしい人をたすけたいです。\"}, {\"index\": 9, \"sentence\": \"囘龍はそれをきいてよろこびました。\"}, {\"index\": 13, \"sentence\": \"囘龍はいい運をよびたいです。\"}, {\"index\": 14, \"sentence\": \"今夜は神様にねがいたいです。\"}]}",
+    "{\"rewrites\": [{\"index\": 6, \"sentence\": \"今はまえの家にもどりたいです。\"}, {\"index\": 8, \"sentence\": \"かなしい人をてつだいたいです。\"}, {\"index\": 9, \"sentence\": \"囘龍はそれをきいてよろこびました。\"}, {\"index\": 13, \"sentence\": \"囘龍はいいうんをよびたいです。\"}, {\"index\": 14, \"sentence\": \"今夜はかみさまにねがいたいです。\"}]}",
+    "{\"glosses\": {\"ん\": \"luck\"}}"
   ],
   "metrics": {
-    "firstCoverage": 0.8653846153846154,
-    "finalCoverage": 0.9622641509433962,
-    "retries": 1,
-    "seconds": 12.364015400000033,
+    "kanjiCoverage": 0.84,
+    "kanjiDensity": 0.10504201680672269,
+    "firstCoverage": 0.8923076923076924,
+    "finalCoverage": 0.9661016949152542,
+    "retries": 3,
+    "seconds": 20.52036190000002,
     "offendingFirst": [
       "身分",
-      "酒",
-      "せる",
-      "反省",
+      "多く",
+      "戻す",
       "不幸",
       "助ける",
-      "償う"
+      "運",
+      "お祈り"
     ],
     "ghostWords": [
-      "さけ",
-      "たすける"
+      "ん",
+      "ねがう"
     ]
   },
   "retelling": {
@@ -64,15 +67,10 @@
             "k": "plain"
           },
           {
-            "s": "その",
-            "k": "plain"
-          },
-          {
-            "s": "通り",
-            "r": "とおり",
-            "b": "通り",
+            "s": "そう",
+            "b": "そう",
             "k": "known",
-            "g": "~ Street, ~ Avenue",
+            "g": "yes; appears, to be the case",
             "gs": "jlpt"
           },
           {
@@ -112,11 +110,10 @@
       {
         "tokens": [
           {
-            "s": "昔",
-            "r": "むかし",
-            "b": "昔",
+            "s": "まえ",
+            "b": "まえる",
             "k": "known",
-            "g": "old days; past",
+            "g": "before, in front",
             "gs": "jlpt"
           },
           {
@@ -159,61 +156,6 @@
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "お",
-            "k": "plain"
-          },
-          {
-            "s": "さけ",
-            "b": "さけ",
-            "k": "ghost",
-            "g": "alcohol, sake",
-            "gs": "jlpt"
-          },
-          {
-            "s": "や",
-            "k": "plain"
-          },
-          {
-            "s": "遊び",
-            "r": "あそび",
-            "b": "遊び",
-            "k": "known",
-            "g": "play",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "大好き",
-            "r": "だいすき",
-            "b": "大好き",
-            "k": "known",
-            "g": "very like-able, like very much",
-            "gs": "jlpt"
-          },
-          {
-            "s": "でし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
             "s": "悪い",
             "r": "わるい",
             "b": "悪い",
@@ -240,11 +182,23 @@
             "gs": "jlpt"
           },
           {
-            "s": "て",
+            "s": "まし",
             "k": "plain"
           },
           {
-            "s": "、",
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "だから",
             "k": "plain"
           },
           {
@@ -256,15 +210,14 @@
             "gs": "jlpt"
           },
           {
-            "s": "を",
+            "s": "が",
             "k": "plain"
           },
           {
-            "s": "壊し",
-            "r": "こわし",
-            "b": "壊す",
+            "s": "なくなり",
+            "b": "なくなる",
             "k": "known",
-            "g": "to break, to break down",
+            "g": "to disappear, to get lost",
             "gs": "jlpt"
           },
           {
@@ -284,10 +237,10 @@
       {
         "tokens": [
           {
-            "s": "たくさん",
-            "b": "たくさん",
+            "s": "おおく",
+            "b": "おおい",
             "k": "known",
-            "g": "many, much",
+            "g": "many; there are a lot",
             "gs": "jlpt"
           },
           {
@@ -331,14 +284,6 @@
       {
         "tokens": [
           {
-            "s": "それで",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
             "s": "長い",
             "r": "ながい",
             "b": "長い",
@@ -363,9 +308,8 @@
             "k": "plain"
           },
           {
-            "s": "逃げ",
-            "r": "にげ",
-            "b": "逃げる",
+            "s": "にげ",
+            "b": "にげる",
             "k": "known",
             "g": "to escape, to run away",
             "gs": "jlpt"
@@ -375,10 +319,10 @@
             "k": "plain"
           },
           {
-            "s": "き",
-            "b": "くる",
+            "s": "い",
+            "b": "いる",
             "k": "known",
-            "g": "to come",
+            "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
           {
@@ -410,15 +354,10 @@
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "昔",
-            "r": "むかし",
-            "b": "昔",
+            "s": "まえ",
+            "b": "まえる",
             "k": "known",
-            "g": "old days; past",
+            "g": "before, in front",
             "gs": "jlpt"
           },
           {
@@ -426,30 +365,11 @@
             "k": "plain"
           },
           {
-            "s": "悪い",
-            "r": "わるい",
-            "b": "悪い",
+            "s": "家",
+            "r": "いえ",
+            "b": "家",
             "k": "known",
-            "g": "bad, sinful; inferior",
-            "gs": "jlpt"
-          },
-          {
-            "s": "こと",
-            "b": "こと",
-            "k": "known",
-            "g": "thing(s), matter(s), fact",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "気",
-            "r": "き",
-            "b": "気",
-            "k": "known",
-            "g": "spirit, mood",
+            "g": "house, home",
             "gs": "jlpt"
           },
           {
@@ -457,21 +377,53 @@
             "k": "plain"
           },
           {
-            "s": "し",
-            "b": "する",
+            "s": "もどり",
+            "b": "もどる",
             "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "g": "to return (v.i.); to come back",
             "gs": "jlpt"
           },
           {
-            "s": "て",
+            "s": "たい",
             "k": "plain"
           },
           {
-            "s": "い",
-            "b": "いる",
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "でも",
+            "k": "plain"
+          },
+          {
+            "s": "でき",
+            "b": "できる",
             "k": "known",
-            "g": "(humble) to be (animate), to exist",
+            "g": "to be able to (to accomplish)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ない",
+            "k": "plain"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "思い",
+            "r": "おもい",
+            "b": "思う",
+            "k": "known",
+            "g": "to think, to feel",
             "gs": "jlpt"
           },
           {
@@ -487,22 +439,10 @@
       {
         "tokens": [
           {
-            "s": "困っ",
-            "r": "こまっ",
-            "b": "困る",
+            "s": "かなしい",
+            "b": "かなしい",
             "k": "known",
-            "g": "to be bothered, to have difficulty",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "いる",
-            "b": "いる",
-            "k": "known",
-            "g": "(humble) to be (animate), to exist",
+            "g": "sad, sorrowful",
             "gs": "jlpt"
           },
           {
@@ -518,43 +458,10 @@
             "k": "plain"
           },
           {
-            "s": "たすけ",
-            "b": "たすける",
-            "k": "ghost",
-            "g": "to help (v.t.), to save, to rescue",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "いい",
-            "b": "いい",
+            "s": "てつだい",
+            "b": "てつだう",
             "k": "known",
-            "g": "good",
-            "gs": "jlpt"
-          },
-          {
-            "s": "こと",
-            "b": "こと",
-            "k": "known",
-            "g": "thing(s), matter(s), fact",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "し",
-            "b": "する",
-            "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "g": "to help",
             "gs": "jlpt"
           },
           {
@@ -575,6 +482,7 @@
         "tokens": [
           {
             "s": "囘龍",
+            "hk": true,
             "r": "かいりゅう",
             "b": "囘龍",
             "k": "story",
@@ -585,20 +493,8 @@
             "k": "plain"
           },
           {
-            "s": "、",
+            "s": "それ",
             "k": "plain"
-          },
-          {
-            "s": "この",
-            "k": "plain"
-          },
-          {
-            "s": "話",
-            "r": "はなし",
-            "b": "話",
-            "k": "known",
-            "g": "talk (chat), story",
-            "gs": "jlpt"
           },
           {
             "s": "を",
@@ -616,9 +512,8 @@
             "k": "plain"
           },
           {
-            "s": "喜び",
-            "r": "よろこび",
-            "b": "喜ぶ",
+            "s": "よろこび",
+            "b": "よろこぶ",
             "k": "known",
             "g": "to rejoice, to be delighted, to be glad",
             "gs": "jlpt"
@@ -640,7 +535,22 @@
       {
         "tokens": [
           {
-            "s": "「",
+            "s": "わかい",
+            "b": "わかい",
+            "k": "known",
+            "g": "young",
+            "gs": "jlpt"
+          },
+          {
+            "s": "時",
+            "r": "とき",
+            "b": "時",
+            "k": "known",
+            "g": "~ o'clock (time)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
             "k": "plain"
           },
           {
@@ -670,23 +580,41 @@
             "gs": "jlpt"
           },
           {
-            "s": "た",
+            "s": "て",
             "k": "plain"
           },
           {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
+            "s": "も",
+            "k": "plain"
+          },
+          {
+            "s": "いい",
+            "b": "いい",
             "k": "known",
-            "g": "counter for people",
+            "g": "good",
             "gs": "jlpt"
           },
           {
-            "s": "が",
+            "s": "です",
             "k": "plain"
           },
           {
-            "s": "、",
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "あと",
+            "b": "あと",
+            "k": "known",
+            "g": "afterwards (later); in the future; the rest; since then",
+            "gs": "jlpt"
+          },
+          {
+            "s": "で",
             "k": "plain"
           },
           {
@@ -698,25 +626,6 @@
             "gs": "jlpt"
           },
           {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "なる",
-            "b": "なる",
-            "k": "known",
-            "g": "to become",
-            "gs": "jlpt"
-          },
-          {
             "s": "こと",
             "b": "こと",
             "k": "known",
@@ -724,22 +633,33 @@
             "gs": "jlpt"
           },
           {
-            "s": "は",
+            "s": "を",
             "k": "plain"
           },
           {
-            "s": "あり",
-            "b": "ある",
+            "s": "すれ",
+            "b": "する",
             "k": "known",
-            "g": "to be, to have",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
             "gs": "jlpt"
           },
           {
-            "s": "ます",
+            "s": "ば",
             "k": "plain"
           },
           {
-            "s": "」",
+            "s": "いい",
+            "b": "いい",
+            "k": "known",
+            "g": "good",
+            "gs": "jlpt"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
             "k": "plain"
           }
         ]
@@ -747,27 +667,11 @@
       {
         "tokens": [
           {
-            "s": "「",
-            "k": "plain"
-          },
-          {
-            "s": "あなた",
-            "k": "plain"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "良い",
-            "r": "よい",
-            "b": "良い",
+            "s": "強い",
+            "r": "つよい",
+            "b": "強い",
             "k": "known",
-            "g": "good, nice",
+            "g": "strong, powerful",
             "gs": "jlpt"
           },
           {
@@ -783,10 +687,44 @@
             "k": "plain"
           },
           {
-            "s": "あり",
+            "s": "あれ",
             "b": "ある",
             "k": "known",
             "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ば",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "いい",
+            "b": "いい",
+            "k": "known",
+            "g": "good",
+            "gs": "jlpt"
+          },
+          {
+            "s": "人",
+            "r": "ひと",
+            "b": "人",
+            "k": "known",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "なれ",
+            "b": "なれる",
+            "k": "known",
+            "g": "to grow accustomed to",
             "gs": "jlpt"
           },
           {
@@ -794,7 +732,7 @@
             "k": "plain"
           },
           {
-            "s": "」",
+            "s": "。",
             "k": "plain"
           }
         ]
@@ -802,9 +740,58 @@
       {
         "tokens": [
           {
-            "s": "「",
+            "s": "囘龍",
+            "hk": true,
+            "r": "かいりゅう",
+            "b": "囘龍",
+            "k": "story",
+            "g": "Kairyu, the warrior's monk name"
+          },
+          {
+            "s": "はい",
             "k": "plain"
           },
+          {
+            "s": "いう",
+            "b": "いう",
+            "k": "known",
+            "g": "to say",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ん",
+            "b": "ん",
+            "k": "ghost",
+            "g": "luck",
+            "gs": "model"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "よび",
+            "b": "よぶ",
+            "k": "known",
+            "g": "to call (one's name); to invite",
+            "gs": "jlpt"
+          },
+          {
+            "s": "たい",
+            "k": "plain"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
           {
             "s": "今夜",
             "r": "こんや",
@@ -818,22 +805,17 @@
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "あなた",
-            "k": "plain"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "ため",
-            "b": "ため",
+            "s": "かみ",
+            "b": "かむ",
             "k": "known",
-            "g": "good, advantage, in order to",
+            "g": "to bite, to chew",
+            "gs": "jlpt"
+          },
+          {
+            "s": "さま",
+            "b": "さま",
+            "k": "known",
+            "g": "Mr., Mrs., Ms.",
             "gs": "jlpt"
           },
           {
@@ -841,11 +823,81 @@
             "k": "plain"
           },
           {
-            "s": "祈り",
-            "r": "いのり",
-            "b": "祈る",
+            "s": "ねがい",
+            "b": "ねがう",
+            "k": "ghost",
+            "g": "to desire, to wish, to request",
+            "gs": "jlpt"
+          },
+          {
+            "s": "たい",
+            "k": "plain"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "そう",
+            "b": "そう",
             "k": "known",
-            "g": "to pray; to wish",
+            "g": "yes; appears, to be the case",
+            "gs": "jlpt"
+          },
+          {
+            "s": "すれ",
+            "b": "する",
+            "k": "known",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ば",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "悪い",
+            "r": "わるい",
+            "b": "悪い",
+            "k": "known",
+            "g": "bad, sinful; inferior",
+            "gs": "jlpt"
+          },
+          {
+            "s": "こと",
+            "b": "こと",
+            "k": "known",
+            "g": "thing(s), matter(s), fact",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "なく",
+            "b": "ない",
+            "k": "known",
+            "g": "there isn't, doesn't have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "せ",
+            "b": "する",
+            "k": "known",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
             "gs": "jlpt"
           },
           {
@@ -853,7 +905,7 @@
             "k": "plain"
           },
           {
-            "s": "」",
+            "s": "。",
             "k": "plain"
           }
         ]
@@ -878,42 +930,30 @@
             "k": "plain"
           },
           {
-            "s": "昔",
-            "r": "むかし",
-            "b": "昔",
+            "s": "まえ",
+            "b": "まう",
             "k": "known",
-            "g": "old days; past",
+            "g": "to dance, to flutter about, to revolve",
             "gs": "jlpt"
           },
           {
-            "s": "、",
+            "s": "に",
             "k": "plain"
           },
           {
-            "s": "どうして",
-            "b": "どうして",
-            "k": "known",
-            "g": "why, for what reason",
-            "gs": "jlpt"
-          },
-          {
-            "s": "家",
-            "r": "いえ",
-            "b": "家",
-            "k": "known",
-            "g": "house, home",
-            "gs": "jlpt"
+            "s": "何",
+            "r": "なに",
+            "k": "plain"
           },
           {
             "s": "を",
             "k": "plain"
           },
           {
-            "s": "壊し",
-            "r": "こわし",
-            "b": "壊す",
+            "s": "し",
+            "b": "する",
             "k": "known",
-            "g": "to break, to break down",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
             "gs": "jlpt"
           },
           {
@@ -946,6 +986,10 @@
               "gs": "jlpt"
             },
             {
+              "s": "を",
+              "k": "plain"
+            },
+            {
               "s": "し",
               "b": "する",
               "k": "known",
@@ -953,7 +997,7 @@
               "gs": "jlpt"
             },
             {
-              "s": "なかっ",
+              "s": "まし",
               "k": "plain"
             },
             {
@@ -961,7 +1005,7 @@
               "k": "plain"
             },
             {
-              "s": "から",
+              "s": "。",
               "k": "plain"
             }
           ]
@@ -969,30 +1013,41 @@
         {
           "tokens": [
             {
-              "s": "お金",
-              "r": "おかね",
-              "b": "お金",
+              "s": "悪い",
+              "r": "わるい",
+              "b": "悪い",
               "k": "known",
-              "g": "money",
+              "g": "bad, sinful; inferior",
               "gs": "jlpt"
             },
             {
-              "s": "が",
+              "s": "こと",
+              "b": "こと",
+              "k": "known",
+              "g": "thing(s), matter(s), fact",
+              "gs": "jlpt"
+            },
+            {
+              "s": "を",
               "k": "plain"
             },
             {
-              "s": "なかっ",
-              "b": "ない",
+              "s": "し",
+              "b": "する",
               "k": "known",
-              "g": "there isn't, doesn't have",
+              "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
               "gs": "jlpt"
+            },
+            {
+              "s": "まし",
+              "k": "plain"
             },
             {
               "s": "た",
               "k": "plain"
             },
             {
-              "s": "から",
+              "s": "。",
               "k": "plain"
             }
           ]
@@ -1000,42 +1055,32 @@
         {
           "tokens": [
             {
-              "s": "お",
-              "k": "plain"
-            },
-            {
-              "s": "さけ",
-              "b": "さけ",
-              "k": "ghost",
-              "g": "alcohol, sake",
-              "gs": "jlpt"
-            },
-            {
-              "s": "や",
-              "k": "plain"
-            },
-            {
-              "s": "遊び",
-              "r": "あそび",
-              "b": "遊び",
+              "s": "いい",
+              "b": "いい",
               "k": "known",
-              "g": "play",
+              "g": "good",
               "gs": "jlpt"
             },
             {
-              "s": "が",
+              "s": "こと",
+              "b": "こと",
+              "k": "known",
+              "g": "thing(s), matter(s), fact",
+              "gs": "jlpt"
+            },
+            {
+              "s": "を",
               "k": "plain"
             },
             {
-              "s": "好き",
-              "r": "すき",
-              "b": "好き",
+              "s": "し",
+              "b": "する",
               "k": "known",
-              "g": "liking, fondness, love",
+              "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
               "gs": "jlpt"
             },
             {
-              "s": "だっ",
+              "s": "まし",
               "k": "plain"
             },
             {
@@ -1043,32 +1088,35 @@
               "k": "plain"
             },
             {
-              "s": "から",
+              "s": "。",
               "k": "plain"
             }
           ]
         }
       ],
-      "answer": 2
+      "answer": 1
     },
     "metrics": {
-      "firstCoverage": 0.8653846153846154,
-      "finalCoverage": 0.9622641509433962,
-      "retries": 1,
-      "seconds": 12.364015400000033,
+      "kanjiCoverage": 0.84,
+      "kanjiDensity": 0.10504201680672269,
+      "firstCoverage": 0.8923076923076924,
+      "finalCoverage": 0.9661016949152542,
+      "retries": 3,
+      "seconds": 20.52036190000002,
       "offendingFirst": [
         "身分",
-        "酒",
-        "せる",
-        "反省",
+        "多く",
+        "戻す",
         "不幸",
         "助ける",
-        "償う"
+        "運",
+        "お祈り"
       ],
       "ghostWords": [
-        "さけ",
-        "たすける"
+        "ん",
+        "ねがう"
       ]
     }
-  }
+  },
+  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
 }

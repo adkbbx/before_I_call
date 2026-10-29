@@ -4,34 +4,45 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. You are retelling a Japanese ghost story (kaidan) aloud to a foreign friend who is learning Japanese at JLPT N5.\nRetell the scene in simple, natural storytelling Japanese. Use です/ます and polite past forms (～ました).\nRules:\n1. Use only words a JLPT N5 learner knows. If an idea needs a harder word, say it with easier words instead.\n2. Every sentence is at most 25 characters.\n3. Keep every event of the scene, in the same order. Do not add events, people, names, feelings or explanations that are not in the scene.\n4. You may use these story words exactly as written: 貉（むじな）、濠（ほり）、蕎麦屋（そばや）、紀伊国坂（きいのくにざか）、紀国坂（きのくにざか）. Copy every story word exactly in kanji, not in kana.\n5. Write normal Japanese with no spaces between words. Use kanji for words a N5 learner reads in kanji and for every story word; write other words in hiragana. The reader shows furigana, so do not avoid kanji the learner knows. Write numbers as 三十年 or 30年, never as kana.\n6. Then write one question in Japanese at the same level about what happens in this scene, with three short answer options. Exactly one option is correct.\nReturn only JSON: {\"sentences\": [\"...\"], \"question\": {\"prompt\": \"...\", \"options\": [\"...\", \"...\", \"...\"], \"answer\": 0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N5.\nPicture-book style. Use です/ます and ました/ませんでした only, with ～て, ～たい, ～から and ～が (but). One idea per sentence. Replace personal names with roles (おさむらい, おぼうさん, おじいさん, わかい男), except the one main character listed as a story word.\nUse only vocabulary at or below N5. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 20 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 貉（むじな）、濠（ほり）、蕎麦屋（そばや）、紀伊国坂（きいのくにざか）. Copy every story word exactly in kanji when it is needed; do not insert unused words.\nWrite normal Japanese with no spaces between words. Outside story words, use ONLY these kanji: 一二九七人入八十三上下大女山川土千子小中五六円天日月木水火出右四左本白万今午友父北半外母休先名年気百男見車毎行西何来学金雨国東長前南後食校時高間話電聞語読生書. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: ある夜、お店の人が紀国坂を歩きました。濠のとなりに女がいました。女はたくさん泣いていました。お店の人は「どうしたか」と思いました。女はとてもきれいな服を着ていました。お店の人が「どうしましたか」と言いました。「手伝います。泣かないでください」でも、女は泣いていました。女は服で顔が見えなくしました。お店の人はまたやさしく言いました。「ここは危ないところです。教えてください」女がゆっくり立ちました。女は後ろにいました。お店の人が女の肩に手を置きました。「聞いてください」と言いました。すると、女が前をみました。女は服の手を下にしました。顔を見ました。目も鼻も口もありませんでした。お店の人は、速く走りました。\n\n場面（原文）:\n一目散に紀国坂をかけ登った。自分の前はすべて真暗で何もない空虚であった。振り返ってみる勇気もなくて、ただひた走りに走りつづけた挙句、ようよう遥か遠くに、蛍火の光っているように見える提灯を見つけて、その方に向って行った。それは道側に屋台を下していた売り歩く蕎麦屋の提灯に過ぎない事が解った。しかしどんな明かりでも、どんな人間の仲間でも、以上のような事に遇った後には、結構であった。商人は蕎麦売りの足下に身を投げ倒して声をあげた『ああ！――ああ‼――ああ！！！』……\n『これ！　これ！』と蕎麦屋はあらあらしく叫んだ『これ、どうしたんだ？　誰れかにやられたのか？』"
+        "content": "前の場面（やさしく語り直したもの）: わかい男がいました。よるに紀伊国坂にきました。そこに女がいました。女は濠のそばにいました。女はないていました。男はとてもふしぎでした。男は女にはなしました。「どうしましたか。なにかしたいです。」女はないていました。女はかおをみせませんでした。男はまたいいいました。「なかないでください。なにかしたいです。」女がたちました。女は男にせなかをみせました。男は女のかたにてをおきました。「きいてください。」女がまえをみました。女はかおをみせました。めがないです。はなもないです。くちもありません。男はとてもおそれました。男ははしりました。\n\n場面（原文）:\n一目散に紀国坂をかけ登った。自分の前はすべて真暗で何もない空虚であった。振り返ってみる勇気もなくて、ただひた走りに走りつづけた挙句、ようよう遥か遠くに、蛍火の光っているように見える提灯を見つけて、その方に向って行った。それは道側に屋台を下していた売り歩く蕎麦屋の提灯に過ぎない事が解った。しかしどんな明かりでも、どんな人間の仲間でも、以上のような事に遇った後には、結構であった。商人は蕎麦売りの足下に身を投げ倒して声をあげた『ああ！――ああ‼――ああ！！！』……\n『これ！　これ！』と蕎麦屋はあらあらしく叫んだ『これ、どうしたんだ？　誰れかにやられたのか？』"
       }
     ]
   },
   "responses": [
-    "{\"sentences\": [\"お店の人は紀国坂を走りました。\", \"前はとても暗かったです。\", \"後ろをみませんでした。\", \"ずっと走りました。\", \"遠くに小さな光がありました。\", \"それは蕎麦屋の提灯でした。\", \"お店の人はうれしかったです。\", \"蕎麦屋の人の前で泣きました。\", \"「ああ！ああ！」と言いました。\", \"蕎麦屋の人は驚きました。\", \"「どうしましたか」と言いました。\"], \"question\": {\"prompt\": \"お店の人は、だれを見つけましたか。\", \"options\": [\"女の人\", \"蕎麦屋の人\", \"友達\"], \"answer\": 1}}",
-    "{\"rewrites\": [{\"index\": 3, \"sentence\": \"たくさん走りました。\"}, {\"index\": 4, \"sentence\": \"あそこに、あかるいところがありました。\"}, {\"index\": 5, \"sentence\": \"それは蕎麦屋のあかりでした。\"}, {\"index\": 6, \"sentence\": \"お店の人はいいと思いました。\"}, {\"index\": 7, \"sentence\": \"蕎麦屋の人の前で、大きな声をだしました。\"}, {\"index\": 9, \"sentence\": \"蕎麦屋の人は「えっ」と言いました。\"}]}",
-    "{\"question\": {\"prompt\": \"お店の人は、だれに会いましたか。\", \"options\": [\"蕎麦屋の人\", \"女の人\", \"友達\"], \"answer\": 0}}"
+    "{\"sentences([\": \",\"}",
+    "{\"sentences\": [\"男は紀伊国坂をはしりました。\", \"まえはとてもくらかったです。\", \"男はうしろをみませんでした。\", \"ずっとはしりました。\", \"とおくにひかりがありました。\", \"それは蕎麦屋でした。\", \"男はとてもうれしかったです。\", \"男は蕎麦屋のまえにたおれました。\", \"男はさけびました。\", \"「ああ！ああ！」\", \"蕎麦屋はおどろきました。\", \"「どうしましたか。\", \"だれかにやられましたか。」\"], \"question\": {\"prompt\": \"男はどこにきましたか。\", \"options\": [\"山\", \"蕎麦屋\", \"川\"], \"answer\": 1}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"男は紀伊国坂をはしりました。\"}, {\"index\": 2, \"sentence\": \"男はうしろをみませんでした。\"}, {\"index\": 3, \"sentence\": \"たくさんはしりました。\"}, {\"index\": 4, \"sentence\": \"とおくにひかりがありました。\"}, {\"index\": 5, \"sentence\": \"それは蕎麦屋でした。\"}, {\"index\": 6, \"sentence\": \"男はとてもよかったです。\"}, {\"index\": 7, \"sentence\": \"男は蕎麦屋のまえにねました。\"}, {\"index\": 8, \"sentence\": \"男はこえをだしました。\"}, {\"index\": 10, \"sentence\": \"蕎麦屋はびっくりしました。\"}, {\"index\": 12, \"sentence\": \"だれかがきましたか。」\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"男は紀伊国坂をはしりました。\"}, {\"index\": 2, \"sentence\": \"男はうしろをみませんでした。\"}, {\"index\": 4, \"sentence\": \"あそこにひかりがありました。\"}, {\"index\": 5, \"sentence\": \"それは蕎麦屋でした。\"}, {\"index\": 7, \"sentence\": \"男は蕎麦屋のまえにねました。\"}, {\"index\": 10, \"sentence\": \"蕎麦屋はふしぎでした。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"男は紀伊国坂をはしりました。\"}, {\"index\": 2, \"sentence\": \"男はうしろをみませんでした。\"}, {\"index\": 5, \"sentence\": \"それは蕎麦屋でした。\"}, {\"index\": 7, \"sentence\": \"男は蕎麦屋のまえにねました。\"}, {\"index\": 10, \"sentence\": \"蕎麦屋はいいました。\"}]}",
+    "{\"question\": {\"prompt\": \"男はどこにきましたか。\", \"options\": [\"山\", \"そばや\", \"川\"], \"answer\": 1}}",
+    "{\"glosses\": {\"ろ\": \"character for 'ro'\"}}"
   ],
   "metrics": {
-    "firstCoverage": 0.7307692307692307,
-    "finalCoverage": 1,
-    "retries": 1,
-    "seconds": 11.505704899999998,
+    "kanjiCoverage": 0.3333333333333333,
+    "kanjiDensity": 0.11842105263157894,
+    "firstCoverage": 0.6538461538461539,
+    "finalCoverage": 0.92,
+    "retries": 3,
+    "seconds": 23.018835000000006,
     "offendingFirst": [
+      "うし",
+      "ろ",
       "ずっと",
-      "遠く",
-      "光",
-      "提灯",
+      "とおく",
       "うれしい",
-      "泣く",
-      "驚く"
+      "たおれる",
+      "さけぶ",
+      "おどろく",
+      "れる"
     ],
-    "ghostWords": []
+    "ghostWords": [
+      "うし",
+      "ろ"
+    ]
   },
   "retelling": {
     "level": "N5",
@@ -41,27 +52,11 @@
       {
         "tokens": [
           {
-            "s": "お",
-            "k": "plain"
-          },
-          {
-            "s": "店",
-            "r": "みせ",
-            "b": "店",
+            "s": "男",
+            "r": "おとこ",
+            "b": "男",
             "k": "known",
-            "g": "store, shop",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
+            "g": "man, male",
             "gs": "jlpt"
           },
           {
@@ -69,20 +64,20 @@
             "k": "plain"
           },
           {
-            "s": "紀国坂",
-            "r": "きのくにざか",
-            "b": "紀国坂",
+            "s": "紀伊国坂",
+            "hk": true,
+            "r": "きいのくにざか",
+            "b": "紀伊国坂",
             "k": "story",
-            "g": "the source spelling of the hill name"
+            "g": "the hill named for Kii province"
           },
           {
             "s": "を",
             "k": "plain"
           },
           {
-            "s": "走り",
-            "r": "はしり",
-            "b": "走る",
+            "s": "はしり",
+            "b": "はしる",
             "k": "known",
             "g": "to run",
             "gs": "jlpt"
@@ -104,9 +99,8 @@
       {
         "tokens": [
           {
-            "s": "前",
-            "r": "まえ",
-            "b": "前",
+            "s": "まえ",
+            "b": "まえる",
             "k": "known",
             "g": "before, in front",
             "gs": "jlpt"
@@ -123,9 +117,8 @@
             "gs": "jlpt"
           },
           {
-            "s": "暗かっ",
-            "r": "くらかっ",
-            "b": "暗い",
+            "s": "くらかっ",
+            "b": "くらい",
             "k": "known",
             "g": "dark, gloomy",
             "gs": "jlpt"
@@ -147,12 +140,30 @@
       {
         "tokens": [
           {
-            "s": "後ろ",
-            "r": "うしろ",
-            "b": "後ろ",
+            "s": "男",
+            "r": "おとこ",
+            "b": "男",
             "k": "known",
-            "g": "back, behind, rear",
+            "g": "man, male",
             "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "うし",
+            "b": "うし",
+            "k": "ghost",
+            "g": "cattle, cow",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ろ",
+            "b": "ろ",
+            "k": "ghost",
+            "g": "character for 'ro'",
+            "gs": "model"
           },
           {
             "s": "を",
@@ -197,9 +208,8 @@
             "gs": "jlpt"
           },
           {
-            "s": "走り",
-            "r": "はしり",
-            "b": "走る",
+            "s": "はしり",
+            "b": "はしる",
             "k": "known",
             "g": "to run",
             "gs": "jlpt"
@@ -229,22 +239,8 @@
             "k": "plain"
           },
           {
-            "s": "、",
+            "s": "ひかり",
             "k": "plain"
-          },
-          {
-            "s": "あかるい",
-            "b": "あかるい",
-            "k": "known",
-            "g": "bright (in reference to personality or weather); cheerful",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ところ",
-            "b": "ところ",
-            "k": "known",
-            "g": "place",
-            "gs": "jlpt"
           },
           {
             "s": "が",
@@ -283,18 +279,11 @@
           },
           {
             "s": "蕎麦屋",
+            "hk": true,
             "r": "そばや",
             "b": "蕎麦屋",
             "k": "story",
             "g": "a soba noodle seller"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "あかり",
-            "k": "plain"
           },
           {
             "s": "でし",
@@ -313,27 +302,11 @@
       {
         "tokens": [
           {
-            "s": "お",
-            "k": "plain"
-          },
-          {
-            "s": "店",
-            "r": "みせ",
-            "b": "店",
+            "s": "男",
+            "r": "おとこ",
+            "b": "男",
             "k": "known",
-            "g": "store, shop",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
+            "g": "man, male",
             "gs": "jlpt"
           },
           {
@@ -341,22 +314,75 @@
             "k": "plain"
           },
           {
-            "s": "いい",
-            "b": "いい",
+            "s": "とても",
+            "b": "とても",
+            "k": "known",
+            "g": "very (much), greatly, exceedingly",
+            "gs": "jlpt"
+          },
+          {
+            "s": "よかっ",
+            "b": "よい",
             "k": "known",
             "g": "good",
             "gs": "jlpt"
           },
           {
-            "s": "と",
+            "s": "た",
             "k": "plain"
           },
           {
-            "s": "思い",
-            "r": "おもい",
-            "b": "思う",
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "男",
+            "r": "おとこ",
+            "b": "男",
             "k": "known",
-            "g": "to think, to feel",
+            "g": "man, male",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "蕎麦屋",
+            "hk": true,
+            "r": "そばや",
+            "b": "蕎麦屋",
+            "k": "story",
+            "g": "a soba noodle seller"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "まえ",
+            "b": "まえる",
+            "k": "known",
+            "g": "before, in front",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "ね",
+            "b": "ねる",
+            "k": "known",
+            "g": "to sleep; to go to sleep; to go to bed",
             "gs": "jlpt"
           },
           {
@@ -376,55 +402,22 @@
       {
         "tokens": [
           {
-            "s": "蕎麦屋",
-            "r": "そばや",
-            "b": "蕎麦屋",
-            "k": "story",
-            "g": "a soba noodle seller"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
+            "s": "男",
+            "r": "おとこ",
+            "b": "男",
             "k": "known",
-            "g": "counter for people",
+            "g": "man, male",
             "gs": "jlpt"
           },
           {
-            "s": "の",
+            "s": "は",
             "k": "plain"
           },
           {
-            "s": "前",
-            "r": "まえ",
-            "b": "前",
+            "s": "こえ",
+            "b": "こえる",
             "k": "known",
-            "g": "before, in front",
-            "gs": "jlpt"
-          },
-          {
-            "s": "で",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "大きな",
-            "r": "おおきな",
-            "k": "plain"
-          },
-          {
-            "s": "声",
-            "r": "こえ",
-            "b": "声",
-            "k": "known",
-            "g": "voice",
+            "g": "to exceed, to cross over, to cross",
             "gs": "jlpt"
           },
           {
@@ -477,30 +470,6 @@
           {
             "s": "」",
             "k": "plain"
-          },
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "言い",
-            "r": "いい",
-            "b": "言う",
-            "k": "known",
-            "g": "to say",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
           }
         ]
       },
@@ -508,47 +477,19 @@
         "tokens": [
           {
             "s": "蕎麦屋",
+            "hk": true,
             "r": "そばや",
             "b": "蕎麦屋",
             "k": "story",
             "g": "a soba noodle seller"
           },
           {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
-            "gs": "jlpt"
-          },
-          {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "「",
-            "k": "plain"
-          },
-          {
-            "s": "えっ",
-            "k": "plain"
-          },
-          {
-            "s": "」",
-            "k": "plain"
-          },
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "言い",
-            "r": "いい",
-            "b": "言う",
+            "s": "いい",
+            "b": "いう",
             "k": "known",
             "g": "to say",
             "gs": "jlpt"
@@ -600,19 +541,30 @@
             "k": "plain"
           },
           {
-            "s": "」",
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "だれ",
             "k": "plain"
           },
           {
-            "s": "と",
+            "s": "か",
             "k": "plain"
           },
           {
-            "s": "言い",
-            "r": "いい",
-            "b": "言う",
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "き",
+            "b": "くる",
             "k": "known",
-            "g": "to say",
+            "g": "to come",
             "gs": "jlpt"
           },
           {
@@ -624,7 +576,15 @@
             "k": "plain"
           },
           {
+            "s": "か",
+            "k": "plain"
+          },
+          {
             "s": "。",
+            "k": "plain"
+          },
+          {
+            "s": "」",
             "k": "plain"
           }
         ]
@@ -634,27 +594,11 @@
       "prompt": {
         "tokens": [
           {
-            "s": "お",
-            "k": "plain"
-          },
-          {
-            "s": "店",
-            "r": "みせ",
-            "b": "店",
+            "s": "男",
+            "r": "おとこ",
+            "b": "男",
             "k": "known",
-            "g": "store, shop",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
+            "g": "man, male",
             "gs": "jlpt"
           },
           {
@@ -662,11 +606,7 @@
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "だれ",
+            "s": "どこ",
             "k": "plain"
           },
           {
@@ -674,11 +614,10 @@
             "k": "plain"
           },
           {
-            "s": "会い",
-            "r": "あい",
-            "b": "会う",
+            "s": "き",
+            "b": "くる",
             "k": "known",
-            "g": "to meet, to see",
+            "g": "to come",
             "gs": "jlpt"
           },
           {
@@ -703,46 +642,22 @@
         {
           "tokens": [
             {
-              "s": "女",
-              "r": "おんな",
-              "b": "女",
-              "k": "known",
-              "g": "woman, female",
-              "gs": "jlpt"
-            },
-            {
-              "s": "の",
-              "k": "plain"
-            },
-            {
-              "s": "人",
-              "r": "ひと",
-              "b": "人",
-              "k": "known",
-              "g": "counter for people",
-              "gs": "jlpt"
-            }
-          ]
-        },
-        {
-          "tokens": [
-            {
-              "s": "蕎麦屋",
+              "s": "そばや",
               "r": "そばや",
               "b": "蕎麦屋",
               "k": "story",
               "g": "a soba noodle seller"
-            },
+            }
+          ]
+        },
+        {
+          "tokens": [
             {
-              "s": "の",
-              "k": "plain"
-            },
-            {
-              "s": "人",
-              "r": "ひと",
-              "b": "人",
+              "s": "山",
+              "r": "やま",
+              "b": "山",
               "k": "known",
-              "g": "counter for people",
+              "g": "mountain",
               "gs": "jlpt"
             }
           ]
@@ -750,33 +665,41 @@
         {
           "tokens": [
             {
-              "s": "友達",
-              "r": "ともだち",
-              "b": "友達",
+              "s": "川",
+              "r": "かわ",
+              "b": "川",
               "k": "known",
-              "g": "friend",
+              "g": "river",
               "gs": "jlpt"
             }
           ]
         }
       ],
-      "answer": 1
+      "answer": 0
     },
     "metrics": {
-      "firstCoverage": 0.7307692307692307,
-      "finalCoverage": 1,
-      "retries": 1,
-      "seconds": 11.505704899999998,
+      "kanjiCoverage": 0.3333333333333333,
+      "kanjiDensity": 0.11842105263157894,
+      "firstCoverage": 0.6538461538461539,
+      "finalCoverage": 0.92,
+      "retries": 3,
+      "seconds": 23.018835000000006,
       "offendingFirst": [
+        "うし",
+        "ろ",
         "ずっと",
-        "遠く",
-        "光",
-        "提灯",
+        "とおく",
         "うれしい",
-        "泣く",
-        "驚く"
+        "たおれる",
+        "さけぶ",
+        "おどろく",
+        "れる"
       ],
-      "ghostWords": []
+      "ghostWords": [
+        "うし",
+        "ろ"
+      ]
     }
-  }
+  },
+  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
 }

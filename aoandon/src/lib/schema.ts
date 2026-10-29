@@ -11,6 +11,7 @@ export const rubySchema = z.object({ base: z.string().min(1), rt: z.string().min
 /** A pre-tokenised word: surface, reading (hiragana), base form, kind, gloss and gloss source. */
 export const tokenSchema = z.object({
   s: z.string().min(1),
+  hk: z.literal(true).optional(),
   r: z.string().min(1).optional(),
   b: z.string().min(1).optional(),
   k: z.enum(['known', 'story', 'ghost', 'plain']),
@@ -27,6 +28,8 @@ export const questionSchema = z.object({
 });
 
 export const metricsSchema = z.object({
+  kanjiCoverage: z.number().min(0).max(1).optional(),
+  kanjiDensity: z.number().min(0).max(1).optional(),
   firstCoverage: z.number().min(0).max(1),
   finalCoverage: z.number().min(0).max(1),
   retries: z.number().int().min(0),

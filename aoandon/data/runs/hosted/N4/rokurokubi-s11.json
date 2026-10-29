@@ -4,43 +4,55 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. You are retelling a Japanese ghost story (kaidan) aloud to a foreign friend who is learning Japanese at JLPT N4.\nRetell the scene in simple, natural storytelling Japanese. Use です/ます and polite past forms (～ました).\nRules:\n1. Use only words a JLPT N4 learner knows. If an idea needs a harder word, say it with easier words instead.\n2. Every sentence is at most 35 characters.\n3. Keep every event of the scene, in the same order. Do not add events, people, names, feelings or explanations that are not in the scene.\n4. You may use these story words exactly as written: 武連（たけつら）、囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Copy every story word exactly in kanji, not in kana.\n5. Write normal Japanese with no spaces between words. Use kanji for words a N4 learner reads in kanji and for every story word; write other words in hiragana. The reader shows furigana, so do not avoid kanji the learner knows. Write numbers as 三十年 or 30年, never as kana.\n6. Then write one question in Japanese at the same level about what happens in this scene, with three short answer options. Exactly one option is correct.\nReturn only JSON: {\"sentences\": [\"...\"], \"question\": {\"prompt\": \"...\", \"options\": [\"...\", \"...\", \"...\"], \"answer\": 0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Adds ～とき, ～たら, ～ている, ～と思います, potential forms and ～ても. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Use them only when needed, in hiragana when their kanji is above the level. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: 若い女の首が、すぐに家へ飛びました。数分後、首は戻ってきました。首はとても驚いて、大きな声をだしました。「僧はいません。行ってしまいました。」「もっとひどいことがあります。」「あの人の体を持って行きました。」「どこにあるか分かりません。」あの人の首は、とても怖い顔になりました。目は大きく開き、髪が立ちました。あの人は怒って、泣きながら大きな声をだしました。「体があった場所が変わったので、もう死にます。」「あの僧のせいです。死ぬ前に、あの方を食べてやります。」「あそこにいます。木のうしろにいます。」「あの太った、弱い人です。」\n\n場面（原文）:\n同時に主人の首は他の四つの首を随えて、囘龍に飛びかかった。しかし強い僧は手ごろの若木を引きぬいて武器とし、それを打ちふって首をなぐりつけ、恐ろしい力でなぎたててよせつけなかった。四つの首は逃げ去った。しかし、主人の首だけは、いかに乱打されても、必死となって僧に飛びついて、最後に衣の左の袖に喰いついた。しかし囘龍の方でも素早くまげをつかんでその首を散々になぐった。どうしても袖からは離れなかったが、しかし長い呻きをあげて、それからもがくことを止めた。死んだのであった。しかしその歯はやはり袖に喰いついていた。そして囘龍のありたけの力をもってしても、その顎を開かせる事はできなかった。\n彼はその袖に首をつけたままで、家へ戻った。そこには、傷だらけ、血だらけの頭が胴に帰って、四人のろくろ首が坐っているのを見た。裏の戸口に僧を認めて一同は『僧が来た、僧が』と叫んで反対の戸口から森の方へ逃げ出した。"
+        "content": "前の場面（やさしく語り直したもの）: わかい女のくびがありました。そのくびはいえへときました。すこしあとにもどってきました。くびは大きなこえでいいました。あのそうはもういません。からだももっていきました。どこへいったかわかりません。しゅじんのくびはこわいかおでした。めを大きくあけました。なみだをだしていいました。からだがうごいたらもうだめです。しぬしかありません。ぜんぶあのそうがしたことです。しぬまえにあの人をたべたいです。あそこにいます。あのきのうしろにいます。あの方はこわがりものです。\n\n場面（原文）:\n同時に主人の首は他の四つの首を随えて、囘龍に飛びかかった。しかし強い僧は手ごろの若木を引きぬいて武器とし、それを打ちふって首をなぐりつけ、恐ろしい力でなぎたててよせつけなかった。四つの首は逃げ去った。しかし、主人の首だけは、いかに乱打されても、必死となって僧に飛びついて、最後に衣の左の袖に喰いついた。しかし囘龍の方でも素早くまげをつかんでその首を散々になぐった。どうしても袖からは離れなかったが、しかし長い呻きをあげて、それからもがくことを止めた。死んだのであった。しかしその歯はやはり袖に喰いついていた。そして囘龍のありたけの力をもってしても、その顎を開かせる事はできなかった。\n彼はその袖に首をつけたままで、家へ戻った。そこには、傷だらけ、血だらけの頭が胴に帰って、四人のろくろ首が坐っているのを見た。裏の戸口に僧を認めて一同は『僧が来た、僧が』と叫んで反対の戸口から森の方へ逃げ出した。"
       }
     ]
   },
   "responses": [
-    "{\"sentences\": [\"主人の首は、四つの首と一緒に囘龍に飛びかかりました。\", \"強い僧は木をぬいて、それを武器にしました。\", \"僧は首をなぐって、近づかせませんでした。\", \"四つの首は逃げました。\", \"でも主人の首だけは、必死に僧に飛びつきました。\", \"最後に、僧の服の袖にかみました。\", \"囘龍は首をたくさんなぐりました。\", \"でも首は、袖から離れませんでした。\", \"首は長い声をだして、死にました。\", \"でも、まだ袖にかみついていました。\", \"囘龍は力を出しましたが、口を開かせませんでした。\", \"僧は、袖に首をつけたまま家へ戻りました。\", \"家には、血だらけの頭と体がありました。\", \"四人のろくろ首がそこに座っていました。\", \"彼らは僧を見て、「僧が来た」と叫びました。\", \"そして、森の方へ逃げました。\"], \"question\": {\"prompt\": \"主人の首はどうなりましたか。\", \"options\": [\"森へ逃げました。\", \"僧の袖にかんで、死にました。\", \"四つの首と一緒に逃げました。\"], \"answer\": 1}}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"あの人の首は、四つの首と一緒に囘龍へ行きました。\"}, {\"index\": 1, \"sentence\": \"強い僧は木をひっぱって、それで戦いました。\"}, {\"index\": 2, \"sentence\": \"僧は首をたたいて、来させませんでした。\"}, {\"index\": 4, \"sentence\": \"でもあの人の首だけは、一生懸命に僧に行きました。\"}, {\"index\": 5, \"sentence\": \"最後に、僧の服の端にかみました。\"}, {\"index\": 6, \"sentence\": \"囘龍は首をたくさんたたきました。\"}, {\"index\": 7, \"sentence\": \"でも首は、服から出ませんでした。\"}, {\"index\": 9, \"sentence\": \"でも、まだ服にかんでいました。\"}, {\"index\": 10, \"sentence\": \"囘龍は力を出しましたが、口は開きませんでした。\"}, {\"index\": 11, \"sentence\": \"僧は、服に首をつけたまま家へ戻りました。\"}, {\"index\": 12, \"sentence\": \"家には、血がたくさんある頭と体がありました。\"}, {\"index\": 14, \"sentence\": \"彼らは僧を見て、「僧が来た」と大きな声をだしました。\"}]}",
-    "{\"rewrites\": [{\"index\": 1, \"sentence\": \"強い僧は木をだして、それで攻撃しました。\"}, {\"index\": 2, \"sentence\": \"僧は首を打って、近くに来ませんでした。\"}, {\"index\": 5, \"sentence\": \"最後に、僧の服のところにかみました。\"}, {\"index\": 6, \"sentence\": \"囘龍は首をたくさん打ちました。\"}]}",
-    "{\"question\": {\"prompt\": \"あの人の首はどうなりましたか。\", \"options\": [\"僧の服にかんで、死にました。\", \"森へ逃げました。\", \"四つの首と一緒に逃げました。\"], \"answer\": 0}}"
+    "{\"sentences themselves\": [\"しゅじんのくびは、かいりゅうに飛びかかりました。\", \"ほかにもくびが四つありました。\", \"かいりゅうは、きをぬきました。\", \"それをぶきにして、くびをなぐりました。\", \"とてもつよいちからでした。\", \"四つのくびは、にげました。\", \"しゅじんのくびは、にげませんでした。\", \"たくさんなぐられても、かいりゅうにつきました。\", \"さいごに、そでをかみました。\", \"かいりゅうは、くびをたくさんなぐりました。\", \"でも、そでをはなしませんでした。\", \"くびは、しにました。\", \"でも、はがそでについたままでした。\", \"かいりゅうは、はをあけられませんでした。\", \"かいりゅうは、そのままでいえへもどりました。\", \"そこには、ろくろくびが四人いました。\", \"からだとあたまが、もどっていました。\", \"かいりゅうがきたとき、みんなさけびました。\", \"そして、もりへにげました。\"], \"question\": {\"prompt\": \"しゅじんのくびはどうなりましたか。\", \"options\": [\"にげました。\", \"しにました。\", \"かいりゅうをたべました。\"], \"answer\": 1}}",
+    "{\"sentences\": [\"しゅじんのくびは、かいりゅうに飛びかかりました。\", \"ほかにもくびが四つありました。\", \"かいりゅうは、きをぬきました。\", \"それをぶきにして、くびをなぐりました。\", \"とてもつよいちからでした。\", \"四つのくびは、にげました。\", \"しゅじんのくびは、にげませんでした。\", \"たくさんなぐられても、かいりゅうにつきました。\", \"さいごに、そでをかみました。\", \"かいりゅうは、くびをたくさんなぐりました。\", \"でも、そでをはなしませんでした。\", \"くびは、しにました。\", \"でも、はがそでについたままでした。\", \"かいりゅうは、はをあけられませんでした。\", \"かいりゅうは、そのままでいえへもどりました。\", \"そこには、ろくろくびが四人いました。\", \"からだとあたまが、もどっていました。\", \"かいりゅうがきたとき、みんなさけびました。\", \"そして、もりへにげました。\"], \"question\": {\"prompt\": \"しゅじんのくびはどうなりましたか。\", \"options\": [\"にげました。\", \"しにました。\", \"かいりゅうをたべました。\"], \"answer\": 1}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"しゅじんのくびは、かいりゅうにいきました。\"}, {\"index\": 1, \"sentence\": \"ほかにもくびがよっつありました。\"}, {\"index\": 2, \"sentence\": \"かいりゅうは、きをだしました。\"}, {\"index\": 3, \"sentence\": \"それをぶきにして、たたきました。\"}, {\"index\": 5, \"sentence\": \"よっつのくびは、にげました。\"}, {\"index\": 6, \"sentence\": \"しゅじんのくびは、にげませんでした。\"}, {\"index\": 7, \"sentence\": \"たたかれても、かいりゅうにつきました。\"}, {\"index\": 8, \"sentence\": \"さいごに、ふくをかみました。\"}, {\"index\": 10, \"sentence\": \"でも、ふくをはなしませんでした。\"}, {\"index\": 12, \"sentence\": \"でも、はがふくについたままでした。\"}, {\"index\": 13, \"sentence\": \"かいりゅうは、はをあけませんでした。\"}, {\"index\": 14, \"sentence\": \"かいりゅうは、いえへもどりました。\"}, {\"index\": 16, \"sentence\": \"からだとあたまが、もどりました。\"}, {\"index\": 17, \"sentence\": \"かいりゅうがきたとき、こえをだしました。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"おとこのくびは、かいりゅうにいきました。\"}, {\"index\": 1, \"sentence\": \"ほかにもくびがよっつありました。\"}, {\"index\": 3, \"sentence\": \"それをもち、たたきました。\"}, {\"index\": 5, \"sentence\": \"よっつのくびは、にげました。\"}, {\"index\": 6, \"sentence\": \"おとこのくびは、にげませんでした。\"}, {\"index\": 7, \"sentence\": \"たたかれても、かいりゅうにつきました。\"}, {\"index\": 16, \"sentence\": \"からだとあたまが、もどりました。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"おとこのくびは、かいりゅうにいきました。\"}, {\"index\": 1, \"sentence\": \"ほかにもくびがよっつありました。\"}, {\"index\": 3, \"sentence\": \"それをもち、たたきました。\"}, {\"index\": 5, \"sentence\": \"よっつのくびは、にげました。\"}, {\"index\": 6, \"sentence\": \"おとこのくびは、にげませんでした。\"}, {\"index\": 7, \"sentence\": \"たたかれても、かいりゅうにつきました。\"}, {\"index\": 16, \"sentence\": \"からだとあたまが、もどりました。\"}]}",
+    "{\"question\": {\"prompt\": \"おとこのくびはどうなりましたか。\", \"options\": [\"にげました。\", \"しにました。\", \"かいりゅうをたべました。\"], \"answer\": 1}}",
+    "{\"glosses\": {\"とこ\": \"part of man\", \"のく\": \"part of neck\", \"びは\": \"neck is\", \"びがよっつありました\": \"there were four necks\", \"れる\": \"passive voice marker\", \"びはどうなりましたか\": \"what happened to the neck?\"}}"
   ],
   "metrics": {
-    "firstCoverage": 0.726027397260274,
-    "finalCoverage": 0.9864864864864865,
-    "retries": 2,
-    "seconds": 20.734963099999995,
+    "kanjiCoverage": 1,
+    "kanjiDensity": 0.006514657980456026,
+    "firstCoverage": 0.6666666666666666,
+    "finalCoverage": 0.723404255319149,
+    "retries": 3,
+    "seconds": 37.67818940000003,
     "offendingFirst": [
-      "主人",
+      "ゅじんのくびは",
       "飛びかかる",
+      "びが",
       "ぬく",
-      "武器",
+      "ぶる",
+      "のく",
+      "びは",
       "なぐる",
-      "近づく",
-      "せる",
-      "必死",
-      "飛びつく",
-      "袖",
-      "離れる",
-      "かみつく",
-      "だらけ",
-      "叫ぶ"
+      "れる",
+      "そで",
+      "られる",
+      "そのまま",
+      "たま",
+      "さけぶ"
     ],
     "ghostWords": [
-      "攻撃"
+      "とこ",
+      "のく",
+      "びは",
+      "びがよっつありました",
+      "たたく",
+      "れる",
+      "たま",
+      "びはどうなりましたか"
     ]
   },
   "retelling": {
@@ -51,88 +63,48 @@
       {
         "tokens": [
           {
-            "s": "あの",
+            "s": "お",
             "k": "plain"
           },
           {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
-            "gs": "jlpt"
+            "s": "とこ",
+            "b": "とこ",
+            "k": "ghost",
+            "g": "part of man",
+            "gs": "model"
           },
           {
-            "s": "の",
-            "k": "plain"
+            "s": "のく",
+            "b": "のく",
+            "k": "ghost",
+            "g": "part of neck",
+            "gs": "model"
           },
           {
-            "s": "首",
-            "r": "くび",
-            "b": "首",
-            "k": "known",
-            "g": "neck",
-            "gs": "jlpt"
-          },
-          {
-            "s": "は",
-            "k": "plain"
+            "s": "びは",
+            "b": "びは",
+            "k": "ghost",
+            "g": "neck is",
+            "gs": "model"
           },
           {
             "s": "、",
             "k": "plain"
           },
           {
-            "s": "四つ",
-            "r": "よっつ",
-            "b": "四つ",
-            "k": "known",
-            "g": "four things",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "首",
-            "r": "くび",
-            "b": "首",
-            "k": "known",
-            "g": "neck",
-            "gs": "jlpt"
-          },
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "一緒",
-            "r": "いっしょ",
-            "b": "一緒",
-            "k": "known",
-            "g": "together",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "囘龍",
+            "s": "かいりゅう",
             "r": "かいりゅう",
             "b": "囘龍",
             "k": "story",
             "g": "Kairyu, the warrior's monk name"
           },
           {
-            "s": "へ",
+            "s": "に",
             "k": "plain"
           },
           {
-            "s": "行き",
-            "r": "いき",
-            "b": "行く",
+            "s": "いき",
+            "b": "いく",
             "k": "known",
             "g": "to go",
             "gs": "jlpt"
@@ -154,31 +126,62 @@
       {
         "tokens": [
           {
-            "s": "強い",
-            "r": "つよい",
-            "b": "強い",
+            "s": "ほか",
+            "b": "ほか",
             "k": "known",
-            "g": "strong, powerful",
+            "g": "other, the rest",
             "gs": "jlpt"
           },
           {
-            "s": "僧",
-            "r": "そう",
-            "b": "僧",
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "も",
+            "k": "plain"
+          },
+          {
+            "s": "く",
+            "b": "く",
             "k": "known",
-            "g": "monk, priest",
+            "g": "nine",
             "gs": "jlpt"
+          },
+          {
+            "s": "びがよっつありました",
+            "b": "びがよっつありました",
+            "k": "ghost",
+            "g": "there were four necks",
+            "gs": "model"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "かいりゅう",
+            "r": "かいりゅう",
+            "b": "囘龍",
+            "k": "story",
+            "g": "Kairyu, the warrior's monk name"
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "木",
-            "r": "き",
-            "b": "木",
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "き",
+            "b": "くる",
             "k": "known",
-            "g": "tree, wood, timber",
+            "g": "to come",
             "gs": "jlpt"
           },
           {
@@ -190,33 +193,6 @@
             "b": "だす",
             "k": "known",
             "g": "to take (something) out; to hand in (something)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "それで",
-            "k": "plain"
-          },
-          {
-            "s": "攻撃",
-            "r": "こうげき",
-            "b": "攻撃",
-            "k": "ghost",
-            "g": "attack, strike, offensive",
-            "gs": "jlpt"
-          },
-          {
-            "s": "し",
-            "b": "する",
-            "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
             "gs": "jlpt"
           },
           {
@@ -236,63 +212,171 @@
       {
         "tokens": [
           {
-            "s": "僧",
-            "r": "そう",
-            "b": "僧",
-            "k": "known",
-            "g": "monk, priest",
-            "gs": "jlpt"
-          },
-          {
-            "s": "は",
+            "s": "それ",
             "k": "plain"
-          },
-          {
-            "s": "首",
-            "r": "くび",
-            "b": "首",
-            "k": "known",
-            "g": "neck",
-            "gs": "jlpt"
           },
           {
             "s": "を",
             "k": "plain"
           },
           {
-            "s": "打っ",
-            "r": "うっ",
-            "b": "打つ",
+            "s": "もち",
+            "b": "もつ",
             "k": "known",
-            "g": "to hit, to strike",
+            "g": "to hold, to carry; to possess",
             "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
           },
           {
             "s": "、",
             "k": "plain"
           },
           {
-            "s": "近く",
-            "r": "ちかく",
-            "b": "近く",
-            "k": "known",
-            "g": "nearby; in the neighborhood",
+            "s": "たたき",
+            "b": "たたく",
+            "k": "ghost",
+            "g": "to strike, to beat",
             "gs": "jlpt"
           },
           {
-            "s": "に",
+            "s": "まし",
             "k": "plain"
           },
           {
-            "s": "来",
-            "r": "き",
-            "b": "来る",
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "とても",
+            "b": "とても",
             "k": "known",
-            "g": "to come",
+            "g": "very (much), greatly, exceedingly",
+            "gs": "jlpt"
+          },
+          {
+            "s": "つよ",
+            "k": "plain"
+          },
+          {
+            "s": "いち",
+            "b": "いち",
+            "k": "known",
+            "g": "one",
+            "gs": "jlpt"
+          },
+          {
+            "s": "から",
+            "k": "plain"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "よっ",
+            "b": "よる",
+            "k": "known",
+            "g": "evening, night",
+            "gs": "jlpt"
+          },
+          {
+            "s": "つ",
+            "k": "plain"
+          },
+          {
+            "s": "のく",
+            "b": "のく",
+            "k": "ghost",
+            "g": "part of neck",
+            "gs": "model"
+          },
+          {
+            "s": "びは",
+            "b": "びは",
+            "k": "ghost",
+            "g": "neck is",
+            "gs": "model"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "にげ",
+            "b": "にげる",
+            "k": "known",
+            "g": "to escape, to run away",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "お",
+            "k": "plain"
+          },
+          {
+            "s": "とこ",
+            "b": "とこ",
+            "k": "ghost",
+            "g": "part of man",
+            "gs": "model"
+          },
+          {
+            "s": "のく",
+            "b": "のく",
+            "k": "ghost",
+            "g": "part of neck",
+            "gs": "model"
+          },
+          {
+            "s": "びは",
+            "b": "びは",
+            "k": "ghost",
+            "g": "neck is",
+            "gs": "model"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "にげ",
+            "b": "にげる",
+            "k": "known",
+            "g": "to escape, to run away",
             "gs": "jlpt"
           },
           {
@@ -320,35 +404,47 @@
       {
         "tokens": [
           {
-            "s": "四つ",
-            "r": "よっつ",
-            "b": "四つ",
-            "k": "known",
-            "g": "four things",
+            "s": "たたか",
+            "b": "たたく",
+            "k": "ghost",
+            "g": "to strike, to beat",
             "gs": "jlpt"
           },
           {
-            "s": "の",
+            "s": "れ",
+            "b": "れる",
+            "k": "ghost",
+            "g": "passive voice marker",
+            "gs": "model"
+          },
+          {
+            "s": "て",
             "k": "plain"
           },
           {
-            "s": "首",
-            "r": "くび",
-            "b": "首",
-            "k": "known",
-            "g": "neck",
-            "gs": "jlpt"
-          },
-          {
-            "s": "は",
+            "s": "も",
             "k": "plain"
           },
           {
-            "s": "逃げ",
-            "r": "にげ",
-            "b": "逃げる",
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "かいりゅう",
+            "r": "かいりゅう",
+            "b": "囘龍",
+            "k": "story",
+            "g": "Kairyu, the warrior's monk name"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "つき",
+            "b": "つく",
             "k": "known",
-            "g": "to escape, to run away",
+            "g": "to arrive at, to reach",
             "gs": "jlpt"
           },
           {
@@ -368,100 +464,15 @@
       {
         "tokens": [
           {
-            "s": "でも",
-            "k": "plain"
-          },
-          {
-            "s": "あの",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
+            "s": "さい",
+            "b": "さい",
             "k": "known",
-            "g": "counter for people",
+            "g": "~ years old",
             "gs": "jlpt"
           },
           {
-            "s": "の",
+            "s": "ご",
             "k": "plain"
-          },
-          {
-            "s": "首",
-            "r": "くび",
-            "b": "首",
-            "k": "known",
-            "g": "neck",
-            "gs": "jlpt"
-          },
-          {
-            "s": "だけ",
-            "k": "plain"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "一生懸命",
-            "r": "いっしょうけんめい",
-            "b": "一生懸命",
-            "k": "known",
-            "g": "very hard (as in \"to work hard\"), with utmost effort",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "僧",
-            "r": "そう",
-            "b": "僧",
-            "k": "known",
-            "g": "monk, priest",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "行き",
-            "r": "いき",
-            "b": "行く",
-            "k": "known",
-            "g": "to go",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "最後",
-            "r": "さいご",
-            "b": "最後",
-            "k": "known",
-            "g": "last, end",
-            "gs": "jlpt"
           },
           {
             "s": "に",
@@ -472,38 +483,14 @@
             "k": "plain"
           },
           {
-            "s": "僧",
-            "r": "そう",
-            "b": "僧",
+            "s": "ふく",
+            "b": "ふく",
             "k": "known",
-            "g": "monk, priest",
+            "g": "to blow (wind, etc.)",
             "gs": "jlpt"
           },
           {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "服",
-            "r": "ふく",
-            "b": "服",
-            "k": "known",
-            "g": "clothes",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "ところ",
-            "b": "ところ",
-            "k": "known",
-            "g": "place",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
+            "s": "を",
             "k": "plain"
           },
           {
@@ -530,7 +517,7 @@
       {
         "tokens": [
           {
-            "s": "囘龍",
+            "s": "かいりゅう",
             "r": "かいりゅう",
             "b": "囘龍",
             "k": "story",
@@ -541,38 +528,18 @@
             "k": "plain"
           },
           {
-            "s": "首",
-            "r": "くび",
-            "b": "首",
-            "k": "known",
-            "g": "neck",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
+            "s": "、",
             "k": "plain"
           },
           {
-            "s": "たくさん",
-            "b": "たくさん",
+            "s": "く",
+            "b": "くい",
             "k": "known",
-            "g": "many, much",
+            "g": "nine",
             "gs": "jlpt"
           },
           {
-            "s": "打ち",
-            "r": "うち",
-            "b": "打つ",
-            "k": "known",
-            "g": "to hit, to strike",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
+            "s": "びをたくさんなぐりました",
             "k": "plain"
           },
           {
@@ -588,39 +555,25 @@
             "k": "plain"
           },
           {
-            "s": "首",
-            "r": "くび",
-            "b": "首",
-            "k": "known",
-            "g": "neck",
-            "gs": "jlpt"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
             "s": "、",
             "k": "plain"
           },
           {
-            "s": "服",
-            "r": "ふく",
-            "b": "服",
+            "s": "ふく",
+            "b": "ふく",
             "k": "known",
-            "g": "clothes",
+            "g": "to blow (wind, etc.)",
             "gs": "jlpt"
           },
           {
-            "s": "から",
+            "s": "を",
             "k": "plain"
           },
           {
-            "s": "出",
-            "r": "で",
-            "b": "出る",
+            "s": "はなし",
+            "b": "はなす",
             "k": "known",
-            "g": "to appear, to leave",
+            "g": "to speak",
             "gs": "jlpt"
           },
           {
@@ -648,46 +601,14 @@
       {
         "tokens": [
           {
-            "s": "首",
-            "r": "くび",
-            "b": "首",
+            "s": "く",
+            "b": "くい",
             "k": "known",
-            "g": "neck",
+            "g": "nine",
             "gs": "jlpt"
           },
           {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "長い",
-            "r": "ながい",
-            "b": "長い",
-            "k": "known",
-            "g": "long, lengthy",
-            "gs": "jlpt"
-          },
-          {
-            "s": "声",
-            "r": "こえ",
-            "b": "声",
-            "k": "known",
-            "g": "voice",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "だし",
-            "b": "だす",
-            "k": "known",
-            "g": "to take (something) out; to hand in (something)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
+            "s": "びは",
             "k": "plain"
           },
           {
@@ -695,9 +616,8 @@
             "k": "plain"
           },
           {
-            "s": "死に",
-            "r": "しに",
-            "b": "死ぬ",
+            "s": "しに",
+            "b": "しぬ",
             "k": "known",
             "g": "to die",
             "gs": "jlpt"
@@ -727,18 +647,18 @@
             "k": "plain"
           },
           {
-            "s": "まだ",
-            "b": "まだ",
-            "k": "known",
-            "g": "yet, still, besides",
-            "gs": "jlpt"
+            "s": "は",
+            "k": "plain"
           },
           {
-            "s": "服",
-            "r": "ふく",
-            "b": "服",
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "ふく",
+            "b": "ふく",
             "k": "known",
-            "g": "clothes",
+            "g": "to blow (wind, etc.)",
             "gs": "jlpt"
           },
           {
@@ -746,25 +666,25 @@
             "k": "plain"
           },
           {
-            "s": "かん",
-            "b": "かむ",
+            "s": "つい",
+            "b": "つく",
             "k": "known",
-            "g": "to bite, to chew",
+            "g": "to arrive at, to reach",
             "gs": "jlpt"
           },
           {
-            "s": "で",
+            "s": "た",
             "k": "plain"
           },
           {
-            "s": "い",
-            "b": "いる",
+            "s": "まま",
+            "b": "まま",
             "k": "known",
-            "g": "(humble) to be (animate), to exist",
+            "g": "as it is",
             "gs": "jlpt"
           },
           {
-            "s": "まし",
+            "s": "でし",
             "k": "plain"
           },
           {
@@ -780,7 +700,7 @@
       {
         "tokens": [
           {
-            "s": "囘龍",
+            "s": "かいりゅう",
             "r": "かいりゅう",
             "b": "囘龍",
             "k": "story",
@@ -791,59 +711,22 @@
             "k": "plain"
           },
           {
-            "s": "力",
-            "r": "ちから",
-            "b": "力",
-            "k": "known",
-            "g": "strength, power",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "出し",
-            "r": "だし",
-            "b": "出す",
-            "k": "known",
-            "g": "to take (something) out; to hand in (something)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
             "s": "、",
             "k": "plain"
-          },
-          {
-            "s": "口",
-            "r": "くち",
-            "b": "口",
-            "k": "known",
-            "g": "job opening; mouth",
-            "gs": "jlpt"
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "開き",
-            "r": "ひらき",
-            "b": "開く",
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "あけ",
+            "b": "あける",
             "k": "known",
-            "g": "to open, to become open",
+            "g": "to open (v.t.)",
             "gs": "jlpt"
           },
           {
@@ -871,12 +754,11 @@
       {
         "tokens": [
           {
-            "s": "僧",
-            "r": "そう",
-            "b": "僧",
-            "k": "known",
-            "g": "monk, priest",
-            "gs": "jlpt"
+            "s": "かいりゅう",
+            "r": "かいりゅう",
+            "b": "囘龍",
+            "k": "story",
+            "g": "Kairyu, the warrior's monk name"
           },
           {
             "s": "は",
@@ -887,63 +769,16 @@
             "k": "plain"
           },
           {
-            "s": "服",
-            "r": "ふく",
-            "b": "服",
-            "k": "known",
-            "g": "clothes",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
+            "s": "いえ",
             "k": "plain"
-          },
-          {
-            "s": "首",
-            "r": "くび",
-            "b": "首",
-            "k": "known",
-            "g": "neck",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "つけ",
-            "b": "つける",
-            "k": "known",
-            "g": "to turn on (e.g., a light); to take",
-            "gs": "jlpt"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "まま",
-            "b": "まま",
-            "k": "known",
-            "g": "as it is",
-            "gs": "jlpt"
-          },
-          {
-            "s": "家",
-            "r": "いえ",
-            "b": "家",
-            "k": "known",
-            "g": "house, home",
-            "gs": "jlpt"
           },
           {
             "s": "へ",
             "k": "plain"
           },
           {
-            "s": "戻り",
-            "r": "もどり",
-            "b": "戻る",
+            "s": "もどり",
+            "b": "もどる",
             "k": "known",
             "g": "to return (v.i.); to come back",
             "gs": "jlpt"
@@ -965,12 +800,8 @@
       {
         "tokens": [
           {
-            "s": "家",
-            "r": "いえ",
-            "b": "家",
-            "k": "known",
-            "g": "house, home",
-            "gs": "jlpt"
+            "s": "そこ",
+            "k": "plain"
           },
           {
             "s": "に",
@@ -985,78 +816,16 @@
             "k": "plain"
           },
           {
-            "s": "血",
-            "r": "ち",
-            "b": "血",
-            "k": "known",
-            "g": "blood",
-            "gs": "jlpt"
+            "s": "ろくろくび",
+            "r": "ろくろくび",
+            "b": "ろくろ首",
+            "k": "story",
+            "g": "a creature with a detached head"
           },
           {
             "s": "が",
             "k": "plain"
           },
-          {
-            "s": "たくさん",
-            "b": "たくさん",
-            "k": "known",
-            "g": "many, much",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ある",
-            "b": "ある",
-            "k": "known",
-            "g": "to be, to have",
-            "gs": "jlpt"
-          },
-          {
-            "s": "頭",
-            "r": "あたま",
-            "b": "頭",
-            "k": "known",
-            "g": "head",
-            "gs": "jlpt"
-          },
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "体",
-            "r": "からだ",
-            "b": "体",
-            "k": "known",
-            "g": "body; health",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "あり",
-            "b": "ある",
-            "k": "known",
-            "g": "to be, to have",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
           {
             "s": "四",
             "r": "よん",
@@ -1069,41 +838,6 @@
             "k": "known",
             "g": "counter for people",
             "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "ろくろ首",
-            "r": "ろくろくび",
-            "b": "ろくろ首",
-            "k": "story",
-            "g": "a creature with a detached head"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "そこ",
-            "k": "plain"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "座っ",
-            "r": "すわっ",
-            "b": "座る",
-            "k": "known",
-            "g": "to sit",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
           },
           {
             "s": "い",
@@ -1129,52 +863,26 @@
       {
         "tokens": [
           {
-            "s": "彼ら",
-            "r": "かれら",
+            "s": "から",
             "k": "plain"
           },
           {
-            "s": "は",
+            "s": "だ",
             "k": "plain"
           },
           {
-            "s": "僧",
-            "r": "そう",
-            "b": "僧",
-            "k": "known",
-            "g": "monk, priest",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
+            "s": "と",
             "k": "plain"
           },
           {
-            "s": "見",
-            "r": "み",
-            "b": "見る",
-            "k": "known",
-            "g": "to see, to look",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
+            "s": "あ",
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "「",
-            "k": "plain"
-          },
-          {
-            "s": "僧",
-            "r": "そう",
-            "b": "僧",
-            "k": "known",
-            "g": "monk, priest",
+            "s": "たま",
+            "b": "たま",
+            "k": "ghost",
+            "g": "ball, sphere, coin",
             "gs": "jlpt"
           },
           {
@@ -1182,9 +890,46 @@
             "k": "plain"
           },
           {
-            "s": "来",
-            "r": "き",
-            "b": "来る",
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "もどり",
+            "b": "もどる",
+            "k": "known",
+            "g": "to return (v.i.); to come back",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "かいりゅう",
+            "r": "かいりゅう",
+            "b": "囘龍",
+            "k": "story",
+            "g": "Kairyu, the warrior's monk name"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "き",
+            "b": "くる",
             "k": "known",
             "g": "to come",
             "gs": "jlpt"
@@ -1194,24 +939,21 @@
             "k": "plain"
           },
           {
-            "s": "」",
-            "k": "plain"
-          },
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "大きな",
-            "r": "おおきな",
-            "k": "plain"
-          },
-          {
-            "s": "声",
-            "r": "こえ",
-            "b": "声",
+            "s": "とき",
+            "b": "とき",
             "k": "known",
-            "g": "voice",
+            "g": "at the time of ~",
+            "gs": "jlpt"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "こえ",
+            "b": "こえる",
+            "k": "known",
+            "g": "to exceed, to cross over, to cross",
             "gs": "jlpt"
           },
           {
@@ -1250,20 +992,10 @@
             "k": "plain"
           },
           {
-            "s": "森",
-            "r": "もり",
-            "k": "plain"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "方",
-            "r": "ほう",
-            "b": "方",
+            "s": "もり",
+            "b": "もる",
             "k": "known",
-            "g": "-- honorific form for 人 (ひと) --; way of doing",
+            "g": "to serve (food); to fill up; to prescribe",
             "gs": "jlpt"
           },
           {
@@ -1271,9 +1003,8 @@
             "k": "plain"
           },
           {
-            "s": "逃げ",
-            "r": "にげ",
-            "b": "逃げる",
+            "s": "にげ",
+            "b": "にげる",
             "k": "known",
             "g": "to escape, to run away",
             "gs": "jlpt"
@@ -1297,58 +1028,29 @@
       "prompt": {
         "tokens": [
           {
-            "s": "あの",
+            "s": "お",
             "k": "plain"
           },
           {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
-            "gs": "jlpt"
+            "s": "とこ",
+            "b": "とこ",
+            "k": "ghost",
+            "g": "part of man",
+            "gs": "model"
           },
           {
-            "s": "の",
-            "k": "plain"
+            "s": "のく",
+            "b": "のく",
+            "k": "ghost",
+            "g": "part of neck",
+            "gs": "model"
           },
           {
-            "s": "首",
-            "r": "くび",
-            "b": "首",
-            "k": "known",
-            "g": "neck",
-            "gs": "jlpt"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "どう",
-            "b": "どう",
-            "k": "known",
-            "g": "how, in what way",
-            "gs": "jlpt"
-          },
-          {
-            "s": "なり",
-            "b": "なる",
-            "k": "known",
-            "g": "to become",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "か",
-            "k": "plain"
+            "s": "びはどうなりましたか",
+            "b": "びはどうなりましたか",
+            "k": "ghost",
+            "g": "what happened to the neck?",
+            "gs": "model"
           },
           {
             "s": "。",
@@ -1360,48 +1062,65 @@
         {
           "tokens": [
             {
-              "s": "僧",
-              "r": "そう",
-              "b": "僧",
+              "s": "にげ",
+              "b": "にげる",
               "k": "known",
-              "g": "monk, priest",
+              "g": "to escape, to run away",
               "gs": "jlpt"
             },
             {
-              "s": "の",
+              "s": "まし",
               "k": "plain"
             },
             {
-              "s": "服",
-              "r": "ふく",
-              "b": "服",
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "かいりゅう",
+              "r": "かいりゅう",
+              "b": "囘龍",
+              "k": "story",
+              "g": "Kairyu, the warrior's monk name"
+            },
+            {
+              "s": "を",
+              "k": "plain"
+            },
+            {
+              "s": "たべ",
+              "b": "たべる",
               "k": "known",
-              "g": "clothes",
+              "g": "to eat",
               "gs": "jlpt"
             },
             {
-              "s": "に",
+              "s": "まし",
               "k": "plain"
             },
             {
-              "s": "かん",
-              "b": "かむ",
-              "k": "known",
-              "g": "to bite, to chew",
-              "gs": "jlpt"
-            },
-            {
-              "s": "で",
+              "s": "た",
               "k": "plain"
             },
             {
-              "s": "、",
+              "s": "。",
               "k": "plain"
-            },
+            }
+          ]
+        },
+        {
+          "tokens": [
             {
-              "s": "死に",
-              "r": "しに",
-              "b": "死ぬ",
+              "s": "しに",
+              "b": "しぬ",
               "k": "known",
               "g": "to die",
               "gs": "jlpt"
@@ -1419,130 +1138,45 @@
               "k": "plain"
             }
           ]
-        },
-        {
-          "tokens": [
-            {
-              "s": "四つ",
-              "r": "よっつ",
-              "b": "四つ",
-              "k": "known",
-              "g": "four things",
-              "gs": "jlpt"
-            },
-            {
-              "s": "の",
-              "k": "plain"
-            },
-            {
-              "s": "首",
-              "r": "くび",
-              "b": "首",
-              "k": "known",
-              "g": "neck",
-              "gs": "jlpt"
-            },
-            {
-              "s": "と",
-              "k": "plain"
-            },
-            {
-              "s": "一緒",
-              "r": "いっしょ",
-              "b": "一緒",
-              "k": "known",
-              "g": "together",
-              "gs": "jlpt"
-            },
-            {
-              "s": "に",
-              "k": "plain"
-            },
-            {
-              "s": "逃げ",
-              "r": "にげ",
-              "b": "逃げる",
-              "k": "known",
-              "g": "to escape, to run away",
-              "gs": "jlpt"
-            },
-            {
-              "s": "まし",
-              "k": "plain"
-            },
-            {
-              "s": "た",
-              "k": "plain"
-            },
-            {
-              "s": "。",
-              "k": "plain"
-            }
-          ]
-        },
-        {
-          "tokens": [
-            {
-              "s": "森",
-              "r": "もり",
-              "b": "森",
-              "k": "known",
-              "g": "forest",
-              "gs": "jlpt"
-            },
-            {
-              "s": "へ",
-              "k": "plain"
-            },
-            {
-              "s": "逃げ",
-              "r": "にげ",
-              "b": "逃げる",
-              "k": "known",
-              "g": "to escape, to run away",
-              "gs": "jlpt"
-            },
-            {
-              "s": "まし",
-              "k": "plain"
-            },
-            {
-              "s": "た",
-              "k": "plain"
-            },
-            {
-              "s": "。",
-              "k": "plain"
-            }
-          ]
         }
       ],
-      "answer": 0
+      "answer": 2
     },
     "metrics": {
-      "firstCoverage": 0.726027397260274,
-      "finalCoverage": 0.9864864864864865,
-      "retries": 2,
-      "seconds": 20.734963099999995,
+      "kanjiCoverage": 1,
+      "kanjiDensity": 0.006514657980456026,
+      "firstCoverage": 0.6666666666666666,
+      "finalCoverage": 0.723404255319149,
+      "retries": 3,
+      "seconds": 37.67818940000003,
       "offendingFirst": [
-        "主人",
+        "ゅじんのくびは",
         "飛びかかる",
+        "びが",
         "ぬく",
-        "武器",
+        "ぶる",
+        "のく",
+        "びは",
         "なぐる",
-        "近づく",
-        "せる",
-        "必死",
-        "飛びつく",
-        "袖",
-        "離れる",
-        "かみつく",
-        "だらけ",
-        "叫ぶ"
+        "れる",
+        "そで",
+        "られる",
+        "そのまま",
+        "たま",
+        "さけぶ"
       ],
       "ghostWords": [
-        "攻撃"
+        "とこ",
+        "のく",
+        "びは",
+        "びがよっつありました",
+        "たたく",
+        "れる",
+        "たま",
+        "びはどうなりましたか"
       ]
     }
-  }
+  },
+  "failedSceneRetry": true,
+  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
 }

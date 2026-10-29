@@ -12,7 +12,7 @@
     "dev": "vite --host 127.0.0.1",
     "live": "node server/live.mjs",
     "typecheck": "tsc -p tsconfig.json",
-    "build": "tsc -p tsconfig.json && vite build",
+    "build": "tsc -p tsconfig.json && vite build --configLoader runner",
     "preview": "vite preview --host 127.0.0.1",
     "test": "node --test \"tests/**/*.test.ts\" \"tests/**/*.test.mjs\"",
     "fetch:aozora": "node pipeline/aozora.mjs",
@@ -21,7 +21,8 @@
     "build:tales": "node pipeline/build-tales.mjs",
     "report": "node pipeline/report.mjs",
     "assets:process": "node scripts/process-assets.mjs",
-    "screenshots": "node scripts/screenshots.mjs"
+    "screenshots": "node scripts/screenshots.mjs",
+    "audit": "node pipeline/audit.mjs"
   },
   "dependencies": {
     "@fontsource/shippori-mincho-b1": "^5.3.0",

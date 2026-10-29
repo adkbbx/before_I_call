@@ -30,6 +30,16 @@ test('furigana: every token kind and mode, including story readings in off mode'
     assert.equal(showFurigana({ s: '語', k }, mode), false);
   }
 });
+
+test('hard kanji gets above-level ruby even in known and plain tokens', () => {
+  for (const k of ['known', 'plain', 'ghost'] as const) {
+    const token: Token = { s: '驚', r: 'おどろき', k, hk: true };
+    assert.equal(showFurigana(token, 'above-level'), true);
+    assert.equal(showFurigana(token, 'all'), true);
+    assert.equal(showFurigana(token, 'off'), false);
+    assert.equal(showFurigana({ ...token, r: undefined }, 'above-level'), false);
+  }
+});
 test('progression: a completed scene cannot consume another candle; final scene ends tale', () => {
   const night = initialNight('N4'); assert.equal(firstUnread(fixture, night), 0); assert.equal(sceneFinished(night, fixture, 0), false);
   const key = sceneKey(fixture.id, fixture.scenes[0].id, 'N4'), next = blowOut(night, key);

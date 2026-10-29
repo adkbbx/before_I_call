@@ -4,38 +4,35 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. You are retelling a Japanese ghost story (kaidan) aloud to a foreign friend who is learning Japanese at JLPT N5.\nRetell the scene in simple, natural storytelling Japanese. Use です/ます and polite past forms (～ました).\nRules:\n1. Use only words a JLPT N5 learner knows. If an idea needs a harder word, say it with easier words instead.\n2. Every sentence is at most 25 characters.\n3. Keep every event of the scene, in the same order. Do not add events, people, names, feelings or explanations that are not in the scene.\n4. You may use these story words exactly as written: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Copy every story word exactly in kanji, not in kana.\n5. Write normal Japanese with no spaces between words. Use kanji for words a N5 learner reads in kanji and for every story word; write other words in hiragana. The reader shows furigana, so do not avoid kanji the learner knows. Write numbers as 三十年 or 30年, never as kana.\n6. Then write one question in Japanese at the same level about what happens in this scene, with three short answer options. Exactly one option is correct.\nReturn only JSON: {\"sentences\": [\"...\"], \"question\": {\"prompt\": \"...\", \"options\": [\"...\", \"...\", \"...\"], \"answer\": 0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N5.\nPicture-book style. Use です/ます and ました/ませんでした only, with ～て, ～たい, ～から and ～が (but). One idea per sentence. Replace personal names with roles (おさむらい, おぼうさん, おじいさん, わかい男), except the one main character listed as a story word.\nUse only vocabulary at or below N5. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 20 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Copy every story word exactly in kanji when it is needed; do not insert unused words.\nWrite normal Japanese with no spaces between words. Outside story words, use ONLY these kanji: 一二九七人入八十三上下大女山川土千子小中五六円天日月木水火出右四左本白万今午友父北半外母休先名年気百男見車毎行西何来学金雨国東長前南後食校時高間話電聞語読生書. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: 芳一は琵琶をもって出ました。しらない人と歩きました。その人はとても速かったです。その手は石のようでした。さむらいの声がしました。芳一はとてもよかったです。高い人が聞きたいと思いました。大きな門がありました。二人は中に入りました。広い庭がありました。その人が大きく呼びました。女の人たちの声がしました。芳一は階段を登りました。くつをぬぎました。とても広い部屋に行きました。たくさんの人がいました。ふくの声がしました。みんな低い声で話しました。\n\n場面（原文）:\n芳一は気楽にしているようにと云われ、座蒲団が自分のために備えられているのを知った。それでその上に座を取って、琵琶の調子を合わせると、女の声が――その女を芳一は老女すなわち女のする用向きを取り締る女中頭だと判じた――芳一に向ってこう言いかけた――\n『ただ今、琵琶に合わせて、平家の物語を語っていただきたいという御所望に御座います』\nさてそれをすっかり語るのには幾晩もかかる、それ故芳一は進んでこう訊ねた――\n『物語の全部は、ちょっとは語られませぬが、どの条下を語れという殿様の御所望で御座いますか？』\n女の声は答えた――\n『壇ノ浦の戦の話をお語りなされ――その一条下が一番哀れの深い処で御座いますから』"
+        "content": "前の場面（やさしく語り直したもの）: 芳一はひとと行きました。そのひとはてをつかみました。てはつめたいでした。音がしました。芳一はうれしかったです。たかいひとにあいたかったですから。ふたりは大きなもんにつきました。芳一はふしぎでした。そこに大きなもんはありませんでした。ふたりはなかにいりました。ひとがよびました。女のひとたちがきました。芳一は上に行きました。くつをぬぎました。とてもひろいへやでした。たくさんのひとがいました。みんなしずかに話しました。\n\n場面（原文）:\n芳一は気楽にしているようにと云われ、座蒲団が自分のために備えられているのを知った。それでその上に座を取って、琵琶の調子を合わせると、女の声が――その女を芳一は老女すなわち女のする用向きを取り締る女中頭だと判じた――芳一に向ってこう言いかけた――\n『ただ今、琵琶に合わせて、平家の物語を語っていただきたいという御所望に御座います』\nさてそれをすっかり語るのには幾晩もかかる、それ故芳一は進んでこう訊ねた――\n『物語の全部は、ちょっとは語られませぬが、どの条下を語れという殿様の御所望で御座いますか？』\n女の声は答えた――\n『壇ノ浦の戦の話をお語りなされ――その一条下が一番哀れの深い処で御座いますから』"
       }
     ]
   },
   "responses": [
-    "{\"sentences\": [\"芳一はそこにすわりました。\", \"芳一は琵琶の準備をしました。\", \"女の人が話しました。\", \"その人は女中頭でした。\", \"女の人は言いました。\", \"「平家の物語を話してください」\", \"全部話すと時間がかかります。\", \"芳一は女の人に聞きました。\", \"「どこを話しますか」\", \"女の人は答えました。\", \"「壇ノ浦の戦いの話をしてください」\", \"「そこが一番悲しいところです」\"], \"question\": {\"prompt\": \"女の人は、どの話をしてくださいと言いましたか。\", \"options\": [\"楽しい話\", \"平家の物語\", \"和尚の話\"], \"answer\": 1}}",
-    "{\"rewrites\": [{\"index\": 1, \"sentence\": \"芳一は琵琶をなおしました。\"}, {\"index\": 3, \"sentence\": \"その人はリーダーの女でした。\"}, {\"index\": 4, \"sentence\": \"「平家のことを話してください」\"}, {\"index\": 9, \"sentence\": \"「壇ノ浦のけんかの話をしてください」\"}, {\"index\": 10, \"sentence\": \"「そこが一番つらいところです」\"}]}",
-    "{\"rewrites\": [{\"index\": 1, \"sentence\": \"芳一は琵琶をなおしました。\"}, {\"index\": 3, \"sentence\": \"その人はリーダーの女でした。\"}, {\"index\": 5, \"sentence\": \"「平家のことを話してください」\"}, {\"index\": 10, \"sentence\": \"「壇ノ浦のけんかの話をしてください」\"}, {\"index\": 11, \"sentence\": \"「そこが一番つらいところです」\"}]}",
-    "{\"rewrites\": [{\"index\": 1, \"sentence\": \"芳一は琵琶をもちました。\"}, {\"index\": 3, \"sentence\": \"その人はえらい女でした。\"}, {\"index\": 5, \"sentence\": \"「平家のお話をしてください」\"}, {\"index\": 10, \"sentence\": \"「壇ノ浦の話をしてください」\"}, {\"index\": 11, \"sentence\": \"「そこがとてもかなしいです」\"}]}",
-    "{\"question\": {\"prompt\": \"女の人は、なにをしてくださいと言いましたか。\", \"options\": [\"平家のお話\", \"和尚のお話\", \"楽しいお話\"], \"answer\": 0}}",
-    "{\"glosses\": {\"お話\": \"story\"}}"
+    "{\"sentences([\": [\"芳一はすわりました。\", \"芳一は琵琶をもちました。\", \"女のひとがきました。\", \"女のひとはいいました。\", \"平家の話をしてください。\", \"芳一はききました。\", \"どの話をしますか。\", \"女のひとはいいました。\", \"うみの戦の話をしてください。\", \"それが一番かなしいですから。\"], \"question\": {\"prompt\": \"芳一はなにをもちましたか。\", \"options\": [\"本\", \"琵琶\", \"金\"], \"answer\": 1}}",
+    "{\"sentences\": [\"芳一はすわりました。\", \"芳一は琵琶をもちました。\", \"女のひとがきました。\", \"女のひとはいいました。\", \"平家の話をしてください。\", \"芳一はききました。\", \"どの話をしますか。\", \"女のひとはいいました。\", \"うみの戦の話をしてください。\", \"それが一番かなしいですから。\"], \"question\": {\"prompt\": \"芳一はなにをもちましたか。\", \"options\": [\"本\", \"琵琶\", \"金\"], \"answer\": 1}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"芳一はすわりました。\"}, {\"index\": 1, \"sentence\": \"芳一は琵琶をもちました。\"}, {\"index\": 4, \"sentence\": \"平家の話をしてください。\"}, {\"index\": 5, \"sentence\": \"芳一はききました。\"}, {\"index\": 8, \"sentence\": \"うみのせんの話をしてください。\"}, {\"index\": 9, \"sentence\": \"それがいちばんわるいから。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"芳一はすわりました。\"}, {\"index\": 1, \"sentence\": \"芳一は琵琶をもちました。\"}, {\"index\": 4, \"sentence\": \"平家の話をしてください。\"}, {\"index\": 5, \"sentence\": \"芳一はききました。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"芳一はすわりました。\"}, {\"index\": 1, \"sentence\": \"芳一は琵琶をもちました。\"}, {\"index\": 4, \"sentence\": \"平家の話をしてください。\"}, {\"index\": 5, \"sentence\": \"芳一はききました。\"}]}",
+    "{\"question\": {\"prompt\": \"ほういちは なにを もちましたか。\", \"options\": [\"ほん\", \"びわ\", \"かね\"], \"answer\": 1}}"
   ],
   "metrics": {
-    "firstCoverage": 0.8484848484848485,
-    "finalCoverage": 0.9,
-    "retries": 2,
-    "seconds": 19.015299499999966,
+    "kanjiCoverage": 0.5625,
+    "kanjiDensity": 0.14285714285714285,
+    "firstCoverage": 0.9130434782608695,
+    "finalCoverage": 1,
+    "retries": 3,
+    "seconds": 17.982588899999975,
     "offendingFirst": [
-      "準備",
-      "女中",
-      "物語",
-      "戦い",
-      "悲しい"
+      "戦",
+      "かなしい"
     ],
     "ghostWords": [
-      "えらい",
-      "お話",
-      "かなしい"
+      "かね"
     ]
   },
   "retelling": {
@@ -47,6 +44,7 @@
         "tokens": [
           {
             "s": "芳一",
+            "hk": true,
             "r": "ほういち",
             "b": "芳一",
             "k": "story",
@@ -54,14 +52,6 @@
           },
           {
             "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "そこ",
-            "k": "plain"
-          },
-          {
-            "s": "に",
             "k": "plain"
           },
           {
@@ -89,6 +79,7 @@
         "tokens": [
           {
             "s": "芳一",
+            "hk": true,
             "r": "ほういち",
             "b": "芳一",
             "k": "story",
@@ -100,6 +91,7 @@
           },
           {
             "s": "琵琶",
+            "hk": true,
             "r": "びわ",
             "b": "琵琶",
             "k": "story",
@@ -145,11 +137,10 @@
             "k": "plain"
           },
           {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
+            "s": "ひと",
+            "b": "ひと",
             "k": "known",
-            "g": "counter for people",
+            "g": "man, person",
             "gs": "jlpt"
           },
           {
@@ -157,62 +148,14 @@
             "k": "plain"
           },
           {
-            "s": "話し",
-            "r": "はなし",
-            "b": "話す",
+            "s": "き",
+            "b": "くる",
             "k": "known",
-            "g": "to speak",
+            "g": "to come",
             "gs": "jlpt"
           },
           {
             "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "その",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
-            "gs": "jlpt"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "えらい",
-            "b": "えらい",
-            "k": "ghost",
-            "g": "great, celebrated, remarkable,",
-            "gs": "jlpt"
-          },
-          {
-            "s": "女",
-            "r": "おんな",
-            "b": "女",
-            "k": "known",
-            "g": "woman, female",
-            "gs": "jlpt"
-          },
-          {
-            "s": "でし",
             "k": "plain"
           },
           {
@@ -240,11 +183,10 @@
             "k": "plain"
           },
           {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
+            "s": "ひと",
+            "b": "ひと",
             "k": "known",
-            "g": "counter for people",
+            "g": "man, person",
             "gs": "jlpt"
           },
           {
@@ -252,9 +194,8 @@
             "k": "plain"
           },
           {
-            "s": "言い",
-            "r": "いい",
-            "b": "言う",
+            "s": "いい",
+            "b": "いう",
             "k": "known",
             "g": "to say",
             "gs": "jlpt"
@@ -276,260 +217,12 @@
       {
         "tokens": [
           {
-            "s": "「",
-            "k": "plain"
-          },
-          {
             "s": "平家",
+            "hk": true,
             "r": "へいけ",
             "b": "平家",
             "k": "story",
             "g": "the Heike clan"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "お話",
-            "r": "おはなし",
-            "b": "お話",
-            "k": "ghost",
-            "g": "story",
-            "gs": "model"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "し",
-            "b": "する",
-            "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "ください",
-            "b": "くださる",
-            "k": "known",
-            "g": "(hon.) to give, to confer",
-            "gs": "jlpt"
-          },
-          {
-            "s": "」",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "全部",
-            "r": "ぜんぶ",
-            "b": "全部",
-            "k": "known",
-            "g": "all, entire, whole",
-            "gs": "jlpt"
-          },
-          {
-            "s": "話す",
-            "r": "はなす",
-            "b": "話す",
-            "k": "known",
-            "g": "to speak",
-            "gs": "jlpt"
-          },
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "時間",
-            "r": "じかん",
-            "b": "時間",
-            "k": "known",
-            "g": "time",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "かかり",
-            "b": "かかる",
-            "k": "known",
-            "g": "it takes (amount of time, money) (v.i.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ます",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "芳一",
-            "r": "ほういち",
-            "b": "芳一",
-            "k": "story",
-            "g": "Hoichi, a blind musician"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "女",
-            "r": "おんな",
-            "b": "女",
-            "k": "known",
-            "g": "woman, female",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "聞き",
-            "r": "きき",
-            "b": "聞く",
-            "k": "known",
-            "g": "to hear, to listen, to ask",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "「",
-            "k": "plain"
-          },
-          {
-            "s": "どこ",
-            "k": "plain"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "話し",
-            "r": "はなし",
-            "b": "話す",
-            "k": "known",
-            "g": "to speak",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ます",
-            "k": "plain"
-          },
-          {
-            "s": "か",
-            "k": "plain"
-          },
-          {
-            "s": "」",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "女",
-            "r": "おんな",
-            "b": "女",
-            "k": "known",
-            "g": "woman, female",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
-            "gs": "jlpt"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "答え",
-            "r": "こたえ",
-            "b": "答える",
-            "k": "known",
-            "g": "to answer, to reply",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "「",
-            "k": "plain"
-          },
-          {
-            "s": "壇ノ浦",
-            "r": "だんのうら",
-            "k": "plain"
           },
           {
             "s": "の",
@@ -566,7 +259,7 @@
             "gs": "jlpt"
           },
           {
-            "s": "」",
+            "s": "。",
             "k": "plain"
           }
         ]
@@ -574,44 +267,78 @@
       {
         "tokens": [
           {
-            "s": "「",
+            "s": "芳一",
+            "hk": true,
+            "r": "ほういち",
+            "b": "芳一",
+            "k": "story",
+            "g": "Hoichi, a blind musician"
+          },
+          {
+            "s": "は",
             "k": "plain"
           },
           {
-            "s": "そこ",
-            "k": "plain"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "とても",
-            "b": "とても",
+            "s": "きき",
+            "b": "きく",
             "k": "known",
-            "g": "very (much), greatly, exceedingly",
+            "g": "to hear, to listen, to ask",
             "gs": "jlpt"
           },
           {
-            "s": "かなしい",
-            "b": "かなしい",
-            "k": "ghost",
-            "g": "sad, sorrowful",
-            "gs": "jlpt"
-          },
-          {
-            "s": "です",
+            "s": "まし",
             "k": "plain"
           },
           {
-            "s": "」",
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
             "k": "plain"
           }
         ]
-      }
-    ],
-    "question": {
-      "prompt": {
+      },
+      {
+        "tokens": [
+          {
+            "s": "どの",
+            "k": "plain"
+          },
+          {
+            "s": "話",
+            "r": "はなし",
+            "b": "話",
+            "k": "known",
+            "g": "talk (chat), story",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "し",
+            "b": "する",
+            "k": "known",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "か",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
         "tokens": [
           {
             "s": "女",
@@ -626,11 +353,10 @@
             "k": "plain"
           },
           {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
+            "s": "ひと",
+            "b": "ひと",
             "k": "known",
-            "g": "counter for people",
+            "g": "man, person",
             "gs": "jlpt"
           },
           {
@@ -638,12 +364,57 @@
             "k": "plain"
           },
           {
-            "s": "、",
+            "s": "いい",
+            "b": "いう",
+            "k": "known",
+            "g": "to say",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
             "k": "plain"
           },
           {
-            "s": "なに",
+            "s": "た",
             "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "うみ",
+            "b": "うむ",
+            "k": "known",
+            "g": "yes or no, presence or absence",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "せん",
+            "b": "せん",
+            "k": "known",
+            "g": "thousand",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "話",
+            "r": "はなし",
+            "b": "話",
+            "k": "known",
+            "g": "talk (chat), story",
+            "gs": "jlpt"
           },
           {
             "s": "を",
@@ -668,15 +439,73 @@
             "gs": "jlpt"
           },
           {
-            "s": "と",
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "それ",
             "k": "plain"
           },
           {
-            "s": "言い",
-            "r": "いい",
-            "b": "言う",
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "いちばん",
+            "b": "いちばん",
             "k": "known",
-            "g": "to say",
+            "g": "best (most), first, number one",
+            "gs": "jlpt"
+          },
+          {
+            "s": "わるい",
+            "b": "わるい",
+            "k": "known",
+            "g": "bad, sinful; inferior",
+            "gs": "jlpt"
+          },
+          {
+            "s": "から",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      }
+    ],
+    "question": {
+      "prompt": {
+        "tokens": [
+          {
+            "s": "ほういち",
+            "r": "ほういち",
+            "b": "芳一",
+            "k": "story",
+            "g": "Hoichi, a blind musician"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "なに",
+            "k": "plain"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "もち",
+            "b": "もつ",
+            "k": "known",
+            "g": "to hold, to carry; to possess",
             "gs": "jlpt"
           },
           {
@@ -701,89 +530,54 @@
         {
           "tokens": [
             {
-              "s": "和尚",
-              "r": "おしょう",
-              "b": "和尚",
+              "s": "びわ",
+              "r": "びわ",
+              "b": "琵琶",
               "k": "story",
-              "g": "Buddhist head priest"
-            },
-            {
-              "s": "の",
-              "k": "plain"
-            },
-            {
-              "s": "お話",
-              "r": "おはなし",
-              "b": "お話",
-              "k": "ghost",
-              "g": "story",
-              "gs": "model"
+              "g": "Japanese lute"
             }
           ]
         },
         {
           "tokens": [
             {
-              "s": "平家",
-              "r": "へいけ",
-              "b": "平家",
-              "k": "story",
-              "g": "the Heike clan"
-            },
-            {
-              "s": "の",
-              "k": "plain"
-            },
-            {
-              "s": "お話",
-              "r": "おはなし",
-              "b": "お話",
-              "k": "ghost",
-              "g": "story",
-              "gs": "model"
-            }
-          ]
-        },
-        {
-          "tokens": [
-            {
-              "s": "楽しい",
-              "r": "たのしい",
-              "b": "楽しい",
+              "s": "ほん",
+              "b": "ほん",
               "k": "known",
-              "g": "enjoyable, fun",
+              "g": "book",
               "gs": "jlpt"
-            },
+            }
+          ]
+        },
+        {
+          "tokens": [
             {
-              "s": "お話",
-              "r": "おはなし",
-              "b": "お話",
+              "s": "かね",
+              "b": "かね",
               "k": "ghost",
-              "g": "story",
-              "gs": "model"
+              "g": "gold, metal; money",
+              "gs": "jlpt"
             }
           ]
         }
       ],
-      "answer": 1
+      "answer": 0
     },
     "metrics": {
-      "firstCoverage": 0.8484848484848485,
-      "finalCoverage": 0.9,
-      "retries": 2,
-      "seconds": 19.015299499999966,
+      "kanjiCoverage": 0.5625,
+      "kanjiDensity": 0.14285714285714285,
+      "firstCoverage": 0.9130434782608695,
+      "finalCoverage": 1,
+      "retries": 3,
+      "seconds": 17.982588899999975,
       "offendingFirst": [
-        "準備",
-        "女中",
-        "物語",
-        "戦い",
-        "悲しい"
+        "戦",
+        "かなしい"
       ],
       "ghostWords": [
-        "えらい",
-        "お話",
-        "かなしい"
+        "かね"
       ]
     }
-  }
+  },
+  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
 }

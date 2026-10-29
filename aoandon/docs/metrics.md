@@ -8,24 +8,24 @@ Coverage counts known content tokens; story words are excluded. Failed scenes ar
 
 ## hosted / N3
 
-| Scenes | First coverage | Final coverage | Retries / scene | Seconds / scene | Ghost words / scene | Failed scenes |
-| --- | --- | --- | --- | --- | --- | --- |
-| 53 | 0.889 | 0.984 | 1.340 | 14.912 | 1.038 | 0 |
+| Scenes | First vocabulary | Final vocabulary | Kanji coverage | Kanji density | Retries / scene | Seconds / scene | Ghost words / scene | Failed scenes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 53 | 0.877 | 0.952 | 0.917 | 0.047 | 2.849 | 27.042 | 2.170 | 0 |
 
 ## hosted / N4
 
-| Scenes | First coverage | Final coverage | Retries / scene | Seconds / scene | Ghost words / scene | Failed scenes |
-| --- | --- | --- | --- | --- | --- | --- |
-| 53 | 0.808 | 0.976 | 1.434 | 15.758 | 1.472 | 0 |
+| Scenes | First vocabulary | Final vocabulary | Kanji coverage | Kanji density | Retries / scene | Seconds / scene | Ghost words / scene | Failed scenes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 53 | 0.845 | 0.933 | 0.757 | 0.062 | 2.830 | 28.802 | 3.019 | 0 |
 
 ## hosted / N5
 
-| Scenes | First coverage | Final coverage | Retries / scene | Seconds / scene | Ghost words / scene | Failed scenes |
-| --- | --- | --- | --- | --- | --- | --- |
-| 53 | 0.716 | 0.934 | 1.774 | 16.862 | 1.981 | 0 |
+| Scenes | First vocabulary | Final vocabulary | Kanji coverage | Kanji density | Retries / scene | Seconds / scene | Ghost words / scene | Failed scenes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 53 | 0.753 | 0.908 | 0.606 | 0.072 | 2.925 | 25.964 | 3.019 | 0 |
 
 ## ollama / N4
 
-| Scenes | First coverage | Final coverage | Retries / scene | Seconds / scene | Ghost words / scene | Failed scenes |
-| --- | --- | --- | --- | --- | --- | --- |
-| 4 | 0.783 | 0.873 | 2.000 | 43.422 | 10.000 | 1 |
+| Scenes | First vocabulary | Final vocabulary | Kanji coverage | Kanji density | Retries / scene | Seconds / scene | Ghost words / scene | Failed scenes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 4 | 0.783 | 0.873 | — | — | 2.000 | 43.422 | 10.000 | 1 |

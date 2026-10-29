@@ -4,36 +4,42 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. You are retelling a Japanese ghost story (kaidan) aloud to a foreign friend who is learning Japanese at JLPT N4.\nRetell the scene in simple, natural storytelling Japanese. Use です/ます and polite past forms (～ました).\nRules:\n1. Use only words a JLPT N4 learner knows. If an idea needs a harder word, say it with easier words instead.\n2. Every sentence is at most 35 characters.\n3. Keep every event of the scene, in the same order. Do not add events, people, names, feelings or explanations that are not in the scene.\n4. You may use these story words exactly as written: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Copy every story word exactly in kanji, not in kana.\n5. Write normal Japanese with no spaces between words. Use kanji for words a N4 learner reads in kanji and for every story word; write other words in hiragana. The reader shows furigana, so do not avoid kanji the learner knows. Write numbers as 三十年 or 30年, never as kana.\n6. Then write one question in Japanese at the same level about what happens in this scene, with three short answer options. Exactly one option is correct.\nReturn only JSON: {\"sentences\": [\"...\"], \"question\": {\"prompt\": \"...\", \"options\": [\"...\", \"...\", \"...\"], \"answer\": 0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Adds ～とき, ～たら, ～ている, ～と思います, potential forms and ～ても. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Copy every story word exactly in kanji when it is needed; do not insert unused words.\nWrite normal Japanese with no spaces between words. Outside story words, use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: 芳一は大きな声で歌いました。海での怖い争いの歌でした。琵琶で船の音や矢の音を出しました。人の大きい声や武器の音も出しました。とてもすごい音楽でした。右と左から小さな声が聞こえました。「とても上手な琵琶師だ」と言っていました。「これほど上手な人はいない」と言っていました。芳一はもっと上手に弾いて歌いました。周りの人は静かになりました。次に、悲しい話になりました。女の人と子供の最期について歌いました。みんな、とても悲しそうな声を上げました。みんな、とてもたくさん泣きました。芳一もその声に驚きました。しばらくの間、泣く声が続きました。それから、とても静かになりました。すると、年をとった女の人の声が聞こえました。\n\n場面（原文）:\nその女はこう云った――\n『私共は貴方が琵琶の名人であって、また謡う方でも肩を並べるもののない事は聞き及んでいた事では御座いますが、貴方が今晩御聴かせ下すったようなあんなお腕前をお有ちになろうとは思いも致しませんでした。殿様には大層御気に召し、貴方に十分な御礼を下さる御考えである由を御伝え申すようにとの事に御座います。が、これから後六日の間毎晩一度ずつ殿様の御前で演奏をお聞きに入れるようとの御意に御座います――その上で殿様にはたぶん御帰りの旅に上られる事と存じます。それ故明晩も同じ時刻に、ここへ御出向きなされませ。今夜、貴方を御案内いたしたあの家来が、また、御迎えに参るで御座いましょう……それからも一つ貴方に御伝えするように申しつけられた事が御座います。それは殿様がこの赤間ヶ関に御滞在中、貴方がこの御殿に御上りになる事を誰れにも御話しにならぬようとの御所望に御座います。殿様には御忍びの御旅行ゆえ、かような事はいっさい口外致さぬようにとの御上意によりますので。……ただ今、御自由に御坊に御帰りあそばせ』"
+        "content": "前の場面（やさしく語り直したもの）: 芳一は、おおきなこえでうたいました。うみの、あぶないうたでした。琵琶で、ふねの音をだしました。やの音や、人のこえも出しました。とても、うまくできました。とき、となりでこえがしました。「とても、うまいですね」「こんな琵琶は、きいたことがない」芳一は、うれしくなりました。だから、もっとうまくひきました。まわりは、しずかになりました。さいごに、かなしい話をしました。おんなのひとと、こどもの話です。きいている人は、みんななきました。芳一も、おどろきました。しばらくして、しずかになりました。とき、また女のこえがしました。おばあさんのこえだと思います。\n\n場面（原文）:\nその女はこう云った――\n『私共は貴方が琵琶の名人であって、また謡う方でも肩を並べるもののない事は聞き及んでいた事では御座いますが、貴方が今晩御聴かせ下すったようなあんなお腕前をお有ちになろうとは思いも致しませんでした。殿様には大層御気に召し、貴方に十分な御礼を下さる御考えである由を御伝え申すようにとの事に御座います。が、これから後六日の間毎晩一度ずつ殿様の御前で演奏をお聞きに入れるようとの御意に御座います――その上で殿様にはたぶん御帰りの旅に上られる事と存じます。それ故明晩も同じ時刻に、ここへ御出向きなされませ。今夜、貴方を御案内いたしたあの家来が、また、御迎えに参るで御座いましょう……それからも一つ貴方に御伝えするように申しつけられた事が御座います。それは殿様がこの赤間ヶ関に御滞在中、貴方がこの御殿に御上りになる事を誰れにも御話しにならぬようとの御所望に御座います。殿様には御忍びの御旅行ゆえ、かような事はいっさい口外致さぬようにとの御上意によりますので。……ただ今、御自由に御坊に御帰りあそばせ』"
       }
     ]
   },
   "responses": [
-    "{\"sentences\": [\"女の人が話しました。\", \"「あなたはとても上手な琵琶師ですね」\", \"「こんなに上手だとは思いませんでした」\", \"「殿様もとても喜びました」\", \"「殿様はあなたに礼をしたいと言っています」\", \"「あと6日間、毎晩ここで弾いてください」\", \"「その後、殿様は帰ります」\", \"「明日も同じ時間にここへ来てください」\", \"「昨日の家来がまたあなたを迎えに来ます」\", \"「それから、お願いがあります」\", \"「誰にもこのことを話さないでください」\", \"「殿様は秘密で旅行していますから」\", \"「それでは、お坊さんのところへ帰ってください」\"], \"question\": {\"prompt\": \"女の人は、芳一に何を頼みましたか。\", \"options\": [\"誰にも話さないこと\", \"歌を教えること\", \"家来になること\"], \"answer\": 0}}",
-    "{\"rewrites\": [{\"index\": 2, \"sentence\": \"「とても上手で驚きました」\"}, {\"index\": 3, \"sentence\": \"「リーダーの人もとても喜びました」\"}, {\"index\": 4, \"sentence\": \"「リーダーの人はあなたに礼をしたいです」\"}, {\"index\": 5, \"sentence\": \"「あと6日、毎晩ここで弾いてください」\"}, {\"index\": 6, \"sentence\": \"「それから、リーダーの人は帰ります」\"}, {\"index\": 8, \"sentence\": \"「さっきの人がまたあなたを迎えに来ます」\"}, {\"index\": 9, \"sentence\": \"「それから、一つ言いたいことがあります」\"}, {\"index\": 11, \"sentence\": \"「リーダーの人は、静かに旅行していますから」\"}, {\"index\": 12, \"sentence\": \"「それでは、和尚さんのところへ帰ってください」\"}]}",
-    "{\"rewrites\": [{\"index\": 3, \"sentence\": \"「一番上の人もとても喜びました」\"}, {\"index\": 4, \"sentence\": \"「一番上の人はあなたに礼をしたいです」\"}, {\"index\": 6, \"sentence\": \"「それから、一番上の人は帰ります」\"}, {\"index\": 11, \"sentence\": \"「一番上の人は、静かに旅行していますから」\"}]}",
-    "{\"question\": {\"prompt\": \"女の人は、芳一に何を頼みましたか。\", \"options\": [\"誰にも話さないこと\", \"歌を教えること\", \"ここへ住むこと\"], \"answer\": 0}}"
+    "{\"sentencesにつながる\": [\"女の人が、はなしました。\", \"あなたは、とても上手です。\", \"主人は、とてもよろこびました。\", \"お礼を、あげたいと思います。\", \"だから、あと六日もきてください。\", \"まいばん、うたをひいてください。\", \"そのあと、主人はかえります。\", \"あしたの夜も、ここでまってください。\", \"また、家来がきます。\", \"ひとつ、お願いがあります。\", \"だれにも、話さないでください。\", \"ここに来たことは、ないことです。\", \"主人は、しずかに旅をしています。\", \"いまは、お寺にかえってもいいです。\"], \"question\": {\"prompt\": \"芳一は、あと何日、うたをひきますか。\", \"options\": [\"三日\", \"六日\", \"十日\"], \"answer\": 1}}",
+    "{\"sentences\": [\"女の人が、はなしました。\", \"あなたは、とても上手です。\", \"主人は、とてもよろこびました。\", \"お礼を、あげたいと思います。\", \"だから、あと六日もきてください。\", \"まいばん、うたをひいてください。\", \"そのあと、主人はかえります。\", \"あしたの夜も、ここでまってください。\", \"また、家来がきます。\", \"ひとつ、お願いがあります。\", \"だれにも、話さないでください。\", \"ここに来たことは、ないことです。\", \"主人は、しずかに旅をしています。\", \"いまは、お寺にかえってもいいです。\"], \"question\": {\"prompt\": \"芳一は、あと何日、うたをひきますか。\", \"options\": [\"三日\", \"六日\", \"十日\"], \"answer\": 1}}",
+    "{\"rewrites\": [{\"index\": 2, \"sentence\": \"しゅじんは、とてもよろこびました。\"}, {\"index\": 3, \"sentence\": \"おれいを、あげたいと思います。\"}, {\"index\": 5, \"sentence\": \"まいばん、うたをひいてください。\"}, {\"index\": 6, \"sentence\": \"そのあと、しゅじんはかえります。\"}, {\"index\": 7, \"sentence\": \"あしたの夜も、ここでまってください。\"}, {\"index\": 8, \"sentence\": \"また、けらいがきます。\"}, {\"index\": 9, \"sentence\": \"ひとつ、おねがいがあります。\"}, {\"index\": 12, \"sentence\": \"しゅじんは、しずかにたびをしています。\"}, {\"index\": 13, \"sentence\": \"いまは、おてらにかえってもいいです。\"}]}",
+    "{\"rewrites\": [{\"index\": 2, \"sentence\": \"あるひとは、とてもよろこびました。\"}, {\"index\": 5, \"sentence\": \"まいばん、うたをひいてください。\"}, {\"index\": 6, \"sentence\": \"そのあと、そのひとはかえります。\"}, {\"index\": 7, \"sentence\": \"あしたの夜も、ここでまってください。\"}, {\"index\": 8, \"sentence\": \"また、つかうひとはきます。\"}, {\"index\": 9, \"sentence\": \"ひとつ、たのみがあります。\"}, {\"index\": 12, \"sentence\": \"そのひとは、しずかにいます。\"}, {\"index\": 13, \"sentence\": \"いまは、おてらにかえってもいいです。\"}]}",
+    "{\"rewrites\": [{\"index\": 2, \"sentence\": \"あるひとは、とてもよろこびました。\"}, {\"index\": 5, \"sentence\": \"まいばん、うたをひいてください。\"}, {\"index\": 6, \"sentence\": \"そのあと、そのひとはかえります。\"}, {\"index\": 7, \"sentence\": \"あしたの夜も、ここでまってください。\"}, {\"index\": 8, \"sentence\": \"また、つかうひとはきます。\"}, {\"index\": 9, \"sentence\": \"ひとつ、たのみがあります。\"}, {\"index\": 12, \"sentence\": \"そのひとは、しずかにいます。\"}]}",
+    "{\"question\": {\"prompt\": \"ほういちは、あと何日、うたをひきますか。\", \"options\": [\"三日\", \"六日\", \"十日\"], \"answer\": 1}}"
   ],
   "metrics": {
-    "firstCoverage": 0.7708333333333334,
-    "finalCoverage": 1,
+    "kanjiCoverage": 1,
+    "kanjiDensity": 0.04716981132075472,
+    "firstCoverage": 0.8043478260869565,
+    "finalCoverage": 0.9555555555555556,
     "retries": 2,
-    "seconds": 18.062779200000108,
+    "seconds": 29.34522530000005,
     "offendingFirst": [
-      "こんなに",
-      "殿様",
-      "日間",
-      "その後",
+      "主人",
+      "いばる",
+      "まう",
       "家来",
       "お願い",
-      "秘密",
-      "坊さん"
+      "旅",
+      "お寺"
     ],
-    "ghostWords": []
+    "ghostWords": [
+      "いばる",
+      "まう"
+    ]
   },
   "retelling": {
     "level": "N4",
@@ -67,9 +73,12 @@
             "k": "plain"
           },
           {
-            "s": "話し",
-            "r": "はなし",
-            "b": "話す",
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "はなし",
+            "b": "はなす",
             "k": "known",
             "g": "to speak",
             "gs": "jlpt"
@@ -91,10 +100,6 @@
       {
         "tokens": [
           {
-            "s": "「",
-            "k": "plain"
-          },
-          {
             "s": "あなた",
             "k": "plain"
           },
@@ -103,6 +108,10 @@
             "k": "plain"
           },
           {
+            "s": "、",
+            "k": "plain"
+          },
+          {
             "s": "とても",
             "b": "とても",
             "k": "known",
@@ -115,25 +124,6 @@
             "b": "上手",
             "k": "known",
             "g": "be good at, skillful",
-            "gs": "jlpt"
-          },
-          {
-            "s": "な",
-            "k": "plain"
-          },
-          {
-            "s": "琵琶",
-            "r": "びわ",
-            "b": "琵琶",
-            "k": "story",
-            "g": "Japanese lute"
-          },
-          {
-            "s": "師",
-            "r": "し",
-            "b": "師",
-            "k": "known",
-            "g": "four",
             "gs": "jlpt"
           },
           {
@@ -141,11 +131,7 @@
             "k": "plain"
           },
           {
-            "s": "ね",
-            "k": "plain"
-          },
-          {
-            "s": "」",
+            "s": "。",
             "k": "plain"
           }
         ]
@@ -153,7 +139,22 @@
       {
         "tokens": [
           {
-            "s": "「",
+            "s": "ある",
+            "k": "plain"
+          },
+          {
+            "s": "ひと",
+            "b": "ひと",
+            "k": "known",
+            "g": "man, person",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "、",
             "k": "plain"
           },
           {
@@ -164,88 +165,8 @@
             "gs": "jlpt"
           },
           {
-            "s": "上手",
-            "r": "じょうず",
-            "b": "上手",
-            "k": "known",
-            "g": "be good at, skillful",
-            "gs": "jlpt"
-          },
-          {
-            "s": "で",
-            "k": "plain"
-          },
-          {
-            "s": "驚き",
-            "r": "おどろき",
-            "b": "驚く",
-            "k": "known",
-            "g": "to be surprised, to be astonished",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "」",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "「",
-            "k": "plain"
-          },
-          {
-            "s": "一番",
-            "r": "いちばん",
-            "b": "一番",
-            "k": "known",
-            "g": "best (most), first, number one",
-            "gs": "jlpt"
-          },
-          {
-            "s": "上",
-            "r": "じょう",
-            "b": "上",
-            "k": "known",
-            "g": "above (up, top, etc.), over, on top of",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
-            "gs": "jlpt"
-          },
-          {
-            "s": "も",
-            "k": "plain"
-          },
-          {
-            "s": "とても",
-            "b": "とても",
-            "k": "known",
-            "g": "very (much), greatly, exceedingly",
-            "gs": "jlpt"
-          },
-          {
-            "s": "喜び",
-            "r": "よろこび",
-            "b": "喜ぶ",
+            "s": "よろこび",
+            "b": "よろこぶ",
             "k": "known",
             "g": "to rejoice, to be delighted, to be glad",
             "gs": "jlpt"
@@ -259,7 +180,7 @@
             "k": "plain"
           },
           {
-            "s": "」",
+            "s": "。",
             "k": "plain"
           }
         ]
@@ -267,55 +188,14 @@
       {
         "tokens": [
           {
-            "s": "「",
+            "s": "お",
             "k": "plain"
           },
           {
-            "s": "一番",
-            "r": "いちばん",
-            "b": "一番",
+            "s": "れい",
+            "b": "れい",
             "k": "known",
-            "g": "best (most), first, number one",
-            "gs": "jlpt"
-          },
-          {
-            "s": "上",
-            "r": "じょう",
-            "b": "上",
-            "k": "known",
-            "g": "above (up, top, etc.), over, on top of",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
-            "gs": "jlpt"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "あなた",
-            "k": "plain"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "礼",
-            "r": "れい",
-            "b": "礼",
-            "k": "known",
-            "g": "expression of gratitude; bow",
+            "g": "zero, nought",
             "gs": "jlpt"
           },
           {
@@ -323,10 +203,14 @@
             "k": "plain"
           },
           {
-            "s": "し",
-            "b": "する",
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "あげ",
+            "b": "あげる",
             "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "g": "to raise, to lift",
             "gs": "jlpt"
           },
           {
@@ -334,11 +218,23 @@
             "k": "plain"
           },
           {
-            "s": "です",
+            "s": "と",
             "k": "plain"
           },
           {
-            "s": "」",
+            "s": "思い",
+            "r": "おもい",
+            "b": "思う",
+            "k": "known",
+            "g": "to think, to feel",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "。",
             "k": "plain"
           }
         ]
@@ -346,7 +242,11 @@
       {
         "tokens": [
           {
-            "s": "「",
+            "s": "だから",
+            "k": "plain"
+          },
+          {
+            "s": "、",
             "k": "plain"
           },
           {
@@ -357,7 +257,8 @@
             "gs": "jlpt"
           },
           {
-            "s": "6",
+            "s": "六",
+            "r": "ろく",
             "k": "plain"
           },
           {
@@ -369,16 +270,162 @@
             "gs": "jlpt"
           },
           {
+            "s": "も",
+            "k": "plain"
+          },
+          {
+            "s": "き",
+            "b": "くる",
+            "k": "known",
+            "g": "to come",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "ください",
+            "b": "くださる",
+            "k": "known",
+            "g": "(hon.) to give, to confer",
+            "gs": "jlpt"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "ま",
+            "k": "plain"
+          },
+          {
+            "s": "いばん",
+            "b": "いばる",
+            "k": "ghost",
+            "g": "to be proud, to swagger",
+            "gs": "jlpt"
+          },
+          {
             "s": "、",
             "k": "plain"
           },
           {
-            "s": "毎晩",
-            "r": "まいばん",
-            "b": "毎晩",
+            "s": "うた",
+            "b": "うた",
             "k": "known",
-            "g": "every night",
+            "g": "a song",
             "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "ひい",
+            "b": "ひく",
+            "k": "known",
+            "g": "to pull, to draw; subtract",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "ください",
+            "b": "くださる",
+            "k": "known",
+            "g": "(hon.) to give, to confer",
+            "gs": "jlpt"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "その",
+            "k": "plain"
+          },
+          {
+            "s": "あと",
+            "b": "あと",
+            "k": "known",
+            "g": "afterwards (later); in the future; the rest; since then",
+            "gs": "jlpt"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "その",
+            "k": "plain"
+          },
+          {
+            "s": "ひと",
+            "b": "ひと",
+            "k": "known",
+            "g": "man, person",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "かえり",
+            "b": "かえる",
+            "k": "known",
+            "g": "to go back, to go home, to return",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "あした",
+            "b": "あした",
+            "k": "known",
+            "g": "tomorrow",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "夜",
+            "r": "よる",
+            "b": "夜",
+            "k": "known",
+            "g": "evening, night",
+            "gs": "jlpt"
+          },
+          {
+            "s": "も",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
           },
           {
             "s": "ここ",
@@ -389,11 +436,10 @@
             "k": "plain"
           },
           {
-            "s": "弾い",
-            "r": "ひい",
-            "b": "弾く",
-            "k": "known",
-            "g": "to play (a string instrument or piano)",
+            "s": "まっ",
+            "b": "まう",
+            "k": "ghost",
+            "g": "to dance, to flutter about, to revolve",
             "gs": "jlpt"
           },
           {
@@ -408,225 +454,15 @@
             "gs": "jlpt"
           },
           {
-            "s": "」",
+            "s": "。",
             "k": "plain"
           }
         ]
       },
       {
         "tokens": [
-          {
-            "s": "「",
-            "k": "plain"
-          },
-          {
-            "s": "それから",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "一番",
-            "r": "いちばん",
-            "b": "一番",
-            "k": "known",
-            "g": "best (most), first, number one",
-            "gs": "jlpt"
-          },
-          {
-            "s": "上",
-            "r": "じょう",
-            "b": "上",
-            "k": "known",
-            "g": "above (up, top, etc.), over, on top of",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
-            "gs": "jlpt"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "帰り",
-            "r": "かえり",
-            "b": "帰る",
-            "k": "known",
-            "g": "to go back, to go home, to return",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ます",
-            "k": "plain"
-          },
-          {
-            "s": "」",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "「",
-            "k": "plain"
-          },
-          {
-            "s": "明日",
-            "r": "あした",
-            "b": "明日",
-            "k": "known",
-            "g": "tomorrow",
-            "gs": "jlpt"
-          },
-          {
-            "s": "も",
-            "k": "plain"
-          },
-          {
-            "s": "同じ",
-            "r": "おなじ",
-            "k": "plain"
-          },
-          {
-            "s": "時間",
-            "r": "じかん",
-            "b": "時間",
-            "k": "known",
-            "g": "time",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "ここ",
-            "k": "plain"
-          },
-          {
-            "s": "へ",
-            "k": "plain"
-          },
-          {
-            "s": "来",
-            "r": "き",
-            "b": "来る",
-            "k": "known",
-            "g": "to come",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "ください",
-            "b": "くださる",
-            "k": "known",
-            "g": "(hon.) to give, to confer",
-            "gs": "jlpt"
-          },
-          {
-            "s": "」",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "「",
-            "k": "plain"
-          },
-          {
-            "s": "さっき",
-            "b": "さっき",
-            "k": "known",
-            "g": "a little while ago",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
           {
             "s": "また",
-            "b": "また",
-            "k": "known",
-            "g": "and; furthermore",
-            "gs": "jlpt"
-          },
-          {
-            "s": "あなた",
-            "k": "plain"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "迎え",
-            "r": "むかえ",
-            "b": "迎える",
-            "k": "known",
-            "g": "to welcome; to meet; to greet",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "来",
-            "r": "き",
-            "b": "来る",
-            "k": "known",
-            "g": "to come",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ます",
-            "k": "plain"
-          },
-          {
-            "s": "」",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "「",
-            "k": "plain"
-          },
-          {
-            "s": "それから",
             "k": "plain"
           },
           {
@@ -634,30 +470,54 @@
             "k": "plain"
           },
           {
-            "s": "一つ",
-            "r": "ひとつ",
-            "b": "一つ",
+            "s": "つかう",
+            "b": "つかう",
+            "k": "known",
+            "g": "to use",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ひと",
+            "b": "ひと",
+            "k": "known",
+            "g": "man, person",
+            "gs": "jlpt"
+          },
+          {
+            "s": "はき",
+            "b": "はく",
+            "k": "known",
+            "g": "to put on (items below your waist)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "ひとつ",
+            "b": "ひとつ",
             "k": "known",
             "g": "one thing",
             "gs": "jlpt"
           },
           {
-            "s": "言い",
-            "r": "いい",
-            "b": "言う",
-            "k": "known",
-            "g": "to say",
-            "gs": "jlpt"
-          },
-          {
-            "s": "たい",
+            "s": "、",
             "k": "plain"
           },
           {
-            "s": "こと",
-            "b": "こと",
+            "s": "たのみ",
+            "b": "たのむ",
             "k": "known",
-            "g": "thing(s), matter(s), fact",
+            "g": "to request, to ask (a favor)",
             "gs": "jlpt"
           },
           {
@@ -676,7 +536,7 @@
             "k": "plain"
           },
           {
-            "s": "」",
+            "s": "。",
             "k": "plain"
           }
         ]
@@ -684,12 +544,7 @@
       {
         "tokens": [
           {
-            "s": "「",
-            "k": "plain"
-          },
-          {
-            "s": "誰",
-            "r": "だれ",
+            "s": "だれ",
             "k": "plain"
           },
           {
@@ -701,18 +556,7 @@
             "k": "plain"
           },
           {
-            "s": "この",
-            "k": "plain"
-          },
-          {
-            "s": "こと",
-            "b": "こと",
-            "k": "known",
-            "g": "thing(s), matter(s), fact",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
+            "s": "、",
             "k": "plain"
           },
           {
@@ -739,7 +583,7 @@
             "gs": "jlpt"
           },
           {
-            "s": "」",
+            "s": "。",
             "k": "plain"
           }
         ]
@@ -747,35 +591,30 @@
       {
         "tokens": [
           {
-            "s": "「",
+            "s": "ここ",
             "k": "plain"
           },
           {
-            "s": "一番",
-            "r": "いちばん",
-            "b": "一番",
-            "k": "known",
-            "g": "best (most), first, number one",
-            "gs": "jlpt"
-          },
-          {
-            "s": "上",
-            "r": "じょう",
-            "b": "上",
-            "k": "known",
-            "g": "above (up, top, etc.), over, on top of",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
+            "s": "に",
             "k": "plain"
           },
           {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
+            "s": "来",
+            "r": "き",
+            "b": "来る",
             "k": "known",
-            "g": "counter for people",
+            "g": "to come",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "こと",
+            "b": "こと",
+            "k": "known",
+            "g": "thing(s), matter(s), fact",
             "gs": "jlpt"
           },
           {
@@ -787,34 +626,59 @@
             "k": "plain"
           },
           {
-            "s": "静か",
-            "r": "しずか",
-            "b": "静か",
+            "s": "ない",
+            "b": "ない",
+            "k": "known",
+            "g": "there isn't, doesn't have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "こと",
+            "b": "こと",
+            "k": "known",
+            "g": "thing(s), matter(s), fact",
+            "gs": "jlpt"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "その",
+            "k": "plain"
+          },
+          {
+            "s": "ひと",
+            "b": "ひと",
+            "k": "known",
+            "g": "man, person",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "しずか",
+            "b": "しずか",
             "k": "known",
             "g": "quiet, calm",
             "gs": "jlpt"
           },
           {
             "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "旅行",
-            "r": "りょこう",
-            "b": "旅行",
-            "k": "known",
-            "g": "travel, trip",
-            "gs": "jlpt"
-          },
-          {
-            "s": "し",
-            "b": "する",
-            "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
             "k": "plain"
           },
           {
@@ -829,11 +693,7 @@
             "k": "plain"
           },
           {
-            "s": "から",
-            "k": "plain"
-          },
-          {
-            "s": "」",
+            "s": "。",
             "k": "plain"
           }
         ]
@@ -841,93 +701,10 @@
       {
         "tokens": [
           {
-            "s": "「",
-            "k": "plain"
-          },
-          {
-            "s": "それでは",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "和尚",
-            "r": "おしょう",
-            "b": "和尚",
-            "k": "story",
-            "g": "Buddhist head priest"
-          },
-          {
-            "s": "さん",
-            "b": "さん",
+            "s": "いま",
+            "b": "いま",
             "k": "known",
-            "g": "Mr. ~, Ms. ~",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "ところ",
-            "b": "ところ",
-            "k": "known",
-            "g": "place",
-            "gs": "jlpt"
-          },
-          {
-            "s": "へ",
-            "k": "plain"
-          },
-          {
-            "s": "帰っ",
-            "r": "かえっ",
-            "b": "帰る",
-            "k": "known",
-            "g": "to go back, to go home, to return",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "ください",
-            "b": "くださる",
-            "k": "known",
-            "g": "(hon.) to give, to confer",
-            "gs": "jlpt"
-          },
-          {
-            "s": "」",
-            "k": "plain"
-          }
-        ]
-      }
-    ],
-    "question": {
-      "prompt": {
-        "tokens": [
-          {
-            "s": "女",
-            "r": "おんな",
-            "b": "女",
-            "k": "known",
-            "g": "woman, female",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
+            "g": "now",
             "gs": "jlpt"
           },
           {
@@ -939,39 +716,115 @@
             "k": "plain"
           },
           {
-            "s": "芳一",
-            "r": "ほういち",
-            "b": "芳一",
-            "k": "story",
-            "g": "Hoichi, a blind musician"
+            "s": "お",
+            "k": "plain"
+          },
+          {
+            "s": "てら",
+            "b": "てる",
+            "k": "known",
+            "g": "to shine",
+            "gs": "jlpt"
           },
           {
             "s": "に",
             "k": "plain"
           },
           {
-            "s": "何",
-            "r": "なに",
+            "s": "かえっ",
+            "b": "かえる",
+            "k": "known",
+            "g": "to go back, to go home, to return",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
             "k": "plain"
+          },
+          {
+            "s": "も",
+            "k": "plain"
+          },
+          {
+            "s": "いい",
+            "b": "いい",
+            "k": "known",
+            "g": "good",
+            "gs": "jlpt"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      }
+    ],
+    "question": {
+      "prompt": {
+        "tokens": [
+          {
+            "s": "ほういち",
+            "r": "ほういち",
+            "b": "芳一",
+            "k": "story",
+            "g": "Hoichi, a blind musician"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "あと",
+            "b": "あと",
+            "k": "known",
+            "g": "afterwards (later); in the future; the rest; since then",
+            "gs": "jlpt"
+          },
+          {
+            "s": "何",
+            "r": "なん",
+            "k": "plain"
+          },
+          {
+            "s": "日",
+            "r": "にち",
+            "b": "日",
+            "k": "known",
+            "g": "~ day of the month, for ~ days",
+            "gs": "jlpt"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "うた",
+            "b": "うた",
+            "k": "known",
+            "g": "a song",
+            "gs": "jlpt"
           },
           {
             "s": "を",
             "k": "plain"
           },
           {
-            "s": "頼み",
-            "r": "たのみ",
-            "b": "頼む",
+            "s": "ひき",
+            "b": "ひく",
             "k": "known",
-            "g": "to request, to ask (a favor)",
+            "g": "to pull, to draw; subtract",
             "gs": "jlpt"
           },
           {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
+            "s": "ます",
             "k": "plain"
           },
           {
@@ -988,35 +841,16 @@
         {
           "tokens": [
             {
-              "s": "誰",
-              "r": "だれ",
+              "s": "三",
+              "r": "さん",
               "k": "plain"
             },
             {
-              "s": "に",
-              "k": "plain"
-            },
-            {
-              "s": "も",
-              "k": "plain"
-            },
-            {
-              "s": "話さ",
-              "r": "はなさ",
-              "b": "話す",
+              "s": "日",
+              "r": "にち",
+              "b": "日",
               "k": "known",
-              "g": "to speak",
-              "gs": "jlpt"
-            },
-            {
-              "s": "ない",
-              "k": "plain"
-            },
-            {
-              "s": "こと",
-              "b": "こと",
-              "k": "known",
-              "g": "thing(s), matter(s), fact",
+              "g": "~ day of the month, for ~ days",
               "gs": "jlpt"
             }
           ]
@@ -1024,26 +858,16 @@
         {
           "tokens": [
             {
-              "s": "ここ",
+              "s": "十",
+              "r": "じゅう",
               "k": "plain"
             },
             {
-              "s": "へ",
-              "k": "plain"
-            },
-            {
-              "s": "住む",
-              "r": "すむ",
-              "b": "住む",
+              "s": "日",
+              "r": "にち",
+              "b": "日",
               "k": "known",
-              "g": "to reside, to live in",
-              "gs": "jlpt"
-            },
-            {
-              "s": "こと",
-              "b": "こと",
-              "k": "known",
-              "g": "thing(s), matter(s), fact",
+              "g": "~ day of the month, for ~ days",
               "gs": "jlpt"
             }
           ]
@@ -1051,53 +875,44 @@
         {
           "tokens": [
             {
-              "s": "歌",
-              "r": "うた",
-              "b": "歌",
-              "k": "known",
-              "g": "a song",
-              "gs": "jlpt"
-            },
-            {
-              "s": "を",
+              "s": "六",
+              "r": "ろく",
               "k": "plain"
             },
             {
-              "s": "教える",
-              "r": "おしえる",
-              "b": "教える",
+              "s": "日",
+              "r": "にち",
+              "b": "日",
               "k": "known",
-              "g": "to teach, to inform, to instruct",
-              "gs": "jlpt"
-            },
-            {
-              "s": "こと",
-              "b": "こと",
-              "k": "known",
-              "g": "thing(s), matter(s), fact",
+              "g": "~ day of the month, for ~ days",
               "gs": "jlpt"
             }
           ]
         }
       ],
-      "answer": 0
+      "answer": 2
     },
     "metrics": {
-      "firstCoverage": 0.7708333333333334,
-      "finalCoverage": 1,
+      "kanjiCoverage": 1,
+      "kanjiDensity": 0.04716981132075472,
+      "firstCoverage": 0.8043478260869565,
+      "finalCoverage": 0.9555555555555556,
       "retries": 2,
-      "seconds": 18.062779200000108,
+      "seconds": 29.34522530000005,
       "offendingFirst": [
-        "こんなに",
-        "殿様",
-        "日間",
-        "その後",
+        "主人",
+        "いばる",
+        "まう",
         "家来",
         "お願い",
-        "秘密",
-        "坊さん"
+        "旅",
+        "お寺"
       ],
-      "ghostWords": []
+      "ghostWords": [
+        "いばる",
+        "まう"
+      ]
     }
-  }
+  },
+  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
 }

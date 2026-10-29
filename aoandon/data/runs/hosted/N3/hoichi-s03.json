@@ -4,34 +4,49 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. You are retelling a Japanese ghost story (kaidan) aloud to a foreign friend who is learning Japanese at JLPT N3.\nRetell the scene in simple, natural storytelling Japanese. Use plain past forms (～た) for narration.\nRules:\n1. Use only words a JLPT N3 learner knows. If an idea needs a harder word, say it with easier words instead.\n2. Every sentence is at most 45 characters.\n3. Keep every event of the scene, in the same order. Do not add events, people, names, feelings or explanations that are not in the scene.\n4. You may use these story words exactly as written: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Copy every story word exactly in kanji, not in kana.\n5. Write normal Japanese with no spaces between words. Use kanji for words a N3 learner reads in kanji and for every story word; write other words in hiragana. The reader shows furigana, so do not avoid kanji the learner knows. Write numbers as 三十年 or 30年, never as kana.\n6. Then write one question in Japanese at the same level about what happens in this scene, with three short answer options. Exactly one option is correct.\nReturn only JSON: {\"sentences\": [\"...\"], \"question\": {\"prompt\": \"...\", \"options\": [\"...\", \"...\", \"...\"], \"answer\": 0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration, adding ～ようだ, ～らしい, the passive and ～ために.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Copy every story word exactly in kanji when it is needed; do not insert unused words.\nWrite normal Japanese with no spaces between words. Outside story words, use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小才中五六円天手文日月木水火犬王出右四左本正田白目石立万今元公内切午友太少引心方牛父止兄冬北半古台外市広母用世主他代写去号平打申礼休先名字年早気百耳男町花見赤足車不仕交会光同回多当毎米考肉自色行西何体作図声売弟形来社言走近学空金雨青草音化地両全向安曲有次死京国夜妹姉店明東歩画直知長前南室後思活海点科茶食首欠由民付以失必未末校夏家時紙記通高強教理組船週雪魚鳥黒支住助医君対局役投決究者研馬場朝番答絵買道間数楽話電所事使具受和始定実服泳物苦表部乗客屋度待持界発相美負送重談要勝起速配酒院終習転進落葉運開集飲業漢路歌聞語読鳴横調親頭顔病最争伝共好成老位初別利努労命放昔注育指洋神追戦良特便働意味勉庭息旅流消員都動商悪族深球陽寒悲期歯港登着野生亡合風予反新返問宿想感暗様福銀題館駅料殺然熱選願情映疑皆例参完念折望束残求約性格能術私帰春昼晴秋計列式信単変夫建昨法英飯晩猫園曜書遠係取品守幸急真箱面喜治笑辞関政留険危存原薬側堂席敗果因常識非官察愛警覚説試告種達類報等借座忘洗験許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差質供限与渡景抜候構捕慣満掛居突招段腹痛退貸迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: 平家の人たちは、前はもっと怖かった。夜、船の横にきて、船を沈めたがった。泳いでいる人を、無理に水の中へ連れて行こうとした。死んだ人を助けるために、阿彌陀寺という寺ができた。寺の近くの海岸に、死んだ人を埋める場所ができた。そこには、一番上の人と、その人の下の人の名前の石があった。霊のために、寺で特別な集まりがあった。寺と墓ができてから、平家の人たちの悪いことは少なくなった。それでも時々、まだ不思議なことが起きた。それは、彼らがまだ安心していなかったからだ。\n\n場面（原文）:\n幾百年か以前の事、この赤間ヶ関に芳一という盲人が住んでいたが、この男は吟誦して、琵琶を奏するに妙を得ているので世に聞えていた。子供の時から吟誦し、かつ弾奏する訓練を受けていたのであるが、まだ少年の頃から、師匠達を凌駕していた。本職の琵琶法師としてこの男は重もに、平家及び源氏の物語を吟誦するので有名になった、そして壇ノ浦の戦の歌を謡うと鬼神すらも涙をとどめ得なかったという事である。\n芳一には出世の首途の際、はなはだ貧しかったが、しかし助けてくれる深切な友があった。すなわち阿彌陀寺の住職というのが、詩歌や音楽が好きであったので、たびたび芳一を寺へ招じて弾奏させまた、吟誦さしたのであった。後になり住職はこの少年の驚くべき技倆にひどく感心して、芳一に寺をば自分の家とするようにと云い出したのであるが、芳一は感謝してこの申し出を受納した。それで芳一は寺院の一室を与えられ、食事と宿泊とに対する返礼として、別に用のない晩には、琵琶を奏して、住職を悦ばすという事だけが注文されていた。"
+        "content": "前の場面（やさしく語り直したもの）: 平家のひとたちは、とてもこわかったようだ。よるに、ふねのそばにたったらしい。ふねをなくすためだった。およぐひとをまって、つかまえた。しんだひとのために、おてらがあった。おてらのそばに、おはかがあった。そこには、なまえのいしがあった。れいのために、おいのりがあった。おてらができてから、わるいことはすくなくなった。でも、たまにふしぎなことがあった。かれらは、まだしずかではなかったようだ。\n\n場面（原文）:\n幾百年か以前の事、この赤間ヶ関に芳一という盲人が住んでいたが、この男は吟誦して、琵琶を奏するに妙を得ているので世に聞えていた。子供の時から吟誦し、かつ弾奏する訓練を受けていたのであるが、まだ少年の頃から、師匠達を凌駕していた。本職の琵琶法師としてこの男は重もに、平家及び源氏の物語を吟誦するので有名になった、そして壇ノ浦の戦の歌を謡うと鬼神すらも涙をとどめ得なかったという事である。\n芳一には出世の首途の際、はなはだ貧しかったが、しかし助けてくれる深切な友があった。すなわち阿彌陀寺の住職というのが、詩歌や音楽が好きであったので、たびたび芳一を寺へ招じて弾奏させまた、吟誦さしたのであった。後になり住職はこの少年の驚くべき技倆にひどく感心して、芳一に寺をば自分の家とするようにと云い出したのであるが、芳一は感謝してこの申し出を受納した。それで芳一は寺院の一室を与えられ、食事と宿泊とに対する返礼として、別に用のない晩には、琵琶を奏して、住職を悦ばすという事だけが注文されていた。"
       }
     ]
   },
   "responses": [
-    "{\"sentences\": [\"数百年前、赤間ヶ関に芳一という目の見えない人が住んでいた。\", \"彼は琵琶を弾いて歌うことがとても上手で、有名だった。\", \"子供の時から練習して、すぐに先生よりも上手になった。\", \"特に平家の物語を歌うと、鬼さえも泣いたと言われている。\", \"芳一はとても貧しかったが、優しい友人がいた。\", \"それは阿彌陀寺の和尚だった。\", \"和尚は音楽が好きで、よく芳一を寺に呼んで歌わせた。\", \"和尚は芳一の技術に驚き、寺に住むように言った。\", \"芳一は感謝して、寺の部屋に住み始めた。\", \"その代わりに、夜に琵琶を弾いて和尚を喜ばせた。\"], \"question\": {\"prompt\": \"芳一は、和尚から何をもらいましたか。\", \"options\": [\"お金\", \"寺の部屋\", \"新しい琵琶\"], \"answer\": 1}}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"数百年前、赤間が関に芳一という目の見えない人が住んでいた。\"}, {\"index\": 2, \"sentence\": \"子供の時から練習して、早く先生より上手になった。\"}, {\"index\": 3, \"sentence\": \"特に平家の物語を歌うと、鬼も泣いたという。\"}, {\"index\": 5, \"sentence\": \"それは阿彌陀寺の和尚だった。\"}, {\"index\": 6, \"sentence\": \"和尚は音楽が好きで、よく芳一を寺に呼んで歌を聴いた。\"}, {\"index\": 9, \"sentence\": \"その代わりに、夜に琵琶を弾いて和尚を喜ばせた。\"}]}",
-    "{\"rewrites\": [{\"index\": 5, \"sentence\": \"それは阿彌陀寺の和尚だった。\"}, {\"index\": 6, \"sentence\": \"和尚は音楽が好きで、よく芳一を寺に呼んで歌を聞いた。\"}, {\"index\": 9, \"sentence\": \"その代わりに、夜に琵琶を弾いて和尚を幸せにした。\"}]}",
-    "{\"glosses\": {\"阿彌陀\": \"Amida Buddha\"}}"
+    "{\"sentences\": [\"むかし、芳一というめがみえないひとがいた。\", \"かれは琵琶をひくのが、とてもじょうずだったらしい。\", \"こどものときから、たくさんれんしゅうしたようだ。\", \"かれは平家のものがたりをうたうことで、ゆうめいになった。\", \"かれのうたをきくと、かみさまもないたという。\", \"芳一はおかねがなくて、とてもびんぼうだった。\", \"でも、しんせつな友だちがいた。\", \"それは、おてらの和尚だった。\", \"和尚は音楽がすきだった。\", \"だから、芳一をよくおてらにまねいた。\", \"和尚は芳一のわざに、とてもかんしんした。\", \"それで、和尚は芳一におてらにすむようにいった。\", \"芳一は、とてもうれしかった。\", \"芳一はおてらのへやをあたえられた。\", \"そのかわりに、よるに琵琶をひいて、和尚をよろこばせることになった。\"], \"question\": {\"prompt\": \"芳一は、なぜおてらにすむことができたか。\", \"options\": [\"和尚が、琵琶のわざにかんしんしたから。\", \"お金をたくさんもっていたから。\", \"平家のひとが、たすけてくれたから。\"], \"answer\": 0}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"むかし、ほういちというめがみえないひとがいた。\"}, {\"index\": 1, \"sentence\": \"かれはびわをひくのが、とてもじょうずだったらしい。\"}, {\"index\": 2, \"sentence\": \"こどものときから、たくさんおぎょうしたようだ。\"}, {\"index\": 3, \"sentence\": \"かれは平家のものがたりをうたうことで、ゆうめいになった。\"}, {\"index\": 5, \"sentence\": \"ほういちはおかねがなくて、とてもびんぼうだった。\"}, {\"index\": 6, \"sentence\": \"でも、やさしいひとがいた。\"}, {\"index\": 7, \"sentence\": \"それは、おてらのおしょうだった。\"}, {\"index\": 8, \"sentence\": \"おしょうは音楽がすきだった。\"}, {\"index\": 9, \"sentence\": \"だから、ほういちをよくおてらにまねいた。\"}, {\"index\": 10, \"sentence\": \"おしょうはほういちのうたに、とてもおどろいた。\"}, {\"index\": 11, \"sentence\": \"それで、おしょうはほういちにおてらにすむようにいった。\"}, {\"index\": 12, \"sentence\": \"ほういちは、とてもうれしかった。\"}, {\"index\": 13, \"sentence\": \"ほういちはおてらのへやをもらった。\"}, {\"index\": 14, \"sentence\": \"そのかわりに、よるにびわをひいて、おしょうをよろこばせた。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"むかし、ほういちというめがみえないひとがいた。\"}, {\"index\": 1, \"sentence\": \"かれはびわをひくのが、とてもじょうずだったらしい。\"}, {\"index\": 3, \"sentence\": \"かれは平家のものがたりをうたって、ゆうめいになった。\"}, {\"index\": 5, \"sentence\": \"ほういちはおかねがなくて、とてもびんぼうだった。\"}, {\"index\": 7, \"sentence\": \"それは、おてらのおしょうだった。\"}, {\"index\": 8, \"sentence\": \"おしょうはおんがくがすきだった。\"}, {\"index\": 9, \"sentence\": \"だから、ほういちをよくおてらにまねいた。\"}, {\"index\": 10, \"sentence\": \"おしょうはほういちのうたに、とてもおどろいた。\"}, {\"index\": 11, \"sentence\": \"それで、おしょうはほういちにおてらにすむようにいった。\"}, {\"index\": 12, \"sentence\": \"ほういちは、とてもうれしかった。\"}, {\"index\": 13, \"sentence\": \"ほういちはおてらのへやをもらった。\"}, {\"index\": 14, \"sentence\": \"そのかわりに、よるにびわをひいて、おしょうをわらわせた。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"むかし、ほういちというめがみえないひとがいた。\"}, {\"index\": 1, \"sentence\": \"かれはびわをひくのが、とてもじょうずだったらしい。\"}, {\"index\": 3, \"sentence\": \"かれは平家のものがたりをうたって、ゆうめいになった。\"}, {\"index\": 5, \"sentence\": \"ほういちはおかねがなくて、とてもびんぼうだった。\"}, {\"index\": 7, \"sentence\": \"それは、おてらのおしょうだった。\"}, {\"index\": 8, \"sentence\": \"おしょうはおんがくがすきだった。\"}, {\"index\": 9, \"sentence\": \"だから、ほういちをよくおてらにまねいた。\"}, {\"index\": 10, \"sentence\": \"おしょうはほういちのうたに、とてもおどろいた。\"}, {\"index\": 11, \"sentence\": \"それで、おしょうはほういちにおてらにすむようにいった。\"}, {\"index\": 12, \"sentence\": \"ほういちは、とてもうれしかった。\"}, {\"index\": 13, \"sentence\": \"ほういちはおてらのへやをもらった。\"}, {\"index\": 14, \"sentence\": \"そのかわりに、よるにびわをひいて、おしょうをよろこばせた。\"}]}",
+    "{\"question\": {\"prompt\": \"ほういちは、なぜおてらにすむことができたか。\", \"options\": [\"おしょうが、びわのわざをすいたから。\", \"おかねをたくさんもっていたから。\", \"平家のひとが、たすけてくれたから。\"], \"answer\": 0}}",
+    "{\"glosses\": {\"はおる\": \"to wear a coat\", \"せる\": \"to make someone do\"}}"
   ],
   "metrics": {
-    "firstCoverage": 0.9032258064516129,
-    "finalCoverage": 0.9830508474576272,
-    "retries": 2,
-    "seconds": 17.010922299999976,
+    "kanjiCoverage": 1,
+    "kanjiDensity": 0.00625,
+    "firstCoverage": 0.8382352941176471,
+    "finalCoverage": 0.9180327868852459,
+    "retries": 3,
+    "seconds": 43.28489889999991,
     "offendingFirst": [
-      "ヶ",
-      "すぐ",
-      "れる",
-      "阿彌陀",
+      "れん",
+      "めい",
+      "しん",
+      "せつない",
+      "友だち",
+      "わざ",
+      "かんし",
+      "はう",
+      "ら",
+      "られる",
       "せる"
     ],
     "ghostWords": [
-      "阿彌陀"
+      "めい",
+      "はおる",
+      "はう",
+      "ら",
+      "せる",
+      "わざ"
     ]
   },
   "retelling": {
@@ -42,29 +57,10 @@
       {
         "tokens": [
           {
-            "s": "数",
-            "r": "すう",
-            "k": "plain"
-          },
-          {
-            "s": "百",
-            "r": "ひゃく",
-            "k": "plain"
-          },
-          {
-            "s": "年",
-            "r": "ねん",
-            "b": "年",
+            "s": "むかし",
+            "b": "むかし",
             "k": "known",
-            "g": "year, age",
-            "gs": "jlpt"
-          },
-          {
-            "s": "前",
-            "r": "まえ",
-            "b": "前",
-            "k": "known",
-            "g": "before, in front",
+            "g": "old days; past",
             "gs": "jlpt"
           },
           {
@@ -72,28 +68,7 @@
             "k": "plain"
           },
           {
-            "s": "赤間",
-            "r": "あかま",
-            "k": "plain"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "関",
-            "r": "せき",
-            "b": "関",
-            "k": "known",
-            "g": "a seat",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "芳一",
+            "s": "ほういち",
             "r": "ほういち",
             "b": "芳一",
             "k": "story",
@@ -104,21 +79,19 @@
             "k": "plain"
           },
           {
-            "s": "目",
-            "r": "め",
-            "b": "目",
+            "s": "め",
+            "b": "め",
             "k": "known",
             "g": "eye(s)",
             "gs": "jlpt"
           },
           {
-            "s": "の",
+            "s": "が",
             "k": "plain"
           },
           {
-            "s": "見え",
-            "r": "みえ",
-            "b": "見える",
+            "s": "みえ",
+            "b": "みえる",
             "k": "known",
             "g": "to be visible; -- polite verb meaning 来る (くる) --",
             "gs": "jlpt"
@@ -128,27 +101,14 @@
             "k": "plain"
           },
           {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
+            "s": "ひと",
+            "b": "ひと",
             "k": "known",
-            "g": "counter for people",
+            "g": "man, person",
             "gs": "jlpt"
           },
           {
             "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "住ん",
-            "r": "すん",
-            "b": "住む",
-            "k": "known",
-            "g": "to reside, to live in",
-            "gs": "jlpt"
-          },
-          {
-            "s": "で",
             "k": "plain"
           },
           {
@@ -171,16 +131,18 @@
       {
         "tokens": [
           {
-            "s": "彼",
-            "r": "かれ",
-            "k": "plain"
+            "s": "かれ",
+            "b": "かれる",
+            "k": "known",
+            "g": "to wither, to die (plant), to be blasted (plant)",
+            "gs": "jlpt"
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "琵琶",
+            "s": "びわ",
             "r": "びわ",
             "b": "琵琶",
             "k": "story",
@@ -191,34 +153,25 @@
             "k": "plain"
           },
           {
-            "s": "弾い",
-            "r": "ひい",
-            "b": "弾く",
+            "s": "ひく",
+            "b": "ひく",
             "k": "known",
-            "g": "to play (a string instrument or piano)",
+            "g": "to pull, to draw; subtract",
             "gs": "jlpt"
           },
           {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "歌う",
-            "r": "うたう",
-            "b": "歌う",
+            "s": "の",
+            "b": "の",
             "k": "known",
-            "g": "to sing",
-            "gs": "jlpt"
-          },
-          {
-            "s": "こと",
-            "b": "こと",
-            "k": "known",
-            "g": "thing(s), matter(s), fact",
+            "g": "field",
             "gs": "jlpt"
           },
           {
             "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "、",
             "k": "plain"
           },
           {
@@ -229,27 +182,10 @@
             "gs": "jlpt"
           },
           {
-            "s": "上手",
-            "r": "じょうず",
-            "b": "上手",
+            "s": "じょうず",
+            "b": "じょうず",
             "k": "known",
             "g": "be good at, skillful",
-            "gs": "jlpt"
-          },
-          {
-            "s": "で",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "有名",
-            "r": "ゆうめい",
-            "b": "有名",
-            "k": "known",
-            "g": "famous",
             "gs": "jlpt"
           },
           {
@@ -261,6 +197,10 @@
             "k": "plain"
           },
           {
+            "s": "らしい",
+            "k": "plain"
+          },
+          {
             "s": "。",
             "k": "plain"
           }
@@ -269,9 +209,8 @@
       {
         "tokens": [
           {
-            "s": "子供",
-            "r": "こども",
-            "b": "子供",
+            "s": "こども",
+            "b": "こども",
             "k": "known",
             "g": "child(ren)",
             "gs": "jlpt"
@@ -281,11 +220,10 @@
             "k": "plain"
           },
           {
-            "s": "時",
-            "r": "とき",
-            "b": "時",
+            "s": "とき",
+            "b": "とき",
             "k": "known",
-            "g": "~ o'clock (time)",
+            "g": "at the time of ~",
             "gs": "jlpt"
           },
           {
@@ -293,18 +231,92 @@
             "k": "plain"
           },
           {
-            "s": "練習",
-            "r": "れんしゅう",
-            "b": "練習",
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "たくさん",
+            "b": "たくさん",
             "k": "known",
-            "g": "(to) practice",
+            "g": "many, much",
             "gs": "jlpt"
           },
           {
-            "s": "し",
-            "b": "する",
+            "s": "お",
+            "k": "plain"
+          },
+          {
+            "s": "ぎょ",
+            "k": "plain"
+          },
+          {
+            "s": "うし",
+            "b": "うい",
             "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "g": "cattle, cow",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "よう",
+            "b": "よう",
+            "k": "known",
+            "g": "errand, task, business (to take care of)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "だ",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "かれ",
+            "b": "かれる",
+            "k": "known",
+            "g": "to wither, to die (plant), to be blasted (plant)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "平家",
+            "r": "へいけ",
+            "b": "平家",
+            "k": "story",
+            "g": "the Heike clan"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "ものがたり",
+            "b": "ものがたり",
+            "k": "known",
+            "g": "tale, story, legend",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "うたっ",
+            "b": "うたう",
+            "k": "known",
+            "g": "to sing",
             "gs": "jlpt"
           },
           {
@@ -316,31 +328,17 @@
             "k": "plain"
           },
           {
-            "s": "早く",
-            "r": "はやく",
-            "b": "早い",
+            "s": "ゆう",
+            "b": "ゆう",
             "k": "known",
-            "g": "early",
+            "g": "superiority, high grade",
             "gs": "jlpt"
           },
           {
-            "s": "先生",
-            "r": "せんせい",
-            "b": "先生",
-            "k": "known",
-            "g": "teacher, professor; master; doctor",
-            "gs": "jlpt"
-          },
-          {
-            "s": "より",
-            "k": "plain"
-          },
-          {
-            "s": "上手",
-            "r": "じょうず",
-            "b": "上手",
-            "k": "known",
-            "g": "be good at, skillful",
+            "s": "めい",
+            "b": "めい",
+            "k": "ghost",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
@@ -367,30 +365,21 @@
       {
         "tokens": [
           {
-            "s": "特に",
-            "r": "とくに",
-            "b": "特に",
+            "s": "かれ",
+            "b": "かれる",
             "k": "known",
-            "g": "particularly",
+            "g": "to wither, to die (plant), to be blasted (plant)",
             "gs": "jlpt"
-          },
-          {
-            "s": "平家",
-            "r": "へいけ",
-            "b": "平家",
-            "k": "story",
-            "g": "the Heike clan"
           },
           {
             "s": "の",
             "k": "plain"
           },
           {
-            "s": "物語",
-            "r": "ものがたり",
-            "b": "物語",
+            "s": "うた",
+            "b": "うた",
             "k": "known",
-            "g": "tale, story, legend",
+            "g": "a song",
             "gs": "jlpt"
           },
           {
@@ -398,11 +387,10 @@
             "k": "plain"
           },
           {
-            "s": "歌う",
-            "r": "うたう",
-            "b": "歌う",
+            "s": "きく",
+            "b": "きく",
             "k": "known",
-            "g": "to sing",
+            "g": "to hear, to listen, to ask",
             "gs": "jlpt"
           },
           {
@@ -414,11 +402,17 @@
             "k": "plain"
           },
           {
-            "s": "鬼",
-            "r": "おに",
-            "b": "鬼",
+            "s": "かみ",
+            "b": "かむ",
             "k": "known",
-            "g": "ogre, demon, 'it' (e.g.,in a game of tag)",
+            "g": "to bite, to chew",
+            "gs": "jlpt"
+          },
+          {
+            "s": "さま",
+            "b": "さま",
+            "k": "known",
+            "g": "Mr., Mrs., Ms.",
             "gs": "jlpt"
           },
           {
@@ -426,11 +420,10 @@
             "k": "plain"
           },
           {
-            "s": "泣い",
-            "r": "ない",
-            "b": "泣く",
+            "s": "ない",
+            "b": "ない",
             "k": "known",
-            "g": "to cry",
+            "g": "there isn't, doesn't have",
             "gs": "jlpt"
           },
           {
@@ -457,7 +450,7 @@
       {
         "tokens": [
           {
-            "s": "芳一",
+            "s": "ほういち",
             "r": "ほういち",
             "b": "芳一",
             "k": "story",
@@ -468,26 +461,29 @@
             "k": "plain"
           },
           {
-            "s": "とても",
-            "b": "とても",
-            "k": "known",
-            "g": "very (much), greatly, exceedingly",
-            "gs": "jlpt"
-          },
-          {
-            "s": "貧しかっ",
-            "r": "まずしかっ",
-            "b": "貧しい",
-            "k": "known",
-            "g": "poor, needy",
-            "gs": "jlpt"
-          },
-          {
-            "s": "た",
+            "s": "お",
             "k": "plain"
           },
           {
+            "s": "かね",
+            "b": "かね",
+            "k": "known",
+            "g": "gold, metal; money",
+            "gs": "jlpt"
+          },
+          {
             "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "なく",
+            "b": "ない",
+            "k": "known",
+            "g": "there isn't, doesn't have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
             "k": "plain"
           },
           {
@@ -495,19 +491,62 @@
             "k": "plain"
           },
           {
-            "s": "優しい",
-            "r": "やさしい",
-            "b": "優しい",
+            "s": "とても",
+            "b": "とても",
             "k": "known",
-            "g": "kind (person), gentle (person), easy (problem)",
+            "g": "very (much), greatly, exceedingly",
             "gs": "jlpt"
           },
           {
-            "s": "友人",
-            "r": "ゆうじん",
-            "b": "友人",
+            "s": "びん",
+            "b": "びん",
             "k": "known",
-            "g": "friend (formal)",
+            "g": "bottle",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ぼう",
+            "b": "ぼう",
+            "k": "known",
+            "g": "pole, rod, stick",
+            "gs": "jlpt"
+          },
+          {
+            "s": "だっ",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "でも",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "やさしい",
+            "b": "やさしい",
+            "k": "known",
+            "g": "easy, plain, simple",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ひと",
+            "b": "ひと",
+            "k": "known",
+            "g": "man, person",
             "gs": "jlpt"
           },
           {
@@ -542,19 +581,18 @@
             "k": "plain"
           },
           {
-            "s": "阿彌陀",
-            "r": "あみだ",
-            "b": "阿彌陀",
-            "k": "ghost",
-            "g": "Amida Buddha",
-            "gs": "model"
+            "s": "、",
+            "k": "plain"
           },
           {
-            "s": "寺",
-            "r": "てら",
-            "b": "寺",
+            "s": "お",
+            "k": "plain"
+          },
+          {
+            "s": "てら",
+            "b": "てる",
             "k": "known",
-            "g": "Buddhist temple",
+            "g": "to shine",
             "gs": "jlpt"
           },
           {
@@ -562,7 +600,7 @@
             "k": "plain"
           },
           {
-            "s": "和尚",
+            "s": "おしょう",
             "r": "おしょう",
             "b": "和尚",
             "k": "story",
@@ -585,22 +623,24 @@
       {
         "tokens": [
           {
-            "s": "和尚",
+            "s": "おしょう",
             "r": "おしょう",
             "b": "和尚",
             "k": "story",
             "g": "Buddhist head priest"
           },
           {
-            "s": "は",
-            "k": "plain"
+            "s": "はおん",
+            "b": "はおる",
+            "k": "ghost",
+            "g": "to wear a coat",
+            "gs": "model"
           },
           {
-            "s": "音楽",
-            "r": "おんがく",
-            "b": "音楽",
+            "s": "がく",
+            "b": "がく",
             "k": "known",
-            "g": "Music",
+            "g": "learning, knowledge",
             "gs": "jlpt"
           },
           {
@@ -608,15 +648,30 @@
             "k": "plain"
           },
           {
-            "s": "好き",
-            "r": "すき",
-            "b": "好き",
+            "s": "すき",
+            "b": "すき",
             "k": "known",
             "g": "liking, fondness, love",
             "gs": "jlpt"
           },
           {
-            "s": "で",
+            "s": "だっ",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "だから",
             "k": "plain"
           },
           {
@@ -624,14 +679,7 @@
             "k": "plain"
           },
           {
-            "s": "よく",
-            "b": "よく",
-            "k": "known",
-            "g": "frequently, often (much); well, skillfully",
-            "gs": "jlpt"
-          },
-          {
-            "s": "芳一",
+            "s": "ほういち",
             "r": "ほういち",
             "b": "芳一",
             "k": "story",
@@ -642,11 +690,21 @@
             "k": "plain"
           },
           {
-            "s": "寺",
-            "r": "てら",
-            "b": "寺",
+            "s": "よく",
+            "b": "よく",
             "k": "known",
-            "g": "Buddhist temple",
+            "g": "frequently, often (much); well, skillfully",
+            "gs": "jlpt"
+          },
+          {
+            "s": "お",
+            "k": "plain"
+          },
+          {
+            "s": "てら",
+            "b": "てる",
+            "k": "known",
+            "g": "to shine",
             "gs": "jlpt"
           },
           {
@@ -654,35 +712,10 @@
             "k": "plain"
           },
           {
-            "s": "呼ん",
-            "r": "よん",
-            "b": "呼ぶ",
+            "s": "まねい",
+            "b": "まねく",
             "k": "known",
-            "g": "to call (one's name); to invite",
-            "gs": "jlpt"
-          },
-          {
-            "s": "で",
-            "k": "plain"
-          },
-          {
-            "s": "歌",
-            "r": "うた",
-            "b": "歌",
-            "k": "known",
-            "g": "a song",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "聞い",
-            "r": "きい",
-            "b": "聞く",
-            "k": "known",
-            "g": "to hear, to listen, to ask",
+            "g": "to invite",
             "gs": "jlpt"
           },
           {
@@ -698,7 +731,7 @@
       {
         "tokens": [
           {
-            "s": "和尚",
+            "s": "おしょう",
             "r": "おしょう",
             "b": "和尚",
             "k": "story",
@@ -709,7 +742,7 @@
             "k": "plain"
           },
           {
-            "s": "芳一",
+            "s": "ほういち",
             "r": "ほういち",
             "b": "芳一",
             "k": "story",
@@ -720,35 +753,85 @@
             "k": "plain"
           },
           {
-            "s": "技術",
-            "r": "ぎじゅつ",
-            "b": "技術",
+            "s": "うた",
+            "b": "うた",
             "k": "known",
-            "g": "technique, technology, skill",
+            "g": "a song",
             "gs": "jlpt"
           },
           {
             "s": "に",
             "k": "plain"
-          },
-          {
-            "s": "驚き",
-            "r": "おどろき",
-            "b": "驚く",
-            "k": "known",
-            "g": "to be surprised, to be astonished",
-            "gs": "jlpt"
           },
           {
             "s": "、",
             "k": "plain"
           },
           {
-            "s": "寺",
-            "r": "てら",
-            "b": "寺",
+            "s": "とても",
+            "b": "とても",
             "k": "known",
-            "g": "Buddhist temple",
+            "g": "very (much), greatly, exceedingly",
+            "gs": "jlpt"
+          },
+          {
+            "s": "おどろい",
+            "b": "おどろく",
+            "k": "known",
+            "g": "to be surprised, to be astonished",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "それで",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "おしょう",
+            "r": "おしょう",
+            "b": "和尚",
+            "k": "story",
+            "g": "Buddhist head priest"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "ほういち",
+            "r": "ほういち",
+            "b": "芳一",
+            "k": "story",
+            "g": "Hoichi, a blind musician"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "お",
+            "k": "plain"
+          },
+          {
+            "s": "てら",
+            "b": "てる",
+            "k": "known",
+            "g": "to shine",
             "gs": "jlpt"
           },
           {
@@ -756,9 +839,8 @@
             "k": "plain"
           },
           {
-            "s": "住む",
-            "r": "すむ",
-            "b": "住む",
+            "s": "すむ",
+            "b": "すむ",
             "k": "known",
             "g": "to reside, to live in",
             "gs": "jlpt"
@@ -775,9 +857,8 @@
             "k": "plain"
           },
           {
-            "s": "言っ",
-            "r": "いっ",
-            "b": "言う",
+            "s": "いっ",
+            "b": "いう",
             "k": "known",
             "g": "to say",
             "gs": "jlpt"
@@ -795,7 +876,7 @@
       {
         "tokens": [
           {
-            "s": "芳一",
+            "s": "ほういち",
             "r": "ほういち",
             "b": "芳一",
             "k": "story",
@@ -806,18 +887,47 @@
             "k": "plain"
           },
           {
-            "s": "感謝",
-            "r": "かんしゃ",
-            "b": "感謝",
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "とても",
+            "b": "とても",
             "k": "known",
-            "g": "thanks, gratitude",
+            "g": "very (much), greatly, exceedingly",
             "gs": "jlpt"
           },
           {
-            "s": "し",
-            "b": "する",
+            "s": "うれしかっ",
+            "b": "うれしい",
             "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "g": "to be happy; to be glad",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "ほういち",
+            "r": "ほういち",
+            "b": "芳一",
+            "k": "story",
+            "g": "Hoichi, a blind musician"
+          },
+          {
+            "s": "はお",
+            "b": "はう",
+            "k": "ghost",
+            "g": "to creep, to crawl",
             "gs": "jlpt"
           },
           {
@@ -825,15 +935,10 @@
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "寺",
-            "r": "てら",
-            "b": "寺",
-            "k": "known",
-            "g": "Buddhist temple",
+            "s": "ら",
+            "b": "ら",
+            "k": "ghost",
+            "g": "plural persons",
             "gs": "jlpt"
           },
           {
@@ -841,31 +946,21 @@
             "k": "plain"
           },
           {
-            "s": "部屋",
-            "r": "へや",
-            "b": "部屋",
+            "s": "へや",
+            "b": "へや",
             "k": "known",
             "g": "a room",
             "gs": "jlpt"
           },
           {
-            "s": "に",
+            "s": "を",
             "k": "plain"
           },
           {
-            "s": "住み",
-            "r": "すみ",
-            "b": "住む",
+            "s": "もらっ",
+            "b": "もらう",
             "k": "known",
-            "g": "to reside, to live in",
-            "gs": "jlpt"
-          },
-          {
-            "s": "始め",
-            "r": "はじめ",
-            "b": "始める",
-            "k": "known",
-            "g": "to start, to begin",
+            "g": "to receive",
             "gs": "jlpt"
           },
           {
@@ -885,9 +980,8 @@
             "k": "plain"
           },
           {
-            "s": "代わり",
-            "r": "かわり",
-            "b": "代わり",
+            "s": "かわり",
+            "b": "かわり",
             "k": "known",
             "g": "substitute, replacement",
             "gs": "jlpt"
@@ -901,9 +995,8 @@
             "k": "plain"
           },
           {
-            "s": "夜",
-            "r": "よる",
-            "b": "夜",
+            "s": "よる",
+            "b": "よる",
             "k": "known",
             "g": "evening, night",
             "gs": "jlpt"
@@ -913,7 +1006,7 @@
             "k": "plain"
           },
           {
-            "s": "琵琶",
+            "s": "びわ",
             "r": "びわ",
             "b": "琵琶",
             "k": "story",
@@ -924,11 +1017,10 @@
             "k": "plain"
           },
           {
-            "s": "弾い",
-            "r": "ひい",
-            "b": "弾く",
+            "s": "ひい",
+            "b": "ひく",
             "k": "known",
-            "g": "to play (a string instrument or piano)",
+            "g": "to pull, to draw; subtract",
             "gs": "jlpt"
           },
           {
@@ -936,7 +1028,11 @@
             "k": "plain"
           },
           {
-            "s": "和尚",
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "おしょう",
             "r": "おしょう",
             "b": "和尚",
             "k": "story",
@@ -947,23 +1043,18 @@
             "k": "plain"
           },
           {
-            "s": "幸せ",
-            "r": "しあわせ",
-            "b": "幸せ",
+            "s": "よろこば",
+            "b": "よろこぶ",
             "k": "known",
-            "g": "happiness, blessing",
+            "g": "to rejoice, to be delighted, to be glad",
             "gs": "jlpt"
           },
           {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "し",
-            "b": "する",
-            "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
-            "gs": "jlpt"
+            "s": "せ",
+            "b": "せる",
+            "k": "ghost",
+            "g": "to make someone do",
+            "gs": "model"
           },
           {
             "s": "た",
@@ -980,7 +1071,7 @@
       "prompt": {
         "tokens": [
           {
-            "s": "芳一",
+            "s": "ほういち",
             "r": "ほういち",
             "b": "芳一",
             "k": "story",
@@ -995,35 +1086,51 @@
             "k": "plain"
           },
           {
-            "s": "和尚",
-            "r": "おしょう",
-            "b": "和尚",
-            "k": "story",
-            "g": "Buddhist head priest"
-          },
-          {
-            "s": "から",
-            "k": "plain"
-          },
-          {
-            "s": "何",
-            "r": "なに",
-            "k": "plain"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "もらい",
-            "b": "もらう",
+            "s": "なぜ",
+            "b": "なぜ",
             "k": "known",
-            "g": "to receive",
+            "g": "why (same as どうして)",
             "gs": "jlpt"
           },
           {
-            "s": "まし",
+            "s": "お",
             "k": "plain"
+          },
+          {
+            "s": "てら",
+            "b": "てる",
+            "k": "known",
+            "g": "to shine",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "すむ",
+            "b": "すむ",
+            "k": "known",
+            "g": "to reside, to live in",
+            "gs": "jlpt"
+          },
+          {
+            "s": "こと",
+            "b": "こと",
+            "k": "known",
+            "g": "thing(s), matter(s), fact",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "でき",
+            "b": "できる",
+            "k": "known",
+            "g": "to be able to (to accomplish)",
+            "gs": "jlpt"
           },
           {
             "s": "た",
@@ -1043,76 +1150,211 @@
         {
           "tokens": [
             {
-              "s": "寺",
-              "r": "てら",
-              "b": "寺",
+              "s": "お",
+              "k": "plain"
+            },
+            {
+              "s": "かね",
+              "b": "かね",
               "k": "known",
-              "g": "Buddhist temple",
+              "g": "gold, metal; money",
               "gs": "jlpt"
+            },
+            {
+              "s": "を",
+              "k": "plain"
+            },
+            {
+              "s": "たくさん",
+              "b": "たくさん",
+              "k": "known",
+              "g": "many, much",
+              "gs": "jlpt"
+            },
+            {
+              "s": "もっ",
+              "b": "もつ",
+              "k": "known",
+              "g": "to hold, to carry; to possess",
+              "gs": "jlpt"
+            },
+            {
+              "s": "て",
+              "k": "plain"
+            },
+            {
+              "s": "い",
+              "b": "いる",
+              "k": "known",
+              "g": "(humble) to be (animate), to exist",
+              "gs": "jlpt"
+            },
+            {
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "から",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "平家",
+              "r": "へいけ",
+              "b": "平家",
+              "k": "story",
+              "g": "the Heike clan"
             },
             {
               "s": "の",
               "k": "plain"
             },
             {
-              "s": "部屋",
-              "r": "へや",
-              "b": "部屋",
+              "s": "ひと",
+              "b": "ひと",
               "k": "known",
-              "g": "a room",
+              "g": "man, person",
               "gs": "jlpt"
+            },
+            {
+              "s": "が",
+              "k": "plain"
+            },
+            {
+              "s": "、",
+              "k": "plain"
+            },
+            {
+              "s": "たすけ",
+              "b": "たすける",
+              "k": "known",
+              "g": "to help (v.t.), to save, to rescue",
+              "gs": "jlpt"
+            },
+            {
+              "s": "て",
+              "k": "plain"
+            },
+            {
+              "s": "くれ",
+              "b": "くれる",
+              "k": "known",
+              "g": "to give, to do for",
+              "gs": "jlpt"
+            },
+            {
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "から",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
             }
           ]
         },
         {
           "tokens": [
             {
-              "s": "新しい",
-              "r": "あたらしい",
-              "b": "新しい",
-              "k": "known",
-              "g": "new",
-              "gs": "jlpt"
+              "s": "おしょう",
+              "r": "おしょう",
+              "b": "和尚",
+              "k": "story",
+              "g": "Buddhist head priest"
             },
             {
-              "s": "琵琶",
+              "s": "が",
+              "k": "plain"
+            },
+            {
+              "s": "、",
+              "k": "plain"
+            },
+            {
+              "s": "びわ",
               "r": "びわ",
               "b": "琵琶",
               "k": "story",
               "g": "Japanese lute"
-            }
-          ]
-        },
-        {
-          "tokens": [
+            },
             {
-              "s": "お金",
-              "r": "おかね",
-              "b": "お金",
-              "k": "known",
-              "g": "money",
+              "s": "の",
+              "k": "plain"
+            },
+            {
+              "s": "わざ",
+              "b": "わざ",
+              "k": "ghost",
+              "g": "art, technique",
               "gs": "jlpt"
+            },
+            {
+              "s": "を",
+              "k": "plain"
+            },
+            {
+              "s": "すい",
+              "b": "すく",
+              "k": "known",
+              "g": "to be empty (in reference to people), to be less crowded",
+              "gs": "jlpt"
+            },
+            {
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "から",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
             }
           ]
         }
       ],
-      "answer": 0
+      "answer": 2
     },
     "metrics": {
-      "firstCoverage": 0.9032258064516129,
-      "finalCoverage": 0.9830508474576272,
-      "retries": 2,
-      "seconds": 17.010922299999976,
+      "kanjiCoverage": 1,
+      "kanjiDensity": 0.00625,
+      "firstCoverage": 0.8382352941176471,
+      "finalCoverage": 0.9180327868852459,
+      "retries": 3,
+      "seconds": 43.28489889999991,
       "offendingFirst": [
-        "ヶ",
-        "すぐ",
-        "れる",
-        "阿彌陀",
+        "れん",
+        "めい",
+        "しん",
+        "せつない",
+        "友だち",
+        "わざ",
+        "かんし",
+        "はう",
+        "ら",
+        "られる",
         "せる"
       ],
       "ghostWords": [
-        "阿彌陀"
+        "めい",
+        "はおる",
+        "はう",
+        "ら",
+        "せる",
+        "わざ"
       ]
     }
-  }
+  },
+  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
 }

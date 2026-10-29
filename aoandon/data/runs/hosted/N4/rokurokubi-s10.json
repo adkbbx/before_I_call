@@ -4,43 +4,42 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. You are retelling a Japanese ghost story (kaidan) aloud to a foreign friend who is learning Japanese at JLPT N4.\nRetell the scene in simple, natural storytelling Japanese. Use です/ます and polite past forms (～ました).\nRules:\n1. Use only words a JLPT N4 learner knows. If an idea needs a harder word, say it with easier words instead.\n2. Every sentence is at most 35 characters.\n3. Keep every event of the scene, in the same order. Do not add events, people, names, feelings or explanations that are not in the scene.\n4. You may use these story words exactly as written: 武連（たけつら）、囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Copy every story word exactly in kanji, not in kana.\n5. Write normal Japanese with no spaces between words. Use kanji for words a N4 learner reads in kanji and for every story word; write other words in hiragana. The reader shows furigana, so do not avoid kanji the learner knows. Write numbers as 三十年 or 30年, never as kana.\n6. Then write one question in Japanese at the same level about what happens in this scene, with three short answer options. Exactly one option is correct.\nReturn only JSON: {\"sentences\": [\"...\"], \"question\": {\"prompt\": \"...\", \"options\": [\"...\", \"...\", \"...\"], \"answer\": 0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Adds ～とき, ～たら, ～ている, ～と思います, potential forms and ～ても. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Copy every story word exactly in kanji when it is needed; do not insert unused words.\nWrite normal Japanese with no spaces between words. Outside story words, use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: 囘龍はあの方の足を引いて、窓から外へ出しました。家の後ろのドアは閉まっていました。首は上の空いた所から出たと分かりました。彼は静かに庭に出て、森へ行きました。森の中で人が話す音が聞こえました。彼は見えない所にいて、声の方へ行きました。木の向こうに、5つの首がありました。首は飛びながら、楽しく話していました。首は虫を食べていました。あの方の首が言いました。「あの僧は、体が太っていますね。みんなで食べれば、お腹がいっぱいになります。お祈りをしている間は、行けません。でも、もうすぐ朝ですから、寝たでしょう。誰か家へ行って、見てきてください。」\n\n場面（原文）:\n一つの首――若い女の首――が直ちに立ち上って蝙蝠のように軽く、家の方へ飛んで行った。数分の後、帰って来て、大驚愕の調子で、しゃがれ声で叫んだ、\n『あの旅僧はうちにいません、――行ってしまいました。それだけではありません。もっとひどい事には、主人の体を取って行きました。どこへ置いて行ったか分りません』\nこの報告を聞いて、主人の首が恐ろしい様子になった事は月の光で判然と分った。眼は大きく開いた、髪は逆立った、歯は軋った。それから一つの叫びが唇から破裂した、忿怒の涙を流しながらどなった、\n『からだを動かされた以上、再びもと通りになる事はできない。死なねばならない。……皆これがあの僧の仕業だ。死ぬ前にあの僧に飛びついてやろう、――引き裂いてやろう、――喰いつくしてやろう。……ああ、あすこに居る――あの樹のうしろ――あの樹のうしろに隠れている。あれ、――あの肥た臆病者』……"
+        "content": "前の場面（やさしく語り直したもの）: おとこはしゅじんのあしをつかみました。まどまでひいてからだをだしました。うらぐちのどはしまっていました。くびはやねからでたと思いました。おとこはしずかにそとにでました。もりへしずかにすすみました。もりのなかでこえがきこえました。かげからかげへすすみました。きのうしろにくびがありました。くびはいつつありました。ろくろ首ははなしてわらっていました。くびはむしをたべていました。しゅじんのくびがいいました。あのたびのそうはふとっています。みんなでたべたらおなかいっぱいになります。いまはあさちかいです。あの人はねていると思います。だれかうちへいってください。あの人がなにをしているか見てください。\n\n場面（原文）:\n一つの首――若い女の首――が直ちに立ち上って蝙蝠のように軽く、家の方へ飛んで行った。数分の後、帰って来て、大驚愕の調子で、しゃがれ声で叫んだ、\n『あの旅僧はうちにいません、――行ってしまいました。それだけではありません。もっとひどい事には、主人の体を取って行きました。どこへ置いて行ったか分りません』\nこの報告を聞いて、主人の首が恐ろしい様子になった事は月の光で判然と分った。眼は大きく開いた、髪は逆立った、歯は軋った。それから一つの叫びが唇から破裂した、忿怒の涙を流しながらどなった、\n『からだを動かされた以上、再びもと通りになる事はできない。死なねばならない。……皆これがあの僧の仕業だ。死ぬ前にあの僧に飛びついてやろう、――引き裂いてやろう、――喰いつくしてやろう。……ああ、あすこに居る――あの樹のうしろ――あの樹のうしろに隠れている。あれ、――あの肥た臆病者』……"
       }
     ]
   },
   "responses": [
-    "{\"sentences\": [\"若い女の首が、すぐに家へ飛びました。\", \"数分後、首は戻ってきました。\", \"首はびっくりして、叫びました。\", \"「旅の僧はいません。行ってしまいました。」\", \"「もっとひどいことがあります。」\", \"「主人の体を持って行きました。」\", \"「どこにあるか分かりません。」\", \"主人の首は、とても恐ろしい顔になりました。\", \"目は大きく開き、髪が立ちました。\", \"主人は怒って、涙を流して叫びました。\", \"「体が動かされたから、もう死ぬしかありません。」\", \"「あの僧のせいです。死ぬ前に、あの方を食べてやります。」\", \"「あそこにいます。木の後ろに隠れています。」\", \"「あの太った、怖がりの人です。」\"], \"question\": {\"prompt\": \"若い女の首は、家で何を見つけましたか。\", \"options\": [\"僧が寝ていた。\", \"僧が主人の体を持って行った。\", \"主人が家で待っていた。\"], \"answer\": 1}}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"若い女の首が、すぐに家へ飛びました。\"}, {\"index\": 2, \"sentence\": \"首はとても驚いて、大きな声をだしました。\"}, {\"index\": 3, \"sentence\": \"「僧はいません。行ってしまいました。」\"}, {\"index\": 5, \"sentence\": \"「あの人の体を持って行きました。」\"}, {\"index\": 7, \"sentence\": \"あの人の首は、とても怖い顔になりました。\"}, {\"index\": 9, \"sentence\": \"あの人は怒って、泣きながら大きな声をだしました。\"}, {\"index\": 10, \"sentence\": \"「体があった場所が変わったので、もう死にます。」\"}, {\"index\": 12, \"sentence\": \"「あそこにいます。木のうしろにいます。」\"}, {\"index\": 13, \"sentence\": \"「あの太った、弱い人です。」\"}]}",
-    "{\"question\": {\"prompt\": \"若い女の首は、家で何を見つけましたか。\", \"options\": [\"僧が体を持って行った。\", \"僧が寝ていた。\", \"あの人が家で待っていた。\"], \"answer\": 0}}",
-    "{\"glosses\": {\"すぐ\": \"immediately\", \"ろ\": \"no meaning provided in context\"}}"
+    "{\"sentences\": [\"わかい女のくびがひとつありました。\", \"そのくびはいえへときました。\", \"すこしあとにもどってきました。\", \"くびは大きなこえでさけびました。\", \"あのそうはもういません。\", \"からだももっていきました。\", \"どこへいったかわかりません。\", \"しゅじんのくびはとてもこわいかおでした。\", \"めを大きくあけました。\", \"なみだをだしてさけびました。\", \"からだがうごいたらもうだめです。\", \"しぬしかありません。\", \"すべてあのそうがしたことです。\", \"しぬまえにあの人をたべたいです。\", \"あそこにいます。\", \"あのきのうしろに隠れています。\", \"あの方はこびょうものです。\"], \"question\": {\"prompt\": \"女のくびは、なにをみつけましたか。\", \"options\": [\"そうがいないこと\", \"いえがこわれたこと\", \"ごはんがあること\"], \"answer\": 0}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"わかい女のくびがひとつありました。\"}, {\"index\": 3, \"sentence\": \"くびは大きなこえでいいました。\"}, {\"index\": 7, \"sentence\": \"しゅじんのくびはこわいかおでした。\"}, {\"index\": 9, \"sentence\": \"なみだをだしていいました。\"}, {\"index\": 12, \"sentence\": \"ぜんぶあのそうがしたことです。\"}, {\"index\": 15, \"sentence\": \"あのきのうしろにかくれたいます。\"}, {\"index\": 16, \"sentence\": \"あの方はこわがりものです。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"わかい女のくびがありました。\"}, {\"index\": 7, \"sentence\": \"しゅじんのくびはこわいかおでした。\"}, {\"index\": 15, \"sentence\": \"あのきのうしろにいます。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"わかい女のくびがありました。\"}, {\"index\": 7, \"sentence\": \"しゅじんのくびはこわいかおでした。\"}]}",
+    "{\"question\": {\"prompt\": \"女の人は、なにをみつけましたか。\", \"options\": [\"そうがいないこと\", \"いえがこわれたこと\", \"ごはんがあること\"], \"answer\": 0}}",
+    "{\"glosses\": {\"のく\": \"of the neck\", \"びがありました\": \"there was a neck\", \"ゅじんのくびはこわいかおでした\": \"husband's neck looked scary\"}}"
   ],
   "metrics": {
-    "firstCoverage": 0.7761194029850746,
-    "finalCoverage": 0.9552238805970149,
-    "retries": 1,
-    "seconds": 15.706636999999988,
+    "kanjiCoverage": 1,
+    "kanjiDensity": 0.021929824561403508,
+    "firstCoverage": 0.8367346938775511,
+    "finalCoverage": 0.9375,
+    "retries": 3,
+    "seconds": 19.35820120000001,
     "offendingFirst": [
-      "すぐ",
-      "びっくり",
-      "叫ぶ",
-      "旅",
-      "主人",
-      "恐ろしい",
-      "涙",
-      "流す",
-      "動かす",
-      "れる",
+      "のく",
+      "びがひとつありました",
+      "さけぶ",
+      "ゅじんのくびはとてもこわいかおでした",
+      "すべて",
       "隠れる",
-      "怖がる"
+      "びょう"
     ],
     "ghostWords": [
-      "すぐ",
-      "うし",
-      "ろ"
+      "のく",
+      "びがありました",
+      "ゅじんのくびはこわいかおでした"
     ]
   },
   "retelling": {
@@ -51,9 +50,8 @@
       {
         "tokens": [
           {
-            "s": "若い",
-            "r": "わかい",
-            "b": "若い",
+            "s": "わかい",
+            "b": "わかい",
             "k": "known",
             "g": "young",
             "gs": "jlpt"
@@ -67,62 +65,40 @@
             "gs": "jlpt"
           },
           {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "首",
-            "r": "くび",
-            "b": "首",
-            "k": "known",
-            "g": "neck",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "すぐ",
-            "b": "すぐ",
+            "s": "のく",
+            "b": "のく",
             "k": "ghost",
-            "g": "immediately",
+            "g": "of the neck",
             "gs": "model"
           },
           {
-            "s": "に",
+            "s": "びがありました",
+            "b": "びがありました",
+            "k": "ghost",
+            "g": "there was a neck",
+            "gs": "model"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "その",
             "k": "plain"
           },
           {
-            "s": "家",
-            "r": "いえ",
-            "b": "家",
+            "s": "く",
+            "b": "くい",
             "k": "known",
-            "g": "house, home",
+            "g": "nine",
             "gs": "jlpt"
           },
           {
-            "s": "へ",
-            "k": "plain"
-          },
-          {
-            "s": "飛び",
-            "r": "とび",
-            "b": "飛ぶ",
-            "k": "known",
-            "g": "to fly, to hop",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
+            "s": "びはいえへときました",
             "k": "plain"
           },
           {
@@ -134,46 +110,26 @@
       {
         "tokens": [
           {
-            "s": "数",
-            "r": "すう",
-            "k": "plain"
-          },
-          {
-            "s": "分",
-            "r": "ふん",
-            "b": "分",
+            "s": "すこし",
+            "b": "すこし",
             "k": "known",
-            "g": "~ minutes",
+            "g": "little, few",
             "gs": "jlpt"
           },
           {
-            "s": "後",
-            "r": "ご",
-            "b": "後",
+            "s": "あと",
+            "b": "あと",
             "k": "known",
             "g": "afterwards (later); in the future; the rest; since then",
             "gs": "jlpt"
           },
           {
-            "s": "、",
+            "s": "に",
             "k": "plain"
           },
           {
-            "s": "首",
-            "r": "くび",
-            "b": "首",
-            "k": "known",
-            "g": "neck",
-            "gs": "jlpt"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "戻っ",
-            "r": "もどっ",
-            "b": "戻る",
+            "s": "もどっ",
+            "b": "もどる",
             "k": "known",
             "g": "to return (v.i.); to come back",
             "gs": "jlpt"
@@ -206,38 +162,14 @@
       {
         "tokens": [
           {
-            "s": "首",
-            "r": "くび",
-            "b": "首",
+            "s": "く",
+            "b": "くい",
             "k": "known",
-            "g": "neck",
+            "g": "nine",
             "gs": "jlpt"
           },
           {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "とても",
-            "b": "とても",
-            "k": "known",
-            "g": "very (much), greatly, exceedingly",
-            "gs": "jlpt"
-          },
-          {
-            "s": "驚い",
-            "r": "おどろい",
-            "b": "驚く",
-            "k": "known",
-            "g": "to be surprised, to be astonished",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "、",
+            "s": "びは",
             "k": "plain"
           },
           {
@@ -246,22 +178,21 @@
             "k": "plain"
           },
           {
-            "s": "声",
-            "r": "こえ",
-            "b": "声",
+            "s": "こえ",
+            "b": "こえる",
             "k": "known",
-            "g": "voice",
+            "g": "to exceed, to cross over, to cross",
             "gs": "jlpt"
           },
           {
-            "s": "を",
+            "s": "で",
             "k": "plain"
           },
           {
-            "s": "だし",
-            "b": "だす",
+            "s": "いい",
+            "b": "いう",
             "k": "known",
-            "g": "to take (something) out; to hand in (something)",
+            "g": "to say",
             "gs": "jlpt"
           },
           {
@@ -281,20 +212,26 @@
       {
         "tokens": [
           {
-            "s": "「",
+            "s": "あの",
             "k": "plain"
           },
           {
-            "s": "僧",
-            "r": "そう",
-            "b": "僧",
+            "s": "そう",
+            "b": "そう",
             "k": "known",
-            "g": "monk, priest",
+            "g": "yes; appears, to be the case",
             "gs": "jlpt"
           },
           {
             "s": "は",
             "k": "plain"
+          },
+          {
+            "s": "もう",
+            "b": "もう",
+            "k": "known",
+            "g": "already; again; more",
+            "gs": "jlpt"
           },
           {
             "s": "い",
@@ -314,134 +251,25 @@
           {
             "s": "。",
             "k": "plain"
-          },
-          {
-            "s": "行っ",
-            "r": "いっ",
-            "b": "行く",
-            "k": "known",
-            "g": "to go",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "しまい",
-            "b": "しまう",
-            "k": "known",
-            "g": "to end up ~",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          },
-          {
-            "s": "」",
-            "k": "plain"
           }
         ]
       },
       {
         "tokens": [
           {
-            "s": "「",
-            "k": "plain"
-          },
-          {
-            "s": "もっと",
-            "b": "もっと",
-            "k": "known",
-            "g": "more",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ひどい",
-            "b": "ひどい",
-            "k": "known",
-            "g": "terrible, awful, unfair, cruel",
-            "gs": "jlpt"
-          },
-          {
-            "s": "こと",
-            "b": "こと",
-            "k": "known",
-            "g": "thing(s), matter(s), fact",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "あり",
-            "b": "ある",
-            "k": "known",
-            "g": "to be, to have",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ます",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          },
-          {
-            "s": "」",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "「",
-            "k": "plain"
-          },
-          {
-            "s": "あの",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "体",
-            "r": "からだ",
-            "b": "体",
+            "s": "からだ",
+            "b": "からだ",
             "k": "known",
             "g": "body; health",
             "gs": "jlpt"
           },
           {
-            "s": "を",
+            "s": "も",
             "k": "plain"
           },
           {
-            "s": "持っ",
-            "r": "もっ",
-            "b": "持つ",
+            "s": "もっ",
+            "b": "もつ",
             "k": "known",
             "g": "to hold, to carry; to possess",
             "gs": "jlpt"
@@ -451,9 +279,8 @@
             "k": "plain"
           },
           {
-            "s": "行き",
-            "r": "いき",
-            "b": "行く",
+            "s": "いき",
+            "b": "いく",
             "k": "known",
             "g": "to go",
             "gs": "jlpt"
@@ -469,42 +296,37 @@
           {
             "s": "。",
             "k": "plain"
-          },
-          {
-            "s": "」",
-            "k": "plain"
           }
         ]
       },
       {
         "tokens": [
           {
-            "s": "「",
-            "k": "plain"
-          },
-          {
             "s": "どこ",
             "k": "plain"
           },
           {
-            "s": "に",
+            "s": "へ",
             "k": "plain"
           },
           {
-            "s": "ある",
-            "b": "ある",
+            "s": "いっ",
+            "b": "いく",
             "k": "known",
-            "g": "to be, to have",
+            "g": "to go",
             "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
           },
           {
             "s": "か",
             "k": "plain"
           },
           {
-            "s": "分かり",
-            "r": "わかり",
-            "b": "分かる",
+            "s": "わかり",
+            "b": "わかる",
             "k": "known",
             "g": "to understand",
             "gs": "jlpt"
@@ -520,88 +342,24 @@
           {
             "s": "。",
             "k": "plain"
-          },
-          {
-            "s": "」",
-            "k": "plain"
           }
         ]
       },
       {
         "tokens": [
           {
-            "s": "あの",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
+            "s": "し",
+            "b": "する",
             "k": "known",
-            "g": "counter for people",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
             "gs": "jlpt"
           },
           {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "首",
-            "r": "くび",
-            "b": "首",
-            "k": "known",
-            "g": "neck",
-            "gs": "jlpt"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "とても",
-            "b": "とても",
-            "k": "known",
-            "g": "very (much), greatly, exceedingly",
-            "gs": "jlpt"
-          },
-          {
-            "s": "怖い",
-            "r": "こわい",
-            "b": "怖い",
-            "k": "known",
-            "g": "scary, frightening",
-            "gs": "jlpt"
-          },
-          {
-            "s": "顔",
-            "r": "かお",
-            "b": "顔",
-            "k": "known",
-            "g": "face (body part)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "なり",
-            "b": "なる",
-            "k": "known",
-            "g": "to become",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
+            "s": "ゅじんのくびはこわいかおでした",
+            "b": "ゅじんのくびはこわいかおでした",
+            "k": "ghost",
+            "g": "husband's neck looked scary",
+            "gs": "model"
           },
           {
             "s": "。",
@@ -612,15 +370,14 @@
       {
         "tokens": [
           {
-            "s": "目",
-            "r": "め",
-            "b": "目",
+            "s": "め",
+            "b": "め",
             "k": "known",
             "g": "eye(s)",
             "gs": "jlpt"
           },
           {
-            "s": "は",
+            "s": "を",
             "k": "plain"
           },
           {
@@ -632,35 +389,10 @@
             "gs": "jlpt"
           },
           {
-            "s": "開き",
-            "r": "ひらき",
-            "b": "開く",
+            "s": "あけ",
+            "b": "あける",
             "k": "known",
-            "g": "to open, to become open",
-            "gs": "jlpt"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "髪",
-            "r": "かみ",
-            "b": "髪",
-            "k": "known",
-            "g": "hair",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "立ち",
-            "r": "たち",
-            "b": "立つ",
-            "k": "known",
-            "g": "to stand up",
+            "g": "to open (v.t.)",
             "gs": "jlpt"
           },
           {
@@ -680,61 +412,12 @@
       {
         "tokens": [
           {
-            "s": "あの",
+            "s": "なみ",
             "k": "plain"
           },
           {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
-            "gs": "jlpt"
-          },
-          {
-            "s": "は",
+            "s": "だ",
             "k": "plain"
-          },
-          {
-            "s": "怒っ",
-            "r": "おこっ",
-            "b": "怒る",
-            "k": "known",
-            "g": "to get angry; to scold angrily",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "泣き",
-            "r": "なき",
-            "b": "泣く",
-            "k": "known",
-            "g": "to cry",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ながら",
-            "k": "plain"
-          },
-          {
-            "s": "大きな",
-            "r": "おおきな",
-            "k": "plain"
-          },
-          {
-            "s": "声",
-            "r": "こえ",
-            "b": "声",
-            "k": "known",
-            "g": "voice",
-            "gs": "jlpt"
           },
           {
             "s": "を",
@@ -748,6 +431,17 @@
             "gs": "jlpt"
           },
           {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "いい",
+            "b": "いう",
+            "k": "known",
+            "g": "to say",
+            "gs": "jlpt"
+          },
+          {
             "s": "まし",
             "k": "plain"
           },
@@ -764,62 +458,26 @@
       {
         "tokens": [
           {
-            "s": "「",
+            "s": "から",
             "k": "plain"
           },
           {
-            "s": "体",
-            "r": "からだ",
-            "b": "体",
-            "k": "known",
-            "g": "body; health",
-            "gs": "jlpt"
+            "s": "だ",
+            "k": "plain"
           },
           {
             "s": "が",
             "k": "plain"
           },
           {
-            "s": "あっ",
-            "b": "ある",
+            "s": "うごい",
+            "b": "うごく",
             "k": "known",
-            "g": "to be, to have",
+            "g": "to move",
             "gs": "jlpt"
           },
           {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "場所",
-            "r": "ばしょ",
-            "b": "場所",
-            "k": "known",
-            "g": "place, location",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "変わっ",
-            "r": "かわっ",
-            "b": "変わる",
-            "k": "known",
-            "g": "to change (v.i.), to be transformed, to vary",
-            "gs": "jlpt"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "ので",
-            "k": "plain"
-          },
-          {
-            "s": "、",
+            "s": "たら",
             "k": "plain"
           },
           {
@@ -830,54 +488,10 @@
             "gs": "jlpt"
           },
           {
-            "s": "死に",
-            "r": "しに",
-            "b": "死ぬ",
+            "s": "だめ",
+            "b": "だめ",
             "k": "known",
-            "g": "to die",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ます",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          },
-          {
-            "s": "」",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "「",
-            "k": "plain"
-          },
-          {
-            "s": "あの",
-            "k": "plain"
-          },
-          {
-            "s": "僧",
-            "r": "そう",
-            "b": "僧",
-            "k": "known",
-            "g": "monk, priest",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "せい",
-            "b": "せい",
-            "k": "known",
-            "g": "(one's) height, stature",
+            "g": "useless, no good, hopeless",
             "gs": "jlpt"
           },
           {
@@ -887,76 +501,43 @@
           {
             "s": "。",
             "k": "plain"
-          },
+          }
+        ]
+      },
+      {
+        "tokens": [
           {
-            "s": "死ぬ",
-            "r": "しぬ",
-            "b": "死ぬ",
+            "s": "し",
+            "b": "する",
             "k": "known",
-            "g": "to die",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
             "gs": "jlpt"
           },
           {
-            "s": "前",
-            "r": "まえ",
-            "b": "前",
+            "s": "ぬ",
+            "k": "plain"
+          },
+          {
+            "s": "しか",
+            "k": "plain"
+          },
+          {
+            "s": "あり",
+            "b": "ある",
             "k": "known",
-            "g": "before, in front",
+            "g": "to be, to have",
             "gs": "jlpt"
           },
           {
-            "s": "に",
+            "s": "ませ",
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "あの",
-            "k": "plain"
-          },
-          {
-            "s": "方",
-            "r": "ほう",
-            "b": "方",
-            "k": "known",
-            "g": "-- honorific form for 人 (ひと) --; way of doing",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "食べ",
-            "r": "たべ",
-            "b": "食べる",
-            "k": "known",
-            "g": "to eat",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "やり",
-            "b": "やる",
-            "k": "known",
-            "g": "to do; to give (to pets, parents, siblings, etc.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ます",
+            "s": "ん",
             "k": "plain"
           },
           {
             "s": "。",
-            "k": "plain"
-          },
-          {
-            "s": "」",
             "k": "plain"
           }
         ]
@@ -964,9 +545,118 @@
       {
         "tokens": [
           {
-            "s": "「",
+            "s": "ぜんぶ",
+            "b": "ぜんぶ",
+            "k": "known",
+            "g": "all, entire, whole",
+            "gs": "jlpt"
+          },
+          {
+            "s": "あの",
             "k": "plain"
           },
+          {
+            "s": "そう",
+            "b": "そう",
+            "k": "known",
+            "g": "yes; appears, to be the case",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "し",
+            "b": "する",
+            "k": "known",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "こと",
+            "b": "こと",
+            "k": "known",
+            "g": "thing(s), matter(s), fact",
+            "gs": "jlpt"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "し",
+            "b": "する",
+            "k": "known",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ぬ",
+            "k": "plain"
+          },
+          {
+            "s": "まえ",
+            "b": "まう",
+            "k": "known",
+            "g": "to dance, to flutter about, to revolve",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "あの",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "r": "ひと",
+            "b": "人",
+            "k": "known",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "たべ",
+            "b": "たべる",
+            "k": "known",
+            "g": "to eat",
+            "gs": "jlpt"
+          },
+          {
+            "s": "たい",
+            "k": "plain"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
           {
             "s": "あそこ",
             "k": "plain"
@@ -989,32 +679,28 @@
           {
             "s": "。",
             "k": "plain"
-          },
+          }
+        ]
+      },
+      {
+        "tokens": [
           {
-            "s": "木",
-            "r": "き",
-            "b": "木",
-            "k": "known",
-            "g": "tree, wood, timber",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
+            "s": "あの",
             "k": "plain"
           },
           {
-            "s": "うし",
-            "b": "うし",
-            "k": "ghost",
-            "g": "cattle, cow",
+            "s": "きのう",
+            "b": "きのう",
+            "k": "known",
+            "g": "yesterday",
             "gs": "jlpt"
           },
           {
-            "s": "ろ",
-            "b": "ろ",
-            "k": "ghost",
-            "g": "no meaning provided in context",
-            "gs": "model"
+            "s": "しろ",
+            "b": "する",
+            "k": "known",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "gs": "jlpt"
           },
           {
             "s": "に",
@@ -1034,53 +720,46 @@
           {
             "s": "。",
             "k": "plain"
-          },
-          {
-            "s": "」",
-            "k": "plain"
           }
         ]
       },
       {
         "tokens": [
           {
-            "s": "「",
-            "k": "plain"
-          },
-          {
             "s": "あの",
             "k": "plain"
           },
           {
-            "s": "太っ",
-            "r": "ふとっ",
-            "b": "太る",
+            "s": "方",
+            "r": "ほう",
+            "b": "方",
             "k": "known",
-            "g": "to gain weight",
+            "g": "-- honorific form for 人 (ひと) --; way of doing",
             "gs": "jlpt"
           },
           {
-            "s": "た",
+            "s": "は",
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "弱い",
-            "r": "よわい",
-            "b": "弱い",
+            "s": "こわ",
+            "b": "こう",
             "k": "known",
-            "g": "weak",
+            "g": "like this, this way",
             "gs": "jlpt"
           },
           {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
+            "s": "がり",
+            "b": "がる",
             "k": "known",
-            "g": "counter for people",
+            "g": "feel",
+            "gs": "jlpt"
+          },
+          {
+            "s": "もの",
+            "b": "もの",
+            "k": "known",
+            "g": "thing (concrete object)",
             "gs": "jlpt"
           },
           {
@@ -1090,10 +769,6 @@
           {
             "s": "。",
             "k": "plain"
-          },
-          {
-            "s": "」",
-            "k": "plain"
           }
         ]
       }
@@ -1101,14 +776,6 @@
     "question": {
       "prompt": {
         "tokens": [
-          {
-            "s": "若い",
-            "r": "わかい",
-            "b": "若い",
-            "k": "known",
-            "g": "young",
-            "gs": "jlpt"
-          },
           {
             "s": "女",
             "r": "おんな",
@@ -1122,11 +789,11 @@
             "k": "plain"
           },
           {
-            "s": "首",
-            "r": "くび",
-            "b": "首",
+            "s": "人",
+            "r": "ひと",
+            "b": "人",
             "k": "known",
-            "g": "neck",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
@@ -1138,20 +805,7 @@
             "k": "plain"
           },
           {
-            "s": "家",
-            "r": "いえ",
-            "b": "家",
-            "k": "known",
-            "g": "house, home",
-            "gs": "jlpt"
-          },
-          {
-            "s": "で",
-            "k": "plain"
-          },
-          {
-            "s": "何",
-            "r": "なに",
+            "s": "なに",
             "k": "plain"
           },
           {
@@ -1159,9 +813,8 @@
             "k": "plain"
           },
           {
-            "s": "見つけ",
-            "r": "みつけ",
-            "b": "見つける",
+            "s": "みつけ",
+            "b": "みつける",
             "k": "known",
             "g": "to discover, to find (v.t.)",
             "gs": "jlpt"
@@ -1188,27 +841,44 @@
         {
           "tokens": [
             {
-              "s": "僧",
-              "r": "そう",
-              "b": "僧",
-              "k": "known",
-              "g": "monk, priest",
-              "gs": "jlpt"
+              "s": "いえ",
+              "k": "plain"
             },
             {
               "s": "が",
               "k": "plain"
             },
             {
-              "s": "寝",
-              "r": "ね",
-              "b": "寝る",
+              "s": "こわれ",
+              "b": "こわれる",
               "k": "known",
-              "g": "to sleep; to go to sleep; to go to bed",
+              "g": "to be broken, to break",
               "gs": "jlpt"
             },
             {
-              "s": "て",
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "こと",
+              "b": "こと",
+              "k": "known",
+              "g": "thing(s), matter(s), fact",
+              "gs": "jlpt"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "そう",
+              "b": "そう",
+              "k": "known",
+              "g": "yes; appears, to be the case",
+              "gs": "jlpt"
+            },
+            {
+              "s": "が",
               "k": "plain"
             },
             {
@@ -1219,23 +889,25 @@
               "gs": "jlpt"
             },
             {
-              "s": "た",
+              "s": "ない",
               "k": "plain"
             },
             {
-              "s": "。",
-              "k": "plain"
+              "s": "こと",
+              "b": "こと",
+              "k": "known",
+              "g": "thing(s), matter(s), fact",
+              "gs": "jlpt"
             }
           ]
         },
         {
           "tokens": [
             {
-              "s": "僧",
-              "r": "そう",
-              "b": "僧",
+              "s": "ごはん",
+              "b": "ごはん",
               "k": "known",
-              "g": "monk, priest",
+              "g": "rice (cooked); meal",
               "gs": "jlpt"
             },
             {
@@ -1243,103 +915,18 @@
               "k": "plain"
             },
             {
-              "s": "体",
-              "r": "からだ",
-              "b": "体",
+              "s": "ある",
+              "b": "ある",
               "k": "known",
-              "g": "body; health",
+              "g": "to be, to have",
               "gs": "jlpt"
             },
             {
-              "s": "を",
-              "k": "plain"
-            },
-            {
-              "s": "持っ",
-              "r": "もっ",
-              "b": "持つ",
+              "s": "こと",
+              "b": "こと",
               "k": "known",
-              "g": "to hold, to carry; to possess",
+              "g": "thing(s), matter(s), fact",
               "gs": "jlpt"
-            },
-            {
-              "s": "て",
-              "k": "plain"
-            },
-            {
-              "s": "行っ",
-              "r": "いっ",
-              "b": "行く",
-              "k": "known",
-              "g": "to go",
-              "gs": "jlpt"
-            },
-            {
-              "s": "た",
-              "k": "plain"
-            },
-            {
-              "s": "。",
-              "k": "plain"
-            }
-          ]
-        },
-        {
-          "tokens": [
-            {
-              "s": "あの",
-              "k": "plain"
-            },
-            {
-              "s": "人",
-              "r": "ひと",
-              "b": "人",
-              "k": "known",
-              "g": "counter for people",
-              "gs": "jlpt"
-            },
-            {
-              "s": "が",
-              "k": "plain"
-            },
-            {
-              "s": "家",
-              "r": "いえ",
-              "b": "家",
-              "k": "known",
-              "g": "house, home",
-              "gs": "jlpt"
-            },
-            {
-              "s": "で",
-              "k": "plain"
-            },
-            {
-              "s": "待っ",
-              "r": "まっ",
-              "b": "待つ",
-              "k": "known",
-              "g": "to wait",
-              "gs": "jlpt"
-            },
-            {
-              "s": "て",
-              "k": "plain"
-            },
-            {
-              "s": "い",
-              "b": "いる",
-              "k": "known",
-              "g": "(humble) to be (animate), to exist",
-              "gs": "jlpt"
-            },
-            {
-              "s": "た",
-              "k": "plain"
-            },
-            {
-              "s": "。",
-              "k": "plain"
             }
           ]
         }
@@ -1347,29 +934,27 @@
       "answer": 1
     },
     "metrics": {
-      "firstCoverage": 0.7761194029850746,
-      "finalCoverage": 0.9552238805970149,
-      "retries": 1,
-      "seconds": 15.706636999999988,
+      "kanjiCoverage": 1,
+      "kanjiDensity": 0.021929824561403508,
+      "firstCoverage": 0.8367346938775511,
+      "finalCoverage": 0.9375,
+      "retries": 3,
+      "seconds": 19.35820120000001,
       "offendingFirst": [
-        "すぐ",
-        "びっくり",
-        "叫ぶ",
-        "旅",
-        "主人",
-        "恐ろしい",
-        "涙",
-        "流す",
-        "動かす",
-        "れる",
+        "のく",
+        "びがひとつありました",
+        "さけぶ",
+        "ゅじんのくびはとてもこわいかおでした",
+        "すべて",
         "隠れる",
-        "怖がる"
+        "びょう"
       ],
       "ghostWords": [
-        "すぐ",
-        "うし",
-        "ろ"
+        "のく",
+        "びがありました",
+        "ゅじんのくびはこわいかおでした"
       ]
     }
-  }
+  },
+  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
 }

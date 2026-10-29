@@ -4,7 +4,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. You are retelling a Japanese ghost story (kaidan) aloud to a foreign friend who is learning Japanese at JLPT N3.\nRetell the scene in simple, natural storytelling Japanese. Use plain past forms (～た) for narration.\nRules:\n1. Use only words a JLPT N3 learner knows. If an idea needs a harder word, say it with easier words instead.\n2. Every sentence is at most 45 characters.\n3. Keep every event of the scene, in the same order. Do not add events, people, names, feelings or explanations that are not in the scene.\n4. You may use these story words exactly as written: 茂作（もさく）、巳之吉（みのきち）、お雪（おゆき）、木こり（きこり）、吹雪（ふぶき）. Copy every story word exactly in kanji, not in kana.\n5. Write normal Japanese with no spaces between words. Use kanji for words a N3 learner reads in kanji and for every story word; write other words in hiragana. The reader shows furigana, so do not avoid kanji the learner knows. Write numbers as 三十年 or 30年, never as kana.\n6. Then write one question in Japanese at the same level about what happens in this scene, with three short answer options. Exactly one option is correct.\nReturn only JSON: {\"sentences\": [\"...\"], \"question\": {\"prompt\": \"...\", \"options\": [\"...\", \"...\", \"...\"], \"answer\": 0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration, adding ～ようだ, ～らしい, the passive and ～ために.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 巳之吉（みのきち）、お雪（おゆき）、木こり（きこり）、吹雪（ふぶき）. Copy every story word exactly in kanji when it is needed; do not insert unused words.\nWrite normal Japanese with no spaces between words. Outside story words, use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小才中五六円天手文日月木水火犬王出右四左本正田白目石立万今元公内切午友太少引心方牛父止兄冬北半古台外市広母用世主他代写去号平打申礼休先名字年早気百耳男町花見赤足車不仕交会光同回多当毎米考肉自色行西何体作図声売弟形来社言走近学空金雨青草音化地両全向安曲有次死京国夜妹姉店明東歩画直知長前南室後思活海点科茶食首欠由民付以失必未末校夏家時紙記通高強教理組船週雪魚鳥黒支住助医君対局役投決究者研馬場朝番答絵買道間数楽話電所事使具受和始定実服泳物苦表部乗客屋度待持界発相美負送重談要勝起速配酒院終習転進落葉運開集飲業漢路歌聞語読鳴横調親頭顔病最争伝共好成老位初別利努労命放昔注育指洋神追戦良特便働意味勉庭息旅流消員都動商悪族深球陽寒悲期歯港登着野生亡合風予反新返問宿想感暗様福銀題館駅料殺然熱選願情映疑皆例参完念折望束残求約性格能術私帰春昼晴秋計列式信単変夫建昨法英飯晩猫園曜書遠係取品守幸急真箱面喜治笑辞関政留険危存原薬側堂席敗果因常識非官察愛警覚説試告種達類報等借座忘洗験許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差質供限与渡景抜候構捕慣満掛居突招段腹痛退貸迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
@@ -13,22 +13,28 @@
     ]
   },
   "responses": [
-    "{\"sentences\": [\"武蔵の国のある村に、茂作と巳之吉という二人の木こりがいた。\", \"茂作は老人だった。\", \"巳之吉は18歳の少年だった。\", \"二人は毎日、村から遠い森へ一緒に行った。\", \"森へ行く道に、大きな河があった。\", \"そこには渡し船があった。\", \"何度も橋を作ったが、洪水で流された。\", \"河の水がふえると、普通の橋では止めることができなかった。\"], \"question\": {\"prompt\": \"茂作と巳之吉は、どんな仕事をしていましたか。\", \"options\": [\"木こりだった。\", \"船を運転していた。\", \"橋を作っていた。\"], \"answer\": 0}}",
-    "{\"rewrites\": [{\"index\": 5, \"sentence\": \"そこには河をわたる船があった。\"}, {\"index\": 6, \"sentence\": \"何度も橋を作ったが、大雨で流れた。\"}]}",
-    "{\"glosses\": {\"大雨\": \"heavy rain\"}}"
+    "{\"sentences([\": \"むさしのくにのむらに、ふたりの木こりがいた。\", \"ひとりはおとしよりで、ひとりは巳之吉という少年だった。дの少年は、おとしよりのためにはたらいていた。- \": 2000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "{\"sentences\": [\"むさしのくにのむらに、ふたりの木こりがいた。\", \"ひとりはとしよりだった。\", \"もうひとりは巳之吉という少年だった。\", \"少年はとしよりのために、はたらいていた。\", \"ふたりは、いっしょにもりへいった。\", \"みちに、おおきいかわがあった。\", \"そこには、ふねがあった。\", \"はしがつくられたが、いつもながされた。\", \"かわのみずが、つよすぎたらしい。\"], \"question\": {\"prompt\": \"巳之吉はだれでしたか。\", \"options\": [\"としよりの木こり\", \"としよりのためにはたらく少年\", \"ふねをだすひと\"], \"answer\": 1}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"むさしのくにのむらに、ふたりの木こりがいた。\"}, {\"index\": 2, \"sentence\": \"もうひとりは巳之吉という少年だった。\"}, {\"index\": 7, \"sentence\": \"はしがつくられたが、いつもながされた。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"むさしのくにのむらに、ふたりの木こりがいた。\"}, {\"index\": 2, \"sentence\": \"もうひとりは巳之吉という少年だった。\"}, {\"index\": 7, \"sentence\": \"はしがつくられたが、いつもながされた。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"むさしのくにのむらに、ふたりの木こりがいた。\"}, {\"index\": 2, \"sentence\": \"もうひとりは巳之吉という少年だった。\"}, {\"index\": 7, \"sentence\": \"はしは、いつもみずにながされた。\"}]}",
+    "{\"question\": {\"prompt\": \"みのきちは、どんなひとでしたか。\", \"options\": [\"としよりの木こり\", \"としよりのためにはたらく少年\", \"ふねをだすひと\"], \"answer\": 1}}",
+    "{\"glosses\": {\"むさい\": \"not applicable\", \"れる\": \"passive voice auxiliary\"}}"
   ],
   "metrics": {
-    "firstCoverage": 0.9166666666666666,
-    "finalCoverage": 0.972972972972973,
-    "retries": 1,
-    "seconds": 9.080317299999995,
+    "kanjiCoverage": 0.625,
+    "kanjiDensity": 0.05405405405405406,
+    "firstCoverage": 0.90625,
+    "finalCoverage": 0.9354838709677419,
+    "retries": 3,
+    "seconds": 57.827281499999984,
     "offendingFirst": [
-      "渡し船",
-      "洪水",
+      "むさい",
       "れる"
     ],
     "ghostWords": [
-      "大雨"
+      "むさい",
+      "れる"
     ]
   },
   "retelling": {
@@ -39,18 +45,19 @@
       {
         "tokens": [
           {
-            "s": "武蔵",
-            "r": "むさし",
-            "k": "plain"
+            "s": "むさし",
+            "b": "むさい",
+            "k": "ghost",
+            "g": "not applicable",
+            "gs": "model"
           },
           {
             "s": "の",
             "k": "plain"
           },
           {
-            "s": "国",
-            "r": "くに",
-            "b": "国",
+            "s": "くに",
+            "b": "くに",
             "k": "known",
             "g": "country; place of origin",
             "gs": "jlpt"
@@ -60,16 +67,8 @@
             "k": "plain"
           },
           {
-            "s": "ある",
-            "b": "ある",
-            "k": "known",
-            "g": "to be, to have",
-            "gs": "jlpt"
-          },
-          {
-            "s": "村",
-            "r": "むら",
-            "b": "村",
+            "s": "むら",
+            "b": "むら",
             "k": "known",
             "g": "village",
             "gs": "jlpt"
@@ -83,38 +82,10 @@
             "k": "plain"
           },
           {
-            "s": "茂作",
-            "r": "もさく",
-            "b": "茂作",
-            "k": "story",
-            "g": "Mosaku, the older woodcutter"
-          },
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "巳之吉",
-            "r": "みのきち",
-            "b": "巳之吉",
-            "k": "story",
-            "g": "Minokichi, the young woodcutter"
-          },
-          {
-            "s": "という",
-            "k": "plain"
-          },
-          {
-            "s": "二",
-            "r": "に",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "にん",
-            "b": "人",
+            "s": "ふたり",
+            "b": "ふたり",
             "k": "known",
-            "g": "counter for people",
+            "g": "two people",
             "gs": "jlpt"
           },
           {
@@ -152,22 +123,21 @@
       {
         "tokens": [
           {
-            "s": "茂作",
-            "r": "もさく",
-            "b": "茂作",
-            "k": "story",
-            "g": "Mosaku, the older woodcutter"
+            "s": "ひとり",
+            "b": "ひとり",
+            "k": "known",
+            "g": "one person",
+            "gs": "jlpt"
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "老人",
-            "r": "ろうじん",
-            "b": "老人",
+            "s": "としより",
+            "b": "としよる",
             "k": "known",
-            "g": "the aged, old person",
+            "g": "old people, the aged",
             "gs": "jlpt"
           },
           {
@@ -187,30 +157,33 @@
       {
         "tokens": [
           {
-            "s": "巳之吉",
-            "r": "みのきち",
-            "b": "巳之吉",
-            "k": "story",
-            "g": "Minokichi, the young woodcutter"
+            "s": "もう",
+            "b": "もう",
+            "k": "known",
+            "g": "already; again; more",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ひとり",
+            "b": "ひとり",
+            "k": "known",
+            "g": "one person",
+            "gs": "jlpt"
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "18",
-            "k": "plain"
+            "s": "巳之吉",
+            "hk": true,
+            "r": "みのきち",
+            "b": "巳之吉",
+            "k": "story",
+            "g": "Minokichi, the young woodcutter"
           },
           {
-            "s": "歳",
-            "r": "さい",
-            "b": "歳",
-            "k": "known",
-            "g": "~ years old",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
+            "s": "という",
             "k": "plain"
           },
           {
@@ -238,16 +211,11 @@
       {
         "tokens": [
           {
-            "s": "二",
-            "r": "に",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "にん",
-            "b": "人",
+            "s": "少年",
+            "r": "しょうねん",
+            "b": "少年",
             "k": "known",
-            "g": "counter for people",
+            "g": "boys, juveniles",
             "gs": "jlpt"
           },
           {
@@ -255,53 +223,79 @@
             "k": "plain"
           },
           {
-            "s": "毎日",
-            "r": "まいにち",
-            "b": "毎日",
+            "s": "としより",
+            "b": "としよる",
             "k": "known",
-            "g": "every day",
+            "g": "old people, the aged",
             "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "ため",
+            "b": "ため",
+            "k": "known",
+            "g": "good, advantage, in order to",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
           },
           {
             "s": "、",
             "k": "plain"
           },
           {
-            "s": "村",
-            "r": "むら",
-            "b": "村",
+            "s": "はたらい",
+            "b": "はたらく",
             "k": "known",
-            "g": "village",
+            "g": "to work",
             "gs": "jlpt"
           },
           {
-            "s": "から",
+            "s": "て",
             "k": "plain"
           },
           {
-            "s": "遠い",
-            "r": "とおい",
-            "b": "遠い",
+            "s": "い",
+            "b": "いる",
             "k": "known",
-            "g": "far (away), distant",
+            "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
           {
-            "s": "森",
-            "r": "もり",
-            "b": "森",
-            "k": "known",
-            "g": "forest",
-            "gs": "jlpt"
-          },
-          {
-            "s": "へ",
+            "s": "た",
             "k": "plain"
           },
           {
-            "s": "一緒",
-            "r": "いっしょ",
-            "b": "一緒",
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "ふたり",
+            "b": "ふたり",
+            "k": "known",
+            "g": "two people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "いっしょ",
+            "b": "いっしょ",
             "k": "known",
             "g": "together",
             "gs": "jlpt"
@@ -311,9 +305,19 @@
             "k": "plain"
           },
           {
-            "s": "行っ",
-            "r": "いっ",
-            "b": "行く",
+            "s": "もり",
+            "b": "もる",
+            "k": "known",
+            "g": "to serve (food); to fill up; to prescribe",
+            "gs": "jlpt"
+          },
+          {
+            "s": "へ",
+            "k": "plain"
+          },
+          {
+            "s": "いっ",
+            "b": "いく",
             "k": "known",
             "g": "to go",
             "gs": "jlpt"
@@ -331,29 +335,8 @@
       {
         "tokens": [
           {
-            "s": "森",
-            "r": "もり",
-            "b": "森",
-            "k": "known",
-            "g": "forest",
-            "gs": "jlpt"
-          },
-          {
-            "s": "へ",
-            "k": "plain"
-          },
-          {
-            "s": "行く",
-            "r": "いく",
-            "b": "行く",
-            "k": "known",
-            "g": "to go",
-            "gs": "jlpt"
-          },
-          {
-            "s": "道",
-            "r": "みち",
-            "b": "道",
+            "s": "みち",
+            "b": "みち",
             "k": "known",
             "g": "road, street; way, directions",
             "gs": "jlpt"
@@ -367,20 +350,18 @@
             "k": "plain"
           },
           {
-            "s": "大きな",
-            "r": "おおきな",
-            "k": "plain"
-          },
-          {
-            "s": "河",
-            "r": "かわ",
-            "b": "河",
+            "s": "おおきい",
+            "b": "おおきい",
             "k": "known",
-            "g": "river",
+            "g": "big, large",
             "gs": "jlpt"
           },
           {
-            "s": "が",
+            "s": "か",
+            "k": "plain"
+          },
+          {
+            "s": "わが",
             "k": "plain"
           },
           {
@@ -415,31 +396,19 @@
             "k": "plain"
           },
           {
-            "s": "河",
-            "r": "かわ",
-            "b": "河",
-            "k": "known",
-            "g": "river",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
+            "s": "、",
             "k": "plain"
           },
           {
-            "s": "わたる",
-            "b": "わたる",
+            "s": "ふ",
+            "b": "ふる",
             "k": "known",
-            "g": "to cross over, to go across",
+            "g": "to precipitate, to fall (e.g., rain, snow, etc.)",
             "gs": "jlpt"
           },
           {
-            "s": "船",
-            "r": "ふね",
-            "b": "船",
-            "k": "known",
-            "g": "counter for ships",
-            "gs": "jlpt"
+            "s": "ね",
+            "k": "plain"
           },
           {
             "s": "が",
@@ -465,48 +434,14 @@
       {
         "tokens": [
           {
-            "s": "何",
-            "r": "なん",
-            "k": "plain"
-          },
-          {
-            "s": "度",
-            "r": "ど",
-            "b": "度",
-            "k": "known",
-            "g": "counter for occurrences; ~ degree; ~ point",
-            "gs": "jlpt"
-          },
-          {
-            "s": "も",
-            "k": "plain"
-          },
-          {
-            "s": "橋",
-            "r": "はし",
-            "b": "橋",
+            "s": "はし",
+            "b": "はし",
             "k": "known",
             "g": "bridge",
             "gs": "jlpt"
           },
           {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "作っ",
-            "r": "つくっ",
-            "b": "作る",
-            "k": "known",
-            "g": "to make, to create",
-            "gs": "jlpt"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "が",
+            "s": "は",
             "k": "plain"
           },
           {
@@ -514,24 +449,40 @@
             "k": "plain"
           },
           {
-            "s": "大雨",
-            "r": "おおあめ",
-            "b": "大雨",
-            "k": "ghost",
-            "g": "heavy rain",
-            "gs": "model"
+            "s": "いつも",
+            "b": "いつも",
+            "k": "known",
+            "g": "always, usually, every time, never (with neg. verb)",
+            "gs": "jlpt"
           },
           {
-            "s": "で",
+            "s": "み",
+            "b": "みる",
+            "k": "known",
+            "g": "to see, to look",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ず",
             "k": "plain"
           },
           {
-            "s": "流れ",
-            "r": "ながれ",
-            "b": "流れる",
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "ながさ",
+            "b": "ながす",
             "k": "known",
-            "g": "to flow, to be washed away",
+            "g": "to drain, to float, to shed (e.g., blood, tears)",
             "gs": "jlpt"
+          },
+          {
+            "s": "れ",
+            "b": "れる",
+            "k": "ghost",
+            "g": "passive voice auxiliary",
+            "gs": "model"
           },
           {
             "s": "た",
@@ -546,38 +497,23 @@
       {
         "tokens": [
           {
-            "s": "河",
-            "r": "かわ",
-            "b": "河",
-            "k": "known",
-            "g": "river",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
+            "s": "か",
             "k": "plain"
           },
           {
-            "s": "水",
-            "r": "みず",
-            "b": "水",
-            "k": "known",
-            "g": "water",
-            "gs": "jlpt"
+            "s": "わ",
+            "k": "plain"
+          },
+          {
+            "s": "のみ",
+            "k": "plain"
+          },
+          {
+            "s": "ず",
+            "k": "plain"
           },
           {
             "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "ふえる",
-            "b": "ふえる",
-            "k": "known",
-            "g": "to increase, to multiply",
-            "gs": "jlpt"
-          },
-          {
-            "s": "と",
             "k": "plain"
           },
           {
@@ -585,65 +521,25 @@
             "k": "plain"
           },
           {
-            "s": "普通",
-            "r": "ふつう",
-            "b": "普通",
+            "s": "つよ",
+            "b": "つよい",
             "k": "known",
-            "g": "common; usual",
+            "g": "strong, powerful",
             "gs": "jlpt"
           },
           {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "橋",
-            "r": "はし",
-            "b": "橋",
+            "s": "すぎ",
+            "b": "すぎる",
             "k": "known",
-            "g": "bridge",
+            "g": "to exceed, to go beyond",
             "gs": "jlpt"
-          },
-          {
-            "s": "で",
-            "k": "plain"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "止める",
-            "r": "とめる",
-            "b": "止める",
-            "k": "known",
-            "g": "to end, to stop",
-            "gs": "jlpt"
-          },
-          {
-            "s": "こと",
-            "b": "こと",
-            "k": "known",
-            "g": "thing(s), matter(s), fact",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "でき",
-            "b": "できる",
-            "k": "known",
-            "g": "to be able to (to accomplish)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "なかっ",
-            "k": "plain"
           },
           {
             "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "らしい",
             "k": "plain"
           },
           {
@@ -657,18 +553,7 @@
       "prompt": {
         "tokens": [
           {
-            "s": "茂作",
-            "r": "もさく",
-            "b": "茂作",
-            "k": "story",
-            "g": "Mosaku, the older woodcutter"
-          },
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "巳之吉",
+            "s": "みのきち",
             "r": "みのきち",
             "b": "巳之吉",
             "k": "story",
@@ -687,37 +572,14 @@
             "k": "plain"
           },
           {
-            "s": "仕事",
-            "r": "しごと",
-            "b": "仕事",
+            "s": "ひと",
+            "b": "ひと",
             "k": "known",
-            "g": "work, job, occupation, employment",
+            "g": "man, person",
             "gs": "jlpt"
           },
           {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "し",
-            "b": "する",
-            "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "い",
-            "b": "いる",
-            "k": "known",
-            "g": "(humble) to be (animate), to exist",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
+            "s": "でし",
             "k": "plain"
           },
           {
@@ -738,135 +600,118 @@
         {
           "tokens": [
             {
-              "s": "船",
-              "r": "ふね",
-              "b": "船",
+              "s": "としより",
+              "b": "としよる",
               "k": "known",
-              "g": "counter for ships",
+              "g": "old people, the aged",
               "gs": "jlpt"
             },
             {
-              "s": "を",
+              "s": "の",
               "k": "plain"
             },
             {
-              "s": "運転",
-              "r": "うんてん",
-              "b": "運転",
+              "s": "ため",
+              "b": "ため",
               "k": "known",
-              "g": "driving",
+              "g": "good, advantage, in order to",
               "gs": "jlpt"
             },
             {
-              "s": "し",
-              "b": "する",
+              "s": "に",
+              "k": "plain"
+            },
+            {
+              "s": "はたらく",
+              "b": "はたらく",
               "k": "known",
-              "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+              "g": "to work",
               "gs": "jlpt"
             },
             {
-              "s": "て",
-              "k": "plain"
-            },
-            {
-              "s": "い",
-              "b": "いる",
+              "s": "少年",
+              "r": "しょうねん",
+              "b": "少年",
               "k": "known",
-              "g": "(humble) to be (animate), to exist",
+              "g": "boys, juveniles",
               "gs": "jlpt"
-            },
-            {
-              "s": "た",
-              "k": "plain"
-            },
-            {
-              "s": "。",
-              "k": "plain"
             }
           ]
         },
         {
           "tokens": [
             {
-              "s": "橋",
-              "r": "はし",
-              "b": "橋",
+              "s": "ふ",
+              "b": "ふる",
               "k": "known",
-              "g": "bridge",
+              "g": "to precipitate, to fall (e.g., rain, snow, etc.)",
               "gs": "jlpt"
+            },
+            {
+              "s": "ね",
+              "k": "plain"
             },
             {
               "s": "を",
               "k": "plain"
             },
             {
-              "s": "作っ",
-              "r": "つくっ",
-              "b": "作る",
+              "s": "だす",
+              "b": "だす",
               "k": "known",
-              "g": "to make, to create",
+              "g": "to take (something) out; to hand in (something)",
               "gs": "jlpt"
             },
             {
-              "s": "て",
-              "k": "plain"
-            },
-            {
-              "s": "い",
-              "b": "いる",
+              "s": "ひと",
+              "b": "ひと",
               "k": "known",
-              "g": "(humble) to be (animate), to exist",
+              "g": "man, person",
               "gs": "jlpt"
-            },
-            {
-              "s": "た",
-              "k": "plain"
-            },
-            {
-              "s": "。",
-              "k": "plain"
             }
           ]
         },
         {
           "tokens": [
+            {
+              "s": "としより",
+              "b": "としよる",
+              "k": "known",
+              "g": "old people, the aged",
+              "gs": "jlpt"
+            },
+            {
+              "s": "の",
+              "k": "plain"
+            },
             {
               "s": "木こり",
               "r": "きこり",
               "b": "木こり",
               "k": "story",
               "g": "woodcutter"
-            },
-            {
-              "s": "だっ",
-              "k": "plain"
-            },
-            {
-              "s": "た",
-              "k": "plain"
-            },
-            {
-              "s": "。",
-              "k": "plain"
             }
           ]
         }
       ],
-      "answer": 2
+      "answer": 0
     },
     "metrics": {
-      "firstCoverage": 0.9166666666666666,
-      "finalCoverage": 0.972972972972973,
-      "retries": 1,
-      "seconds": 9.080317299999995,
+      "kanjiCoverage": 0.625,
+      "kanjiDensity": 0.05405405405405406,
+      "firstCoverage": 0.90625,
+      "finalCoverage": 0.9354838709677419,
+      "retries": 3,
+      "seconds": 57.827281499999984,
       "offendingFirst": [
-        "渡し船",
-        "洪水",
+        "むさい",
         "れる"
       ],
       "ghostWords": [
-        "大雨"
+        "むさい",
+        "れる"
       ]
     }
-  }
+  },
+  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
 }

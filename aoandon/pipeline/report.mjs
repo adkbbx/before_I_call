@@ -11,9 +11,12 @@ export function writeReport() {
   }
   let md=`# Retelling metrics\n\nDate: ${new Date().toISOString().slice(0,10)}\n\nModels: ${[...models].join(', ')}\n\nCoverage counts known content tokens; story words are excluded. Failed scenes are excluded from coverage means. Seconds include all calls and retries.\n`;
   for(const [name,runs] of groups) {
-    const ok=runs.filter(r=>r.retelling),mean=key=>ok.length?(ok.reduce((n,r)=>n+(key==='ghostWords'?r.metrics.ghostWords.length:r.metrics[key]),0)/ok.length).toFixed(3):'—';
+    const ok=runs.filter(r=>r.retelling),mean=key=>{
+      const values=ok.map(r=>key==='ghostWords'?r.metrics.ghostWords.length:r.metrics[key]).filter(v=>typeof v==='number');
+      return values.length?(values.reduce((a,b)=>a+b,0)/values.length).toFixed(3):'—';
+    };
     const seconds=runs.length?(runs.reduce((n,r)=>n+r.metrics.seconds,0)/runs.length).toFixed(3):'—';
-    md+=`\n## ${name}\n\n| Scenes | First coverage | Final coverage | Retries / scene | Seconds / scene | Ghost words / scene | Failed scenes |\n| --- | --- | --- | --- | --- | --- | --- |\n| ${runs.length} | ${mean('firstCoverage')} | ${mean('finalCoverage')} | ${mean('retries')} | ${seconds} | ${mean('ghostWords')} | ${runs.length-ok.length} |\n`;
+    md+=`\n## ${name}\n\n| Scenes | First vocabulary | Final vocabulary | Kanji coverage | Kanji density | Retries / scene | Seconds / scene | Ghost words / scene | Failed scenes |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| ${runs.length} | ${mean('firstCoverage')} | ${mean('finalCoverage')} | ${mean('kanjiCoverage')} | ${mean('kanjiDensity')} | ${mean('retries')} | ${seconds} | ${mean('ghostWords')} | ${runs.length-ok.length} |\n`;
   }
   mkdirSync(dirname(paths.metrics),{recursive:true});writeFileSync(paths.metrics,md);console.log('Wrote docs/metrics.md');return md;
 }

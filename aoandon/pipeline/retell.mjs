@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { paths, providers, tales, levels, targets, sentenceCaps, maxRetries } from './config.mjs';
 import { retellingSchema } from '../src/lib/schema.ts';
 import { loadVocab } from './jlpt.mjs';
-import { tokenizeForLevel, measure } from './check.mjs';
+import { tokenizeForLevel, measure, kanjiMetrics, kanjiLevels } from './check.mjs';
 const string = z.string().trim().min(1);
 export const questionShape = z.object({ prompt: string, options: z.tuple([string,string,string]), answer: z.union([z.literal(0),z.literal(1),z.literal(2)]) });
 const draftShape = z.object({ sentences: z.array(string).min(1), question: questionShape });
@@ -25,6 +25,9 @@ export function createProvider(config, fetchImpl = fetch) {
   } };
 }
 export function repairJson(raw) {
+  // Gemma occasionally emits this exact malformed field name even in JSON mode.
+  // Repair only that unambiguous key; validation still rejects missing fields.
+  raw = raw.replace(/"sentences\(\["\s*:/g, '"sentences":');
   try { return JSON.parse(raw); } catch {
     const clean = raw.replace(/```(?:json)?/g,'').trim();
     const object = clean.slice(clean.indexOf('{'),clean.lastIndexOf('}')+1);
@@ -40,18 +43,30 @@ export function shuffleQuestion(question, seed) {
   return {...question,options:order.map(i=>question.options[i]),answer:order.indexOf(question.answer)};
 }
 export function systemPrompt(level, storyWords) {
-  return `You are Koizumi Setsu. You are retelling a Japanese ghost story (kaidan) aloud to a foreign friend who is learning Japanese at JLPT ${level}.
-Retell the scene in simple, natural storytelling Japanese. ${level === 'N3' ? 'Use plain past forms (～た) for narration.' : 'Use です/ます and polite past forms (～ました).'}
-Rules:
-1. Use only words a JLPT ${level} learner knows. If an idea needs a harder word, say it with easier words instead.
-2. Every sentence is at most ${sentenceCaps[level]} characters.
-3. Keep every event of the scene, in the same order. Do not add events, people, names, feelings or explanations that are not in the scene.
-4. You may use these story words exactly as written: ${storyWords.map(w=>`${w.text}（${w.reading}）`).join('、') || 'なし'}. Copy every story word exactly in kanji, not in kana.
-5. Write normal Japanese with no spaces between words. Use kanji for words a ${level} learner reads in kanji and for every story word; write other words in hiragana. The reader shows furigana, so do not avoid kanji the learner knows. Write numbers as 三十年 or 30年, never as kana.
-6. Then write one question in Japanese at the same level about what happens in this scene, with three short answer options. Exactly one option is correct.
-Return only JSON: {"sentences": ["..."], "question": {"prompt": "...", "options": ["...", "...", "..."], "answer": 0}}`;
+  const rules = {
+    N5: 'Picture-book style. Use です/ます and ました/ませんでした only, with ～て, ～たい, ～から and ～が (but). One idea per sentence. Replace personal names with roles (おさむらい, おぼうさん, おじいさん, わかい男), except the one main character listed as a story word.',
+    N4: 'Use です/ます and polite past forms. Adds ～とき, ～たら, ～ている, ～と思います, potential forms and ～ても. At most two named people per tale; use roles for the rest.',
+    N3: 'Plain past narration, adding ～ようだ, ～らしい, the passive and ～ために.'
+  };
+  const allowed = Object.entries(kanjiLevels).filter(([,n]) => n >= Number(level.slice(1))).map(([c])=>c).join('');
+  return `You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT ${level}.
+${rules[level]}
+Use only vocabulary at or below ${level}. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.
+Each sentence is at most ${sentenceCaps[level]} characters, including punctuation. Split long sentences into several short sentences.
+Keep every event in the same order. Do not add events, people, feelings or explanations.
+Story words, in importance order: ${storyWords.map(w=>w.text+'（'+w.reading+'）').join('、') || 'なし'}. Use them only when needed, in hiragana when their kanji is above the level. Do not insert unused words.
+Write normal Japanese with no spaces between words. Use ONLY these kanji: ${allowed}. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.
+Then write one question at the same level, with three short options and one correct answer.
+Return only JSON: {"sentences":["..."],"question":{"prompt":"...","options":["...","...","..."],"answer":0}}`;
 }
+export const needsRetry = (tokens, level) => {
+  const m = {...measure(tokens), ...kanjiMetrics(tokens, level)};
+  return m.coverage < targets[level] || m.kanjiCoverage < (level === 'N3' ? .97 : .95) || (level === 'N5' && m.kanjiDensity > .12);
+};
 export const plainOriginal = scene => scene.original.map(p=>p.map(r=>r.base).join('')).join('\n');
+// A provider sometimes puts a whole scene in one array item. Normalise before
+// indexed repairs so a request to rewrite index 0 cannot discard the whole scene.
+export const splitNarrative = text => text.match(/[^。]+。[」』]*|[^。]+$/gu) ?? [text];
 export async function retellScene({ taleId, scene, level, storyWords = [], vocab, provider, previous = '' }) {
   const started = performance.now(), responses = [];
   const messages = [{role:'system',content:systemPrompt(level,storyWords)},{role:'user',content:`前の場面（やさしく語り直したもの）: ${previous || 'なし'}\n\n場面（原文）:\n${plainOriginal(scene)}`}];
@@ -62,7 +77,7 @@ export async function retellScene({ taleId, scene, level, storyWords = [], vocab
       const raw = await provider.call(messages,schema); responses.push(raw); messages.push({role:'assistant',content:raw});
       try { return shape.parse(repairJson(raw)); } catch (error) {
         if (attempt) throw new Error('Invalid model JSON after repair and re-ask');
-        const details = error instanceof z.ZodError ? error.issues.map(issue => issue.message).join('; ') : 'Invalid JSON syntax';
+        const details = error instanceof z.ZodError ? error.issues.map(issue => `${issue.path.join('.')}: ${issue.message}`).join('; ') : 'Invalid JSON syntax';
         messages.push({role:'user',content:`The response is invalid: ${details}. Return only valid JSON matching the requested schema. Correct missing fields and types.`});
       }
     }
@@ -70,21 +85,23 @@ export async function retellScene({ taleId, scene, level, storyWords = [], vocab
   const check = text => tokenizeForLevel(text,level,{storyWords,vocab});
   try {
     const draft = await ask(draftShape,draftJson);
+    draft.sentences=draft.sentences.flatMap(splitNarrative);
     let checked = await Promise.all(draft.sentences.map(check));
     const first = measure(checked.flatMap(s=>s.tokens)); let retries = 0;
-    while (measure(checked.flatMap(s=>s.tokens)).coverage < targets[level] && retries < maxRetries) {
-      const offending = checked.map((s,index)=>({s,index})).filter(({s})=>s.offending.length);
-      messages.push({role:'user',content:`These sentences use words above ${level}: ${offending.map(({s,index})=>`${index}: "${draft.sentences[index]}" (avoid: ${s.offending.join(', ')})`).join(' ')} Rewrite only these sentences, with the same meaning and the same rules. Return only JSON: {"rewrites": [{"index": n, "sentence": "..."}]}`});
+    while ((needsRetry(checked.flatMap(s=>s.tokens), level) || draft.sentences.some(s=>[...s].length > sentenceCaps[level])) && retries < maxRetries) {
+      const offending = checked.map((s,index)=>({s,index})).filter(({s,index})=>s.offending.length || s.tokens.some(t=>t.hk) || [...draft.sentences[index]].length > sentenceCaps[level] || (level === 'N5' && s.kanjiDensity > .12));
+      messages.push({role:'user',content:`These sentences use words above ${level}: ${offending.map(({s,index})=>`${index}: "${draft.sentences[index]}" (words to avoid: ${s.offending.join(', ')}; write these kanji words in hiragana: ${s.tokens.filter(t=>t.hk).map(t=>t.s+' → '+(t.r ?? 'hiragana')).join(', ')}; maximum ${sentenceCaps[level]} characters; N5 kanji density at most 12%)`).join(' ')} Rewrite only these sentences, with the same meaning and the same rules. Return only JSON: {"rewrites": [{"index": n, "sentence": "..."}]}`});
       const valid = new Set(offending.map(o=>o.index));
       const shape = z.object({rewrites:z.array(z.object({index:z.number().int(),sentence:string})).refine(rows=>rows.length===valid.size && new Set(rows.map(r=>r.index)).size===valid.size && rows.every(r=>valid.has(r.index)), {message:`Expected exactly one rewrite for each index: ${[...valid].join(', ')}. Do not include any other indexes`})});
       const result = await ask(shape,rewriteJson);
       for (const row of result.rewrites) draft.sentences[row.index] = row.sentence;
+      draft.sentences=draft.sentences.flatMap(splitNarrative);
       checked = await Promise.all(draft.sentences.map(check)); retries++;
     }
     let question = draft.question;
     let qChecked = await Promise.all([question.prompt,...question.options].map(check));
-    if (qChecked.some(s=>s.offending.length)) {
-      messages.push({role:'user',content:`Simplify only the question and its options to JLPT ${level}. Avoid: ${qChecked.flatMap(s=>s.offending).join(', ')}. Preserve the correct answer and meaning. Return only JSON: {"question":{"prompt":"...","options":["...","...","..."],"answer":0}}`});
+    if (qChecked.some(s=>s.offending.length || s.tokens.some(t=>t.hk))) {
+      messages.push({role:'user',content:`Simplify only the question and its options to JLPT ${level}. Avoid: ${qChecked.flatMap(s=>s.offending).join(', ')}. Write hard kanji in hiragana: ${qChecked.flatMap(s=>s.tokens.filter(t=>t.hk).map(t=>t.s+' → '+t.r)).join(', ')}. Preserve the correct answer and meaning. Return only JSON: {"question":{"prompt":"...","options":["...","...","..."],"answer":0}}`});
       question = (await ask(z.object({question:questionShape}),{type:'object',properties:{question:questionJson},required:['question'],additionalProperties:false})).question;
     }
     question = shuffleQuestion(question,`${taleId}/${scene.id}/${level}`);
@@ -99,7 +116,7 @@ export async function retellScene({ taleId, scene, level, storyWords = [], vocab
       for (const t of all) if (t.k==='ghost' && !t.g) { t.g = glosses[t.b ?? t.s]; t.gs = 'model'; }
     }
     const final = measure(checked.flatMap(s=>s.tokens));
-    const metrics = {firstCoverage:first.coverage,finalCoverage:final.coverage,retries,seconds:(performance.now()-started)/1000,offendingFirst:first.offending,ghostWords:[...new Set(all.filter(t=>t.k==='ghost').map(t=>t.b ?? t.s))]};
+    const metrics = {...kanjiMetrics(checked.flatMap(s=>s.tokens),level),firstCoverage:first.coverage,finalCoverage:final.coverage,retries,seconds:(performance.now()-started)/1000,offendingFirst:first.offending,ghostWords:[...new Set(all.filter(t=>t.k==='ghost').map(t=>t.b ?? t.s))]};
     const retelling = retellingSchema.parse({level,model:provider.model,provider:provider.name,sentences:checked.map(s=>({tokens:s.tokens})),question:{prompt:{tokens:qChecked[0].tokens},options:qChecked.slice(1).map(s=>({tokens:s.tokens})),answer:question.answer},metrics});
     return {...evidence,metrics,retelling};
   } catch (error) { return {...evidence,failed:true,error:error.message,metrics:{seconds:(performance.now()-started)/1000}}; }
@@ -111,7 +128,8 @@ export async function runCli(args = process.argv.slice(2)) {
   const name=flag('provider','ollama'), selectedLevels=flag('levels',levels.join(',')).split(','), selectedTales=flag('tales','all').split(','), selectedScenes=flag('scenes','all').split(',');
   if (!providers[name] || selectedLevels.some(l=>!levels.includes(l)) || selectedTales.some(t=>t!=='all' && !tales.some(x=>x.id===t))) throw new Error('Invalid provider, level or tale');
   const provider=createProvider(providers[name]), vocab=loadVocab(); let failed=false;
-  for (const tale of tales.filter(t=>selectedTales.includes('all') || selectedTales.includes(t.id))) for (const level of selectedLevels) {
+  const jobs=tales.filter(t=>selectedTales.includes('all') || selectedTales.includes(t.id)).flatMap(tale=>selectedLevels.map(level=>({tale,level})));
+  async function worker() { while(jobs.length) { const {tale,level}=jobs.shift();
     let previous='';
     for (const scene of readSource(tale.id).scenes) {
       const directory=join(paths.runs,name,level), file=join(directory,`${tale.id}-${scene.id}.json`);
@@ -123,6 +141,8 @@ export async function runCli(args = process.argv.slice(2)) {
       else { previous=result.retelling.sentences.map(s=>s.tokens.map(t=>t.s).join('')).join(''); console.log(`${tale.id}/${scene.id}/${level}: ${result.metrics.firstCoverage.toFixed(3)} → ${result.metrics.finalCoverage.toFixed(3)}, ${result.metrics.seconds.toFixed(1)}s`); }
     }
   }
+  }
+  await Promise.all(Array.from({length:3},()=>worker()));
   if (failed) process.exitCode=1;
 }
 if (process.argv[1]?.endsWith('retell.mjs')) await runCli().catch(e=>{console.error(e.message);process.exitCode=1;});

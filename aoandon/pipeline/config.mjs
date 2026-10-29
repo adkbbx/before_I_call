@@ -19,9 +19,9 @@ export const levels = /** @type {const} */ (['N5', 'N4', 'N3']);
 export const targets = { N5: 0.95, N4: 0.95, N3: 0.97 };
 
 /** Sentence length caps in characters per level. */
-export const sentenceCaps = { N5: 25, N4: 35, N3: 45 };
+export const sentenceCaps = { N5: 20, N4: 28, N3: 40 };
 
-export const maxRetries = 2;
+export const maxRetries = 3;
 
 export const tales = [
   { id: 'mujina', titleJa: '貉', titleEn: 'Mujina', translator: '戸川明三', aozoraCard: 'https://www.aozora.gr.jp/cards/000258/card42928.html' },

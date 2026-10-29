@@ -24,3 +24,7 @@ Every entry must be checked against its source before publishing. P2 and P5 conf
 
 - **Gemma 4** (Google), open weights, used under its licence, through Ollama locally and DigitalOcean serverless inference.
 - Images were generated with OpenAI gpt-image-2 (see ASSETS.md).
+
+## Kanji levels
+
+Kanji JLPT levels: [davidluzgouveia/kanji-data](https://github.com/davidluzgouveia/kanji-data), MIT License, Copyright (c) 2019 David Gouveia. Trimmed from kanji.json using jlpt_new; unlisted kanji count as level 0. The full MIT notice is preserved in `data/jlpt/kanji-LICENSE.txt`.

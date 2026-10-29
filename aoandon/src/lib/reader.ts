@@ -4,7 +4,7 @@ import type { FuriganaMode, WritingMode } from './prefs.ts';
 import { sceneKey, type NightState } from './night.ts';
 export const sentenceText = (s: Sentence) => s.tokens.map(t => t.s).join('');
 export function showFurigana(token: Token, mode: FuriganaMode): boolean {
-  return token.k !== 'plain' && !!token.r && (token.k === 'story' || mode === 'all' || (mode === 'above-level' && token.k === 'ghost'));
+  return !!token.r && (token.k === 'story' || (mode === 'all' && (token.k !== 'plain' || !!token.hk)) || (mode === 'above-level' && (token.k === 'ghost' || !!token.hk)));
 }
 export function availableLevels(tale: Tale): Level[] { return levels.filter(l => tale.scenes.every(s => !!s.retellings[l])); }
 export function nextScene(tale: Tale, index: number): number | null { return index + 1 < tale.scenes.length ? index + 1 : null; }
@@ -25,12 +25,13 @@ export function coverageLine(tale: TaleIndex['tales'][number], level: Level): st
   return coverage === undefined ? `${level} is not available · Available: ${levels.filter(l => tale.coverage[l] !== undefined).join(', ') || 'none yet'}` : `${plural(tale.scenes, 'scene')} · ${Math.round(coverage * 100)}% ${level} words`;
 }
 export function aggregateMetrics(tales: Tale[]) {
-  const groups = new Map<string, { level: Level; model: string; count: number; first: number; final: number; ghosts: number }>();
+  const groups = new Map<string, { level: Level; model: string; count: number; first: number; final: number; ghosts: number; kanji: number; density: number; kanjiCount: number }>();
   for (const tale of tales) for (const scene of tale.scenes) for (const level of levels) {
     const r = scene.retellings[level]; if (!r) continue;
     const key = `${level}/${r.model}`;
-    const row = groups.get(key) ?? { level, model: r.model, count: 0, first: 0, final: 0, ghosts: 0 };
+    const row = groups.get(key) ?? { level, model: r.model, count: 0, first: 0, final: 0, ghosts: 0, kanji: 0, density: 0, kanjiCount: 0 };
+    if (r.metrics.kanjiCoverage !== undefined) { row.kanji += r.metrics.kanjiCoverage; row.density += r.metrics.kanjiDensity ?? 0; row.kanjiCount++; }
     row.count++; row.first += r.metrics.firstCoverage; row.final += r.metrics.finalCoverage; row.ghosts += r.metrics.ghostWords.length; groups.set(key, row);
   }
-  return [...groups.values()].map(r => ({ ...r, first: r.first / r.count, final: r.final / r.count, ghosts: r.ghosts / r.count }));
+  return [...groups.values()].map(r => ({ ...r, first: r.first / r.count, final: r.final / r.count, ghosts: r.ghosts / r.count, kanji: r.kanjiCount ? r.kanji / r.kanjiCount : undefined, density: r.kanjiCount ? r.density / r.kanjiCount : undefined }));
 }
