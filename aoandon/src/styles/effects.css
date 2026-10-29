@@ -1,0 +1,28 @@
+﻿@keyframes breathe { 50% { opacity:calc(var(--intensity) * .65); } }
+@keyframes inner-flicker { 30%,70% { opacity:.96; } 50%,90% { opacity:1; } }
+.lantern-low img { animation:inner-flicker 1700ms var(--ease-candle) infinite; }
+@keyframes orbit { to { transform:rotate(calc(var(--angle) + 360deg)) translateX(var(--radius)); } }
+@keyframes shadow-pass { from { transform:translateX(0); } to { transform:translateX(80vw); } }
+@keyframes ink { from { opacity:0; filter:blur(2px); } to { opacity:1; filter:blur(0); } }
+.ink { animation:ink var(--dur-ink) var(--ease-candle) both; }
+@keyframes extinguish { 0% { transform:scale(1); } 23% { transform:scale(1.2,.6); } 100% { transform:scale(0); opacity:0; } }
+@keyframes ember { from { opacity:1; } to { opacity:0; } }
+.extinguishing .flame { animation:extinguish var(--dur-extinguish) var(--ease-candle) forwards; }
+.extinguishing .ember { animation:ember var(--dur-ember) var(--dur-extinguish) both; }
+@keyframes wrong { 0%,100% { transform:scale(1); } 20% { transform:scale(1.35); } 40%,70% { transform:scale(.9,1.1); } 55%,85% { transform:scale(1.15,.9); } }
+.wrong-flare .flame { animation:wrong 750ms var(--ease-candle); }
+@keyframes room-reveal { to { filter:brightness(.05); } }
+@keyframes lantern-reveal { 0%,20% { opacity:.1; } 30%,45% { opacity:1; filter:brightness(2); } 100% { opacity:0; filter:brightness(1); } }
+@keyframes yokai-arrive { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes reveal-copy { from { opacity:0; } to { opacity:1; } }
+.effects-paused *,.effects-paused *::before,.effects-paused *::after { animation-play-state:paused!important; }
+@media(prefers-reduced-motion:reduce) {
+  .ink,.wisp,.lantern-glow,.lantern-low img,.shoji-shadow,.wrong-flare .flame { animation:none!important; opacity:1; filter:none; }
+  .smoke,.shoji-shadow { display:none; }
+  .room-background { transition:none!important; }
+  .extinguishing .flame { animation:reveal-copy 150ms reverse forwards!important; }
+  .extinguishing .ember { display:none; }
+  .yokai,.reveal-copy { animation:reveal-copy 400ms both!important; transform:none; }
+  .reveal-lantern { display:none; }
+  .revealed .room-background { animation:none!important; filter:brightness(.05); }
+}
