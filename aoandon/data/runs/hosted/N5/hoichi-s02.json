@@ -20,11 +20,11 @@
     "{\"question\": {\"prompt\": \"平家の人たちは、何をしたいですか。\", \"options\": [\"ふねをなくしたい\", \"本を読みたい\", \"山に行きたい\"], \"answer\": 0}}"
   ],
   "metrics": {
-    "kanjiCoverage": 0.5714285714285714,
-    "kanjiDensity": 0.09929078014184398,
+    "kanjiCoverage": 1,
+    "kanjiDensity": 0.07913669064748201,
     "firstCoverage": 0.6666666666666666,
-    "finalCoverage": 1,
-    "retries": 3,
+    "finalCoverage": 0.7941176470588235,
+    "retries": 6,
     "seconds": 24.47938419999997,
     "offendingFirst": [
       "怖い",
@@ -35,7 +35,21 @@
       "墓",
       "お願い"
     ],
-    "ghostWords": []
+    "ghostWords": [
+      "てる",
+      "ぼる",
+      "ちる",
+      "いし",
+      "おい",
+      "のり"
+    ],
+    "faithIssues": [
+      {
+        "sentence": "この人たちは、わるかったです。",
+        "problem": "The original describes them as malicious spirits (ghosts) causing havoc, not that they were 'bad people' in character. Correction: 幽霊になって、いたずらをしていました。",
+        "kind": "invented"
+      }
+    ]
   },
   "retelling": {
     "level": "N5",
@@ -46,11 +60,11 @@
         "tokens": [
           {
             "s": "平家",
-            "hk": true,
             "r": "へいけ",
             "b": "平家",
             "k": "story",
-            "g": "the Heike clan"
+            "g": "the Heike clan",
+            "hk": true
           },
           {
             "s": "の",
@@ -58,16 +72,16 @@
           },
           {
             "s": "人",
+            "k": "known",
             "r": "ひと",
             "b": "人",
-            "k": "known",
             "g": "counter for people",
             "gs": "jlpt"
           },
           {
             "s": "たち",
-            "b": "たち",
             "k": "known",
+            "b": "たち",
             "g": "plural suffix",
             "gs": "jlpt"
           },
@@ -77,8 +91,8 @@
           },
           {
             "s": "い",
-            "b": "いる",
             "k": "known",
+            "b": "いる",
             "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
@@ -104,16 +118,16 @@
           },
           {
             "s": "人",
+            "k": "known",
             "r": "ひと",
             "b": "人",
-            "k": "known",
             "g": "counter for people",
             "gs": "jlpt"
           },
           {
             "s": "たち",
-            "b": "たち",
             "k": "known",
+            "b": "たち",
             "g": "plural suffix",
             "gs": "jlpt"
           },
@@ -127,8 +141,8 @@
           },
           {
             "s": "わるかっ",
-            "b": "わるい",
             "k": "known",
+            "b": "わるい",
             "g": "bad, sinful; inferior",
             "gs": "jlpt"
           },
@@ -150,8 +164,8 @@
         "tokens": [
           {
             "s": "よる",
-            "b": "よる",
             "k": "known",
+            "b": "よる",
             "g": "evening, night",
             "gs": "jlpt"
           },
@@ -161,8 +175,8 @@
           },
           {
             "s": "ふ",
-            "b": "ふる",
             "k": "known",
+            "b": "ふる",
             "g": "to precipitate, to fall (e.g., rain, snow, etc.)",
             "gs": "jlpt"
           },
@@ -176,8 +190,8 @@
           },
           {
             "s": "そば",
-            "b": "そば",
             "k": "known",
+            "b": "そば",
             "g": "near, close, beside; Japanese traditional buckwheat noodle",
             "gs": "jlpt"
           },
@@ -187,9 +201,9 @@
           },
           {
             "s": "来",
+            "k": "known",
             "r": "き",
             "b": "来る",
-            "k": "known",
             "g": "to come",
             "gs": "jlpt"
           },
@@ -211,8 +225,8 @@
         "tokens": [
           {
             "s": "ふ",
-            "b": "ふる",
             "k": "known",
+            "b": "ふる",
             "g": "to precipitate, to fall (e.g., rain, snow, etc.)",
             "gs": "jlpt"
           },
@@ -226,8 +240,8 @@
           },
           {
             "s": "なくし",
-            "b": "なくす",
             "k": "known",
+            "b": "なくす",
             "g": "to lose something",
             "gs": "jlpt"
           },
@@ -249,16 +263,16 @@
         "tokens": [
           {
             "s": "およぐ",
-            "b": "およぐ",
             "k": "known",
+            "b": "およぐ",
             "g": "to swim",
             "gs": "jlpt"
           },
           {
             "s": "人",
+            "k": "known",
             "r": "ひと",
             "b": "人",
-            "k": "known",
             "g": "counter for people",
             "gs": "jlpt"
           },
@@ -268,8 +282,8 @@
           },
           {
             "s": "まち",
-            "b": "まつ",
             "k": "known",
+            "b": "まつ",
             "g": "to wait",
             "gs": "jlpt"
           },
@@ -291,9 +305,9 @@
         "tokens": [
           {
             "s": "人",
+            "k": "known",
             "r": "ひと",
             "b": "人",
-            "k": "known",
             "g": "counter for people",
             "gs": "jlpt"
           },
@@ -302,21 +316,25 @@
             "k": "plain"
           },
           {
-            "s": "水",
-            "r": "みず",
-            "b": "水",
+            "s": "み",
             "k": "known",
-            "g": "water",
+            "b": "みる",
+            "g": "to see, to look",
             "gs": "jlpt"
+          },
+          {
+            "s": "ず",
+            "k": "plain"
           },
           {
             "s": "に",
             "k": "plain"
           },
           {
-            "s": "いれ",
-            "b": "いれる",
+            "s": "入れ",
             "k": "known",
+            "r": "いれ",
+            "b": "入れる",
             "g": "to put in",
             "gs": "jlpt"
           },
@@ -337,29 +355,14 @@
       {
         "tokens": [
           {
-            "s": "和尚",
-            "hk": true,
-            "r": "おしょう",
-            "b": "和尚",
-            "k": "story",
-            "g": "Buddhist head priest"
-          },
-          {
-            "s": "さん",
-            "b": "さん",
-            "k": "known",
-            "g": "Mr. ~, Ms. ~",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
+            "s": "お",
             "k": "plain"
           },
           {
-            "s": "いえ",
-            "b": "いえる",
-            "k": "known",
-            "g": "house, home",
+            "s": "てら",
+            "k": "ghost",
+            "b": "てる",
+            "g": "to shine",
             "gs": "jlpt"
           },
           {
@@ -367,10 +370,10 @@
             "k": "plain"
           },
           {
-            "s": "つくり",
-            "b": "つくる",
+            "s": "たて",
             "k": "known",
-            "g": "to make, to create",
+            "b": "たてる",
+            "g": "to build",
             "gs": "jlpt"
           },
           {
@@ -390,37 +393,39 @@
       {
         "tokens": [
           {
-            "s": "いえ",
-            "k": "plain"
+            "s": "ぼ",
+            "k": "ghost",
+            "b": "ぼる",
+            "g": "to climb",
+            "gs": "model"
+          },
+          {
+            "s": "ち",
+            "k": "ghost",
+            "b": "ちる",
+            "g": "to fall, to scatter (e.g., blossoms)",
+            "gs": "jlpt"
           },
           {
             "s": "に",
             "k": "plain"
           },
           {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "もの",
-            "b": "もの",
-            "k": "known",
-            "g": "thing (concrete object)",
+            "s": "いし",
+            "k": "ghost",
+            "b": "いし",
+            "g": "stone",
             "gs": "jlpt"
           },
           {
-            "s": "も",
+            "s": "を",
             "k": "plain"
           },
           {
-            "s": "あり",
-            "b": "ある",
+            "s": "たて",
             "k": "known",
-            "g": "to be, to have",
+            "b": "たてる",
+            "g": "to build",
             "gs": "jlpt"
           },
           {
@@ -440,19 +445,32 @@
       {
         "tokens": [
           {
-            "s": "いえ",
+            "s": "お",
             "k": "plain"
+          },
+          {
+            "s": "てら",
+            "k": "ghost",
+            "b": "てる",
+            "g": "to shine",
+            "gs": "jlpt"
           },
           {
             "s": "で",
             "k": "plain"
           },
           {
-            "s": "話",
-            "r": "はなし",
-            "b": "話",
-            "k": "known",
-            "g": "talk (chat), story",
+            "s": "おい",
+            "k": "ghost",
+            "b": "おい",
+            "g": "old age, the aged",
+            "gs": "jlpt"
+          },
+          {
+            "s": "のり",
+            "k": "ghost",
+            "b": "のり",
+            "g": "glue, paste, starch",
             "gs": "jlpt"
           },
           {
@@ -461,8 +479,8 @@
           },
           {
             "s": "し",
-            "b": "する",
             "k": "known",
+            "b": "する",
             "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
             "gs": "jlpt"
           },
@@ -484,11 +502,11 @@
         "tokens": [
           {
             "s": "平家",
-            "hk": true,
             "r": "へいけ",
             "b": "平家",
             "k": "story",
-            "g": "the Heike clan"
+            "g": "the Heike clan",
+            "hk": true
           },
           {
             "s": "の",
@@ -496,16 +514,16 @@
           },
           {
             "s": "人",
+            "k": "known",
             "r": "ひと",
             "b": "人",
-            "k": "known",
             "g": "counter for people",
             "gs": "jlpt"
           },
           {
             "s": "たち",
-            "b": "たち",
             "k": "known",
+            "b": "たち",
             "g": "plural suffix",
             "gs": "jlpt"
           },
@@ -519,15 +537,15 @@
           },
           {
             "s": "よく",
-            "b": "よく",
             "k": "known",
+            "b": "よく",
             "g": "frequently, often (much); well, skillfully",
             "gs": "jlpt"
           },
           {
             "s": "なり",
-            "b": "なる",
             "k": "known",
+            "b": "なる",
             "g": "to become",
             "gs": "jlpt"
           },
@@ -557,15 +575,15 @@
           },
           {
             "s": "まだ",
-            "b": "まだ",
             "k": "known",
+            "b": "まだ",
             "g": "yet, still, besides",
             "gs": "jlpt"
           },
           {
             "s": "わるかっ",
-            "b": "わるい",
             "k": "known",
+            "b": "わるい",
             "g": "bad, sinful; inferior",
             "gs": "jlpt"
           },
@@ -589,11 +607,11 @@
         "tokens": [
           {
             "s": "平家",
-            "hk": true,
             "r": "へいけ",
             "b": "平家",
             "k": "story",
-            "g": "the Heike clan"
+            "g": "the Heike clan",
+            "hk": true
           },
           {
             "s": "の",
@@ -601,16 +619,16 @@
           },
           {
             "s": "人",
+            "k": "known",
             "r": "ひと",
             "b": "人",
-            "k": "known",
             "g": "counter for people",
             "gs": "jlpt"
           },
           {
             "s": "たち",
-            "b": "たち",
             "k": "known",
+            "b": "たち",
             "g": "plural suffix",
             "gs": "jlpt"
           },
@@ -624,8 +642,8 @@
           },
           {
             "s": "何",
-            "r": "なに",
-            "k": "plain"
+            "k": "plain",
+            "r": "なに"
           },
           {
             "s": "を",
@@ -633,8 +651,8 @@
           },
           {
             "s": "し",
-            "b": "する",
             "k": "known",
+            "b": "する",
             "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
             "gs": "jlpt"
           },
@@ -661,8 +679,8 @@
           "tokens": [
             {
               "s": "ふ",
-              "b": "ふる",
               "k": "known",
+              "b": "ふる",
               "g": "to precipitate, to fall (e.g., rain, snow, etc.)",
               "gs": "jlpt"
             },
@@ -676,8 +694,8 @@
             },
             {
               "s": "なくし",
-              "b": "なくす",
               "k": "known",
+              "b": "なくす",
               "g": "to lose something",
               "gs": "jlpt"
             },
@@ -691,9 +709,9 @@
           "tokens": [
             {
               "s": "本",
+              "k": "known",
               "r": "ほん",
               "b": "本",
-              "k": "known",
               "g": "book",
               "gs": "jlpt"
             },
@@ -703,9 +721,9 @@
             },
             {
               "s": "読み",
+              "k": "known",
               "r": "よみ",
               "b": "読む",
-              "k": "known",
               "g": "to read",
               "gs": "jlpt"
             },
@@ -719,9 +737,9 @@
           "tokens": [
             {
               "s": "山",
+              "k": "known",
               "r": "やま",
               "b": "山",
-              "k": "known",
               "g": "mountain",
               "gs": "jlpt"
             },
@@ -731,9 +749,9 @@
             },
             {
               "s": "行き",
+              "k": "known",
               "r": "いき",
               "b": "行く",
-              "k": "known",
               "g": "to go",
               "gs": "jlpt"
             },
@@ -747,11 +765,11 @@
       "answer": 0
     },
     "metrics": {
-      "kanjiCoverage": 0.5714285714285714,
-      "kanjiDensity": 0.09929078014184398,
+      "kanjiCoverage": 1,
+      "kanjiDensity": 0.07913669064748201,
       "firstCoverage": 0.6666666666666666,
-      "finalCoverage": 1,
-      "retries": 3,
+      "finalCoverage": 0.7941176470588235,
+      "retries": 6,
       "seconds": 24.47938419999997,
       "offendingFirst": [
         "怖い",
@@ -762,8 +780,141 @@
         "墓",
         "お願い"
       ],
-      "ghostWords": []
+      "ghostWords": [
+        "てる",
+        "ぼる",
+        "ちる",
+        "いし",
+        "おい",
+        "のり"
+      ],
+      "faithIssues": [
+        {
+          "sentence": "この人たちは、わるかったです。",
+          "problem": "The original describes them as malicious spirits (ghosts) causing havoc, not that they were 'bad people' in character. Correction: 幽霊になって、いたずらをしていました。",
+          "kind": "invented"
+        }
+      ]
     }
   },
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b.",
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling; for a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n平家の人達は以前は今よりも遥かに焦慮いていた。夜、漕ぎ行く船のほとりに立ち顕れ、それを沈めようとし、また水泳する人をたえず待ち受けていては、それを引きずり込もうとするのである。これ等の死者を慰めるために建立されたのが、すなわち赤間ヶ関の仏教の御寺なる阿彌陀寺であったが、その墓地もまた、それに接して海岸に設けられた。そしてその墓地の内には入水された皇帝と、その歴歴の臣下との名を刻みつけた幾箇かの石碑が立てられ、かつそれ等の人々の霊のために、仏教の法会がそこで整然と行われていたのである。この寺が建立され、その墓が出来てから以後、平家の人達は以前よりも禍いをする事が少くなった。しかしそれでもなお引き続いておりおり、怪しい事をするのではあった――彼等が完き平和を得ていなかった事の証拠として。\n\n語り直し:\n平家の人たちがいました。\nこの人たちは、わるかったです。\nよる、ふねのそばに来ました。\nふねをなくしたいです。\nおよぐ人をまちました。\n人を水にいれました。\n和尚さんがいえをつくりました。\nいえには、ものもありました。\nいえで話をしました。\n平家の人たちは、よくなりました。\nでも、まだわるかったです。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"和尚さんがいえをつくりました。\", \"problem\": \"The text mentions a Buddhist temple (阿彌陀寺) was built to console the dead, not a house by a priest. Correction: お寺を建てました。\", \"kind\": \"event\"}, {\"sentence\": \"いえには、ものもありました。\", \"problem\": \"The original refers to stone monuments with names of the emperor and vassals, not general 'things' in a house. Correction: 墓地に石碑を立てました。\", \"kind\": \"event\"}, {\"sentence\": \"いえで話をしました。\", \"problem\": \"The text refers to Buddhist ceremonies/services (法会) for the spirits, not just 'talking'. Correction: お寺で法会を行いました。\", \"kind\": \"event\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling; for a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n平家の人達は以前は今よりも遥かに焦慮いていた。夜、漕ぎ行く船のほとりに立ち顕れ、それを沈めようとし、また水泳する人をたえず待ち受けていては、それを引きずり込もうとするのである。これ等の死者を慰めるために建立されたのが、すなわち赤間ヶ関の仏教の御寺なる阿彌陀寺であったが、その墓地もまた、それに接して海岸に設けられた。そしてその墓地の内には入水された皇帝と、その歴歴の臣下との名を刻みつけた幾箇かの石碑が立てられ、かつそれ等の人々の霊のために、仏教の法会がそこで整然と行われていたのである。この寺が建立され、その墓が出来てから以後、平家の人達は以前よりも禍いをする事が少くなった。しかしそれでもなお引き続いておりおり、怪しい事をするのではあった――彼等が完き平和を得ていなかった事の証拠として。\n\n語り直し:\n平家の人たちがいました。\nこの人たちは、わるかったです。\nよる、ふねのそばに来ました。\nふねをなくしたいです。\nおよぐ人をまちました。\n人をみずに入れました。\nおてらをたてました。\nぼちにいしをたてました。\nおてらでおいのりをしました。\n平家の人たちは、よくなりました。\nでも、まだわるかったです。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"この人たちは、わるかったです。\", \"problem\": \"The original describes them as malicious spirits (ghosts) causing havoc, not that they were 'bad people' in character. Correction: 幽霊になって、いたずらをしていました。\", \"kind\": \"invented\"}]}"
+      }
+    ],
+    "rewrites": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Repair only the specified sentences at JLPT N5. Preserve all other sentences and events. Use natural Japanese, numeric digits for numbers, and maintain the meaning of the original. Return only JSON {\"rewrites\":[{\"index\":0,\"sentence\":\"...\"}]}."
+          },
+          {
+            "role": "user",
+            "content": "Original:\n平家の人達は以前は今よりも遥かに焦慮いていた。夜、漕ぎ行く船のほとりに立ち顕れ、それを沈めようとし、また水泳する人をたえず待ち受けていては、それを引きずり込もうとするのである。これ等の死者を慰めるために建立されたのが、すなわち赤間ヶ関の仏教の御寺なる阿彌陀寺であったが、その墓地もまた、それに接して海岸に設けられた。そしてその墓地の内には入水された皇帝と、その歴歴の臣下との名を刻みつけた幾箇かの石碑が立てられ、かつそれ等の人々の霊のために、仏教の法会がそこで整然と行われていたのである。この寺が建立され、その墓が出来てから以後、平家の人達は以前よりも禍いをする事が少くなった。しかしそれでもなお引き続いておりおり、怪しい事をするのではあった――彼等が完き平和を得ていなかった事の証拠として。\nSentences:\n0: 平家の人たちがいました。\n1: この人たちは、わるかったです。\n2: よる、ふねのそばに来ました。\n3: ふねをなくしたいです。\n4: およぐ人をまちました。\n5: 人を水にいれました。\n6: 和尚さんがいえをつくりました。\n7: いえには、ものもありました。\n8: いえで話をしました。\n9: 平家の人たちは、よくなりました。\n10: でも、まだわるかったです。\nIssues:\n[{\"sentence\":\"和尚さんがいえをつくりました。\",\"problem\":\"The text mentions a Buddhist temple (阿彌陀寺) was built to console the dead, not a house by a priest. Correction: お寺を建てました。\",\"kind\":\"event\"},{\"sentence\":\"いえには、ものもありました。\",\"problem\":\"The original refers to stone monuments with names of the emperor and vassals, not general 'things' in a house. Correction: 墓地に石碑を立てました。\",\"kind\":\"event\"},{\"sentence\":\"いえで話をしました。\",\"problem\":\"The text refers to Buddhist ceremonies/services (法会) for the spirits, not just 'talking'. Correction: お寺で法会を行いました。\",\"kind\":\"event\"}]\nRewrite exactly indexes: 6,7,8"
+          }
+        ],
+        "response": "{\"rewrites\": [{\"index\": 6, \"sentence\": \"お寺を建てました。\"}, {\"index\": 7, \"sentence\": \"墓地に石碑を立てました。\"}, {\"index\": 8, \"sentence\": \"お寺で法会を行いました。\"}]}"
+      }
+    ],
+    "before": [
+      {
+        "sentence": "和尚さんがいえをつくりました。",
+        "problem": "The text mentions a Buddhist temple (阿彌陀寺) was built to console the dead, not a house by a priest. Correction: お寺を建てました。",
+        "kind": "event"
+      },
+      {
+        "sentence": "いえには、ものもありました。",
+        "problem": "The original refers to stone monuments with names of the emperor and vassals, not general 'things' in a house. Correction: 墓地に石碑を立てました。",
+        "kind": "event"
+      },
+      {
+        "sentence": "いえで話をしました。",
+        "problem": "The text refers to Buddhist ceremonies/services (法会) for the spirits, not just 'talking'. Correction: お寺で法会を行いました。",
+        "kind": "event"
+      }
+    ],
+    "after": [
+      {
+        "sentence": "この人たちは、わるかったです。",
+        "problem": "The original describes them as malicious spirits (ghosts) causing havoc, not that they were 'bad people' in character. Correction: 幽霊になって、いたずらをしていました。",
+        "kind": "invented"
+      }
+    ]
+  },
+  "levelRepairs": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N5.\nPicture-book style. Use です/ます and ました/ませんでした only, with ～て, ～たい, ～から and ～が (but). One idea per sentence. Replace personal names with roles (おさむらい, おぼうさん, おじいさん, わかい男), except the one main character listed as a story word.\nUse only vocabulary at or below N5. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 20 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八十三上下大女山川土千子小中五六円天日月木水火出右四左本白万今午友父北半外母休先名年気百男見車毎行西何来学金雨国東長前南後食校時高間話電聞語読生書. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 0–12 percent. Aim for 8 percent and mean sentence length 6–20 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n平家の人達は以前は今よりも遥かに焦慮いていた。夜、漕ぎ行く船のほとりに立ち顕れ、それを沈めようとし、また水泳する人をたえず待ち受けていては、それを引きずり込もうとするのである。これ等の死者を慰めるために建立されたのが、すなわち赤間ヶ関の仏教の御寺なる阿彌陀寺であったが、その墓地もまた、それに接して海岸に設けられた。そしてその墓地の内には入水された皇帝と、その歴歴の臣下との名を刻みつけた幾箇かの石碑が立てられ、かつそれ等の人々の霊のために、仏教の法会がそこで整然と行われていたのである。この寺が建立され、その墓が出来てから以後、平家の人達は以前よりも禍いをする事が少くなった。しかしそれでもなお引き続いておりおり、怪しい事をするのではあった――彼等が完き平和を得ていなかった事の証拠として。\nCurrent retelling:\n平家の人たちがいました。\nこの人たちは、わるかったです。\nよる、ふねのそばに来ました。\nふねをなくしたいです。\nおよぐ人をまちました。\n人を水にいれました。\nおてらをたてました。\nぼちにせきひをたてました。\nおてらでほうえを行いました。\n平家の人たちは、よくなりました。\nでも、まだわるかったです。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.08633093525179857,\"meanLength\":12.636363636363637,\"advancedShare\":0.12121212121212122}; vocabulary 0.8181818181818182. Required kanji density 0–0.12, kanji coverage 1.0. Above-level vocabulary: てる、ぼる、ちる、せく、行う. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 20 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"平家の人たちがいました。\", \"この人たちは、わるかったです。\", \"よる、ふねのそばに来ました。\", \"ふねをなくしたいです。\", \"およぐ人をまちました。\", \"人を水にいれました。\", \"おてらをたてました。\", \"ぼちにいしをたてました。\", \"おてらで おいのりをしました。\", \"平家の人たちは、よくなりました。\", \"でも、まだ わるかったです。\"], \"question\": {\"prompt\": \"平家の人たちは、どこに来ましたか。\", \"options\": [\"ふねのそば\", \"山の中\", \"学校の中\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N5.\nPicture-book style. Use です/ます and ました/ませんでした only, with ～て, ～たい, ～から and ～が (but). One idea per sentence. Replace personal names with roles (おさむらい, おぼうさん, おじいさん, わかい男), except the one main character listed as a story word.\nUse only vocabulary at or below N5. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 20 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八十三上下大女山川土千子小中五六円天日月木水火出右四左本白万今午友父北半外母休先名年気百男見車毎行西何来学金雨国東長前南後食校時高間話電聞語読生書. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 0–12 percent. Aim for 8 percent and mean sentence length 6–20 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n平家の人達は以前は今よりも遥かに焦慮いていた。夜、漕ぎ行く船のほとりに立ち顕れ、それを沈めようとし、また水泳する人をたえず待ち受けていては、それを引きずり込もうとするのである。これ等の死者を慰めるために建立されたのが、すなわち赤間ヶ関の仏教の御寺なる阿彌陀寺であったが、その墓地もまた、それに接して海岸に設けられた。そしてその墓地の内には入水された皇帝と、その歴歴の臣下との名を刻みつけた幾箇かの石碑が立てられ、かつそれ等の人々の霊のために、仏教の法会がそこで整然と行われていたのである。この寺が建立され、その墓が出来てから以後、平家の人達は以前よりも禍いをする事が少くなった。しかしそれでもなお引き続いておりおり、怪しい事をするのではあった――彼等が完き平和を得ていなかった事の証拠として。\nCurrent retelling:\n平家の人たちがいました。\nこの人たちは、わるかったです。\nよる、ふねのそばに来ました。\nふねをなくしたいです。\nおよぐ人をまちました。\n人を水にいれました。\nおてらをたてました。\nぼちにいしをたてました。\nおてらでおいのりをしました。\n平家の人たちは、よくなりました。\nでも、まだわるかったです。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.07971014492753623,\"meanLength\":12.545454545454545,\"advancedShare\":0.14705882352941177}; vocabulary 0.7941176470588235. Required kanji density 0–0.12, kanji coverage 1.0. Above-level vocabulary: てる、ぼる、ちる、いし、おい、のり. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 20 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"平家の人たちがいました。\", \"この人たちは、わるかったです。\", \"よる、ふねのそばに来ました。\", \"ふねをなくしたいです。\", \"およぐ人をまちました。\", \"人を水にいれました。\", \"おてらをたてました。\", \"ぼちに いしをたてました。\", \"おてらでおいのりをしました。\", \"平家の人たちは、よくなりました。\", \"でも、まだわるかったです。\"], \"question\": {\"prompt\": \"平家の人たちは、いつ来ましたか。\", \"options\": [\"あさ\", \"ひる\", \"よる\"], \"answer\": 2}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N5.\nPicture-book style. Use です/ます and ました/ませんでした only, with ～て, ～たい, ～から and ～が (but). One idea per sentence. Replace personal names with roles (おさむらい, おぼうさん, おじいさん, わかい男), except the one main character listed as a story word.\nUse only vocabulary at or below N5. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 20 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八十三上下大女山川土千子小中五六円天日月木水火出右四左本白万今午友父北半外母休先名年気百男見車毎行西何来学金雨国東長前南後食校時高間話電聞語読生書. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 0–12 percent. Aim for 8 percent and mean sentence length 6–20 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n平家の人達は以前は今よりも遥かに焦慮いていた。夜、漕ぎ行く船のほとりに立ち顕れ、それを沈めようとし、また水泳する人をたえず待ち受けていては、それを引きずり込もうとするのである。これ等の死者を慰めるために建立されたのが、すなわち赤間ヶ関の仏教の御寺なる阿彌陀寺であったが、その墓地もまた、それに接して海岸に設けられた。そしてその墓地の内には入水された皇帝と、その歴歴の臣下との名を刻みつけた幾箇かの石碑が立てられ、かつそれ等の人々の霊のために、仏教の法会がそこで整然と行われていたのである。この寺が建立され、その墓が出来てから以後、平家の人達は以前よりも禍いをする事が少くなった。しかしそれでもなお引き続いておりおり、怪しい事をするのではあった――彼等が完き平和を得ていなかった事の証拠として。\nCurrent retelling:\n平家の人たちがいました。\nこの人たちは、わるかったです。\nよる、ふねのそばに来ました。\nふねをなくしたいです。\nおよぐ人をまちました。\n人を水にいれました。\nおてらをたてました。\nぼちにいしをたてました。\nおてらでおいのりをしました。\n平家の人たちは、よくなりました。\nでも、まだわるかったです。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.07971014492753623,\"meanLength\":12.545454545454545,\"advancedShare\":0.14705882352941177}; vocabulary 0.7941176470588235. Required kanji density 0–0.12, kanji coverage 1.0. Above-level vocabulary: てる、ぼる、ちる、いし、おい、のり. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 20 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences([\": [\"平家の人たちがいました。\", \"この人たちは、わるかったです。\", \"よる、ふねのそばに来ました。\", \"ふねをなくしたいです。\", \"およぐ人をまちました。\", \"人をみずに入れました。\", \"おてらをたてました。\", \"ぼちにいしをたてました。\", \"おてらでおいのりをしました。\", \"平家の人たちは、よくなりました。\", \"でも、まだわるかったです。\"], \"question\": {\"prompt\": \"平家の人たちは、いつふねのそばに来ましたか。\", \"options\": [\"あさ\", \"ひる\", \"よる\"], \"answer\": 2}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: ぼる. Return JSON {\"glosses\":{\"ぼる\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"ぼる\": \"to climb\"}}"
+    }
+  ]
 }

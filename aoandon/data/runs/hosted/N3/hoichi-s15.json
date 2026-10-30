@@ -4,39 +4,42 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration, adding ～ようだ, ～らしい, the passive and ～ために.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Copy every story word exactly in kanji when it is needed; do not insert unused words.\nWrite normal Japanese with no spaces between words. Outside story words, use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小才中五六円天手文日月木水火犬王出右四左本正田白目石立万今元公内切午友太少引心方牛父止兄冬北半古台外市広母用世主他代写去号平打申礼休先名字年早気百耳男町花見赤足車不仕交会光同回多当毎米考肉自色行西何体作図声売弟形来社言走近学空金雨青草音化地両全向安曲有次死京国夜妹姉店明東歩画直知長前南室後思活海点科茶食首欠由民付以失必未末校夏家時紙記通高強教理組船週雪魚鳥黒支住助医君対局役投決究者研馬場朝番答絵買道間数楽話電所事使具受和始定実服泳物苦表部乗客屋度待持界発相美負送重談要勝起速配酒院終習転進落葉運開集飲業漢路歌聞語読鳴横調親頭顔病最争伝共好成老位初別利努労命放昔注育指洋神追戦良特便働意味勉庭息旅流消員都動商悪族深球陽寒悲期歯港登着野生亡合風予反新返問宿想感暗様福銀題館駅料殺然熱選願情映疑皆例参完念折望束残求約性格能術私帰春昼晴秋計列式信単変夫建昨法英飯晩猫園曜書遠係取品守幸急真箱面喜治笑辞関政留険危存原薬側堂席敗果因常識非官察愛警覚説試告種達類報等借座忘洗験許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差質供限与渡景抜候構捕慣満掛居突招段腹痛退貸迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: 和尚がはなした。芳一、きみはいまあぶないようだ。芳一がはなしなかったために、こうなったらしい。琵琶のうまさのせいで、こまった。芳一はひとのいえにいたのではない。平家のおはかにいたようだ。芳一はそれにきづかなかった。芳一はしんだひとにあっていた。またあえば、ころされるだろう。和尚はいまいっしょにいられない。ほかのしごとがあるからだ。芳一をまもるために、からだにもじをかいた。\n\n場面（原文）:\n日没前住職と納所とで芳一を裸にし、筆を以て二人して芳一の、胸、背、頭、顔、頸、手足――身体中どこと云わず、足の裏にさえも――般若心経というお経の文句を書きつけた。それが済むと、住職は芳一にこう言いつけた。――\n『今夜、私が出て行ったらすぐに、お前は縁側に坐って、待っていなさい。すると迎えが来る。が、どんな事があっても、返事をしたり、動いてはならぬ。口を利かず静かに坐っていなさい――禅定に入っているようにして。もし動いたり、少しでも声を立てたりすると、お前は切りさいなまれてしまう。恐わがらず、助けを呼んだりしようと思ってはいかぬ。――助けを呼んだところで助かるわけのものではないから。私が云う通りに間違いなくしておれば、危険は通り過ぎて、もう恐わい事はなくなる』"
+        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\n日没前住職と納所とで芳一を裸にし、筆を以て二人して芳一の、胸、背、頭、顔、頸、手足――身体中どこと云わず、足の裏にさえも――般若心経というお経の文句を書きつけた。それが済むと、住職は芳一にこう言いつけた。――\n『今夜、私が出て行ったらすぐに、お前は縁側に坐って、待っていなさい。すると迎えが来る。が、どんな事があっても、返事をしたり、動いてはならぬ。口を利かず静かに坐っていなさい――禅定に入っているようにして。もし動いたり、少しでも声を立てたりすると、お前は切りさいなまれてしまう。恐わがらず、助けを呼んだりしようと思ってはいかぬ。――助けを呼んだところで助かるわけのものではないから。私が云う通りに間違いなくしておれば、危険は通り過ぎて、もう恐わい事はなくなる』\n"
       }
     ]
   },
   "responses": [
-    "{\"sentences-\": [\"日がしずむまえに、和尚たちが芳一をはだかにした。\", \"ふたりで芳一のからだに、おきょうのじをかいた。\", \"むねやあたま、てあしなど、ぜんぶにかいたようだ。\", \"それから、和尚は芳一にいうた。\", \"いまよる、わたしがでたら、そのまままっていろ。\", \"だれかがくるが、へんじをしてはいけない。\", \"うごいてはいけない。\", \"しずかにすわっていなさい。\", \"うごいたり、こえをだしたりしたとき、ころされるらしい。\", \"こわがって、たすけをよんではいけない。\", \"たすけをよんでも、たすけられないためだ。\", \"和尚のいうとおりにすれば、もうあぶなくない。\"], \"question\": {\"prompt\": \"和尚は芳一に、どうするようにいいましたか。\", \"options\": [\"こえをだして、たすけをよぶこと。\", \"しずかにすわって、まっていろこと。\", \"すぐに、外へでること。\"], \"answer\": 1}}",
-    "{\"sentences\": [\"日がしずむまえに、和尚たちが芳一をはだかにした。\", \"ふたりで芳一のからだに、おきょうのじをかいた。\", \"むねやあたま、てあしなど、ぜんぶにかいたようだ。\", \"それから、和尚は芳一にいった。\", \"いまよる、わたしがでたら、そのまままっていろ。\", \"だれかがくるが、へんじをしてはいけない。\", \"うごいてはいけない。\", \"しずかにすわっていなさい。\", \"うごいたり、こえをだしたりしたとき、ころされるらしい。\", \"こわがって、たすけをよんではいけない。\", \"たすけをよんでも、たすけられないためだ。\", \"和尚のいうとおりにすれば、もうあぶなくない。\"], \"question\": {\"prompt\": \"和尚は芳一に、どうするようにいいましたか。\", \"options\": [\"こえをだして、たすけをよぶこと。\", \"しずかにすわって、まっていろこと。\", \"すぐに、外へでること。\"], \"answer\": 1}}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"日がしずむまえに、おしょうたちがほういちをはだかにした。\"}, {\"index\": 1, \"sentence\": \"ふたりでほういちのからだに、おきょうをかいた。\"}, {\"index\": 3, \"sentence\": \"それから、おしょうはほういちにいった。\"}, {\"index\": 8, \"sentence\": \"うごいたり、こえをだしたりすれば、ころされるらしい。\"}, {\"index\": 9, \"sentence\": \"おそれて、たすけをよんではいけない。\"}, {\"index\": 10, \"sentence\": \"たすけをよんでも、たすけられないためだ。\"}, {\"index\": 11, \"sentence\": \"おしょうのいうとおりにすれば、もうあぶなくない。\"}]}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"ひがしずむまえに、おしょうたちがほういちをはだかにした。\"}, {\"index\": 1, \"sentence\": \"ふたりでほういちのからだに、おきょうをかいた。\"}, {\"index\": 3, \"sentence\": \"それから、おしょうはほういちにいった。\"}, {\"index\": 8, \"sentence\": \"うごいたり、こえをだせば、ころされるらしい。\"}, {\"index\": 10, \"sentence\": \"たすけをよんでも、たすからないためだ。\"}, {\"index\": 11, \"sentence\": \"おしょうのいうとおりにすれば、もうあぶなくない。\"}]}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"ひがしずむまえ、おしょうたちがほういちをはだかにした。\"}, {\"index\": 1, \"sentence\": \"ふたりでほういちのからだに、おきょうをかいた。\"}, {\"index\": 3, \"sentence\": \"それから、おしょうはほういちにいった。\"}, {\"index\": 8, \"sentence\": \"うごいたり、こえをだせば、しぬらしい。\"}, {\"index\": 11, \"sentence\": \"おしょうのいうとおりにすれば、もうあぶなくない。\"}]}",
-    "{\"question\": {\"prompt\": \"おしょうはほういちに、どうするようにいいましたか。\", \"options\": [\"こえをだして、たすけをよぶこと。\", \"しずかにすわって、まっていること。\", \"いま、外へでること。\"], \"answer\": 1}}",
-    "{\"glosses\": {\"むまえ\": \"before\"}}"
+    "{\"sentences\": [\"和尚は芳一を裸にして、体にたくさんお経を書きました。\", \"胸や顔や足の裏まで、全部に書いてあったようです。\", \"それが終わったので、和尚は芳一に注意しました。\", \"今夜、私が外に出たら、縁側に座って待っていてください。\", \"迎えが来ても、返事をしたり動いたりしてはいけません。\", \"静かに座っていないと、殺されてしまうので危ないです。\", \"怖くなって助けを呼んでも、助からないようです。\", \"私の言う通りにすれば、もう怖いことはなくなります。\"], \"question\": {\"prompt\": \"和尚は芳一に何と言いましたか。\", \"options\": [\"外へ出てください。\", \"静かに座っていてください。\", \"たくさんお経を書いてください。\"], \"answer\": 1}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"和尚は芳一をはだかにして、体にたくさんおきょうを書きました。\"}, {\"index\": 1, \"sentence\": \"むねや顔や足のうらまで、全部に書いてあったようです。\"}, {\"index\": 2, \"sentence\": \"それが済んだので、和尚は芳一に注意しました。\"}, {\"index\": 3, \"sentence\": \"今夜、私が外に出たら、えんがわに座って待っていてください。\"}, {\"index\": 5, \"sentence\": \"静かに座っていないと、殺されるので危ないです。\"}, {\"index\": 6, \"sentence\": \"怖くなってたすけを呼んでも、たすからないようです。\"}]}",
+    "{\"rewrites\": [{\"index\": 3, \"sentence\": \"今夜、私が外に出た後、えんがわに座って待ってください。\"}, {\"index\": 5, \"sentence\": \"静かに座っていないと、殺されるから危ないです。\"}]}",
+    "{\"rewrites\": [{\"index\": 3, \"sentence\": \"今夜、私が外へ出た後、えんがわに座って待ってください。\"}, {\"index\": 5, \"sentence\": \"静かに座っていないと、殺されるので危ないです。\"}]}",
+    "{\"question\": {\"prompt\": \"おしょうは ほういちに 何と言いましたか。\", \"options\": [\"外へ出てください。\", \"静かに座っていてください。\", \"おきょうを書いてください。\"], \"answer\": 1}}",
+    "{\"glosses\": {\"ん\": \"nasal sound\", \"れる\": \"passive voice marker\"}}"
   ],
   "metrics": {
     "kanjiCoverage": 1,
-    "kanjiDensity": 0,
-    "firstCoverage": 0.9245283018867925,
-    "finalCoverage": 0.9791666666666666,
-    "retries": 3,
-    "seconds": 32.11571249999991,
+    "kanjiDensity": 0.21287128712871287,
+    "firstCoverage": 0.9038461538461539,
+    "finalCoverage": 0.9411764705882353,
+    "retries": 6,
+    "seconds": 25.9618027,
     "offendingFirst": [
-      "ょうのじをかいた",
+      "経",
+      "終わる",
+      "縁側",
       "れる",
-      "こわがる",
-      "られる"
+      "助け"
     ],
     "ghostWords": [
-      "むまえ"
-    ]
+      "ん",
+      "れる",
+      "助け"
+    ],
+    "faithIssues": []
   },
   "retelling": {
     "level": "N3",
@@ -46,51 +49,24 @@
       {
         "tokens": [
           {
-            "s": "ひがし",
-            "b": "ひがし",
-            "k": "known",
-            "g": "east",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ず",
-            "k": "plain"
-          },
-          {
-            "s": "むまえ",
-            "b": "むまえ",
-            "k": "ghost",
-            "g": "before",
-            "gs": "model"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "おしょう",
+            "s": "和尚",
             "r": "おしょう",
             "b": "和尚",
             "k": "story",
-            "g": "Buddhist head priest"
+            "g": "Buddhist head priest",
+            "hk": true
           },
           {
-            "s": "たち",
-            "b": "たち",
-            "k": "known",
-            "g": "plural suffix",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
+            "s": "は",
             "k": "plain"
           },
           {
-            "s": "ほういち",
+            "s": "芳一",
             "r": "ほういち",
             "b": "芳一",
             "k": "story",
-            "g": "Hoichi, a blind musician"
+            "g": "Hoichi, a blind musician",
+            "hk": true
           },
           {
             "s": "を",
@@ -114,49 +90,24 @@
           },
           {
             "s": "し",
-            "b": "する",
             "k": "known",
+            "b": "する",
             "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
             "gs": "jlpt"
           },
           {
-            "s": "た",
+            "s": "て",
             "k": "plain"
           },
           {
-            "s": "。",
+            "s": "、",
             "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
+          },
           {
-            "s": "ふたり",
-            "b": "ふたり",
+            "s": "体",
             "k": "known",
-            "g": "two people",
-            "gs": "jlpt"
-          },
-          {
-            "s": "で",
-            "k": "plain"
-          },
-          {
-            "s": "ほういち",
-            "r": "ほういち",
-            "b": "芳一",
-            "k": "story",
-            "g": "Hoichi, a blind musician"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "からだ",
-            "b": "からだ",
-            "k": "known",
+            "r": "からだ",
+            "b": "体",
             "g": "body; health",
             "gs": "jlpt"
           },
@@ -165,8 +116,11 @@
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
+            "s": "たくさん",
+            "k": "known",
+            "b": "たくさん",
+            "g": "many, much",
+            "gs": "jlpt"
           },
           {
             "s": "お",
@@ -174,8 +128,8 @@
           },
           {
             "s": "きょう",
-            "b": "きょう",
             "k": "known",
+            "b": "きょう",
             "g": "today, this day",
             "gs": "jlpt"
           },
@@ -184,11 +138,16 @@
             "k": "plain"
           },
           {
-            "s": "かい",
-            "b": "かく",
+            "s": "書き",
             "k": "known",
+            "r": "かき",
+            "b": "書く",
             "g": "to write",
             "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
           },
           {
             "s": "た",
@@ -204,8 +163,8 @@
         "tokens": [
           {
             "s": "むね",
-            "b": "むね",
             "k": "known",
+            "b": "むね",
             "g": "breast, chest",
             "gs": "jlpt"
           },
@@ -214,33 +173,38 @@
             "k": "plain"
           },
           {
-            "s": "あ",
-            "k": "plain"
-          },
-          {
-            "s": "たま",
-            "b": "たま",
+            "s": "顔",
             "k": "known",
-            "g": "ball, sphere, coin",
+            "r": "かお",
+            "b": "顔",
+            "g": "face (body part)",
             "gs": "jlpt"
           },
           {
-            "s": "、",
+            "s": "や",
             "k": "plain"
           },
           {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "あし",
-            "b": "あし",
+            "s": "足",
             "k": "known",
+            "r": "あし",
+            "b": "足",
             "g": "foot; leg",
             "gs": "jlpt"
           },
           {
-            "s": "など",
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "うら",
+            "k": "known",
+            "b": "うる",
+            "g": "to sell (v.t.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まで",
             "k": "plain"
           },
           {
@@ -248,9 +212,10 @@
             "k": "plain"
           },
           {
-            "s": "ぜんぶ",
-            "b": "ぜんぶ",
+            "s": "全部",
             "k": "known",
+            "r": "ぜんぶ",
+            "b": "全部",
             "g": "all, entire, whole",
             "gs": "jlpt"
           },
@@ -259,10 +224,22 @@
             "k": "plain"
           },
           {
-            "s": "かい",
-            "b": "かく",
+            "s": "書い",
             "k": "known",
+            "r": "かい",
+            "b": "書く",
             "g": "to write",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "あっ",
+            "k": "known",
+            "b": "ある",
+            "g": "to be, to have",
             "gs": "jlpt"
           },
           {
@@ -271,13 +248,13 @@
           },
           {
             "s": "よう",
-            "b": "よう",
             "k": "known",
+            "b": "よう",
             "g": "errand, task, business (to take care of)",
             "gs": "jlpt"
           },
           {
-            "s": "だ",
+            "s": "です",
             "k": "plain"
           },
           {
@@ -289,7 +266,27 @@
       {
         "tokens": [
           {
-            "s": "それから",
+            "s": "それ",
+            "k": "plain"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "済ん",
+            "k": "known",
+            "r": "すん",
+            "b": "済む",
+            "g": "to finish, to end",
+            "gs": "jlpt"
+          },
+          {
+            "s": "だ",
+            "k": "plain"
+          },
+          {
+            "s": "ので",
             "k": "plain"
           },
           {
@@ -297,33 +294,47 @@
             "k": "plain"
           },
           {
-            "s": "おしょう",
+            "s": "和尚",
             "r": "おしょう",
             "b": "和尚",
             "k": "story",
-            "g": "Buddhist head priest"
+            "g": "Buddhist head priest",
+            "hk": true
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "ほういち",
+            "s": "芳一",
             "r": "ほういち",
             "b": "芳一",
             "k": "story",
-            "g": "Hoichi, a blind musician"
+            "g": "Hoichi, a blind musician",
+            "hk": true
           },
           {
             "s": "に",
             "k": "plain"
           },
           {
-            "s": "いっ",
-            "b": "いく",
+            "s": "注意",
             "k": "known",
-            "g": "to go",
+            "r": "ちゅうい",
+            "b": "注意",
+            "g": "caution, attention",
             "gs": "jlpt"
+          },
+          {
+            "s": "し",
+            "k": "known",
+            "b": "する",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
           },
           {
             "s": "た",
@@ -338,17 +349,11 @@
       {
         "tokens": [
           {
-            "s": "いま",
-            "b": "いま",
+            "s": "今夜",
             "k": "known",
-            "g": "now",
-            "gs": "jlpt"
-          },
-          {
-            "s": "よる",
-            "b": "よる",
-            "k": "known",
-            "g": "evening, night",
+            "r": "こんや",
+            "b": "今夜",
+            "g": "this evening, tonight",
             "gs": "jlpt"
           },
           {
@@ -356,39 +361,93 @@
             "k": "plain"
           },
           {
-            "s": "わたし",
-            "k": "plain"
+            "s": "私",
+            "k": "plain",
+            "r": "わたし"
           },
           {
             "s": "が",
             "k": "plain"
           },
           {
-            "s": "で",
-            "b": "でる",
+            "s": "外",
             "k": "known",
+            "r": "そと",
+            "b": "外",
+            "g": "outside, exterior",
+            "gs": "jlpt"
+          },
+          {
+            "s": "へ",
+            "k": "plain"
+          },
+          {
+            "s": "出",
+            "k": "known",
+            "r": "で",
+            "b": "出る",
             "g": "to appear, to leave",
             "gs": "jlpt"
           },
           {
-            "s": "たら",
+            "s": "た",
             "k": "plain"
+          },
+          {
+            "s": "後",
+            "k": "known",
+            "r": "のち",
+            "b": "後",
+            "g": "afterwards (later); in the future; the rest; since then",
+            "gs": "jlpt"
           },
           {
             "s": "、",
             "k": "plain"
           },
           {
-            "s": "そのまま",
-            "b": "そのまま",
+            "s": "え",
+            "k": "plain"
+          },
+          {
+            "s": "ん",
+            "k": "ghost",
+            "b": "ん",
+            "g": "nominalizer/explanatory particle",
+            "gs": "model"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "わ",
             "k": "known",
-            "g": "without change, as it is (e.g., now)",
+            "b": "わ",
+            "g": "ring, hoop, circle",
             "gs": "jlpt"
           },
           {
-            "s": "まっ",
-            "b": "まつ",
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "座っ",
             "k": "known",
+            "r": "すわっ",
+            "b": "座る",
+            "g": "to sit",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "待っ",
+            "k": "known",
+            "r": "まっ",
+            "b": "待つ",
             "g": "to wait",
             "gs": "jlpt"
           },
@@ -397,10 +456,10 @@
             "k": "plain"
           },
           {
-            "s": "いろ",
-            "b": "いる",
+            "s": "ください",
             "k": "known",
-            "g": "(humble) to be (animate), to exist",
+            "b": "くださる",
+            "g": "(hon.) to give, to confer",
             "gs": "jlpt"
           },
           {
@@ -412,22 +471,11 @@
       {
         "tokens": [
           {
-            "s": "だれ",
-            "k": "plain"
-          },
-          {
-            "s": "か",
-            "k": "plain"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "くる",
-            "b": "くる",
+            "s": "迎え",
             "k": "known",
-            "g": "to come",
+            "r": "むかえ",
+            "b": "迎える",
+            "g": "to welcome; to meet; to greet",
             "gs": "jlpt"
           },
           {
@@ -435,13 +483,30 @@
             "k": "plain"
           },
           {
+            "s": "来",
+            "k": "known",
+            "r": "き",
+            "b": "来る",
+            "g": "to come",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "も",
+            "k": "plain"
+          },
+          {
             "s": "、",
             "k": "plain"
           },
           {
-            "s": "へんじ",
-            "b": "へんじる",
+            "s": "返事",
             "k": "known",
+            "r": "へんじ",
+            "b": "返事",
             "g": "reply, answer",
             "gs": "jlpt"
           },
@@ -451,8 +516,31 @@
           },
           {
             "s": "し",
-            "b": "する",
             "k": "known",
+            "b": "する",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "たり",
+            "k": "plain"
+          },
+          {
+            "s": "動い",
+            "k": "known",
+            "r": "うごい",
+            "b": "動く",
+            "g": "to move",
+            "gs": "jlpt"
+          },
+          {
+            "s": "たり",
+            "k": "plain"
+          },
+          {
+            "s": "し",
+            "k": "known",
+            "b": "する",
             "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
             "gs": "jlpt"
           },
@@ -466,13 +554,17 @@
           },
           {
             "s": "いけ",
-            "b": "いける",
             "k": "known",
+            "b": "いける",
             "g": "to arrange (flowers)",
             "gs": "jlpt"
           },
           {
-            "s": "ない",
+            "s": "ませ",
+            "k": "plain"
+          },
+          {
+            "s": "ん",
             "k": "plain"
           },
           {
@@ -484,43 +576,10 @@
       {
         "tokens": [
           {
-            "s": "うごい",
-            "b": "うごく",
+            "s": "静か",
             "k": "known",
-            "g": "to move",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "いけ",
-            "b": "いける",
-            "k": "known",
-            "g": "to arrange (flowers)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ない",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "しずか",
-            "b": "しずか",
-            "k": "known",
+            "r": "しずか",
+            "b": "静か",
             "g": "quiet, calm",
             "gs": "jlpt"
           },
@@ -529,9 +588,10 @@
             "k": "plain"
           },
           {
-            "s": "すわっ",
-            "b": "すわる",
+            "s": "座っ",
             "k": "known",
+            "r": "すわっ",
+            "b": "座る",
             "g": "to sit",
             "gs": "jlpt"
           },
@@ -541,136 +601,9 @@
           },
           {
             "s": "い",
+            "k": "known",
             "b": "いる",
-            "k": "known",
             "g": "(humble) to be (animate), to exist",
-            "gs": "jlpt"
-          },
-          {
-            "s": "なさい",
-            "b": "なさる",
-            "k": "known",
-            "g": "-- honorific expression for する --",
-            "gs": "jlpt"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "うごい",
-            "b": "うごく",
-            "k": "known",
-            "g": "to move",
-            "gs": "jlpt"
-          },
-          {
-            "s": "たり",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "こえ",
-            "b": "こえる",
-            "k": "known",
-            "g": "to exceed, to cross over, to cross",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "だせ",
-            "b": "だす",
-            "k": "known",
-            "g": "to take (something) out; to hand in (something)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ば",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "し",
-            "b": "する",
-            "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ぬ",
-            "k": "plain"
-          },
-          {
-            "s": "らしい",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "おそれ",
-            "b": "おそれる",
-            "k": "known",
-            "g": "to fear, to be afraid of",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "たすけ",
-            "b": "たすける",
-            "k": "known",
-            "g": "to help (v.t.), to save, to rescue",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "よん",
-            "b": "よぶ",
-            "k": "known",
-            "g": "to call (one's name); to invite",
-            "gs": "jlpt"
-          },
-          {
-            "s": "で",
-            "k": "plain"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "いけ",
-            "b": "いける",
-            "k": "known",
-            "g": "to arrange (flowers)",
             "gs": "jlpt"
           },
           {
@@ -678,6 +611,45 @@
             "k": "plain"
           },
           {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "殺さ",
+            "k": "known",
+            "r": "ころさ",
+            "b": "殺す",
+            "g": "to kill",
+            "gs": "jlpt"
+          },
+          {
+            "s": "れる",
+            "k": "ghost",
+            "b": "れる",
+            "g": "passive/potential auxiliary",
+            "gs": "model"
+          },
+          {
+            "s": "ので",
+            "k": "plain"
+          },
+          {
+            "s": "危ない",
+            "k": "known",
+            "r": "あぶない",
+            "b": "危ない",
+            "g": "dangerous, critical",
+            "gs": "jlpt"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
             "s": "。",
             "k": "plain"
           }
@@ -686,10 +658,30 @@
       {
         "tokens": [
           {
-            "s": "たすけ",
-            "b": "たすける",
+            "s": "怖く",
             "k": "known",
-            "g": "to help (v.t.), to save, to rescue",
+            "r": "こわく",
+            "b": "怖い",
+            "g": "scary, frightening",
+            "gs": "jlpt"
+          },
+          {
+            "s": "なっ",
+            "k": "known",
+            "b": "なる",
+            "g": "to become",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "助け",
+            "k": "ghost",
+            "r": "たすけ",
+            "b": "助け",
+            "g": "assistance",
             "gs": "jlpt"
           },
           {
@@ -697,9 +689,10 @@
             "k": "plain"
           },
           {
-            "s": "よん",
-            "b": "よぶ",
+            "s": "呼ん",
             "k": "known",
+            "r": "よん",
+            "b": "呼ぶ",
             "g": "to call (one's name); to invite",
             "gs": "jlpt"
           },
@@ -716,9 +709,10 @@
             "k": "plain"
           },
           {
-            "s": "たすから",
-            "b": "たすかる",
+            "s": "助から",
             "k": "known",
+            "r": "たすから",
+            "b": "助かる",
             "g": "to be saved; (something) helps (v.i.)",
             "gs": "jlpt"
           },
@@ -727,14 +721,14 @@
             "k": "plain"
           },
           {
-            "s": "ため",
-            "b": "ため",
+            "s": "よう",
             "k": "known",
-            "g": "good, advantage, in order to",
+            "b": "よう",
+            "g": "errand, task, business (to take care of)",
             "gs": "jlpt"
           },
           {
-            "s": "だ",
+            "s": "です",
             "k": "plain"
           },
           {
@@ -746,27 +740,27 @@
       {
         "tokens": [
           {
-            "s": "おしょう",
-            "r": "おしょう",
-            "b": "和尚",
-            "k": "story",
-            "g": "Buddhist head priest"
+            "s": "私",
+            "k": "plain",
+            "r": "わたし"
           },
           {
             "s": "の",
             "k": "plain"
           },
           {
-            "s": "いう",
-            "b": "いう",
+            "s": "言う",
             "k": "known",
+            "r": "いう",
+            "b": "言う",
             "g": "to say",
             "gs": "jlpt"
           },
           {
-            "s": "とおり",
-            "b": "とおり",
+            "s": "通り",
             "k": "known",
+            "r": "とおり",
+            "b": "通り",
             "g": "~ Street, ~ Avenue",
             "gs": "jlpt"
           },
@@ -776,8 +770,8 @@
           },
           {
             "s": "すれ",
-            "b": "する",
             "k": "known",
+            "b": "する",
             "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
             "gs": "jlpt"
           },
@@ -791,20 +785,39 @@
           },
           {
             "s": "もう",
-            "b": "もう",
             "k": "known",
+            "b": "もう",
             "g": "already; again; more",
             "gs": "jlpt"
           },
           {
-            "s": "あぶなく",
-            "b": "あぶない",
+            "s": "怖い",
             "k": "known",
-            "g": "dangerous, critical",
+            "r": "こわい",
+            "b": "怖い",
+            "g": "scary, frightening",
             "gs": "jlpt"
           },
           {
-            "s": "ない",
+            "s": "こと",
+            "k": "known",
+            "b": "こと",
+            "g": "thing(s), matter(s), fact",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "なくなり",
+            "k": "known",
+            "b": "なくなる",
+            "g": "to disappear, to get lost",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
             "k": "plain"
           },
           {
@@ -818,60 +831,43 @@
       "prompt": {
         "tokens": [
           {
-            "s": "おしょう",
+            "s": "和尚",
             "r": "おしょう",
             "b": "和尚",
             "k": "story",
-            "g": "Buddhist head priest"
+            "g": "Buddhist head priest",
+            "hk": true
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "ほういち",
+            "s": "芳一",
             "r": "ほういち",
             "b": "芳一",
             "k": "story",
-            "g": "Hoichi, a blind musician"
+            "g": "Hoichi, a blind musician",
+            "hk": true
           },
           {
             "s": "に",
             "k": "plain"
           },
           {
-            "s": "、",
+            "s": "何",
+            "k": "plain",
+            "r": "なに"
+          },
+          {
+            "s": "と",
             "k": "plain"
           },
           {
-            "s": "どう",
-            "b": "どう",
+            "s": "言い",
             "k": "known",
-            "g": "how, in what way",
-            "gs": "jlpt"
-          },
-          {
-            "s": "する",
-            "b": "する",
-            "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "よう",
-            "b": "よう",
-            "k": "known",
-            "g": "errand, task, business (to take care of)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "いい",
-            "b": "いう",
-            "k": "known",
+            "r": "いい",
+            "b": "言う",
             "g": "to say",
             "gs": "jlpt"
           },
@@ -897,80 +893,10 @@
         {
           "tokens": [
             {
-              "s": "こえ",
-              "b": "こえる",
-              "k": "known",
-              "g": "to exceed, to cross over, to cross",
-              "gs": "jlpt"
-            },
-            {
-              "s": "を",
-              "k": "plain"
-            },
-            {
-              "s": "だし",
-              "b": "だす",
-              "k": "known",
-              "g": "to take (something) out; to hand in (something)",
-              "gs": "jlpt"
-            },
-            {
-              "s": "て",
-              "k": "plain"
-            },
-            {
-              "s": "、",
-              "k": "plain"
-            },
-            {
-              "s": "たすけ",
-              "b": "たすける",
-              "k": "known",
-              "g": "to help (v.t.), to save, to rescue",
-              "gs": "jlpt"
-            },
-            {
-              "s": "を",
-              "k": "plain"
-            },
-            {
-              "s": "よぶ",
-              "b": "よぶ",
-              "k": "known",
-              "g": "to call (one's name); to invite",
-              "gs": "jlpt"
-            },
-            {
-              "s": "こと",
-              "b": "こと",
-              "k": "known",
-              "g": "thing(s), matter(s), fact",
-              "gs": "jlpt"
-            },
-            {
-              "s": "。",
-              "k": "plain"
-            }
-          ]
-        },
-        {
-          "tokens": [
-            {
-              "s": "いま",
-              "b": "いま",
-              "k": "known",
-              "g": "now",
-              "gs": "jlpt"
-            },
-            {
-              "s": "、",
-              "k": "plain"
-            },
-            {
               "s": "外",
+              "k": "known",
               "r": "そと",
               "b": "外",
-              "k": "known",
               "g": "outside, exterior",
               "gs": "jlpt"
             },
@@ -979,17 +905,22 @@
               "k": "plain"
             },
             {
-              "s": "でる",
-              "b": "でる",
+              "s": "出",
               "k": "known",
+              "r": "で",
+              "b": "出る",
               "g": "to appear, to leave",
               "gs": "jlpt"
             },
             {
-              "s": "こと",
-              "b": "こと",
+              "s": "て",
+              "k": "plain"
+            },
+            {
+              "s": "ください",
               "k": "known",
-              "g": "thing(s), matter(s), fact",
+              "b": "くださる",
+              "g": "(hon.) to give, to confer",
               "gs": "jlpt"
             },
             {
@@ -1001,9 +932,52 @@
         {
           "tokens": [
             {
-              "s": "しずか",
-              "b": "しずか",
+              "s": "お",
+              "k": "plain"
+            },
+            {
+              "s": "きょう",
               "k": "known",
+              "b": "きょう",
+              "g": "today, this day",
+              "gs": "jlpt"
+            },
+            {
+              "s": "を",
+              "k": "plain"
+            },
+            {
+              "s": "書い",
+              "k": "known",
+              "r": "かい",
+              "b": "書く",
+              "g": "to write",
+              "gs": "jlpt"
+            },
+            {
+              "s": "て",
+              "k": "plain"
+            },
+            {
+              "s": "ください",
+              "k": "known",
+              "b": "くださる",
+              "g": "(hon.) to give, to confer",
+              "gs": "jlpt"
+            },
+            {
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "静か",
+              "k": "known",
+              "r": "しずか",
+              "b": "静か",
               "g": "quiet, calm",
               "gs": "jlpt"
             },
@@ -1012,9 +986,10 @@
               "k": "plain"
             },
             {
-              "s": "すわっ",
-              "b": "すわる",
+              "s": "座っ",
               "k": "known",
+              "r": "すわっ",
+              "b": "座る",
               "g": "to sit",
               "gs": "jlpt"
             },
@@ -1023,14 +998,10 @@
               "k": "plain"
             },
             {
-              "s": "、",
-              "k": "plain"
-            },
-            {
-              "s": "まっ",
-              "b": "まつ",
+              "s": "い",
               "k": "known",
-              "g": "to wait",
+              "b": "いる",
+              "g": "(humble) to be (animate), to exist",
               "gs": "jlpt"
             },
             {
@@ -1038,17 +1009,10 @@
               "k": "plain"
             },
             {
-              "s": "いる",
-              "b": "いる",
+              "s": "ください",
               "k": "known",
-              "g": "(humble) to be (animate), to exist",
-              "gs": "jlpt"
-            },
-            {
-              "s": "こと",
-              "b": "こと",
-              "k": "known",
-              "g": "thing(s), matter(s), fact",
+              "b": "くださる",
+              "g": "(hon.) to give, to confer",
               "gs": "jlpt"
             },
             {
@@ -1062,21 +1026,95 @@
     },
     "metrics": {
       "kanjiCoverage": 1,
-      "kanjiDensity": 0,
-      "firstCoverage": 0.9245283018867925,
-      "finalCoverage": 0.9791666666666666,
-      "retries": 3,
-      "seconds": 32.11571249999991,
+      "kanjiDensity": 0.21287128712871287,
+      "firstCoverage": 0.9038461538461539,
+      "finalCoverage": 0.9411764705882353,
+      "retries": 6,
+      "seconds": 25.9618027,
       "offendingFirst": [
-        "ょうのじをかいた",
+        "経",
+        "終わる",
+        "縁側",
         "れる",
-        "こわがる",
-        "られる"
+        "助け"
       ],
       "ghostWords": [
-        "むまえ"
-      ]
+        "ん",
+        "れる",
+        "助け"
+      ],
+      "faithIssues": []
     }
   },
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "levelRepairs": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n日没前住職と納所とで芳一を裸にし、筆を以て二人して芳一の、胸、背、頭、顔、頸、手足――身体中どこと云わず、足の裏にさえも――般若心経というお経の文句を書きつけた。それが済むと、住職は芳一にこう言いつけた。――\n『今夜、私が出て行ったらすぐに、お前は縁側に坐って、待っていなさい。すると迎えが来る。が、どんな事があっても、返事をしたり、動いてはならぬ。口を利かず静かに坐っていなさい――禅定に入っているようにして。もし動いたり、少しでも声を立てたりすると、お前は切りさいなまれてしまう。恐わがらず、助けを呼んだりしようと思ってはいかぬ。――助けを呼んだところで助かるわけのものではないから。私が云う通りに間違いなくしておれば、危険は通り過ぎて、もう恐わい事はなくなる』\nCurrent retelling:\n和尚は芳一をはだかにして、体にたくさんおきょうを書きました。\nむねや顔や足のうらまで、全部に書いてあったようです。\nそれが済んだので、和尚は芳一に注意しました。\n今夜、私が外へ出た後、えんがわに座って待ってください。\n迎えが来ても、返事をしたり動いたりしてはいけません。\n静かに座っていないと、殺されるので危ないです。\n怖くなってたすけを呼んでも、たすからないようです。\n私の言う通りにすれば、もう怖いことはなくなります。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.20098039215686275,\"meanLength\":25.5,\"advancedShare\":0.37254901960784315}; vocabulary 0.9607843137254902. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: ん、れる. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"和尚は芳一をはだかにして、体にたくさんおきょうを書きました。\", \"むねや顔や足のうらまで、全部に書いてあったようです。\", \"それが済んだので、和尚は芳一に注意しました。\", \"今夜、私が外へ出た後、えんがわに座って待ってください。\", \"迎えが来ても、返事をしたり動いたりしてはいけません。\", \"静かに座っていないと、殺されるので危ないです。\", \"怖くなってたすけを呼んでも、たすからないようです。\", \"私の言う通りにすれば、もう怖いことはなくなります。\"], \"question\": {\"prompt\": \"和尚は芳一に何をしましたか。\", \"options\": [\"体に文字を書いた。\", \"歌を教えた。\", \"外へ連れて行った。\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n日没前住職と納所とで芳一を裸にし、筆を以て二人して芳一の、胸、背、頭、顔、頸、手足――身体中どこと云わず、足の裏にさえも――般若心経というお経の文句を書きつけた。それが済むと、住職は芳一にこう言いつけた。――\n『今夜、私が出て行ったらすぐに、お前は縁側に坐って、待っていなさい。すると迎えが来る。が、どんな事があっても、返事をしたり、動いてはならぬ。口を利かず静かに坐っていなさい――禅定に入っているようにして。もし動いたり、少しでも声を立てたりすると、お前は切りさいなまれてしまう。恐わがらず、助けを呼んだりしようと思ってはいかぬ。――助けを呼んだところで助かるわけのものではないから。私が云う通りに間違いなくしておれば、危険は通り過ぎて、もう恐わい事はなくなる』\nCurrent retelling:\n和尚は芳一をはだかにして、体にたくさんおきょうを書きました。\nむねや顔や足のうらまで、全部に書いてあったようです。\nそれが済んだので、和尚は芳一に注意しました。\n今夜、私が外へ出た後、えんがわに座って待ってください。\n迎えが来ても、返事をしたり動いたりしてはいけません。\n静かに座っていないと、殺されるので危ないです。\n怖くなってたすけを呼んでも、たすからないようです。\n私の言う通りにすれば、もう怖いことはなくなります。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.20098039215686275,\"meanLength\":25.5,\"advancedShare\":0.37254901960784315}; vocabulary 0.9607843137254902. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: ん、れる. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentencesにつながる\": null, \"sentences\": [\"和尚は芳一を裸にして、体にたくさんおきょうを書きました。\", \"胸や顔や足の裏まで、全部に書いてあったようです。\", \"それが済んだので、和尚は芳一に注意しました。\", \"今夜、私が外へ出た後、縁側に座って待ってください。\", \"迎えが来ても、返事をしたり動いたりしてはいけません。\", \"静かに座っていないと、殺されるので危ないです。\", \"怖くなって助けを呼んでも、助からないようです。\", \"私の言う通りにすれば、もう怖いことはなくなります。\"], \"question\": {\"prompt\": \"和尚は芳一に何と言いましたか。\", \"options\": [\"外へ出ないでください。\", \"静かに座っていてください。\", \"大きな声で歌ってください。\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n日没前住職と納所とで芳一を裸にし、筆を以て二人して芳一の、胸、背、頭、顔、頸、手足――身体中どこと云わず、足の裏にさえも――般若心経というお経の文句を書きつけた。それが済むと、住職は芳一にこう言いつけた。――\n『今夜、私が出て行ったらすぐに、お前は縁側に坐って、待っていなさい。すると迎えが来る。が、どんな事があっても、返事をしたり、動いてはならぬ。口を利かず静かに坐っていなさい――禅定に入っているようにして。もし動いたり、少しでも声を立てたりすると、お前は切りさいなまれてしまう。恐わがらず、助けを呼んだりしようと思ってはいかぬ。――助けを呼んだところで助かるわけのものではないから。私が云う通りに間違いなくしておれば、危険は通り過ぎて、もう恐わい事はなくなる』\nCurrent retelling:\n和尚は芳一をはだかにして、体にたくさんおきょうを書きました。\nむねや顔や足のうらまで、全部に書いてあったようです。\nそれが済んだので、和尚は芳一に注意しました。\n今夜、私が外へ出た後、えんがわに座って待ってください。\n迎えが来ても、返事をしたり動いたりしてはいけません。\n静かに座っていないと、殺されるので危ないです。\n怖くなって助けを呼んでも、助からないようです。\n私の言う通りにすれば、もう怖いことはなくなります。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.21287128712871287,\"meanLength\":25.25,\"advancedShare\":0.35294117647058826}; vocabulary 0.9411764705882353. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: ん、れる、助け. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"和尚は芳一をはだかにして、体にたくさんおきょうを書きました。\", \"むねや顔や足のうらまで、全部に書いてあったようです。\", \"それが済んだので、和尚は芳一に注意しました。\", \"今夜、私が外へ出た後、えんがわに座って待ってください。\", \"迎えが来ても、返事をしたり動いたりしてはいけません。\", \"静かに座っていないと、殺されるので危ないです。\", \"怖くなって助けを呼んでも、助からないようです。\", \"私の言う通りにすれば、もう怖いことはなくなります。\"], \"question\": {\"prompt\": \"和尚は芳一に何をしましたか。\", \"options\": [\"体に文字を書いた。\", \"外へ連れて行った。\", \"琵琶を教えた。\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: ん、れる. Return JSON {\"glosses\":{\"ん\":\"English gloss\",\"れる\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"ん\": \"nominalizer/explanatory particle\", \"れる\": \"passive/potential auxiliary\"}}"
+    }
+  ],
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n日没前住職と納所とで芳一を裸にし、筆を以て二人して芳一の、胸、背、頭、顔、頸、手足――身体中どこと云わず、足の裏にさえも――般若心経というお経の文句を書きつけた。それが済むと、住職は芳一にこう言いつけた。――\n『今夜、私が出て行ったらすぐに、お前は縁側に坐って、待っていなさい。すると迎えが来る。が、どんな事があっても、返事をしたり、動いてはならぬ。口を利かず静かに坐っていなさい――禅定に入っているようにして。もし動いたり、少しでも声を立てたりすると、お前は切りさいなまれてしまう。恐わがらず、助けを呼んだりしようと思ってはいかぬ。――助けを呼んだところで助かるわけのものではないから。私が云う通りに間違いなくしておれば、危険は通り過ぎて、もう恐わい事はなくなる』\n\n語り直し:\n和尚は芳一をはだかにして、体にたくさんおきょうを書きました。\nむねや顔や足のうらまで、全部に書いてあったようです。\nそれが済んだので、和尚は芳一に注意しました。\n今夜、私が外へ出た後、えんがわに座って待ってください。\n迎えが来ても、返事をしたり動いたりしてはいけません。\n静かに座っていないと、殺されるので危ないです。\n怖くなって助けを呼んでも、助からないようです。\n私の言う通りにすれば、もう怖いことはなくなります。"
+          }
+        ],
+        "response": "{\"issues\": []}"
+      }
+    ],
+    "rewrites": [],
+    "before": [],
+    "after": []
+  },
+  "ladderBuild": "P4b"
 }

@@ -20,7 +20,7 @@
   ],
   "metrics": {
     "kanjiCoverage": 1,
-    "kanjiDensity": 0,
+    "kanjiDensity": 0.08666666666666667,
     "firstCoverage": 0.7241379310344828,
     "finalCoverage": 0.9629629629629629,
     "retries": 1,
@@ -36,7 +36,8 @@
     "ghostWords": [
       "びっくり",
       "のみ"
-    ]
+    ],
+    "faithIssues": []
   },
   "retelling": {
     "level": "N5",
@@ -110,11 +111,12 @@
             "k": "plain"
           },
           {
-            "s": "かんない",
+            "s": "關内",
             "r": "かんない",
             "b": "關内",
             "k": "story",
-            "g": "Kannai, a retainer"
+            "g": "Kannai, a retainer",
+            "hk": true
           },
           {
             "s": "です",
@@ -129,11 +131,12 @@
       {
         "tokens": [
           {
-            "s": "かんない",
+            "s": "關内",
             "r": "かんない",
             "b": "關内",
             "k": "story",
-            "g": "Kannai, a retainer"
+            "g": "Kannai, a retainer",
+            "hk": true
           },
           {
             "s": "さん",
@@ -177,11 +180,12 @@
             "gs": "jlpt"
           },
           {
-            "s": "ちゃわん",
+            "s": "茶碗",
             "r": "ちゃわん",
             "b": "茶碗",
             "k": "story",
-            "g": "tea bowl"
+            "g": "tea bowl",
+            "hk": true
           },
           {
             "s": "です",
@@ -196,11 +200,12 @@
       {
         "tokens": [
           {
-            "s": "ちゃわん",
+            "s": "茶碗",
             "r": "ちゃわん",
             "b": "茶碗",
             "k": "story",
-            "g": "tea bowl"
+            "g": "tea bowl",
+            "hk": true
           },
           {
             "s": "に",
@@ -248,11 +253,12 @@
             "gs": "jlpt"
           },
           {
-            "s": "さむらい",
+            "s": "侍",
             "r": "さむらい",
             "b": "侍",
             "k": "story",
-            "g": "samurai"
+            "g": "samurai",
+            "hk": true
           },
           {
             "s": "です",
@@ -301,11 +307,12 @@
       {
         "tokens": [
           {
-            "s": "かんない",
+            "s": "關内",
             "r": "かんない",
             "b": "關内",
             "k": "story",
-            "g": "Kannai, a retainer"
+            "g": "Kannai, a retainer",
+            "hk": true
           },
           {
             "s": "さん",
@@ -449,11 +456,12 @@
       {
         "tokens": [
           {
-            "s": "かんない",
+            "s": "關内",
             "r": "かんない",
             "b": "關内",
             "k": "story",
-            "g": "Kannai, a retainer"
+            "g": "Kannai, a retainer",
+            "hk": true
           },
           {
             "s": "さん",
@@ -582,11 +590,12 @@
       "prompt": {
         "tokens": [
           {
-            "s": "かんない",
+            "s": "關内",
             "r": "かんない",
             "b": "關内",
             "k": "story",
-            "g": "Kannai, a retainer"
+            "g": "Kannai, a retainer",
+            "hk": true
           },
           {
             "s": "さん",
@@ -683,7 +692,7 @@
     },
     "metrics": {
       "kanjiCoverage": 1,
-      "kanjiDensity": 0,
+      "kanjiDensity": 0.08666666666666667,
       "firstCoverage": 0.7241379310344828,
       "finalCoverage": 0.9629629629629629,
       "retries": 1,
@@ -699,9 +708,95 @@
       "ghostWords": [
         "びっくり",
         "のみ"
-      ]
+      ],
+      "faithIssues": []
     }
   },
   "failedSceneRetry": true,
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b.",
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling; for a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n天和四年一月一日――即ち今から二百二十年前――中川佐渡守が年始の〓礼に出かけて、江戸本郷、白山の茶店に一行とともに立寄った。一同休んでいる間に、家来の一人――關内と云う若党が余りに渇きを覚えたので、自分で大きな茶碗に茶を汲んだ。飲もうとする時、不意にその透明な黄色の茶のうちに、自分のでない顔の映っているのを認めた。びっくりしてあたりを見〓したが誰もいない。茶の中に映じた顔は髪恰好から見ると若い侍の顔らしかった、不思議にはっきりして、中々の好男子で、女の顔のようにやさしかった。それからそれが生きている人の顔である証拠には眼や唇は動いていた。この不思議なものが現れたのに当惑して、關内は茶を捨てて仔細に茶碗を改めてみた。それは何の模様もない安物の茶碗であった。關内は別の茶碗を取ってまた茶を汲んだ、また顔が映った。關内は新しい茶を命じて茶碗に入れると、――今度は嘲りの微笑をたたえて――もう一度、不思議な顔が現れた。しかし關内は驚かなかった。『何者だか知らないが、もうそんなものに迷わされはしない』とつぶやきながら――彼は顔も何も一呑みに茶を飲んで出かけた。自分ではなんだか幽霊を一つ呑み込んだような気もしないではなかった。\n\n語り直し:\nまえに、ひとがいました。\nなまえはかんないです。\nかんないさんはのみました。\nおおきいちゃわんです。\nちゃわんにかおがありました。\nわかいさむらいです。\nかおがありました。\nかんないさんは、びっくりしました。\nのみませんでした。\nまたいれました。\nまたかおがありました。\nかんないさんはのみました。\nかおもいっしょにのみました。\nしらないひとをのみました。"
+          }
+        ],
+        "response": "{\"issues\": []}"
+      }
+    ],
+    "rewrites": [],
+    "before": [],
+    "after": []
+  },
+  "ladderSpellingRepair": {
+    "originalFlag": {
+      "tale": "chawan",
+      "scene": "s02",
+      "ladderOk": false,
+      "reasons": [
+        "kanjiDensity"
+      ],
+      "stats": {
+        "N5": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0,
+          "meanLength": 11.785714285714286,
+          "advancedShare": 0
+        },
+        "N4": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.08778625954198473,
+          "meanLength": 14.555555555555555,
+          "advancedShare": 0.28
+        },
+        "N3": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.06037735849056604,
+          "meanLength": 20.384615384615383,
+          "advancedShare": 0.4117647058823529
+        }
+      },
+      "n5Hash": "b8c252db94fbc6ad30a4db24325aa72e4cd1b54e7b6c23b12e48ad69f160f1b4"
+    },
+    "changes": [
+      {
+        "before": "かんない",
+        "after": "關内"
+      },
+      {
+        "before": "かんない",
+        "after": "關内"
+      },
+      {
+        "before": "ちゃわん",
+        "after": "茶碗"
+      },
+      {
+        "before": "ちゃわん",
+        "after": "茶碗"
+      },
+      {
+        "before": "さむらい",
+        "after": "侍"
+      },
+      {
+        "before": "かんない",
+        "after": "關内"
+      },
+      {
+        "before": "かんない",
+        "after": "關内"
+      },
+      {
+        "before": "かんない",
+        "after": "關内"
+      }
+    ]
+  }
 }

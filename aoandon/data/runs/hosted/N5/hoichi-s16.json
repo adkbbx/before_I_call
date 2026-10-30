@@ -22,7 +22,7 @@
     "{\"glosses\": {\"びっくり\": \"surprised\"}}"
   ],
   "metrics": {
-    "kanjiCoverage": 0.4,
+    "kanjiCoverage": 1,
     "kanjiDensity": 0.08547008547008547,
     "firstCoverage": 0.7954545454545454,
     "finalCoverage": 0.975609756097561,
@@ -39,7 +39,8 @@
     ],
     "ghostWords": [
       "びっくり"
-    ]
+    ],
+    "faithIssues": []
   },
   "retelling": {
     "level": "N5",
@@ -906,11 +907,12 @@
       "prompt": {
         "tokens": [
           {
-            "s": "ほういち",
+            "s": "芳一",
             "r": "ほういち",
             "b": "芳一",
             "k": "story",
-            "g": "Hoichi, a blind musician"
+            "g": "Hoichi, a blind musician",
+            "hk": true
           },
           {
             "s": "さん",
@@ -1022,7 +1024,7 @@
       "answer": 0
     },
     "metrics": {
-      "kanjiCoverage": 0.4,
+      "kanjiCoverage": 1,
       "kanjiDensity": 0.08547008547008547,
       "firstCoverage": 0.7954545454545454,
       "finalCoverage": 0.975609756097561,
@@ -1039,8 +1041,66 @@
       ],
       "ghostWords": [
         "びっくり"
-      ]
+      ],
+      "faithIssues": []
     }
   },
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b.",
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling; for a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n日が暮れてから、住職と納所とは出て行った、芳一は言いつけられた通り縁側に座を占めた。自分の傍の板鋪の上に琵琶を置き、入禅の姿勢をとり、じっと静かにしていた――注意して咳もせかず、聞えるようには息もせずに。幾時間もこうして待っていた。\nすると道路の方から跫音のやって来るのが聞えた。跫音は門を通り過ぎ、庭を横断り、縁側に近寄って止った――すぐ芳一の正面に。\n『芳一！』と底力のある声が呼んだ。が盲人は息を凝らして、動かずに坐っていた。\n『芳一！』と再び恐ろしい声が呼ばわった。ついで三度――兇猛な声で――\n『芳一』\n芳一は石のように静かにしていた――すると苦情を云うような声で――\n『返事がない！――これはいかん！……奴、どこに居るのか見てやらなけれやア』……\n縁側に上る重もくるしい跫音がした。足はしずしずと近寄って――芳一の傍に止った。それからしばらくの間――その間、芳一は全身が胸の鼓動するにつれて震えるのを感じた――まったく森閑としてしまった。\n\n語り直し:\nよるになりました。\n和尚さんはでました。\n芳一さんはすわりました。\nとなりに琵琶をおきました。\nとてもしずかにいました。\nしずかにいました。\nたくさんまちました。\nだれかがきました。\nだれかがちかくにきました。\nだれかがよびました。\n芳一さん！\n芳一さんはすわっていました。\nまたよびました。\n芳一さん！\nまたよびました。\n芳一さん！\n芳一さんはしずかでした。\nこえがいいました。\nだれもいいませんでした。\nどこにいますか。\nだれかがちかくにきました。\n芳一さんのとなりにきました。\n芳一さんはびっくりしました。"
+          }
+        ],
+        "response": "{\"issues\": []}"
+      }
+    ],
+    "rewrites": [],
+    "before": [],
+    "after": []
+  },
+  "ladderSpellingRepair": {
+    "originalFlag": {
+      "tale": "hoichi",
+      "scene": "s16",
+      "ladderOk": false,
+      "reasons": [
+        "kanjiDensity"
+      ],
+      "stats": {
+        "N5": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.08547008547008547,
+          "meanLength": 10.173913043478262,
+          "advancedShare": 0.024390243902439025
+        },
+        "N4": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.0781758957654723,
+          "meanLength": 13.954545454545455,
+          "advancedShare": 0.2127659574468085
+        },
+        "N3": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0,
+          "meanLength": 16.294117647058822,
+          "advancedShare": 0.39622641509433965
+        }
+      },
+      "n5Hash": "a5d5a65771315daea577be80af75afd5479ae51cd3ecff6ddb94a6fc1e4f0e90"
+    },
+    "changes": [
+      {
+        "before": "ほういち",
+        "after": "芳一"
+      }
+    ]
+  }
 }

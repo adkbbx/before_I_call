@@ -4,55 +4,65 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Adds ～とき, ～たら, ～ている, ～と思います, potential forms and ～ても. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Use them only when needed, in hiragana when their kanji is above the level. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: わかい女のくびがありました。そのくびはいえへときました。すこしあとにもどってきました。くびは大きなこえでいいました。あのそうはもういません。からだももっていきました。どこへいったかわかりません。しゅじんのくびはこわいかおでした。めを大きくあけました。なみだをだしていいました。からだがうごいたらもうだめです。しぬしかありません。ぜんぶあのそうがしたことです。しぬまえにあの人をたべたいです。あそこにいます。あのきのうしろにいます。あの方はこわがりものです。\n\n場面（原文）:\n同時に主人の首は他の四つの首を随えて、囘龍に飛びかかった。しかし強い僧は手ごろの若木を引きぬいて武器とし、それを打ちふって首をなぐりつけ、恐ろしい力でなぎたててよせつけなかった。四つの首は逃げ去った。しかし、主人の首だけは、いかに乱打されても、必死となって僧に飛びついて、最後に衣の左の袖に喰いついた。しかし囘龍の方でも素早くまげをつかんでその首を散々になぐった。どうしても袖からは離れなかったが、しかし長い呻きをあげて、それからもがくことを止めた。死んだのであった。しかしその歯はやはり袖に喰いついていた。そして囘龍のありたけの力をもってしても、その顎を開かせる事はできなかった。\n彼はその袖に首をつけたままで、家へ戻った。そこには、傷だらけ、血だらけの頭が胴に帰って、四人のろくろ首が坐っているのを見た。裏の戸口に僧を認めて一同は『僧が来た、僧が』と叫んで反対の戸口から森の方へ逃げ出した。"
+        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\n同時に主人の首は他の四つの首を随えて、囘龍に飛びかかった。しかし強い僧は手ごろの若木を引きぬいて武器とし、それを打ちふって首をなぐりつけ、恐ろしい力でなぎたててよせつけなかった。四つの首は逃げ去った。しかし、主人の首だけは、いかに乱打されても、必死となって僧に飛びついて、最後に衣の左の袖に喰いついた。しかし囘龍の方でも素早くまげをつかんでその首を散々になぐった。どうしても袖からは離れなかったが、しかし長い呻きをあげて、それからもがくことを止めた。死んだのであった。しかしその歯はやはり袖に喰いついていた。そして囘龍のありたけの力をもってしても、その顎を開かせる事はできなかった。\n彼はその袖に首をつけたままで、家へ戻った。そこには、傷だらけ、血だらけの頭が胴に帰って、四人のろくろ首が坐っているのを見た。裏の戸口に僧を認めて一同は『僧が来た、僧が』と叫んで反対の戸口から森の方へ逃げ出した。\n"
       }
     ]
   },
   "responses": [
-    "{\"sentences themselves\": [\"しゅじんのくびは、かいりゅうに飛びかかりました。\", \"ほかにもくびが四つありました。\", \"かいりゅうは、きをぬきました。\", \"それをぶきにして、くびをなぐりました。\", \"とてもつよいちからでした。\", \"四つのくびは、にげました。\", \"しゅじんのくびは、にげませんでした。\", \"たくさんなぐられても、かいりゅうにつきました。\", \"さいごに、そでをかみました。\", \"かいりゅうは、くびをたくさんなぐりました。\", \"でも、そでをはなしませんでした。\", \"くびは、しにました。\", \"でも、はがそでについたままでした。\", \"かいりゅうは、はをあけられませんでした。\", \"かいりゅうは、そのままでいえへもどりました。\", \"そこには、ろくろくびが四人いました。\", \"からだとあたまが、もどっていました。\", \"かいりゅうがきたとき、みんなさけびました。\", \"そして、もりへにげました。\"], \"question\": {\"prompt\": \"しゅじんのくびはどうなりましたか。\", \"options\": [\"にげました。\", \"しにました。\", \"かいりゅうをたべました。\"], \"answer\": 1}}",
-    "{\"sentences\": [\"しゅじんのくびは、かいりゅうに飛びかかりました。\", \"ほかにもくびが四つありました。\", \"かいりゅうは、きをぬきました。\", \"それをぶきにして、くびをなぐりました。\", \"とてもつよいちからでした。\", \"四つのくびは、にげました。\", \"しゅじんのくびは、にげませんでした。\", \"たくさんなぐられても、かいりゅうにつきました。\", \"さいごに、そでをかみました。\", \"かいりゅうは、くびをたくさんなぐりました。\", \"でも、そでをはなしませんでした。\", \"くびは、しにました。\", \"でも、はがそでについたままでした。\", \"かいりゅうは、はをあけられませんでした。\", \"かいりゅうは、そのままでいえへもどりました。\", \"そこには、ろくろくびが四人いました。\", \"からだとあたまが、もどっていました。\", \"かいりゅうがきたとき、みんなさけびました。\", \"そして、もりへにげました。\"], \"question\": {\"prompt\": \"しゅじんのくびはどうなりましたか。\", \"options\": [\"にげました。\", \"しにました。\", \"かいりゅうをたべました。\"], \"answer\": 1}}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"しゅじんのくびは、かいりゅうにいきました。\"}, {\"index\": 1, \"sentence\": \"ほかにもくびがよっつありました。\"}, {\"index\": 2, \"sentence\": \"かいりゅうは、きをだしました。\"}, {\"index\": 3, \"sentence\": \"それをぶきにして、たたきました。\"}, {\"index\": 5, \"sentence\": \"よっつのくびは、にげました。\"}, {\"index\": 6, \"sentence\": \"しゅじんのくびは、にげませんでした。\"}, {\"index\": 7, \"sentence\": \"たたかれても、かいりゅうにつきました。\"}, {\"index\": 8, \"sentence\": \"さいごに、ふくをかみました。\"}, {\"index\": 10, \"sentence\": \"でも、ふくをはなしませんでした。\"}, {\"index\": 12, \"sentence\": \"でも、はがふくについたままでした。\"}, {\"index\": 13, \"sentence\": \"かいりゅうは、はをあけませんでした。\"}, {\"index\": 14, \"sentence\": \"かいりゅうは、いえへもどりました。\"}, {\"index\": 16, \"sentence\": \"からだとあたまが、もどりました。\"}, {\"index\": 17, \"sentence\": \"かいりゅうがきたとき、こえをだしました。\"}]}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"おとこのくびは、かいりゅうにいきました。\"}, {\"index\": 1, \"sentence\": \"ほかにもくびがよっつありました。\"}, {\"index\": 3, \"sentence\": \"それをもち、たたきました。\"}, {\"index\": 5, \"sentence\": \"よっつのくびは、にげました。\"}, {\"index\": 6, \"sentence\": \"おとこのくびは、にげませんでした。\"}, {\"index\": 7, \"sentence\": \"たたかれても、かいりゅうにつきました。\"}, {\"index\": 16, \"sentence\": \"からだとあたまが、もどりました。\"}]}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"おとこのくびは、かいりゅうにいきました。\"}, {\"index\": 1, \"sentence\": \"ほかにもくびがよっつありました。\"}, {\"index\": 3, \"sentence\": \"それをもち、たたきました。\"}, {\"index\": 5, \"sentence\": \"よっつのくびは、にげました。\"}, {\"index\": 6, \"sentence\": \"おとこのくびは、にげませんでした。\"}, {\"index\": 7, \"sentence\": \"たたかれても、かいりゅうにつきました。\"}, {\"index\": 16, \"sentence\": \"からだとあたまが、もどりました。\"}]}",
-    "{\"question\": {\"prompt\": \"おとこのくびはどうなりましたか。\", \"options\": [\"にげました。\", \"しにました。\", \"かいりゅうをたべました。\"], \"answer\": 1}}",
-    "{\"glosses\": {\"とこ\": \"part of man\", \"のく\": \"part of neck\", \"びは\": \"neck is\", \"びがよっつありました\": \"there were four necks\", \"れる\": \"passive voice marker\", \"びはどうなりましたか\": \"what happened to the neck?\"}}"
+    "{\"sentences-\": [\"主人の首は囘龍に飛びかかりました。\", \"強い僧は木を武器にして戦いました。\", \"4つの首はすぐに逃げました。\", \"主人の首は僧の袖にかみました。\", \"囘龍がその首をたくさんなぐりました。\", \"首はもがくのを止めて死にました。\", \"でも、歯は袖についたままでした。\", \"囘龍も口を開かせることができません。\", \"僧は首をつけたまま家に帰りました。\", \"そこには4人のろくろ首がいました。\", \"彼らは変化する前の体に戻っていました。\", \"僧を見たとき、彼らは叫びました。\", \"そして森の方へ逃げました。\"], \"question\": {\"prompt\": \"主人の首はどうなりましたか。\", \"options\": [\"逃げました。\", \"死にました。\", \"歌いました。\"], \"answer\": 1}}",
+    "{\"sentences\": [\"主人の首は囘龍に飛びかかりました。\", \"強い僧は木を武器にして戦いました。\", \"4つの首はすぐに逃げました。\", \"主人の首は僧の袖にかみました。\", \"囘龍がその首をたくさんなぐりました。\", \"首はもがくのを止めて死にました。\", \"でも、歯は袖についたままでした。\", \"囘龍も口を開かせることができません。\", \"僧は首をつけたまま家に帰りました。\", \"そこには4人のろくろ首がいました。\", \"彼らは変化する前の体に戻っていました。\", \"僧を見たとき、彼らは叫びました。\", \"そして森の方へ逃げました。\"], \"question\": {\"prompt\": \"主人の首はどうなりましたか。\", \"options\": [\"逃げました。\", \"死にました。\", \"歌いました。\"], \"answer\": 1}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"しゅじんのくびは囘龍にとびかかりました。\"}, {\"index\": 1, \"sentence\": \"つよいそうはきをぶきにしてたたかいました。\"}, {\"index\": 2, \"sentence\": \"4つのくびはすぐににげました。\"}, {\"index\": 3, \"sentence\": \"しゅじんのくびはそうのそでにかみました。\"}, {\"index\": 4, \"sentence\": \"囘龍がそのくびをたくさんなぐりました。\"}, {\"index\": 5, \"sentence\": \"くびはもがくのを止めて死にました。\"}, {\"index\": 6, \"sentence\": \"でも、ははそでについたままでした。\"}, {\"index\": 7, \"sentence\": \"囘龍も口をあけさせることができません。\"}, {\"index\": 8, \"sentence\": \"そうはくびをつけたまま家に帰りました。\"}, {\"index\": 9, \"sentence\": \"そこには4人のろくろ首がいました。\"}, {\"index\": 10, \"sentence\": \"かれらは変化する前の体にもどっていました。\"}, {\"index\": 11, \"sentence\": \"そうを見たとき、かれらはさけびました。\"}, {\"index\": 12, \"sentence\": \"そしてもりの方へにげました。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"しゅじんのくびは囘龍にとびかかりました。\"}, {\"index\": 1, \"sentence\": \"つよいそうは木をぶきにしてたたかいました。\"}, {\"index\": 2, \"sentence\": \"4つのくびはすぐににげました。\"}, {\"index\": 3, \"sentence\": \"しゅじんのくびはそうのそでにかみました。\"}, {\"index\": 4, \"sentence\": \"囘龍がそのくびをたくさんなぐりました。\"}, {\"index\": 5, \"sentence\": \"くびはもがくのを止めて死にました。\"}, {\"index\": 6, \"sentence\": \"でも、ははそでについたままでした。\"}, {\"index\": 7, \"sentence\": \"囘龍も口をあけさせることができません。\"}, {\"index\": 8, \"sentence\": \"そうはくびをつけたまま家に帰りました。\"}, {\"index\": 9, \"sentence\": \"そこには4人のろくろ首がいました。\"}, {\"index\": 10, \"sentence\": \"かれらは変化する前の体にもどっていました。\"}, {\"index\": 11, \"sentence\": \"そうを見たとき、かれらはさけびました。\"}, {\"index\": 12, \"sentence\": \"そしてもりの方へにげました。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"しゅじんのくびは囘龍にとびかかりました。\"}, {\"index\": 1, \"sentence\": \"つよいそうは木をぶきにしてたたかいました。\"}, {\"index\": 2, \"sentence\": \"4つのくびはすぐににげました。\"}, {\"index\": 3, \"sentence\": \"しゅじんのくびはそうのそでにかみました。\"}, {\"index\": 4, \"sentence\": \"囘龍がそのくびをたくさんなぐりました。\"}, {\"index\": 5, \"sentence\": \"くびはもがくのを止めて死にました。\"}, {\"index\": 6, \"sentence\": \"でも、ははそでについたままでした。\"}, {\"index\": 7, \"sentence\": \"囘龍も口をあけさせることができません。\"}, {\"index\": 8, \"sentence\": \"そうはくびをつけたまま家に帰りました。\"}, {\"index\": 9, \"sentence\": \"そこには4人のろくろ首がいました。\"}, {\"index\": 10, \"sentence\": \"かれらは変化する前の体にもどっていました。\"}, {\"index\": 11, \"sentence\": \"そうを見たとき、かれらはさけびました。\"}, {\"index\": 12, \"sentence\": \"そしてもりの方へにげました。\"}]}",
+    "{\"question\": {\"prompt\": \"くびはどうなりましたか。\", \"options\": [\"にげました。\", \"死にました。\", \"歌いました。\"], \"answer\": 1}}",
+    "{\"glosses\": {\"ゅじんのくびは\": \"the master's head\", \"とびかかる\": \"to jump at\", \"のく\": \"to move away\", \"びはすぐににげました\": \"the heads fled quickly\", \"ゅじんのくびはそうのそでにかみました\": \"master's head bit monk's sleeve\", \"させる\": \"to make someone do\", \"びをつけたまま\": \"with head still attached\"}}"
   ],
   "metrics": {
     "kanjiCoverage": 1,
-    "kanjiDensity": 0.006514657980456026,
-    "firstCoverage": 0.6666666666666666,
-    "finalCoverage": 0.723404255319149,
-    "retries": 3,
-    "seconds": 37.67818940000003,
+    "kanjiDensity": 0.09504132231404959,
+    "firstCoverage": 0.6851851851851852,
+    "finalCoverage": 0.6530612244897959,
+    "retries": 9,
+    "seconds": 41.59291330000001,
     "offendingFirst": [
-      "ゅじんのくびは",
+      "主人",
       "飛びかかる",
-      "びが",
-      "ぬく",
-      "ぶる",
-      "のく",
-      "びは",
+      "僧",
+      "武器",
+      "戦う",
+      "すぐ",
+      "袖",
       "なぐる",
-      "れる",
-      "そで",
-      "られる",
-      "そのまま",
-      "たま",
-      "さけぶ"
+      "もがく",
+      "の",
+      "せる",
+      "叫ぶ"
     ],
     "ghostWords": [
-      "とこ",
+      "主人",
       "のく",
       "びは",
-      "びがよっつありました",
-      "たたく",
-      "れる",
-      "たま",
-      "びはどうなりましたか"
+      "とびかかる",
+      "たたかう",
+      "びはにげましたが",
+      "びはそうのそでにかみました",
+      "そで",
+      "させる",
+      "びをつけたまま",
+      "ら",
+      "さけぶ",
+      "にげだす"
+    ],
+    "faithIssues": [
+      {
+        "sentence": "つよいそうは木のえだでたたかいました。",
+        "problem": "The monk pulled out a young tree (若木) to use as a weapon, not a branch (枝).",
+        "kind": "event"
+      }
     ]
   },
   "retelling": {
@@ -63,51 +73,45 @@
       {
         "tokens": [
           {
-            "s": "お",
-            "k": "plain"
-          },
-          {
-            "s": "とこ",
-            "b": "とこ",
+            "s": "主人",
             "k": "ghost",
-            "g": "part of man",
-            "gs": "model"
+            "r": "しゅじん",
+            "b": "主人",
+            "g": "(one's own) husband",
+            "gs": "jlpt"
           },
           {
             "s": "のく",
-            "b": "のく",
             "k": "ghost",
-            "g": "part of neck",
+            "b": "のく",
+            "g": "to step aside",
             "gs": "model"
           },
           {
             "s": "びは",
-            "b": "びは",
             "k": "ghost",
-            "g": "neck is",
+            "b": "びは",
+            "g": "the bee (subject)",
             "gs": "model"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "かいりゅう",
+            "s": "囘龍",
             "r": "かいりゅう",
             "b": "囘龍",
             "k": "story",
-            "g": "Kairyu, the warrior's monk name"
+            "g": "Kairyu, the warrior's monk name",
+            "hk": true
           },
           {
             "s": "に",
             "k": "plain"
           },
           {
-            "s": "いき",
-            "b": "いく",
-            "k": "known",
-            "g": "to go",
-            "gs": "jlpt"
+            "s": "とびかかり",
+            "k": "ghost",
+            "b": "とびかかる",
+            "g": "to pounce/spring at",
+            "gs": "model"
           },
           {
             "s": "まし",
@@ -126,115 +130,52 @@
       {
         "tokens": [
           {
-            "s": "ほか",
-            "b": "ほか",
+            "s": "つよい",
             "k": "known",
-            "g": "other, the rest",
+            "b": "つよい",
+            "g": "strong, powerful",
             "gs": "jlpt"
           },
           {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "も",
-            "k": "plain"
-          },
-          {
-            "s": "く",
-            "b": "く",
+            "s": "そう",
             "k": "known",
-            "g": "nine",
+            "b": "そう",
+            "g": "yes; appears, to be the case",
             "gs": "jlpt"
-          },
-          {
-            "s": "びがよっつありました",
-            "b": "びがよっつありました",
-            "k": "ghost",
-            "g": "there were four necks",
-            "gs": "model"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "かいりゅう",
-            "r": "かいりゅう",
-            "b": "囘龍",
-            "k": "story",
-            "g": "Kairyu, the warrior's monk name"
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "き",
-            "b": "くる",
+            "s": "木",
             "k": "known",
-            "g": "to come",
+            "r": "き",
+            "b": "木",
+            "g": "tree, wood, timber",
             "gs": "jlpt"
           },
           {
-            "s": "を",
+            "s": "の",
             "k": "plain"
           },
           {
-            "s": "だし",
-            "b": "だす",
-            "k": "known",
-            "g": "to take (something) out; to hand in (something)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
+            "s": "え",
             "k": "plain"
           },
           {
-            "s": "た",
+            "s": "だ",
             "k": "plain"
           },
           {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "それ",
+            "s": "で",
             "k": "plain"
           },
           {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "もち",
-            "b": "もつ",
-            "k": "known",
-            "g": "to hold, to carry; to possess",
-            "gs": "jlpt"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "たたき",
-            "b": "たたく",
+            "s": "たたかい",
             "k": "ghost",
-            "g": "to strike, to beat",
+            "b": "たたかう",
+            "g": "to fight, to compete, to battle",
             "gs": "jlpt"
           },
           {
@@ -254,49 +195,8 @@
       {
         "tokens": [
           {
-            "s": "とても",
-            "b": "とても",
-            "k": "known",
-            "g": "very (much), greatly, exceedingly",
-            "gs": "jlpt"
-          },
-          {
-            "s": "つよ",
+            "s": "4",
             "k": "plain"
-          },
-          {
-            "s": "いち",
-            "b": "いち",
-            "k": "known",
-            "g": "one",
-            "gs": "jlpt"
-          },
-          {
-            "s": "から",
-            "k": "plain"
-          },
-          {
-            "s": "でし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "よっ",
-            "b": "よる",
-            "k": "known",
-            "g": "evening, night",
-            "gs": "jlpt"
           },
           {
             "s": "つ",
@@ -304,16 +204,16 @@
           },
           {
             "s": "のく",
-            "b": "のく",
             "k": "ghost",
-            "g": "part of neck",
+            "b": "のく",
+            "g": "to step aside",
             "gs": "model"
           },
           {
-            "s": "びは",
-            "b": "びは",
+            "s": "びはにげましたが",
             "k": "ghost",
-            "g": "neck is",
+            "b": "びはにげましたが",
+            "g": "the bee flew away, but",
             "gs": "model"
           },
           {
@@ -321,10 +221,18 @@
             "k": "plain"
           },
           {
-            "s": "にげ",
-            "b": "にげる",
+            "s": "1",
+            "k": "plain"
+          },
+          {
+            "s": "つ",
+            "k": "plain"
+          },
+          {
+            "s": "のこり",
             "k": "known",
-            "g": "to escape, to run away",
+            "b": "のこる",
+            "g": "to remain (v.i.), to be left",
             "gs": "jlpt"
           },
           {
@@ -344,56 +252,26 @@
       {
         "tokens": [
           {
-            "s": "お",
-            "k": "plain"
-          },
-          {
-            "s": "とこ",
-            "b": "とこ",
+            "s": "主人",
             "k": "ghost",
-            "g": "part of man",
-            "gs": "model"
+            "r": "しゅじん",
+            "b": "主人",
+            "g": "(one's own) husband",
+            "gs": "jlpt"
           },
           {
             "s": "のく",
+            "k": "ghost",
             "b": "のく",
-            "k": "ghost",
-            "g": "part of neck",
+            "g": "to step aside",
             "gs": "model"
           },
           {
-            "s": "びは",
-            "b": "びは",
+            "s": "びはそうのそでにかみました",
             "k": "ghost",
-            "g": "neck is",
+            "b": "びはそうのそでにかみました",
+            "g": "the bee bit the sleeve of the robe",
             "gs": "model"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "にげ",
-            "b": "にげる",
-            "k": "known",
-            "g": "to escape, to run away",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ませ",
-            "k": "plain"
-          },
-          {
-            "s": "ん",
-            "k": "plain"
-          },
-          {
-            "s": "でし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
           },
           {
             "s": "。",
@@ -404,137 +282,25 @@
       {
         "tokens": [
           {
-            "s": "たたか",
-            "b": "たたく",
-            "k": "ghost",
-            "g": "to strike, to beat",
-            "gs": "jlpt"
-          },
-          {
-            "s": "れ",
-            "b": "れる",
-            "k": "ghost",
-            "g": "passive voice marker",
-            "gs": "model"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "も",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "かいりゅう",
+            "s": "囘龍",
             "r": "かいりゅう",
             "b": "囘龍",
             "k": "story",
-            "g": "Kairyu, the warrior's monk name"
+            "g": "Kairyu, the warrior's monk name",
+            "hk": true
           },
           {
-            "s": "に",
+            "s": "が",
             "k": "plain"
           },
           {
-            "s": "つき",
-            "b": "つく",
-            "k": "known",
-            "g": "to arrive at, to reach",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "さい",
-            "b": "さい",
-            "k": "known",
-            "g": "~ years old",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ご",
-            "k": "plain"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "ふく",
-            "b": "ふく",
-            "k": "known",
-            "g": "to blow (wind, etc.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "かみ",
-            "b": "かむ",
-            "k": "known",
-            "g": "to bite, to chew",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "かいりゅう",
-            "r": "かいりゅう",
-            "b": "囘龍",
-            "k": "story",
-            "g": "Kairyu, the warrior's monk name"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "、",
+            "s": "その",
             "k": "plain"
           },
           {
             "s": "く",
-            "b": "くい",
             "k": "known",
+            "b": "くい",
             "g": "nine",
             "gs": "jlpt"
           },
@@ -551,74 +317,33 @@
       {
         "tokens": [
           {
-            "s": "でも",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "ふく",
-            "b": "ふく",
-            "k": "known",
-            "g": "to blow (wind, etc.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "はなし",
-            "b": "はなす",
-            "k": "known",
-            "g": "to speak",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ませ",
-            "k": "plain"
-          },
-          {
-            "s": "ん",
-            "k": "plain"
-          },
-          {
-            "s": "でし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
             "s": "く",
-            "b": "くい",
             "k": "known",
+            "b": "くい",
             "g": "nine",
             "gs": "jlpt"
           },
           {
-            "s": "びは",
+            "s": "びはもがくのを",
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "しに",
-            "b": "しぬ",
+            "s": "止め",
             "k": "known",
+            "r": "とめ",
+            "b": "止める",
+            "g": "to end, to stop",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "死に",
+            "k": "known",
+            "r": "しに",
+            "b": "死ぬ",
             "g": "to die",
             "gs": "jlpt"
           },
@@ -651,14 +376,14 @@
             "k": "plain"
           },
           {
-            "s": "が",
+            "s": "は",
             "k": "plain"
           },
           {
-            "s": "ふく",
-            "b": "ふく",
-            "k": "known",
-            "g": "to blow (wind, etc.)",
+            "s": "そで",
+            "k": "ghost",
+            "b": "そで",
+            "g": "sleeve",
             "gs": "jlpt"
           },
           {
@@ -667,8 +392,8 @@
           },
           {
             "s": "つい",
-            "b": "つく",
             "k": "known",
+            "b": "つく",
             "g": "to arrive at, to reach",
             "gs": "jlpt"
           },
@@ -678,8 +403,8 @@
           },
           {
             "s": "まま",
-            "b": "まま",
             "k": "known",
+            "b": "まま",
             "g": "as it is",
             "gs": "jlpt"
           },
@@ -700,23 +425,23 @@
       {
         "tokens": [
           {
-            "s": "かいりゅう",
+            "s": "囘龍",
             "r": "かいりゅう",
             "b": "囘龍",
             "k": "story",
-            "g": "Kairyu, the warrior's monk name"
+            "g": "Kairyu, the warrior's monk name",
+            "hk": true
           },
           {
-            "s": "は",
+            "s": "も",
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "は",
-            "k": "plain"
+            "s": "くち",
+            "k": "known",
+            "b": "くちる",
+            "g": "to rot",
+            "gs": "jlpt"
           },
           {
             "s": "を",
@@ -724,9 +449,34 @@
           },
           {
             "s": "あけ",
-            "b": "あける",
             "k": "known",
+            "b": "あける",
             "g": "to open (v.t.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "させる",
+            "k": "ghost",
+            "b": "させる",
+            "g": "to make/let someone do",
+            "gs": "model"
+          },
+          {
+            "s": "こと",
+            "k": "known",
+            "b": "こと",
+            "g": "thing(s), matter(s), fact",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "でき",
+            "k": "known",
+            "b": "できる",
+            "g": "to be able to (to accomplish)",
             "gs": "jlpt"
           },
           {
@@ -738,14 +488,6 @@
             "k": "plain"
           },
           {
-            "s": "でし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
             "s": "。",
             "k": "plain"
           }
@@ -754,33 +496,44 @@
       {
         "tokens": [
           {
-            "s": "かいりゅう",
-            "r": "かいりゅう",
-            "b": "囘龍",
-            "k": "story",
-            "g": "Kairyu, the warrior's monk name"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "いえ",
-            "k": "plain"
-          },
-          {
-            "s": "へ",
-            "k": "plain"
-          },
-          {
-            "s": "もどり",
-            "b": "もどる",
+            "s": "そう",
             "k": "known",
-            "g": "to return (v.i.); to come back",
+            "b": "そう",
+            "g": "yes; appears, to be the case",
+            "gs": "jlpt"
+          },
+          {
+            "s": "はく",
+            "k": "known",
+            "b": "はく",
+            "g": "to put on (items below your waist)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "びをつけたまま",
+            "k": "ghost",
+            "b": "びをつけたまま",
+            "g": "while leaving the bee attached",
+            "gs": "model"
+          },
+          {
+            "s": "家",
+            "k": "known",
+            "r": "か",
+            "b": "家",
+            "g": "house, home",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "帰り",
+            "k": "known",
+            "r": "かえり",
+            "b": "帰る",
+            "g": "to go back, to go home, to return",
             "gs": "jlpt"
           },
           {
@@ -812,37 +565,37 @@
             "k": "plain"
           },
           {
-            "s": "、",
+            "s": "4",
             "k": "plain"
           },
           {
-            "s": "ろくろくび",
+            "s": "人",
+            "k": "known",
+            "r": "にん",
+            "b": "人",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "ろくろ首",
             "r": "ろくろくび",
             "b": "ろくろ首",
             "k": "story",
-            "g": "a creature with a detached head"
+            "g": "a creature with a detached head",
+            "hk": true
           },
           {
             "s": "が",
             "k": "plain"
           },
           {
-            "s": "四",
-            "r": "よん",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "にん",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
-            "gs": "jlpt"
-          },
-          {
             "s": "い",
-            "b": "いる",
             "k": "known",
+            "b": "いる",
             "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
@@ -863,41 +616,78 @@
       {
         "tokens": [
           {
-            "s": "から",
-            "k": "plain"
-          },
-          {
-            "s": "だ",
-            "k": "plain"
-          },
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "あ",
-            "k": "plain"
-          },
-          {
-            "s": "たま",
-            "b": "たま",
-            "k": "ghost",
-            "g": "ball, sphere, coin",
+            "s": "かれ",
+            "k": "known",
+            "b": "かれる",
+            "g": "to wither, to die (plant), to be blasted (plant)",
             "gs": "jlpt"
           },
           {
-            "s": "が",
+            "s": "ら",
+            "k": "ghost",
+            "b": "ら",
+            "g": "plural persons",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
+            "s": "変化",
+            "r": "へんげ",
+            "b": "変化",
+            "k": "story",
+            "g": "shape-shifting spirit",
+            "hk": true
           },
           {
-            "s": "もどり",
-            "b": "もどる",
+            "s": "する",
             "k": "known",
+            "b": "する",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "前",
+            "k": "known",
+            "r": "まえ",
+            "b": "前",
+            "g": "before, in front",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "体",
+            "k": "known",
+            "r": "からだ",
+            "b": "体",
+            "g": "body; health",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "もどっ",
+            "k": "known",
+            "b": "もどる",
             "g": "to return (v.i.); to come back",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "k": "known",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
           {
@@ -917,21 +707,22 @@
       {
         "tokens": [
           {
-            "s": "かいりゅう",
-            "r": "かいりゅう",
-            "b": "囘龍",
-            "k": "story",
-            "g": "Kairyu, the warrior's monk name"
+            "s": "そう",
+            "k": "known",
+            "b": "そう",
+            "g": "yes; appears, to be the case",
+            "gs": "jlpt"
           },
           {
-            "s": "が",
+            "s": "を",
             "k": "plain"
           },
           {
-            "s": "き",
-            "b": "くる",
+            "s": "見",
             "k": "known",
-            "g": "to come",
+            "r": "み",
+            "b": "見る",
+            "g": "to see, to look",
             "gs": "jlpt"
           },
           {
@@ -940,8 +731,8 @@
           },
           {
             "s": "とき",
-            "b": "とき",
             "k": "known",
+            "b": "とき",
             "g": "at the time of ~",
             "gs": "jlpt"
           },
@@ -950,21 +741,28 @@
             "k": "plain"
           },
           {
-            "s": "こえ",
-            "b": "こえる",
+            "s": "かれ",
             "k": "known",
-            "g": "to exceed, to cross over, to cross",
+            "b": "かれる",
+            "g": "to wither, to die (plant), to be blasted (plant)",
             "gs": "jlpt"
           },
           {
-            "s": "を",
+            "s": "ら",
+            "k": "ghost",
+            "b": "ら",
+            "g": "plural persons",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
             "k": "plain"
           },
           {
-            "s": "だし",
-            "b": "だす",
-            "k": "known",
-            "g": "to take (something) out; to hand in (something)",
+            "s": "さけび",
+            "k": "ghost",
+            "b": "さけぶ",
+            "g": "to shout, to cry",
             "gs": "jlpt"
           },
           {
@@ -988,14 +786,22 @@
             "k": "plain"
           },
           {
-            "s": "、",
+            "s": "もり",
+            "k": "known",
+            "b": "もる",
+            "g": "to serve (food); to fill up; to prescribe",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
             "k": "plain"
           },
           {
-            "s": "もり",
-            "b": "もる",
+            "s": "方",
             "k": "known",
-            "g": "to serve (food); to fill up; to prescribe",
+            "r": "ほう",
+            "b": "方",
+            "g": "-- honorific form for 人 (ひと) --; way of doing",
             "gs": "jlpt"
           },
           {
@@ -1003,10 +809,10 @@
             "k": "plain"
           },
           {
-            "s": "にげ",
-            "b": "にげる",
-            "k": "known",
-            "g": "to escape, to run away",
+            "s": "にげだし",
+            "k": "ghost",
+            "b": "にげだす",
+            "g": "to run away, to escape from",
             "gs": "jlpt"
           },
           {
@@ -1028,29 +834,15 @@
       "prompt": {
         "tokens": [
           {
-            "s": "お",
-            "k": "plain"
-          },
-          {
-            "s": "とこ",
-            "b": "とこ",
-            "k": "ghost",
-            "g": "part of man",
-            "gs": "model"
-          },
-          {
-            "s": "のく",
-            "b": "のく",
-            "k": "ghost",
-            "g": "part of neck",
-            "gs": "model"
+            "s": "く",
+            "k": "known",
+            "b": "くい",
+            "g": "nine",
+            "gs": "jlpt"
           },
           {
             "s": "びはどうなりましたか",
-            "b": "びはどうなりましたか",
-            "k": "ghost",
-            "g": "what happened to the neck?",
-            "gs": "model"
+            "k": "plain"
           },
           {
             "s": "。",
@@ -1063,8 +855,8 @@
           "tokens": [
             {
               "s": "にげ",
-              "b": "にげる",
               "k": "known",
+              "b": "にげる",
               "g": "to escape, to run away",
               "gs": "jlpt"
             },
@@ -1085,21 +877,11 @@
         {
           "tokens": [
             {
-              "s": "かいりゅう",
-              "r": "かいりゅう",
-              "b": "囘龍",
-              "k": "story",
-              "g": "Kairyu, the warrior's monk name"
-            },
-            {
-              "s": "を",
-              "k": "plain"
-            },
-            {
-              "s": "たべ",
-              "b": "たべる",
+              "s": "歌い",
               "k": "known",
-              "g": "to eat",
+              "r": "うたい",
+              "b": "歌う",
+              "g": "to sing",
               "gs": "jlpt"
             },
             {
@@ -1119,9 +901,10 @@
         {
           "tokens": [
             {
-              "s": "しに",
-              "b": "しぬ",
+              "s": "死に",
               "k": "known",
+              "r": "しに",
+              "b": "死ぬ",
               "g": "to die",
               "gs": "jlpt"
             },
@@ -1144,39 +927,226 @@
     },
     "metrics": {
       "kanjiCoverage": 1,
-      "kanjiDensity": 0.006514657980456026,
-      "firstCoverage": 0.6666666666666666,
-      "finalCoverage": 0.723404255319149,
-      "retries": 3,
-      "seconds": 37.67818940000003,
+      "kanjiDensity": 0.09504132231404959,
+      "firstCoverage": 0.6851851851851852,
+      "finalCoverage": 0.6530612244897959,
+      "retries": 9,
+      "seconds": 41.59291330000001,
       "offendingFirst": [
-        "ゅじんのくびは",
+        "主人",
         "飛びかかる",
-        "びが",
-        "ぬく",
-        "ぶる",
-        "のく",
-        "びは",
+        "僧",
+        "武器",
+        "戦う",
+        "すぐ",
+        "袖",
         "なぐる",
-        "れる",
-        "そで",
-        "られる",
-        "そのまま",
-        "たま",
-        "さけぶ"
+        "もがく",
+        "の",
+        "せる",
+        "叫ぶ"
       ],
       "ghostWords": [
-        "とこ",
+        "主人",
         "のく",
         "びは",
-        "びがよっつありました",
-        "たたく",
-        "れる",
-        "たま",
-        "びはどうなりましたか"
+        "とびかかる",
+        "たたかう",
+        "びはにげましたが",
+        "びはそうのそでにかみました",
+        "そで",
+        "させる",
+        "びをつけたまま",
+        "ら",
+        "さけぶ",
+        "にげだす"
+      ],
+      "faithIssues": [
+        {
+          "sentence": "つよいそうは木のえだでたたかいました。",
+          "problem": "The monk pulled out a young tree (若木) to use as a weapon, not a branch (枝).",
+          "kind": "event"
+        }
       ]
     }
   },
-  "failedSceneRetry": true,
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "levelRepairs": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n同時に主人の首は他の四つの首を随えて、囘龍に飛びかかった。しかし強い僧は手ごろの若木を引きぬいて武器とし、それを打ちふって首をなぐりつけ、恐ろしい力でなぎたててよせつけなかった。四つの首は逃げ去った。しかし、主人の首だけは、いかに乱打されても、必死となって僧に飛びついて、最後に衣の左の袖に喰いついた。しかし囘龍の方でも素早くまげをつかんでその首を散々になぐった。どうしても袖からは離れなかったが、しかし長い呻きをあげて、それからもがくことを止めた。死んだのであった。しかしその歯はやはり袖に喰いついていた。そして囘龍のありたけの力をもってしても、その顎を開かせる事はできなかった。\n彼はその袖に首をつけたままで、家へ戻った。そこには、傷だらけ、血だらけの頭が胴に帰って、四人のろくろ首が坐っているのを見た。裏の戸口に僧を認めて一同は『僧が来た、僧が』と叫んで反対の戸口から森の方へ逃げ出した。\nCurrent retelling:\nしゅじんのくびは囘龍にとびかかりました。\nつよいそうは木をぶきにしてたたかいました。\n4つのくびはすぐににげました。\nしゅじんのくびはそうのそでにかみました。\n囘龍がそのくびをたくさんなぐりました。\nくびはもがくのを止めて死にました。\nでも、ははそでについたままでした。\n囘龍も口をあけさせることができません。\nそうはくびをつけたまま家に帰りました。\nそこには4人のろくろ首がいました。\nかれらは変化する前の体にもどっていました。\nそうを見たとき、かれらはさけびました。\nそしてもりの方へにげました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.08403361344537816,\"meanLength\":18.307692307692307,\"advancedShare\":0.16666666666666666}; vocabulary 0.7291666666666666. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: ゅじんのくびは、とびかかる、ぶる、たたかう、のく、びはすぐににげました、ゅじんのくびはそうのそでにかみました、そで、させる、びをつけたまま、ら、さけぶ. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"主人の首は囘龍に飛びかかりました。\", \"強い僧は木を武器にしてたたかいました。\", \"4つの首はすぐに逃げました。\", \"主人の首は僧のそでに噛みました。\", \"囘龍がその首をたくさんなぐりました。\", \"首はもがくのを止めて死にました。\", \"でも、歯はそでに付いたままでした。\", \"囘龍も口を開けさせることができません。\", \"僧は首を付けたまま家に帰りました。\", \"そこには4人のろくろ首がいました。\", \"かれらは変化する前の体に戻っていました。\", \"僧を見たとき、かれらは叫びました。\", \"そして森の方へ逃げ出しました。\"], \"question\": {\"prompt\": \"主人の首はどうなりましたか。\", \"options\": [\"逃げました。\", \"死にました。\", \"家に帰りました。\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n同時に主人の首は他の四つの首を随えて、囘龍に飛びかかった。しかし強い僧は手ごろの若木を引きぬいて武器とし、それを打ちふって首をなぐりつけ、恐ろしい力でなぎたててよせつけなかった。四つの首は逃げ去った。しかし、主人の首だけは、いかに乱打されても、必死となって僧に飛びついて、最後に衣の左の袖に喰いついた。しかし囘龍の方でも素早くまげをつかんでその首を散々になぐった。どうしても袖からは離れなかったが、しかし長い呻きをあげて、それからもがくことを止めた。死んだのであった。しかしその歯はやはり袖に喰いついていた。そして囘龍のありたけの力をもってしても、その顎を開かせる事はできなかった。\n彼はその袖に首をつけたままで、家へ戻った。そこには、傷だらけ、血だらけの頭が胴に帰って、四人のろくろ首が坐っているのを見た。裏の戸口に僧を認めて一同は『僧が来た、僧が』と叫んで反対の戸口から森の方へ逃げ出した。\nCurrent retelling:\n主人のくびは囘龍にとびかかりました。\n強いそうは木をぶきにしてたたかいました。\n4つのくびはすぐににげました。\n主人のくびはそうのそでにかみました。\n囘龍がそのくびをたくさんなぐりました。\nくびはもがくのを止めて死にました。\nでも、ははそでについたままでした。\n囘龍も口を開けさせることができません。\nそうはくびをつけたまま家に帰りました。\nそこには4人のろくろ首がいました。\nかれらは変化する前の体にもどっていました。\nそうを見たとき、かれらはさけびました。\nそしてもりの方へにげだしました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.11063829787234042,\"meanLength\":18.076923076923077,\"advancedShare\":0.14}; vocabulary 0.64. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: 主人、のく、びは、とびかかる、ぶる、たたかう、びはすぐににげました、びはそうのそでにかみました、そで、させる、びをつけたまま、ら、さけぶ、にげだす. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences([\": 40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n同時に主人の首は他の四つの首を随えて、囘龍に飛びかかった。しかし強い僧は手ごろの若木を引きぬいて武器とし、それを打ちふって首をなぐりつけ、恐ろしい力でなぎたててよせつけなかった。四つの首は逃げ去った。しかし、主人の首だけは、いかに乱打されても、必死となって僧に飛びついて、最後に衣の左の袖に喰いついた。しかし囘龍の方でも素早くまげをつかんでその首を散々になぐった。どうしても袖からは離れなかったが、しかし長い呻きをあげて、それからもがくことを止めた。死んだのであった。しかしその歯はやはり袖に喰いついていた。そして囘龍のありたけの力をもってしても、その顎を開かせる事はできなかった。\n彼はその袖に首をつけたままで、家へ戻った。そこには、傷だらけ、血だらけの頭が胴に帰って、四人のろくろ首が坐っているのを見た。裏の戸口に僧を認めて一同は『僧が来た、僧が』と叫んで反対の戸口から森の方へ逃げ出した。\nCurrent retelling:\n主人のくびは囘龍にとびかかりました。\n強いそうは木をぶきにしてたたかいました。\n4つのくびはすぐににげました。\n主人のくびはそうのそでにかみました。\n囘龍がそのくびをたくさんなぐりました。\nくびはもがくのを止めて死にました。\nでも、ははそでについたままでした。\n囘龍も口を開けさせることができません。\nそうはくびをつけたまま家に帰りました。\nそこには4人のろくろ首がいました。\nかれらは変化する前の体にもどっていました。\nそうを見たとき、かれらはさけびました。\nそしてもりの方へにげだしました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.11063829787234042,\"meanLength\":18.076923076923077,\"advancedShare\":0.14}; vocabulary 0.64. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: 主人、のく、びは、とびかかる、ぶる、たたかう、びはすぐににげました、びはそうのそでにかみました、そで、させる、びをつけたまま、ら、さけぶ、にげだす. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"sentences([\": 40000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "role": "user",
+          "content": "Return valid JSON only. Validation: Unexpected end of JSON input"
+        }
+      ],
+      "response": "{\"sentences\": [\"主人のくびは囘龍にとびかかりました。\", \"強いそうは木をぶきにしてたたかいました。\", \"4つのくびはすぐににげました。\", \"主人のくびはそうのそでにかみました。\", \"囘龍がそのくびをたくさんなぐりました。\", \"くびはもがくのを止めて死にました。\", \"でも、ははそでについたままでした。\", \"囘龍も口を開けさせることができません。\", \"そうはくびをつけたまま家に帰りました。\", \"そこには4人のろくろ首がいました。\", \"かれらは変化する前の体にもどっていました。\", \"そうを見たとき、かれらはさけびました。\", \"そしてもりの方へにげだしました。\"], \"question\": {\"prompt\": \"ろくろ首はどこへにげましたか。\", \"options\": [\"いえの中\", \"もりの方\", \"かわの近く\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n同時に主人の首は他の四つの首を随えて、囘龍に飛びかかった。しかし強い僧は手ごろの若木を引きぬいて武器とし、それを打ちふって首をなぐりつけ、恐ろしい力でなぎたててよせつけなかった。四つの首は逃げ去った。しかし、主人の首だけは、いかに乱打されても、必死となって僧に飛びついて、最後に衣の左の袖に喰いついた。しかし囘龍の方でも素早くまげをつかんでその首を散々になぐった。どうしても袖からは離れなかったが、しかし長い呻きをあげて、それからもがくことを止めた。死んだのであった。しかしその歯はやはり袖に喰いついていた。そして囘龍のありたけの力をもってしても、その顎を開かせる事はできなかった。\n彼はその袖に首をつけたままで、家へ戻った。そこには、傷だらけ、血だらけの頭が胴に帰って、四人のろくろ首が坐っているのを見た。裏の戸口に僧を認めて一同は『僧が来た、僧が』と叫んで反対の戸口から森の方へ逃げ出した。\nCurrent retelling:\n主人のくびは囘龍にとびかかりました。\n強いそうは木をぶきにしてたたかいました。\n4つのくびはすぐににげました。\n主人のくびはそうのそでにかみました。\n囘龍がそのくびをたくさんなぐりました。\nくびはもがくのを止めて死にました。\nでも、ははそでについたままでした。\n囘龍も口を開けさせることができません。\nそうはくびをつけたまま家に帰りました。\nそこには4人のろくろ首がいました。\nかれらは変化する前の体にもどっていました。\nそうを見たとき、かれらはさけびました。\nそしてもりの方へにげだしました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.11063829787234042,\"meanLength\":18.076923076923077,\"advancedShare\":0.14}; vocabulary 0.64. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: 主人、のく、びは、とびかかる、ぶる、たたかう、びはすぐににげました、びはそうのそでにかみました、そで、させる、びをつけたまま、ら、さけぶ、にげだす. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"主人のくびは囘龍にとびかかりました。\", \"強いそうは木をぶきにしてたたかいました。\", \"4つのくびはすぐににげました。\", \"主人のくびはそうのそでにかみました。\", \"囘龍がそのくびをたくさんなぐりました。\", \"くびはもがくのを止めて死にました。\", \"でも、ははそでについたままでした。\", \"囘龍もくちをあけさせることができません。\", \"そうはくびをつけたまま家に帰りました。\", \"そこには4人のろくろ首がいました。\", \"かれらは変化する前の体にもどっていました。\", \"そうを見たとき、かれらはさけびました。\", \"そしてもりの方へにげだしました。\"], \"question\": {\"prompt\": \"主人のくびはどうなりましたか。\", \"options\": [\"にげました。\", \"死にました。\", \"そうになりました。\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: のく、びは、とびかかる、びはすぐににげました、びはそうのそでにかみました、させる、びをつけたまま. Return JSON {\"glosses\":{\"のく\":\"English gloss\",\"びは\":\"English gloss\",\"とびかかる\":\"English gloss\",\"びはすぐににげました\":\"English gloss\",\"びはそうのそでにかみました\":\"English gloss\",\"させる\":\"English gloss\",\"びをつけたまま\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"のく\": \"to move aside\", \"びは\": \"the bee (topic)\", \"とびかかる\": \"to pounce/fly at\", \"びはすぐににげました\": \"the bee flew away immediately\", \"びはそうのそでにかみました\": \"the bee bit the sleeve of the robe\", \"させる\": \"to make/let someone do\", \"びをつけたまま\": \"with the bee still attached\"}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n同時に主人の首は他の四つの首を随えて、囘龍に飛びかかった。しかし強い僧は手ごろの若木を引きぬいて武器とし、それを打ちふって首をなぐりつけ、恐ろしい力でなぎたててよせつけなかった。四つの首は逃げ去った。しかし、主人の首だけは、いかに乱打されても、必死となって僧に飛びついて、最後に衣の左の袖に喰いついた。しかし囘龍の方でも素早くまげをつかんでその首を散々になぐった。どうしても袖からは離れなかったが、しかし長い呻きをあげて、それからもがくことを止めた。死んだのであった。しかしその歯はやはり袖に喰いついていた。そして囘龍のありたけの力をもってしても、その顎を開かせる事はできなかった。\n彼はその袖に首をつけたままで、家へ戻った。そこには、傷だらけ、血だらけの頭が胴に帰って、四人のろくろ首が坐っているのを見た。裏の戸口に僧を認めて一同は『僧が来た、僧が』と叫んで反対の戸口から森の方へ逃げ出した。\nCurrent retelling:\n主人のくびは囘龍にとびかかりました。\n強いそうは木をぶきにしてたたかいました。\n4つのくびはにげ去りましたが、主人のくびだけはのこりました。\n主人のくびはそうのそでにかみました。\n囘龍がそのくびをたくさんなぐりました。\nくびはもがくのを止めて死にました。\nでも、ははそでについたままでした。\n囘龍もくちをあけさせることができません。\nそうはくびをつけたまま家に帰りました。\nそこには4人のろくろ首がいました。\nかれらは変化する前の体にもどっていました。\nそうを見たとき、かれらはさけびました。\nそしてもりの方へにげだしました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.10756972111553785,\"meanLength\":19.307692307692307,\"advancedShare\":0.14814814814814814}; vocabulary 0.5925925925925926. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: 主人、のく、びは、とびかかる、ぶる、たたかう、びはにげ、去る、びだけはのこりました、びはそうのそでにかみました、そで、させる、びをつけたまま、ら、さけぶ、にげだす. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"主人のくびは囘龍にとびかかりました。\", \"強いそうは木を使ってたたかいました。\", \"4つのくびはにげましたが、1つはのこりました。\", \"主人のくびはそうのそでにかみました。\", \"囘龍がそのくびをたくさんなぐりました。\", \"くびはもがくのを止めて死にました。\", \"でも、ははそでについたままでした。\", \"囘龍もくちをあけさせることができません。\", \"そうはくびをつけたまま家に帰りました。\", \"そこには4人のろくろ首がいました。\", \"かれらは変化する前の体にもどっていました。\", \"そうを見たとき、かれらはさけびました。\", \"そしてもりの方へにげだしました。\"], \"question\": {\"prompt\": \"主人のくびはどうなりましたか。\", \"options\": [\"もりの方へにげました。\", \"そうのそでにかみました。\", \"木でたたかれました。\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n同時に主人の首は他の四つの首を随えて、囘龍に飛びかかった。しかし強い僧は手ごろの若木を引きぬいて武器とし、それを打ちふって首をなぐりつけ、恐ろしい力でなぎたててよせつけなかった。四つの首は逃げ去った。しかし、主人の首だけは、いかに乱打されても、必死となって僧に飛びついて、最後に衣の左の袖に喰いついた。しかし囘龍の方でも素早くまげをつかんでその首を散々になぐった。どうしても袖からは離れなかったが、しかし長い呻きをあげて、それからもがくことを止めた。死んだのであった。しかしその歯はやはり袖に喰いついていた。そして囘龍のありたけの力をもってしても、その顎を開かせる事はできなかった。\n彼はその袖に首をつけたままで、家へ戻った。そこには、傷だらけ、血だらけの頭が胴に帰って、四人のろくろ首が坐っているのを見た。裏の戸口に僧を認めて一同は『僧が来た、僧が』と叫んで反対の戸口から森の方へ逃げ出した。\nCurrent retelling:\n主人のくびは囘龍にとびかかりました。\n強いそうは木を使ってたたかいました。\n4つのくびはにげましたが、1つはのこりました。\n主人のくびはそうのそでにかみました。\n囘龍がそのくびをたくさんなぐりました。\nくびはもがくのを止めて死にました。\nでも、ははそでについたままでした。\n囘龍もくちをあけさせることができません。\nそうはくびをつけたまま家に帰りました。\nそこには4人のろくろ首がいました。\nかれらは変化する前の体にもどっていました。\nそうを見たとき、かれらはさけびました。\nそしてもりの方へにげだしました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.10330578512396695,\"meanLength\":18.615384615384617,\"advancedShare\":0.16}; vocabulary 0.66. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: 主人、のく、びは、とびかかる、たたかう、びはにげましたが、びはそうのそでにかみました、そで、させる、びをつけたまま、ら、さけぶ、にげだす. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences([\": [\"主人のくびは囘龍にとびかかりました。\", \"つよいそうは木をつかってたたかいました。\", \"4つのくびはにげましたが、1つのこりました。\", \"主人のくびはそうのそでにかみました。\", \"囘龍がそのくびをたくさんなぐりました。\", \"くびはもがくのを止めて死にました。\", \"でも、ははそでについたままでした。\", \"囘龍もくちをあけさせることができません。\", \"そうはくびをつけたまま家に帰りました。\", \"そこには4人のろくろ首がいました。\", \"かれらは変化する前の体にもどっていました。\", \"そうを見たとき、かれらはさけびました。\", \"そしてもりの方へにげだしました。\"]}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n同時に主人の首は他の四つの首を随えて、囘龍に飛びかかった。しかし強い僧は手ごろの若木を引きぬいて武器とし、それを打ちふって首をなぐりつけ、恐ろしい力でなぎたててよせつけなかった。四つの首は逃げ去った。しかし、主人の首だけは、いかに乱打されても、必死となって僧に飛びついて、最後に衣の左の袖に喰いついた。しかし囘龍の方でも素早くまげをつかんでその首を散々になぐった。どうしても袖からは離れなかったが、しかし長い呻きをあげて、それからもがくことを止めた。死んだのであった。しかしその歯はやはり袖に喰いついていた。そして囘龍のありたけの力をもってしても、その顎を開かせる事はできなかった。\n彼はその袖に首をつけたままで、家へ戻った。そこには、傷だらけ、血だらけの頭が胴に帰って、四人のろくろ首が坐っているのを見た。裏の戸口に僧を認めて一同は『僧が来た、僧が』と叫んで反対の戸口から森の方へ逃げ出した。\nCurrent retelling:\n主人のくびは囘龍にとびかかりました。\nつよいそうは木をつかってたたかいました。\n4つのくびはにげましたが、1つのこりました。\n主人のくびはそうのそでにかみました。\n囘龍がそのくびをたくさんなぐりました。\nくびはもがくのを止めて死にました。\nでも、ははそでについたままでした。\n囘龍もくちをあけさせることができません。\nそうはくびをつけたまま家に帰りました。\nそこには4人のろくろ首がいました。\nかれらは変化する前の体にもどっていました。\nそうを見たとき、かれらはさけびました。\nそしてもりの方へにげだしました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.09465020576131687,\"meanLength\":18.692307692307693,\"advancedShare\":0.16}; vocabulary 0.66. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: 主人、のく、びは、とびかかる、たたかう、びはにげましたが、びはそうのそでにかみました、そで、させる、びをつけたまま、ら、さけぶ、にげだす. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"主人のくびは囘龍にとびかかりました。\", \"つよいそうは木のえだでたたかいました。\", \"4つのくびはにげましたが、1つ残りました。\", \"主人のくびはそうのそでにかみました。\", \"囘龍がそのくびをたくさんなぐりました。\", \"くびはもがくのを止めて死にました。\", \"でも、ははそでについたままでした。\", \"囘龍もくちをあけさせることができません。\", \"そうはくびをつけたまま家に帰りました。\", \"そこには4人のろくろ首がいました。\", \"かれらは変化する前の体にもどっていました。\", \"そうを見たとき、かれらはさけびました。\", \"そしてもりの方へにげだしました。\"], \"question\": {\"prompt\": \"最後にかれらはどこへにげましたか。\", \"options\": [\"家の中\", \"もりの方\", \"川の近く\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: のく、びは、とびかかる、びはにげましたが、びはそうのそでにかみました、させる、びをつけたまま. Return JSON {\"glosses\":{\"のく\":\"English gloss\",\"びは\":\"English gloss\",\"とびかかる\":\"English gloss\",\"びはにげましたが\":\"English gloss\",\"びはそうのそでにかみました\":\"English gloss\",\"させる\":\"English gloss\",\"びをつけたまま\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"のく\": \"to step aside\", \"びは\": \"the bee (subject)\", \"とびかかる\": \"to pounce/spring at\", \"びはにげましたが\": \"the bee flew away, but\", \"びはそうのそでにかみました\": \"the bee bit the sleeve of the robe\", \"させる\": \"to make/let someone do\", \"びをつけたまま\": \"while leaving the bee attached\"}}"
+    }
+  ],
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n同時に主人の首は他の四つの首を随えて、囘龍に飛びかかった。しかし強い僧は手ごろの若木を引きぬいて武器とし、それを打ちふって首をなぐりつけ、恐ろしい力でなぎたててよせつけなかった。四つの首は逃げ去った。しかし、主人の首だけは、いかに乱打されても、必死となって僧に飛びついて、最後に衣の左の袖に喰いついた。しかし囘龍の方でも素早くまげをつかんでその首を散々になぐった。どうしても袖からは離れなかったが、しかし長い呻きをあげて、それからもがくことを止めた。死んだのであった。しかしその歯はやはり袖に喰いついていた。そして囘龍のありたけの力をもってしても、その顎を開かせる事はできなかった。\n彼はその袖に首をつけたままで、家へ戻った。そこには、傷だらけ、血だらけの頭が胴に帰って、四人のろくろ首が坐っているのを見た。裏の戸口に僧を認めて一同は『僧が来た、僧が』と叫んで反対の戸口から森の方へ逃げ出した。\n\n語り直し:\n主人のくびは囘龍にとびかかりました。\n強いそうは木をぶきにしてたたかいました。\n4つのくびはすぐににげました。\n主人のくびはそうのそでにかみました。\n囘龍がそのくびをたくさんなぐりました。\nくびはもがくのを止めて死にました。\nでも、ははそでについたままでした。\n囘龍もくちをあけさせることができません。\nそうはくびをつけたまま家に帰りました。\nそこには4人のろくろ首がいました。\nかれらは変化する前の体にもどっていました。\nそうを見たとき、かれらはさけびました。\nそしてもりの方へにげだしました。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"4つのくびはすぐににげました。\", \"problem\": \"The original says four heads escaped, but the master's head remained; '4つのくび' implies all four, neglecting the master's head. Correct to: 4つのくびは逃げ去りましたが、主人のくびだけは残りました。\", \"kind\": \"number\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n同時に主人の首は他の四つの首を随えて、囘龍に飛びかかった。しかし強い僧は手ごろの若木を引きぬいて武器とし、それを打ちふって首をなぐりつけ、恐ろしい力でなぎたててよせつけなかった。四つの首は逃げ去った。しかし、主人の首だけは、いかに乱打されても、必死となって僧に飛びついて、最後に衣の左の袖に喰いついた。しかし囘龍の方でも素早くまげをつかんでその首を散々になぐった。どうしても袖からは離れなかったが、しかし長い呻きをあげて、それからもがくことを止めた。死んだのであった。しかしその歯はやはり袖に喰いついていた。そして囘龍のありたけの力をもってしても、その顎を開かせる事はできなかった。\n彼はその袖に首をつけたままで、家へ戻った。そこには、傷だらけ、血だらけの頭が胴に帰って、四人のろくろ首が坐っているのを見た。裏の戸口に僧を認めて一同は『僧が来た、僧が』と叫んで反対の戸口から森の方へ逃げ出した。\n\n語り直し:\n主人のくびは囘龍にとびかかりました。\nつよいそうは木のえだでたたかいました。\n4つのくびはにげましたが、1つのこりました。\n主人のくびはそうのそでにかみました。\n囘龍がそのくびをたくさんなぐりました。\nくびはもがくのを止めて死にました。\nでも、ははそでについたままでした。\n囘龍もくちをあけさせることができません。\nそうはくびをつけたまま家に帰りました。\nそこには4人のろくろ首がいました。\nかれらは変化する前の体にもどっていました。\nそうを見たとき、かれらはさけびました。\nそしてもりの方へにげだしました。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"つよいそうは木のえだでたたかいました。\", \"problem\": \"The monk pulled out a young tree (若木) to use as a weapon, not a branch (枝).\", \"kind\": \"event\"}]}"
+      }
+    ],
+    "rewrites": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Repair only the specified sentences at JLPT N4. Preserve all other sentences and events. Use natural Japanese, numeric digits for numbers, and maintain the meaning of the original. Return only JSON {\"rewrites\":[{\"index\":0,\"sentence\":\"...\"}]}."
+          },
+          {
+            "role": "user",
+            "content": "Original:\n同時に主人の首は他の四つの首を随えて、囘龍に飛びかかった。しかし強い僧は手ごろの若木を引きぬいて武器とし、それを打ちふって首をなぐりつけ、恐ろしい力でなぎたててよせつけなかった。四つの首は逃げ去った。しかし、主人の首だけは、いかに乱打されても、必死となって僧に飛びついて、最後に衣の左の袖に喰いついた。しかし囘龍の方でも素早くまげをつかんでその首を散々になぐった。どうしても袖からは離れなかったが、しかし長い呻きをあげて、それからもがくことを止めた。死んだのであった。しかしその歯はやはり袖に喰いついていた。そして囘龍のありたけの力をもってしても、その顎を開かせる事はできなかった。\n彼はその袖に首をつけたままで、家へ戻った。そこには、傷だらけ、血だらけの頭が胴に帰って、四人のろくろ首が坐っているのを見た。裏の戸口に僧を認めて一同は『僧が来た、僧が』と叫んで反対の戸口から森の方へ逃げ出した。\nSentences:\n0: 主人のくびは囘龍にとびかかりました。\n1: 強いそうは木をぶきにしてたたかいました。\n2: 4つのくびはすぐににげました。\n3: 主人のくびはそうのそでにかみました。\n4: 囘龍がそのくびをたくさんなぐりました。\n5: くびはもがくのを止めて死にました。\n6: でも、ははそでについたままでした。\n7: 囘龍もくちをあけさせることができません。\n8: そうはくびをつけたまま家に帰りました。\n9: そこには4人のろくろ首がいました。\n10: かれらは変化する前の体にもどっていました。\n11: そうを見たとき、かれらはさけびました。\n12: そしてもりの方へにげだしました。\nIssues:\n[{\"sentence\":\"4つのくびはすぐににげました。\",\"problem\":\"The original says four heads escaped, but the master's head remained; '4つのくび' implies all four, neglecting the master's head. Correct to: 4つのくびは逃げ去りましたが、主人のくびだけは残りました。\",\"kind\":\"number\"}]\nRewrite exactly indexes: 2"
+          }
+        ],
+        "response": "{\"rewrites\": [{\"index\": 2, \"sentence\": \"4つのくびは逃げ去りましたが、主人のくびだけは残りました。\"}]}"
+      }
+    ],
+    "before": [
+      {
+        "sentence": "4つのくびはすぐににげました。",
+        "problem": "The original says four heads escaped, but the master's head remained; '4つのくび' implies all four, neglecting the master's head. Correct to: 4つのくびは逃げ去りましたが、主人のくびだけは残りました。",
+        "kind": "number"
+      }
+    ],
+    "after": [
+      {
+        "sentence": "つよいそうは木のえだでたたかいました。",
+        "problem": "The monk pulled out a young tree (若木) to use as a weapon, not a branch (枝).",
+        "kind": "event"
+      }
+    ]
+  },
+  "ladderBuild": "P4b"
 }

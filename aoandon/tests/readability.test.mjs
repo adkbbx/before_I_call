@@ -1,4 +1,4 @@
-import { test } from 'node:test';
+﻿import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { tokenizeForLevel, kanjiMetrics, hasHardKanji } from '../pipeline/check.mjs';
 import { vocabFromRows, loadVocab } from '../pipeline/jlpt.mjs';
@@ -32,7 +32,8 @@ test('retry independently enforces vocabulary, hard kanji and N5 density',()=>{
   assert.equal(needsRetry([{s:'あ',k:'ghost'}],'N4'),true);
   assert.equal(needsRetry([{s:'芳',k:'known'}],'N4'),true);
   assert.equal(needsRetry([{s:'山山',k:'known'}],'N5'),true);
-  assert.equal(needsRetry([{s:'山山',k:'known'}],'N4'),false);
+  assert.equal(needsRetry([{s:'山山',k:'known'}],'N4'),true);
+  assert.equal(needsRetry([{s:'山なのです。',k:'known'}],'N4'),false);
   assert.equal(needsRetry([{s:'かな',k:'known'}],'N5'),false);
 });
 test('level prompts specify stricter sentence, grammar and kanji rules',()=>{
@@ -98,13 +99,14 @@ test('a full scene in one draft array entry retains all events during indexed re
   const question={prompt:'人ですか。',options:['人','人。','人！'],answer:0};
   let calls=0;
   const provider={name:'hosted',model:'fake',async call(messages){
-    if(!calls++)return JSON.stringify({sentences:['人です。驚く。山です。'],question});
-    assert.ok(messages.at(-1).content.includes('1: "驚く。"'));
+    if(!calls++)return JSON.stringify({sentences:['人です。驚くですからです。山です。'],question});
+    assert.ok(messages.at(-1).content.includes('1: "驚くですからです。"'));
     assert.ok(!messages.at(-1).content.includes('0: "人です。'));
-    return JSON.stringify({rewrites:[{index:1,sentence:'おどろく。'}]});
+    return JSON.stringify({rewrites:[{index:1,sentence:'おどろくですからです。'}]});
   }};
   const vocab=vocabFromRows({N5:[{expression:'人',reading:'ひと',meaning:'person'},{expression:'山',reading:'やま',meaning:'mountain'},{expression:'驚く',reading:'おどろく',meaning:'be surprised'}]});
   const run=await retellScene({taleId:'sample',scene:{id:'s01',original:[[{base:'人です。驚く。山です。'}]]},level:'N4',vocab,provider});
   assert.equal(run.failed,undefined,run.error);
-  assert.deepEqual(run.retelling.sentences.map(s=>s.tokens.map(t=>t.s).join('')),['人です。','おどろく。','山です。']);
+  assert.deepEqual(run.retelling.sentences.map(s=>s.tokens.map(t=>t.s).join('')),['人です。','おどろくですからです。','山です。']);
 });
+

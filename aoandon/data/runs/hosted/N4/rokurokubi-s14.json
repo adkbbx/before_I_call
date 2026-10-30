@@ -4,48 +4,66 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Adds ～とき, ～たら, ～ている, ～と思います, potential forms and ～ても. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Copy every story word exactly in kanji when it is needed; do not insert unused words.\nWrite normal Japanese with no spaces between words. Outside story words, use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: 囘龍は大きくわらいました。そしていいました。くびがきてついただけです。わたしはわるいことをしていません。これはひとではありません。変化のくびだと思います。わたしをまもっただけです。ひとをころしてはいません。囘龍は話をしました。ときどきわらっていました。でもやくにんはわらいませんでした。うその話だと思います。すぐにしぬことにしました。でも一人の男はいいませんでした。くびをよくみましょう。ほんとうかみればわかります。くびを持ってきてください。\n\n場面（原文）:\n囘龍の背中からぬき取った衣にかみついている首は、裁判官達の前に置かれた。老人はそれを幾度も〓して、注意深くそれを調べた。そして頸の項にいくつかの妙な赤い記号らしいものを発見した。その点へ同僚の注意を促した。それから頸の一端がどこにも武器で斬られたらしい跡のない事を見せた。かえって落葉が軸から自然に離れたように、その頸の断面は滑らかであった。……そこで老人は云った、\n『僧の云った事は全く本当としか思われない。これはろくろ首だ。「南方異物志」に、本当のろくろ首の項の上には、いつでも一種の赤い文字が見られると書いてある。そこに文字がある。それはあとで書いたのではない事が分る。その上甲斐の国の山中にはよほど昔から、こんな怪物が住んでおる事はよく知られておる。……しかし』囘龍の方へ向いて、老人は叫んだ――『あなたは何と強勇なお坊さんでしょう。たしかにあなたは坊さんには珍らしい勇気を示しました。あなたは坊さんよりは、武士の風がありますな。たぶんあなたの前身は武士でしょう』"
+        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\n囘龍の背中からぬき取った衣にかみついている首は、裁判官達の前に置かれた。老人はそれを幾度も〓して、注意深くそれを調べた。そして頸の項にいくつかの妙な赤い記号らしいものを発見した。その点へ同僚の注意を促した。それから頸の一端がどこにも武器で斬られたらしい跡のない事を見せた。かえって落葉が軸から自然に離れたように、その頸の断面は滑らかであった。……そこで老人は云った、\n『僧の云った事は全く本当としか思われない。これはろくろ首だ。「南方異物志」に、本当のろくろ首の項の上には、いつでも一種の赤い文字が見られると書いてある。そこに文字がある。それはあとで書いたのではない事が分る。その上甲斐の国の山中にはよほど昔から、こんな怪物が住んでおる事はよく知られておる。……しかし』囘龍の方へ向いて、老人は叫んだ――『あなたは何と強勇なお坊さんでしょう。たしかにあなたは坊さんには珍らしい勇気を示しました。あなたは坊さんよりは、武士の風がありますな。たぶんあなたの前身は武士でしょう』\nThis N4 retelling must be harder than N5. N5 measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.0594059405940594,\"meanLength\":11.222222222222221,\"advancedShare\":0.1875}. Make kanji density and mean sentence length strictly larger, and N4+N3 vocabulary share at least as large than 0.1875. Use longer connected sentences and relevant N4 vocabulary, preserving the original meaning. Current ladder failures: advancedShare."
       }
     ]
   },
   "responses": [
-    "{\"sentences-\": [\"くびがつくえの上にありました。\", \"おとしりがちをよくみました。\", \"くびに赤い文字がありました。\", \"おとしりは友だちにみせました。\", \"くびはきられていませんでした。\", \"きれいに分かれていました。\", \"おとしりはいいました。\", \"これはろくろ首です。\", \"本に書いてあります。\", \"ろくろ首は赤い文字があります。\", \"この文字は本当だと思います。\", \"山にこのような怪物が住んでいます。\", \"おとしりは囘龍をみました。\", \"あなたはとてもつよいです。\", \"おぼうさんではありません。\", \"むかしは武士だったと思います。\"], \"question\": {\"prompt\": \"おとしりは、くびに何を見つけましたか。\", \"options\": [\"青い文字\", \"赤い文字\", \"白い文字\"], \"answer\": 1}}",
-    "{\"sentences\": [\"くびがつぐえの上にありました。\", \"おとしりがちをよくみました。\", \"くびに赤い文字がありました。\", \"おとしりは友だちにみせました。\", \"くびはきられていませんでした。\", \"きれいに分かれていました。\", \"おとしりはいいました。\", \"これはろくろ首です。\", \"本に書いてあります。\", \"ろくろ首は赤い文字があります。\", \"この文字は本当だと思います。\", \"山にこのような怪物が住んでいます。\", \"おとしりは囘龍をみました。\", \"あなたはとてもつよいです。\", \"おぼうさんではありません。\", \"むかしは武士だったと思います。\"], \"question\": {\"prompt\": \"おとしりは、くびに何を見つけましたか。\", \"options\": [\"青い文字\", \"赤い文字\", \"白い文字\"], \"answer\": 1}}",
-    "{\"rewrites\": [{\"index\": 1, \"sentence\": \"おとしりはくびをよくみました。\"}, {\"index\": 2, \"sentence\": \"くびに赤いもじがありました。\"}, {\"index\": 3, \"sentence\": \"おとしりはともだちにみせました。\"}, {\"index\": 5, \"sentence\": \"きれいにわかれていました。\"}, {\"index\": 6, \"sentence\": \"おとしりはいいました。\"}, {\"index\": 7, \"sentence\": \"これはろくろくびです。\"}, {\"index\": 9, \"sentence\": \"ろくろくびは赤いもじがあります。\"}, {\"index\": 10, \"sentence\": \"このもじはほんとうだと思います。\"}, {\"index\": 11, \"sentence\": \"山にこのようなかいぶつが住んでいます。\"}, {\"index\": 12, \"sentence\": \"おとしりは囘龍をみました。\"}, {\"index\": 14, \"sentence\": \"おぼうさんではありません。\"}, {\"index\": 15, \"sentence\": \"むかしはぶしだったと思います。\"}]}",
-    "{\"rewrites\": [{\"index\": 1, \"sentence\": \"おとしりはくびをみました。\"}, {\"index\": 2, \"sentence\": \"くびに赤いもじがありました。\"}, {\"index\": 3, \"sentence\": \"おとしりはともだちにみせました。\"}, {\"index\": 6, \"sentence\": \"おとしりはいいました。\"}, {\"index\": 7, \"sentence\": \"これはろくろくびです。\"}, {\"index\": 9, \"sentence\": \"ろくろくびは赤いもじがあります。\"}, {\"index\": 10, \"sentence\": \"このもじはほんとうだと思います。\"}, {\"index\": 11, \"sentence\": \"山にかいぶつが住んでいます。\"}, {\"index\": 12, \"sentence\": \"おとしりは囘龍をみました。\"}, {\"index\": 14, \"sentence\": \"おぼうさんではありません。\"}, {\"index\": 15, \"sentence\": \"むかしはぶしだったと思います。\"}]}",
-    "{\"rewrites\": [{\"index\": 1, \"sentence\": \"おとしりはくびをみました。\"}, {\"index\": 2, \"sentence\": \"くびに赤いもじがありました。\"}, {\"index\": 3, \"sentence\": \"おとしりはともだちにみせました。\"}, {\"index\": 6, \"sentence\": \"おとしりはいいました。\"}, {\"index\": 7, \"sentence\": \"これはろくろくびです。\"}, {\"index\": 9, \"sentence\": \"ろくろくびは赤いもじがあります。\"}, {\"index\": 10, \"sentence\": \"このもじはほんとうだと思います。\"}, {\"index\": 11, \"sentence\": \"山にかいぶつが住んでいます。\"}, {\"index\": 12, \"sentence\": \"おとしりは囘龍をみました。\"}, {\"index\": 14, \"sentence\": \"おぼうさんではありません。\"}, {\"index\": 15, \"sentence\": \"むかしはぶしだったと思います。\"}]}",
-    "{\"question\": {\"prompt\": \"おとしりは、くびに何を見つけましたか。\", \"options\": [\"あおいもじ\", \"あかいもじ\", \"しろいもじ\"], \"answer\": 1}}",
-    "{\"glosses\": {\"びをみました\": \"looked at the neck\", \"いむ\": \"incorrect word/non-existent\"}}"
+    "{\"sentences\": [\"囘龍の背中の服にかんだ首を、人は見ました。\", \"老人はその首を注意深く調べました。\", \"首に赤い文字のようなものがあると思いました。\", \"老人は他の人にその文字を見せました。\", \"首は武器で切られたあとがありませんでした。\", \"切られたところはとても滑らかでした。\", \"老人は僧の話は本当だと思いました。\", \"これはろくろ首だと思います。\", \"本に赤い文字があるとき、ろくろ首です。\", \"この変化は山に住んでいると知っています。\", \"老人は僧に勇気があると言いました。\", \"あなたはお坊さんより武士のようです。\", \"前は武士だったと思います。\"], \"question\": {\"prompt\": \"老人は、首に何があると思いましたか。\", \"options\": [\"白い文字\", \"赤い文字\", \"青い文字\"], \"answer\": 1}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"囘龍のせなかの服にかんだくびを、人が見ました。\"}, {\"index\": 1, \"sentence\": \"ろうじんはそのくびをちゅういぶかくしらべました。\"}, {\"index\": 2, \"sentence\": \"くびに赤いもじのようなものがあると思いました。\"}, {\"index\": 3, \"sentence\": \"ろうじんはたの人にそのもじを見せました。\"}, {\"index\": 4, \"sentence\": \"くびはぶきで切られたあとがありませんでした。\"}, {\"index\": 5, \"sentence\": \"切られたところはとてもなめらかでした。\"}, {\"index\": 6, \"sentence\": \"ろうじんはそうの話はほんとうだと思いました。\"}, {\"index\": 7, \"sentence\": \"これはろくろ首だと思います。\"}, {\"index\": 8, \"sentence\": \"本に赤いもじがあるとき、ろくろ首です。\"}, {\"index\": 9, \"sentence\": \"この変化は山に住んでいると知っています。\"}, {\"index\": 10, \"sentence\": \"ろうじんはそうにゆうきがあると言いました。\"}, {\"index\": 11, \"sentence\": \"あなたはおぼうさんよりぶしのようです。\"}, {\"index\": 12, \"sentence\": \"前はぶしだったと思います。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"囘龍のせなかの服にかんだくびを、人が見ました。\"}, {\"index\": 1, \"sentence\": \"ろうじんはそのくびをちゅういぶかくしらべました。\"}, {\"index\": 2, \"sentence\": \"くびに赤いもじのようなものがあると思いました。\"}, {\"index\": 3, \"sentence\": \"ろうじんはたの人にそのもじを見せました。\"}, {\"index\": 4, \"sentence\": \"くびはぶきで切られたあとがありませんでした。\"}, {\"index\": 5, \"sentence\": \"切られたところはとてもなめらかでした。\"}, {\"index\": 6, \"sentence\": \"ろうじんはそうの話はほんとうだと思いました。\"}, {\"index\": 8, \"sentence\": \"本に赤いもじがあるとき、ろくろ首です。\"}, {\"index\": 10, \"sentence\": \"ろうじんはそうにゆうきがあると言いました。\"}, {\"index\": 11, \"sentence\": \"あなたはおぼうさんよりぶしのようです。\"}, {\"index\": 12, \"sentence\": \"前はぶしだったと思います。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"囘龍のせなかの服にかんだくびを、人が見ました。\"}, {\"index\": 1, \"sentence\": \"ろうじんはそのくびをちゅういぶかくしらべました。\"}, {\"index\": 2, \"sentence\": \"くびに赤いもじのようなものがあると思いました。\"}, {\"index\": 3, \"sentence\": \"ろうじんはたの人にそのもじを見せました。\"}, {\"index\": 4, \"sentence\": \"くびはぶきで切られたあとがありませんでした。\"}, {\"index\": 5, \"sentence\": \"切られたところはとてもなめらかでした。\"}, {\"index\": 6, \"sentence\": \"ろうじんはそうの話はほんとうだと思いました。\"}, {\"index\": 8, \"sentence\": \"本に赤いもじがあるとき、ろくろ首です。\"}, {\"index\": 10, \"sentence\": \"ろうじんはそうにゆうきがあると言いました。\"}, {\"index\": 11, \"sentence\": \"あなたはおぼうさんよりぶしのようです。\"}, {\"index\": 12, \"sentence\": \"前はぶしだったと思います。\"}]}",
+    "{\"question\": {\"prompt\": \"ろうじんは、くびに何があると思いましたか。\", \"options\": [\"白いもじ\", \"赤いもじ\", \"青いもじ\"], \"answer\": 1}}",
+    "{\"glosses\": {\"びを\": \"the neck (object)\", \"ろう\": \"old\", \"いむ\": \"think\", \"れる\": \"passive voice\", \"本に\": \"in the book\"}}"
   ],
   "metrics": {
-    "kanjiCoverage": 0.8181818181818182,
-    "kanjiDensity": 0.05045871559633028,
-    "firstCoverage": 0.7291666666666666,
-    "finalCoverage": 0.782608695652174,
-    "retries": 3,
-    "seconds": 31.57268909999996,
+    "kanjiCoverage": 1,
+    "kanjiDensity": 0.10344827586206896,
+    "firstCoverage": 0.6666666666666666,
+    "finalCoverage": 0.6923076923076923,
+    "retries": 9,
+    "seconds": 94.1008143,
     "offendingFirst": [
-      "しり",
-      "がち",
+      "老人",
+      "注意深い",
       "文字",
-      "友だち",
-      "分かれる",
-      "怪物",
-      "ぼう",
+      "他",
+      "武器",
+      "れる",
+      "滑らか",
+      "僧",
+      "本に",
+      "勇気",
+      "坊さん",
       "武士"
     ],
     "ghostWords": [
-      "しり",
-      "びをみました",
+      "のせる",
+      "かん",
+      "だく",
+      "びを",
+      "ろう",
       "いむ",
       "もじる",
-      "ぶつ",
+      "れる",
+      "なめらか",
+      "本に",
+      "のく",
+      "びには",
+      "ゆう",
       "ぼう",
       "ぶす"
+    ],
+    "faithIssues": [
+      {
+        "sentence": "この変化は山に住んでいると知っています。",
+        "problem": "The original specifies the location as 'Kai Province mountains' (甲斐の国の山中). Change to 'Kai Province mountains' or 'the mountains of that region'.",
+        "kind": "event"
+      }
     ]
   },
   "retelling": {
@@ -56,22 +74,37 @@
       {
         "tokens": [
           {
-            "s": "く",
-            "b": "くい",
-            "k": "known",
-            "g": "nine",
+            "s": "囘龍",
+            "r": "かいりゅう",
+            "b": "囘龍",
+            "k": "story",
+            "g": "Kairyu, the warrior's monk name",
+            "hk": true
+          },
+          {
+            "s": "のせ",
+            "k": "ghost",
+            "b": "のせる",
+            "g": "to place on (something), to take on board",
             "gs": "jlpt"
           },
           {
-            "s": "びがつぐえの",
+            "s": "なか",
+            "k": "known",
+            "b": "なか",
+            "g": "inside, middle, among",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
             "k": "plain"
           },
           {
-            "s": "上",
-            "r": "じょう",
-            "b": "上",
+            "s": "服",
             "k": "known",
-            "g": "above (up, top, etc.), over, on top of",
+            "r": "ふく",
+            "b": "服",
+            "g": "clothes",
             "gs": "jlpt"
           },
           {
@@ -79,10 +112,44 @@
             "k": "plain"
           },
           {
-            "s": "あり",
-            "b": "ある",
+            "s": "かん",
+            "k": "ghost",
+            "b": "かん",
+            "g": "can, tin",
+            "gs": "jlpt"
+          },
+          {
+            "s": "だく",
+            "k": "ghost",
+            "b": "だく",
+            "g": "to embrace, to hug",
+            "gs": "jlpt"
+          },
+          {
+            "s": "びを",
+            "k": "ghost",
+            "b": "びを",
+            "g": "beauty (obj.)",
+            "gs": "model"
+          },
+          {
+            "s": "人",
             "k": "known",
-            "g": "to be, to have",
+            "r": "じん",
+            "b": "人",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "見",
+            "k": "known",
+            "r": "み",
+            "b": "見る",
+            "g": "to see, to look",
             "gs": "jlpt"
           },
           {
@@ -102,32 +169,37 @@
       {
         "tokens": [
           {
-            "s": "おと",
-            "b": "おと",
-            "k": "known",
-            "g": "sound, note",
-            "gs": "jlpt"
-          },
-          {
-            "s": "しり",
-            "b": "しり",
+            "s": "ろう",
             "k": "ghost",
-            "g": "buttocks, bottom",
-            "gs": "jlpt"
-          },
-          {
-            "s": "はく",
-            "b": "はく",
-            "k": "known",
-            "g": "to put on (items below your waist)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "びをみました",
-            "b": "びをみました",
-            "k": "ghost",
-            "g": "looked at the neck",
+            "b": "ろう",
+            "g": "wax/labor/old age",
             "gs": "model"
+          },
+          {
+            "s": "じん",
+            "k": "known",
+            "b": "じん",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "その",
+            "k": "plain"
+          },
+          {
+            "s": "く",
+            "k": "known",
+            "b": "くい",
+            "g": "nine",
+            "gs": "jlpt"
+          },
+          {
+            "s": "びをよくしらべました",
+            "k": "plain"
           },
           {
             "s": "。",
@@ -139,8 +211,8 @@
         "tokens": [
           {
             "s": "く",
-            "b": "くい",
             "k": "known",
+            "b": "くい",
             "g": "nine",
             "gs": "jlpt"
           },
@@ -150,17 +222,17 @@
           },
           {
             "s": "赤",
+            "k": "known",
             "r": "あか",
             "b": "赤",
-            "k": "known",
             "g": "red",
             "gs": "jlpt"
           },
           {
             "s": "いも",
-            "b": "いむ",
             "k": "ghost",
-            "g": "incorrect word/non-existent",
+            "b": "いむ",
+            "g": "to fear/revere",
             "gs": "model"
           },
           {
@@ -168,14 +240,48 @@
             "k": "plain"
           },
           {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "よう",
+            "k": "known",
+            "b": "よう",
+            "g": "errand, task, business (to take care of)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "な",
+            "k": "plain"
+          },
+          {
+            "s": "もの",
+            "k": "known",
+            "b": "もの",
+            "g": "thing (concrete object)",
+            "gs": "jlpt"
+          },
+          {
             "s": "が",
             "k": "plain"
           },
           {
-            "s": "あり",
-            "b": "ある",
+            "s": "ある",
             "k": "known",
+            "b": "ある",
             "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "思い",
+            "k": "known",
+            "r": "おもい",
+            "b": "思う",
+            "g": "to think, to feel",
             "gs": "jlpt"
           },
           {
@@ -195,17 +301,17 @@
       {
         "tokens": [
           {
-            "s": "おと",
-            "b": "おと",
-            "k": "known",
-            "g": "sound, note",
-            "gs": "jlpt"
+            "s": "ろう",
+            "k": "ghost",
+            "b": "ろう",
+            "g": "wax/labor/old age",
+            "gs": "model"
           },
           {
-            "s": "しり",
-            "b": "しり",
-            "k": "ghost",
-            "g": "buttocks, bottom",
+            "s": "じん",
+            "k": "known",
+            "b": "じん",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
@@ -213,10 +319,22 @@
             "k": "plain"
           },
           {
-            "s": "ともだち",
-            "b": "ともだち",
+            "s": "ほか",
             "k": "known",
-            "g": "friend",
+            "b": "ほか",
+            "g": "other, the rest",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "k": "known",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
@@ -224,9 +342,25 @@
             "k": "plain"
           },
           {
-            "s": "みせ",
-            "b": "みせる",
+            "s": "その",
+            "k": "plain"
+          },
+          {
+            "s": "もじ",
+            "k": "ghost",
+            "b": "もじる",
+            "g": "letter (of alphabet), character",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "見せ",
             "k": "known",
+            "r": "みせ",
+            "b": "見せる",
             "g": "to show, to display",
             "gs": "jlpt"
           },
@@ -248,54 +382,62 @@
         "tokens": [
           {
             "s": "く",
-            "b": "くい",
             "k": "known",
+            "b": "くい",
             "g": "nine",
             "gs": "jlpt"
           },
           {
-            "s": "びはきられていませんでした",
+            "s": "びはぶきで",
             "k": "plain"
           },
           {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "きれい",
-            "b": "きれい",
+            "s": "切ら",
             "k": "known",
-            "g": "pretty, clean, tidy",
+            "r": "きら",
+            "b": "切る",
+            "g": "to cut; to hang up (a phone)",
             "gs": "jlpt"
           },
           {
-            "s": "に",
+            "s": "れ",
+            "k": "ghost",
+            "b": "れる",
+            "g": "passive/honorific suffix",
+            "gs": "model"
+          },
+          {
+            "s": "た",
             "k": "plain"
           },
           {
-            "s": "わかれ",
-            "b": "わかれる",
+            "s": "あと",
             "k": "known",
-            "g": "to part from, to separate",
+            "b": "あと",
+            "g": "afterwards (later); in the future; the rest; since then",
             "gs": "jlpt"
           },
           {
-            "s": "て",
+            "s": "が",
             "k": "plain"
           },
           {
-            "s": "い",
-            "b": "いる",
+            "s": "あり",
             "k": "known",
-            "g": "(humble) to be (animate), to exist",
+            "b": "ある",
+            "g": "to be, to have",
             "gs": "jlpt"
           },
           {
-            "s": "まし",
+            "s": "ませ",
+            "k": "plain"
+          },
+          {
+            "s": "ん",
+            "k": "plain"
+          },
+          {
+            "s": "でし",
             "k": "plain"
           },
           {
@@ -311,17 +453,29 @@
       {
         "tokens": [
           {
-            "s": "おと",
-            "b": "おと",
+            "s": "切ら",
             "k": "known",
-            "g": "sound, note",
+            "r": "きら",
+            "b": "切る",
+            "g": "to cut; to hang up (a phone)",
             "gs": "jlpt"
           },
           {
-            "s": "しり",
-            "b": "しり",
+            "s": "れ",
             "k": "ghost",
-            "g": "buttocks, bottom",
+            "b": "れる",
+            "g": "passive/honorific suffix",
+            "gs": "model"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "ところ",
+            "k": "known",
+            "b": "ところ",
+            "g": "place",
             "gs": "jlpt"
           },
           {
@@ -329,10 +483,90 @@
             "k": "plain"
           },
           {
-            "s": "いい",
-            "b": "いう",
+            "s": "とても",
             "k": "known",
-            "g": "to say",
+            "b": "とても",
+            "g": "very (much), greatly, exceedingly",
+            "gs": "jlpt"
+          },
+          {
+            "s": "なめらか",
+            "k": "ghost",
+            "b": "なめらか",
+            "g": "smoothness, glassiness",
+            "gs": "jlpt"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "ろう",
+            "k": "ghost",
+            "b": "ろう",
+            "g": "wax/labor/old age",
+            "gs": "model"
+          },
+          {
+            "s": "じん",
+            "k": "known",
+            "b": "じん",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "その",
+            "k": "plain"
+          },
+          {
+            "s": "話",
+            "k": "known",
+            "r": "はなし",
+            "b": "話",
+            "g": "talk (chat), story",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "ほんとう",
+            "k": "known",
+            "b": "ほんとう",
+            "g": "real, true",
+            "gs": "jlpt"
+          },
+          {
+            "s": "だ",
+            "k": "plain"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "思い",
+            "k": "known",
+            "r": "おもい",
+            "b": "思う",
+            "g": "to think, to feel",
             "gs": "jlpt"
           },
           {
@@ -360,53 +594,27 @@
             "k": "plain"
           },
           {
-            "s": "ろくろくび",
+            "s": "ろくろ首",
             "r": "ろくろくび",
             "b": "ろくろ首",
             "k": "story",
-            "g": "a creature with a detached head"
+            "g": "a creature with a detached head",
+            "hk": true
           },
           {
-            "s": "です",
+            "s": "だ",
             "k": "plain"
           },
           {
-            "s": "。",
+            "s": "と",
             "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
+          },
           {
-            "s": "本",
-            "r": "ほん",
-            "b": "本",
+            "s": "思い",
             "k": "known",
-            "g": "book",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "書い",
-            "r": "かい",
-            "b": "書く",
-            "k": "known",
-            "g": "to write",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "あり",
-            "b": "ある",
-            "k": "known",
-            "g": "to be, to have",
+            "r": "おもい",
+            "b": "思う",
+            "g": "to think, to feel",
             "gs": "jlpt"
           },
           {
@@ -422,21 +630,40 @@
       {
         "tokens": [
           {
-            "s": "ろくろくび",
+            "s": "本に",
+            "k": "ghost",
+            "r": "ほんに",
+            "b": "本に",
+            "g": "in/to the book",
+            "gs": "model"
+          },
+          {
+            "s": "ろくろ首",
             "r": "ろくろくび",
             "b": "ろくろ首",
             "k": "story",
-            "g": "a creature with a detached head"
+            "g": "a creature with a detached head",
+            "hk": true
           },
           {
-            "s": "は",
-            "k": "plain"
+            "s": "のく",
+            "k": "ghost",
+            "b": "のく",
+            "g": "to leave/exit",
+            "gs": "model"
+          },
+          {
+            "s": "びには",
+            "k": "ghost",
+            "b": "びには",
+            "g": "as for beauty",
+            "gs": "model"
           },
           {
             "s": "赤い",
+            "k": "known",
             "r": "あかい",
             "b": "赤い",
-            "k": "known",
             "g": "red",
             "gs": "jlpt"
           },
@@ -453,9 +680,32 @@
             "k": "plain"
           },
           {
-            "s": "あり",
-            "b": "ある",
+            "s": "ある",
             "k": "known",
+            "b": "ある",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "書い",
+            "k": "known",
+            "r": "かい",
+            "b": "書く",
+            "g": "to write",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "あり",
+            "k": "known",
+            "b": "ある",
             "g": "to be, to have",
             "gs": "jlpt"
           },
@@ -476,56 +726,22 @@
             "k": "plain"
           },
           {
-            "s": "もじ",
-            "b": "もじる",
-            "k": "ghost",
-            "g": "letter (of alphabet), character",
-            "gs": "jlpt"
+            "s": "変化",
+            "r": "へんげ",
+            "b": "変化",
+            "k": "story",
+            "g": "shape-shifting spirit",
+            "hk": true
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "ほんとう",
-            "b": "ほんとう",
-            "k": "known",
-            "g": "real, true",
-            "gs": "jlpt"
-          },
-          {
-            "s": "だ",
-            "k": "plain"
-          },
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "思い",
-            "r": "おもい",
-            "b": "思う",
-            "k": "known",
-            "g": "to think, to feel",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ます",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
             "s": "山",
+            "k": "known",
             "r": "やま",
             "b": "山",
-            "k": "known",
             "g": "mountain",
             "gs": "jlpt"
           },
@@ -534,28 +750,10 @@
             "k": "plain"
           },
           {
-            "s": "かい",
-            "b": "かう",
-            "k": "known",
-            "g": "to buy",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ぶつ",
-            "b": "ぶつ",
-            "k": "ghost",
-            "g": "to hit, to strike",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
             "s": "住ん",
+            "k": "known",
             "r": "すん",
             "b": "住む",
-            "k": "known",
             "g": "to reside, to live in",
             "gs": "jlpt"
           },
@@ -564,9 +762,32 @@
             "k": "plain"
           },
           {
-            "s": "い",
-            "b": "いる",
+            "s": "いる",
             "k": "known",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "知っ",
+            "k": "known",
+            "r": "しっ",
+            "b": "知る",
+            "g": "to know, to understand",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "k": "known",
+            "b": "いる",
             "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
@@ -583,17 +804,17 @@
       {
         "tokens": [
           {
-            "s": "おと",
-            "b": "おと",
-            "k": "known",
-            "g": "sound, note",
-            "gs": "jlpt"
+            "s": "ろう",
+            "k": "ghost",
+            "b": "ろう",
+            "g": "wax/labor/old age",
+            "gs": "model"
           },
           {
-            "s": "しり",
-            "b": "しり",
-            "k": "ghost",
-            "g": "buttocks, bottom",
+            "s": "じん",
+            "k": "known",
+            "b": "じん",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
@@ -601,22 +822,48 @@
             "k": "plain"
           },
           {
-            "s": "囘龍",
-            "hk": true,
-            "r": "かいりゅう",
-            "b": "囘龍",
-            "k": "story",
-            "g": "Kairyu, the warrior's monk name"
+            "s": "そう",
+            "k": "known",
+            "b": "そう",
+            "g": "yes; appears, to be the case",
+            "gs": "jlpt"
           },
           {
-            "s": "を",
+            "s": "に",
             "k": "plain"
           },
           {
-            "s": "み",
-            "b": "みる",
+            "s": "ゆう",
+            "k": "ghost",
+            "b": "ゆう",
+            "g": "superiority, high grade",
+            "gs": "jlpt"
+          },
+          {
+            "s": "き",
+            "k": "plain"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "ある",
             "k": "known",
-            "g": "to see, to look",
+            "b": "ある",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "言い",
+            "k": "known",
+            "r": "いい",
+            "b": "言う",
+            "g": "to say",
             "gs": "jlpt"
           },
           {
@@ -644,17 +891,43 @@
             "k": "plain"
           },
           {
-            "s": "とても",
-            "b": "とても",
-            "k": "known",
-            "g": "very (much), greatly, exceedingly",
+            "s": "お",
+            "k": "plain"
+          },
+          {
+            "s": "ぼう",
+            "k": "ghost",
+            "b": "ぼう",
+            "g": "pole, rod, stick",
             "gs": "jlpt"
           },
           {
-            "s": "つよい",
-            "b": "つよい",
+            "s": "さん",
             "k": "known",
-            "g": "strong, powerful",
+            "b": "さん",
+            "g": "Mr. ~, Ms. ~",
+            "gs": "jlpt"
+          },
+          {
+            "s": "より",
+            "k": "plain"
+          },
+          {
+            "s": "ぶし",
+            "k": "ghost",
+            "b": "ぶす",
+            "g": "warrior, samurai",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "よう",
+            "k": "known",
+            "b": "よう",
+            "g": "errand, task, business (to take care of)",
             "gs": "jlpt"
           },
           {
@@ -670,59 +943,11 @@
       {
         "tokens": [
           {
-            "s": "お",
-            "k": "plain"
-          },
-          {
-            "s": "ぼう",
-            "b": "ぼう",
-            "k": "ghost",
-            "g": "pole, rod, stick",
-            "gs": "jlpt"
-          },
-          {
-            "s": "さん",
-            "b": "さん",
+            "s": "前",
             "k": "known",
-            "g": "Mr. ~, Ms. ~",
-            "gs": "jlpt"
-          },
-          {
-            "s": "で",
-            "k": "plain"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "あり",
-            "b": "ある",
-            "k": "known",
-            "g": "to be, to have",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ませ",
-            "k": "plain"
-          },
-          {
-            "s": "ん",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "むかし",
-            "b": "むかし",
-            "k": "known",
-            "g": "old days; past",
+            "r": "まえ",
+            "b": "前",
+            "g": "before, in front",
             "gs": "jlpt"
           },
           {
@@ -731,8 +956,8 @@
           },
           {
             "s": "ぶし",
-            "b": "ぶす",
             "k": "ghost",
+            "b": "ぶす",
             "g": "warrior, samurai",
             "gs": "jlpt"
           },
@@ -750,9 +975,9 @@
           },
           {
             "s": "思い",
+            "k": "known",
             "r": "おもい",
             "b": "思う",
-            "k": "known",
             "g": "to think, to feel",
             "gs": "jlpt"
           },
@@ -771,17 +996,17 @@
       "prompt": {
         "tokens": [
           {
-            "s": "おと",
-            "b": "おと",
-            "k": "known",
-            "g": "sound, note",
-            "gs": "jlpt"
+            "s": "ろう",
+            "k": "ghost",
+            "b": "ろう",
+            "g": "wax/labor/old age",
+            "gs": "model"
           },
           {
-            "s": "しり",
-            "b": "しり",
-            "k": "ghost",
-            "g": "buttocks, bottom",
+            "s": "じん",
+            "k": "known",
+            "b": "じん",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
@@ -794,8 +1019,8 @@
           },
           {
             "s": "く",
-            "b": "くい",
             "k": "known",
+            "b": "くい",
             "g": "nine",
             "gs": "jlpt"
           },
@@ -805,19 +1030,30 @@
           },
           {
             "s": "何",
-            "r": "なに",
+            "k": "plain",
+            "r": "なに"
+          },
+          {
+            "s": "が",
             "k": "plain"
           },
           {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "見つけ",
-            "r": "みつけ",
-            "b": "見つける",
+            "s": "ある",
             "k": "known",
-            "g": "to discover, to find (v.t.)",
+            "b": "ある",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "思い",
+            "k": "known",
+            "r": "おもい",
+            "b": "思う",
+            "g": "to think, to feel",
             "gs": "jlpt"
           },
           {
@@ -842,9 +1078,10 @@
         {
           "tokens": [
             {
-              "s": "あかい",
-              "b": "あかい",
+              "s": "赤い",
               "k": "known",
+              "r": "あかい",
+              "b": "赤い",
               "g": "red",
               "gs": "jlpt"
             },
@@ -861,10 +1098,11 @@
         {
           "tokens": [
             {
-              "s": "しろい",
-              "b": "しろい",
+              "s": "青い",
               "k": "known",
-              "g": "white",
+              "r": "あおい",
+              "b": "青い",
+              "g": "blue",
               "gs": "jlpt"
             },
             {
@@ -880,10 +1118,11 @@
         {
           "tokens": [
             {
-              "s": "あおい",
-              "b": "あおい",
+              "s": "白い",
               "k": "known",
-              "g": "blue",
+              "r": "しろい",
+              "b": "白い",
+              "g": "white",
               "gs": "jlpt"
             },
             {
@@ -900,32 +1139,237 @@
       "answer": 0
     },
     "metrics": {
-      "kanjiCoverage": 0.8181818181818182,
-      "kanjiDensity": 0.05045871559633028,
-      "firstCoverage": 0.7291666666666666,
-      "finalCoverage": 0.782608695652174,
-      "retries": 3,
-      "seconds": 31.57268909999996,
+      "kanjiCoverage": 1,
+      "kanjiDensity": 0.10344827586206896,
+      "firstCoverage": 0.6666666666666666,
+      "finalCoverage": 0.6923076923076923,
+      "retries": 9,
+      "seconds": 94.1008143,
       "offendingFirst": [
-        "しり",
-        "がち",
+        "老人",
+        "注意深い",
         "文字",
-        "友だち",
-        "分かれる",
-        "怪物",
-        "ぼう",
+        "他",
+        "武器",
+        "れる",
+        "滑らか",
+        "僧",
+        "本に",
+        "勇気",
+        "坊さん",
         "武士"
       ],
       "ghostWords": [
-        "しり",
-        "びをみました",
+        "のせる",
+        "かん",
+        "だく",
+        "びを",
+        "ろう",
         "いむ",
         "もじる",
-        "ぶつ",
+        "れる",
+        "なめらか",
+        "本に",
+        "のく",
+        "びには",
+        "ゆう",
         "ぼう",
         "ぶす"
+      ],
+      "faithIssues": [
+        {
+          "sentence": "この変化は山に住んでいると知っています。",
+          "problem": "The original specifies the location as 'Kai Province mountains' (甲斐の国の山中). Change to 'Kai Province mountains' or 'the mountains of that region'.",
+          "kind": "event"
+        }
       ]
     }
   },
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "ladderBuild": "P4b",
+  "ladderRetry": {
+    "before": {
+      "ladderOk": false,
+      "reasons": [
+        "advancedShare"
+      ],
+      "stats": {
+        "N5": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.0594059405940594,
+          "meanLength": 11.222222222222221,
+          "advancedShare": 0.1875
+        },
+        "N4": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.1125,
+          "meanLength": 17.142857142857142,
+          "advancedShare": 0.16981132075471697
+        },
+        "N3": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.20253164556962025,
+          "meanLength": 29.625,
+          "advancedShare": 0.421875
+        }
+      }
+    },
+    "feedback": "This N4 retelling must be harder than N5. N5 measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.0594059405940594,\"meanLength\":11.222222222222221,\"advancedShare\":0.1875}. Make kanji density and mean sentence length strictly larger, and N4+N3 vocabulary share at least as large than 0.1875. Use longer connected sentences and relevant N4 vocabulary, preserving the original meaning. Current ladder failures: advancedShare."
+  },
+  "levelRepairs": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n囘龍の背中からぬき取った衣にかみついている首は、裁判官達の前に置かれた。老人はそれを幾度も〓して、注意深くそれを調べた。そして頸の項にいくつかの妙な赤い記号らしいものを発見した。その点へ同僚の注意を促した。それから頸の一端がどこにも武器で斬られたらしい跡のない事を見せた。かえって落葉が軸から自然に離れたように、その頸の断面は滑らかであった。……そこで老人は云った、\n『僧の云った事は全く本当としか思われない。これはろくろ首だ。「南方異物志」に、本当のろくろ首の項の上には、いつでも一種の赤い文字が見られると書いてある。そこに文字がある。それはあとで書いたのではない事が分る。その上甲斐の国の山中にはよほど昔から、こんな怪物が住んでおる事はよく知られておる。……しかし』囘龍の方へ向いて、老人は叫んだ――『あなたは何と強勇なお坊さんでしょう。たしかにあなたは坊さんには珍らしい勇気を示しました。あなたは坊さんよりは、武士の風がありますな。たぶんあなたの前身は武士でしょう』\nCurrent retelling:\n囘龍のせなかの服にかんだくびを、人が見ました。\nろうじんはそのくびをちゅういぶかくしらべました。\nくびに赤いもじのようなものがあると思いました。\nろうじんはたの人にそのもじを見せました。\nくびはぶきで切られたあとがありませんでした。\n切られたところはとてもなめらかでした。\nろうじんはそうの話はほんとうだと思いました。\nこれはろくろ首だと思います。\n本に赤いもじがあるとき、ろくろ首です。\nこの変化は山に住んでいると知っています。\nろうじんはそうにゆうきがあると言いました。\nあなたはおぼうさんよりぶしのようです。\n前はぶしだったと思います。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.10038610038610038,\"meanLength\":19.923076923076923,\"advancedShare\":0.19047619047619047}; vocabulary 0.6984126984126984. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: のせる、かん、だく、びを、ろう、いむ、はた、もじる、れる、なめらか、本に、ゆう、ぼう、ぶす. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"囘龍のせなかの服にかんだくびを、人が見ました。\", \"ろうじんはそのくびを注意深くしらべました。\", \"くびに赤い文字のようなものがあると思いました。\", \"ろうじんはほかの人にその文字を見せました。\", \"くびは武器で切られたあとがありませんでした。\", \"切られたところはとてもなめらかでした。\", \"ろうじんはそうの話は本当だと思いました。\", \"これはろくろ首だと思います。\", \"本に赤い文字があるとき、ろくろ首です。\", \"この変化は山に住んでいると知っています。\", \"ろうじんはそうに勇気があると言いました。\", \"あなたはおぼうさんより武士のようです。\", \"前は武士だったと思います。\"], \"question\": {\"prompt\": \"ろうじんは、くびに何を見つけましたか。\", \"options\": [\"白い文字\", \"赤い文字\", \"黒い文字\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n囘龍の背中からぬき取った衣にかみついている首は、裁判官達の前に置かれた。老人はそれを幾度も〓して、注意深くそれを調べた。そして頸の項にいくつかの妙な赤い記号らしいものを発見した。その点へ同僚の注意を促した。それから頸の一端がどこにも武器で斬られたらしい跡のない事を見せた。かえって落葉が軸から自然に離れたように、その頸の断面は滑らかであった。……そこで老人は云った、\n『僧の云った事は全く本当としか思われない。これはろくろ首だ。「南方異物志」に、本当のろくろ首の項の上には、いつでも一種の赤い文字が見られると書いてある。そこに文字がある。それはあとで書いたのではない事が分る。その上甲斐の国の山中にはよほど昔から、こんな怪物が住んでおる事はよく知られておる。……しかし』囘龍の方へ向いて、老人は叫んだ――『あなたは何と強勇なお坊さんでしょう。たしかにあなたは坊さんには珍らしい勇気を示しました。あなたは坊さんよりは、武士の風がありますな。たぶんあなたの前身は武士でしょう』\nCurrent retelling:\n囘龍のせなかの服にかんだくびを、人が見ました。\nろうじんはそのくびをちゅういぶかくしらべました。\nくびに赤い文字のようなものがあると思いました。\nろうじんはほかの人にその文字を見せました。\nくびはぶきで切られたあとがありませんでした。\n切られたところはとてもなめらかでした。\nろうじんはそうの話はほんとうだと思いました。\nこれはろくろ首だと思います。\n本に赤い文字があるとき、ろくろ首です。\nこの変化は山に住んでいると知っています。\nろうじんはそうにゆうきがあると言いました。\nあなたはおぼうさんよりぶしのようです。\n前はぶしだったと思います。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.12307692307692308,\"meanLength\":20,\"advancedShare\":0.21875}; vocabulary 0.703125. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: のせる、かん、だく、びを、ろう、文字、れる、なめらか、本に、ゆう、ぼう、ぶす. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"囘龍のせなかの服に かんだ くびを 人が見ました。\", \"ろうじんは そのくびを ちゅういぶかく しらべました。\", \"くびに 赤い 文字のような ものがあると思いました。\", \"ろうじんは 他の人に その文字を見せました。\", \"くびは ぶきで 切られた あとが ありませんでした。\", \"切られたところは とても なめらかでした。\", \"ろうじんは その話は ほんとうだ と思いました。\", \"これは ろくろ首だ と思います。\", \"本に 赤い文字が あるとき、ろくろ首です。\", \"この 変化は 山に 住んでいると 知っています。\", \"ろうじんは そうに ゆうきが あると言いました。\", \"あなたはおぼうさんより ぶしのようです。\", \"前は ぶしだった と思います。\"], \"question\": {\"prompt\": \"ろうじんは、くびのどこに 赤い文字を 見つけましたか。\", \"options\": [\"顔に\", \"首の後ろに\", \"手に\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n囘龍の背中からぬき取った衣にかみついている首は、裁判官達の前に置かれた。老人はそれを幾度も〓して、注意深くそれを調べた。そして頸の項にいくつかの妙な赤い記号らしいものを発見した。その点へ同僚の注意を促した。それから頸の一端がどこにも武器で斬られたらしい跡のない事を見せた。かえって落葉が軸から自然に離れたように、その頸の断面は滑らかであった。……そこで老人は云った、\n『僧の云った事は全く本当としか思われない。これはろくろ首だ。「南方異物志」に、本当のろくろ首の項の上には、いつでも一種の赤い文字が見られると書いてある。そこに文字がある。それはあとで書いたのではない事が分る。その上甲斐の国の山中にはよほど昔から、こんな怪物が住んでおる事はよく知られておる。……しかし』囘龍の方へ向いて、老人は叫んだ――『あなたは何と強勇なお坊さんでしょう。たしかにあなたは坊さんには珍らしい勇気を示しました。あなたは坊さんよりは、武士の風がありますな。たぶんあなたの前身は武士でしょう』\nCurrent retelling:\n囘龍のせなかの服にかんだくびを人が見ました。\nろうじんはそのくびをちゅういぶかくしらべました。\nくびに赤い文字のようなものがあると思いました。\nろうじんはたの人にその文字を見せました。\nくびはぶきで切られたあとがありませんでした。\n切られたところはとてもなめらかでした。\nろうじんはその話はほんとうだと思いました。\nこれはろくろ首だと思います。\n本に赤い文字があるとき、ろくろ首です。\nこの変化は山に住んでいると知っています。\nろうじんはそうにゆうきがあると言いました。\nあなたはおぼうさんよりぶしのようです。\n前はぶしだったと思います。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.1245136186770428,\"meanLength\":19.76923076923077,\"advancedShare\":0.23809523809523808}; vocabulary 0.6825396825396826. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: のせる、かん、だく、びを、ろう、文字、はた、れる、なめらか、本に、ゆう、ぼう、ぶす. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"囘龍のせなかのふくにかんだくびを人が見ました。\", \"ろうじんはそのくびをちゅういぶかくしらべました。\", \"くびに赤いもじのようなものがあると思いました。\", \"ろうじんはほかの人にそのもじを見せました。\", \"くびはぶきできられたあとがありませんでした。\", \"きられたところはとてもなめらかでした。\", \"ろうじんはその話はほんとうだと思いました。\", \"これはろくろ首だと思います。\", \"もじがあるとき、ろくろ首だとうもいます。\", \"この変化は山に住んでいると知っています。\", \"ろうじんはそうにゆうきがあると言いました。\", \"あなたはおぼうさんよりぶしのようです。\", \"まえはぶしだったと思います。\"], \"question\": {\"prompt\": \"ろうじんは、くびのどこに赤いもじを見ましたか。\", \"options\": [\"せなかに\", \"もじに\", \"くびに\"], \"answer\": 2}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: びを、ろう、いむ、れる. Return JSON {\"glosses\":{\"びを\":\"English gloss\",\"ろう\":\"English gloss\",\"いむ\":\"English gloss\",\"れる\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"びを\": \"beauty (obj.)\", \"ろう\": \"wax/labor/old age\", \"いむ\": \"to fear/revere\", \"れる\": \"passive/potential auxiliary\"}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n囘龍の背中からぬき取った衣にかみついている首は、裁判官達の前に置かれた。老人はそれを幾度も〓して、注意深くそれを調べた。そして頸の項にいくつかの妙な赤い記号らしいものを発見した。その点へ同僚の注意を促した。それから頸の一端がどこにも武器で斬られたらしい跡のない事を見せた。かえって落葉が軸から自然に離れたように、その頸の断面は滑らかであった。……そこで老人は云った、\n『僧の云った事は全く本当としか思われない。これはろくろ首だ。「南方異物志」に、本当のろくろ首の項の上には、いつでも一種の赤い文字が見られると書いてある。そこに文字がある。それはあとで書いたのではない事が分る。その上甲斐の国の山中にはよほど昔から、こんな怪物が住んでおる事はよく知られておる。……しかし』囘龍の方へ向いて、老人は叫んだ――『あなたは何と強勇なお坊さんでしょう。たしかにあなたは坊さんには珍らしい勇気を示しました。あなたは坊さんよりは、武士の風がありますな。たぶんあなたの前身は武士でしょう』\nCurrent retelling:\n囘龍のせなかのふくにかんだくびを人が見ました。\nろうじんはそのくびをちゅういぶかくしらべました。\nくびに赤いもじのようなものがあると思いました。\nろうじんはほかの人にそのもじを見せました。\nくびはぶきできられたあとがありませんでした。\nきられたところはとてもなめらかでした。\nろうじんはその話はほんとうだと思いました。\nこれはろくろ首だと思います。\n「南方いぶつこころざし」という本に、ほんとうのろくろ首のくびには赤い文字があるときてあると言いました。\nこの変化は山に住んでいると知っています。\nろうじんはそうにゆうきがあると言いました。\nあなたはおぼうさんよりぶしのようです。\nまえはぶしだったと思います。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.09246575342465753,\"meanLength\":22.46153846153846,\"advancedShare\":0.1791044776119403}; vocabulary 0.6716417910447762. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: のせる、かん、だく、びを、ろう、いむ、もじる、れる、なめらか、南方、いぶ、こころざす、のく、びには、文字、ゆう、ぼう、ぶす. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"囘龍の背中の服に噛んだ首を人が見ました。\", \"老人はその首を注意深く調べました。\", \"首に赤い文字のようなものがあると思いました。\", \"老人は他の人にその文字を見せました。\", \"首は武器で切られた跡がありませんでした。\", \"切られたところはとてもなめらかでした。\", \"老人はその話は本当だと思いました。\", \"これはろくろ首だと思います。\", \"本にろくろ首の首には赤い文字があると書いてあります。\", \"この変化は山に住んでいると知っています。\", \"老人はそうに勇気があると言いました。\", \"あなたはお坊さんより武士のようです。\", \"前は武士だったと思います。\"], \"question\": {\"prompt\": \"老人は、首に何があると思いましたか。\", \"options\": [\"赤い文字\", \"白い花\", \"青い石\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n囘龍の背中からぬき取った衣にかみついている首は、裁判官達の前に置かれた。老人はそれを幾度も〓して、注意深くそれを調べた。そして頸の項にいくつかの妙な赤い記号らしいものを発見した。その点へ同僚の注意を促した。それから頸の一端がどこにも武器で斬られたらしい跡のない事を見せた。かえって落葉が軸から自然に離れたように、その頸の断面は滑らかであった。……そこで老人は云った、\n『僧の云った事は全く本当としか思われない。これはろくろ首だ。「南方異物志」に、本当のろくろ首の項の上には、いつでも一種の赤い文字が見られると書いてある。そこに文字がある。それはあとで書いたのではない事が分る。その上甲斐の国の山中にはよほど昔から、こんな怪物が住んでおる事はよく知られておる。……しかし』囘龍の方へ向いて、老人は叫んだ――『あなたは何と強勇なお坊さんでしょう。たしかにあなたは坊さんには珍らしい勇気を示しました。あなたは坊さんよりは、武士の風がありますな。たぶんあなたの前身は武士でしょう』\nCurrent retelling:\n囘龍のせなかの服にかんだくびを人が見ました。\nろうじんはそのくびをちゅういぶかくしらべました。\nくびに赤い文字のようなものがあると思いました。\nろうじんはたの人にその文字を見せました。\nくびはぶきで切られたあとがありませんでした。\n切られたところはとてもなめらかでした。\nろうじんはその話はほんとうだと思いました。\nこれはろくろ首だと思います。\n本にろくろ首のくびには赤い文字があると書いてあります。\nこの変化は山に住んでいると知っています。\nろうじんはそうにゆうきがあると言いました。\nあなたはおぼうさんよりぶしのようです。\n前はぶしだったと思います。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.12452830188679245,\"meanLength\":20.384615384615383,\"advancedShare\":0.22727272727272727}; vocabulary 0.6666666666666666. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: のせる、かん、だく、びを、ろう、文字、はた、れる、なめらか、本に、のく、びには、ゆう、ぼう、ぶす. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"囘龍のせなかの服にかんだくびを人が見ました。\", \"ろうじんはそのくびをちゅういぶかくしらべました。\", \"くびに赤いもじのようなものがあると思いました。\", \"ろうじんはほかの人にそのもじを見せました。\", \"くびはぶきで切られたあとがありませんでした。\", \"切られたところはとてもなめらかでした。\", \"ろうじんはその話はほんとうだと思いました。\", \"これはろくろ首だと思います。\", \"本にろくろ首のくびには赤いもじがあると書いてあります。\", \"この変化は山に住んでいると知っています。\", \"ろうじんはそうにゆうきがあると言いました。\", \"あなたはおぼうさんよりぶしのようです。\", \"前はぶしだったと思います。\"], \"question\": {\"prompt\": \"ろうじんは、くびに何があると思いましたか。\", \"options\": [\"赤いもじのようなもの\", \"白い花のようなもの\", \"黒い犬のようなもの\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n囘龍の背中からぬき取った衣にかみついている首は、裁判官達の前に置かれた。老人はそれを幾度も〓して、注意深くそれを調べた。そして頸の項にいくつかの妙な赤い記号らしいものを発見した。その点へ同僚の注意を促した。それから頸の一端がどこにも武器で斬られたらしい跡のない事を見せた。かえって落葉が軸から自然に離れたように、その頸の断面は滑らかであった。……そこで老人は云った、\n『僧の云った事は全く本当としか思われない。これはろくろ首だ。「南方異物志」に、本当のろくろ首の項の上には、いつでも一種の赤い文字が見られると書いてある。そこに文字がある。それはあとで書いたのではない事が分る。その上甲斐の国の山中にはよほど昔から、こんな怪物が住んでおる事はよく知られておる。……しかし』囘龍の方へ向いて、老人は叫んだ――『あなたは何と強勇なお坊さんでしょう。たしかにあなたは坊さんには珍らしい勇気を示しました。あなたは坊さんよりは、武士の風がありますな。たぶんあなたの前身は武士でしょう』\nCurrent retelling:\n囘龍のせなかの服にかんだくびを人が見ました。\nろうじんはそのくびをちゅういぶかくしらべました。\nくびに赤いもじのようなものがあると思いました。\nろうじんはほかの人にそのもじを見せました。\nくびはぶきで切られたあとがありませんでした。\n切られたところはとてもなめらかでした。\nろうじんはその話はほんとうだと思いました。\nこれはろくろ首だと思います。\n本にろくろ首のくびには赤いもじがあると書いてあります。\nこの変化は山に住んでいると知っています。\nろうじんはそうにゆうきがあると言いました。\nあなたはおぼうさんよりぶしのようです。\n前はぶしだったと思います。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.10150375939849623,\"meanLength\":20.46153846153846,\"advancedShare\":0.16923076923076924}; vocabulary 0.6923076923076923. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: のせる、かん、だく、びを、ろう、いむ、もじる、れる、なめらか、本に、のく、びには、ゆう、ぼう、ぶす. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"囘龍のせなかの服にかんだくびを人が見ました。\", \"ろうじんはそのくびをよくしらべました。\", \"くびに赤いもじのようなものがあると思いました。\", \"ろうじんはほかの人にそのもじを見せました。\", \"くびはぶきで切られたあとがありませんでした。\", \"切られたところはとてもなめらかでした。\", \"ろうじんはその話はほんとうだと思いました。\", \"これはろくろ首だと思います。\", \"本にろくろ首のくびには赤いもじがあると書いてあります。\", \"この変化は山に住んでいると知っています。\", \"ろうじんはそうにゆうきがあると言いました。\", \"あなたはおぼうさんよりぶしのようです。\", \"前はぶしだったと思います。\"], \"question\": {\"prompt\": \"ろうじんはくびに何を見つけましたか。\", \"options\": [\"赤いもじ\", \"白いはな\", \"青いいし\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: びを、ろう、いむ、れる、本に、のく、びには. Return JSON {\"glosses\":{\"びを\":\"English gloss\",\"ろう\":\"English gloss\",\"いむ\":\"English gloss\",\"れる\":\"English gloss\",\"本に\":\"English gloss\",\"のく\":\"English gloss\",\"びには\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"びを\": \"beauty (obj.)\", \"ろう\": \"wax/labor/old age\", \"いむ\": \"to fear/revere\", \"れる\": \"passive/honorific suffix\", \"本に\": \"in/to the book\", \"のく\": \"to leave/exit\", \"びには\": \"as for beauty\"}}"
+    }
+  ],
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n囘龍の背中からぬき取った衣にかみついている首は、裁判官達の前に置かれた。老人はそれを幾度も〓して、注意深くそれを調べた。そして頸の項にいくつかの妙な赤い記号らしいものを発見した。その点へ同僚の注意を促した。それから頸の一端がどこにも武器で斬られたらしい跡のない事を見せた。かえって落葉が軸から自然に離れたように、その頸の断面は滑らかであった。……そこで老人は云った、\n『僧の云った事は全く本当としか思われない。これはろくろ首だ。「南方異物志」に、本当のろくろ首の項の上には、いつでも一種の赤い文字が見られると書いてある。そこに文字がある。それはあとで書いたのではない事が分る。その上甲斐の国の山中にはよほど昔から、こんな怪物が住んでおる事はよく知られておる。……しかし』囘龍の方へ向いて、老人は叫んだ――『あなたは何と強勇なお坊さんでしょう。たしかにあなたは坊さんには珍らしい勇気を示しました。あなたは坊さんよりは、武士の風がありますな。たぶんあなたの前身は武士でしょう』\n\n語り直しの文（JSON配列。sentenceは必ずこの配列の文字列をそのままコピーする）:\n[\"囘龍のせなかのふくにかんだくびを人が見ました。\",\"ろうじんはそのくびをちゅういぶかくしらべました。\",\"くびに赤いもじのようなものがあると思いました。\",\"ろうじんはほかの人にそのもじを見せました。\",\"くびはぶきできられたあとがありませんでした。\",\"きられたところはとてもなめらかでした。\",\"ろうじんはその話はほんとうだと思いました。\",\"これはろくろ首だと思います。\",\"もじがあるとき、ろくろ首だとうもいます。\",\"この変化は山に住んでいると知っています。\",\"ろうじんはそうにゆうきがあると言いました。\",\"あなたはおぼうさんよりぶしのようです。\",\"まえはぶしだったと思います。\"]"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"もじがあるとき、ろくろ首だとうもいます。\", \"problem\": \"The original states that the 'Nanpo Ibutsu-shi' records that red characters are found on the necks of real Rokurokubi, not a general conditional statement; correction: 「南方異物志」に、本当のろくろ首の項の上には赤い文字が見られると書いてあると言いました。\", \"kind\": \"event\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n囘龍の背中からぬき取った衣にかみついている首は、裁判官達の前に置かれた。老人はそれを幾度も〓して、注意深くそれを調べた。そして頸の項にいくつかの妙な赤い記号らしいものを発見した。その点へ同僚の注意を促した。それから頸の一端がどこにも武器で斬られたらしい跡のない事を見せた。かえって落葉が軸から自然に離れたように、その頸の断面は滑らかであった。……そこで老人は云った、\n『僧の云った事は全く本当としか思われない。これはろくろ首だ。「南方異物志」に、本当のろくろ首の項の上には、いつでも一種の赤い文字が見られると書いてある。そこに文字がある。それはあとで書いたのではない事が分る。その上甲斐の国の山中にはよほど昔から、こんな怪物が住んでおる事はよく知られておる。……しかし』囘龍の方へ向いて、老人は叫んだ――『あなたは何と強勇なお坊さんでしょう。たしかにあなたは坊さんには珍らしい勇気を示しました。あなたは坊さんよりは、武士の風がありますな。たぶんあなたの前身は武士でしょう』\n\n語り直しの文（JSON配列。sentenceは必ずこの配列の文字列をそのままコピーする）:\n[\"囘龍のせなかの服にかんだくびを人が見ました。\",\"ろうじんはそのくびをよくしらべました。\",\"くびに赤いもじのようなものがあると思いました。\",\"ろうじんはほかの人にそのもじを見せました。\",\"くびはぶきで切られたあとがありませんでした。\",\"切られたところはとてもなめらかでした。\",\"ろうじんはその話はほんとうだと思いました。\",\"これはろくろ首だと思います。\",\"本にろくろ首のくびには赤いもじがあると書いてあります。\",\"この変化は山に住んでいると知っています。\",\"ろうじんはそうにゆうきがあると言いました。\",\"あなたはおぼうさんよりぶしのようです。\",\"前はぶしだったと思います。\"]"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"この変化は山に住んでいると知っています。\", \"problem\": \"The original specifies the location as 'Kai Province mountains' (甲斐の国の山中). Change to 'Kai Province mountains' or 'the mountains of that region'.\", \"kind\": \"event\"}]}"
+      }
+    ],
+    "rewrites": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Repair only the specified sentences at JLPT N4. Preserve all other sentences and events. Use natural Japanese, numeric digits for numbers, and maintain the meaning of the original. Return only JSON {\"rewrites\":[{\"index\":0,\"sentence\":\"...\"}]}."
+          },
+          {
+            "role": "user",
+            "content": "Original:\n囘龍の背中からぬき取った衣にかみついている首は、裁判官達の前に置かれた。老人はそれを幾度も〓して、注意深くそれを調べた。そして頸の項にいくつかの妙な赤い記号らしいものを発見した。その点へ同僚の注意を促した。それから頸の一端がどこにも武器で斬られたらしい跡のない事を見せた。かえって落葉が軸から自然に離れたように、その頸の断面は滑らかであった。……そこで老人は云った、\n『僧の云った事は全く本当としか思われない。これはろくろ首だ。「南方異物志」に、本当のろくろ首の項の上には、いつでも一種の赤い文字が見られると書いてある。そこに文字がある。それはあとで書いたのではない事が分る。その上甲斐の国の山中にはよほど昔から、こんな怪物が住んでおる事はよく知られておる。……しかし』囘龍の方へ向いて、老人は叫んだ――『あなたは何と強勇なお坊さんでしょう。たしかにあなたは坊さんには珍らしい勇気を示しました。あなたは坊さんよりは、武士の風がありますな。たぶんあなたの前身は武士でしょう』\nSentences:\n0: 囘龍のせなかのふくにかんだくびを人が見ました。\n1: ろうじんはそのくびをちゅういぶかくしらべました。\n2: くびに赤いもじのようなものがあると思いました。\n3: ろうじんはほかの人にそのもじを見せました。\n4: くびはぶきできられたあとがありませんでした。\n5: きられたところはとてもなめらかでした。\n6: ろうじんはその話はほんとうだと思いました。\n7: これはろくろ首だと思います。\n8: もじがあるとき、ろくろ首だとうもいます。\n9: この変化は山に住んでいると知っています。\n10: ろうじんはそうにゆうきがあると言いました。\n11: あなたはおぼうさんよりぶしのようです。\n12: まえはぶしだったと思います。\nIssues:\n[{\"sentence\":\"もじがあるとき、ろくろ首だとうもいます。\",\"problem\":\"The original states that the 'Nanpo Ibutsu-shi' records that red characters are found on the necks of real Rokurokubi, not a general conditional statement; correction: 「南方異物志」に、本当のろくろ首の項の上には赤い文字が見られると書いてあると言いました。\",\"kind\":\"event\"}]\nRewrite exactly indexes: 8"
+          }
+        ],
+        "response": "{\"rewrites\": [{\"index\": 8, \"sentence\": \"「南方異物志」という本に、本当のろくろ首のくびには赤い文字があるときてあると言いました。\"}]}"
+      }
+    ],
+    "before": [
+      {
+        "sentence": "もじがあるとき、ろくろ首だとうもいます。",
+        "problem": "The original states that the 'Nanpo Ibutsu-shi' records that red characters are found on the necks of real Rokurokubi, not a general conditional statement; correction: 「南方異物志」に、本当のろくろ首の項の上には赤い文字が見られると書いてあると言いました。",
+        "kind": "event"
+      }
+    ],
+    "after": [
+      {
+        "sentence": "この変化は山に住んでいると知っています。",
+        "problem": "The original specifies the location as 'Kai Province mountains' (甲斐の国の山中). Change to 'Kai Province mountains' or 'the mountains of that region'.",
+        "kind": "event"
+      }
+    ]
+  }
 }

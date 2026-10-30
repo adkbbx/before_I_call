@@ -9,7 +9,7 @@ export function writeReport() {
     for(const run of runs) if(run.request?.model) models.add(run.request.model);
     groups.set(`${provider.name} / ${level.name}`,runs);
   }
-  let md=`# Retelling metrics\n\nDate: ${new Date().toISOString().slice(0,10)}\n\nModels: ${[...models].join(', ')}\n\nCoverage counts known content tokens; story words are excluded. Failed scenes are excluded from coverage means. Seconds include all calls and retries.\n`;
+  let md=`# Retelling metrics\n\nDate: ${new Date().toISOString().slice(0,10)}\n\nModels: ${[...models].join(', ')}\n\nCoverage counts known content tokens; story words are excluded. Failed scenes are excluded from coverage means. Seconds are recorded pipeline timings; early P4b checkpoints measured the initial retell loop without the separate faithfulness and repair phases.\n`;
   for(const [name,runs] of groups) {
     const ok=runs.filter(r=>r.retelling),mean=key=>{
       const values=ok.map(r=>key==='ghostWords'?r.metrics.ghostWords.length:r.metrics[key]).filter(v=>typeof v==='number');

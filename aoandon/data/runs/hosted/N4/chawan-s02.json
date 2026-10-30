@@ -4,44 +4,42 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Adds ～とき, ～たら, ～ている, ～と思います, potential forms and ～ても. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 關内（かんない）、式部平内（しきぶへいない）、茶碗（ちゃわん）、侍（さむらい）. Copy every story word exactly in kanji when it is needed; do not insert unused words.\nWrite normal Japanese with no spaces between words. Outside story words, use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 關内（かんない）、式部平内（しきぶへいない）、茶碗（ちゃわん）、侍（さむらい）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: これからはなしをします。終わりがない話だと思います。書いた人が死んだかもしれません。それでも、おもしろいと思います。これから關内のはなしをします。そこに式部平内という女がいました。式部平内はとてもきれいでした。ある日、式部平内は茶碗を持っていました。そこへ一人の侍が来ました。侍は式部平内がすきでした。侍はいっしょにいたかったです。でも、式部平内はわらっていました。式部平内は侍を見ても何も言いません。侍はかなしくなりました。侍は茶碗を見ました。その茶碗はとても古かったです。侍は茶碗をさわろうとしました。そのとき、へんなことが起きました。茶碗がきゅうにきえました。侍はとてもおどろきました。侍が茶碗をさがしたら、だれもいません。式部平内もきえていました。侍は一人になりました。このはなしはここでおわっています。\n\n場面（原文）:\n天和四年一月一日――即ち今から二百二十年前――中川佐渡守が年始の〓礼に出かけて、江戸本郷、白山の茶店に一行とともに立寄った。一同休んでいる間に、家来の一人――關内と云う若党が余りに渇きを覚えたので、自分で大きな茶碗に茶を汲んだ。飲もうとする時、不意にその透明な黄色の茶のうちに、自分のでない顔の映っているのを認めた。びっくりしてあたりを見〓したが誰もいない。茶の中に映じた顔は髪恰好から見ると若い侍の顔らしかった、不思議にはっきりして、中々の好男子で、女の顔のようにやさしかった。それからそれが生きている人の顔である証拠には眼や唇は動いていた。この不思議なものが現れたのに当惑して、關内は茶を捨てて仔細に茶碗を改めてみた。それは何の模様もない安物の茶碗であった。關内は別の茶碗を取ってまた茶を汲んだ、また顔が映った。關内は新しい茶を命じて茶碗に入れると、――今度は嘲りの微笑をたたえて――もう一度、不思議な顔が現れた。しかし關内は驚かなかった。『何者だか知らないが、もうそんなものに迷わされはしない』とつぶやきながら――彼は顔も何も一呑みに茶を飲んで出かけた。自分ではなんだか幽霊を一つ呑み込んだような気もしないではなかった。"
+        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\n天和四年一月一日――即ち今から二百二十年前――中川佐渡守が年始の〓礼に出かけて、江戸本郷、白山の茶店に一行とともに立寄った。一同休んでいる間に、家来の一人――關内と云う若党が余りに渇きを覚えたので、自分で大きな茶碗に茶を汲んだ。飲もうとする時、不意にその透明な黄色の茶のうちに、自分のでない顔の映っているのを認めた。びっくりしてあたりを見〓したが誰もいない。茶の中に映じた顔は髪恰好から見ると若い侍の顔らしかった、不思議にはっきりして、中々の好男子で、女の顔のようにやさしかった。それからそれが生きている人の顔である証拠には眼や唇は動いていた。この不思議なものが現れたのに当惑して、關内は茶を捨てて仔細に茶碗を改めてみた。それは何の模様もない安物の茶碗であった。關内は別の茶碗を取ってまた茶を汲んだ、また顔が映った。關内は新しい茶を命じて茶碗に入れると、――今度は嘲りの微笑をたたえて――もう一度、不思議な顔が現れた。しかし關内は驚かなかった。『何者だか知らないが、もうそんなものに迷わされはしない』とつぶやきながら――彼は顔も何も一呑みに茶を飲んで出かけた。自分ではなんだか幽霊を一つ呑み込んだような気もしないではなかった。\n"
       }
     ]
   },
   "responses": [
-    "{\"sentencesにつながる\": [\"二百二十年まえのことです。\", \"あるひとたちがおちゃやにきました。\", \"關内というわかいひとがいました。\", \"關内はおちゃがのみたかったです。\", \"大きな茶碗におちゃをいれました。\", \"のもうとしたときです。\", \"おちゃにだれかのかおがありました。\", \"まわりをみてもだれもいません。\", \"それはわかい侍のかおでした。\", \"かおはうごいていました。\", \"關内はおちゃをすてました。\", \"でもまたかおがでてきました。\", \"別の茶碗をつかっても同じです。\", \"いま度はかおがわらっていました。\", \"でも關内はおどろきませんでした。\", \"關内はおちゃをのみました。\", \"かおもいっしょにのみました。\", \"ゆうれいをのんだと思います。\"], \"question\": {\"prompt\": \"關内はおちゃのなかになにをみましたか。\", \"options\": [\"侍のかお\", \"女のかお\", \"おちゃのしずく\"], \"answer\": 0}}",
-    "{\"sentences\": [\"二百二十年まえのことです。\", \"あるひとたちが おちゃやに きました。\", \"關内という わかいひとが いました。\", \"關内は おちゃが のみたかったです。\", \"大きな茶碗に おちゃを いれました。\", \"のもうとしたときです。\", \"おちゃに だれかの かおが ありました。\", \"まわりを みても だれも いません。\", \"それは わかい侍の かおでした。\", \"かおは うごいて いました。\", \"關内は おちゃを すてました。\", \"でも また かおが でてきました。\", \"別の茶碗を つかっても 同じです。\", \"いま度は かおが わらっていました。\", \"でも 關内は おどろきませんでした。\", \"關内は おちゃを のみました。\", \"かおも いっしょに のみました。\", \"ゆうれいを のんだと 思います。\"], \"question\": {\"prompt\": \"關内は おちゃのなかに なにを みましたか。\", \"options\": [\"侍のかお\", \"女のかお\", \"おちゃのしずく\"], \"answer\": 0}}",
-    "{\"rewrites\": [{\"index\": 1, \"sentence\": \"あるひとたちがみせにきました。\"}, {\"index\": 2, \"sentence\": \"關内というわかいひとがいました。\"}, {\"index\": 3, \"sentence\": \"關内はおちゃがのみたかったです。\"}, {\"index\": 4, \"sentence\": \"大きな茶碗におちゃをいれました。\"}, {\"index\": 6, \"sentence\": \"おちゃにだれかのかおがありました。\"}, {\"index\": 8, \"sentence\": \"それはわかい侍のかおでした。\"}, {\"index\": 10, \"sentence\": \"關内はおちゃをすてました。\"}, {\"index\": 12, \"sentence\": \"別の茶碗をつかっても同じです。\"}, {\"index\": 14, \"sentence\": \"でも關内はおどろきませんでした。\"}, {\"index\": 15, \"sentence\": \"關内はおちゃをのみました。\"}, {\"index\": 17, \"sentence\": \"ゆうれいをのんだとおもいます。\"}]}",
-    "{\"rewrites\": [{\"index\": 2, \"sentence\": \"關内というわかいひとがいました。\"}, {\"index\": 3, \"sentence\": \"關内はおちゃがのみたかったです。\"}, {\"index\": 4, \"sentence\": \"大きな茶碗におちゃをいれました。\"}, {\"index\": 6, \"sentence\": \"おちゃにだれかのかおがありました。\"}, {\"index\": 8, \"sentence\": \"それはわかい侍のかおでした。\"}, {\"index\": 10, \"sentence\": \"關内はおちゃをすてました。\"}, {\"index\": 12, \"sentence\": \"別の茶碗をつかっても同じです。\"}, {\"index\": 14, \"sentence\": \"でも關内はおどろきませんでした。\"}, {\"index\": 15, \"sentence\": \"關内はおちゃをのみました。\"}, {\"index\": 17, \"sentence\": \"ゆうれいをのんだとおもいます。\"}]}",
-    "{\"rewrites\": [{\"index\": 2, \"sentence\": \"關内というわかいひとがいました。\"}, {\"index\": 3, \"sentence\": \"關内はおちゃがのみたかったです。\"}, {\"index\": 4, \"sentence\": \"大きな茶碗におちゃをいれました。\"}, {\"index\": 6, \"sentence\": \"おちゃにだれかのかおがありました。\"}, {\"index\": 8, \"sentence\": \"それはわかい侍のかおでした。\"}, {\"index\": 10, \"sentence\": \"關内はおちゃをすてました。\"}, {\"index\": 12, \"sentence\": \"別の茶碗をつかってもおなじです。\"}, {\"index\": 14, \"sentence\": \"でも關内はおどろきませんでした。\"}, {\"index\": 15, \"sentence\": \"關内はおちゃをのみました。\"}, {\"index\": 17, \"sentence\": \"ゆうれいをのんだとおもいます。\"}]}",
-    "{\"question\": {\"prompt\": \"かんないは、のみもののなかになにをみましたか。\", \"options\": [\"さむらいのかお\", \"おんなのかお\", \"みずのしずく\"], \"answer\": 0}}",
-    "{\"glosses\": {\"ゃにだれかのかおがありました\": \"someone's face was in it\", \"ん\": \"nasal sound\", \"のみ\": \"drinking\"}}"
+    "{\"sentences pectin-free-dummy-property-to-avoid-trimming-if-needed\": [], \"sentences\": [\"220年前、侍たちが店へ行きました。\", \"關内という人はとても喉が渇きました。\", \"彼は大きな茶碗に茶を入れました。\", \"飲もうとしたとき、顔が見えました。\", \"それは自分の顔ではありませんでした。\", \"若い侍の顔で、とてもきれいでした。\", \"目は動いていました。生きていました。\", \"關内は茶を捨てて、茶碗を見ました。\", \"ただの安い茶碗だと思いました。\", \"別の茶碗に茶を入れたら、また出ました。\", \"今度は顔が笑っていました。\", \"關内はもう驚きませんでした。\", \"彼はそのまま茶を全部飲みました。\", \"幽霊を飲んだと思います。\"], \"question\": {\"prompt\": \"關内は茶碗の中で何を見ましたか。\", \"options\": [\"自分の顔\", \"若い侍の顔\", \"安い茶碗\"], \"answer\": 1}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"220年前、侍たちが店へ行きました。\"}, {\"index\": 1, \"sentence\": \"關内という人はのどがかわきました。\"}, {\"index\": 2, \"sentence\": \"かれは大きな茶碗に茶を入れました。\"}, {\"index\": 3, \"sentence\": \"飲もうとしたとき、かおが見えました。\"}, {\"index\": 4, \"sentence\": \"それはじぶんのかおではありません。\"}, {\"index\": 5, \"sentence\": \"わかい侍のかおで、きれいでした。\"}, {\"index\": 6, \"sentence\": \"目は動いていました。\"}, {\"index\": 7, \"sentence\": \"生きていました。\"}, {\"index\": 8, \"sentence\": \"關内は茶をすてて、茶碗を見ました。\"}, {\"index\": 9, \"sentence\": \"安い茶碗だと思いました。\"}, {\"index\": 10, \"sentence\": \"別の茶碗に茶を入れたら、また出ました。\"}, {\"index\": 11, \"sentence\": \"今度はかおがわらっていました。\"}, {\"index\": 12, \"sentence\": \"關内はもうおどろきませんでした。\"}, {\"index\": 13, \"sentence\": \"かれは茶をぜんぶ飲みました。\"}, {\"index\": 14, \"sentence\": \"ゆうれいを飲んだと思います。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"220年前、侍たちが店へ行きました。\"}, {\"index\": 1, \"sentence\": \"關内という人はのどがかわきました。\"}, {\"index\": 2, \"sentence\": \"かれは大きな茶碗にちゃを入れました。\"}, {\"index\": 3, \"sentence\": \"飲もうとしたとき、かおが見えました。\"}, {\"index\": 4, \"sentence\": \"それはじぶんのかおではありません。\"}, {\"index\": 5, \"sentence\": \"わかい侍のかおで、きれいでした。\"}, {\"index\": 6, \"sentence\": \"目はうごいていました。\"}, {\"index\": 7, \"sentence\": \"いきていました。\"}, {\"index\": 8, \"sentence\": \"關内はちゃをすてて、茶碗を見ました。\"}, {\"index\": 9, \"sentence\": \"安い茶碗だと思いました。\"}, {\"index\": 10, \"sentence\": \"別の茶碗にちゃを入れたら、また出ました。\"}, {\"index\": 11, \"sentence\": \"今度はかおがわらっていました。\"}, {\"index\": 12, \"sentence\": \"關内はもうおどろきませんでした。\"}, {\"index\": 13, \"sentence\": \"かれはちゃをぜんぶ飲みました。\"}, {\"index\": 14, \"sentence\": \"ゆうれいを飲んだと思います。\"}]}",
+    "{\"rewrites\": [{\"index\": 2, \"sentence\": \"かれは大きな茶碗に茶を入れました。\"}, {\"index\": 4, \"sentence\": \"それはじぶんのかおではありません。\"}, {\"index\": 8, \"sentence\": \"關内は茶をすてて、茶碗を見ました。\"}, {\"index\": 10, \"sentence\": \"別の茶碗に茶を入れたら、また出ました。\"}, {\"index\": 13, \"sentence\": \"かれは茶をぜんぶ飲みました。\"}, {\"index\": 14, \"sentence\": \"ゆうれいを飲んだと思います。\"}]}",
+    "{\"question\": {\"prompt\": \"かんないさんはちゃわんの中でなにを見ましたか。\", \"options\": [\"じぶんのかお\", \"わかいさむらいのかお\", \"安いちゃわん\"], \"answer\": 1}}"
   ],
   "metrics": {
-    "kanjiCoverage": 0.43478260869565216,
-    "kanjiDensity": 0.08778625954198473,
-    "firstCoverage": 0.8367346938775511,
-    "finalCoverage": 0.86,
-    "retries": 3,
-    "seconds": 48.63737600000002,
+    "kanjiCoverage": 1,
+    "kanjiDensity": 0.18025751072961374,
+    "firstCoverage": 0.8431372549019608,
+    "finalCoverage": 0.8653846153846154,
+    "retries": 6,
+    "seconds": 30.0497917,
     "offendingFirst": [
-      "ちゃ",
-      "ゃにだれかのかおがありました",
-      "ゆう",
-      "ん"
+      "渇く",
+      "茶",
+      "ただ",
+      "そのまま",
+      "幽霊"
     ],
     "ghostWords": [
-      "ちゃ",
-      "ゃにだれかのかおがありました",
-      "ゆう",
-      "ん",
-      "のみ",
-      "しずく"
-    ]
+      "茶",
+      "はじ",
+      "ぶん",
+      "ゆう"
+    ],
+    "faithIssues": []
   },
   "retelling": {
     "level": "N4",
@@ -51,78 +49,41 @@
       {
         "tokens": [
           {
-            "s": "二",
-            "r": "に",
-            "k": "plain"
-          },
-          {
-            "s": "百",
-            "r": "ひゃく",
-            "k": "plain"
-          },
-          {
-            "s": "二",
-            "r": "に",
-            "k": "plain"
-          },
-          {
-            "s": "十",
-            "r": "じゅう",
+            "s": "220",
             "k": "plain"
           },
           {
             "s": "年",
+            "k": "known",
             "r": "ねん",
             "b": "年",
-            "k": "known",
             "g": "year, age",
             "gs": "jlpt"
           },
           {
-            "s": "まえ",
-            "b": "まえる",
+            "s": "前",
             "k": "known",
+            "r": "まえ",
+            "b": "前",
             "g": "before, in front",
             "gs": "jlpt"
           },
           {
-            "s": "の",
+            "s": "、",
             "k": "plain"
           },
           {
-            "s": "こと",
-            "b": "こと",
-            "k": "known",
-            "g": "thing(s), matter(s), fact",
-            "gs": "jlpt"
-          },
-          {
-            "s": "です",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "ある",
-            "k": "plain"
-          },
-          {
-            "s": "ひと",
-            "b": "ひと",
-            "k": "known",
-            "g": "man, person",
-            "gs": "jlpt"
+            "s": "侍",
+            "r": "さむらい",
+            "b": "侍",
+            "k": "story",
+            "g": "samurai",
+            "hk": true
           },
           {
             "s": "たち",
-            "b": "たち",
             "k": "known",
+            "b": "たち",
             "g": "plural suffix",
             "gs": "jlpt"
           },
@@ -131,21 +92,23 @@
             "k": "plain"
           },
           {
-            "s": "みせ",
-            "b": "みせる",
+            "s": "店",
             "k": "known",
-            "g": "to show, to display",
+            "r": "みせ",
+            "b": "店",
+            "g": "store, shop",
             "gs": "jlpt"
           },
           {
-            "s": "に",
+            "s": "へ",
             "k": "plain"
           },
           {
-            "s": "き",
-            "b": "くる",
+            "s": "行き",
             "k": "known",
-            "g": "to come",
+            "r": "いき",
+            "b": "行く",
+            "g": "to go",
             "gs": "jlpt"
           },
           {
@@ -166,28 +129,33 @@
         "tokens": [
           {
             "s": "關内",
-            "hk": true,
             "r": "かんない",
             "b": "關内",
             "k": "story",
-            "g": "Kannai, a retainer"
+            "g": "Kannai, a retainer",
+            "hk": true
           },
           {
             "s": "という",
             "k": "plain"
           },
           {
-            "s": "わかい",
-            "b": "わかい",
+            "s": "人",
             "k": "known",
-            "g": "young",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
-            "s": "ひと",
-            "b": "ひと",
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "のど",
             "k": "known",
-            "g": "man, person",
+            "b": "のど",
+            "g": "throat",
             "gs": "jlpt"
           },
           {
@@ -195,10 +163,10 @@
             "k": "plain"
           },
           {
-            "s": "い",
-            "b": "いる",
+            "s": "かわき",
             "k": "known",
-            "g": "(humble) to be (animate), to exist",
+            "b": "かわく",
+            "g": "to get dry",
             "gs": "jlpt"
           },
           {
@@ -218,84 +186,38 @@
       {
         "tokens": [
           {
-            "s": "關内",
-            "hk": true,
-            "r": "かんない",
-            "b": "關内",
-            "k": "story",
-            "g": "Kannai, a retainer"
+            "s": "かれ",
+            "k": "known",
+            "b": "かれる",
+            "g": "to wither, to die (plant), to be blasted (plant)",
+            "gs": "jlpt"
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "お",
-            "k": "plain"
-          },
-          {
-            "s": "ちゃ",
-            "b": "ちゃ",
-            "k": "ghost",
-            "g": "tea",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "のみ",
-            "b": "のむ",
-            "k": "known",
-            "g": "to drink",
-            "gs": "jlpt"
-          },
-          {
-            "s": "たかっ",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "です",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
             "s": "大きな",
-            "r": "おおきな",
-            "k": "plain"
+            "k": "plain",
+            "r": "おおきな"
           },
           {
             "s": "茶碗",
-            "hk": true,
             "r": "ちゃわん",
             "b": "茶碗",
             "k": "story",
-            "g": "tea bowl"
+            "g": "tea bowl",
+            "hk": true
           },
           {
             "s": "に",
             "k": "plain"
           },
           {
-            "s": "お",
-            "k": "plain"
-          },
-          {
-            "s": "ちゃ",
-            "b": "ちゃ",
+            "s": "茶",
             "k": "ghost",
+            "r": "ちゃ",
+            "b": "茶",
             "g": "tea",
             "gs": "jlpt"
           },
@@ -304,9 +226,10 @@
             "k": "plain"
           },
           {
-            "s": "いれ",
-            "b": "いれる",
+            "s": "入れ",
             "k": "known",
+            "r": "いれ",
+            "b": "入れる",
             "g": "to put in",
             "gs": "jlpt"
           },
@@ -327,9 +250,10 @@
       {
         "tokens": [
           {
-            "s": "のも",
-            "b": "のむ",
+            "s": "飲も",
             "k": "known",
+            "r": "のも",
+            "b": "飲む",
             "g": "to drink",
             "gs": "jlpt"
           },
@@ -343,8 +267,8 @@
           },
           {
             "s": "し",
-            "b": "する",
             "k": "known",
+            "b": "する",
             "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
             "gs": "jlpt"
           },
@@ -354,13 +278,40 @@
           },
           {
             "s": "とき",
-            "b": "とき",
             "k": "known",
+            "b": "とき",
             "g": "at the time of ~",
             "gs": "jlpt"
           },
           {
-            "s": "です",
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "かお",
+            "k": "known",
+            "b": "かお",
+            "g": "face (body part)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "見え",
+            "k": "known",
+            "r": "みえ",
+            "b": "見える",
+            "g": "to be visible; -- polite verb meaning 来る (くる) --",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
             "k": "plain"
           },
           {
@@ -372,66 +323,51 @@
       {
         "tokens": [
           {
-            "s": "おち",
-            "b": "おちる",
-            "k": "known",
-            "g": "to fall, to drop",
-            "gs": "jlpt"
+            "s": "それ",
+            "k": "plain"
           },
           {
-            "s": "ゃにだれかのかおがありました",
-            "b": "ゃにだれかのかおがありました",
+            "s": "はじ",
             "k": "ghost",
-            "g": "someone's face was in it",
-            "gs": "model"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "まわり",
-            "b": "まわり",
-            "k": "known",
-            "g": "surroundings",
+            "b": "はじ",
+            "g": "shame, embarrassment",
             "gs": "jlpt"
           },
           {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "み",
-            "b": "みる",
-            "k": "known",
-            "g": "to see, to look",
+            "s": "ぶん",
+            "k": "ghost",
+            "b": "ぶん",
+            "g": "dividing, part, segment",
             "gs": "jlpt"
           },
           {
-            "s": "て",
+            "s": "の",
             "k": "plain"
           },
           {
-            "s": "も",
+            "s": "な",
             "k": "plain"
           },
           {
-            "s": "だれ",
-            "k": "plain"
-          },
-          {
-            "s": "も",
-            "k": "plain"
-          },
-          {
-            "s": "い",
-            "b": "いる",
+            "s": "かお",
             "k": "known",
-            "g": "(humble) to be (animate), to exist",
+            "b": "かお",
+            "g": "face (body part)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "で",
+            "k": "plain"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "あり",
+            "k": "known",
+            "b": "ある",
+            "g": "to be, to have",
             "gs": "jlpt"
           },
           {
@@ -451,27 +387,19 @@
       {
         "tokens": [
           {
-            "s": "それ",
-            "k": "plain"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
             "s": "わかい",
-            "b": "わかい",
             "k": "known",
+            "b": "わかい",
             "g": "young",
             "gs": "jlpt"
           },
           {
             "s": "侍",
-            "hk": true,
             "r": "さむらい",
             "b": "侍",
             "k": "story",
-            "g": "samurai"
+            "g": "samurai",
+            "hk": true
           },
           {
             "s": "の",
@@ -479,9 +407,24 @@
           },
           {
             "s": "かお",
-            "b": "かお",
             "k": "known",
+            "b": "かお",
             "g": "face (body part)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "で",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "きれい",
+            "k": "known",
+            "b": "きれい",
+            "g": "pretty, clean, tidy",
             "gs": "jlpt"
           },
           {
@@ -501,10 +444,11 @@
       {
         "tokens": [
           {
-            "s": "かお",
-            "b": "かお",
+            "s": "目",
             "k": "known",
-            "g": "face (body part)",
+            "r": "め",
+            "b": "目",
+            "g": "eye(s)",
             "gs": "jlpt"
           },
           {
@@ -513,8 +457,8 @@
           },
           {
             "s": "うごい",
-            "b": "うごく",
             "k": "known",
+            "b": "うごく",
             "g": "to move",
             "gs": "jlpt"
           },
@@ -524,8 +468,8 @@
           },
           {
             "s": "い",
-            "b": "いる",
             "k": "known",
+            "b": "いる",
             "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
@@ -546,25 +490,68 @@
       {
         "tokens": [
           {
+            "s": "いき",
+            "k": "known",
+            "b": "いきる",
+            "g": "to live",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "k": "known",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "思い",
+            "k": "known",
+            "r": "おもい",
+            "b": "思う",
+            "g": "to think, to feel",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
             "s": "關内",
-            "hk": true,
             "r": "かんない",
             "b": "關内",
             "k": "story",
-            "g": "Kannai, a retainer"
+            "g": "Kannai, a retainer",
+            "hk": true
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "お",
-            "k": "plain"
-          },
-          {
-            "s": "ちゃ",
-            "b": "ちゃ",
+            "s": "茶",
             "k": "ghost",
+            "r": "ちゃ",
+            "b": "茶",
             "g": "tea",
             "gs": "jlpt"
           },
@@ -574,9 +561,37 @@
           },
           {
             "s": "すて",
-            "b": "すてる",
             "k": "known",
+            "b": "すてる",
             "g": "throw away (trash), dump, discard",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "茶碗",
+            "r": "ちゃわん",
+            "b": "茶碗",
+            "k": "story",
+            "g": "tea bowl",
+            "hk": true
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "見",
+            "k": "known",
+            "r": "み",
+            "b": "見る",
+            "g": "to see, to look",
             "gs": "jlpt"
           },
           {
@@ -596,40 +611,35 @@
       {
         "tokens": [
           {
-            "s": "でも",
-            "k": "plain"
-          },
-          {
-            "s": "また",
-            "k": "plain"
-          },
-          {
-            "s": "かお",
-            "b": "かお",
+            "s": "安い",
             "k": "known",
-            "g": "face (body part)",
+            "r": "やすい",
+            "b": "安い",
+            "g": "inexpensive; cheap (things)",
             "gs": "jlpt"
           },
           {
-            "s": "が",
+            "s": "茶碗",
+            "r": "ちゃわん",
+            "b": "茶碗",
+            "k": "story",
+            "g": "tea bowl",
+            "hk": true
+          },
+          {
+            "s": "だ",
             "k": "plain"
           },
           {
-            "s": "で",
-            "b": "でる",
-            "k": "known",
-            "g": "to appear, to leave",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
+            "s": "と",
             "k": "plain"
           },
           {
-            "s": "き",
-            "b": "くる",
+            "s": "思い",
             "k": "known",
-            "g": "to come",
+            "r": "おもい",
+            "b": "思う",
+            "g": "to think, to feel",
             "gs": "jlpt"
           },
           {
@@ -650,9 +660,9 @@
         "tokens": [
           {
             "s": "別",
+            "k": "known",
             "r": "べつ",
             "b": "別",
-            "k": "known",
             "g": "distinction, different",
             "gs": "jlpt"
           },
@@ -662,40 +672,62 @@
           },
           {
             "s": "茶碗",
-            "hk": true,
             "r": "ちゃわん",
             "b": "茶碗",
             "k": "story",
-            "g": "tea bowl"
+            "g": "tea bowl",
+            "hk": true
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "茶",
+            "k": "ghost",
+            "r": "ちゃ",
+            "b": "茶",
+            "g": "tea",
+            "gs": "jlpt"
           },
           {
             "s": "を",
             "k": "plain"
           },
           {
-            "s": "つかっ",
-            "b": "つかう",
+            "s": "入れ",
             "k": "known",
-            "g": "to use",
+            "r": "いれ",
+            "b": "入れる",
+            "g": "to put in",
             "gs": "jlpt"
           },
           {
-            "s": "て",
+            "s": "たら",
             "k": "plain"
           },
           {
-            "s": "も",
+            "s": "、",
             "k": "plain"
           },
           {
-            "s": "おなじ",
-            "b": "おなじ",
+            "s": "また",
+            "k": "plain"
+          },
+          {
+            "s": "出",
             "k": "known",
-            "g": "same, identical",
+            "r": "で",
+            "b": "出る",
+            "g": "to appear, to leave",
             "gs": "jlpt"
           },
           {
-            "s": "です",
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
             "k": "plain"
           },
           {
@@ -707,18 +739,11 @@
       {
         "tokens": [
           {
-            "s": "いま",
-            "b": "いま",
+            "s": "今度",
             "k": "known",
-            "g": "now",
-            "gs": "jlpt"
-          },
-          {
-            "s": "度",
-            "r": "ど",
-            "b": "度",
-            "k": "known",
-            "g": "counter for occurrences; ~ degree; ~ point",
+            "r": "こんど",
+            "b": "今度",
+            "g": "now, this time, near future, one of these days, next time",
             "gs": "jlpt"
           },
           {
@@ -727,8 +752,8 @@
           },
           {
             "s": "かお",
-            "b": "かお",
             "k": "known",
+            "b": "かお",
             "g": "face (body part)",
             "gs": "jlpt"
           },
@@ -738,8 +763,8 @@
           },
           {
             "s": "わらっ",
-            "b": "わらう",
             "k": "known",
+            "b": "わらう",
             "g": "to laugh, to smile",
             "gs": "jlpt"
           },
@@ -749,8 +774,8 @@
           },
           {
             "s": "い",
-            "b": "いる",
             "k": "known",
+            "b": "いる",
             "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
@@ -771,25 +796,28 @@
       {
         "tokens": [
           {
-            "s": "でも",
-            "k": "plain"
-          },
-          {
             "s": "關内",
-            "hk": true,
             "r": "かんない",
             "b": "關内",
             "k": "story",
-            "g": "Kannai, a retainer"
+            "g": "Kannai, a retainer",
+            "hk": true
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "おどろき",
-            "b": "おどろく",
+            "s": "もう",
             "k": "known",
+            "b": "もう",
+            "g": "already; again; more",
+            "gs": "jlpt"
+          },
+          {
+            "s": "おどろき",
+            "k": "known",
+            "b": "おどろく",
             "g": "to be surprised, to be astonished",
             "gs": "jlpt"
           },
@@ -818,25 +846,21 @@
       {
         "tokens": [
           {
-            "s": "關内",
-            "hk": true,
-            "r": "かんない",
-            "b": "關内",
-            "k": "story",
-            "g": "Kannai, a retainer"
+            "s": "かれ",
+            "k": "known",
+            "b": "かれる",
+            "g": "to wither, to die (plant), to be blasted (plant)",
+            "gs": "jlpt"
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "お",
-            "k": "plain"
-          },
-          {
-            "s": "ちゃ",
-            "b": "ちゃ",
+            "s": "茶",
             "k": "ghost",
+            "r": "ちゃ",
+            "b": "茶",
             "g": "tea",
             "gs": "jlpt"
           },
@@ -845,54 +869,17 @@
             "k": "plain"
           },
           {
-            "s": "のみ",
-            "b": "のむ",
+            "s": "ぜんぶ",
             "k": "known",
-            "g": "to drink",
+            "b": "ぜんぶ",
+            "g": "all, entire, whole",
             "gs": "jlpt"
           },
           {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "かお",
-            "b": "かお",
+            "s": "飲み",
             "k": "known",
-            "g": "face (body part)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "も",
-            "k": "plain"
-          },
-          {
-            "s": "いっしょ",
-            "b": "いっしょ",
-            "k": "known",
-            "g": "together",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "のみ",
-            "b": "のむ",
-            "k": "known",
+            "r": "のみ",
+            "b": "飲む",
             "g": "to drink",
             "gs": "jlpt"
           },
@@ -914,15 +901,15 @@
         "tokens": [
           {
             "s": "ゆう",
-            "b": "ゆう",
             "k": "ghost",
+            "b": "ゆう",
             "g": "superiority, high grade",
             "gs": "jlpt"
           },
           {
             "s": "れい",
-            "b": "れい",
             "k": "known",
+            "b": "れい",
             "g": "zero, nought",
             "gs": "jlpt"
           },
@@ -931,15 +918,12 @@
             "k": "plain"
           },
           {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "ん",
-            "b": "ん",
-            "k": "ghost",
-            "g": "nasal sound",
-            "gs": "model"
+            "s": "飲ん",
+            "k": "known",
+            "r": "のん",
+            "b": "飲む",
+            "g": "to drink",
+            "gs": "jlpt"
           },
           {
             "s": "だ",
@@ -950,9 +934,10 @@
             "k": "plain"
           },
           {
-            "s": "おもい",
-            "b": "おもう",
+            "s": "思い",
             "k": "known",
+            "r": "おもい",
+            "b": "思う",
             "g": "to think, to feel",
             "gs": "jlpt"
           },
@@ -971,47 +956,46 @@
       "prompt": {
         "tokens": [
           {
-            "s": "かんない",
+            "s": "關内",
             "r": "かんない",
             "b": "關内",
             "k": "story",
-            "g": "Kannai, a retainer"
+            "g": "Kannai, a retainer",
+            "hk": true
+          },
+          {
+            "s": "さん",
+            "k": "known",
+            "b": "さん",
+            "g": "Mr. ~, Ms. ~",
+            "gs": "jlpt"
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "のみ",
-            "b": "のみ",
-            "k": "ghost",
-            "g": "drinking",
-            "gs": "model"
-          },
-          {
-            "s": "もの",
-            "b": "もの",
-            "k": "known",
-            "g": "thing (concrete object)",
-            "gs": "jlpt"
+            "s": "茶碗",
+            "r": "ちゃわん",
+            "b": "茶碗",
+            "k": "story",
+            "g": "tea bowl",
+            "hk": true
           },
           {
             "s": "の",
             "k": "plain"
           },
           {
-            "s": "なか",
-            "b": "なか",
+            "s": "中",
             "k": "known",
-            "g": "inside, middle, among",
+            "r": "なか",
+            "b": "中",
+            "g": "during, while",
             "gs": "jlpt"
           },
           {
-            "s": "に",
+            "s": "で",
             "k": "plain"
           },
           {
@@ -1023,9 +1007,10 @@
             "k": "plain"
           },
           {
-            "s": "み",
-            "b": "みる",
+            "s": "見",
             "k": "known",
+            "r": "み",
+            "b": "見る",
             "g": "to see, to look",
             "gs": "jlpt"
           },
@@ -1051,37 +1036,35 @@
         {
           "tokens": [
             {
-              "s": "み",
-              "b": "みる",
+              "s": "安い",
               "k": "known",
-              "g": "to see, to look",
+              "r": "やすい",
+              "b": "安い",
+              "g": "inexpensive; cheap (things)",
               "gs": "jlpt"
             },
             {
-              "s": "ず",
-              "k": "plain"
-            },
-            {
-              "s": "の",
-              "k": "plain"
-            },
-            {
-              "s": "しずく",
-              "b": "しずく",
-              "k": "ghost",
-              "g": "drop (of water)",
-              "gs": "jlpt"
+              "s": "茶碗",
+              "r": "ちゃわん",
+              "b": "茶碗",
+              "k": "story",
+              "g": "tea bowl",
+              "hk": true
             }
           ]
         },
         {
           "tokens": [
             {
-              "s": "さむらい",
-              "r": "さむらい",
-              "b": "侍",
-              "k": "story",
-              "g": "samurai"
+              "s": "じ",
+              "k": "plain"
+            },
+            {
+              "s": "ぶん",
+              "k": "ghost",
+              "b": "ぶん",
+              "g": "dividing, part, segment",
+              "gs": "jlpt"
             },
             {
               "s": "の",
@@ -1089,8 +1072,8 @@
             },
             {
               "s": "かお",
-              "b": "かお",
               "k": "known",
+              "b": "かお",
               "g": "face (body part)",
               "gs": "jlpt"
             }
@@ -1099,11 +1082,19 @@
         {
           "tokens": [
             {
-              "s": "おんな",
-              "b": "おんな",
+              "s": "わかい",
               "k": "known",
-              "g": "woman, female",
+              "b": "わかい",
+              "g": "young",
               "gs": "jlpt"
+            },
+            {
+              "s": "侍",
+              "r": "さむらい",
+              "b": "侍",
+              "k": "story",
+              "g": "samurai",
+              "hk": true
             },
             {
               "s": "の",
@@ -1111,38 +1102,99 @@
             },
             {
               "s": "かお",
-              "b": "かお",
               "k": "known",
+              "b": "かお",
               "g": "face (body part)",
               "gs": "jlpt"
             }
           ]
         }
       ],
-      "answer": 1
+      "answer": 2
     },
     "metrics": {
-      "kanjiCoverage": 0.43478260869565216,
-      "kanjiDensity": 0.08778625954198473,
-      "firstCoverage": 0.8367346938775511,
-      "finalCoverage": 0.86,
-      "retries": 3,
-      "seconds": 48.63737600000002,
+      "kanjiCoverage": 1,
+      "kanjiDensity": 0.18025751072961374,
+      "firstCoverage": 0.8431372549019608,
+      "finalCoverage": 0.8653846153846154,
+      "retries": 6,
+      "seconds": 30.0497917,
       "offendingFirst": [
-        "ちゃ",
-        "ゃにだれかのかおがありました",
-        "ゆう",
-        "ん"
+        "渇く",
+        "茶",
+        "ただ",
+        "そのまま",
+        "幽霊"
       ],
       "ghostWords": [
-        "ちゃ",
-        "ゃにだれかのかおがありました",
-        "ゆう",
-        "ん",
-        "のみ",
-        "しずく"
-      ]
+        "茶",
+        "はじ",
+        "ぶん",
+        "ゆう"
+      ],
+      "faithIssues": []
     }
   },
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "levelRepairs": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 關内（かんない）、式部平内（しきぶへいない）、茶碗（ちゃわん）、侍（さむらい）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n天和四年一月一日――即ち今から二百二十年前――中川佐渡守が年始の〓礼に出かけて、江戸本郷、白山の茶店に一行とともに立寄った。一同休んでいる間に、家来の一人――關内と云う若党が余りに渇きを覚えたので、自分で大きな茶碗に茶を汲んだ。飲もうとする時、不意にその透明な黄色の茶のうちに、自分のでない顔の映っているのを認めた。びっくりしてあたりを見〓したが誰もいない。茶の中に映じた顔は髪恰好から見ると若い侍の顔らしかった、不思議にはっきりして、中々の好男子で、女の顔のようにやさしかった。それからそれが生きている人の顔である証拠には眼や唇は動いていた。この不思議なものが現れたのに当惑して、關内は茶を捨てて仔細に茶碗を改めてみた。それは何の模様もない安物の茶碗であった。關内は別の茶碗を取ってまた茶を汲んだ、また顔が映った。關内は新しい茶を命じて茶碗に入れると、――今度は嘲りの微笑をたたえて――もう一度、不思議な顔が現れた。しかし關内は驚かなかった。『何者だか知らないが、もうそんなものに迷わされはしない』とつぶやきながら――彼は顔も何も一呑みに茶を飲んで出かけた。自分ではなんだか幽霊を一つ呑み込んだような気もしないではなかった。\nCurrent retelling:\n220年前、侍たちが店へ行きました。\n關内という人はのどがかわきました。\nかれは大きな茶碗に茶を入れました。\n飲もうとしたとき、かおが見えました。\nそれはじぶんのかおではありません。\nわかい侍のかおで、きれいでした。\n目はうごいていました。\nいきていました。\n關内は茶をすてて、茶碗を見ました。\n安い茶碗だと思いました。\n別の茶碗に茶を入れたら、また出ました。\n今度はかおがわらっていました。\n關内はもうおどろきませんでした。\nかれは茶をぜんぶ飲みました。\nゆうれいを飲んだと思います。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.17903930131004367,\"meanLength\":15.266666666666667,\"advancedShare\":0.35294117647058826}; vocabulary 0.8627450980392157. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: 茶、はじ、ぶん、ゆう. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"220年前、侍たちが店へ行きました。\", \"關内という人はのどがかわきました。\", \"かれは大きな茶碗に茶を入れました。\", \"飲もうとしたとき、かおが見えました。\", \"それはじぶんのかおではありません。\", \"わかい侍のかおで、きれいでした。\", \"目はうごいていました。\", \"いきていたと思います。\", \"關内は茶をすてて、茶碗を見ました。\", \"安い茶碗だと思いました。\", \"別の茶碗に茶を入れたら、また出ました。\", \"今度はかおがわらっていました。\", \"關内はもうおどろきませんでした。\", \"かれは茶をぜんぶ飲みました。\", \"ゆうれいを飲んだと思います。\"], \"question\": {\"prompt\": \"關内は、茶碗の中に何を見ましたか。\", \"options\": [\"じぶんのかお\", \"わかい侍のかお\", \"女のかお\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 關内（かんない）、式部平内（しきぶへいない）、茶碗（ちゃわん）、侍（さむらい）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n天和四年一月一日――即ち今から二百二十年前――中川佐渡守が年始の〓礼に出かけて、江戸本郷、白山の茶店に一行とともに立寄った。一同休んでいる間に、家来の一人――關内と云う若党が余りに渇きを覚えたので、自分で大きな茶碗に茶を汲んだ。飲もうとする時、不意にその透明な黄色の茶のうちに、自分のでない顔の映っているのを認めた。びっくりしてあたりを見〓したが誰もいない。茶の中に映じた顔は髪恰好から見ると若い侍の顔らしかった、不思議にはっきりして、中々の好男子で、女の顔のようにやさしかった。それからそれが生きている人の顔である証拠には眼や唇は動いていた。この不思議なものが現れたのに当惑して、關内は茶を捨てて仔細に茶碗を改めてみた。それは何の模様もない安物の茶碗であった。關内は別の茶碗を取ってまた茶を汲んだ、また顔が映った。關内は新しい茶を命じて茶碗に入れると、――今度は嘲りの微笑をたたえて――もう一度、不思議な顔が現れた。しかし關内は驚かなかった。『何者だか知らないが、もうそんなものに迷わされはしない』とつぶやきながら――彼は顔も何も一呑みに茶を飲んで出かけた。自分ではなんだか幽霊を一つ呑み込んだような気もしないではなかった。\nCurrent retelling:\n220年前、侍たちが店へ行きました。\n關内という人はのどがかわきました。\nかれは大きな茶碗に茶を入れました。\n飲もうとしたとき、かおが見えました。\nそれはじぶんのかおではありません。\nわかい侍のかおで、きれいでした。\n目はうごいていました。\nいきていたと思います。\n關内は茶をすてて、茶碗を見ました。\n安い茶碗だと思いました。\n別の茶碗に茶を入れたら、また出ました。\n今度はかおがわらっていました。\n關内はもうおどろきませんでした。\nかれは茶をぜんぶ飲みました。\nゆうれいを飲んだと思います。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.1810344827586207,\"meanLength\":15.466666666666667,\"advancedShare\":0.36538461538461536}; vocabulary 0.8653846153846154. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: 茶、はじ、ぶん、ゆう. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"220年前、侍たちが店へ行きました。\", \"關内という人はのどがかわきました。\", \"かれは大きな茶碗に茶を入れました。\", \"飲もうとしたとき、かおが見えました。\", \"それはじぶんのかおではありません。\", \"わかい侍のかおで、きれいでした。\", \"目はうごいていました。\", \"いきていたと思います。\", \"關内は茶をすてて、茶碗を見ました。\", \"安い茶碗だと思いました。\", \"別の茶碗に茶を入れたら、また出ました。\", \"今度はかおがわらっていました。\", \"關内はもうおどろきませんでした。\", \"かれは茶をぜんぶ飲みました。\", \"ゆうれいを飲んだと思います。\"], \"question\": {\"prompt\": \"關内は茶碗の中に何を見ましたか。\", \"options\": [\"じぶんのかお\", \"わかい侍のかお\", \"女のかお\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 關内（かんない）、式部平内（しきぶへいない）、茶碗（ちゃわん）、侍（さむらい）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n天和四年一月一日――即ち今から二百二十年前――中川佐渡守が年始の〓礼に出かけて、江戸本郷、白山の茶店に一行とともに立寄った。一同休んでいる間に、家来の一人――關内と云う若党が余りに渇きを覚えたので、自分で大きな茶碗に茶を汲んだ。飲もうとする時、不意にその透明な黄色の茶のうちに、自分のでない顔の映っているのを認めた。びっくりしてあたりを見〓したが誰もいない。茶の中に映じた顔は髪恰好から見ると若い侍の顔らしかった、不思議にはっきりして、中々の好男子で、女の顔のようにやさしかった。それからそれが生きている人の顔である証拠には眼や唇は動いていた。この不思議なものが現れたのに当惑して、關内は茶を捨てて仔細に茶碗を改めてみた。それは何の模様もない安物の茶碗であった。關内は別の茶碗を取ってまた茶を汲んだ、また顔が映った。關内は新しい茶を命じて茶碗に入れると、――今度は嘲りの微笑をたたえて――もう一度、不思議な顔が現れた。しかし關内は驚かなかった。『何者だか知らないが、もうそんなものに迷わされはしない』とつぶやきながら――彼は顔も何も一呑みに茶を飲んで出かけた。自分ではなんだか幽霊を一つ呑み込んだような気もしないではなかった。\nCurrent retelling:\n220年前、侍たちが店へ行きました。\n關内という人はのどがかわきました。\nかれは大きな茶碗に茶を入れました。\n飲もうとしたとき、かおが見えました。\nそれはじぶんのかおではありません。\nわかい侍のかおで、きれいでした。\n目はうごいていました。\nいきていたと思います。\n關内は茶をすてて、茶碗を見ました。\n安い茶碗だと思いました。\n別の茶碗に茶を入れたら、また出ました。\n今度はかおがわらっていました。\n關内はもうおどろきませんでした。\nかれは茶をぜんぶ飲みました。\nゆうれいを飲んだと思います。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.1810344827586207,\"meanLength\":15.466666666666667,\"advancedShare\":0.36538461538461536}; vocabulary 0.8653846153846154. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: 茶、はじ、ぶん、ゆう. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"220年前、侍たちが店へ行きました。\", \"關内という人はのどがかわきました。\", \"かれは大きな茶碗に茶を入れました。\", \"飲もうとしたとき、かおが見えました。\", \"それは自分のなかおではありません。\", \"わかい侍のかおで、きれいでした。\", \"目はうごいていました。\", \"いきていたと思います。\", \"關内は茶をすてて、茶碗を見ました。\", \"安い茶碗だと思いました。\", \"別の茶碗に茶を入れたら、また出ました。\", \"今度はかおがわらっていました。\", \"關内はもうおどろきませんでした。\", \"かれは茶をぜんぶ飲みました。\", \"ゆうれいを飲んだと思います。\"], \"question\": {\"prompt\": \"關内は茶碗の中に何を見ましたか。\", \"options\": [\"自分の顔\", \"わかい侍の顔\", \"女の人の顔\"], \"answer\": 1}}"
+    }
+  ],
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling; for a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n天和四年一月一日――即ち今から二百二十年前――中川佐渡守が年始の〓礼に出かけて、江戸本郷、白山の茶店に一行とともに立寄った。一同休んでいる間に、家来の一人――關内と云う若党が余りに渇きを覚えたので、自分で大きな茶碗に茶を汲んだ。飲もうとする時、不意にその透明な黄色の茶のうちに、自分のでない顔の映っているのを認めた。びっくりしてあたりを見〓したが誰もいない。茶の中に映じた顔は髪恰好から見ると若い侍の顔らしかった、不思議にはっきりして、中々の好男子で、女の顔のようにやさしかった。それからそれが生きている人の顔である証拠には眼や唇は動いていた。この不思議なものが現れたのに当惑して、關内は茶を捨てて仔細に茶碗を改めてみた。それは何の模様もない安物の茶碗であった。關内は別の茶碗を取ってまた茶を汲んだ、また顔が映った。關内は新しい茶を命じて茶碗に入れると、――今度は嘲りの微笑をたたえて――もう一度、不思議な顔が現れた。しかし關内は驚かなかった。『何者だか知らないが、もうそんなものに迷わされはしない』とつぶやきながら――彼は顔も何も一呑みに茶を飲んで出かけた。自分ではなんだか幽霊を一つ呑み込んだような気もしないではなかった。\n\n語り直し:\n220年前、侍たちが店へ行きました。\n關内という人はのどがかわきました。\nかれは大きな茶碗に茶を入れました。\n飲もうとしたとき、かおが見えました。\nそれはじぶんのなかおではありません。\nわかい侍のかおで、きれいでした。\n目はうごいていました。\nいきていたと思います。\n關内は茶をすてて、茶碗を見ました。\n安い茶碗だと思いました。\n別の茶碗に茶を入れたら、また出ました。\n今度はかおがわらっていました。\n關内はもうおどろきませんでした。\nかれは茶をぜんぶ飲みました。\nゆうれいを飲んだと思います。"
+          }
+        ],
+        "response": "{\"issues\": []}"
+      }
+    ],
+    "rewrites": [],
+    "before": [],
+    "after": []
+  },
+  "ladderBuild": "P4b"
 }

@@ -4,41 +4,40 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Adds ～とき, ～たら, ～ている, ～と思います, potential forms and ～ても. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Use them only when needed, in hiragana when their kanji is above the level. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: きこりは「そうです」と言いました。まえはすごい人でした。でも悪いことをしました。だから家がなくなりました。おおくの人が死にました。長い間ここににげていました。今はまえの家にもどりたいです。でもできないと思います。かなしい人をてつだいたいです。囘龍はそれをきいてよろこびました。わかい時に悪いことをしてもいいです。あとで正しいことをすればいいです。強い心があれば、いい人になれます。囘龍はいいうんをよびたいです。今夜はかみさまにねがいたいです。そうすれば、悪いことをなくせます。\n\n場面（原文）:\nこう云ってから囘龍は主人に『お休みなさい』を云った。主人は極めて小さな部屋へ案内した。そこには寝床がのべてあった。それから一同眠りについたが、囘龍だけは行燈のあかりのわきで読経を始めた。おそくまで読経勤行に余念はなかった。それからこの小さな寝室の窓をあけて、床につく前に、最後に風景を眺めようとした。夜は美しかった。空には雲もなく、風もなかった。強い月光は樹木のはっきりした黒影を投げて、庭の露の上に輝いていた。きりぎりすや鈴虫の鳴き声は、騒がしい音楽となっていた。近所の滝の音は夜のふけるに随って深くなった。囘龍は水の音を聴いていると、渇きを覚えた。それで家の裏の筧を想い出して、眠っている家人の邪魔をしないで、そこへ出て水を飲もうとした。襖をそっとあけた。そうして、行燈のあかりで、五人の横臥したからだを見たが、それにはいずれも頭がなかった。"
+        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\nこう云ってから囘龍は主人に『お休みなさい』を云った。主人は極めて小さな部屋へ案内した。そこには寝床がのべてあった。それから一同眠りについたが、囘龍だけは行燈のあかりのわきで読経を始めた。おそくまで読経勤行に余念はなかった。それからこの小さな寝室の窓をあけて、床につく前に、最後に風景を眺めようとした。夜は美しかった。空には雲もなく、風もなかった。強い月光は樹木のはっきりした黒影を投げて、庭の露の上に輝いていた。きりぎりすや鈴虫の鳴き声は、騒がしい音楽となっていた。近所の滝の音は夜のふけるに随って深くなった。囘龍は水の音を聴いていると、渇きを覚えた。それで家の裏の筧を想い出して、眠っている家人の邪魔をしないで、そこへ出て水を飲もうとした。襖をそっとあけた。そうして、行燈のあかりで、五人の横臥したからだを見たが、それにはいずれも頭がなかった。\n"
       }
     ]
   },
   "responses": [
-    "{\"sentences-jp-n4-level-koizumi-setsu\": [\"かいりゅうは主人に言いました。\", \"「おやすみなさい」と言いました。\", \"主人は小さい部屋へ案内しました。\", \"そこにねる場所がありました。\", \"みんなねました。\", \"でもかいりゅうはねませんでした。\", \"あかりのとなりで本をよみました。\", \"とても遅くまでよんでいました。\", \"それから窓をあけました。\", \"外をみようと思いました。\", \"夜はきれいでした。\", \"空に雲はありませんでした。\", \"風もありませんでした。\", \"月の光が強かったです。\", \"庭に黒い影がありました。\", \"虫の声がうるさかったです。\", \"滝の音が聞こえました。\", \"かいりゅうはのどがかわきました。\", \"水をのみたいと思いました。\", \"寝ている人を起こしたくないです。\", \"そっと外へ出ました。\", \"ふすまをあけました。\", \"あかりで五人の人を見ました。\", \"でも頭がありませんでした。\"], \"question\": {\"prompt\": \"かいりゅうがふすまをあけたとき、何を見ましたか。\", \"options\": [\"きれいな月\", \"頭のない五人の人\", \"たくさんのお金\"], \"answer\": 1}}",
-    "{\"sentences\": [\"かいりゅうは主人に言いました。\", \"「おやすみなさい」と言いました。\", \"主人は小さい部屋へ案内しました。\", \"そこにねる場所がありました。\", \"みんなねました。\", \"でもかいりゅうはねませんでした。\", \"あかりのとなりで本をよみました。\", \"とても遅くまでよんでいました。\", \"それから窓をあけました。\", \"外をみようと思いました。\", \"夜はきれいでした。\", \"空に雲はありませんでした。\", \"風もありませんでした。\", \"月の光が強かったです。\", \"庭に黒い影がありました。\", \"虫の声がうるさかったです。\", \"滝の音が聞こえました。\", \"かいりゅうはのどがかわきました。\", \"水をのみたいと思いました。\", \"寝ている人を起こしたくないです。\", \"そっと外へ出ました。\", \"ふすまをあけました。\", \"あかりで五人の人を見ました。\", \"でも頭がありませんでした。\"], \"question\": {\"prompt\": \"かいりゅうがふすまをあけたとき、何を見ましたか。\", \"options\": [\"きれいな月\", \"頭のない五人の人\", \"たくさんのお金\"], \"answer\": 1}}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"かいりゅうはしゅじんに言いました。\"}, {\"index\": 2, \"sentence\": \"しゅじんは小さいへやへあんないしました。\"}, {\"index\": 3, \"sentence\": \"そこにねるばしょがありました。\"}, {\"index\": 5, \"sentence\": \"でもかいりゅうはねませんでした。\"}, {\"index\": 7, \"sentence\": \"とてもおそくまでよんでいました。\"}, {\"index\": 8, \"sentence\": \"それからまどをあけました。\"}, {\"index\": 11, \"sentence\": \"空にくもはありませんでした。\"}, {\"index\": 13, \"sentence\": \"月のひかりが強かったです。\"}, {\"index\": 14, \"sentence\": \"にわに黒いかげがありました。\"}, {\"index\": 15, \"sentence\": \"むしのこえがうるさかったです。\"}, {\"index\": 16, \"sentence\": \"たきの音が聞こえました。\"}, {\"index\": 19, \"sentence\": \"ねている人を起こしたくないです。\"}, {\"index\": 20, \"sentence\": \"しずかに外へ出ました。\"}, {\"index\": 21, \"sentence\": \"ふすまをあけました。\"}, {\"index\": 23, \"sentence\": \"でもあたまがありませんでした。\"}]}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"かいりゅうは男の人に言いました。\"}, {\"index\": 2, \"sentence\": \"男の人は小さいへやへいきました。\"}, {\"index\": 3, \"sentence\": \"そこにねるところがありました。\"}, {\"index\": 5, \"sentence\": \"でもかいりゅうはねませんでした。\"}, {\"index\": 14, \"sentence\": \"にわに黒いかげがありました。\"}, {\"index\": 21, \"sentence\": \"ドアをあけました。\"}, {\"index\": 23, \"sentence\": \"でもあたまがありませんでした。\"}]}",
-    "{\"rewrites\": [{\"index\": 5, \"sentence\": \"でもかいりゅうはねていません。\"}, {\"index\": 14, \"sentence\": \"そこに黒い色がありました。\"}, {\"index\": 23, \"sentence\": \"でもあたまがありませんでした。\"}]}",
-    "{\"question\": {\"prompt\": \"かいりゅうがドアをあけたとき、何を見ましたか。\", \"options\": [\"きれいな月\", \"あたまのない五人の人\", \"たくさんのお金\"], \"answer\": 1}}"
+    "{\"sentences-\": [\"囘龍は主人に挨拶をしました。\", \"主人は小さな部屋へ案内しました。\", \"みんなで寝ましたが、囘龍は本を読みました。\", \"そして、窓を開けて外を見ました。\", \"夜は美しくて、月が明るかったです。\", \"虫の声がたくさん聞こえました。\", \"滝の音を聞いているとき、水が飲みたくなりました。\", \"囘龍は、静かに外へ出ました。\", \"ふすまを開けて、中の人を見ました。\", \"でも、5人の体に頭がありませんでした。\", \"これは、ろくろ首の変化だと思います。\"], \"question\": {\"prompt\": \"囘龍がふすまを開けたとき、何が見えましたか。\", \"options\": [\"頭がない5人の体\", \"明るい月の光\", \"きれいな滝の水\"], \"answer\": 0}}",
+    "{\"sentences\": [\"囘龍は主人に挨拶をしました。\", \"主人は小さな部屋へ案内しました。\", \"みんなで寝ましたが、囘龍は本を読みました。\", \"そして、窓を開けて外を見ました。\", \"夜は美しくて、月が明るかったです。\", \"虫の声がたくさん聞こえました。\", \"滝の音を聞いているとき、水が飲みたくなりました。\", \"囘龍は、静かに外へ出ました。\", \"ふすまを開けて、中の人を見ました。\", \"でも、5人の体に頭がありませんでした。\", \"これは、ろくろ首の変化だと思います。\"], \"question\": {\"prompt\": \"囘龍がふすまを開けたとき、何が見えましたか。\", \"options\": [\"頭がない5人の体\", \"明るい月の光\", \"きれいな滝の水\"], \"answer\": 0}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"囘龍はある人にあいさつをしました。\"}, {\"index\": 1, \"sentence\": \"その人は小さなへやへあんないしました。\"}, {\"index\": 2, \"sentence\": \"みんなでねましたが、囘龍は本を読みました。\"}, {\"index\": 3, \"sentence\": \"そして、まどを開けて外を見ました。\"}, {\"index\": 4, \"sentence\": \"夜はうつくしく、月が明るかったです。\"}, {\"index\": 5, \"sentence\": \"むしのこえがたくさん聞こえました。\"}, {\"index\": 6, \"sentence\": \"たきの音を聞いているとき、水が飲みたくなりました。\"}, {\"index\": 7, \"sentence\": \"囘龍は、しずかに外へ出ました。\"}, {\"index\": 8, \"sentence\": \"ふすまを開けて、中の人を見ました。\"}, {\"index\": 9, \"sentence\": \"でも、5人の体にあたまがありませんでした。\"}, {\"index\": 10, \"sentence\": \"これは、ろくろ首の変化だと思います。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"囘龍はある人にさよならを言いました。\"}, {\"index\": 8, \"sentence\": \"ふすまを開けて、中の人を見ました。\"}, {\"index\": 9, \"sentence\": \"でも、5人の体にあたまがありませんでした。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"囘龍はある人に「おやすみ」と言いました。\"}, {\"index\": 8, \"sentence\": \"ふすまを開けて、中の人を見ました。\"}, {\"index\": 9, \"sentence\": \"でも、5人の体にあたまがありませんでした。\"}]}",
+    "{\"question\": {\"prompt\": \"かいりゅうが中を見たとき、何がありましたか。\", \"options\": [\"あたまがない5人の体\", \"あかるい月のひかり\", \"きれいなたきの水\"], \"answer\": 0}}"
   ],
   "metrics": {
     "kanjiCoverage": 1,
-    "kanjiDensity": 0.08950617283950617,
-    "firstCoverage": 0.890625,
-    "finalCoverage": 0.967741935483871,
-    "retries": 3,
-    "seconds": 34.5515036,
+    "kanjiDensity": 0.15873015873015872,
+    "firstCoverage": 0.9069767441860465,
+    "finalCoverage": 0.9230769230769231,
+    "retries": 6,
+    "seconds": 25.484593999999984,
     "offendingFirst": [
       "主人",
-      "はねる",
-      "影",
       "滝",
-      "そっと",
       "ふす"
     ],
     "ghostWords": [
-      "はねる",
+      "けい",
+      "ふす",
       "たま"
-    ]
+    ],
+    "faithIssues": []
   },
   "retelling": {
     "level": "N4",
@@ -48,33 +47,29 @@
       {
         "tokens": [
           {
-            "s": "かいりゅう",
+            "s": "囘龍",
             "r": "かいりゅう",
             "b": "囘龍",
             "k": "story",
-            "g": "Kairyu, the warrior's monk name"
+            "g": "Kairyu, the warrior's monk name",
+            "hk": true
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "男",
-            "r": "おとこ",
-            "b": "男",
+            "s": "ある",
             "k": "known",
-            "g": "man, male",
+            "b": "ある",
+            "g": "to be, to have",
             "gs": "jlpt"
           },
           {
-            "s": "の",
-            "k": "plain"
-          },
-          {
             "s": "人",
+            "k": "known",
             "r": "ひと",
             "b": "人",
-            "k": "known",
             "g": "counter for people",
             "gs": "jlpt"
           },
@@ -83,35 +78,11 @@
             "k": "plain"
           },
           {
-            "s": "言い",
-            "r": "いい",
-            "b": "言う",
-            "k": "known",
-            "g": "to say",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
             "s": "「",
             "k": "plain"
           },
           {
-            "s": "おやすみなさい",
+            "s": "おやすみ",
             "k": "plain"
           },
           {
@@ -124,9 +95,9 @@
           },
           {
             "s": "言い",
+            "k": "known",
             "r": "いい",
             "b": "言う",
-            "k": "known",
             "g": "to say",
             "gs": "jlpt"
           },
@@ -147,22 +118,14 @@
       {
         "tokens": [
           {
-            "s": "男",
-            "r": "おとこ",
-            "b": "男",
-            "k": "known",
-            "g": "man, male",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
+            "s": "その",
             "k": "plain"
           },
           {
             "s": "人",
+            "k": "known",
             "r": "ひと",
             "b": "人",
-            "k": "known",
             "g": "counter for people",
             "gs": "jlpt"
           },
@@ -171,17 +134,14 @@
             "k": "plain"
           },
           {
-            "s": "小さい",
-            "r": "ちいさい",
-            "b": "小さい",
-            "k": "known",
-            "g": "small, little",
-            "gs": "jlpt"
+            "s": "小さな",
+            "k": "plain",
+            "r": "ちいさな"
           },
           {
             "s": "へや",
-            "b": "へや",
             "k": "known",
+            "b": "へや",
             "g": "a room",
             "gs": "jlpt"
           },
@@ -190,59 +150,21 @@
             "k": "plain"
           },
           {
-            "s": "いき",
-            "b": "いく",
+            "s": "あんな",
+            "k": "plain"
+          },
+          {
+            "s": "い",
             "k": "known",
-            "g": "to go",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
           {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "そこ",
-            "k": "plain"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "ねる",
-            "b": "ねる",
+            "s": "し",
             "k": "known",
-            "g": "to sleep; to go to sleep; to go to bed",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ところ",
-            "b": "ところ",
-            "k": "known",
-            "g": "place",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "あり",
-            "b": "ある",
-            "k": "known",
-            "g": "to be, to have",
+            "b": "する",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
             "gs": "jlpt"
           },
           {
@@ -267,8 +189,8 @@
           },
           {
             "s": "ね",
-            "b": "ねる",
             "k": "known",
+            "b": "ねる",
             "g": "to sleep; to go to sleep; to go to bed",
             "gs": "jlpt"
           },
@@ -281,83 +203,34 @@
             "k": "plain"
           },
           {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "でも",
+            "s": "が",
             "k": "plain"
           },
           {
-            "s": "かいりゅう",
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "囘龍",
             "r": "かいりゅう",
             "b": "囘龍",
             "k": "story",
-            "g": "Kairyu, the warrior's monk name"
+            "g": "Kairyu, the warrior's monk name",
+            "hk": true
           },
           {
-            "s": "はね",
-            "b": "はねる",
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "お",
+            "k": "plain"
+          },
+          {
+            "s": "けい",
             "k": "ghost",
-            "g": "to jump, to leap",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "い",
-            "b": "いる",
-            "k": "known",
-            "g": "(humble) to be (animate), to exist",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ませ",
-            "k": "plain"
-          },
-          {
-            "s": "ん",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "あかり",
-            "k": "plain"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "となり",
-            "b": "となり",
-            "k": "known",
-            "g": "next to, next door to",
-            "gs": "jlpt"
-          },
-          {
-            "s": "で",
-            "k": "plain"
-          },
-          {
-            "s": "本",
-            "r": "ほん",
-            "b": "本",
-            "k": "known",
-            "g": "book",
+            "b": "けい",
+            "g": "plan; sum, total",
             "gs": "jlpt"
           },
           {
@@ -365,9 +238,10 @@
             "k": "plain"
           },
           {
-            "s": "よみ",
-            "b": "よむ",
+            "s": "読み",
             "k": "known",
+            "r": "よみ",
+            "b": "読む",
             "g": "to read",
             "gs": "jlpt"
           },
@@ -388,59 +262,7 @@
       {
         "tokens": [
           {
-            "s": "とても",
-            "b": "とても",
-            "k": "known",
-            "g": "very (much), greatly, exceedingly",
-            "gs": "jlpt"
-          },
-          {
-            "s": "おそく",
-            "b": "おそい",
-            "k": "known",
-            "g": "slow; (to be) late",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まで",
-            "k": "plain"
-          },
-          {
-            "s": "よん",
-            "b": "よぶ",
-            "k": "known",
-            "g": "to call (one's name); to invite",
-            "gs": "jlpt"
-          },
-          {
-            "s": "で",
-            "k": "plain"
-          },
-          {
-            "s": "い",
-            "b": "いる",
-            "k": "known",
-            "g": "(humble) to be (animate), to exist",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "それから",
+            "s": "そして",
             "k": "plain"
           },
           {
@@ -456,33 +278,26 @@
             "k": "plain"
           },
           {
-            "s": "あけ",
-            "b": "あける",
+            "s": "開け",
             "k": "known",
+            "r": "あけ",
+            "b": "開ける",
             "g": "to open (v.t.)",
             "gs": "jlpt"
           },
           {
-            "s": "まし",
+            "s": "て",
             "k": "plain"
           },
           {
-            "s": "た",
+            "s": "、",
             "k": "plain"
           },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
           {
             "s": "外",
+            "k": "known",
             "r": "そと",
             "b": "外",
-            "k": "known",
             "g": "outside, exterior",
             "gs": "jlpt"
           },
@@ -491,26 +306,11 @@
             "k": "plain"
           },
           {
-            "s": "みよ",
-            "b": "みる",
+            "s": "見",
             "k": "known",
+            "r": "み",
+            "b": "見る",
             "g": "to see, to look",
-            "gs": "jlpt"
-          },
-          {
-            "s": "う",
-            "k": "plain"
-          },
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "思い",
-            "r": "おもい",
-            "b": "思う",
-            "k": "known",
-            "g": "to think, to feel",
             "gs": "jlpt"
           },
           {
@@ -531,9 +331,9 @@
         "tokens": [
           {
             "s": "夜",
+            "k": "known",
             "r": "よる",
             "b": "夜",
-            "k": "known",
             "g": "evening, night",
             "gs": "jlpt"
           },
@@ -542,151 +342,34 @@
             "k": "plain"
           },
           {
-            "s": "きれい",
-            "b": "きれい",
+            "s": "うつくしく",
             "k": "known",
-            "g": "pretty, clean, tidy",
+            "b": "うつくしい",
+            "g": "beautiful, lovely",
             "gs": "jlpt"
           },
           {
-            "s": "でし",
+            "s": "、",
             "k": "plain"
           },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "空",
-            "r": "そら",
-            "b": "空",
-            "k": "known",
-            "g": "sky",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "くも",
-            "b": "くも",
-            "k": "known",
-            "g": "cloud",
-            "gs": "jlpt"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "あり",
-            "b": "ある",
-            "k": "known",
-            "g": "to be, to have",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ませ",
-            "k": "plain"
-          },
-          {
-            "s": "ん",
-            "k": "plain"
-          },
-          {
-            "s": "でし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "風",
-            "r": "かぜ",
-            "b": "風",
-            "k": "known",
-            "g": "wind, breeze",
-            "gs": "jlpt"
-          },
-          {
-            "s": "も",
-            "k": "plain"
-          },
-          {
-            "s": "あり",
-            "b": "ある",
-            "k": "known",
-            "g": "to be, to have",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ませ",
-            "k": "plain"
-          },
-          {
-            "s": "ん",
-            "k": "plain"
-          },
-          {
-            "s": "でし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
           {
             "s": "月",
+            "k": "known",
             "r": "つき",
             "b": "月",
-            "k": "known",
             "g": "month of year",
             "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "ひかり",
-            "k": "plain"
           },
           {
             "s": "が",
             "k": "plain"
           },
           {
-            "s": "強かっ",
-            "r": "つよかっ",
-            "b": "強い",
+            "s": "明るかっ",
             "k": "known",
-            "g": "strong, powerful",
+            "r": "あかるかっ",
+            "b": "明るい",
+            "g": "bright (in reference to personality or weather); cheerful",
             "gs": "jlpt"
           },
           {
@@ -695,57 +378,6 @@
           },
           {
             "s": "です",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "そこ",
-            "k": "plain"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "黒い",
-            "r": "くろい",
-            "b": "黒い",
-            "k": "known",
-            "g": "black; dark",
-            "gs": "jlpt"
-          },
-          {
-            "s": "色",
-            "r": "いろ",
-            "b": "色",
-            "k": "known",
-            "g": "color",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "あり",
-            "b": "ある",
-            "k": "known",
-            "g": "to be, to have",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
             "k": "plain"
           },
           {
@@ -758,8 +390,8 @@
         "tokens": [
           {
             "s": "むし",
-            "b": "むし",
             "k": "known",
+            "b": "むし",
             "g": "insect",
             "gs": "jlpt"
           },
@@ -769,8 +401,8 @@
           },
           {
             "s": "こえ",
-            "b": "こえる",
             "k": "known",
+            "b": "こえる",
             "g": "to exceed, to cross over, to cross",
             "gs": "jlpt"
           },
@@ -779,53 +411,17 @@
             "k": "plain"
           },
           {
-            "s": "うるさかっ",
-            "b": "うるさい",
+            "s": "たくさん",
             "k": "known",
-            "g": "noisy; annoying",
+            "b": "たくさん",
+            "g": "many, much",
             "gs": "jlpt"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "です",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "たき",
-            "k": "plain"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "音",
-            "r": "おと",
-            "b": "音",
-            "k": "known",
-            "g": "sound, note",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
           },
           {
             "s": "聞こえ",
+            "k": "known",
             "r": "きこえ",
             "b": "聞こえる",
-            "k": "known",
             "g": "to be heard, to be audible",
             "gs": "jlpt"
           },
@@ -846,21 +442,54 @@
       {
         "tokens": [
           {
-            "s": "かいりゅう",
-            "r": "かいりゅう",
-            "b": "囘龍",
-            "k": "story",
-            "g": "Kairyu, the warrior's monk name"
-          },
-          {
-            "s": "は",
+            "s": "たき",
             "k": "plain"
           },
           {
-            "s": "のど",
-            "b": "のど",
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "音",
             "k": "known",
-            "g": "throat",
+            "r": "おと",
+            "b": "音",
+            "g": "sound, note",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "聞い",
+            "k": "known",
+            "r": "きい",
+            "b": "聞く",
+            "g": "to hear, to listen, to ask",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "とき",
+            "k": "known",
+            "b": "とき",
+            "g": "at the time of ~",
+            "gs": "jlpt"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "水",
+            "k": "known",
+            "r": "みず",
+            "b": "水",
+            "g": "water",
             "gs": "jlpt"
           },
           {
@@ -868,115 +497,11 @@
             "k": "plain"
           },
           {
-            "s": "かわき",
-            "b": "かわく",
+            "s": "飲み",
             "k": "known",
-            "g": "to get dry",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "水",
-            "r": "みず",
-            "b": "水",
-            "k": "known",
-            "g": "water",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "のみ",
-            "b": "のむ",
-            "k": "known",
+            "r": "のみ",
+            "b": "飲む",
             "g": "to drink",
-            "gs": "jlpt"
-          },
-          {
-            "s": "たい",
-            "k": "plain"
-          },
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "思い",
-            "r": "おもい",
-            "b": "思う",
-            "k": "known",
-            "g": "to think, to feel",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "ね",
-            "b": "ねる",
-            "k": "known",
-            "g": "to sleep; to go to sleep; to go to bed",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "いる",
-            "b": "いる",
-            "k": "known",
-            "g": "(humble) to be (animate), to exist",
-            "gs": "jlpt"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "起こし",
-            "r": "おこし",
-            "b": "起こす",
-            "k": "known",
-            "g": "to wake (someone) up",
             "gs": "jlpt"
           },
           {
@@ -984,11 +509,18 @@
             "k": "plain"
           },
           {
-            "s": "ない",
+            "s": "なり",
+            "k": "known",
+            "b": "なる",
+            "g": "to become",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
             "k": "plain"
           },
           {
-            "s": "です",
+            "s": "た",
             "k": "plain"
           },
           {
@@ -1000,9 +532,25 @@
       {
         "tokens": [
           {
+            "s": "囘龍",
+            "r": "かいりゅう",
+            "b": "囘龍",
+            "k": "story",
+            "g": "Kairyu, the warrior's monk name",
+            "hk": true
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
             "s": "しずか",
-            "b": "しずか",
             "k": "known",
+            "b": "しずか",
             "g": "quiet, calm",
             "gs": "jlpt"
           },
@@ -1012,9 +560,9 @@
           },
           {
             "s": "外",
+            "k": "known",
             "r": "そと",
             "b": "外",
-            "k": "known",
             "g": "outside, exterior",
             "gs": "jlpt"
           },
@@ -1024,9 +572,9 @@
           },
           {
             "s": "出",
+            "k": "known",
             "r": "で",
             "b": "出る",
-            "k": "known",
             "g": "to appear, to leave",
             "gs": "jlpt"
           },
@@ -1047,58 +595,42 @@
       {
         "tokens": [
           {
-            "s": "ドア",
-            "b": "ドア",
-            "k": "known",
-            "g": "door (Western style)",
+            "s": "ふす",
+            "k": "ghost",
+            "b": "ふす",
+            "g": "to steam (food, towel, etc.) to be hot and humid, to be sultry",
             "gs": "jlpt"
+          },
+          {
+            "s": "ま",
+            "k": "plain"
           },
           {
             "s": "を",
             "k": "plain"
           },
           {
-            "s": "あけ",
-            "b": "あける",
+            "s": "開け",
             "k": "known",
+            "r": "あけ",
+            "b": "開ける",
             "g": "to open (v.t.)",
             "gs": "jlpt"
           },
           {
-            "s": "まし",
+            "s": "て",
             "k": "plain"
           },
           {
-            "s": "た",
+            "s": "、",
             "k": "plain"
           },
           {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "あかり",
-            "k": "plain"
-          },
-          {
-            "s": "で",
-            "k": "plain"
-          },
-          {
-            "s": "五",
-            "r": "ご",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "にん",
-            "b": "人",
+            "s": "中",
             "k": "known",
-            "g": "counter for people",
+            "r": "なか",
+            "b": "中",
+            "g": "during, while",
             "gs": "jlpt"
           },
           {
@@ -1107,9 +639,9 @@
           },
           {
             "s": "人",
+            "k": "known",
             "r": "ひと",
             "b": "人",
-            "k": "known",
             "g": "counter for people",
             "gs": "jlpt"
           },
@@ -1119,9 +651,9 @@
           },
           {
             "s": "見",
+            "k": "known",
             "r": "み",
             "b": "見る",
-            "k": "known",
             "g": "to see, to look",
             "gs": "jlpt"
           },
@@ -1146,13 +678,45 @@
             "k": "plain"
           },
           {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "5",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "k": "known",
+            "r": "にん",
+            "b": "人",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "体",
+            "k": "known",
+            "r": "からだ",
+            "b": "体",
+            "g": "body; health",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
             "s": "あ",
             "k": "plain"
           },
           {
             "s": "たま",
-            "b": "たま",
             "k": "ghost",
+            "b": "たま",
             "g": "ball, sphere, coin",
             "gs": "jlpt"
           },
@@ -1162,8 +726,8 @@
           },
           {
             "s": "あり",
-            "b": "ある",
             "k": "known",
+            "b": "ある",
             "g": "to be, to have",
             "gs": "jlpt"
           },
@@ -1194,21 +758,23 @@
       "prompt": {
         "tokens": [
           {
-            "s": "かいりゅう",
+            "s": "囘龍",
             "r": "かいりゅう",
             "b": "囘龍",
             "k": "story",
-            "g": "Kairyu, the warrior's monk name"
+            "g": "Kairyu, the warrior's monk name",
+            "hk": true
           },
           {
             "s": "が",
             "k": "plain"
           },
           {
-            "s": "ドア",
-            "b": "ドア",
+            "s": "中",
             "k": "known",
-            "g": "door (Western style)",
+            "r": "なか",
+            "b": "中",
+            "g": "during, while",
             "gs": "jlpt"
           },
           {
@@ -1216,10 +782,11 @@
             "k": "plain"
           },
           {
-            "s": "あけ",
-            "b": "あける",
+            "s": "見",
             "k": "known",
-            "g": "to open (v.t.)",
+            "r": "み",
+            "b": "見る",
+            "g": "to see, to look",
             "gs": "jlpt"
           },
           {
@@ -1228,8 +795,8 @@
           },
           {
             "s": "とき",
-            "b": "とき",
             "k": "known",
+            "b": "とき",
             "g": "at the time of ~",
             "gs": "jlpt"
           },
@@ -1239,19 +806,18 @@
           },
           {
             "s": "何",
-            "r": "なに",
+            "k": "plain",
+            "r": "なに"
+          },
+          {
+            "s": "が",
             "k": "plain"
           },
           {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "見",
-            "r": "み",
-            "b": "見る",
+            "s": "あり",
             "k": "known",
-            "g": "to see, to look",
+            "b": "ある",
+            "g": "to be, to have",
             "gs": "jlpt"
           },
           {
@@ -1276,14 +842,18 @@
         {
           "tokens": [
             {
-              "s": "あ",
-              "k": "plain"
+              "s": "あかるい",
+              "k": "known",
+              "b": "あかるい",
+              "g": "bright (in reference to personality or weather); cheerful",
+              "gs": "jlpt"
             },
             {
-              "s": "たま",
-              "b": "たま",
-              "k": "ghost",
-              "g": "ball, sphere, coin",
+              "s": "月",
+              "k": "known",
+              "r": "つき",
+              "b": "月",
+              "g": "month of year",
               "gs": "jlpt"
             },
             {
@@ -1291,59 +861,8 @@
               "k": "plain"
             },
             {
-              "s": "ない",
-              "b": "ない",
-              "k": "known",
-              "g": "there isn't, doesn't have",
-              "gs": "jlpt"
-            },
-            {
-              "s": "五",
-              "r": "ご",
+              "s": "ひかり",
               "k": "plain"
-            },
-            {
-              "s": "人",
-              "r": "にん",
-              "b": "人",
-              "k": "known",
-              "g": "counter for people",
-              "gs": "jlpt"
-            },
-            {
-              "s": "の",
-              "k": "plain"
-            },
-            {
-              "s": "人",
-              "r": "ひと",
-              "b": "人",
-              "k": "known",
-              "g": "counter for people",
-              "gs": "jlpt"
-            }
-          ]
-        },
-        {
-          "tokens": [
-            {
-              "s": "たくさん",
-              "b": "たくさん",
-              "k": "known",
-              "g": "many, much",
-              "gs": "jlpt"
-            },
-            {
-              "s": "の",
-              "k": "plain"
-            },
-            {
-              "s": "お金",
-              "r": "おかね",
-              "b": "お金",
-              "k": "known",
-              "g": "money",
-              "gs": "jlpt"
             }
           ]
         },
@@ -1351,8 +870,8 @@
           "tokens": [
             {
               "s": "きれい",
-              "b": "きれい",
               "k": "known",
+              "b": "きれい",
               "g": "pretty, clean, tidy",
               "gs": "jlpt"
             },
@@ -1361,39 +880,215 @@
               "k": "plain"
             },
             {
-              "s": "月",
-              "r": "つき",
-              "b": "月",
+              "s": "たき",
+              "k": "plain"
+            },
+            {
+              "s": "の",
+              "k": "plain"
+            },
+            {
+              "s": "水",
               "k": "known",
-              "g": "month of year",
+              "r": "みず",
+              "b": "水",
+              "g": "water",
+              "gs": "jlpt"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "あ",
+              "k": "plain"
+            },
+            {
+              "s": "たま",
+              "k": "ghost",
+              "b": "たま",
+              "g": "ball, sphere, coin",
+              "gs": "jlpt"
+            },
+            {
+              "s": "が",
+              "k": "plain"
+            },
+            {
+              "s": "ない",
+              "k": "known",
+              "b": "ない",
+              "g": "there isn't, doesn't have",
+              "gs": "jlpt"
+            },
+            {
+              "s": "5",
+              "k": "plain"
+            },
+            {
+              "s": "人",
+              "k": "known",
+              "r": "にん",
+              "b": "人",
+              "g": "counter for people",
+              "gs": "jlpt"
+            },
+            {
+              "s": "の",
+              "k": "plain"
+            },
+            {
+              "s": "体",
+              "k": "known",
+              "r": "からだ",
+              "b": "体",
+              "g": "body; health",
               "gs": "jlpt"
             }
           ]
         }
       ],
-      "answer": 0
+      "answer": 2
     },
     "metrics": {
       "kanjiCoverage": 1,
-      "kanjiDensity": 0.08950617283950617,
-      "firstCoverage": 0.890625,
-      "finalCoverage": 0.967741935483871,
-      "retries": 3,
-      "seconds": 34.5515036,
+      "kanjiDensity": 0.15873015873015872,
+      "firstCoverage": 0.9069767441860465,
+      "finalCoverage": 0.9230769230769231,
+      "retries": 6,
+      "seconds": 25.484593999999984,
       "offendingFirst": [
         "主人",
-        "はねる",
-        "影",
         "滝",
-        "そっと",
         "ふす"
       ],
       "ghostWords": [
-        "はねる",
+        "けい",
+        "ふす",
         "たま"
-      ]
+      ],
+      "faithIssues": []
     }
   },
-  "failedSceneRetry": true,
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "levelRepairs": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nこう云ってから囘龍は主人に『お休みなさい』を云った。主人は極めて小さな部屋へ案内した。そこには寝床がのべてあった。それから一同眠りについたが、囘龍だけは行燈のあかりのわきで読経を始めた。おそくまで読経勤行に余念はなかった。それからこの小さな寝室の窓をあけて、床につく前に、最後に風景を眺めようとした。夜は美しかった。空には雲もなく、風もなかった。強い月光は樹木のはっきりした黒影を投げて、庭の露の上に輝いていた。きりぎりすや鈴虫の鳴き声は、騒がしい音楽となっていた。近所の滝の音は夜のふけるに随って深くなった。囘龍は水の音を聴いていると、渇きを覚えた。それで家の裏の筧を想い出して、眠っている家人の邪魔をしないで、そこへ出て水を飲もうとした。襖をそっとあけた。そうして、行燈のあかりで、五人の横臥したからだを見たが、それにはいずれも頭がなかった。\nCurrent retelling:\n囘龍はある人に「おやすみ」と言いました。\nその人は小さなへやへあんないしました。\nみんなでねましたが、囘龍はどきょう（どっきょう）をしました。\nそして、まどを開けて外を見ました。\n夜はうつくしく、月が明るかったです。\nむしのこえがたくさん聞こえました。\nたきの音を聞いているとき、水が飲みたくなりました。\n囘龍は、しずかに外へ出ました。\nふすまを開けて、中の人を見ました。\nでも、5人の体にあたまがありませんでした。\n（さくじょ）\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.14146341463414633,\"meanLength\":18.636363636363637,\"advancedShare\":0.1590909090909091}; vocabulary 0.8409090909090909. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: どきょう、どっきょ、ふす、たま、さ、くじ、ょ. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"囘龍はある人に「おやすみ」と言いました。\", \"その人は小さな部屋へ案内しました。\", \"みんな寝ましたが、囘龍はお経を読みました。\", \"そして窓を開けて外を見ました。\", \"夜は美しく、月が明るかったです。\", \"虫の声がたくさん聞こえました。\", \"滝の音を聞いているとき、水が飲みたくなりました。\", \"囘龍は、静かに外へ出ました。\", \"ふすまを開けて、中の人を見ました。\", \"でも、5人の体に頭がありませんでした。\"], \"question\": {\"prompt\": \"囘龍は、ふすまを開けて何を見ましたか。\", \"options\": [\"5人の頭がない体\", \"明るい月\", \"きれいな滝\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nこう云ってから囘龍は主人に『お休みなさい』を云った。主人は極めて小さな部屋へ案内した。そこには寝床がのべてあった。それから一同眠りについたが、囘龍だけは行燈のあかりのわきで読経を始めた。おそくまで読経勤行に余念はなかった。それからこの小さな寝室の窓をあけて、床につく前に、最後に風景を眺めようとした。夜は美しかった。空には雲もなく、風もなかった。強い月光は樹木のはっきりした黒影を投げて、庭の露の上に輝いていた。きりぎりすや鈴虫の鳴き声は、騒がしい音楽となっていた。近所の滝の音は夜のふけるに随って深くなった。囘龍は水の音を聴いていると、渇きを覚えた。それで家の裏の筧を想い出して、眠っている家人の邪魔をしないで、そこへ出て水を飲もうとした。襖をそっとあけた。そうして、行燈のあかりで、五人の横臥したからだを見たが、それにはいずれも頭がなかった。\nCurrent retelling:\n囘龍はある人に「おやすみ」と言いました。\nその人は小さなへやへあんないしました。\nみんなねましたが、囘龍はおけいを読みました。\nそしてまどを開けて外を見ました。\n夜はうつくしく、月が明るかったです。\nむしのこえがたくさん聞こえました。\nたきの音を聞いているとき、水が飲みたくなりました。\n囘龍は、しずかに外へ出ました。\nふすまを開けて、中の人を見ました。\nでも、5人の体にあたまがありませんでした。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.15789473684210525,\"meanLength\":19,\"advancedShare\":0.175}; vocabulary 0.925. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: けい、ふす、たま. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentencesにつながる\": null, \"sentences\": [\"囘龍はある人に「おやすみ」と言いました。\", \"その人は小さな部屋へあんないしました。\", \"みんな寝ましたが、囘龍はお経を読みました。\", \"そして窓を開けて外を見ました。\", \"夜は美しく、月が明るかったです。\", \"虫の声がたくさん聞こえました。\", \"滝の音を聞いているとき、水が飲みたくなりました。\", \"囘龍は、しずかに外へ出ました。\", \"ふすまを開けて、中の人を見ました。\", \"でも、5人の体に頭がありませんでした。\"], \"question\": {\"prompt\": \"囘龍は、何を飲みたくなりましたか。\", \"options\": [\"お茶\", \"水\", \"お酒\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nこう云ってから囘龍は主人に『お休みなさい』を云った。主人は極めて小さな部屋へ案内した。そこには寝床がのべてあった。それから一同眠りについたが、囘龍だけは行燈のあかりのわきで読経を始めた。おそくまで読経勤行に余念はなかった。それからこの小さな寝室の窓をあけて、床につく前に、最後に風景を眺めようとした。夜は美しかった。空には雲もなく、風もなかった。強い月光は樹木のはっきりした黒影を投げて、庭の露の上に輝いていた。きりぎりすや鈴虫の鳴き声は、騒がしい音楽となっていた。近所の滝の音は夜のふけるに随って深くなった。囘龍は水の音を聴いていると、渇きを覚えた。それで家の裏の筧を想い出して、眠っている家人の邪魔をしないで、そこへ出て水を飲もうとした。襖をそっとあけた。そうして、行燈のあかりで、五人の横臥したからだを見たが、それにはいずれも頭がなかった。\nCurrent retelling:\n囘龍はある人に「おやすみ」と言いました。\nその人は小さなへやへあんないしました。\nみんなねましたが、囘龍はおけいを読みました。\nそしてまどを開けて外を見ました。\n夜はうつくしく、月が明るかったです。\nむしのこえがたくさん聞こえました。\nたきの音を聞いているとき、水が飲みたくなりました。\n囘龍は、しずかに外へ出ました。\nふすまを開けて、中の人を見ました。\nでも、5人の体にあたまがありませんでした。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.15789473684210525,\"meanLength\":19,\"advancedShare\":0.175}; vocabulary 0.925. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: けい、ふす、たま. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"囘龍はある人に「おやすみ」と言いました。\", \"その人は小さな部屋へあんないしました。\", \"みんな寝ましたが、囘龍はお経を読みました。\", \"そして窓を開けて、外を見ました。\", \"夜は美しく、月が明るかったです。\", \"虫の声がたくさん聞こえました。\", \"滝の音を聞いたとき、水が飲みたくなりました。\", \"囘龍は、しずかに外へ出ました。\", \"ふすまを開けて、中の人を見ました。\", \"でも、5人の体に頭がありませんでした。\"], \"question\": {\"prompt\": \"囘龍は、外に出るときに何をしましたか。\", \"options\": [\"お経を読みました。\", \"ふすまを開けました。\", \"水を飲みました。\"], \"answer\": 1}}"
+    }
+  ],
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\nこう云ってから囘龍は主人に『お休みなさい』を云った。主人は極めて小さな部屋へ案内した。そこには寝床がのべてあった。それから一同眠りについたが、囘龍だけは行燈のあかりのわきで読経を始めた。おそくまで読経勤行に余念はなかった。それからこの小さな寝室の窓をあけて、床につく前に、最後に風景を眺めようとした。夜は美しかった。空には雲もなく、風もなかった。強い月光は樹木のはっきりした黒影を投げて、庭の露の上に輝いていた。きりぎりすや鈴虫の鳴き声は、騒がしい音楽となっていた。近所の滝の音は夜のふけるに随って深くなった。囘龍は水の音を聴いていると、渇きを覚えた。それで家の裏の筧を想い出して、眠っている家人の邪魔をしないで、そこへ出て水を飲もうとした。襖をそっとあけた。そうして、行燈のあかりで、五人の横臥したからだを見たが、それにはいずれも頭がなかった。\n\n語り直し:\n囘龍はある人に「おやすみ」と言いました。\nその人は小さなへやへあんないしました。\nみんなでねましたが、囘龍は本を読みました。\nそして、まどを開けて外を見ました。\n夜はうつくしく、月が明るかったです。\nむしのこえがたくさん聞こえました。\nたきの音を聞いているとき、水が飲みたくなりました。\n囘龍は、しずかに外へ出ました。\nふすまを開けて、中の人を見ました。\nでも、5人の体にあたまがありませんでした。\nこれは、ろくろ首の変化だと思います。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"みんなでねましたが、囘龍は本を読みました。\", \"problem\": \"読経（chanting sutras）を「本を読んだ」としている。読経をしていたことに修正すべき。\", \"kind\": \"event\"}, {\"sentence\": \"これは、ろくろ首の変化だと思います。\", \"problem\": \"原文にろくろ首に関する記述はない。捏造であるため削除すべき。\", \"kind\": \"invented\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\nこう云ってから囘龍は主人に『お休みなさい』を云った。主人は極めて小さな部屋へ案内した。そこには寝床がのべてあった。それから一同眠りについたが、囘龍だけは行燈のあかりのわきで読経を始めた。おそくまで読経勤行に余念はなかった。それからこの小さな寝室の窓をあけて、床につく前に、最後に風景を眺めようとした。夜は美しかった。空には雲もなく、風もなかった。強い月光は樹木のはっきりした黒影を投げて、庭の露の上に輝いていた。きりぎりすや鈴虫の鳴き声は、騒がしい音楽となっていた。近所の滝の音は夜のふけるに随って深くなった。囘龍は水の音を聴いていると、渇きを覚えた。それで家の裏の筧を想い出して、眠っている家人の邪魔をしないで、そこへ出て水を飲もうとした。襖をそっとあけた。そうして、行燈のあかりで、五人の横臥したからだを見たが、それにはいずれも頭がなかった。\n\n語り直し:\n囘龍はある人に「おやすみ」と言いました。\nその人は小さなへやへあんないしました。\nみんなねましたが、囘龍はおけいを読みました。\nそしてまどを開けて、外を見ました。\n夜はうつくしく、月が明るかったです。\nむしのこえがたくさん聞こえました。\nたきの音を聞いたとき、水が飲みたくなりました。\n囘龍は、しずかに外へ出ました。\nふすまを開けて、中の人を見ました。\nでも、5人の体にあたまがありませんでした。"
+          }
+        ],
+        "response": "{\"issues\": []}"
+      }
+    ],
+    "rewrites": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Repair only the specified sentences at JLPT N4. Preserve all other sentences and events. Use natural Japanese, numeric digits for numbers, and maintain the meaning of the original. Return only JSON {\"rewrites\":[{\"index\":0,\"sentence\":\"...\"}]}."
+          },
+          {
+            "role": "user",
+            "content": "Original:\nこう云ってから囘龍は主人に『お休みなさい』を云った。主人は極めて小さな部屋へ案内した。そこには寝床がのべてあった。それから一同眠りについたが、囘龍だけは行燈のあかりのわきで読経を始めた。おそくまで読経勤行に余念はなかった。それからこの小さな寝室の窓をあけて、床につく前に、最後に風景を眺めようとした。夜は美しかった。空には雲もなく、風もなかった。強い月光は樹木のはっきりした黒影を投げて、庭の露の上に輝いていた。きりぎりすや鈴虫の鳴き声は、騒がしい音楽となっていた。近所の滝の音は夜のふけるに随って深くなった。囘龍は水の音を聴いていると、渇きを覚えた。それで家の裏の筧を想い出して、眠っている家人の邪魔をしないで、そこへ出て水を飲もうとした。襖をそっとあけた。そうして、行燈のあかりで、五人の横臥したからだを見たが、それにはいずれも頭がなかった。\nSentences:\n0: 囘龍はある人に「おやすみ」と言いました。\n1: その人は小さなへやへあんないしました。\n2: みんなでねましたが、囘龍は本を読みました。\n3: そして、まどを開けて外を見ました。\n4: 夜はうつくしく、月が明るかったです。\n5: むしのこえがたくさん聞こえました。\n6: たきの音を聞いているとき、水が飲みたくなりました。\n7: 囘龍は、しずかに外へ出ました。\n8: ふすまを開けて、中の人を見ました。\n9: でも、5人の体にあたまがありませんでした。\n10: これは、ろくろ首の変化だと思います。\nIssues:\n[{\"sentence\":\"みんなでねましたが、囘龍は本を読みました。\",\"problem\":\"読経（chanting sutras）を「本を読んだ」としている。読経をしていたことに修正すべき。\",\"kind\":\"event\"},{\"sentence\":\"これは、ろくろ首の変化だと思います。\",\"problem\":\"原文にろくろ首に関する記述はない。捏造であるため削除すべき。\",\"kind\":\"invented\"}]\nRewrite exactly indexes: 2,10"
+          }
+        ],
+        "response": "{\"rewrites\": [{\"index\": 2, \"sentence\": \"みんなでねましたが、囘龍は読経（どっきょう）をしました。\"}, {\"index\": 10, \"sentence\": \"\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Repair only the specified sentences at JLPT N4. Preserve all other sentences and events. Use natural Japanese, numeric digits for numbers, and maintain the meaning of the original. Return only JSON {\"rewrites\":[{\"index\":0,\"sentence\":\"...\"}]}."
+          },
+          {
+            "role": "user",
+            "content": "Original:\nこう云ってから囘龍は主人に『お休みなさい』を云った。主人は極めて小さな部屋へ案内した。そこには寝床がのべてあった。それから一同眠りについたが、囘龍だけは行燈のあかりのわきで読経を始めた。おそくまで読経勤行に余念はなかった。それからこの小さな寝室の窓をあけて、床につく前に、最後に風景を眺めようとした。夜は美しかった。空には雲もなく、風もなかった。強い月光は樹木のはっきりした黒影を投げて、庭の露の上に輝いていた。きりぎりすや鈴虫の鳴き声は、騒がしい音楽となっていた。近所の滝の音は夜のふけるに随って深くなった。囘龍は水の音を聴いていると、渇きを覚えた。それで家の裏の筧を想い出して、眠っている家人の邪魔をしないで、そこへ出て水を飲もうとした。襖をそっとあけた。そうして、行燈のあかりで、五人の横臥したからだを見たが、それにはいずれも頭がなかった。\nSentences:\n0: 囘龍はある人に「おやすみ」と言いました。\n1: その人は小さなへやへあんないしました。\n2: みんなでねましたが、囘龍は本を読みました。\n3: そして、まどを開けて外を見ました。\n4: 夜はうつくしく、月が明るかったです。\n5: むしのこえがたくさん聞こえました。\n6: たきの音を聞いているとき、水が飲みたくなりました。\n7: 囘龍は、しずかに外へ出ました。\n8: ふすまを開けて、中の人を見ました。\n9: でも、5人の体にあたまがありませんでした。\n10: これは、ろくろ首の変化だと思います。\nIssues:\n[{\"sentence\":\"みんなでねましたが、囘龍は本を読みました。\",\"problem\":\"読経（chanting sutras）を「本を読んだ」としている。読経をしていたことに修正すべき。\",\"kind\":\"event\"},{\"sentence\":\"これは、ろくろ首の変化だと思います。\",\"problem\":\"原文にろくろ首に関する記述はない。捏造であるため削除すべき。\",\"kind\":\"invented\"}]\nRewrite exactly indexes: 2,10"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"rewrites\": [{\"index\": 2, \"sentence\": \"みんなでねましたが、囘龍は読経（どっきょう）をしました。\"}, {\"index\": 10, \"sentence\": \"\"}]}"
+          },
+          {
+            "role": "user",
+            "content": "Return valid JSON only. Validation: [\n  {\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"type\": \"string\",\n    \"inclusive\": true,\n    \"exact\": false,\n    \"message\": \"String must contain at least 1 character(s)\",\n    \"path\": [\n      \"rewrites\",\n      1,\n      \"sentence\"\n    ]\n  }\n]"
+          }
+        ],
+        "response": "{\"rewrites\": [{\"index\": 2, \"sentence\": \"みんなでねましたが、囘龍は読経（どっきょう）をしました。\"}, {\"index\": 10, \"sentence\": \"（削除）\"}]}"
+      }
+    ],
+    "before": [
+      {
+        "sentence": "みんなでねましたが、囘龍は本を読みました。",
+        "problem": "読経（chanting sutras）を「本を読んだ」としている。読経をしていたことに修正すべき。",
+        "kind": "event"
+      },
+      {
+        "sentence": "これは、ろくろ首の変化だと思います。",
+        "problem": "原文にろくろ首に関する記述はない。捏造であるため削除すべき。",
+        "kind": "invented"
+      }
+    ],
+    "after": []
+  },
+  "ladderBuild": "P4b"
 }

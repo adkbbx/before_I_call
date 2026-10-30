@@ -4,41 +4,47 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration, adding ～ようだ, ～らしい, the passive and ～ために.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Copy every story word exactly in kanji when it is needed; do not insert unused words.\nWrite normal Japanese with no spaces between words. Outside story words, use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小才中五六円天手文日月木水火犬王出右四左本正田白目石立万今元公内切午友太少引心方牛父止兄冬北半古台外市広母用世主他代写去号平打申礼休先名字年早気百耳男町花見赤足車不仕交会光同回多当毎米考肉自色行西何体作図声売弟形来社言走近学空金雨青草音化地両全向安曲有次死京国夜妹姉店明東歩画直知長前南室後思活海点科茶食首欠由民付以失必未末校夏家時紙記通高強教理組船週雪魚鳥黒支住助医君対局役投決究者研馬場朝番答絵買道間数楽話電所事使具受和始定実服泳物苦表部乗客屋度待持界発相美負送重談要勝起速配酒院終習転進落葉運開集飲業漢路歌聞語読鳴横調親頭顔病最争伝共好成老位初別利努労命放昔注育指洋神追戦良特便働意味勉庭息旅流消員都動商悪族深球陽寒悲期歯港登着野生亡合風予反新返問宿想感暗様福銀題館駅料殺然熱選願情映疑皆例参完念折望束残求約性格能術私帰春昼晴秋計列式信単変夫建昨法英飯晩猫園曜書遠係取品守幸急真箱面喜治笑辞関政留険危存原薬側堂席敗果因常識非官察愛警覚説試告種達類報等借座忘洗験許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差質供限与渡景抜候構捕慣満掛居突招段腹痛退貸迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: ひとたちがこえをかけた。\n\n場面（原文）:\nすると住職は云った……\n『可哀そうな男だ。芳一、お前の身は今大変に危ういぞ！　もっと前にお前がこの事をすっかり私に話さなかったのはいかにも不幸な事であった！　お前の音楽の妙技がまったく不思議な難儀にお前を引き込んだのだ。お前は決して人の家を訪れているのではなくて、墓地の中に平家の墓の間で、夜を過していたのだという事に、今はもう心付かなくてはいけない――今夜、下男達はお前の雨の中に坐っているのを見たが、それは安徳天皇の記念の墓の前であった。お前が想像していた事はみな幻影だ――死んだ人の訪れて来た事の外は。で、一度死んだ人の云う事を聴いた上は、身をその為るがままに任したというものだ。もしこれまであった事の上に、またも、その云う事を聴いたなら、お前はその人達に八つ裂きにされる事だろう。しかし、いずれにしても早晩、お前は殺される……ところで、今夜私はお前と一緒にいるわけにいかぬ。私はまた一つ法会をするように呼ばれている。が、行く前にお前の身体を護るために、その身体に経文を書いて行かなければなるまい』"
+        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\nすると住職は云った……\n『可哀そうな男だ。芳一、お前の身は今大変に危ういぞ！　もっと前にお前がこの事をすっかり私に話さなかったのはいかにも不幸な事であった！　お前の音楽の妙技がまったく不思議な難儀にお前を引き込んだのだ。お前は決して人の家を訪れているのではなくて、墓地の中に平家の墓の間で、夜を過していたのだという事に、今はもう心付かなくてはいけない――今夜、下男達はお前の雨の中に坐っているのを見たが、それは安徳天皇の記念の墓の前であった。お前が想像していた事はみな幻影だ――死んだ人の訪れて来た事の外は。で、一度死んだ人の云う事を聴いた上は、身をその為るがままに任したというものだ。もしこれまであった事の上に、またも、その云う事を聴いたなら、お前はその人達に八つ裂きにされる事だろう。しかし、いずれにしても早晩、お前は殺される……ところで、今夜私はお前と一緒にいるわけにいかぬ。私はまた一つ法会をするように呼ばれている。が、行く前にお前の身体を護るために、その身体に経文を書いて行かなければなるまい』\n"
       }
     ]
   },
   "responses": [
-    "{\"sentences([\": 806, \"和尚が　はなした。 festa \\\"芳一、きみは　いま　あぶないようだ。\\\" ほういちが　はなしなかったために、こんなことに　なったらしい。 びわの　うまさのせいで、こまったことに　なった。 ほういちは　人のいえに　いたのではない。 平家の　おはかに　いたようだ。 ほういちは　それに　きづかなかった。 ほういちは　しんだ人に　あっていた。 これから　また　あえば、ころされるだろう。 和尚は　いま　いっしょに　いられない。 ほかの　しごとが　あるからだ。 でも、ほういちを　まもるために、からだに　もじを　かいた。\\\"`],\\\"question\\\":{\\\"prompt\\\":\\\"和尚は　どうして　ほういちの　からだに　もじを　かきましたか。\\\",\\\"options\\\":[\\\"ほういちを　まもるためです。\\\",\\\"ほういちを　ころすためです。\\\",\\\"びわを　ならすためです。\\\"],\\\"answer\\\":0}}",
-    "{\"sentences\": [\"和尚が　はなした。\", \"芳一、きみは　いま　あぶないようだ。\", \"ほういちが　はなしなかったために、こんなことに　なったらしい。\", \"びわの　うまさのせいで、こまったことに　なった。\", \"ほういちは　人のいえに　いたのではない。\", \"平家の　おはかに　いたようだ。\", \"ほういちは　それに　きづかなかった。\", \"ほういちは　しんだ人に　あっていた。\", \"これから　また　あえば、ころされるだろう。\", \"和尚は　いま　いっしょに　いられない。\", \"ほかの　しごとが　あるからだ。\", \"でも、ほういちを　まもるために、からだに　もじを　かいた。\"], \"question\": {\"prompt\": \"和尚は　どうして　ほういちの　からだに　もじを　かきましたか。\", \"options\": [\"ほういちを　まもるためです。\", \"ほういちを　ころすためです。\", \"びわを　ならすためです。\"], \"answer\": 0}}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"おしょうが　はなした。\"}, {\"index\": 1, \"sentence\": \"ほういち、きみは　いま　あぶないようだ。\"}, {\"index\": 2, \"sentence\": \"ほういちが　はなしなかったために、こうなったらしい。\"}, {\"index\": 3, \"sentence\": \"びわの　うまさのせいで、こまった。\"}, {\"index\": 4, \"sentence\": \"ほういちは　人のいえに　いたのではない。\"}, {\"index\": 6, \"sentence\": \"ほういちは　それに　きづかなかった。\"}, {\"index\": 7, \"sentence\": \"ほういちは　しんだ人に　あっていた。\"}, {\"index\": 8, \"sentence\": \"また　あえば、ころされるだろう。\"}, {\"index\": 9, \"sentence\": \"おしょうは　いま　いっしょに　いられない。\"}, {\"index\": 10, \"sentence\": \"ほかの　しごとが　あるからだ。\"}, {\"index\": 11, \"sentence\": \"ほういちを　まもるために、からだに　もじを　かいた。\"}]}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"おしょうが　はなした。\"}, {\"index\": 1, \"sentence\": \"ほういち、きみは　いま　あぶないようだ。\"}, {\"index\": 2, \"sentence\": \"ほういちが　はなしなかったために、こうなったらしい。\"}, {\"index\": 3, \"sentence\": \"びわの　うまさのせいで、こまった。\"}, {\"index\": 4, \"sentence\": \"ほういちは　ひとのいえに　いたのではない。\"}, {\"index\": 6, \"sentence\": \"ほういちは　それに　きづかなかった。\"}, {\"index\": 7, \"sentence\": \"ほういちは　しんだひとに　あっていた。\"}, {\"index\": 8, \"sentence\": \"また　あえば、ころされるだろう。\"}, {\"index\": 9, \"sentence\": \"おしょうは　いま　いっしょに　いられない。\"}, {\"index\": 10, \"sentence\": \"ほかの　しごとが　あるからだ。\"}, {\"index\": 11, \"sentence\": \"ほういちを　まもるために、からだに　もじを　かいた。\"}]}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"おしょうが　はなした。\"}, {\"index\": 1, \"sentence\": \"ほういち、きみは　いま　あぶないようだ。\"}, {\"index\": 2, \"sentence\": \"ほういちが　はなしなかったために、こうなったらしい。\"}, {\"index\": 3, \"sentence\": \"びわの　うまさのせいで、こまった。\"}, {\"index\": 4, \"sentence\": \"ほういちは　ひとのいえに　いたのではない。\"}, {\"index\": 6, \"sentence\": \"ほういちは　それに　きづかなかった。\"}, {\"index\": 7, \"sentence\": \"ほういちは　しんだひとに　あっていた。\"}, {\"index\": 8, \"sentence\": \"また　あえば、ころされるだろう。\"}, {\"index\": 9, \"sentence\": \"おしょうは　いま　いっしょに　いられない。\"}, {\"index\": 10, \"sentence\": \"ほかの　しごとが　あるからだ。\"}, {\"index\": 11, \"sentence\": \"ほういちを　まもるために、からだに　もじを　かいた。\"}]}",
-    "{\"question\": {\"prompt\": \"おしょうは　どうして　ほういちの　からだに　もじを　かきましたか。\", \"options\": [\"ほういちを　まもるためです。\", \"ほういちを　ころすためです。\", \"びわを　ならすためです。\"], \"answer\": 0}}",
-    "{\"glosses\": {\"れる\": \"passive voice marker\", \"られる\": \"passive or potential marker\"}}"
+    "{\"sentences\": [\"和尚は、芳一の身がとても危ないと言いました。\", \"芳一は音楽が上手だったので、困ったことになりました。\", \"芳一は人の家ではなく、平家の墓にいたようです。\", \"雨の中で座っていたところは、天皇の墓の前でした。\", \"芳一が見たものは全部、死んだ人の幻でした。\", \"死んだ人の言うことを聞くと、体は連れて行かれます。\", \"また話を聞くと、体はバラバラにされるでしょう。\", \"どうせすぐに殺されるので、和尚は体に文字を書きました。\"], \"question\": {\"prompt\": \"芳一はどこで夜を過ごしていましたか。\", \"options\": [\"平家の墓\", \"友達の家\", \"お寺の中\"], \"answer\": 0}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"和尚は、芳一のみがとても危ないと言いました。\"}, {\"index\": 2, \"sentence\": \"芳一は人の家ではなく、平家のはかにいたようです。\"}, {\"index\": 3, \"sentence\": \"雨の中で座っていたところは、てんのうのはかの前でした。\"}, {\"index\": 4, \"sentence\": \"芳一が見たものは全部、死んだ人のまぼろしでした。\"}, {\"index\": 5, \"sentence\": \"死んだ人の言うことを聞くと、体は連れて行かれます。\"}, {\"index\": 6, \"sentence\": \"また話を聞くと、体は細かく切られるでしょう。\"}, {\"index\": 7, \"sentence\": \"もうすぐ殺されるので、和尚は体に文字を書きました。\"}]}",
+    "{\"rewrites\": [{\"index\": 4, \"sentence\": \"芳一が見たものは全部、死んだ人のまぼろしでした。\"}, {\"index\": 5, \"sentence\": \"死んだ人の言うことを聞くと、体は連れて行かれます。\"}, {\"index\": 6, \"sentence\": \"また話を聞くと、体はこまかく切られてしまうでしょう。\"}, {\"index\": 7, \"sentence\": \"もうすぐ殺されてしまうので、和尚は体に文字を書きました。\"}]}",
+    "{\"rewrites\": [{\"index\": 4, \"sentence\": \"芳一が見たものは全部、死んだ人のまぼろしでした。\"}, {\"index\": 5, \"sentence\": \"死んだ人の言うことを聞くと、体は連れて行かれます。\"}, {\"index\": 6, \"sentence\": \"また話を聞くと、体はこまかく切られてしまうでしょう。\"}, {\"index\": 7, \"sentence\": \"もうすぐ殺されてしまうので、和尚は体に文字を書きました。\"}]}",
+    "{\"question\": {\"prompt\": \"ほういちはどこで夜を過ごしていましたか。\", \"options\": [\"へいけのはか\", \"友達の家\", \"おてらの中\"], \"answer\": 0}}",
+    "{\"glosses\": {\"ぼろい\": \"worn out\", \"れる\": \"passive voice marker\"}}"
   ],
   "metrics": {
     "kanjiCoverage": 1,
-    "kanjiDensity": 0.009852216748768473,
-    "firstCoverage": 0.9047619047619048,
-    "finalCoverage": 0.8947368421052632,
-    "retries": 3,
-    "seconds": 50.02793310000003,
+    "kanjiDensity": 0.22380952380952382,
+    "firstCoverage": 0.84,
+    "finalCoverage": 0.9230769230769231,
+    "retries": 9,
+    "seconds": 26.032313700000056,
     "offendingFirst": [
-      "しむ",
+      "天皇",
+      "幻",
       "れる",
-      "られる",
-      "ごと"
+      "バラバラ",
+      "どうせ",
+      "すぐ"
     ],
     "ghostWords": [
-      "しむ",
       "れる",
-      "られる",
-      "ごと"
+      "ぼろい"
+    ],
+    "faithIssues": [
+      {
+        "sentence": "芳一が見たものは、死んだ人のまぼろしでした。",
+        "problem": "The original states everything was an illusion *except* for the visit from the dead; the retelling says the dead people themselves were illusions. Correction: The visit was real, but the surroundings were an illusion.",
+        "kind": "event"
+      }
     ]
   },
   "retelling": {
@@ -49,73 +55,61 @@
       {
         "tokens": [
           {
-            "s": "おしょう",
+            "s": "和尚",
             "r": "おしょう",
             "b": "和尚",
             "k": "story",
-            "g": "Buddhist head priest"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "はなし",
-            "b": "はなす",
-            "k": "known",
-            "g": "to speak",
-            "gs": "jlpt"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "ほういち",
-            "r": "ほういち",
-            "b": "芳一",
-            "k": "story",
-            "g": "Hoichi, a blind musician"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "きみ",
-            "k": "plain"
+            "g": "Buddhist head priest",
+            "hk": true
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "いま",
-            "b": "いま",
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "芳一",
+            "r": "ほういち",
+            "b": "芳一",
+            "k": "story",
+            "g": "Hoichi, a blind musician",
+            "hk": true
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "今",
             "k": "known",
+            "r": "いま",
+            "b": "今",
             "g": "now",
             "gs": "jlpt"
           },
           {
-            "s": "あぶない",
-            "b": "あぶない",
+            "s": "とても",
             "k": "known",
+            "b": "とても",
+            "g": "very (much), greatly, exceedingly",
+            "gs": "jlpt"
+          },
+          {
+            "s": "危ない",
+            "k": "known",
+            "r": "あぶない",
+            "b": "危ない",
             "g": "dangerous, critical",
             "gs": "jlpt"
           },
           {
-            "s": "よう",
-            "b": "よう",
+            "s": "じょうたい",
             "k": "known",
-            "g": "errand, task, business (to take care of)",
+            "b": "じょうたい",
+            "g": "condition, situation",
             "gs": "jlpt"
           },
           {
@@ -123,6 +117,26 @@
             "k": "plain"
           },
           {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "言い",
+            "k": "known",
+            "r": "いい",
+            "b": "言う",
+            "g": "to say",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
             "s": "。",
             "k": "plain"
           }
@@ -131,29 +145,39 @@
       {
         "tokens": [
           {
-            "s": "ほういち",
+            "s": "芳一",
             "r": "ほういち",
             "b": "芳一",
             "k": "story",
-            "g": "Hoichi, a blind musician"
+            "g": "Hoichi, a blind musician",
+            "hk": true
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "琵琶",
+            "r": "びわ",
+            "b": "琵琶",
+            "k": "story",
+            "g": "Japanese lute",
+            "hk": true
           },
           {
             "s": "が",
             "k": "plain"
           },
           {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "なし",
-            "b": "ない",
+            "s": "上手",
             "k": "known",
-            "g": "there isn't, doesn't have",
+            "r": "じょうず",
+            "b": "上手",
+            "g": "be good at, skillful",
             "gs": "jlpt"
           },
           {
-            "s": "なかっ",
+            "s": "だっ",
             "k": "plain"
           },
           {
@@ -161,10 +185,29 @@
             "k": "plain"
           },
           {
-            "s": "ため",
-            "b": "ため",
+            "s": "ので",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "ふしぎ",
             "k": "known",
-            "g": "good, advantage, in order to",
+            "b": "ふしぎ",
+            "g": "mystery, curiosity",
+            "gs": "jlpt"
+          },
+          {
+            "s": "な",
+            "k": "plain"
+          },
+          {
+            "s": "こと",
+            "k": "known",
+            "b": "こと",
+            "g": "thing(s), matter(s), fact",
             "gs": "jlpt"
           },
           {
@@ -172,89 +215,23 @@
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "こう",
-            "b": "こう",
+            "s": "引か",
             "k": "known",
-            "g": "like this, this way",
+            "r": "ひか",
+            "b": "引く",
+            "g": "to pull, to draw; subtract",
             "gs": "jlpt"
           },
           {
-            "s": "なっ",
-            "b": "なる",
-            "k": "known",
-            "g": "to become",
-            "gs": "jlpt"
+            "s": "れ",
+            "k": "ghost",
+            "b": "れる",
+            "g": "passive/potential marker",
+            "gs": "model"
           },
           {
-            "s": "た",
+            "s": "まし",
             "k": "plain"
-          },
-          {
-            "s": "らしい",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "びわ",
-            "r": "びわ",
-            "b": "琵琶",
-            "k": "story",
-            "g": "Japanese lute"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "うま",
-            "b": "うまい",
-            "k": "known",
-            "g": "delicious; skillful; fortunate",
-            "gs": "jlpt"
-          },
-          {
-            "s": "さ",
-            "b": "さ",
-            "k": "known",
-            "g": "difference, variation",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "せい",
-            "b": "せい",
-            "k": "known",
-            "g": "(one's) height, stature",
-            "gs": "jlpt"
-          },
-          {
-            "s": "で",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "こまっ",
-            "b": "こまる",
-            "k": "known",
-            "g": "to be bothered, to have difficulty",
-            "gs": "jlpt"
           },
           {
             "s": "た",
@@ -269,21 +246,11 @@
       {
         "tokens": [
           {
-            "s": "ほういち",
-            "r": "ほういち",
-            "b": "芳一",
-            "k": "story",
-            "g": "Hoichi, a blind musician"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "ひと",
-            "b": "ひと",
+            "s": "人",
             "k": "known",
-            "g": "man, person",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
@@ -291,35 +258,14 @@
             "k": "plain"
           },
           {
-            "s": "いえ",
-            "b": "いえる",
+            "s": "家",
             "k": "known",
+            "r": "いえ",
+            "b": "家",
             "g": "house, home",
             "gs": "jlpt"
           },
           {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "い",
-            "b": "いる",
-            "k": "known",
-            "g": "(humble) to be (animate), to exist",
-            "gs": "jlpt"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "の",
-            "b": "の",
-            "k": "known",
-            "g": "field",
-            "gs": "jlpt"
-          },
-          {
             "s": "で",
             "k": "plain"
           },
@@ -328,17 +274,13 @@
             "k": "plain"
           },
           {
-            "s": "ない",
+            "s": "なく",
             "k": "plain"
           },
           {
-            "s": "。",
+            "s": "、",
             "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
+          },
           {
             "s": "平家",
             "r": "へいけ",
@@ -351,14 +293,22 @@
             "k": "plain"
           },
           {
-            "s": "お",
+            "s": "はか",
+            "k": "known",
+            "b": "はか",
+            "g": "grave, tomb",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
             "k": "plain"
           },
           {
-            "s": "はか",
-            "b": "はか",
+            "s": "間",
             "k": "known",
-            "g": "grave, tomb",
+            "r": "ま",
+            "b": "間",
+            "g": "space, interval",
             "gs": "jlpt"
           },
           {
@@ -367,8 +317,8 @@
           },
           {
             "s": "い",
-            "b": "いる",
             "k": "known",
+            "b": "いる",
             "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
@@ -378,13 +328,13 @@
           },
           {
             "s": "よう",
-            "b": "よう",
             "k": "known",
+            "b": "よう",
             "g": "errand, task, business (to take care of)",
             "gs": "jlpt"
           },
           {
-            "s": "だ",
+            "s": "です",
             "k": "plain"
           },
           {
@@ -396,85 +346,35 @@
       {
         "tokens": [
           {
-            "s": "ほういち",
-            "r": "ほういち",
-            "b": "芳一",
-            "k": "story",
-            "g": "Hoichi, a blind musician"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "それ",
-            "k": "plain"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "きづか",
-            "b": "きづく",
+            "s": "雨",
             "k": "known",
-            "g": "to notice, to recognize, to become aware of",
+            "r": "あめ",
+            "b": "雨",
+            "g": "rain",
             "gs": "jlpt"
           },
           {
-            "s": "なかっ",
+            "s": "の",
             "k": "plain"
           },
           {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "ほういち",
-            "r": "ほういち",
-            "b": "芳一",
-            "k": "story",
-            "g": "Hoichi, a blind musician"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "しん",
-            "b": "しむ",
-            "k": "ghost",
-            "g": "core, heart, wick",
+            "s": "中",
+            "k": "known",
+            "r": "なか",
+            "b": "中",
+            "g": "during, while",
             "gs": "jlpt"
           },
           {
-            "s": "だ",
+            "s": "で",
             "k": "plain"
           },
           {
-            "s": "ひと",
-            "b": "ひと",
+            "s": "座っ",
             "k": "known",
-            "g": "man, person",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "あっ",
-            "b": "ある",
-            "k": "known",
-            "g": "to be, to have",
+            "r": "すわっ",
+            "b": "座る",
+            "g": "to sit",
             "gs": "jlpt"
           },
           {
@@ -483,13 +383,270 @@
           },
           {
             "s": "い",
-            "b": "いる",
             "k": "known",
+            "b": "いる",
             "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
           {
             "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "場所",
+            "k": "known",
+            "r": "ばしょ",
+            "b": "場所",
+            "g": "place, location",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "てん",
+            "k": "known",
+            "b": "てん",
+            "g": "mark, score, grade; point, dot",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "うの",
+            "k": "plain"
+          },
+          {
+            "s": "お",
+            "k": "plain"
+          },
+          {
+            "s": "はか",
+            "k": "known",
+            "b": "はか",
+            "g": "grave, tomb",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "前",
+            "k": "known",
+            "r": "まえ",
+            "b": "前",
+            "g": "before, in front",
+            "gs": "jlpt"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "芳一",
+            "r": "ほういち",
+            "b": "芳一",
+            "k": "story",
+            "g": "Hoichi, a blind musician",
+            "hk": true
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "見",
+            "k": "known",
+            "r": "み",
+            "b": "見る",
+            "g": "to see, to look",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "もの",
+            "k": "known",
+            "b": "もの",
+            "g": "thing (concrete object)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "死ん",
+            "k": "known",
+            "r": "しん",
+            "b": "死ぬ",
+            "g": "to die",
+            "gs": "jlpt"
+          },
+          {
+            "s": "だ",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "k": "known",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "ま",
+            "k": "plain"
+          },
+          {
+            "s": "ぼろし",
+            "k": "ghost",
+            "b": "ぼろい",
+            "g": "worn-out",
+            "gs": "model"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "死ん",
+            "k": "known",
+            "r": "しん",
+            "b": "死ぬ",
+            "g": "to die",
+            "gs": "jlpt"
+          },
+          {
+            "s": "だ",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "k": "known",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "言う",
+            "k": "known",
+            "r": "いう",
+            "b": "言う",
+            "g": "to say",
+            "gs": "jlpt"
+          },
+          {
+            "s": "こと",
+            "k": "known",
+            "b": "こと",
+            "g": "thing(s), matter(s), fact",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "聞く",
+            "k": "known",
+            "r": "きく",
+            "b": "聞く",
+            "g": "to hear, to listen, to ask",
+            "gs": "jlpt"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "そのまま",
+            "k": "known",
+            "b": "そのまま",
+            "g": "without change, as it is (e.g., now)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "連れ",
+            "k": "known",
+            "r": "つれ",
+            "b": "連れる",
+            "g": "to lead, to take (a person)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "行か",
+            "k": "known",
+            "r": "いか",
+            "b": "行く",
+            "g": "to go",
+            "gs": "jlpt"
+          },
+          {
+            "s": "れ",
+            "k": "ghost",
+            "b": "れる",
+            "g": "passive/potential marker",
+            "gs": "model"
+          },
+          {
+            "s": "ます",
             "k": "plain"
           },
           {
@@ -505,14 +662,27 @@
             "k": "plain"
           },
           {
-            "s": "あえ",
-            "b": "あう",
+            "s": "話",
             "k": "known",
-            "g": "to meet, to see",
+            "r": "はなし",
+            "b": "話",
+            "g": "talk (chat), story",
             "gs": "jlpt"
           },
           {
-            "s": "ば",
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "聞く",
+            "k": "known",
+            "r": "きく",
+            "b": "聞く",
+            "g": "to hear, to listen, to ask",
+            "gs": "jlpt"
+          },
+          {
+            "s": "と",
             "k": "plain"
           },
           {
@@ -520,21 +690,52 @@
             "k": "plain"
           },
           {
-            "s": "ころさ",
-            "b": "ころす",
+            "s": "体",
             "k": "known",
-            "g": "to kill",
+            "r": "からだ",
+            "b": "体",
+            "g": "body; health",
             "gs": "jlpt"
           },
           {
-            "s": "れる",
-            "b": "れる",
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "こまかく",
+            "k": "known",
+            "b": "こまかい",
+            "g": "small; fine, minute",
+            "gs": "jlpt"
+          },
+          {
+            "s": "切ら",
+            "k": "known",
+            "r": "きら",
+            "b": "切る",
+            "g": "to cut; to hang up (a phone)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "れ",
             "k": "ghost",
-            "g": "passive voice marker",
+            "b": "れる",
+            "g": "passive/potential marker",
             "gs": "model"
           },
           {
-            "s": "だろ",
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "しまう",
+            "k": "known",
+            "b": "しまう",
+            "g": "to end up ~",
+            "gs": "jlpt"
+          },
+          {
+            "s": "でしょ",
             "k": "plain"
           },
           {
@@ -550,62 +751,23 @@
       {
         "tokens": [
           {
-            "s": "おしょう",
+            "s": "和尚",
             "r": "おしょう",
             "b": "和尚",
             "k": "story",
-            "g": "Buddhist head priest"
+            "g": "Buddhist head priest",
+            "hk": true
           },
           {
-            "s": "はい",
+            "s": "は",
             "k": "plain"
           },
           {
-            "s": "ま",
-            "k": "plain"
-          },
-          {
-            "s": "いっしょ",
-            "b": "いっしょ",
+            "s": "別",
             "k": "known",
-            "g": "together",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "い",
-            "b": "いる",
-            "k": "known",
-            "g": "(humble) to be (animate), to exist",
-            "gs": "jlpt"
-          },
-          {
-            "s": "られ",
-            "b": "られる",
-            "k": "ghost",
-            "g": "passive or potential marker",
-            "gs": "model"
-          },
-          {
-            "s": "ない",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "ほか",
-            "b": "ほか",
-            "k": "known",
-            "g": "other, the rest",
+            "r": "べつ",
+            "b": "別",
+            "g": "distinction, different",
             "gs": "jlpt"
           },
           {
@@ -613,17 +775,10 @@
             "k": "plain"
           },
           {
-            "s": "し",
-            "b": "する",
+            "s": "しき",
             "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ごと",
-            "b": "ごと",
-            "k": "ghost",
-            "g": "whole ~, all of ~",
+            "b": "しき",
+            "g": "~ ceremony; ~ style",
             "gs": "jlpt"
           },
           {
@@ -632,54 +787,13 @@
           },
           {
             "s": "ある",
-            "b": "ある",
             "k": "known",
+            "b": "ある",
             "g": "to be, to have",
             "gs": "jlpt"
           },
           {
-            "s": "から",
-            "k": "plain"
-          },
-          {
-            "s": "だ",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "ほういち",
-            "r": "ほういち",
-            "b": "芳一",
-            "k": "story",
-            "g": "Hoichi, a blind musician"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "まもる",
-            "b": "まもる",
-            "k": "known",
-            "g": "to protect; to abide (by the rules)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ため",
-            "b": "ため",
-            "k": "known",
-            "g": "good, advantage, in order to",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
+            "s": "ので",
             "k": "plain"
           },
           {
@@ -687,9 +801,22 @@
             "k": "plain"
           },
           {
-            "s": "からだ",
-            "b": "からだ",
+            "s": "芳一",
+            "r": "ほういち",
+            "b": "芳一",
+            "k": "story",
+            "g": "Hoichi, a blind musician",
+            "hk": true
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "体",
             "k": "known",
+            "r": "からだ",
+            "b": "体",
             "g": "body; health",
             "gs": "jlpt"
           },
@@ -698,23 +825,34 @@
             "k": "plain"
           },
           {
-            "s": "も",
-            "k": "plain"
+            "s": "きょう",
+            "k": "known",
+            "b": "きょう",
+            "g": "today, this day",
+            "gs": "jlpt"
           },
           {
-            "s": "じ",
-            "k": "plain"
+            "s": "もん",
+            "k": "known",
+            "b": "もん",
+            "g": "gate",
+            "gs": "jlpt"
           },
           {
             "s": "を",
             "k": "plain"
           },
           {
-            "s": "かい",
-            "b": "かく",
+            "s": "書き",
             "k": "known",
+            "r": "かき",
+            "b": "書く",
             "g": "to write",
             "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
           },
           {
             "s": "た",
@@ -731,62 +869,54 @@
       "prompt": {
         "tokens": [
           {
-            "s": "おしょう",
-            "r": "おしょう",
-            "b": "和尚",
+            "s": "芳一",
+            "r": "ほういち",
+            "b": "芳一",
             "k": "story",
-            "g": "Buddhist head priest"
+            "g": "Hoichi, a blind musician",
+            "hk": true
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "どうして",
-            "b": "どうして",
+            "s": "どこ",
+            "k": "plain"
+          },
+          {
+            "s": "で",
+            "k": "plain"
+          },
+          {
+            "s": "夜",
             "k": "known",
-            "g": "why, for what reason",
+            "r": "よる",
+            "b": "夜",
+            "g": "evening, night",
             "gs": "jlpt"
-          },
-          {
-            "s": "ほういち",
-            "r": "ほういち",
-            "b": "芳一",
-            "k": "story",
-            "g": "Hoichi, a blind musician"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "からだ",
-            "b": "からだ",
-            "k": "known",
-            "g": "body; health",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "も",
-            "k": "plain"
-          },
-          {
-            "s": "じ",
-            "k": "plain"
           },
           {
             "s": "を",
             "k": "plain"
           },
           {
-            "s": "かき",
-            "b": "かく",
+            "s": "過ごし",
             "k": "known",
-            "g": "to write",
+            "r": "すごし",
+            "b": "過ごす",
+            "g": "to pass, to spend (time)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "k": "known",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
           {
@@ -811,111 +941,73 @@
         {
           "tokens": [
             {
-              "s": "ほういち",
-              "r": "ほういち",
-              "b": "芳一",
-              "k": "story",
-              "g": "Hoichi, a blind musician"
-            },
-            {
-              "s": "を",
-              "k": "plain"
-            },
-            {
-              "s": "ころす",
-              "b": "ころす",
+              "s": "友達",
               "k": "known",
-              "g": "to kill",
+              "r": "ともだち",
+              "b": "友達",
+              "g": "friend",
               "gs": "jlpt"
             },
             {
-              "s": "ため",
-              "b": "ため",
+              "s": "の",
+              "k": "plain"
+            },
+            {
+              "s": "家",
               "k": "known",
-              "g": "good, advantage, in order to",
+              "r": "いえ",
+              "b": "家",
+              "g": "house, home",
               "gs": "jlpt"
-            },
-            {
-              "s": "です",
-              "k": "plain"
-            },
-            {
-              "s": "。",
-              "k": "plain"
             }
           ]
         },
         {
           "tokens": [
             {
-              "s": "びわ",
-              "r": "びわ",
-              "b": "琵琶",
-              "k": "story",
-              "g": "Japanese lute"
-            },
-            {
-              "s": "を",
+              "s": "お",
               "k": "plain"
             },
             {
-              "s": "ならす",
-              "b": "ならす",
+              "s": "てら",
               "k": "known",
-              "g": "to ring, to sound",
+              "b": "てる",
+              "g": "to shine",
               "gs": "jlpt"
             },
             {
-              "s": "ため",
-              "b": "ため",
+              "s": "の",
+              "k": "plain"
+            },
+            {
+              "s": "中",
               "k": "known",
-              "g": "good, advantage, in order to",
+              "r": "なか",
+              "b": "中",
+              "g": "during, while",
               "gs": "jlpt"
-            },
-            {
-              "s": "です",
-              "k": "plain"
-            },
-            {
-              "s": "。",
-              "k": "plain"
             }
           ]
         },
         {
           "tokens": [
             {
-              "s": "ほういち",
-              "r": "ほういち",
-              "b": "芳一",
+              "s": "平家",
+              "r": "へいけ",
+              "b": "平家",
               "k": "story",
-              "g": "Hoichi, a blind musician"
+              "g": "the Heike clan"
             },
             {
-              "s": "を",
+              "s": "の",
               "k": "plain"
             },
             {
-              "s": "まもる",
-              "b": "まもる",
+              "s": "はか",
               "k": "known",
-              "g": "to protect; to abide (by the rules)",
+              "b": "はか",
+              "g": "grave, tomb",
               "gs": "jlpt"
-            },
-            {
-              "s": "ため",
-              "b": "ため",
-              "k": "known",
-              "g": "good, advantage, in order to",
-              "gs": "jlpt"
-            },
-            {
-              "s": "です",
-              "k": "plain"
-            },
-            {
-              "s": "。",
-              "k": "plain"
             }
           ]
         }
@@ -924,24 +1016,188 @@
     },
     "metrics": {
       "kanjiCoverage": 1,
-      "kanjiDensity": 0.009852216748768473,
-      "firstCoverage": 0.9047619047619048,
-      "finalCoverage": 0.8947368421052632,
-      "retries": 3,
-      "seconds": 50.02793310000003,
+      "kanjiDensity": 0.22380952380952382,
+      "firstCoverage": 0.84,
+      "finalCoverage": 0.9230769230769231,
+      "retries": 9,
+      "seconds": 26.032313700000056,
       "offendingFirst": [
-        "しむ",
+        "天皇",
+        "幻",
         "れる",
-        "られる",
-        "ごと"
+        "バラバラ",
+        "どうせ",
+        "すぐ"
       ],
       "ghostWords": [
-        "しむ",
         "れる",
-        "られる",
-        "ごと"
+        "ぼろい"
+      ],
+      "faithIssues": [
+        {
+          "sentence": "芳一が見たものは、死んだ人のまぼろしでした。",
+          "problem": "The original states everything was an illusion *except* for the visit from the dead; the retelling says the dead people themselves were illusions. Correction: The visit was real, but the surroundings were an illusion.",
+          "kind": "event"
+        }
       ]
     }
   },
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "levelRepairs": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nすると住職は云った……\n『可哀そうな男だ。芳一、お前の身は今大変に危ういぞ！　もっと前にお前がこの事をすっかり私に話さなかったのはいかにも不幸な事であった！　お前の音楽の妙技がまったく不思議な難儀にお前を引き込んだのだ。お前は決して人の家を訪れているのではなくて、墓地の中に平家の墓の間で、夜を過していたのだという事に、今はもう心付かなくてはいけない――今夜、下男達はお前の雨の中に坐っているのを見たが、それは安徳天皇の記念の墓の前であった。お前が想像していた事はみな幻影だ――死んだ人の訪れて来た事の外は。で、一度死んだ人の云う事を聴いた上は、身をその為るがままに任したというものだ。もしこれまであった事の上に、またも、その云う事を聴いたなら、お前はその人達に八つ裂きにされる事だろう。しかし、いずれにしても早晩、お前は殺される……ところで、今夜私はお前と一緒にいるわけにいかぬ。私はまた一つ法会をするように呼ばれている。が、行く前にお前の身体を護るために、その身体に経文を書いて行かなければなるまい』\nCurrent retelling:\n和尚は、芳一のみがとても危ないと言いました。\n芳一は音楽が上手だったので、困ったことになりました。\n芳一は人の家ではなく、平家のはかにいたようです。\n雨の中で座っていたところは、てんのうのはかの前でした。\n芳一が見たものは全部、死んだ人のまぼろしでした。\n死んだ人の言うことを聞くと、体は連れて行かれます。\nまた話を聞くと、体はこまかく切られてしまうでしょう。\nもうすぐ殺されてしまうので、和尚は体に文字を書きました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.2376237623762376,\"meanLength\":25.25,\"advancedShare\":0.24489795918367346}; vocabulary 0.9183673469387755. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: ぼろい、れる. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"和尚は、芳一の身が今とても危ないと言いました。\", \"芳一は琵琶が上手だったので、不思議なことに引かれました。\", \"芳一は人の家ではなく、平家のはかにいたようです。\", \"雨の中で座っていた場所は、てんのうのはかの前でした。\", \"芳一が見たものは、死んだ人のまぼろしでした。\", \"死んだ人の言うことを聞くと、そのまま連れて行かれます。\", \"また話を聞くと、体はこまかく切られてしまうでしょう。\", \"もうすぐ殺されるので、和尚は体に経文を書きました。\"], \"question\": {\"prompt\": \"芳一が夜に座っていた場所はどこでしたか。\", \"options\": [\"人の家\", \"平家のはか\", \"和尚の家\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nすると住職は云った……\n『可哀そうな男だ。芳一、お前の身は今大変に危ういぞ！　もっと前にお前がこの事をすっかり私に話さなかったのはいかにも不幸な事であった！　お前の音楽の妙技がまったく不思議な難儀にお前を引き込んだのだ。お前は決して人の家を訪れているのではなくて、墓地の中に平家の墓の間で、夜を過していたのだという事に、今はもう心付かなくてはいけない――今夜、下男達はお前の雨の中に坐っているのを見たが、それは安徳天皇の記念の墓の前であった。お前が想像していた事はみな幻影だ――死んだ人の訪れて来た事の外は。で、一度死んだ人の云う事を聴いた上は、身をその為るがままに任したというものだ。もしこれまであった事の上に、またも、その云う事を聴いたなら、お前はその人達に八つ裂きにされる事だろう。しかし、いずれにしても早晩、お前は殺される……ところで、今夜私はお前と一緒にいるわけにいかぬ。私はまた一つ法会をするように呼ばれている。が、行く前にお前の身体を護るために、その身体に経文を書いて行かなければなるまい』\nCurrent retelling:\n和尚は、芳一のみが今とても危ないと言いました。\n芳一は琵琶が上手だったので、不思議なことに引かれました。\n芳一は人の家ではなく、平家のはかにいたようです。\n雨の中で座っていた場所は、てんのうのはかの前でした。\n芳一が見たものは、死んだ人のまぼろしでした。\n死んだ人の言うことを聞くと、そのまま連れて行かれます。\nまた話を聞くと、体はこまかく切られてしまうでしょう。\nもうすぐ殺されるので、和尚は体に経文を書きました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.2537313432835821,\"meanLength\":25.125,\"advancedShare\":0.2708333333333333}; vocabulary 0.875. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: れる、ぼろい、経文. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"和尚は、芳一の身が今とても危ないと言いました。\", \"芳一は琵琶が上手だったので、不思議なことに引かれました。\", \"芳一は人の家ではなく、平家のはかにいたようです。\", \"雨の中で座っていた場所は、てんのうのはかの前でした。\", \"芳一が見たものは、死んだ人のまぼろしでした。\", \"死んだ人の言うことを聞くと、そのまま連れて行かれます。\", \"また話を聞くと、体は細かく切られてしまうでしょう。\", \"もうすぐ殺されるので、和尚は体にきょうもんを書きました。\"], \"question\": {\"prompt\": \"芳一はどこに座っていましたか。\", \"options\": [\"人の家\", \"平家のはか\", \"和尚の家\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nすると住職は云った……\n『可哀そうな男だ。芳一、お前の身は今大変に危ういぞ！　もっと前にお前がこの事をすっかり私に話さなかったのはいかにも不幸な事であった！　お前の音楽の妙技がまったく不思議な難儀にお前を引き込んだのだ。お前は決して人の家を訪れているのではなくて、墓地の中に平家の墓の間で、夜を過していたのだという事に、今はもう心付かなくてはいけない――今夜、下男達はお前の雨の中に坐っているのを見たが、それは安徳天皇の記念の墓の前であった。お前が想像していた事はみな幻影だ――死んだ人の訪れて来た事の外は。で、一度死んだ人の云う事を聴いた上は、身をその為るがままに任したというものだ。もしこれまであった事の上に、またも、その云う事を聴いたなら、お前はその人達に八つ裂きにされる事だろう。しかし、いずれにしても早晩、お前は殺される……ところで、今夜私はお前と一緒にいるわけにいかぬ。私はまた一つ法会をするように呼ばれている。が、行く前にお前の身体を護るために、その身体に経文を書いて行かなければなるまい』\nCurrent retelling:\n和尚は、芳一のみが今とても危ないと言いました。\n芳一は琵琶が上手だったので、不思議なことに引かれました。\n芳一は人の家ではなく、平家のはかにいたようです。\n雨の中で座っていた場所は、てんのうのはかの前でした。\n芳一が見たものは、死んだ人のまぼろしでした。\n死んだ人の言うことを聞くと、そのまま連れて行かれます。\nまた話を聞くと、体はこまかく切られてしまうでしょう。\nもうすぐ殺されるので、和尚は体にきょうもんを書きました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.24019607843137256,\"meanLength\":25.5,\"advancedShare\":0.2653061224489796}; vocabulary 0.8979591836734694. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: れる、ぼろい. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentencesにつながる\": null, \"sentences\": [\"和尚は、芳一の身が今とても危ないと言いました。\", \"芳一は琵琶が上手だったので、不思議なことに引かれました。\", \"芳一は人の家ではなく、平家のはかにいたようです。\", \"雨の中で座っていた場所は、てんのうのはかの前でした。\", \"芳一が見たものは、死んだ人のまぼろしでした。\", \"死んだ人の言うことを聞くと、そのまま連れて行かれます。\", \"また話を聞くと、体はこまかく切られてしまうでしょう。\", \"もうすぐ殺されるので、和尚は体にきょうもんを書きました。\"], \"question\": {\"prompt\": \"芳一はどこで琵琶を弾いていましたか。\", \"options\": [\"人の家\", \"平家のはか\", \"和尚の寺\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: れる、ぼろい. Return JSON {\"glosses\":{\"れる\":\"English gloss\",\"ぼろい\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"れる\": \"passive/potential auxiliary\", \"ぼろい\": \"worn-out\"}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nすると住職は云った……\n『可哀そうな男だ。芳一、お前の身は今大変に危ういぞ！　もっと前にお前がこの事をすっかり私に話さなかったのはいかにも不幸な事であった！　お前の音楽の妙技がまったく不思議な難儀にお前を引き込んだのだ。お前は決して人の家を訪れているのではなくて、墓地の中に平家の墓の間で、夜を過していたのだという事に、今はもう心付かなくてはいけない――今夜、下男達はお前の雨の中に坐っているのを見たが、それは安徳天皇の記念の墓の前であった。お前が想像していた事はみな幻影だ――死んだ人の訪れて来た事の外は。で、一度死んだ人の云う事を聴いた上は、身をその為るがままに任したというものだ。もしこれまであった事の上に、またも、その云う事を聴いたなら、お前はその人達に八つ裂きにされる事だろう。しかし、いずれにしても早晩、お前は殺される……ところで、今夜私はお前と一緒にいるわけにいかぬ。私はまた一つ法会をするように呼ばれている。が、行く前にお前の身体を護るために、その身体に経文を書いて行かなければなるまい』\nCurrent retelling:\n和尚は、芳一のみが今とても危ないと言いました。\n芳一は琵琶が上手だったので、不思議なことに引かれました。\n芳一は人の家ではなく、平家のはかにいたようです。\n雨の中で座っていた場所は、てんのうのはかの前でした。\n芳一が見たものは、死んだ人のまぼろしでした。\n死んだ人の言うことを聞くと、そのまま連れて行かれます。\nまた話を聞くと、体はこまかく切られてしまうでしょう。\n和尚は別の法会があるので一緒にいられませんが、殺されないように芳一の体に経文を書きました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.26244343891402716,\"meanLength\":27.625,\"advancedShare\":0.25925925925925924}; vocabulary 0.8518518518518519. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: れる、ぼろい、法会、られる、経文. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences([\": [\"和尚は、芳一の身が今とても危ないと言いました。\", \"芳一は琵琶が上手だったので、不思議なことに引かれました。\", \"芳一は人の家ではなく、平家のはかにいたようです。\", \"雨の中で座っていた場所は、てんのうのおはかの前でした。\", \"芳一が見たものは、死んだ人のまぼろしでした。\", \"死んだ人の言うことを聞くと、そのまま連れて行かれます。\", \"また話を聞くと、体はこまかく切られてしまうでしょう。\", \"和尚は別のしきがあるので、芳一の体にきょうもんを書きました。\"]}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nすると住職は云った……\n『可哀そうな男だ。芳一、お前の身は今大変に危ういぞ！　もっと前にお前がこの事をすっかり私に話さなかったのはいかにも不幸な事であった！　お前の音楽の妙技がまったく不思議な難儀にお前を引き込んだのだ。お前は決して人の家を訪れているのではなくて、墓地の中に平家の墓の間で、夜を過していたのだという事に、今はもう心付かなくてはいけない――今夜、下男達はお前の雨の中に坐っているのを見たが、それは安徳天皇の記念の墓の前であった。お前が想像していた事はみな幻影だ――死んだ人の訪れて来た事の外は。で、一度死んだ人の云う事を聴いた上は、身をその為るがままに任したというものだ。もしこれまであった事の上に、またも、その云う事を聴いたなら、お前はその人達に八つ裂きにされる事だろう。しかし、いずれにしても早晩、お前は殺される……ところで、今夜私はお前と一緒にいるわけにいかぬ。私はまた一つ法会をするように呼ばれている。が、行く前にお前の身体を護るために、その身体に経文を書いて行かなければなるまい』\nCurrent retelling:\n和尚は、芳一のみが今とても危ないと言いました。\n芳一は琵琶が上手だったので、不思議なことに引かれました。\n芳一は人の家ではなく、平家のはかにいたようです。\n雨の中で座っていた場所は、てんのうのおはかの前でした。\n芳一が見たものは、死んだ人のまぼろしでした。\n死んだ人の言うことを聞くと、そのまま連れて行かれます。\nまた話を聞くと、体はこまかく切られてしまうでしょう。\n和尚は別のしきがあるので、芳一の体にきょうもんを書きました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.2463768115942029,\"meanLength\":25.875,\"advancedShare\":0.28}; vocabulary 0.92. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: れる、ぼろい. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"和尚は、芳一が今とても危ない状態だと言いました。\", \"芳一は琵琶が上手だったので、不思議なことに引かれました。\", \"人の家ではなく、平家のはかの間にいたようです。\", \"雨の中で座っていた場所は、てんのうのおはかの前でした。\", \"芳一が見たものは、死んだ人のまぼろしでした。\", \"死んだ人の言うことを聞くと、そのまま連れて行かれます。\", \"また話を聞くと、体はこまかく切られてしまうでしょう。\", \"和尚は別のしきがあるので、芳一の体にきょうもんを書きました。\"], \"question\": {\"prompt\": \"和尚は、芳一の体に何を書きましたか。\", \"options\": [\"名前\", \"きょうもん\", \"歌\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nすると住職は云った……\n『可哀そうな男だ。芳一、お前の身は今大変に危ういぞ！　もっと前にお前がこの事をすっかり私に話さなかったのはいかにも不幸な事であった！　お前の音楽の妙技がまったく不思議な難儀にお前を引き込んだのだ。お前は決して人の家を訪れているのではなくて、墓地の中に平家の墓の間で、夜を過していたのだという事に、今はもう心付かなくてはいけない――今夜、下男達はお前の雨の中に坐っているのを見たが、それは安徳天皇の記念の墓の前であった。お前が想像していた事はみな幻影だ――死んだ人の訪れて来た事の外は。で、一度死んだ人の云う事を聴いた上は、身をその為るがままに任したというものだ。もしこれまであった事の上に、またも、その云う事を聴いたなら、お前はその人達に八つ裂きにされる事だろう。しかし、いずれにしても早晩、お前は殺される……ところで、今夜私はお前と一緒にいるわけにいかぬ。私はまた一つ法会をするように呼ばれている。が、行く前にお前の身体を護るために、その身体に経文を書いて行かなければなるまい』\nCurrent retelling:\n和尚は、芳一が今とても危ないじょうたいだと言いました。\n芳一は琵琶が上手だったので、不思議なことに引かれました。\n人の家ではなく、平家のはかの間にいたようです。\n雨の中で座っていた場所は、てんのうのおはかの前でした。\n芳一が見たものは、死んだ人のまぼろしでした。\n死んだ人の言うことを聞くと、そのまま連れて行かれます。\nまた話を聞くと、体はこまかく切られてしまうでしょう。\n和尚は別のしきがあるので、芳一の体にきょうもんを書きました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.23809523809523808,\"meanLength\":26.25,\"advancedShare\":0.3076923076923077}; vocabulary 0.9230769230769231. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: れる、ぼろい. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"和尚は、芳一が今とても危ないじょうたいだと言いました。\", \"芳一は琵琶が上手だったので、ふしぎなことに引かれました。\", \"人の家ではなく、平家のはかの間にいたようです。\", \"雨の中で座っていた場所は、てんのうのおはかの前でした。\", \"芳一が見たものは、死んだ人のまぼろしでした。\", \"死んだ人の言うことを聞くと、そのまま連れて行かれます。\", \"また話を聞くと、体はこまかく切られてしまうでしょう。\", \"和尚は別のしきがあるので、芳一の体にきょうもんを書きました。\"], \"question\": {\"prompt\": \"芳一がいた場所はどこでしたか。\", \"options\": [\"人の家\", \"平家のはかの間\", \"和尚の家\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: れる、ぼろい. Return JSON {\"glosses\":{\"れる\":\"English gloss\",\"ぼろい\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"れる\": \"passive/potential marker\", \"ぼろい\": \"worn-out\"}}"
+    }
+  ],
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\nすると住職は云った……\n『可哀そうな男だ。芳一、お前の身は今大変に危ういぞ！　もっと前にお前がこの事をすっかり私に話さなかったのはいかにも不幸な事であった！　お前の音楽の妙技がまったく不思議な難儀にお前を引き込んだのだ。お前は決して人の家を訪れているのではなくて、墓地の中に平家の墓の間で、夜を過していたのだという事に、今はもう心付かなくてはいけない――今夜、下男達はお前の雨の中に坐っているのを見たが、それは安徳天皇の記念の墓の前であった。お前が想像していた事はみな幻影だ――死んだ人の訪れて来た事の外は。で、一度死んだ人の云う事を聴いた上は、身をその為るがままに任したというものだ。もしこれまであった事の上に、またも、その云う事を聴いたなら、お前はその人達に八つ裂きにされる事だろう。しかし、いずれにしても早晩、お前は殺される……ところで、今夜私はお前と一緒にいるわけにいかぬ。私はまた一つ法会をするように呼ばれている。が、行く前にお前の身体を護るために、その身体に経文を書いて行かなければなるまい』\n\n語り直し:\n和尚は、芳一のみが今とても危ないと言いました。\n芳一は琵琶が上手だったので、不思議なことに引かれました。\n芳一は人の家ではなく、平家のはかにいたようです。\n雨の中で座っていた場所は、てんのうのはかの前でした。\n芳一が見たものは、死んだ人のまぼろしでした。\n死んだ人の言うことを聞くと、そのまま連れて行かれます。\nまた話を聞くと、体はこまかく切られてしまうでしょう。\nもうすぐ殺されるので、和尚は体にきょうもんを書きました。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"もうすぐ殺されるので、和尚は体にきょうもんを書きました。\", \"problem\": \"The original states the priest cannot stay because he was called to another Buddhist service (法会), not simply because Hoichi is about to be killed. This necessary causal event is omitted.\", \"kind\": \"event\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\nすると住職は云った……\n『可哀そうな男だ。芳一、お前の身は今大変に危ういぞ！　もっと前にお前がこの事をすっかり私に話さなかったのはいかにも不幸な事であった！　お前の音楽の妙技がまったく不思議な難儀にお前を引き込んだのだ。お前は決して人の家を訪れているのではなくて、墓地の中に平家の墓の間で、夜を過していたのだという事に、今はもう心付かなくてはいけない――今夜、下男達はお前の雨の中に坐っているのを見たが、それは安徳天皇の記念の墓の前であった。お前が想像していた事はみな幻影だ――死んだ人の訪れて来た事の外は。で、一度死んだ人の云う事を聴いた上は、身をその為るがままに任したというものだ。もしこれまであった事の上に、またも、その云う事を聴いたなら、お前はその人達に八つ裂きにされる事だろう。しかし、いずれにしても早晩、お前は殺される……ところで、今夜私はお前と一緒にいるわけにいかぬ。私はまた一つ法会をするように呼ばれている。が、行く前にお前の身体を護るために、その身体に経文を書いて行かなければなるまい』\n\n語り直し:\n和尚は、芳一が今とても危ないじょうたいだと言いました。\n芳一は琵琶が上手だったので、ふしぎなことに引かれました。\n人の家ではなく、平家のはかの間にいたようです。\n雨の中で座っていた場所は、てんのうのおはかの前でした。\n芳一が見たものは、死んだ人のまぼろしでした。\n死んだ人の言うことを聞くと、そのまま連れて行かれます。\nまた話を聞くと、体はこまかく切られてしまうでしょう。\n和尚は別のしきがあるので、芳一の体にきょうもんを書きました。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"芳一が見たものは、死んだ人のまぼろしでした。\", \"problem\": \"The original states everything was an illusion *except* for the visit from the dead; the retelling says the dead people themselves were illusions. Correction: The visit was real, but the surroundings were an illusion.\", \"kind\": \"event\"}]}"
+      }
+    ],
+    "rewrites": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Repair only the specified sentences at JLPT N3. Preserve all other sentences and events. Use natural Japanese, numeric digits for numbers, and maintain the meaning of the original. Return only JSON {\"rewrites\":[{\"index\":0,\"sentence\":\"...\"}]}."
+          },
+          {
+            "role": "user",
+            "content": "Original:\nすると住職は云った……\n『可哀そうな男だ。芳一、お前の身は今大変に危ういぞ！　もっと前にお前がこの事をすっかり私に話さなかったのはいかにも不幸な事であった！　お前の音楽の妙技がまったく不思議な難儀にお前を引き込んだのだ。お前は決して人の家を訪れているのではなくて、墓地の中に平家の墓の間で、夜を過していたのだという事に、今はもう心付かなくてはいけない――今夜、下男達はお前の雨の中に坐っているのを見たが、それは安徳天皇の記念の墓の前であった。お前が想像していた事はみな幻影だ――死んだ人の訪れて来た事の外は。で、一度死んだ人の云う事を聴いた上は、身をその為るがままに任したというものだ。もしこれまであった事の上に、またも、その云う事を聴いたなら、お前はその人達に八つ裂きにされる事だろう。しかし、いずれにしても早晩、お前は殺される……ところで、今夜私はお前と一緒にいるわけにいかぬ。私はまた一つ法会をするように呼ばれている。が、行く前にお前の身体を護るために、その身体に経文を書いて行かなければなるまい』\nSentences:\n0: 和尚は、芳一のみが今とても危ないと言いました。\n1: 芳一は琵琶が上手だったので、不思議なことに引かれました。\n2: 芳一は人の家ではなく、平家のはかにいたようです。\n3: 雨の中で座っていた場所は、てんのうのはかの前でした。\n4: 芳一が見たものは、死んだ人のまぼろしでした。\n5: 死んだ人の言うことを聞くと、そのまま連れて行かれます。\n6: また話を聞くと、体はこまかく切られてしまうでしょう。\n7: もうすぐ殺されるので、和尚は体にきょうもんを書きました。\nIssues:\n[{\"sentence\":\"もうすぐ殺されるので、和尚は体にきょうもんを書きました。\",\"problem\":\"The original states the priest cannot stay because he was called to another Buddhist service (法会), not simply because Hoichi is about to be killed. This necessary causal event is omitted.\",\"kind\":\"event\"}]\nRewrite exactly indexes: 7"
+          }
+        ],
+        "response": "{\"rewrites\": [{\"index\": 7, \"sentence\": \"和尚は別の法会があるので一緒にいられませんが、殺されないように芳一の体に経文を書きました。\"}]}"
+      }
+    ],
+    "before": [
+      {
+        "sentence": "もうすぐ殺されるので、和尚は体にきょうもんを書きました。",
+        "problem": "The original states the priest cannot stay because he was called to another Buddhist service (法会), not simply because Hoichi is about to be killed. This necessary causal event is omitted.",
+        "kind": "event"
+      }
+    ],
+    "after": [
+      {
+        "sentence": "芳一が見たものは、死んだ人のまぼろしでした。",
+        "problem": "The original states everything was an illusion *except* for the visit from the dead; the retelling says the dead people themselves were illusions. Correction: The visit was real, but the surroundings were an illusion.",
+        "kind": "event"
+      }
+    ]
+  },
+  "ladderBuild": "P4b"
 }

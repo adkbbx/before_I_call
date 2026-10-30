@@ -4,37 +4,58 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration, adding ～ようだ, ～らしい, the passive and ～ために.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Use them only when needed, in hiragana when their kanji is above the level. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小才中五六円天手文日月木水火犬王出右四左本正田白目石立万今元公内切午友太少引心方牛父止兄冬北半古台外市広母用世主他代写去号平打申礼休先名字年早気百耳男町花見赤足車不仕交会光同回多当毎米考肉自色行西何体作図声売弟形来社言走近学空金雨青草音化地両全向安曲有次死京国夜妹姉店明東歩画直知長前南室後思活海点科茶食首欠由民付以失必未末校夏家時紙記通高強教理組船週雪魚鳥黒支住助医君対局役投決究者研馬場朝番答絵買道間数楽話電所事使具受和始定実服泳物苦表部乗客屋度待持界発相美負送重談要勝起速配酒院終習転進落葉運開集飲業漢路歌聞語読鳴横調親頭顔病最争伝共好成老位初別利努労命放昔注育指洋神追戦良特便働意味勉庭息旅流消員都動商悪族深球陽寒悲期歯港登着野生亡合風予反新返問宿想感暗様福銀題館駅料殺然熱選願情映疑皆例参完念折望束残求約性格能術私帰春昼晴秋計列式信単変夫建昨法英飯晩猫園曜書遠係取品守幸急真箱面喜治笑辞関政留険危存原薬側堂席敗果因常識非官察愛警覚説試告種達類報等借座忘洗験許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差質供限与渡景抜候構捕慣満掛居突招段腹痛退貸迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: 囘龍は、おやすみなさいといいました。ちいさなへやへ、いきました。みんなねたが、囘龍はいのった。おそくまで、てをあわせていたようだ。囘龍はまどをあけて、そとをみた。よるはとてもうつくしかったらしい。つきが明るくて、きやはなのかげがみえていた。むしのこえがきこえていた。たきのおともきこえていた。みずのおとをきいて、のどがかわいた。ねているひとを、おこさないためにでた。どあをそっとあけた。あかりのなかで、ごにんがねていた。しかし、だれにもあたまがなかった。\n\n場面（原文）:\n直ちに――何か犯罪を想像しながら――彼はびっくりして立った。しかし、つぎに彼はそこに血の流れていない事と、頭は斬られたようには見えない事に気がついた。それから彼は考えた。『これは妖怪に魅されたか、あるいは自分はろくろ首の家におびきよせられたのだ。……「捜神記」に、もし首のない胴だけのろくろ首を見つけて、その胴を別の処にうつしておけば、首は決して再びもとの胴へは帰らないと書いてある。それから更にその書物に、首が帰って来て、胴が移してある事をさとれば、その首は毬のようにはねかえりながら三度地を打って、――非常に恐れて喘ぎながら、やがて死ぬと書いてある。ところで、もしこれがろくろ首なら、禍をなすものゆえ、――その書物の教え通りにしても差支はなかろう』……"
+        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\n直ちに――何か犯罪を想像しながら――彼はびっくりして立った。しかし、つぎに彼はそこに血の流れていない事と、頭は斬られたようには見えない事に気がついた。それから彼は考えた。『これは妖怪に魅されたか、あるいは自分はろくろ首の家におびきよせられたのだ。……「捜神記」に、もし首のない胴だけのろくろ首を見つけて、その胴を別の処にうつしておけば、首は決して再びもとの胴へは帰らないと書いてある。それから更にその書物に、首が帰って来て、胴が移してある事をさとれば、その首は毬のようにはねかえりながら三度地を打って、――非常に恐れて喘ぎながら、やがて死ぬと書いてある。ところで、もしこれがろくろ首なら、禍をなすものゆえ、――その書物の教え通りにしても差支はなかろう』……\n"
       }
     ]
   },
   "responses": [
-    "{\"sentences([\": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")}, \": {\")",
-    "{\"sentences\": [\"かいりゅうは、びっくりしてたちました。\", \"でも、ちだけがながれていませんでした。\", \"あたまは、きられたようにみえませんでした。\", \"これは へんげのしわざのようだと思いました。\", \"ろくろくびのいえに、つれてこられたらしいです。\", \"あるほんに、こう書いてありました。\", \"あたまのないからだを、ほかのところへうつします。\", \"すると、あたまはもとのからだへもどれません。\", \"あたまがもどってこれないと、しぬと書いてありました。\", \"ろくろくびは、わるいものです。\", \"だから、ほんのとおりにすることをきめました。\"], \"question\": {\"prompt\": \"かいりゅうは、どうしてからだをうつそうとしましたか。\", \"options\": [\"からだが、きれていたからです。\", \"あたまがもどれないようにするためです。\", \"あたまを、さがしたかったからです。\"], \"answer\": 1}}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"かいりゅうは、おどろいてたちました。\"}, {\"index\": 2, \"sentence\": \"あたまは、きったようにはみえませんでした。\"}, {\"index\": 3, \"sentence\": \"これは へんげのしわざのようだと思いました。\"}, {\"index\": 4, \"sentence\": \"ろくろくびのいえに、きたらしいです。\"}, {\"index\": 7, \"sentence\": \"すると、あたまはもとに、かえれません。\"}, {\"index\": 8, \"sentence\": \"あたまが、かえらないとき、しぬとありました。\"}]}",
-    "{\"rewrites\": [{\"index\": 3, \"sentence\": \"これは へんげが したことのようだと思いました。\"}, {\"index\": 7, \"sentence\": \"すると、あたまは もとに かえりません。\"}]}",
-    "{\"question\": {\"prompt\": \"かいりゅうは、なぜ からだを うつそうと しましたか。\", \"options\": [\"あたまが、もとに かえらない ためです。\", \"からだが、きれていた からです。\", \"あたまを、さがしたかった からです。\"], \"answer\": 0}}"
+    "{\"sentences-\": [\"彼は犯罪を想像して、びっくりして立ちました。\", \"しかし血が流れていないので、斬られたようではないと考えました。\", \"彼はろくろ首の家に呼ばれたのだと思いました。\", \"本に、胴を別の所へ移すと首は戻らないと書いてありました。\", \"首が戻った時に胴がないと、首は毬のように跳ねると書いてありました。\", \"その首は3回地面を打って、怖がって死ぬようです。\", \"ろくろ首は悪いものなので、本通りにしてもいいと考えました。\"], \"question\": {\"prompt\": \"本に何と書いてありましたか。\", \"options\": [\"首はすぐに戻る。\", \"胴を移すと首は戻らない。\", \"ろくろ首は良い人だ。\"], \"answer\": 1}}",
+    "{\"sentences\": [\"彼は犯罪を想像して、びっくりして立ちました。\", \"しかし血が流れていないので、斬られたようではないと考えました。\", \"彼はろくろ首の家に呼ばれたのだと思いました。\", \"本に、胴を別の所へ移すと首は戻らないと書いてありました。\", \"首が戻った時に胴がないと、首は毬のように跳ねると書いてありました。\", \"その首は3回地面を打って、怖がって死ぬようです。\", \"ろくろ首は悪いものなので、本通りにしてもいいと考えました。\"], \"question\": {\"prompt\": \"本に何と書いてありましたか。\", \"options\": [\"首はすぐに戻る。\", \"胴を移すと首は戻らない。\", \"ろくろ首は良い人だ。\"], \"answer\": 1}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"彼は犯罪をそうぞうして、おどろいて立ちました。\"}, {\"index\": 1, \"sentence\": \"しかしちが流れていないので、きられたようではないと思いました。\"}, {\"index\": 2, \"sentence\": \"彼はろくろ首の家に呼ばれたのだと思いました。\"}, {\"index\": 3, \"sentence\": \"本に、どうを別の所へうつすと首は戻らないと書いてありました。\"}, {\"index\": 4, \"sentence\": \"首が戻った時にどうがないと、まりのようにはねると書いてありました。\"}, {\"index\": 5, \"sentence\": \"その首は3回地面を打って、こわがって死ぬようです。\"}, {\"index\": 6, \"sentence\": \"ろくろ首は悪いものなので、本に書いてある通りにしてもいいと思いました。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"彼は犯罪をそうぞうして、驚いて立ちました。\"}, {\"index\": 1, \"sentence\": \"しかしちが流れていないので、きられたようではないと思いました。\"}, {\"index\": 2, \"sentence\": \"彼はろくろ首の家に招かれたのだと思いました。\"}, {\"index\": 3, \"sentence\": \"本に、どうを別の所へうつすと首は戻らないと書いてありました。\"}, {\"index\": 4, \"sentence\": \"首が戻った時にどうがないと、まりのようにはねると書いてありました。\"}, {\"index\": 5, \"sentence\": \"その首は3回地面を打って、恐れて死ぬようです。\"}, {\"index\": 6, \"sentence\": \"ろくろ首は悪いものなので、本に書いてある通りにしてもいいと思いました。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"彼は犯罪をそうぞうして、おどろいて立ちました。\"}, {\"index\": 1, \"sentence\": \"しかしちが流れていないので、きられたようではないと思いました。\"}, {\"index\": 2, \"sentence\": \"彼はろくろ首の家に招かれたのだと思いました。\"}, {\"index\": 3, \"sentence\": \"本に、どうを別の所へうつすと首は戻らないと書いてありました。\"}, {\"index\": 4, \"sentence\": \"首が戻った時にどうがないと、まりのようにはねると書いてありました。\"}, {\"index\": 5, \"sentence\": \"その首は3回地面を打って、恐れて死ぬようです。\"}, {\"index\": 6, \"sentence\": \"ろくろ首は悪いものなので、本に書いてある通りにしてもいいと思いました。\"}]}",
+    "{\"question\": {\"prompt\": \"どうをうつすと、どうなりますか。\", \"options\": [\"首は戻りません。\", \"すぐに戻ります。\", \"良い人になります。\"], \"answer\": 0}}",
+    "{\"glosses\": {\"れる\": \"passive voice marker\", \"すぐ\": \"immediately\"}}"
   ],
   "metrics": {
     "kanjiCoverage": 1,
-    "kanjiDensity": 0.009259259259259259,
-    "firstCoverage": 0.8478260869565217,
-    "finalCoverage": 1,
-    "retries": 2,
-    "seconds": 55.066101000000025,
+    "kanjiDensity": 0.16483516483516483,
+    "firstCoverage": 0.7692307692307693,
+    "finalCoverage": 0.851063829787234,
+    "retries": 9,
+    "seconds": 32.564195399999996,
     "offendingFirst": [
       "びっくり",
+      "斬る",
       "れる",
-      "のし",
-      "わざ",
-      "られる",
-      "もどれる"
+      "胴",
+      "移す",
+      "毬",
+      "跳ねる",
+      "地面",
+      "怖がる",
+      "本通り"
     ],
-    "ghostWords": []
+    "ghostWords": [
+      "そうぞうしい",
+      "びっくり",
+      "れる",
+      "まり",
+      "はねる",
+      "怖がる",
+      "すぐ"
+    ],
+    "faithIssues": [
+      {
+        "sentence": "ちが流れていないので、切られたようではありませんでした。",
+        "problem": "「ち」は「血」の誤字。血が流れていないと修正してください。",
+        "kind": "unnatural"
+      }
+    ]
   },
   "retelling": {
     "level": "N3",
@@ -44,25 +65,31 @@
       {
         "tokens": [
           {
-            "s": "かいりゅう",
-            "r": "かいりゅう",
-            "b": "囘龍",
-            "k": "story",
-            "g": "Kairyu, the warrior's monk name"
+            "s": "彼",
+            "k": "plain",
+            "r": "かれ"
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "、",
+            "s": "犯罪",
+            "k": "known",
+            "r": "はんざい",
+            "b": "犯罪",
+            "g": "crime",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
             "k": "plain"
           },
           {
-            "s": "おどろい",
-            "b": "おどろく",
-            "k": "known",
-            "g": "to be surprised, to be astonished",
+            "s": "そうぞうし",
+            "k": "ghost",
+            "b": "そうぞうしい",
+            "g": "noisy, boisterous",
             "gs": "jlpt"
           },
           {
@@ -70,9 +97,32 @@
             "k": "plain"
           },
           {
-            "s": "たち",
-            "b": "たつ",
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "びっくり",
+            "k": "ghost",
+            "b": "びっくり",
+            "g": "surprised",
+            "gs": "model"
+          },
+          {
+            "s": "し",
             "k": "known",
+            "b": "する",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "立ち",
+            "k": "known",
+            "r": "たち",
+            "b": "立つ",
             "g": "to stand up",
             "gs": "jlpt"
           },
@@ -93,32 +143,21 @@
       {
         "tokens": [
           {
-            "s": "でも",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
             "s": "ち",
-            "b": "ちる",
             "k": "known",
+            "b": "ちる",
             "g": "to fall, to scatter (e.g., blossoms)",
             "gs": "jlpt"
-          },
-          {
-            "s": "だけ",
-            "k": "plain"
           },
           {
             "s": "が",
             "k": "plain"
           },
           {
-            "s": "ながれ",
-            "b": "ながれる",
+            "s": "流れ",
             "k": "known",
+            "r": "ながれ",
+            "b": "流れる",
             "g": "to flow, to be washed away",
             "gs": "jlpt"
           },
@@ -128,48 +167,17 @@
           },
           {
             "s": "い",
-            "b": "いる",
             "k": "known",
+            "b": "いる",
             "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
           {
-            "s": "ませ",
+            "s": "ない",
             "k": "plain"
           },
           {
-            "s": "ん",
-            "k": "plain"
-          },
-          {
-            "s": "でし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "あ",
-            "k": "plain"
-          },
-          {
-            "s": "たま",
-            "b": "たま",
-            "k": "known",
-            "g": "ball, sphere, coin",
-            "gs": "jlpt"
-          },
-          {
-            "s": "は",
+            "s": "ので",
             "k": "plain"
           },
           {
@@ -177,11 +185,19 @@
             "k": "plain"
           },
           {
-            "s": "きっ",
-            "b": "きる",
+            "s": "切ら",
             "k": "known",
+            "r": "きら",
+            "b": "切る",
             "g": "to cut; to hang up (a phone)",
             "gs": "jlpt"
+          },
+          {
+            "s": "れ",
+            "k": "ghost",
+            "b": "れる",
+            "g": "passive/potential suffix",
+            "gs": "model"
           },
           {
             "s": "た",
@@ -189,13 +205,13 @@
           },
           {
             "s": "よう",
-            "b": "よう",
             "k": "known",
+            "b": "よう",
             "g": "errand, task, business (to take care of)",
             "gs": "jlpt"
           },
           {
-            "s": "に",
+            "s": "で",
             "k": "plain"
           },
           {
@@ -203,10 +219,10 @@
             "k": "plain"
           },
           {
-            "s": "みえ",
-            "b": "みえる",
+            "s": "あり",
             "k": "known",
-            "g": "to be visible; -- polite verb meaning 来る (くる) --",
+            "b": "ある",
+            "g": "to be, to have",
             "gs": "jlpt"
           },
           {
@@ -234,51 +250,61 @@
       {
         "tokens": [
           {
-            "s": "これ",
-            "k": "plain"
+            "s": "彼",
+            "k": "plain",
+            "r": "かれ"
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "へんげ",
-            "r": "へんげ",
-            "b": "変化",
+            "s": "ろくろ首",
+            "r": "ろくろくび",
+            "b": "ろくろ首",
             "k": "story",
-            "g": "shape-shifting spirit"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "し",
-            "b": "する",
-            "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "こと",
-            "b": "こと",
-            "k": "known",
-            "g": "thing(s), matter(s), fact",
-            "gs": "jlpt"
+            "g": "a creature with a detached head"
           },
           {
             "s": "の",
             "k": "plain"
           },
           {
-            "s": "よう",
-            "b": "よう",
+            "s": "家",
             "k": "known",
-            "g": "errand, task, business (to take care of)",
+            "r": "いえ",
+            "b": "家",
+            "g": "house, home",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "招か",
+            "k": "known",
+            "r": "まねか",
+            "b": "招く",
+            "g": "to invite",
+            "gs": "jlpt"
+          },
+          {
+            "s": "れ",
+            "k": "ghost",
+            "b": "れる",
+            "g": "passive/potential suffix",
+            "gs": "model"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "の",
+            "k": "known",
+            "b": "の",
+            "g": "field",
             "gs": "jlpt"
           },
           {
@@ -290,11 +316,11 @@
             "k": "plain"
           },
           {
-            "s": "思い",
-            "r": "おもい",
-            "b": "思う",
+            "s": "考え",
             "k": "known",
-            "g": "to think, to feel",
+            "r": "かんがえ",
+            "b": "考える",
+            "g": "to think (about); to consider",
             "gs": "jlpt"
           },
           {
@@ -314,66 +340,10 @@
       {
         "tokens": [
           {
-            "s": "ろくろくび",
-            "r": "ろくろくび",
-            "b": "ろくろ首",
-            "k": "story",
-            "g": "a creature with a detached head"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "いえ",
-            "b": "いえる",
+            "s": "本",
             "k": "known",
-            "g": "house, home",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "き",
-            "b": "くる",
-            "k": "known",
-            "g": "to come",
-            "gs": "jlpt"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "らしい",
-            "k": "plain"
-          },
-          {
-            "s": "です",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "ある",
-            "k": "plain"
-          },
-          {
-            "s": "ほん",
-            "b": "ほん",
-            "k": "known",
+            "r": "ほん",
+            "b": "本",
             "g": "book",
             "gs": "jlpt"
           },
@@ -386,17 +356,84 @@
             "k": "plain"
           },
           {
-            "s": "こう",
-            "b": "こう",
+            "s": "どう",
             "k": "known",
-            "g": "like this, this way",
+            "b": "どう",
+            "g": "how, in what way",
             "gs": "jlpt"
           },
           {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "別",
+            "k": "known",
+            "r": "べつ",
+            "b": "別",
+            "g": "distinction, different",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "所",
+            "k": "known",
+            "r": "ところ",
+            "b": "所",
+            "g": "place",
+            "gs": "jlpt"
+          },
+          {
+            "s": "へ",
+            "k": "plain"
+          },
+          {
+            "s": "うつす",
+            "k": "known",
+            "b": "うつす",
+            "g": "to copy (v.t.); to photograph",
+            "gs": "jlpt"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "首",
+            "k": "known",
+            "r": "くび",
+            "b": "首",
+            "g": "neck",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "戻ら",
+            "k": "known",
+            "r": "もどら",
+            "b": "戻る",
+            "g": "to return (v.i.); to come back",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ない",
+            "k": "plain"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
             "s": "書い",
+            "k": "known",
             "r": "かい",
             "b": "書く",
-            "k": "known",
             "g": "to write",
             "gs": "jlpt"
           },
@@ -406,8 +443,8 @@
           },
           {
             "s": "あり",
-            "b": "ある",
             "k": "known",
+            "b": "ある",
             "g": "to be, to have",
             "gs": "jlpt"
           },
@@ -428,149 +465,11 @@
       {
         "tokens": [
           {
-            "s": "あ",
-            "k": "plain"
-          },
-          {
-            "s": "たま",
-            "b": "たま",
+            "s": "首",
             "k": "known",
-            "g": "ball, sphere, coin",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "ない",
-            "b": "ない",
-            "k": "known",
-            "g": "there isn't, doesn't have",
-            "gs": "jlpt"
-          },
-          {
-            "s": "からだ",
-            "b": "からだ",
-            "k": "known",
-            "g": "body; health",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "ほか",
-            "b": "ほか",
-            "k": "known",
-            "g": "other, the rest",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "ところ",
-            "b": "ところ",
-            "k": "known",
-            "g": "place",
-            "gs": "jlpt"
-          },
-          {
-            "s": "へ",
-            "k": "plain"
-          },
-          {
-            "s": "うつし",
-            "b": "うつす",
-            "k": "known",
-            "g": "to copy (v.t.); to photograph",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ます",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "すると",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "あ",
-            "k": "plain"
-          },
-          {
-            "s": "たま",
-            "b": "たま",
-            "k": "known",
-            "g": "ball, sphere, coin",
-            "gs": "jlpt"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "もと",
-            "b": "もと",
-            "k": "known",
-            "g": "origin, original; former",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "かえり",
-            "b": "かえる",
-            "k": "known",
-            "g": "to go back, to go home, to return",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ませ",
-            "k": "plain"
-          },
-          {
-            "s": "ん",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "あ",
-            "k": "plain"
-          },
-          {
-            "s": "たま",
-            "b": "たま",
-            "k": "known",
-            "g": "ball, sphere, coin",
+            "r": "くび",
+            "b": "首",
+            "g": "neck",
             "gs": "jlpt"
           },
           {
@@ -578,41 +477,71 @@
             "k": "plain"
           },
           {
-            "s": "、",
+            "s": "戻っ",
+            "k": "known",
+            "r": "もどっ",
+            "b": "戻る",
+            "g": "to return (v.i.); to come back",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
             "k": "plain"
           },
           {
-            "s": "かえら",
-            "b": "かえる",
+            "s": "どう",
             "k": "known",
-            "g": "to go back, to go home, to return",
+            "b": "どう",
+            "g": "how, in what way",
             "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
           },
           {
             "s": "ない",
-            "k": "plain"
+            "k": "known",
+            "b": "ない",
+            "g": "there isn't, doesn't have",
+            "gs": "jlpt"
           },
           {
-            "s": "とき",
-            "b": "とき",
-            "k": "known",
-            "g": "at the time of ~",
-            "gs": "jlpt"
+            "s": "と",
+            "k": "plain"
           },
           {
             "s": "、",
             "k": "plain"
           },
           {
-            "s": "し",
-            "b": "する",
-            "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "s": "まり",
+            "k": "ghost",
+            "b": "まり",
+            "g": "ball",
             "gs": "jlpt"
           },
           {
-            "s": "ぬ",
+            "s": "の",
             "k": "plain"
+          },
+          {
+            "s": "よう",
+            "k": "known",
+            "b": "よう",
+            "g": "errand, task, business (to take care of)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "はねる",
+            "k": "ghost",
+            "b": "はねる",
+            "g": "to jump, to leap",
+            "gs": "jlpt"
           },
           {
             "s": "と",
@@ -620,8 +549,8 @@
           },
           {
             "s": "あり",
-            "b": "ある",
             "k": "known",
+            "b": "ある",
             "g": "to be, to have",
             "gs": "jlpt"
           },
@@ -642,14 +571,55 @@
       {
         "tokens": [
           {
-            "s": "ろくろくび",
-            "r": "ろくろくび",
-            "b": "ろくろ首",
-            "k": "story",
-            "g": "a creature with a detached head"
+            "s": "その",
+            "k": "plain"
+          },
+          {
+            "s": "首",
+            "k": "known",
+            "r": "くび",
+            "b": "首",
+            "g": "neck",
+            "gs": "jlpt"
           },
           {
             "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "3",
+            "k": "plain"
+          },
+          {
+            "s": "回",
+            "k": "known",
+            "r": "かい",
+            "b": "回",
+            "g": "counter for occurrences (~ times)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "地",
+            "k": "known",
+            "r": "ち",
+            "b": "地",
+            "g": "earth",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "打っ",
+            "k": "known",
+            "r": "うっ",
+            "b": "打つ",
+            "g": "to hit, to strike",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
             "k": "plain"
           },
           {
@@ -657,17 +627,30 @@
             "k": "plain"
           },
           {
-            "s": "わるい",
-            "b": "わるい",
+            "s": "怖がっ",
+            "k": "ghost",
+            "r": "こわがっ",
+            "b": "怖がる",
+            "g": "to act scared",
+            "gs": "model"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "死ぬ",
             "k": "known",
-            "g": "bad, sinful; inferior",
+            "r": "しぬ",
+            "b": "死ぬ",
+            "g": "to die",
             "gs": "jlpt"
           },
           {
-            "s": "もの",
-            "b": "もの",
+            "s": "よう",
             "k": "known",
-            "g": "thing (concrete object)",
+            "b": "よう",
+            "g": "errand, task, business (to take care of)",
             "gs": "jlpt"
           },
           {
@@ -683,7 +666,26 @@
       {
         "tokens": [
           {
-            "s": "だから",
+            "s": "ろくろ首",
+            "r": "ろくろくび",
+            "b": "ろくろ首",
+            "k": "story",
+            "g": "a creature with a detached head"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "悪い",
+            "k": "known",
+            "r": "わるい",
+            "b": "悪い",
+            "g": "bad, sinful; inferior",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ので",
             "k": "plain"
           },
           {
@@ -691,13 +693,22 @@
             "k": "plain"
           },
           {
-            "s": "ほんの",
+            "s": "本",
+            "k": "known",
+            "r": "ほん",
+            "b": "本",
+            "g": "book",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
             "k": "plain"
           },
           {
-            "s": "とおり",
-            "b": "とおり",
+            "s": "通り",
             "k": "known",
+            "r": "とおり",
+            "b": "通り",
             "g": "~ Street, ~ Avenue",
             "gs": "jlpt"
           },
@@ -706,28 +717,37 @@
             "k": "plain"
           },
           {
-            "s": "する",
-            "b": "する",
+            "s": "し",
             "k": "known",
+            "b": "する",
             "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
             "gs": "jlpt"
           },
           {
-            "s": "こと",
-            "b": "こと",
-            "k": "known",
-            "g": "thing(s), matter(s), fact",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
+            "s": "て",
             "k": "plain"
           },
           {
-            "s": "きめ",
-            "b": "きめる",
+            "s": "も",
+            "k": "plain"
+          },
+          {
+            "s": "いい",
             "k": "known",
-            "g": "to decide (v.t.)",
+            "b": "いい",
+            "g": "good",
+            "gs": "jlpt"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "思い",
+            "k": "known",
+            "r": "おもい",
+            "b": "思う",
+            "g": "to think, to feel",
             "gs": "jlpt"
           },
           {
@@ -749,14 +769,25 @@
       "prompt": {
         "tokens": [
           {
-            "s": "かいりゅう",
-            "r": "かいりゅう",
-            "b": "囘龍",
-            "k": "story",
-            "g": "Kairyu, the warrior's monk name"
+            "s": "どう",
+            "k": "known",
+            "b": "どう",
+            "g": "how, in what way",
+            "gs": "jlpt"
           },
           {
-            "s": "は",
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "うつす",
+            "k": "known",
+            "b": "うつす",
+            "g": "to copy (v.t.); to photograph",
+            "gs": "jlpt"
+          },
+          {
+            "s": "と",
             "k": "plain"
           },
           {
@@ -764,52 +795,21 @@
             "k": "plain"
           },
           {
-            "s": "なぜ",
-            "b": "なぜ",
+            "s": "どう",
             "k": "known",
-            "g": "why (same as どうして)",
+            "b": "どう",
+            "g": "how, in what way",
             "gs": "jlpt"
           },
           {
-            "s": "から",
-            "k": "plain"
-          },
-          {
-            "s": "だ",
-            "k": "plain"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "うつそ",
-            "b": "うつす",
+            "s": "なり",
             "k": "known",
-            "g": "to copy (v.t.); to photograph",
+            "b": "なる",
+            "g": "to become",
             "gs": "jlpt"
           },
           {
-            "s": "う",
-            "k": "plain"
-          },
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "し",
-            "b": "する",
-            "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
+            "s": "ます",
             "k": "plain"
           },
           {
@@ -826,79 +826,19 @@
         {
           "tokens": [
             {
-              "s": "あ",
-              "k": "plain"
-            },
-            {
-              "s": "たま",
-              "b": "たま",
+              "s": "良い",
               "k": "known",
-              "g": "ball, sphere, coin",
+              "r": "よい",
+              "b": "良い",
+              "g": "good, nice",
               "gs": "jlpt"
             },
             {
-              "s": "を",
-              "k": "plain"
-            },
-            {
-              "s": "、",
-              "k": "plain"
-            },
-            {
-              "s": "さがし",
-              "b": "さがす",
+              "s": "人",
               "k": "known",
-              "g": "to search, to seek, to look for",
-              "gs": "jlpt"
-            },
-            {
-              "s": "たかっ",
-              "k": "plain"
-            },
-            {
-              "s": "た",
-              "k": "plain"
-            },
-            {
-              "s": "から",
-              "k": "plain"
-            },
-            {
-              "s": "です",
-              "k": "plain"
-            },
-            {
-              "s": "。",
-              "k": "plain"
-            }
-          ]
-        },
-        {
-          "tokens": [
-            {
-              "s": "あ",
-              "k": "plain"
-            },
-            {
-              "s": "たま",
-              "b": "たま",
-              "k": "known",
-              "g": "ball, sphere, coin",
-              "gs": "jlpt"
-            },
-            {
-              "s": "が",
-              "k": "plain"
-            },
-            {
-              "s": "、",
-              "k": "plain"
-            },
-            {
-              "s": "もと",
-              "b": "もと",
-              "k": "known",
-              "g": "origin, original; former",
+              "r": "ひと",
+              "b": "人",
+              "g": "counter for people",
               "gs": "jlpt"
             },
             {
@@ -906,25 +846,14 @@
               "k": "plain"
             },
             {
-              "s": "かえら",
-              "b": "かえる",
+              "s": "なり",
               "k": "known",
-              "g": "to go back, to go home, to return",
+              "b": "なる",
+              "g": "to become",
               "gs": "jlpt"
             },
             {
-              "s": "ない",
-              "k": "plain"
-            },
-            {
-              "s": "ため",
-              "b": "ため",
-              "k": "known",
-              "g": "good, advantage, in order to",
-              "gs": "jlpt"
-            },
-            {
-              "s": "です",
+              "s": "ます",
               "k": "plain"
             },
             {
@@ -936,49 +865,62 @@
         {
           "tokens": [
             {
-              "s": "から",
-              "k": "plain"
-            },
-            {
-              "s": "だ",
-              "k": "plain"
-            },
-            {
-              "s": "が",
-              "k": "plain"
-            },
-            {
-              "s": "、",
-              "k": "plain"
-            },
-            {
-              "s": "きれ",
-              "b": "きれる",
+              "s": "首",
               "k": "known",
-              "g": "to cut well, to be sharp; to break (off)",
+              "r": "くび",
+              "b": "首",
+              "g": "neck",
               "gs": "jlpt"
             },
             {
-              "s": "て",
+              "s": "は",
               "k": "plain"
             },
             {
-              "s": "い",
-              "b": "いる",
+              "s": "戻り",
               "k": "known",
-              "g": "(humble) to be (animate), to exist",
+              "r": "もどり",
+              "b": "戻る",
+              "g": "to return (v.i.); to come back",
               "gs": "jlpt"
             },
             {
-              "s": "た",
+              "s": "ませ",
               "k": "plain"
             },
             {
-              "s": "から",
+              "s": "ん",
               "k": "plain"
             },
             {
-              "s": "です",
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "すぐ",
+              "k": "ghost",
+              "b": "すぐ",
+              "g": "soon/immediately",
+              "gs": "model"
+            },
+            {
+              "s": "に",
+              "k": "plain"
+            },
+            {
+              "s": "戻り",
+              "k": "known",
+              "r": "もどり",
+              "b": "戻る",
+              "g": "to return (v.i.); to come back",
+              "gs": "jlpt"
+            },
+            {
+              "s": "ます",
               "k": "plain"
             },
             {
@@ -992,22 +934,218 @@
     },
     "metrics": {
       "kanjiCoverage": 1,
-      "kanjiDensity": 0.009259259259259259,
-      "firstCoverage": 0.8478260869565217,
-      "finalCoverage": 1,
-      "retries": 2,
-      "seconds": 55.066101000000025,
+      "kanjiDensity": 0.16483516483516483,
+      "firstCoverage": 0.7692307692307693,
+      "finalCoverage": 0.851063829787234,
+      "retries": 9,
+      "seconds": 32.564195399999996,
       "offendingFirst": [
         "びっくり",
+        "斬る",
         "れる",
-        "のし",
-        "わざ",
-        "られる",
-        "もどれる"
+        "胴",
+        "移す",
+        "毬",
+        "跳ねる",
+        "地面",
+        "怖がる",
+        "本通り"
       ],
-      "ghostWords": []
+      "ghostWords": [
+        "そうぞうしい",
+        "びっくり",
+        "れる",
+        "まり",
+        "はねる",
+        "怖がる",
+        "すぐ"
+      ],
+      "faithIssues": [
+        {
+          "sentence": "ちが流れていないので、切られたようではありませんでした。",
+          "problem": "「ち」は「血」の誤字。血が流れていないと修正してください。",
+          "kind": "unnatural"
+        }
+      ]
     }
   },
-  "failedSceneRetry": true,
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "levelRepairs": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n直ちに――何か犯罪を想像しながら――彼はびっくりして立った。しかし、つぎに彼はそこに血の流れていない事と、頭は斬られたようには見えない事に気がついた。それから彼は考えた。『これは妖怪に魅されたか、あるいは自分はろくろ首の家におびきよせられたのだ。……「捜神記」に、もし首のない胴だけのろくろ首を見つけて、その胴を別の処にうつしておけば、首は決して再びもとの胴へは帰らないと書いてある。それから更にその書物に、首が帰って来て、胴が移してある事をさとれば、その首は毬のようにはねかえりながら三度地を打って、――非常に恐れて喘ぎながら、やがて死ぬと書いてある。ところで、もしこれがろくろ首なら、禍をなすものゆえ、――その書物の教え通りにしても差支はなかろう』……\nCurrent retelling:\n彼は犯罪をそうぞうして、おどろいて立ちました。\nしかしちが流れていないので、きられたようではないと思いました。\n彼はろくろ首の家に招かれたのだと思いました。\n本に、どうを別の所へうつすと首は戻らないと書いてありました。\n首が戻った時にどうがないと、まりのようにはねると書いてありました。\nその首は3回地面を打って、恐れて死ぬようです。\nろくろ首は悪いものなので、本に書いてある通りにしてもいいと思いました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.17258883248730963,\"meanLength\":28.142857142857142,\"advancedShare\":0.4230769230769231}; vocabulary 0.8846153846153846. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: そうぞうしい、れる、まり、はねる、地面. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"彼は犯罪をそうぞうして、びっくりして立ちました。\", \"しかし血が流れていないので、切られたようではないと思いました。\", \"彼はろくろ首の家に招かれたのだと考えました。\", \"本に、胴を別の所へうつすと首は戻らないと書いてありました。\", \"首が戻った時に胴がないと、まりのようにはねると書いてありました。\", \"その首は3回地を打って、恐れて死ぬようです。\", \"ろくろ首は悪いので、本に書いてある通りにしてもいいと思いました。\"], \"question\": {\"prompt\": \"彼は本で何を読みましたか。\", \"options\": [\"首を別の所にうつすと戻らないこと\", \"血が流れると死ぬこと\", \"家の中で首を探すこと\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n直ちに――何か犯罪を想像しながら――彼はびっくりして立った。しかし、つぎに彼はそこに血の流れていない事と、頭は斬られたようには見えない事に気がついた。それから彼は考えた。『これは妖怪に魅されたか、あるいは自分はろくろ首の家におびきよせられたのだ。……「捜神記」に、もし首のない胴だけのろくろ首を見つけて、その胴を別の処にうつしておけば、首は決して再びもとの胴へは帰らないと書いてある。それから更にその書物に、首が帰って来て、胴が移してある事をさとれば、その首は毬のようにはねかえりながら三度地を打って、――非常に恐れて喘ぎながら、やがて死ぬと書いてある。ところで、もしこれがろくろ首なら、禍をなすものゆえ、――その書物の教え通りにしても差支はなかろう』……\nCurrent retelling:\n彼は犯罪をそうぞうして、びっくりして立ちました。\nしかしちが流れていないので、切られたようではないと思いました。\n彼はろくろ首の家に招かれたのだと考えました。\n本に、どうを別の所へうつすと首は戻らないと書いてありました。\n首が戻った時にどうがないと、まりのようにはねると書いてありました。\nその首は3回地を打って、恐れて死ぬようです。\nろくろ首は悪いので、本に書いてある通りにしてもいいと思いました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.17525773195876287,\"meanLength\":27.714285714285715,\"advancedShare\":0.4230769230769231}; vocabulary 0.8846153846153846. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: そうぞうしい、びっくり、れる、まり、はねる. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"彼は犯罪をかんがえて、びっくりして立ちました。\", \"しかし血が流れていないので、切られたようではありませんでした。\", \"彼はろくろ首の家に招かれたのだと考えました。\", \"本に、胴を別の所へうつすと首は戻らないと書いてありました。\", \"首が戻って胴がないと、まりのようにはねると書いてありました。\", \"その首は3回地を打って、恐れて死ぬようです。\", \"ろくろ首は悪いので、本にある通りにしてもいいと思いました。\"], \"question\": {\"prompt\": \"本に何と書いてありましたか。\", \"options\": [\"首は戻らないこと\", \"首が笑うこと\", \"胴が走ること\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n直ちに――何か犯罪を想像しながら――彼はびっくりして立った。しかし、つぎに彼はそこに血の流れていない事と、頭は斬られたようには見えない事に気がついた。それから彼は考えた。『これは妖怪に魅されたか、あるいは自分はろくろ首の家におびきよせられたのだ。……「捜神記」に、もし首のない胴だけのろくろ首を見つけて、その胴を別の処にうつしておけば、首は決して再びもとの胴へは帰らないと書いてある。それから更にその書物に、首が帰って来て、胴が移してある事をさとれば、その首は毬のようにはねかえりながら三度地を打って、――非常に恐れて喘ぎながら、やがて死ぬと書いてある。ところで、もしこれがろくろ首なら、禍をなすものゆえ、――その書物の教え通りにしても差支はなかろう』……\nCurrent retelling:\n彼は犯罪をかんがえて、びっくりして立ちました。\nしかしちが流れていないので、切られたようではありませんでした。\n彼はろくろ首の家に招かれたのだと考えました。\n本に、どうを別の所へうつすと首は戻らないと書いてありました。\n首が戻ってどうがないと、まりのようにはねると書いてありました。\nその首は3回地を打って、恐れて死ぬようです。\nろくろ首は悪いので、本にある通りにしてもいいと思いました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.16489361702127658,\"meanLength\":26.857142857142858,\"advancedShare\":0.4489795918367347}; vocabulary 0.8979591836734694. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: びっくり、れる、まり、はねる. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences([\": [\"彼は犯罪を想像して、びっくりして立ちました。\", \"血が流れていないので、斬られたようではありませんでした。\", \"彼はろくろ首の家に招かれたのだと考えました。\", \"本に、胴を別の所へうつすと首は戻らないとありました。\", \"首が戻って胴がないと、まりのように跳ねるとありました。\", \"その首は3回地を打って、恐れて死ぬようです。\", \"ろくろ首は悪いので、本にある通りにしてもいいと思いました。\"], \"question\": {\"prompt\": \"彼はどうして本にある通りにしてもいいと思いましたか。\", \"options\": [\"ろくろ首が悪いので\", \"本が有名なので\", \"首が戻らないので\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: びっくり、れる、すぐ. Return JSON {\"glosses\":{\"びっくり\":\"English gloss\",\"れる\":\"English gloss\",\"すぐ\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"びっくり\": \"surprised\", \"れる\": \"passive/potential auxiliary\", \"すぐ\": \"immediately\"}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n直ちに――何か犯罪を想像しながら――彼はびっくりして立った。しかし、つぎに彼はそこに血の流れていない事と、頭は斬られたようには見えない事に気がついた。それから彼は考えた。『これは妖怪に魅されたか、あるいは自分はろくろ首の家におびきよせられたのだ。……「捜神記」に、もし首のない胴だけのろくろ首を見つけて、その胴を別の処にうつしておけば、首は決して再びもとの胴へは帰らないと書いてある。それから更にその書物に、首が帰って来て、胴が移してある事をさとれば、その首は毬のようにはねかえりながら三度地を打って、――非常に恐れて喘ぎながら、やがて死ぬと書いてある。ところで、もしこれがろくろ首なら、禍をなすものゆえ、――その書物の教え通りにしても差支はなかろう』……\nCurrent retelling:\n彼は犯罪をそうぞうして、びっくりして立ちました。\nちが流れていないので、きられたようではありませんでした。\n彼はろくろ首の家に招かれたのだと考えました。\n本に、どうを別の所へうつすと首は戻らないとありました。\n首が戻ってどうがないと、まりのようにはねるとありました。\nその首は三回地を打って、恐れて死ぬようです。\nろくろ首は悪いので、本にある通りにしてもいいと思いました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.16111111111111112,\"meanLength\":25.714285714285715,\"advancedShare\":0.44680851063829785}; vocabulary 0.8723404255319149. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: そうぞうしい、びっくり、れる、まり、はねる. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"彼は犯罪を想像して、びっくりして立ちました。\", \"血が流れていないので、切られたようではありませんでした。\", \"彼はろくろ首の家に招かれたのだと考えました。\", \"本に、胴を別の所へ移すと首は戻らないとありました。\", \"首が戻って胴がないと、まりのように跳ねるとありました。\", \"その首は3回地を打って、怖がって死ぬようです。\", \"ろくろ首は悪いので、本にある通りにしてもいいと思いました。\"], \"question\": {\"prompt\": \"男はどうして胴を別の所に移そうと思いましたか。\", \"options\": [\"本にそう書いてあったから。\", \"首を助けたいと思ったから。\", \"家をきれいにしたいから。\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n直ちに――何か犯罪を想像しながら――彼はびっくりして立った。しかし、つぎに彼はそこに血の流れていない事と、頭は斬られたようには見えない事に気がついた。それから彼は考えた。『これは妖怪に魅されたか、あるいは自分はろくろ首の家におびきよせられたのだ。……「捜神記」に、もし首のない胴だけのろくろ首を見つけて、その胴を別の処にうつしておけば、首は決して再びもとの胴へは帰らないと書いてある。それから更にその書物に、首が帰って来て、胴が移してある事をさとれば、その首は毬のようにはねかえりながら三度地を打って、――非常に恐れて喘ぎながら、やがて死ぬと書いてある。ところで、もしこれがろくろ首なら、禍をなすものゆえ、――その書物の教え通りにしても差支はなかろう』……\nCurrent retelling:\n彼は犯罪をそうぞうして、びっくりして立ちました。\nちが流れていないので、切られたようではありませんでした。\n彼はろくろ首の家に招かれたのだと考えました。\n本に、どうを別の所へうつすと首は戻らないとありました。\n首が戻ってどうがないと、まりのようにはねるとありました。\nその首は3回地を打って、怖がって死ぬようです。\nろくろ首は悪いので、本にある通りにしてもいいと思いました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.16022099447513813,\"meanLength\":25.857142857142858,\"advancedShare\":0.425531914893617}; vocabulary 0.851063829787234. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: そうぞうしい、びっくり、れる、まり、はねる、怖がる. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentencesにつながる\": [\"彼は犯罪を想像して、びっくりして立ちました。\", \"血が流れていないので、切られたようではありませんでした。\", \"彼はろくろ首の家に招かれたのだと考えました。\", \"本に、胴を別の所へ移すと首は戻らないとありました。\", \"首が戻って胴がないと、まりのように跳ねるとありました。\", \"その首は3回地を打って、恐れて死ぬようです。\", \"ろくろ首は悪いので、本の通りにしてもいいと思いました。\"], \"question\": {\"prompt\": \"彼はどうして本にある通りにしてもいいと思いましたか。\", \"options\": [\"ろくろ首が悪いものだから。\", \"本がとても有名だから。\", \"首を助けたいと思ったから。\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n直ちに――何か犯罪を想像しながら――彼はびっくりして立った。しかし、つぎに彼はそこに血の流れていない事と、頭は斬られたようには見えない事に気がついた。それから彼は考えた。『これは妖怪に魅されたか、あるいは自分はろくろ首の家におびきよせられたのだ。……「捜神記」に、もし首のない胴だけのろくろ首を見つけて、その胴を別の処にうつしておけば、首は決して再びもとの胴へは帰らないと書いてある。それから更にその書物に、首が帰って来て、胴が移してある事をさとれば、その首は毬のようにはねかえりながら三度地を打って、――非常に恐れて喘ぎながら、やがて死ぬと書いてある。ところで、もしこれがろくろ首なら、禍をなすものゆえ、――その書物の教え通りにしても差支はなかろう』……\nCurrent retelling:\n彼は犯罪をそうぞうして、びっくりして立ちました。\nちが流れていないので、切られたようではありませんでした。\n彼はろくろ首の家に招かれたのだと考えました。\n本に、どうを別の所へうつすと首は戻らないとありました。\n首が戻ってどうがないと、まりのようにはねるとありました。\nその首は3回地を打って、怖がって死ぬようです。\nろくろ首は悪いので、本にある通りにしてもいいと思いました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.16022099447513813,\"meanLength\":25.857142857142858,\"advancedShare\":0.425531914893617}; vocabulary 0.851063829787234. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: そうぞうしい、びっくり、れる、まり、はねる、怖がる. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"sentencesにつながる\": [\"彼は犯罪を想像して、びっくりして立ちました。\", \"血が流れていないので、切られたようではありませんでした。\", \"彼はろくろ首の家に招かれたのだと考えました。\", \"本に、胴を別の所へ移すと首は戻らないとありました。\", \"首が戻って胴がないと、まりのように跳ねるとありました。\", \"その首は3回地を打って、恐れて死ぬようです。\", \"ろくろ首は悪いので、本の通りにしてもいいと思いました。\"], \"question\": {\"prompt\": \"彼はどうして本にある通りにしてもいいと思いましたか。\", \"options\": [\"ろくろ首が悪いものだから。\", \"本がとても有名だから。\", \"首を助けたいと思ったから。\"], \"answer\": 0}}"
+        },
+        {
+          "role": "user",
+          "content": "Return valid JSON only. Validation: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"array\",\n    \"received\": \"undefined\",\n    \"path\": [\n      \"sentences\"\n    ],\n    \"message\": \"Required\"\n  }\n]"
+        }
+      ],
+      "response": "{\"sentences\": [\"彼は犯罪を想像して、びっくりして立ちました。\", \"血が流れていないので、切られたようではありませんでした。\", \"彼はろくろ首の家に招かれたのだと考えました。\", \"本に、胴を別の所へ移すと首は戻らないとありました。\", \"首が戻って胴がないと、まりのように跳ねるとありました。\", \"その首は3回地を打って、恐れて死ぬようです。\", \"ろくろ首は悪いので、本の通りにしてもいいと思いました。\"], \"question\": {\"prompt\": \"彼はどうして本にある通りにしてもいいと思いましたか。\", \"options\": [\"ろくろ首が悪いものだから。\", \"本がとても有名だから。\", \"首を助けたいと思ったから。\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n直ちに――何か犯罪を想像しながら――彼はびっくりして立った。しかし、つぎに彼はそこに血の流れていない事と、頭は斬られたようには見えない事に気がついた。それから彼は考えた。『これは妖怪に魅されたか、あるいは自分はろくろ首の家におびきよせられたのだ。……「捜神記」に、もし首のない胴だけのろくろ首を見つけて、その胴を別の処にうつしておけば、首は決して再びもとの胴へは帰らないと書いてある。それから更にその書物に、首が帰って来て、胴が移してある事をさとれば、その首は毬のようにはねかえりながら三度地を打って、――非常に恐れて喘ぎながら、やがて死ぬと書いてある。ところで、もしこれがろくろ首なら、禍をなすものゆえ、――その書物の教え通りにしても差支はなかろう』……\nCurrent retelling:\n彼は犯罪をそうぞうして、びっくりして立ちました。\nちが流れていないので、切られたようではありませんでした。\n彼はろくろ首の家に招かれたのだと考えました。\n本に、どうを別の所へうつすと首は戻らないとありました。\n首が戻ってどうがないと、まりのようにはねるとありました。\nその首は3回地を打って、恐れて死ぬようです。\nろくろ首は悪いので、本の通りにしてもいいと思いました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.16292134831460675,\"meanLength\":25.428571428571427,\"advancedShare\":0.45652173913043476}; vocabulary 0.8695652173913043. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: そうぞうしい、びっくり、れる、まり、はねる. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"彼は犯罪を想像して、びっくりして立ちました。\", \"血が流れていないので、切られたようではありませんでした。\", \"彼はろくろ首の家に招かれたのだと考えました。\", \"本に、胴を別の所へ移すと首は戻らないと書いてありました。\", \"首が戻って胴がないと、まりのように跳ねるとありました。\", \"その首は3回地を打って、怖がって死ぬようです。\", \"ろくろ首は悪いので、本の通りにしてもいいと思いました。\"], \"question\": {\"prompt\": \"本に何と書いてありましたか。\", \"options\": [\"首は戻らないと書いてあった。\", \"首はすぐに戻ると書いてあった。\", \"胴が消えると書いてあった。\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: びっくり、れる、怖がる、すぐ. Return JSON {\"glosses\":{\"びっくり\":\"English gloss\",\"れる\":\"English gloss\",\"怖がる\":\"English gloss\",\"すぐ\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"びっくり\": \"surprised\", \"れる\": \"passive/potential suffix\", \"怖がる\": \"to act scared\", \"すぐ\": \"soon/immediately\"}}"
+    }
+  ],
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n直ちに――何か犯罪を想像しながら――彼はびっくりして立った。しかし、つぎに彼はそこに血の流れていない事と、頭は斬られたようには見えない事に気がついた。それから彼は考えた。『これは妖怪に魅されたか、あるいは自分はろくろ首の家におびきよせられたのだ。……「捜神記」に、もし首のない胴だけのろくろ首を見つけて、その胴を別の処にうつしておけば、首は決して再びもとの胴へは帰らないと書いてある。それから更にその書物に、首が帰って来て、胴が移してある事をさとれば、その首は毬のようにはねかえりながら三度地を打って、――非常に恐れて喘ぎながら、やがて死ぬと書いてある。ところで、もしこれがろくろ首なら、禍をなすものゆえ、――その書物の教え通りにしても差支はなかろう』……\n\n語り直し:\n彼は犯罪をそうぞうして、びっくりして立ちました。\nちが流れていないので、きられたようではありませんでした。\n彼はろくろ首の家に招かれたのだと考えました。\n本に、どうを別の所へうつすと首は戻らないとありました。\n首が戻ってどうがないと、まりのようにはねるとありました。\nその首は3回地を打って、恐れて死ぬようです。\nろくろ首は悪いので、本にある通りにしてもいいと思いました。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"その首は3回地を打って、恐れて死ぬようです。\", \"problem\": \"数字は漢字で表記する必要があります。「3回」を「三度」または「三回」に修正してください。\", \"kind\": \"number\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n直ちに――何か犯罪を想像しながら――彼はびっくりして立った。しかし、つぎに彼はそこに血の流れていない事と、頭は斬られたようには見えない事に気がついた。それから彼は考えた。『これは妖怪に魅されたか、あるいは自分はろくろ首の家におびきよせられたのだ。……「捜神記」に、もし首のない胴だけのろくろ首を見つけて、その胴を別の処にうつしておけば、首は決して再びもとの胴へは帰らないと書いてある。それから更にその書物に、首が帰って来て、胴が移してある事をさとれば、その首は毬のようにはねかえりながら三度地を打って、――非常に恐れて喘ぎながら、やがて死ぬと書いてある。ところで、もしこれがろくろ首なら、禍をなすものゆえ、――その書物の教え通りにしても差支はなかろう』……\n\n語り直し:\n彼は犯罪をそうぞうして、びっくりして立ちました。\nちが流れていないので、切られたようではありませんでした。\n彼はろくろ首の家に招かれたのだと考えました。\n本に、どうを別の所へうつすと首は戻らないと書いてありました。\n首が戻ってどうがないと、まりのようにはねるとありました。\nその首は3回地を打って、怖がって死ぬようです。\nろくろ首は悪いので、本の通りにしてもいいと思いました。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"ちが流れていないので、切られたようではありませんでした。\", \"problem\": \"「ち」は「血」の誤字。血が流れていないと修正してください。\", \"kind\": \"unnatural\"}]}"
+      }
+    ],
+    "rewrites": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Repair only the specified sentences at JLPT N3. Preserve all other sentences and events. Use natural Japanese, numeric digits for numbers, and maintain the meaning of the original. Return only JSON {\"rewrites\":[{\"index\":0,\"sentence\":\"...\"}]}."
+          },
+          {
+            "role": "user",
+            "content": "Original:\n直ちに――何か犯罪を想像しながら――彼はびっくりして立った。しかし、つぎに彼はそこに血の流れていない事と、頭は斬られたようには見えない事に気がついた。それから彼は考えた。『これは妖怪に魅されたか、あるいは自分はろくろ首の家におびきよせられたのだ。……「捜神記」に、もし首のない胴だけのろくろ首を見つけて、その胴を別の処にうつしておけば、首は決して再びもとの胴へは帰らないと書いてある。それから更にその書物に、首が帰って来て、胴が移してある事をさとれば、その首は毬のようにはねかえりながら三度地を打って、――非常に恐れて喘ぎながら、やがて死ぬと書いてある。ところで、もしこれがろくろ首なら、禍をなすものゆえ、――その書物の教え通りにしても差支はなかろう』……\nSentences:\n0: 彼は犯罪をそうぞうして、びっくりして立ちました。\n1: ちが流れていないので、きられたようではありませんでした。\n2: 彼はろくろ首の家に招かれたのだと考えました。\n3: 本に、どうを別の所へうつすと首は戻らないとありました。\n4: 首が戻ってどうがないと、まりのようにはねるとありました。\n5: その首は3回地を打って、恐れて死ぬようです。\n6: ろくろ首は悪いので、本にある通りにしてもいいと思いました。\nIssues:\n[{\"sentence\":\"その首は3回地を打って、恐れて死ぬようです。\",\"problem\":\"数字は漢字で表記する必要があります。「3回」を「三度」または「三回」に修正してください。\",\"kind\":\"number\"}]\nRewrite exactly indexes: 5"
+          }
+        ],
+        "response": "{\"rewrites\": [{\"index\": 5, \"sentence\": \"その首は三回地を打って、恐れて死ぬようです。\"}]}"
+      }
+    ],
+    "before": [
+      {
+        "sentence": "その首は3回地を打って、恐れて死ぬようです。",
+        "problem": "数字は漢字で表記する必要があります。「3回」を「三度」または「三回」に修正してください。",
+        "kind": "number"
+      }
+    ],
+    "after": [
+      {
+        "sentence": "ちが流れていないので、切られたようではありませんでした。",
+        "problem": "「ち」は「血」の誤字。血が流れていないと修正してください。",
+        "kind": "unnatural"
+      }
+    ]
+  },
+  "ladderBuild": "P4b"
 }

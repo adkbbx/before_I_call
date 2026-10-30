@@ -4,32 +4,55 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Adds ～とき, ～たら, ～ている, ～と思います, potential forms and ～ても. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 貉（むじな）、濠（ほり）、蕎麦屋（そばや）、紀伊国坂（きいのくにざか）. Use them only when needed, in hiragana when their kanji is above the level. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 貉（むじな）、濠（ほり）、蕎麦屋（そばや）、紀伊国坂（きいのくにざか）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: ひとは紀伊国坂をはしりました。まえはとてもくらかったです。うしろをみることができませんでした。たくさんはしっていました。とおくにひかりがありました。それは蕎麦屋のあかりでした。ひとはとてもうれしいと思いました。ひとは蕎麦屋のまえにたおれました。ひとはおおきなこえでなきました。蕎麦屋はおどろきました。どうしましたかとききました。だれかがわるいことをしましたか。\n\n場面（原文）:\n『否、――誰れにもやられたのではない』と相手は息を切らしながら云った――『ただ……ああ！――ああ！』……\n『――ただおどかされたのか？』と蕎麦売りはすげなく問うた『盗賊にか？』\n『盗賊ではない――盗賊ではない』とおじけた男は喘ぎながら云った『私は見たのだ……女を見たのだ――濠の縁で――その女が私に見せたのだ……ああ！　何を見せたって、そりゃ云えない』……\n『へえ！　その見せたものはこんなものだったか？』と蕎麦屋は自分の顔を撫でながら云った――それと共に、蕎麦売りの顔は卵のようになった……そして同時に灯火は消えてしまった。"
+        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\n『否、――誰れにもやられたのではない』と相手は息を切らしながら云った――『ただ……ああ！――ああ！』……\n『――ただおどかされたのか？』と蕎麦売りはすげなく問うた『盗賊にか？』\n『盗賊ではない――盗賊ではない』とおじけた男は喘ぎながら云った『私は見たのだ……女を見たのだ――濠の縁で――その女が私に見せたのだ……ああ！　何を見せたって、そりゃ云えない』……\n『へえ！　その見せたものはこんなものだったか？』と蕎麦屋は自分の顔を撫でながら云った――それと共に、蕎麦売りの顔は卵のようになった……そして同時に灯火は消えてしまった。\n"
       }
     ]
   },
   "responses": [
-    "{\"sentences-jp-only-requested-but-json-format-enforced\": \"Not applicable\", \"sentences\": [\"いいえ。だれもしていません。\", \"ただ、おどろいただけです。\", \"そばやはききました。\", \"どろぼうでしたか。\", \"いいえ。ちがいます。\", \"わたしは、おんなをみました。\", \"ほりのそばにいました。\", \"そのおんなが、みせました。\", \"でも、いえないと思います。\", \"そばやはいいました。\", \"これでしたか。\", \"そばやは、かおをさわりました。\", \"かおが、たまごになりました。\", \"そのとき、あかりがきえました。\"], \"question\": {\"prompt\": \"そばやのかおはどうなりましたか。\", \"options\": [\"たまごになりました。\", \"きえました。\", \"わらいました。\"], \"answer\": 0}}",
-    "{\"rewrites\": [{\"index\": 3, \"sentence\": \"わるいひとでしたか。\"}, {\"index\": 12, \"sentence\": \"かおが、しろくなりました。\"}]}",
-    "{\"question\": {\"prompt\": \"そばやのかおはどうなりましたか。\", \"options\": [\"しろくなりました。\", \"きえました。\", \"わらいました。\"], \"answer\": 0}}"
+    "{\"sentences-json\": null, \"sentences\": [\"男は息を切らして言いました。\", \"誰にもやられたのではないと言いました。\", \"蕎麦屋は誰におどかされたか聞きました。\", \"盗賊ですかと聞きました。\", \"男は盗賊ではないと言いました。\", \"男は濠のふちで女を見たと言いました。\", \"女が何かを見せたと言いました。\", \"でも、何をみたかは言えないと思いました。\", \"蕎麦屋は自分の顔をさわりました。\", \"そして、顔がたまごになりました。\", \"そのとき、あかりが消えました。\"], \"question\": {\"prompt\": \"蕎麦屋の顔はどうなりましたか。\", \"options\": [\"たまごになりました。\", \"赤くなりました。\", \"消えました。\"], \"answer\": 0}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"おとこは いきを きらして 言いました。\"}, {\"index\": 1, \"sentence\": \"だれにも やられたのではないと 言いました。\"}, {\"index\": 2, \"sentence\": \"蕎麦屋は だれに おどかされたか 聞きました。\"}, {\"index\": 3, \"sentence\": \"とうぞく ですかと 聞きました。\"}, {\"index\": 4, \"sentence\": \"おとこは とうぞく ではないと 言いました。\"}, {\"index\": 5, \"sentence\": \"おとこは 濠の ふちで 女を 見たと 言いました。\"}, {\"index\": 6, \"sentence\": \"女が なにかを 見せたと 言いました。\"}, {\"index\": 7, \"sentence\": \"でも、なにを みたかは 言えないと 思いました。\"}, {\"index\": 8, \"sentence\": \"蕎麦屋は じぶんの かおを さわりました。\"}, {\"index\": 9, \"sentence\": \"そして、かおが たまごに なりました。\"}, {\"index\": 10, \"sentence\": \"そのとき、あかりが きえました。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"男は いきを きらして 言いました。\"}, {\"index\": 1, \"sentence\": \"だれにも やられたのではないと 言いました。\"}, {\"index\": 2, \"sentence\": \"蕎麦屋は だれに おどかされたか 聞きました。\"}, {\"index\": 3, \"sentence\": \"とうぞく ですかと 聞きました。\"}, {\"index\": 4, \"sentence\": \"男は とうぞく ではないと 言いました。\"}, {\"index\": 5, \"sentence\": \"男は 濠の ふちで 女を 見たと 言いました。\"}, {\"index\": 7, \"sentence\": \"でも、なにを みたかは 言えないと 思いました。\"}, {\"index\": 8, \"sentence\": \"蕎麦屋は 自分の かおを さわりました。\"}, {\"index\": 9, \"sentence\": \"そして、かおが たまごに なりました。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"男は いきを きらして 言いました。\"}, {\"index\": 1, \"sentence\": \"だれにも やられたのではないと 言いました。\"}, {\"index\": 2, \"sentence\": \"蕎麦屋は だれに おどかされたか 聞きました。\"}, {\"index\": 3, \"sentence\": \"とうぞく ですかと 聞きました。\"}, {\"index\": 4, \"sentence\": \"男は とうぞく ではないと 言いました。\"}, {\"index\": 5, \"sentence\": \"男は 濠の ふちで 女を 見たと 言いました。\"}, {\"index\": 7, \"sentence\": \"でも、なにを みたかは 言えないと 思いました。\"}, {\"index\": 8, \"sentence\": \"蕎麦屋は じぶんの かおを さわりました。\"}, {\"index\": 9, \"sentence\": \"そして、かおが たまごに なりました。\"}]}",
+    "{\"question\": {\"prompt\": \"そばやの かおは どうなりましたか。\", \"options\": [\"たまごに なりました。\", \"あかくなりました。\", \"きえました。\"], \"answer\": 0}}",
+    "{\"glosses\": {\"きらす\": \"to run out of\", \"れる\": \"passive voice marker\", \"はだれ\": \"as for who\", \"言える\": \"can say\"}}"
   ],
   "metrics": {
     "kanjiCoverage": 1,
-    "kanjiDensity": 0.005952380952380952,
-    "firstCoverage": 0.8695652173913043,
-    "finalCoverage": 1,
-    "retries": 1,
-    "seconds": 10.5787095,
+    "kanjiDensity": 0.1256544502617801,
+    "firstCoverage": 0.7027027027027027,
+    "finalCoverage": 0.6585365853658537,
+    "retries": 9,
+    "seconds": 25.635441700000005,
     "offendingFirst": [
-      "ろ",
-      "ぼう",
+      "息",
+      "切らす",
+      "れる",
+      "の",
+      "おどかす",
+      "盗賊",
+      "ふち",
+      "言える",
       "たま"
     ],
-    "ghostWords": []
+    "ghostWords": [
+      "いき",
+      "きらす",
+      "れる",
+      "の",
+      "はだれ",
+      "おどかす",
+      "とう",
+      "ふち",
+      "言える",
+      "はじ",
+      "ぶん",
+      "たま"
+    ],
+    "faithIssues": []
   },
   "retelling": {
     "level": "N4",
@@ -39,15 +62,69 @@
       {
         "tokens": [
           {
-            "s": "いいえ",
+            "s": "男",
+            "k": "known",
+            "r": "おとこ",
+            "b": "男",
+            "g": "man, male",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "いき",
+            "k": "ghost",
+            "b": "いき",
+            "g": "going",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "きらし",
+            "k": "ghost",
+            "b": "きらす",
+            "g": "to run out of",
+            "gs": "model"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "言い",
+            "k": "known",
+            "r": "いい",
+            "b": "言う",
+            "g": "to say",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
             "k": "plain"
           },
           {
             "s": "。",
             "k": "plain"
-          },
+          }
+        ]
+      },
+      {
+        "tokens": [
           {
             "s": "だれ",
+            "k": "plain"
+          },
+          {
+            "s": "に",
             "k": "plain"
           },
           {
@@ -55,64 +132,63 @@
             "k": "plain"
           },
           {
-            "s": "し",
-            "b": "する",
+            "s": "やら",
             "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "b": "やる",
+            "g": "to do; to give (to pets, parents, siblings, etc.)",
             "gs": "jlpt"
           },
           {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "い",
-            "b": "いる",
-            "k": "known",
-            "g": "(humble) to be (animate), to exist",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ませ",
-            "k": "plain"
-          },
-          {
-            "s": "ん",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "ただ",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "おどろい",
-            "b": "おどろく",
-            "k": "known",
-            "g": "to be surprised, to be astonished",
-            "gs": "jlpt"
+            "s": "れ",
+            "k": "ghost",
+            "b": "れる",
+            "g": "passive/potential suffix",
+            "gs": "model"
           },
           {
             "s": "た",
             "k": "plain"
           },
           {
-            "s": "だけ",
+            "s": "の",
+            "k": "ghost",
+            "b": "の",
+            "g": "field",
+            "gs": "jlpt"
+          },
+          {
+            "s": "で",
             "k": "plain"
           },
           {
-            "s": "です",
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "ない",
+            "k": "known",
+            "b": "ない",
+            "g": "there isn't, doesn't have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "言い",
+            "k": "known",
+            "r": "いい",
+            "b": "言う",
+            "g": "to say",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
             "k": "plain"
           },
           {
@@ -124,20 +200,51 @@
       {
         "tokens": [
           {
-            "s": "そばや",
+            "s": "蕎麦屋",
             "r": "そばや",
             "b": "蕎麦屋",
             "k": "story",
-            "g": "a soba noodle seller"
+            "g": "a soba noodle seller",
+            "hk": true
           },
           {
-            "s": "は",
+            "s": "はだれ",
+            "k": "ghost",
+            "b": "はだれ",
+            "g": "who is (archaic/dialect)",
+            "gs": "model"
+          },
+          {
+            "s": "に",
             "k": "plain"
           },
           {
-            "s": "きき",
-            "b": "きく",
+            "s": "おどかさ",
+            "k": "ghost",
+            "b": "おどかす",
+            "g": "to threaten, to coerce",
+            "gs": "jlpt"
+          },
+          {
+            "s": "れ",
+            "k": "ghost",
+            "b": "れる",
+            "g": "passive/potential suffix",
+            "gs": "model"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "か",
+            "k": "plain"
+          },
+          {
+            "s": "聞き",
             "k": "known",
+            "r": "きき",
+            "b": "聞く",
             "g": "to hear, to listen, to ask",
             "gs": "jlpt"
           },
@@ -158,25 +265,25 @@
       {
         "tokens": [
           {
-            "s": "わるい",
-            "b": "わるい",
-            "k": "known",
-            "g": "bad, sinful; inferior",
+            "s": "とう",
+            "k": "ghost",
+            "b": "とう",
+            "g": "party (political)",
             "gs": "jlpt"
           },
           {
-            "s": "ひと",
-            "b": "ひと",
-            "k": "known",
-            "g": "man, person",
-            "gs": "jlpt"
-          },
-          {
-            "s": "でし",
+            "s": "ぞ",
             "k": "plain"
           },
           {
-            "s": "た",
+            "s": "く",
+            "k": "known",
+            "b": "くい",
+            "g": "nine",
+            "gs": "jlpt"
+          },
+          {
+            "s": "です",
             "k": "plain"
           },
           {
@@ -184,30 +291,23 @@
             "k": "plain"
           },
           {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "いいえ",
+            "s": "と",
             "k": "plain"
           },
           {
-            "s": "。",
-            "k": "plain"
-          },
-          {
-            "s": "ちがい",
-            "b": "ちがう",
+            "s": "聞き",
             "k": "known",
-            "g": "to be different; to differ; wrong",
+            "r": "きき",
+            "b": "聞く",
+            "g": "to hear, to listen, to ask",
             "gs": "jlpt"
           },
           {
-            "s": "ます",
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
             "k": "plain"
           },
           {
@@ -219,7 +319,37 @@
       {
         "tokens": [
           {
-            "s": "わたし",
+            "s": "男",
+            "k": "known",
+            "r": "おとこ",
+            "b": "男",
+            "g": "man, male",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "とう",
+            "k": "ghost",
+            "b": "とう",
+            "g": "party (political)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ぞ",
+            "k": "plain"
+          },
+          {
+            "s": "く",
+            "k": "known",
+            "b": "く",
+            "g": "nine",
+            "gs": "jlpt"
+          },
+          {
+            "s": "で",
             "k": "plain"
           },
           {
@@ -227,13 +357,80 @@
             "k": "plain"
           },
           {
-            "s": "、",
+            "s": "ない",
+            "k": "known",
+            "b": "ない",
+            "g": "there isn't, doesn't have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "と",
             "k": "plain"
           },
           {
-            "s": "おんな",
-            "b": "おんな",
+            "s": "言い",
             "k": "known",
+            "r": "いい",
+            "b": "言う",
+            "g": "to say",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "男",
+            "k": "known",
+            "r": "おとこ",
+            "b": "男",
+            "g": "man, male",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "濠",
+            "r": "ほり",
+            "b": "濠",
+            "k": "story",
+            "g": "moat",
+            "hk": true
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "ふち",
+            "k": "ghost",
+            "b": "ふち",
+            "g": "edge, rim",
+            "gs": "jlpt"
+          },
+          {
+            "s": "で",
+            "k": "plain"
+          },
+          {
+            "s": "女",
+            "k": "known",
+            "r": "おんな",
+            "b": "女",
             "g": "woman, female",
             "gs": "jlpt"
           },
@@ -242,55 +439,27 @@
             "k": "plain"
           },
           {
-            "s": "み",
-            "b": "みる",
+            "s": "見",
             "k": "known",
+            "r": "み",
+            "b": "見る",
             "g": "to see, to look",
             "gs": "jlpt"
           },
           {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
             "s": "た",
             "k": "plain"
           },
           {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "ほり",
-            "r": "ほり",
-            "b": "濠",
-            "k": "story",
-            "g": "moat"
-          },
-          {
-            "s": "の",
+            "s": "と",
             "k": "plain"
           },
           {
-            "s": "そば",
-            "b": "そば",
+            "s": "言い",
             "k": "known",
-            "g": "near, close, beside; Japanese traditional buckwheat noodle",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "い",
-            "b": "いる",
-            "k": "known",
-            "g": "(humble) to be (animate), to exist",
+            "r": "いい",
+            "b": "言う",
+            "g": "to say",
             "gs": "jlpt"
           },
           {
@@ -310,13 +479,10 @@
       {
         "tokens": [
           {
-            "s": "その",
-            "k": "plain"
-          },
-          {
-            "s": "おんな",
-            "b": "おんな",
+            "s": "女",
             "k": "known",
+            "r": "おんな",
+            "b": "女",
             "g": "woman, female",
             "gs": "jlpt"
           },
@@ -325,14 +491,39 @@
             "k": "plain"
           },
           {
-            "s": "、",
+            "s": "なに",
             "k": "plain"
           },
           {
-            "s": "みせ",
-            "b": "みせる",
+            "s": "か",
+            "k": "plain"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "見せ",
             "k": "known",
+            "r": "みせ",
+            "b": "見せる",
             "g": "to show, to display",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "言い",
+            "k": "known",
+            "r": "いい",
+            "b": "言う",
+            "g": "to say",
             "gs": "jlpt"
           },
           {
@@ -360,11 +551,40 @@
             "k": "plain"
           },
           {
-            "s": "いえ",
-            "b": "いえる",
+            "s": "なに",
+            "k": "plain"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "見",
             "k": "known",
-            "g": "house, home",
+            "r": "み",
+            "b": "見る",
+            "g": "to see, to look",
             "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "か",
+            "k": "plain"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "言え",
+            "k": "ghost",
+            "r": "いえ",
+            "b": "言える",
+            "g": "can say",
+            "gs": "model"
           },
           {
             "s": "ない",
@@ -375,40 +595,10 @@
             "k": "plain"
           },
           {
-            "s": "思い",
-            "r": "おもい",
-            "b": "思う",
+            "s": "言い",
             "k": "known",
-            "g": "to think, to feel",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ます",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "そばや",
-            "r": "そばや",
-            "b": "蕎麦屋",
-            "k": "story",
-            "g": "a soba noodle seller"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "いい",
-            "b": "いう",
-            "k": "known",
+            "r": "いい",
+            "b": "言う",
             "g": "to say",
             "gs": "jlpt"
           },
@@ -429,48 +619,35 @@
       {
         "tokens": [
           {
-            "s": "これ",
-            "k": "plain"
-          },
-          {
-            "s": "でし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "か",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "そばや",
+            "s": "蕎麦屋",
             "r": "そばや",
             "b": "蕎麦屋",
             "k": "story",
-            "g": "a soba noodle seller"
+            "g": "a soba noodle seller",
+            "hk": true
           },
           {
-            "s": "は",
-            "k": "plain"
+            "s": "はじ",
+            "k": "ghost",
+            "b": "はじ",
+            "g": "shame, embarrassment",
+            "gs": "jlpt"
           },
           {
-            "s": "、",
+            "s": "ぶん",
+            "k": "ghost",
+            "b": "ぶん",
+            "g": "dividing, part, segment",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
             "k": "plain"
           },
           {
             "s": "かお",
-            "b": "かお",
             "k": "known",
+            "b": "かお",
             "g": "face (body part)",
             "gs": "jlpt"
           },
@@ -480,8 +657,8 @@
           },
           {
             "s": "さわり",
-            "b": "さわる",
             "k": "known",
+            "b": "さわる",
             "g": "to touch, to feel",
             "gs": "jlpt"
           },
@@ -502,9 +679,17 @@
       {
         "tokens": [
           {
+            "s": "そして",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
             "s": "かお",
-            "b": "かお",
             "k": "known",
+            "b": "かお",
             "g": "face (body part)",
             "gs": "jlpt"
           },
@@ -513,20 +698,24 @@
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "しろく",
-            "b": "しろい",
-            "k": "known",
-            "g": "white",
+            "s": "たま",
+            "k": "ghost",
+            "b": "たま",
+            "g": "ball, sphere, coin",
             "gs": "jlpt"
           },
           {
+            "s": "ご",
+            "k": "plain"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
             "s": "なり",
-            "b": "なる",
             "k": "known",
+            "b": "なる",
             "g": "to become",
             "gs": "jlpt"
           },
@@ -552,8 +741,8 @@
           },
           {
             "s": "とき",
-            "b": "とき",
             "k": "known",
+            "b": "とき",
             "g": "at the time of ~",
             "gs": "jlpt"
           },
@@ -571,8 +760,8 @@
           },
           {
             "s": "きえ",
-            "b": "きえる",
             "k": "known",
+            "b": "きえる",
             "g": "to vanish, to disappear",
             "gs": "jlpt"
           },
@@ -595,11 +784,12 @@
       "prompt": {
         "tokens": [
           {
-            "s": "そばや",
+            "s": "蕎麦屋",
             "r": "そばや",
             "b": "蕎麦屋",
             "k": "story",
-            "g": "a soba noodle seller"
+            "g": "a soba noodle seller",
+            "hk": true
           },
           {
             "s": "の",
@@ -607,8 +797,8 @@
           },
           {
             "s": "かお",
-            "b": "かお",
             "k": "known",
+            "b": "かお",
             "g": "face (body part)",
             "gs": "jlpt"
           },
@@ -618,15 +808,15 @@
           },
           {
             "s": "どう",
-            "b": "どう",
             "k": "known",
+            "b": "どう",
             "g": "how, in what way",
             "gs": "jlpt"
           },
           {
             "s": "なり",
-            "b": "なる",
             "k": "known",
+            "b": "なる",
             "g": "to become",
             "gs": "jlpt"
           },
@@ -652,10 +842,10 @@
         {
           "tokens": [
             {
-              "s": "わらい",
-              "b": "わらう",
+              "s": "きえ",
               "k": "known",
-              "g": "to laugh, to smile",
+              "b": "きえる",
+              "g": "to vanish, to disappear",
               "gs": "jlpt"
             },
             {
@@ -675,16 +865,24 @@
         {
           "tokens": [
             {
-              "s": "しろく",
-              "b": "しろい",
-              "k": "known",
-              "g": "white",
+              "s": "たま",
+              "k": "ghost",
+              "b": "たま",
+              "g": "ball, sphere, coin",
               "gs": "jlpt"
             },
             {
+              "s": "ご",
+              "k": "plain"
+            },
+            {
+              "s": "に",
+              "k": "plain"
+            },
+            {
               "s": "なり",
-              "b": "なる",
               "k": "known",
+              "b": "なる",
               "g": "to become",
               "gs": "jlpt"
             },
@@ -705,10 +903,17 @@
         {
           "tokens": [
             {
-              "s": "きえ",
-              "b": "きえる",
+              "s": "あかく",
               "k": "known",
-              "g": "to vanish, to disappear",
+              "b": "あかい",
+              "g": "red",
+              "gs": "jlpt"
+            },
+            {
+              "s": "なり",
+              "k": "known",
+              "b": "なる",
+              "g": "to become",
               "gs": "jlpt"
             },
             {
@@ -730,19 +935,189 @@
     },
     "metrics": {
       "kanjiCoverage": 1,
-      "kanjiDensity": 0.005952380952380952,
-      "firstCoverage": 0.8695652173913043,
-      "finalCoverage": 1,
-      "retries": 1,
-      "seconds": 10.5787095,
+      "kanjiDensity": 0.1256544502617801,
+      "firstCoverage": 0.7027027027027027,
+      "finalCoverage": 0.6585365853658537,
+      "retries": 9,
+      "seconds": 25.635441700000005,
       "offendingFirst": [
-        "ろ",
-        "ぼう",
+        "息",
+        "切らす",
+        "れる",
+        "の",
+        "おどかす",
+        "盗賊",
+        "ふち",
+        "言える",
         "たま"
       ],
-      "ghostWords": []
+      "ghostWords": [
+        "いき",
+        "きらす",
+        "れる",
+        "の",
+        "はだれ",
+        "おどかす",
+        "とう",
+        "ふち",
+        "言える",
+        "はじ",
+        "ぶん",
+        "たま"
+      ],
+      "faithIssues": []
     }
   },
-  "failedSceneRetry": true,
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "levelRepairs": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 貉（むじな）、濠（ほり）、蕎麦屋（そばや）、紀伊国坂（きいのくにざか）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n『否、――誰れにもやられたのではない』と相手は息を切らしながら云った――『ただ……ああ！――ああ！』……\n『――ただおどかされたのか？』と蕎麦売りはすげなく問うた『盗賊にか？』\n『盗賊ではない――盗賊ではない』とおじけた男は喘ぎながら云った『私は見たのだ……女を見たのだ――濠の縁で――その女が私に見せたのだ……ああ！　何を見せたって、そりゃ云えない』……\n『へえ！　その見せたものはこんなものだったか？』と蕎麦屋は自分の顔を撫でながら云った――それと共に、蕎麦売りの顔は卵のようになった……そして同時に灯火は消えてしまった。\nCurrent retelling:\n男はいきをきらして言いました。\nだれにもやられたのではないと言いました。\n蕎麦屋はだれにおどかされたか聞きました。\nとうぞくですかと聞きました。\n男はとうぞくではないと言いました。\n男は濠のふちで女を見たと言いました。\n女がなにかを見せたと言いました。\nでも、なにをみたかは言えないと思いました。\n蕎麦屋はじぶんのかおをさわりました。\nそして、かおがたまごになりました。\nそのとき、あかりがきえました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.12041884816753927,\"meanLength\":17.363636363636363,\"advancedShare\":0.21951219512195122}; vocabulary 0.6585365853658537. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: いき、きらす、れる、の、はだれ、おどかす、とう、ふち、言える、はじ、ぶん、たま. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"男はいきを切らして言いました。\", \"だれにもやられたのではないと言いました。\", \"蕎麦屋はだれにおどかされたか聞きました。\", \"とうぞくですかと聞きました。\", \"男はとうぞくではないと言いました。\", \"男は濠のふちで女を見たと言いました。\", \"女がなにかを見せたと言いました。\", \"でも、なにをみたかは言えないと思いました。\", \"蕎麦屋は自分の顔をさわりました。\", \"そして、顔がたまごになりました。\", \"そのとき、あかりがきえました。\"], \"question\": {\"prompt\": \"蕎麦屋の顔はどうなりましたか。\", \"options\": [\"たまごになりました。\", \"女になりました。\", \"きえました。\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 貉（むじな）、濠（ほり）、蕎麦屋（そばや）、紀伊国坂（きいのくにざか）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n『否、――誰れにもやられたのではない』と相手は息を切らしながら云った――『ただ……ああ！――ああ！』……\n『――ただおどかされたのか？』と蕎麦売りはすげなく問うた『盗賊にか？』\n『盗賊ではない――盗賊ではない』とおじけた男は喘ぎながら云った『私は見たのだ……女を見たのだ――濠の縁で――その女が私に見せたのだ……ああ！　何を見せたって、そりゃ云えない』……\n『へえ！　その見せたものはこんなものだったか？』と蕎麦屋は自分の顔を撫でながら云った――それと共に、蕎麦売りの顔は卵のようになった……そして同時に灯火は消えてしまった。\nCurrent retelling:\n男はいきを切らして言いました。\nだれにもやられたのではないと言いました。\n蕎麦屋はだれにおどかされたか聞きました。\nとうぞくですかと聞きました。\n男はとうぞくではないと言いました。\n男は濠のふちで女を見たと言いました。\n女がなにかを見せたと言いました。\nでも、なにをみたかは言えないと思いました。\n蕎麦屋はじぶんのかおをさわりました。\nそして、かおがたまごになりました。\nそのとき、あかりがきえました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.1256544502617801,\"meanLength\":17.363636363636363,\"advancedShare\":0.21951219512195122}; vocabulary 0.6585365853658537. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: いき、切らす、れる、の、はだれ、おどかす、とう、ふち、言える、はじ、ぶん、たま. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"男は息をきらして言いました。\", \"だれにもやられたのではないと言いました。\", \"蕎麦屋はだれにおどかされたか聞きました。\", \"とうぞくですかと聞きました。\", \"男はとうぞくではないと言いました。\", \"男は濠のふちで女を見たと言いました。\", \"女がなにかを見せたと言いました。\", \"でも、なにを見たかは言えないと思いました。\", \"蕎麦屋はじぶんの顔をさわりました。\", \"そして、顔がたまごになりました。\", \"そのとき、あかりがきえました。\"], \"question\": {\"prompt\": \"蕎麦屋の顔はどうなりましたか。\", \"options\": [\"たまごになりました\", \"女になりました\", \"きえました\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 貉（むじな）、濠（ほり）、蕎麦屋（そばや）、紀伊国坂（きいのくにざか）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n『否、――誰れにもやられたのではない』と相手は息を切らしながら云った――『ただ……ああ！――ああ！』……\n『――ただおどかされたのか？』と蕎麦売りはすげなく問うた『盗賊にか？』\n『盗賊ではない――盗賊ではない』とおじけた男は喘ぎながら云った『私は見たのだ……女を見たのだ――濠の縁で――その女が私に見せたのだ……ああ！　何を見せたって、そりゃ云えない』……\n『へえ！　その見せたものはこんなものだったか？』と蕎麦屋は自分の顔を撫でながら云った――それと共に、蕎麦売りの顔は卵のようになった……そして同時に灯火は消えてしまった。\nCurrent retelling:\n男はいきをきらして言いました。\nだれにもやられたのではないと言いました。\n蕎麦屋はだれにおどかされたか聞きました。\nとうぞくですかと聞きました。\n男はとうぞくではないと言いました。\n男は濠のふちで女を見たと言いました。\n女がなにかを見せたと言いました。\nでも、なにを見たかは言えないと思いました。\n蕎麦屋はじぶんのかおをさわりました。\nそして、かおがたまごになりました。\nそのとき、あかりがきえました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.1256544502617801,\"meanLength\":17.363636363636363,\"advancedShare\":0.21951219512195122}; vocabulary 0.6585365853658537. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: いき、きらす、れる、の、はだれ、おどかす、とう、ふち、言える、はじ、ぶん、たま. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"男は息を切らして言いました。\", \"だれにもやられたのではないと言いました。\", \"蕎麦屋はだれにおどかされたか聞きました。\", \"とうぞくですかと聞きました。\", \"男はとうぞくではないと言いました。\", \"男は濠のふちで女を見たと言いました。\", \"女がなにかを見せたと言いました。\", \"でも、なにを見たかは言えないと思いました。\", \"蕎麦屋は自分のかおをさわりました。\", \"そして、かおがたまごになりました。\", \"そのとき、あかりがきえました。\"], \"question\": {\"prompt\": \"蕎麦屋のかおはどうなりましたか。\", \"options\": [\"たまごになりました。\", \"女になりました。\", \"きえました。\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: 切らす、れる、はだれ、言える. Return JSON {\"glosses\":{\"切らす\":\"English gloss\",\"れる\":\"English gloss\",\"はだれ\":\"English gloss\",\"言える\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"切らす\": \"to run out of\", \"れる\": \"passive/potential auxiliary\", \"はだれ\": \"who (non-standard/dialect)\", \"言える\": \"can say\"}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 貉（むじな）、濠（ほり）、蕎麦屋（そばや）、紀伊国坂（きいのくにざか）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n『否、――誰れにもやられたのではない』と相手は息を切らしながら云った――『ただ……ああ！――ああ！』……\n『――ただおどかされたのか？』と蕎麦売りはすげなく問うた『盗賊にか？』\n『盗賊ではない――盗賊ではない』とおじけた男は喘ぎながら云った『私は見たのだ……女を見たのだ――濠の縁で――その女が私に見せたのだ……ああ！　何を見せたって、そりゃ云えない』……\n『へえ！　その見せたものはこんなものだったか？』と蕎麦屋は自分の顔を撫でながら云った――それと共に、蕎麦売りの顔は卵のようになった……そして同時に灯火は消えてしまった。\nCurrent retelling:\n男はいきを切らして言いました。\nだれにもやられたのではないと言いました。\n蕎麦屋はだれにおどかされたか聞きました。\nとうぞくですかと聞きました。\n男はとうぞくではないと言いました。\n男は濠のふちで女を見たと言いました。\n女がなにかを見せたと言いました。\nでも、なにを見たかは言えないと言いました。\n蕎麦屋はじぶんのかおをさわりました。\nそして、かおがたまごになりました。\nそのとき、あかりがきえました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.13089005235602094,\"meanLength\":17.363636363636363,\"advancedShare\":0.1951219512195122}; vocabulary 0.6585365853658537. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: いき、切らす、れる、の、はだれ、おどかす、とう、ふち、言える、はじ、ぶん、たま. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"男は いきを切らして 言いました。\", \"だれにも やられたのではない と言いました。\", \"蕎麦屋は だれに おどかされたか 聞きました。\", \"とうぞく ですか と聞きました。\", \"男は とうぞく ではない と言いました。\", \"男は 濠の ふちで 女を 見た と言いました。\", \"女が なにかを 見せた と言いました。\", \"でも、なにを 見たかは 言えない と言いました。\", \"蕎麦屋は 自分の かおを さわりました。\", \"そして、かおが たまごに なりました。\", \"そのとき、あかりが きえました。\"], \"question\": {\"prompt\": \"蕎麦屋のかおはどうなりましたか。\", \"options\": [\"たまごになりました\", \"きえました\", \"女になりました\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 貉（むじな）、濠（ほり）、蕎麦屋（そばや）、紀伊国坂（きいのくにざか）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n『否、――誰れにもやられたのではない』と相手は息を切らしながら云った――『ただ……ああ！――ああ！』……\n『――ただおどかされたのか？』と蕎麦売りはすげなく問うた『盗賊にか？』\n『盗賊ではない――盗賊ではない』とおじけた男は喘ぎながら云った『私は見たのだ……女を見たのだ――濠の縁で――その女が私に見せたのだ……ああ！　何を見せたって、そりゃ云えない』……\n『へえ！　その見せたものはこんなものだったか？』と蕎麦屋は自分の顔を撫でながら云った――それと共に、蕎麦売りの顔は卵のようになった……そして同時に灯火は消えてしまった。\nCurrent retelling:\n男はいきを切らして言いました。\nだれにもやられたのではないと言いました。\n蕎麦屋はだれにおどかされたか聞きました。\nとうぞくですかと聞きました。\n男はとうぞくではないと言いました。\n男は濠のふちで女を見たと言いました。\n女がなにかを見せたと言いました。\nでも、なにを見たかは言えないと言いました。\n蕎麦屋はじぶんのかおをさわりました。\nそして、かおがたまごになりました。\nそのとき、あかりがきえました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.13089005235602094,\"meanLength\":17.363636363636363,\"advancedShare\":0.1951219512195122}; vocabulary 0.6585365853658537. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: いき、切らす、れる、の、はだれ、おどかす、とう、ふち、言える、はじ、ぶん、たま. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentencesにつながる\": null, \"sentences\": [\"男はいきをきらして言いました。\", \"だれにもやられたのではないと言いました。\", \"蕎麦屋はだれにおどかされたか聞きました。\", \"とうぞくですかと聞きました。\", \"男はとうぞくではないと言いました。\", \"男は濠のふちで女を見たと言いました。\", \"女がなにかを見せたと言いました。\", \"でも、なにを見たかは言えないと言いました。\", \"蕎麦屋はじぶんのかおをさわりました。\", \"そして、かおがたまごになりました。\", \"そのとき、あかりがきえました。\"], \"question\": {\"prompt\": \"蕎麦屋のかおはどうなりましたか。\", \"options\": [\"たまごになった\", \"きえた\", \"女になった\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 貉（むじな）、濠（ほり）、蕎麦屋（そばや）、紀伊国坂（きいのくにざか）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n『否、――誰れにもやられたのではない』と相手は息を切らしながら云った――『ただ……ああ！――ああ！』……\n『――ただおどかされたのか？』と蕎麦売りはすげなく問うた『盗賊にか？』\n『盗賊ではない――盗賊ではない』とおじけた男は喘ぎながら云った『私は見たのだ……女を見たのだ――濠の縁で――その女が私に見せたのだ……ああ！　何を見せたって、そりゃ云えない』……\n『へえ！　その見せたものはこんなものだったか？』と蕎麦屋は自分の顔を撫でながら云った――それと共に、蕎麦売りの顔は卵のようになった……そして同時に灯火は消えてしまった。\nCurrent retelling:\n男はいきをきらして言いました。\nだれにもやられたのではないと言いました。\n蕎麦屋はだれにおどかされたか聞きました。\nとうぞくですかと聞きました。\n男はとうぞくではないと言いました。\n男は濠のふちで女を見たと言いました。\n女がなにかを見せたと言いました。\nでも、なにを見たかは言えないと言いました。\n蕎麦屋はじぶんのかおをさわりました。\nそして、かおがたまごになりました。\nそのとき、あかりがきえました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.1256544502617801,\"meanLength\":17.363636363636363,\"advancedShare\":0.1951219512195122}; vocabulary 0.6585365853658537. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: いき、きらす、れる、の、はだれ、おどかす、とう、ふち、言える、はじ、ぶん、たま. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"男は息をきらして言いました。\", \"だれにもやられたのではないと言いました。\", \"蕎麦屋はだれにおどかされたか聞きました。\", \"とうぞくですかと聞きました。\", \"男はとうぞくではないと言いました。\", \"男は濠のふちで女を見たと言いました。\", \"女がなにかを見せたと言いました。\", \"でも、なにを見たかは言えないと言いました。\", \"蕎麦屋はじぶんの顔をさわりました。\", \"そして、顔がたまごになりました。\", \"そのとき、あかりがきえました。\"], \"question\": {\"prompt\": \"蕎麦屋の顔はどうなりましたか。\", \"options\": [\"たまごになった。\", \"女になった。\", \"きえた。\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: きらす、れる、はだれ、言える. Return JSON {\"glosses\":{\"きらす\":\"English gloss\",\"れる\":\"English gloss\",\"はだれ\":\"English gloss\",\"言える\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"きらす\": \"to run out of\", \"れる\": \"passive/potential suffix\", \"はだれ\": \"who is (archaic/dialect)\", \"言える\": \"can say\"}}"
+    }
+  ],
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling; for a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n『否、――誰れにもやられたのではない』と相手は息を切らしながら云った――『ただ……ああ！――ああ！』……\n『――ただおどかされたのか？』と蕎麦売りはすげなく問うた『盗賊にか？』\n『盗賊ではない――盗賊ではない』とおじけた男は喘ぎながら云った『私は見たのだ……女を見たのだ――濠の縁で――その女が私に見せたのだ……ああ！　何を見せたって、そりゃ云えない』……\n『へえ！　その見せたものはこんなものだったか？』と蕎麦屋は自分の顔を撫でながら云った――それと共に、蕎麦売りの顔は卵のようになった……そして同時に灯火は消えてしまった。\n\n語り直し:\n男はいきを切らして言いました。\nだれにもやられたのではないと言いました。\n蕎麦屋はだれにおどかされたか聞きました。\nとうぞくですかと聞きました。\n男はとうぞくではないと言いました。\n男は濠のふちで女を見たと言いました。\n女がなにかを見せたと言いました。\nでも、なにを見たかは言えないと思いました。\n蕎麦屋はじぶんのかおをさわりました。\nそして、かおがたまごになりました。\nそのとき、あかりがきえました。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"でも、なにを見たかは言えないと思いました。\", \"problem\": \"The man explicitly said he cannot tell, rather than just thinking it. Change 'と思いました' to 'と言いました'.\", \"kind\": \"event\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling; for a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n『否、――誰れにもやられたのではない』と相手は息を切らしながら云った――『ただ……ああ！――ああ！』……\n『――ただおどかされたのか？』と蕎麦売りはすげなく問うた『盗賊にか？』\n『盗賊ではない――盗賊ではない』とおじけた男は喘ぎながら云った『私は見たのだ……女を見たのだ――濠の縁で――その女が私に見せたのだ……ああ！　何を見せたって、そりゃ云えない』……\n『へえ！　その見せたものはこんなものだったか？』と蕎麦屋は自分の顔を撫でながら云った――それと共に、蕎麦売りの顔は卵のようになった……そして同時に灯火は消えてしまった。\n\n語り直し:\n男はいきをきらして言いました。\nだれにもやられたのではないと言いました。\n蕎麦屋はだれにおどかされたか聞きました。\nとうぞくですかと聞きました。\n男はとうぞくではないと言いました。\n男は濠のふちで女を見たと言いました。\n女がなにかを見せたと言いました。\nでも、なにを見たかは言えないと言いました。\n蕎麦屋はじぶんのかおをさわりました。\nそして、かおがたまごになりました。\nそのとき、あかりがきえました。"
+          }
+        ],
+        "response": "{\"issues\": []}"
+      }
+    ],
+    "rewrites": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Repair only the specified sentences at JLPT N4. Preserve all other sentences and events. Use natural Japanese, numeric digits for numbers, and maintain the meaning of the original. Return only JSON {\"rewrites\":[{\"index\":0,\"sentence\":\"...\"}]}."
+          },
+          {
+            "role": "user",
+            "content": "Original:\n『否、――誰れにもやられたのではない』と相手は息を切らしながら云った――『ただ……ああ！――ああ！』……\n『――ただおどかされたのか？』と蕎麦売りはすげなく問うた『盗賊にか？』\n『盗賊ではない――盗賊ではない』とおじけた男は喘ぎながら云った『私は見たのだ……女を見たのだ――濠の縁で――その女が私に見せたのだ……ああ！　何を見せたって、そりゃ云えない』……\n『へえ！　その見せたものはこんなものだったか？』と蕎麦屋は自分の顔を撫でながら云った――それと共に、蕎麦売りの顔は卵のようになった……そして同時に灯火は消えてしまった。\nSentences:\n0: 男はいきを切らして言いました。\n1: だれにもやられたのではないと言いました。\n2: 蕎麦屋はだれにおどかされたか聞きました。\n3: とうぞくですかと聞きました。\n4: 男はとうぞくではないと言いました。\n5: 男は濠のふちで女を見たと言いました。\n6: 女がなにかを見せたと言いました。\n7: でも、なにを見たかは言えないと思いました。\n8: 蕎麦屋はじぶんのかおをさわりました。\n9: そして、かおがたまごになりました。\n10: そのとき、あかりがきえました。\nIssues:\n[{\"sentence\":\"でも、なにを見たかは言えないと思いました。\",\"problem\":\"The man explicitly said he cannot tell, rather than just thinking it. Change 'と思いました' to 'と言いました'.\",\"kind\":\"event\"}]\nRewrite exactly indexes: 7"
+          }
+        ],
+        "response": "{\"rewrites\": [{\"index\": 7, \"sentence\": \"でも、なにを見たかは言えないと言いました。\"}]}"
+      }
+    ],
+    "before": [
+      {
+        "sentence": "でも、なにを見たかは言えないと思いました。",
+        "problem": "The man explicitly said he cannot tell, rather than just thinking it. Change 'と思いました' to 'と言いました'.",
+        "kind": "event"
+      }
+    ],
+    "after": []
+  },
+  "ladderBuild": "P4b"
 }

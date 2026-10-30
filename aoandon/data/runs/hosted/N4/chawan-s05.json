@@ -4,54 +4,51 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Adds ～とき, ～たら, ～ている, ～と思います, potential forms and ～ても. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 關内（かんない）、式部平内（しきぶへいない）、茶碗（ちゃわん）、侍（さむらい）. Copy every story word exactly in kanji when it is needed; do not insert unused words.\nWrite normal Japanese with no spaces between words. Outside story words, use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 關内（かんない）、式部平内（しきぶへいない）、茶碗（ちゃわん）、侍（さむらい）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: 「あなたを知りません」關内は、おこりました。「どうしてはいりましたか」關内は、ききました。その侍は、きました。そして、おおきくいいました。「わたしを知りませんか」「けさ、わたしをなくしたね」關内は、かたなをもちました。そして、侍にしました。でも、何もなかったです。侍は、かべにいきました。かべにあとはありませんでした。關内は、人に話しました。侍たちは、おどろきました。だれもはいっていませんでした。式部平内という人もだれもしりませんでした。\n\n場面（原文）:\nその翌晩、關内は非番であったので、両親とともに家にいた。余程おそくなってから、暫時の面談をもとめる来客のある事を、取次がれた。刀を取って玄関に出た、そこには三人の武装した人々――明かに侍達――が式台の前に立っていた。三人は恭しく關内に敬礼してから、そのうちの一人が云った。\n『某等は松岡文吾、土橋久藏、岡村平六と申す式部平内殿の侍でござる。主人が昨夜御訪問いたした節、貴殿は刀で主人をお打ちになった。怪我が重いから疵の養生に湯治に行かねばならぬ。しかし来月十六日にはお帰りになる、その時にはこの恨みを必ず晴らし申す……』\nそれ以上聞くまでもなく、關内は刀をとってとび出し、客を目がけて前後左右に斬りまくった。しかし三人は隣りの建物の壁の方へとび、影のようにその上へ飛び去って、それから……\n＊\nここで古い物語は切れている、話のあとは何人かの頭の中に存在していたのだが、それは百年このかた塵に帰している。\n私は色々それらしい結末を想像することができるが、西洋の読者の想像に満足を与えるようなのは一つもない。魂を飲んだあとの、もっともらしい結果は、自分で考えてみられるままに任せておく。"
+        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\nその翌晩、關内は非番であったので、両親とともに家にいた。余程おそくなってから、暫時の面談をもとめる来客のある事を、取次がれた。刀を取って玄関に出た、そこには三人の武装した人々――明かに侍達――が式台の前に立っていた。三人は恭しく關内に敬礼してから、そのうちの一人が云った。\n『某等は松岡文吾、土橋久藏、岡村平六と申す式部平内殿の侍でござる。主人が昨夜御訪問いたした節、貴殿は刀で主人をお打ちになった。怪我が重いから疵の養生に湯治に行かねばならぬ。しかし来月十六日にはお帰りになる、その時にはこの恨みを必ず晴らし申す……』\nそれ以上聞くまでもなく、關内は刀をとってとび出し、客を目がけて前後左右に斬りまくった。しかし三人は隣りの建物の壁の方へとび、影のようにその上へ飛び去って、それから……\n＊\nここで古い物語は切れている、話のあとは何人かの頭の中に存在していたのだが、それは百年このかた塵に帰している。\n私は色々それらしい結末を想像することができるが、西洋の読者の想像に満足を与えるようなのは一つもない。魂を飲んだあとの、もっともらしい結果は、自分で考えてみられるままに任せておく。\n"
       }
     ]
   },
   "responses": [
-    "{\"sentences([\": \",\"}",
-    "{\"sentences\": [\"つぎのよる、關内は家にいました。\", \"とてもおそいときでした。\", \"だれかがきました。\", \"關内が外へでたら、侍が三にんでいました。\", \"一にんの侍が、こういいました。\", \"「わたしたちは式部平内のしたものです」\", \"「きのう、あなたは主人をきりました」\", \"「しゅじんは、いまびょうきです」\", \"「らいげつ、しゅじんはかえります」\", \"「そのとき、あなたをころします」\", \"關内は、おこりました。\", \"關内は、かたなをもって、侍をきりました。\", \"でも、侍たちは、かべへ飛びました。\", \"かげのように、きえました。\", \"このはなしは、ここで おわります。\", \"そのあと、どうなったか、しりません。\", \"あなたなら、どうなると思いますか。\"], \"question\": {\"prompt\": \"侍は、いつかえってくるといいましたか。\", \"options\": [\"きょう\", \"あした\", \"らいげつ\"], \"answer\": 2}}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"つぎのよる、關内は家にいました。\"}, {\"index\": 3, \"sentence\": \"關内が外へでたら、侍が三にんでいました。\"}, {\"index\": 4, \"sentence\": \"一にんの侍が、こういいました。\"}, {\"index\": 5, \"sentence\": \"「わたしたちは式部平内のしたものです」\"}, {\"index\": 6, \"sentence\": \"「きのう、あなたはしゅじんをきりました」\"}, {\"index\": 7, \"sentence\": \"「しゅじんは、いまびょうきです」\"}, {\"index\": 8, \"sentence\": \"「らいげつ、しゅじんはかえります」\"}, {\"index\": 9, \"sentence\": \"「そのとき、あなたをきります」\"}, {\"index\": 10, \"sentence\": \"關内は、おこりました。\"}, {\"index\": 11, \"sentence\": \"關内は、かたなをもって、侍をきりました。\"}, {\"index\": 12, \"sentence\": \"でも、侍たちは、かべへいきました。\"}, {\"index\": 13, \"sentence\": \"かげのように、きえました。\"}]}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"つぎのよる、關内は家にいました。\"}, {\"index\": 3, \"sentence\": \"關内が外へでたら、侍が三にんでいました。\"}, {\"index\": 4, \"sentence\": \"一にんの侍が、こういいました。\"}, {\"index\": 5, \"sentence\": \"「わたしたちは式部平内のしたものです」\"}, {\"index\": 6, \"sentence\": \"「きのう、あなたはしゅじんをきりました」\"}, {\"index\": 7, \"sentence\": \"「しゅじんは、いまびょうきです」\"}, {\"index\": 8, \"sentence\": \"「らいげつ、しゅじんはかえります」\"}, {\"index\": 10, \"sentence\": \"關内は、おこりました。\"}, {\"index\": 11, \"sentence\": \"關内は、かたなをもって、侍をきりました。\"}, {\"index\": 12, \"sentence\": \"でも、侍たちは、かべへいきました。\"}, {\"index\": 13, \"sentence\": \"かげのように、きえました。\"}]}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"つぎのよる、關内は家にいました。\"}, {\"index\": 3, \"sentence\": \"關内が外へでたら、侍が三にんでいました。\"}, {\"index\": 4, \"sentence\": \"一にんの侍が、こういいました。\"}, {\"index\": 5, \"sentence\": \"「わたしたちは式部平内のしたものです」\"}, {\"index\": 6, \"sentence\": \"「きのう、あなたはしゅじんをきりました」\"}, {\"index\": 7, \"sentence\": \"「しゅじんは、いまびょうきです」\"}, {\"index\": 8, \"sentence\": \"「らいげつ、しゅじんはかえります」\"}, {\"index\": 10, \"sentence\": \"關内は、おこりました。\"}, {\"index\": 11, \"sentence\": \"關内は、かたなをもって、侍をきりました。\"}, {\"index\": 12, \"sentence\": \"でも、侍たちは、かべへいきました。\"}, {\"index\": 13, \"sentence\": \"かげのように、きえました。\"}]}",
-    "{\"question\": {\"prompt\": \"さむらいは、いつかえりますか。\", \"options\": [\"きょう\", \"あした\", \"つぎのつき\"], \"answer\": 2}}",
-    "{\"glosses\": {\"ん\": \"counter for people\", \"のす\": \"belonging to\", \"ゅじんをきりました\": \"cut the master\", \"ゅじんは\": \"the master\", \"ゅじんはかえります\": \"the master returns\"}}"
+    "{\"sentences\": [\"關内は家で親といました。\", \"夜、客が来ました。\", \"玄関に行くと侍が3人いました。\", \"侍は式部平内の下の人でした。\", \"昨夜、關内は主人を斬りました。\", \"主人は湯治に行きます。\", \"来月16日に戻ります。\", \"そのとき、恨みを晴らします。\", \"關内は怒って刀で斬りました。\", \"しかし侍は壁へ飛びました。\", \"影のように消えていきました。\"], \"question\": {\"prompt\": \"侍はいつ戻ってきますか。\", \"options\": [\"来月16日\", \"今日の夜\", \"100年前\"], \"answer\": 0}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"關内は家で親といました。\"}, {\"index\": 1, \"sentence\": \"夜、きゃくが来ました。\"}, {\"index\": 2, \"sentence\": \"げんかんに行くと侍が3人いました。\"}, {\"index\": 3, \"sentence\": \"侍は式部平内の下の人でした。\"}, {\"index\": 4, \"sentence\": \"さくや、關内はしゅじんをきりました。\"}, {\"index\": 5, \"sentence\": \"しゅじんはとうじに行きます。\"}, {\"index\": 6, \"sentence\": \"来月16日にもどります。\"}, {\"index\": 7, \"sentence\": \"そのとき、うらみをはらします。\"}, {\"index\": 8, \"sentence\": \"關内はおこってかたなできりました。\"}, {\"index\": 9, \"sentence\": \"しかし侍はかべへとびました。\"}, {\"index\": 10, \"sentence\": \"かげのようにきえていきました。\"}]}",
+    "{\"rewrites\": [{\"index\": 2, \"sentence\": \"げんかんに行くと侍が3人いました。\"}, {\"index\": 4, \"sentence\": \"さくや、關内はしゅじんをきりました。\"}, {\"index\": 5, \"sentence\": \"しゅじんはとうじに行きます。\"}, {\"index\": 7, \"sentence\": \"そのとき、うらみをはらします。\"}, {\"index\": 8, \"sentence\": \"關内はおこってかたなできりました。\"}, {\"index\": 9, \"sentence\": \"しかし侍はかべへとびました。\"}, {\"index\": 10, \"sentence\": \"かげのようにきえていきました。\"}]}",
+    "{\"rewrites\": [{\"index\": 2, \"sentence\": \"げんかんに行くと侍が3人いました。\"}, {\"index\": 4, \"sentence\": \"さくや、關内はしゅじんをきりました。\"}, {\"index\": 5, \"sentence\": \"しゅじんはとうじに行きます。\"}, {\"index\": 7, \"sentence\": \"そのとき、うらみをはらします。\"}, {\"index\": 8, \"sentence\": \"關内はおこってかたなできりました。\"}, {\"index\": 9, \"sentence\": \"しかし侍はかべへとびました。\"}, {\"index\": 10, \"sentence\": \"かげのようにきえていきました。\"}]}",
+    "{\"question\": {\"prompt\": \"さむらいはいつもどってきますか。\", \"options\": [\"来月16日\", \"今日の夜\", \"100年前\"], \"answer\": 0}}",
+    "{\"glosses\": {\"はしゅ\": \"the master\", \"ゅじんはとうじに\": \"master goes for hot spring\", \"はらす\": \"to clear a grudge\", \"どる\": \"to return\"}}"
   ],
   "metrics": {
-    "kanjiCoverage": 0.23809523809523808,
-    "kanjiDensity": 0.07749077490774908,
-    "firstCoverage": 0.7708333333333334,
-    "finalCoverage": 0.7916666666666666,
-    "retries": 3,
-    "seconds": 39.1755662,
+    "kanjiCoverage": 1,
+    "kanjiDensity": 0.1728395061728395,
+    "firstCoverage": 0.7272727272727273,
+    "finalCoverage": 0.7297297297297297,
+    "retries": 9,
+    "seconds": 25.166297099999998,
     "offendingFirst": [
-      "ん",
-      "のす",
       "主人",
-      "ゅじんは",
-      "びょう",
-      "らい",
-      "げ",
-      "ゅじんはかえります",
-      "ころす",
-      "かげる"
+      "斬る",
+      "湯治",
+      "恨み",
+      "晴らす",
+      "刀",
+      "影"
     ],
     "ghostWords": [
-      "ん",
+      "げん",
+      "かん",
       "のす",
-      "ゅじんをきりました",
-      "ゅじんは",
-      "びょう",
-      "らい",
-      "げ",
-      "ゅじんはかえります",
+      "主",
+      "きずつける",
+      "うらみ",
+      "はらす",
+      "はか",
       "かげる",
-      "える"
-    ]
+      "どる"
+    ],
+    "faithIssues": []
   },
   "retelling": {
     "level": "N4",
@@ -61,34 +58,19 @@
       {
         "tokens": [
           {
-            "s": "つぎ",
-            "b": "つぎ",
-            "k": "known",
-            "g": "next",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "よる",
-            "b": "よる",
-            "k": "known",
-            "g": "evening, night",
-            "gs": "jlpt"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
             "s": "關内",
-            "hk": true,
             "r": "かんない",
             "b": "關内",
             "k": "story",
-            "g": "Kannai, a retainer"
+            "g": "Kannai, a retainer",
+            "hk": true
+          },
+          {
+            "s": "さん",
+            "k": "known",
+            "b": "さん",
+            "g": "Mr. ~, Ms. ~",
+            "gs": "jlpt"
           },
           {
             "s": "は",
@@ -96,20 +78,32 @@
           },
           {
             "s": "家",
+            "k": "known",
             "r": "いえ",
             "b": "家",
-            "k": "known",
             "g": "house, home",
             "gs": "jlpt"
           },
           {
-            "s": "に",
+            "s": "で",
+            "k": "plain"
+          },
+          {
+            "s": "親",
+            "k": "known",
+            "r": "おや",
+            "b": "親",
+            "g": "a parent",
+            "gs": "jlpt"
+          },
+          {
+            "s": "と",
             "k": "plain"
           },
           {
             "s": "い",
-            "b": "いる",
             "k": "known",
+            "b": "いる",
             "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
@@ -130,58 +124,44 @@
       {
         "tokens": [
           {
-            "s": "とても",
-            "b": "とても",
+            "s": "夜",
             "k": "known",
-            "g": "very (much), greatly, exceedingly",
+            "r": "よる",
+            "b": "夜",
+            "g": "evening, night",
             "gs": "jlpt"
           },
           {
-            "s": "おそい",
-            "b": "おそい",
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "お",
+            "k": "plain"
+          },
+          {
+            "s": "きゃく",
             "k": "known",
-            "g": "slow; (to be) late",
+            "b": "きゃく",
+            "g": "guest, customer",
             "gs": "jlpt"
           },
           {
-            "s": "とき",
-            "b": "とき",
+            "s": "さん",
             "k": "known",
-            "g": "at the time of ~",
+            "b": "さん",
+            "g": "Mr. ~, Ms. ~",
             "gs": "jlpt"
-          },
-          {
-            "s": "でし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "だれ",
-            "k": "plain"
-          },
-          {
-            "s": "か",
-            "k": "plain"
           },
           {
             "s": "が",
             "k": "plain"
           },
           {
-            "s": "き",
-            "b": "くる",
+            "s": "来",
             "k": "known",
+            "r": "き",
+            "b": "来る",
             "g": "to come",
             "gs": "jlpt"
           },
@@ -202,80 +182,51 @@
       {
         "tokens": [
           {
-            "s": "關内",
-            "hk": true,
-            "r": "かんない",
-            "b": "關内",
-            "k": "story",
-            "g": "Kannai, a retainer"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "外",
-            "r": "そと",
-            "b": "外",
-            "k": "known",
-            "g": "outside, exterior",
+            "s": "げん",
+            "k": "ghost",
+            "b": "げん",
+            "g": "present, incumbent",
             "gs": "jlpt"
           },
           {
-            "s": "へ",
-            "k": "plain"
-          },
-          {
-            "s": "で",
-            "b": "でる",
-            "k": "known",
-            "g": "to appear, to leave",
+            "s": "かん",
+            "k": "ghost",
+            "b": "かん",
+            "g": "can, tin",
             "gs": "jlpt"
-          },
-          {
-            "s": "たら",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "侍",
-            "hk": true,
-            "r": "さむらい",
-            "b": "侍",
-            "k": "story",
-            "g": "samurai"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "三",
-            "r": "さん",
-            "k": "plain"
           },
           {
             "s": "に",
             "k": "plain"
           },
           {
-            "s": "ん",
-            "b": "ん",
-            "k": "ghost",
-            "g": "counter for people",
-            "gs": "model"
+            "s": "侍",
+            "r": "さむらい",
+            "b": "侍",
+            "k": "story",
+            "g": "samurai",
+            "hk": true
           },
           {
-            "s": "で",
+            "s": "が",
             "k": "plain"
           },
           {
-            "s": "い",
-            "b": "いる",
+            "s": "3",
+            "k": "plain"
+          },
+          {
+            "s": "人",
             "k": "known",
+            "r": "にん",
+            "b": "人",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "い",
+            "k": "known",
+            "b": "いる",
             "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
@@ -296,35 +247,73 @@
       {
         "tokens": [
           {
-            "s": "一",
-            "r": "いち",
+            "s": "侍",
+            "r": "さむらい",
+            "b": "侍",
+            "k": "story",
+            "g": "samurai",
+            "hk": true
+          },
+          {
+            "s": "は",
             "k": "plain"
           },
           {
-            "s": "に",
-            "k": "plain"
+            "s": "式部平内",
+            "r": "しきぶへいない",
+            "b": "式部平内",
+            "k": "story",
+            "g": "Shikibu Heinai, a mysterious samurai",
+            "hk": true
           },
           {
-            "s": "ん",
-            "b": "ん",
+            "s": "のし",
             "k": "ghost",
-            "g": "counter for people",
+            "b": "のす",
+            "g": "to move/shift",
             "gs": "model"
+          },
+          {
+            "s": "た",
+            "k": "plain"
           },
           {
             "s": "の",
             "k": "plain"
           },
           {
-            "s": "侍",
-            "hk": true,
-            "r": "さむらい",
-            "b": "侍",
-            "k": "story",
-            "g": "samurai"
+            "s": "人",
+            "k": "known",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
+            "gs": "jlpt"
           },
           {
-            "s": "が",
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "さく",
+            "k": "known",
+            "b": "さく",
+            "g": "to bloom",
+            "gs": "jlpt"
+          },
+          {
+            "s": "や",
             "k": "plain"
           },
           {
@@ -332,17 +321,41 @@
             "k": "plain"
           },
           {
-            "s": "こう",
-            "b": "こう",
+            "s": "關内",
+            "r": "かんない",
+            "b": "關内",
+            "k": "story",
+            "g": "Kannai, a retainer",
+            "hk": true
+          },
+          {
+            "s": "さん",
             "k": "known",
-            "g": "like this, this way",
+            "b": "さん",
+            "g": "Mr. ~, Ms. ~",
             "gs": "jlpt"
           },
           {
-            "s": "いい",
-            "b": "いう",
-            "k": "known",
-            "g": "to say",
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "主",
+            "k": "ghost",
+            "r": "おも",
+            "b": "主",
+            "g": "owner, master, god",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "きずつけ",
+            "k": "ghost",
+            "b": "きずつける",
+            "g": "to wound, to hurt someone's feelings",
             "gs": "jlpt"
           },
           {
@@ -362,18 +375,11 @@
       {
         "tokens": [
           {
-            "s": "「",
-            "k": "plain"
-          },
-          {
-            "s": "わたし",
-            "k": "plain"
-          },
-          {
-            "s": "たち",
-            "b": "たち",
-            "k": "known",
-            "g": "plural suffix",
+            "s": "主",
+            "k": "ghost",
+            "r": "おも",
+            "b": "主",
+            "g": "owner, master, god",
             "gs": "jlpt"
           },
           {
@@ -381,37 +387,42 @@
             "k": "plain"
           },
           {
-            "s": "式部平内",
-            "hk": true,
-            "r": "しきぶへいない",
-            "b": "式部平内",
-            "k": "story",
-            "g": "Shikibu Heinai, a mysterious samurai"
-          },
-          {
-            "s": "のし",
-            "b": "のす",
-            "k": "ghost",
-            "g": "belonging to",
-            "gs": "model"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "もの",
-            "b": "もの",
+            "s": "体",
             "k": "known",
-            "g": "thing (concrete object)",
+            "r": "からだ",
+            "b": "体",
+            "g": "body; health",
             "gs": "jlpt"
           },
           {
-            "s": "です",
+            "s": "を",
             "k": "plain"
           },
           {
-            "s": "」",
+            "s": "なおし",
+            "k": "known",
+            "b": "なおす",
+            "g": "to correct (v.t.); to fix",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "行き",
+            "k": "known",
+            "r": "いき",
+            "b": "行く",
+            "g": "to go",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "。",
             "k": "plain"
           }
         ]
@@ -419,162 +430,56 @@
       {
         "tokens": [
           {
-            "s": "「",
-            "k": "plain"
-          },
-          {
-            "s": "きのう",
-            "b": "きのう",
+            "s": "来月",
             "k": "known",
-            "g": "yesterday",
+            "r": "らいげつ",
+            "b": "来月",
+            "g": "next month",
             "gs": "jlpt"
           },
           {
-            "s": "、",
+            "s": "16",
             "k": "plain"
           },
           {
-            "s": "あなた",
-            "k": "plain"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "し",
-            "b": "する",
+            "s": "日",
             "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "r": "にち",
+            "b": "日",
+            "g": "~ day of the month, for ~ days",
             "gs": "jlpt"
           },
           {
-            "s": "ゅじんをきりました",
-            "b": "ゅじんをきりました",
-            "k": "ghost",
-            "g": "cut the master",
-            "gs": "model"
+            "s": "に",
+            "k": "plain"
           },
           {
-            "s": "」",
+            "s": "もどり",
+            "k": "known",
+            "b": "もどる",
+            "g": "to return (v.i.); to come back",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "。",
             "k": "plain"
           }
         ]
       },
       {
         "tokens": [
-          {
-            "s": "「",
-            "k": "plain"
-          },
-          {
-            "s": "し",
-            "b": "する",
-            "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ゅじんは",
-            "b": "ゅじんは",
-            "k": "ghost",
-            "g": "the master",
-            "gs": "model"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "いま",
-            "b": "いま",
-            "k": "known",
-            "g": "now",
-            "gs": "jlpt"
-          },
-          {
-            "s": "びょう",
-            "b": "びょう",
-            "k": "ghost",
-            "g": "second (60th min)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "き",
-            "k": "plain"
-          },
-          {
-            "s": "です",
-            "k": "plain"
-          },
-          {
-            "s": "」",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "「",
-            "k": "plain"
-          },
-          {
-            "s": "らい",
-            "b": "らい",
-            "k": "ghost",
-            "g": "next ~",
-            "gs": "jlpt"
-          },
-          {
-            "s": "げ",
-            "b": "げ",
-            "k": "ghost",
-            "g": "under, below, beneath",
-            "gs": "jlpt"
-          },
-          {
-            "s": "つ",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "し",
-            "b": "する",
-            "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ゅじんはかえります",
-            "b": "ゅじんはかえります",
-            "k": "ghost",
-            "g": "the master returns",
-            "gs": "model"
-          },
-          {
-            "s": "」",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "「",
-            "k": "plain"
-          },
           {
             "s": "その",
             "k": "plain"
           },
           {
             "s": "とき",
-            "b": "とき",
             "k": "known",
+            "b": "とき",
             "g": "at the time of ~",
             "gs": "jlpt"
           },
@@ -583,61 +488,25 @@
             "k": "plain"
           },
           {
-            "s": "あなた",
-            "k": "plain"
+            "s": "うらみ",
+            "k": "ghost",
+            "b": "うらみ",
+            "g": "resentment",
+            "gs": "jlpt"
           },
           {
             "s": "を",
             "k": "plain"
           },
           {
-            "s": "きり",
-            "b": "きる",
-            "k": "known",
-            "g": "to cut; to hang up (a phone)",
-            "gs": "jlpt"
+            "s": "はらし",
+            "k": "ghost",
+            "b": "はらす",
+            "g": "to clear/brush away",
+            "gs": "model"
           },
           {
             "s": "ます",
-            "k": "plain"
-          },
-          {
-            "s": "」",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "關内",
-            "hk": true,
-            "r": "かんない",
-            "b": "關内",
-            "k": "story",
-            "g": "Kannai, a retainer"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "おこり",
-            "b": "おこる",
-            "k": "known",
-            "g": "to get angry; to scold angrily",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
             "k": "plain"
           },
           {
@@ -650,25 +519,28 @@
         "tokens": [
           {
             "s": "關内",
-            "hk": true,
             "r": "かんない",
             "b": "關内",
             "k": "story",
-            "g": "Kannai, a retainer"
+            "g": "Kannai, a retainer",
+            "hk": true
+          },
+          {
+            "s": "さん",
+            "k": "known",
+            "b": "さん",
+            "g": "Mr. ~, Ms. ~",
+            "gs": "jlpt"
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
             "s": "かた",
-            "b": "かたい",
             "k": "known",
-            "g": "solid, hard, firm",
+            "b": "かつ",
+            "g": "to win",
             "gs": "jlpt"
           },
           {
@@ -676,29 +548,26 @@
             "k": "plain"
           },
           {
-            "s": "をもって",
-            "k": "plain"
-          },
-          {
-            "s": "、",
+            "s": "で",
             "k": "plain"
           },
           {
             "s": "侍",
-            "hk": true,
             "r": "さむらい",
             "b": "侍",
             "k": "story",
-            "g": "samurai"
+            "g": "samurai",
+            "hk": true
           },
           {
             "s": "を",
             "k": "plain"
           },
           {
-            "s": "きり",
-            "b": "きる",
+            "s": "切り",
             "k": "known",
+            "r": "きり",
+            "b": "切る",
             "g": "to cut; to hang up (a phone)",
             "gs": "jlpt"
           },
@@ -719,39 +588,23 @@
       {
         "tokens": [
           {
-            "s": "でも",
-            "k": "plain"
-          },
-          {
-            "s": "、",
+            "s": "しかし",
             "k": "plain"
           },
           {
             "s": "侍",
-            "hk": true,
             "r": "さむらい",
             "b": "侍",
             "k": "story",
-            "g": "samurai"
+            "g": "samurai",
+            "hk": true
           },
           {
-            "s": "たち",
-            "b": "たち",
-            "k": "known",
-            "g": "plural suffix",
+            "s": "はか",
+            "k": "ghost",
+            "b": "はか",
+            "g": "grave, tomb",
             "gs": "jlpt"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "か",
-            "k": "plain"
           },
           {
             "s": "べ",
@@ -762,10 +615,10 @@
             "k": "plain"
           },
           {
-            "s": "いき",
-            "b": "いく",
+            "s": "とび",
             "k": "known",
-            "g": "to go",
+            "b": "とぶ",
+            "g": "to fly, to hop",
             "gs": "jlpt"
           },
           {
@@ -786,8 +639,8 @@
         "tokens": [
           {
             "s": "かげ",
-            "b": "かげる",
             "k": "ghost",
+            "b": "かげる",
             "g": "shade, shadow, other side",
             "gs": "jlpt"
           },
@@ -797,8 +650,8 @@
           },
           {
             "s": "よう",
-            "b": "よう",
             "k": "known",
+            "b": "よう",
             "g": "errand, task, business (to take care of)",
             "gs": "jlpt"
           },
@@ -807,14 +660,21 @@
             "k": "plain"
           },
           {
-            "s": "、",
+            "s": "きえ",
+            "k": "known",
+            "b": "きえる",
+            "g": "to vanish, to disappear",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
             "k": "plain"
           },
           {
-            "s": "きえ",
-            "b": "きえる",
+            "s": "いき",
             "k": "known",
-            "g": "to vanish, to disappear",
+            "b": "いく",
+            "g": "to go",
             "gs": "jlpt"
           },
           {
@@ -830,202 +690,46 @@
             "k": "plain"
           }
         ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "この",
-            "k": "plain"
-          },
-          {
-            "s": "はなし",
-            "b": "はなし",
-            "k": "known",
-            "g": "talk (chat), story",
-            "gs": "jlpt"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "ここ",
-            "k": "plain"
-          },
-          {
-            "s": "で",
-            "k": "plain"
-          },
-          {
-            "s": "おわり",
-            "b": "おわる",
-            "k": "known",
-            "g": "to finish, to close",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ます",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "その",
-            "k": "plain"
-          },
-          {
-            "s": "あと",
-            "b": "あと",
-            "k": "known",
-            "g": "afterwards (later); in the future; the rest; since then",
-            "gs": "jlpt"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "どう",
-            "b": "どう",
-            "k": "known",
-            "g": "how, in what way",
-            "gs": "jlpt"
-          },
-          {
-            "s": "なっ",
-            "b": "なる",
-            "k": "known",
-            "g": "to become",
-            "gs": "jlpt"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "か",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "しり",
-            "b": "しる",
-            "k": "known",
-            "g": "to know, to understand",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ませ",
-            "k": "plain"
-          },
-          {
-            "s": "ん",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "あなた",
-            "k": "plain"
-          },
-          {
-            "s": "なら",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "どう",
-            "b": "どう",
-            "k": "known",
-            "g": "how, in what way",
-            "gs": "jlpt"
-          },
-          {
-            "s": "なる",
-            "b": "なる",
-            "k": "known",
-            "g": "to become",
-            "gs": "jlpt"
-          },
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "思い",
-            "r": "おもい",
-            "b": "思う",
-            "k": "known",
-            "g": "to think, to feel",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ます",
-            "k": "plain"
-          },
-          {
-            "s": "か",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
       }
     ],
     "question": {
       "prompt": {
         "tokens": [
           {
-            "s": "さむらい",
+            "s": "侍",
             "r": "さむらい",
             "b": "侍",
             "k": "story",
-            "g": "samurai"
+            "g": "samurai",
+            "hk": true
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "いつか",
-            "b": "いつか",
+            "s": "いつも",
             "k": "known",
-            "g": "five days; fifth day of the month",
+            "b": "いつも",
+            "g": "always, usually, every time, never (with neg. verb)",
             "gs": "jlpt"
           },
           {
-            "s": "えり",
-            "b": "える",
+            "s": "どっ",
             "k": "ghost",
-            "g": "to get, to gain, to win, to learn",
+            "b": "どる",
+            "g": "to move out of the way",
+            "gs": "model"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "き",
+            "k": "known",
+            "b": "くる",
+            "g": "to come",
             "gs": "jlpt"
           },
           {
@@ -1046,10 +750,23 @@
         {
           "tokens": [
             {
-              "s": "きょう",
-              "b": "きょう",
+              "s": "来月",
               "k": "known",
-              "g": "today, this day",
+              "r": "らいげつ",
+              "b": "来月",
+              "g": "next month",
+              "gs": "jlpt"
+            },
+            {
+              "s": "16",
+              "k": "plain"
+            },
+            {
+              "s": "日",
+              "k": "known",
+              "r": "にち",
+              "b": "日",
+              "g": "~ day of the month, for ~ days",
               "gs": "jlpt"
             }
           ]
@@ -1057,10 +774,35 @@
         {
           "tokens": [
             {
-              "s": "つぎ",
-              "b": "つぎ",
+              "s": "100",
+              "k": "plain"
+            },
+            {
+              "s": "年",
               "k": "known",
-              "g": "next",
+              "r": "ねん",
+              "b": "年",
+              "g": "year, age",
+              "gs": "jlpt"
+            },
+            {
+              "s": "前",
+              "k": "known",
+              "r": "まえ",
+              "b": "前",
+              "g": "before, in front",
+              "gs": "jlpt"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "今日",
+              "k": "known",
+              "r": "きょう",
+              "b": "今日",
+              "g": "today, this day",
               "gs": "jlpt"
             },
             {
@@ -1068,60 +810,220 @@
               "k": "plain"
             },
             {
-              "s": "つき",
-              "b": "つく",
+              "s": "夜",
               "k": "known",
-              "g": "to arrive at, to reach",
-              "gs": "jlpt"
-            }
-          ]
-        },
-        {
-          "tokens": [
-            {
-              "s": "あした",
-              "b": "あした",
-              "k": "known",
-              "g": "tomorrow",
+              "r": "よる",
+              "b": "夜",
+              "g": "evening, night",
               "gs": "jlpt"
             }
           ]
         }
       ],
-      "answer": 1
+      "answer": 0
     },
     "metrics": {
-      "kanjiCoverage": 0.23809523809523808,
-      "kanjiDensity": 0.07749077490774908,
-      "firstCoverage": 0.7708333333333334,
-      "finalCoverage": 0.7916666666666666,
-      "retries": 3,
-      "seconds": 39.1755662,
+      "kanjiCoverage": 1,
+      "kanjiDensity": 0.1728395061728395,
+      "firstCoverage": 0.7272727272727273,
+      "finalCoverage": 0.7297297297297297,
+      "retries": 9,
+      "seconds": 25.166297099999998,
       "offendingFirst": [
-        "ん",
-        "のす",
         "主人",
-        "ゅじんは",
-        "びょう",
-        "らい",
-        "げ",
-        "ゅじんはかえります",
-        "ころす",
-        "かげる"
+        "斬る",
+        "湯治",
+        "恨み",
+        "晴らす",
+        "刀",
+        "影"
       ],
       "ghostWords": [
-        "ん",
+        "げん",
+        "かん",
         "のす",
-        "ゅじんをきりました",
-        "ゅじんは",
-        "びょう",
-        "らい",
-        "げ",
-        "ゅじんはかえります",
+        "主",
+        "きずつける",
+        "うらみ",
+        "はらす",
+        "はか",
         "かげる",
-        "える"
-      ]
+        "どる"
+      ],
+      "faithIssues": []
     }
   },
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "levelRepairs": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 關内（かんない）、式部平内（しきぶへいない）、茶碗（ちゃわん）、侍（さむらい）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nその翌晩、關内は非番であったので、両親とともに家にいた。余程おそくなってから、暫時の面談をもとめる来客のある事を、取次がれた。刀を取って玄関に出た、そこには三人の武装した人々――明かに侍達――が式台の前に立っていた。三人は恭しく關内に敬礼してから、そのうちの一人が云った。\n『某等は松岡文吾、土橋久藏、岡村平六と申す式部平内殿の侍でござる。主人が昨夜御訪問いたした節、貴殿は刀で主人をお打ちになった。怪我が重いから疵の養生に湯治に行かねばならぬ。しかし来月十六日にはお帰りになる、その時にはこの恨みを必ず晴らし申す……』\nそれ以上聞くまでもなく、關内は刀をとってとび出し、客を目がけて前後左右に斬りまくった。しかし三人は隣りの建物の壁の方へとび、影のようにその上へ飛び去って、それから……\n＊\nここで古い物語は切れている、話のあとは何人かの頭の中に存在していたのだが、それは百年このかた塵に帰している。\n私は色々それらしい結末を想像することができるが、西洋の読者の想像に満足を与えるようなのは一つもない。魂を飲んだあとの、もっともらしい結果は、自分で考えてみられるままに任せておく。\nCurrent retelling:\n關内は家で親といました。\n夜、きゃくが来ました。\nげんかんに行くと侍が3人いました。\n侍は式部平内の下の人でした。\nさくや、關内はしゅじんをきりました。\nしゅじんはとうじに行きます。\n来月16日にもどります。\nそのとき、うらみをはらします。\n關内はおこってかたなできりました。\nしかし侍はかべへとびました。\nかげのようにきえていきました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.15723270440251572,\"meanLength\":14.454545454545455,\"advancedShare\":0.19444444444444445}; vocabulary 0.75. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: げん、かん、はしゅ、ゅじんはとうじに、うらみ、はらす、なでる、はか、かげる. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences([\": [\"關内は家で親といました。\", \"夜、お客さんが来ました。\", \"玄関に行くと侍が3人いました。\", \"侍は式部平内の下の人でした。\", \"昨夜、關内は主人を切りました。\", \"主人は湯治に行きます。\", \"来月16日にもどります。\", \"そのとき、恨みをはらします。\", \"關内は刀で侍を切りました。\", \"しかし侍は壁へ飛びました。\", \"影のように消えていきました。\"], \"question\": {\"prompt\": \"侍はいつ戻ってきますか。\", \"options\": [\"来月16日\", \"昨夜\", \"今夜\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 關内（かんない）、式部平内（しきぶへいない）、茶碗（ちゃわん）、侍（さむらい）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nその翌晩、關内は非番であったので、両親とともに家にいた。余程おそくなってから、暫時の面談をもとめる来客のある事を、取次がれた。刀を取って玄関に出た、そこには三人の武装した人々――明かに侍達――が式台の前に立っていた。三人は恭しく關内に敬礼してから、そのうちの一人が云った。\n『某等は松岡文吾、土橋久藏、岡村平六と申す式部平内殿の侍でござる。主人が昨夜御訪問いたした節、貴殿は刀で主人をお打ちになった。怪我が重いから疵の養生に湯治に行かねばならぬ。しかし来月十六日にはお帰りになる、その時にはこの恨みを必ず晴らし申す……』\nそれ以上聞くまでもなく、關内は刀をとってとび出し、客を目がけて前後左右に斬りまくった。しかし三人は隣りの建物の壁の方へとび、影のようにその上へ飛び去って、それから……\n＊\nここで古い物語は切れている、話のあとは何人かの頭の中に存在していたのだが、それは百年このかた塵に帰している。\n私は色々それらしい結末を想像することができるが、西洋の読者の想像に満足を与えるようなのは一つもない。魂を飲んだあとの、もっともらしい結果は、自分で考えてみられるままに任せておく。\nCurrent retelling:\n關内は家で親といました。\n夜、おきゃくさんが来ました。\nげんかんに行くと侍が3人いました。\n侍は式部平内の下の人でした。\nさくや、關内は主人を切りました。\n主人はとうじに行きます。\n来月16日にもどります。\nそのとき、うらみをはらします。\n關内はかたなで侍を切りました。\nしかし侍はかべへとびました。\nかげのようにきえていきました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.20512820512820512,\"meanLength\":14.181818181818182,\"advancedShare\":0.20588235294117646}; vocabulary 0.7058823529411765. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: げん、かん、主人、とうじる、うらみ、はらす、はか、かげる. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences([\": 16.434782608695652, \"],[ \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652,"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 關内（かんない）、式部平内（しきぶへいない）、茶碗（ちゃわん）、侍（さむらい）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nその翌晩、關内は非番であったので、両親とともに家にいた。余程おそくなってから、暫時の面談をもとめる来客のある事を、取次がれた。刀を取って玄関に出た、そこには三人の武装した人々――明かに侍達――が式台の前に立っていた。三人は恭しく關内に敬礼してから、そのうちの一人が云った。\n『某等は松岡文吾、土橋久藏、岡村平六と申す式部平内殿の侍でござる。主人が昨夜御訪問いたした節、貴殿は刀で主人をお打ちになった。怪我が重いから疵の養生に湯治に行かねばならぬ。しかし来月十六日にはお帰りになる、その時にはこの恨みを必ず晴らし申す……』\nそれ以上聞くまでもなく、關内は刀をとってとび出し、客を目がけて前後左右に斬りまくった。しかし三人は隣りの建物の壁の方へとび、影のようにその上へ飛び去って、それから……\n＊\nここで古い物語は切れている、話のあとは何人かの頭の中に存在していたのだが、それは百年このかた塵に帰している。\n私は色々それらしい結末を想像することができるが、西洋の読者の想像に満足を与えるようなのは一つもない。魂を飲んだあとの、もっともらしい結果は、自分で考えてみられるままに任せておく。\nCurrent retelling:\n關内は家で親といました。\n夜、おきゃくさんが来ました。\nげんかんに行くと侍が3人いました。\n侍は式部平内の下の人でした。\nさくや、關内は主人を切りました。\n主人はとうじに行きます。\n来月16日にもどります。\nそのとき、うらみをはらします。\n關内はかたなで侍を切りました。\nしかし侍はかべへとびました。\nかげのようにきえていきました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.20512820512820512,\"meanLength\":14.181818181818182,\"advancedShare\":0.20588235294117646}; vocabulary 0.7058823529411765. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: げん、かん、主人、とうじる、うらみ、はらす、はか、かげる. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"sentences([\": 16.434782608695652, \"],[ \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652, \"], \": 16.434782608695652,"
+        },
+        {
+          "role": "user",
+          "content": "Return valid JSON only. Validation: Unexpected end of JSON input"
+        }
+      ],
+      "response": "{\"sentences\": [\"關内さんは家で親といました。\", \"夜におきゃくさんが来ました。\", \"入り口に侍が3人いました。\", \"侍は式部平内のしたの人でした。\", \"さくや、關内さんは主人を切りました。\", \"主人はおふろに入りにいきます。\", \"来月16日にもどります。\", \"そのとき、うらみをはらします。\", \"關内さんはかたなで侍を切りました。\", \"しかし侍はかべへとびました。\", \"かげのようにきえていきました。\"], \"question\": {\"prompt\": \"侍は何人いましたか。\", \"options\": [\"1人\", \"2人\", \"3人\"], \"answer\": 2}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 關内（かんない）、式部平内（しきぶへいない）、茶碗（ちゃわん）、侍（さむらい）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nその翌晩、關内は非番であったので、両親とともに家にいた。余程おそくなってから、暫時の面談をもとめる来客のある事を、取次がれた。刀を取って玄関に出た、そこには三人の武装した人々――明かに侍達――が式台の前に立っていた。三人は恭しく關内に敬礼してから、そのうちの一人が云った。\n『某等は松岡文吾、土橋久藏、岡村平六と申す式部平内殿の侍でござる。主人が昨夜御訪問いたした節、貴殿は刀で主人をお打ちになった。怪我が重いから疵の養生に湯治に行かねばならぬ。しかし来月十六日にはお帰りになる、その時にはこの恨みを必ず晴らし申す……』\nそれ以上聞くまでもなく、關内は刀をとってとび出し、客を目がけて前後左右に斬りまくった。しかし三人は隣りの建物の壁の方へとび、影のようにその上へ飛び去って、それから……\n＊\nここで古い物語は切れている、話のあとは何人かの頭の中に存在していたのだが、それは百年このかた塵に帰している。\n私は色々それらしい結末を想像することができるが、西洋の読者の想像に満足を与えるようなのは一つもない。魂を飲んだあとの、もっともらしい結果は、自分で考えてみられるままに任せておく。\nCurrent retelling:\n關内さんは家で親といました。\n夜におきゃくさんが来ました。\n入り口に侍が3人いました。\n侍は式部平内のしたの人でした。\nさくや、關内さんは主人を切りました。\n主人はおふろに入りにいきます。\n来月16日にもどります。\nそのとき、うらみをはらします。\n關内さんはかたなで侍を切りました。\nしかし侍はかべへとびました。\nかげのようにきえていきました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.19753086419753085,\"meanLength\":14.727272727272727,\"advancedShare\":0.16666666666666666}; vocabulary 0.75. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: 入り口、のす、主人、ふろ、うらみ、はらす、はか、かげる. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"關内さんは家で親といました。\", \"夜におきゃくさんが来ました。\", \"玄関に侍が3人いました。\", \"侍は式部平内のしたの人でした。\", \"さくや、關内さんは主を切りました。\", \"主は体をなおしに行きます。\", \"来月16日にもどります。\", \"そのとき、恨みをはらします。\", \"關内さんはかたなで侍を切りました。\", \"しかし侍はかべへとびました。\", \"かげのようにきえていきました。\"], \"question\": {\"prompt\": \"侍は何人いましたか。\", \"options\": [\"1人\", \"2人\", \"3人\"], \"answer\": 2}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: のす、はらす、どる. Return JSON {\"glosses\":{\"のす\":\"English gloss\",\"はらす\":\"English gloss\",\"どる\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"のす\": \"to steam\", \"はらす\": \"to exhale\", \"どる\": \"to fall/drop\"}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 關内（かんない）、式部平内（しきぶへいない）、茶碗（ちゃわん）、侍（さむらい）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nその翌晩、關内は非番であったので、両親とともに家にいた。余程おそくなってから、暫時の面談をもとめる来客のある事を、取次がれた。刀を取って玄関に出た、そこには三人の武装した人々――明かに侍達――が式台の前に立っていた。三人は恭しく關内に敬礼してから、そのうちの一人が云った。\n『某等は松岡文吾、土橋久藏、岡村平六と申す式部平内殿の侍でござる。主人が昨夜御訪問いたした節、貴殿は刀で主人をお打ちになった。怪我が重いから疵の養生に湯治に行かねばならぬ。しかし来月十六日にはお帰りになる、その時にはこの恨みを必ず晴らし申す……』\nそれ以上聞くまでもなく、關内は刀をとってとび出し、客を目がけて前後左右に斬りまくった。しかし三人は隣りの建物の壁の方へとび、影のようにその上へ飛び去って、それから……\n＊\nここで古い物語は切れている、話のあとは何人かの頭の中に存在していたのだが、それは百年このかた塵に帰している。\n私は色々それらしい結末を想像することができるが、西洋の読者の想像に満足を与えるようなのは一つもない。魂を飲んだあとの、もっともらしい結果は、自分で考えてみられるままに任せておく。\nCurrent retelling:\n關内さんは家で親といました。\n夜におきゃくさんが来ました。\nげんかんに侍が3人いました。\n侍は式部平内のしたの人でした。\nさくや、關内さんは主人をきずつけました。\n主は体をなおしに行きます。\n来月16日にもどります。\nそのとき、うらみをはらします。\n關内さんはかたなで侍を切りました。\nしかし侍はかべへとびました。\nかげのようにきえていきました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.17791411042944785,\"meanLength\":14.818181818181818,\"advancedShare\":0.21621621621621623}; vocabulary 0.7297297297297297. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: げん、かん、のす、主人、きずつける、主、うらみ、はらす、はか、かげる. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"關内さんは家で親といました。\", \"夜におきゃくさんが来ました。\", \"げんかんに侍が3人いました。\", \"侍は式部平内のしたの人でした。\", \"昨夜、關内さんは主をきずつけました。\", \"主は体をなおしに行きます。\", \"来月16日にもどります。\", \"そのとき、うらみをはらします。\", \"關内さんはかたなで侍を切りました。\", \"しかし侍はかべへとびました。\", \"かげのようにきえていきました。\"], \"question\": {\"prompt\": \"侍は何人いましたか。\", \"options\": [\"1人\", \"2人\", \"3人\"], \"answer\": 2}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 關内（かんない）、式部平内（しきぶへいない）、茶碗（ちゃわん）、侍（さむらい）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nその翌晩、關内は非番であったので、両親とともに家にいた。余程おそくなってから、暫時の面談をもとめる来客のある事を、取次がれた。刀を取って玄関に出た、そこには三人の武装した人々――明かに侍達――が式台の前に立っていた。三人は恭しく關内に敬礼してから、そのうちの一人が云った。\n『某等は松岡文吾、土橋久藏、岡村平六と申す式部平内殿の侍でござる。主人が昨夜御訪問いたした節、貴殿は刀で主人をお打ちになった。怪我が重いから疵の養生に湯治に行かねばならぬ。しかし来月十六日にはお帰りになる、その時にはこの恨みを必ず晴らし申す……』\nそれ以上聞くまでもなく、關内は刀をとってとび出し、客を目がけて前後左右に斬りまくった。しかし三人は隣りの建物の壁の方へとび、影のようにその上へ飛び去って、それから……\n＊\nここで古い物語は切れている、話のあとは何人かの頭の中に存在していたのだが、それは百年このかた塵に帰している。\n私は色々それらしい結末を想像することができるが、西洋の読者の想像に満足を与えるようなのは一つもない。魂を飲んだあとの、もっともらしい結果は、自分で考えてみられるままに任せておく。\nCurrent retelling:\n關内さんは家で親といました。\n夜におきゃくさんが来ました。\nげんかんに侍が3人いました。\n侍は式部平内のしたの人でした。\nさくや、關内さんは主をきずつけました。\n主は体をなおしに行きます。\n来月16日にもどります。\nそのとき、うらみをはらします。\n關内さんはかたなで侍を切りました。\nしかし侍はかべへとびました。\nかげのようにきえていきました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.1728395061728395,\"meanLength\":14.727272727272727,\"advancedShare\":0.21621621621621623}; vocabulary 0.7297297297297297. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: げん、かん、のす、主、きずつける、うらみ、はらす、はか、かげる. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"關内さんは家で親といました。\", \"夜におきゃくさんが来ました。\", \"げんかんに侍が3人いました。\", \"侍は式部平内のしたの人でした。\", \"さくや、關内さんは主をきずつけました。\", \"主は体をなおしに行きます。\", \"来月16日にもどります。\", \"そのとき、うらみをはらします。\", \"關内さんはかたなで侍を切りました。\", \"しかし侍はかべへとびました。\", \"かげのようにきえていきました。\"], \"question\": {\"prompt\": \"侍は何人いましたか。\", \"options\": [\"1人\", \"2人\", \"3人\"], \"answer\": 2}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 關内（かんない）、式部平内（しきぶへいない）、茶碗（ちゃわん）、侍（さむらい）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nその翌晩、關内は非番であったので、両親とともに家にいた。余程おそくなってから、暫時の面談をもとめる来客のある事を、取次がれた。刀を取って玄関に出た、そこには三人の武装した人々――明かに侍達――が式台の前に立っていた。三人は恭しく關内に敬礼してから、そのうちの一人が云った。\n『某等は松岡文吾、土橋久藏、岡村平六と申す式部平内殿の侍でござる。主人が昨夜御訪問いたした節、貴殿は刀で主人をお打ちになった。怪我が重いから疵の養生に湯治に行かねばならぬ。しかし来月十六日にはお帰りになる、その時にはこの恨みを必ず晴らし申す……』\nそれ以上聞くまでもなく、關内は刀をとってとび出し、客を目がけて前後左右に斬りまくった。しかし三人は隣りの建物の壁の方へとび、影のようにその上へ飛び去って、それから……\n＊\nここで古い物語は切れている、話のあとは何人かの頭の中に存在していたのだが、それは百年このかた塵に帰している。\n私は色々それらしい結末を想像することができるが、西洋の読者の想像に満足を与えるようなのは一つもない。魂を飲んだあとの、もっともらしい結果は、自分で考えてみられるままに任せておく。\nCurrent retelling:\n關内さんは家で親といました。\n夜におきゃくさんが来ました。\nげんかんに侍が3人いました。\n侍は式部平内のしたの人でした。\nさくや、關内さんは主をきずつけました。\n主は体をなおしに行きます。\n来月16日にもどります。\nそのとき、うらみをはらします。\n關内さんはかたなで侍を切りました。\nしかし侍はかべへとびました。\nかげのようにきえていきました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.1728395061728395,\"meanLength\":14.727272727272727,\"advancedShare\":0.21621621621621623}; vocabulary 0.7297297297297297. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: げん、かん、のす、主、きずつける、うらみ、はらす、はか、かげる. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"關内さんは家で親といました。\", \"夜におきゃくさんが来ました。\", \"げんかんに侍が3人いました。\", \"侍は式部平内のしたの人でした。\", \"さくや、關内さんは主をきずつけました。\", \"主は体をなおしに行きます。\", \"来月16日にもどります。\", \"そのとき、うらみをはらします。\", \"關内さんはかたなで侍を切りました。\", \"しかし侍はかべへとびました。\", \"かげのようにきえていきました。\"], \"question\": {\"prompt\": \"侍は何人いましたか。\", \"options\": [\"1人\", \"2人\", \"3人\"], \"answer\": 2}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: のす、はらす、どる. Return JSON {\"glosses\":{\"のす\":\"English gloss\",\"はらす\":\"English gloss\",\"どる\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"のす\": \"to move/shift\", \"はらす\": \"to clear/brush away\", \"どる\": \"to move out of the way\"}}"
+    }
+  ],
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling; for a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\nその翌晩、關内は非番であったので、両親とともに家にいた。余程おそくなってから、暫時の面談をもとめる来客のある事を、取次がれた。刀を取って玄関に出た、そこには三人の武装した人々――明かに侍達――が式台の前に立っていた。三人は恭しく關内に敬礼してから、そのうちの一人が云った。\n『某等は松岡文吾、土橋久藏、岡村平六と申す式部平内殿の侍でござる。主人が昨夜御訪問いたした節、貴殿は刀で主人をお打ちになった。怪我が重いから疵の養生に湯治に行かねばならぬ。しかし来月十六日にはお帰りになる、その時にはこの恨みを必ず晴らし申す……』\nそれ以上聞くまでもなく、關内は刀をとってとび出し、客を目がけて前後左右に斬りまくった。しかし三人は隣りの建物の壁の方へとび、影のようにその上へ飛び去って、それから……\n＊\nここで古い物語は切れている、話のあとは何人かの頭の中に存在していたのだが、それは百年このかた塵に帰している。\n私は色々それらしい結末を想像することができるが、西洋の読者の想像に満足を与えるようなのは一つもない。魂を飲んだあとの、もっともらしい結果は、自分で考えてみられるままに任せておく。\n\n語り直し:\n關内さんは家で親といました。\n夜におきゃくさんが来ました。\nげんかんに侍が3人いました。\n侍は式部平内のしたの人でした。\nさくや、關内さんは主を切りました。\n主は体をなおしに行きます。\n来月16日にもどります。\nそのとき、うらみをはらします。\n關内さんはかたなで侍を切りました。\nしかし侍はかべへとびました。\nかげのようにきえていきました。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"さくや、關内さんは主を切りました。\", \"problem\": \"The original says the master was struck (お打ちになった) but does not explicitly state a death; the retelling implies a death (切りました) which contradicts the master going for medical treatment (湯治). Correction: 關内さんは主人を斬りました (or 傷つけました).\", \"kind\": \"death\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling; for a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\nその翌晩、關内は非番であったので、両親とともに家にいた。余程おそくなってから、暫時の面談をもとめる来客のある事を、取次がれた。刀を取って玄関に出た、そこには三人の武装した人々――明かに侍達――が式台の前に立っていた。三人は恭しく關内に敬礼してから、そのうちの一人が云った。\n『某等は松岡文吾、土橋久藏、岡村平六と申す式部平内殿の侍でござる。主人が昨夜御訪問いたした節、貴殿は刀で主人をお打ちになった。怪我が重いから疵の養生に湯治に行かねばならぬ。しかし来月十六日にはお帰りになる、その時にはこの恨みを必ず晴らし申す……』\nそれ以上聞くまでもなく、關内は刀をとってとび出し、客を目がけて前後左右に斬りまくった。しかし三人は隣りの建物の壁の方へとび、影のようにその上へ飛び去って、それから……\n＊\nここで古い物語は切れている、話のあとは何人かの頭の中に存在していたのだが、それは百年このかた塵に帰している。\n私は色々それらしい結末を想像することができるが、西洋の読者の想像に満足を与えるようなのは一つもない。魂を飲んだあとの、もっともらしい結果は、自分で考えてみられるままに任せておく。\n\n語り直し:\n關内さんは家で親といました。\n夜におきゃくさんが来ました。\nげんかんに侍が3人いました。\n侍は式部平内のしたの人でした。\nさくや、關内さんは主をきずつけました。\n主は体をなおしに行きます。\n来月16日にもどります。\nそのとき、うらみをはらします。\n關内さんはかたなで侍を切りました。\nしかし侍はかべへとびました。\nかげのようにきえていきました。"
+          }
+        ],
+        "response": "{\"issues\": []}"
+      }
+    ],
+    "rewrites": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Repair only the specified sentences at JLPT N4. Preserve all other sentences and events. Use natural Japanese, numeric digits for numbers, and maintain the meaning of the original. Return only JSON {\"rewrites\":[{\"index\":0,\"sentence\":\"...\"}]}."
+          },
+          {
+            "role": "user",
+            "content": "Original:\nその翌晩、關内は非番であったので、両親とともに家にいた。余程おそくなってから、暫時の面談をもとめる来客のある事を、取次がれた。刀を取って玄関に出た、そこには三人の武装した人々――明かに侍達――が式台の前に立っていた。三人は恭しく關内に敬礼してから、そのうちの一人が云った。\n『某等は松岡文吾、土橋久藏、岡村平六と申す式部平内殿の侍でござる。主人が昨夜御訪問いたした節、貴殿は刀で主人をお打ちになった。怪我が重いから疵の養生に湯治に行かねばならぬ。しかし来月十六日にはお帰りになる、その時にはこの恨みを必ず晴らし申す……』\nそれ以上聞くまでもなく、關内は刀をとってとび出し、客を目がけて前後左右に斬りまくった。しかし三人は隣りの建物の壁の方へとび、影のようにその上へ飛び去って、それから……\n＊\nここで古い物語は切れている、話のあとは何人かの頭の中に存在していたのだが、それは百年このかた塵に帰している。\n私は色々それらしい結末を想像することができるが、西洋の読者の想像に満足を与えるようなのは一つもない。魂を飲んだあとの、もっともらしい結果は、自分で考えてみられるままに任せておく。\nSentences:\n0: 關内さんは家で親といました。\n1: 夜におきゃくさんが来ました。\n2: げんかんに侍が3人いました。\n3: 侍は式部平内のしたの人でした。\n4: さくや、關内さんは主を切りました。\n5: 主は体をなおしに行きます。\n6: 来月16日にもどります。\n7: そのとき、うらみをはらします。\n8: 關内さんはかたなで侍を切りました。\n9: しかし侍はかべへとびました。\n10: かげのようにきえていきました。\nIssues:\n[{\"sentence\":\"さくや、關内さんは主を切りました。\",\"problem\":\"The original says the master was struck (お打ちになった) but does not explicitly state a death; the retelling implies a death (切りました) which contradicts the master going for medical treatment (湯治). Correction: 關内さんは主人を斬りました (or 傷つけました).\",\"kind\":\"death\"}]\nRewrite exactly indexes: 4"
+          }
+        ],
+        "response": "{\"rewrites\": [{\"index\": 4, \"sentence\": \"昨夜、關内さんは主人を傷つけました。\"}]}"
+      }
+    ],
+    "before": [
+      {
+        "sentence": "さくや、關内さんは主を切りました。",
+        "problem": "The original says the master was struck (お打ちになった) but does not explicitly state a death; the retelling implies a death (切りました) which contradicts the master going for medical treatment (湯治). Correction: 關内さんは主人を斬りました (or 傷つけました).",
+        "kind": "death"
+      }
+    ],
+    "after": []
+  },
+  "ladderBuild": "P4b"
 }

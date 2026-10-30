@@ -27,7 +27,8 @@ test('prompt requests normal spelling, numbers, kanji and exact story words with
   const prompt=systemPrompt('N4',storyWords);
   assert.ok(prompt.includes('Write normal Japanese with no spaces between words. Use ONLY these kanji:'));
   assert.ok(prompt.includes('紀伊国坂（きいのくにざか）'));
-  assert.ok(prompt.includes('in hiragana when their kanji is above the level'));
+  assert.ok(prompt.includes('Keep their exact kanji when needed'));
+  assert.ok(prompt.includes('Never spell numbers in kana'));
 });
 test('full-width spaces and digits normalise without changing punctuation',async()=>{
   assert.equal(normalizeText('　３０ 年 前！ ?'),'30年前！?');
@@ -44,18 +45,18 @@ test('normal Japanese versions of draft sentences have complete lexical words',a
     assert.ok(!result.offending.some(w=>['さ','の','であるく'].includes(w)));
   }
 });
-test('kana story-word readings match complete spans and preserve kana repairs',async()=>{
+test('kana story-word readings match complete spans and restore protected kanji',async()=>{
   const kana=await check('きいのくにざかには、むじながいました。');
   const kanji=await check('紀伊国坂には、貉がいました。');
-  assert.equal(kana.tokens[0].s,'きいのくにざか');assert.equal(kanji.tokens[0].s,'紀伊国坂');assert.equal(kanji.tokens[0].hk,true);assert.equal(kana.tokens[0].hk,undefined);
-  const first=kana.tokens[0];assert.deepEqual(first,{s:'きいのくにざか',r:'きいのくにざか',b:'紀伊国坂',k:'story',g:storyWords.find(w=>w.text==='紀伊国坂').gloss});
+  assert.equal(kana.tokens[0].s,'紀伊国坂');assert.equal(kanji.tokens[0].s,'紀伊国坂');assert.equal(kanji.tokens[0].hk,true);assert.equal(kana.tokens[0].hk,true);
+  assert.deepEqual(kana,kanji);
   const spaced=await check('きいの くにざかには、む　じながいました。');assert.deepEqual(spaced,kana);
   assert.equal(kana.coverage,1);
 });
 test('longest story reading wins and empty readings never create zero-length matches',async()=>{
   const words=[{text:'芳一',reading:'ほういち',gloss:'a musician'},{text:'芳',reading:'ほう',gloss:'a name'},{text:'空',reading:'',gloss:'empty'}];
   const result=await tokenizeForLevel('ほういちは来ました。','N4',{vocab,storyWords:words});
-  assert.equal(result.tokens[0].s,'ほういち');assert.equal(result.tokens[0].k,'story');
+  assert.equal(result.tokens[0].s,'芳一');assert.equal(result.tokens[0].k,'story');
 });
 test('story words agree with source ruby wherever ruby is supplied',()=>{
   const data=JSON.parse(readFileSync(new URL('../pipeline/story-words.json',import.meta.url),'utf8'));

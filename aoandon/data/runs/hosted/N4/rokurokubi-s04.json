@@ -4,41 +4,45 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Adds ～とき, ～たら, ～ている, ～と思います, potential forms and ～ても. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Copy every story word exactly in kanji when it is needed; do not insert unused words.\nWrite normal Japanese with no spaces between words. Outside story words, use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: 囘龍がねようとしたときです。ある人がきました。その人はきをはこんでいました。そのひとは囘龍をみました。そして、おどろきました。「ここでねているひとはだれですか」「ここは変化がたくさん出ます」「こわくないですか」囘龍はたのしく答えました。「わたしはこわくありません」「しずかなところがすきです」「ここでべんきょうをしています」その人はおどろきました。「あなたはとてもつよい人ですね」「ここはとてもあぶないところです」「わたしの家に来てください」「いいいえはありません」「でも、やねがあります」「安心してねることができます」\n\n場面（原文）:\n熱心に云うので、囘龍はこの男の親切な調子が気に入って、この謙遜な申出を受けた。きこりは往来から分れて、山の森の間の狭い道を案内して上って行った。凸凹の危険な道で、――時々断崖の縁を通ったり、――時々足の踏み場処としては、滑りやすい木の根のからんだものだけであったり、――時々尖った大きな岩の上、または間をうねりくねったりして行った。しかし、ようやく囘龍はある山の頂きの平らな場所へ来た。満月が頭上を照らしていた。見ると自分の前に小さな草ふき屋根の小屋があって、中からは陽気な光がもれていた。きこりは裏口から案内したが、そこへは近処の流れから、竹の筧で水を取ってあった。それから二人は足を洗った。小屋の向うは野菜畠につづいて、竹藪と杉の森になっていた。それからその森の向うに、どこか遥かに高い処から落ちている滝が微かに光って、長い白い着物のように、月光のうちに動いているのが見えた。"
+        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\n熱心に云うので、囘龍はこの男の親切な調子が気に入って、この謙遜な申出を受けた。きこりは往来から分れて、山の森の間の狭い道を案内して上って行った。凸凹の危険な道で、――時々断崖の縁を通ったり、――時々足の踏み場処としては、滑りやすい木の根のからんだものだけであったり、――時々尖った大きな岩の上、または間をうねりくねったりして行った。しかし、ようやく囘龍はある山の頂きの平らな場所へ来た。満月が頭上を照らしていた。見ると自分の前に小さな草ふき屋根の小屋があって、中からは陽気な光がもれていた。きこりは裏口から案内したが、そこへは近処の流れから、竹の筧で水を取ってあった。それから二人は足を洗った。小屋の向うは野菜畠につづいて、竹藪と杉の森になっていた。それからその森の向うに、どこか遥かに高い処から落ちている滝が微かに光って、長い白い着物のように、月光のうちに動いているのが見えた。\n"
       }
     ]
   },
   "responses": [
-    "{\"sentencesにつながる\": [\"男の人はしんせつでした。\", \"囘龍はその人がすきになりました。\", \"そこで男の人についていきました。\", \"道はせまかったです。\", \"道はあぶなかったです。\", \"ときどき、高いところを通りました。\", \"ときどき、木のねがありました。\", \"ときどき、大きな岩がありました。\", \"やっと山の上にきました。\", \"月が明るく光っていました。\", \"小さな家がありました。\", \"家からあかるい光が出ていました。\", \"二人は足を洗いました。\", \"家のうしろに森がありました。\", \"森のむこうに滝がありました。\", \"滝が白く光っていました。\", \"滝が動いていると思いました。\"], \"question\": {\"prompt\": \"囘龍はどこへいきましたか。\", \"options\": [\"山の上\", \"大きな町\", \"青い海\"], \"answer\": 0}}",
-    "{\"sentences\": [\"男の人はしんせつでした。\", \"囘龍はその人がすきになりました。\", \"そこで男の人についていきました。\", \"道はせまかったです。\", \"道はあぶなかったです。\", \"ときどき、高いところを通りました。\", \"ときどき、木のねがありました。\", \"ときどき、大きな岩がありました。\", \"やっと山の上にきました。\", \"月が明るく光っていました。\", \"小さな家がありました。\", \"家からあかるい光が出ていました。\", \"二人は足を洗いました。\", \"家のうしろに森がありました。\", \"森のむこうに滝がありました。\", \"滝が白く光っていました。\", \"滝が動いていると思いました。\"], \"question\": {\"prompt\": \"囘龍はどこへいきましたか。\", \"options\": [\"山の上\", \"大きな町\", \"青い海\"], \"answer\": 0}}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"男の人はやさしかったです。\"}, {\"index\": 1, \"sentence\": \"囘龍はその人がすきになりました。\"}, {\"index\": 7, \"sentence\": \"ときどき、おおきないわがありました。\"}, {\"index\": 9, \"sentence\": \"月があかるくひかっていました。\"}, {\"index\": 11, \"sentence\": \"家からあかるいひかりが出ていました。\"}, {\"index\": 12, \"sentence\": \"二人は足をあらいました。\"}, {\"index\": 13, \"sentence\": \"家のうしろにもりがありました。\"}, {\"index\": 14, \"sentence\": \"もりのむこうにたきがありました。\"}, {\"index\": 15, \"sentence\": \"たきがしろくひかっていました。\"}, {\"index\": 16, \"sentence\": \"たきがうごいていると思いました。\"}]}",
-    "{\"rewrites\": [{\"index\": 1, \"sentence\": \"囘龍はその人がすきになりました。\"}, {\"index\": 13, \"sentence\": \"家のうしろにもりがありました。\"}]}",
-    "{\"rewrites\": [{\"index\": 1, \"sentence\": \"囘龍はその人がすきになりました。\"}, {\"index\": 13, \"sentence\": \"家のうしろにもりがありました。\"}]}",
-    "{\"question\": {\"prompt\": \"かいりゅうはどこへいきましたか。\", \"options\": [\"やまのうえ\", \"おおきいまち\", \"あおいうみ\"], \"answer\": 0}}",
-    "{\"glosses\": {\"ろ\": \"six\"}}"
+    "{\"sentences-\": [\"男は親切でした。\", \"囘龍はこの男が気に入りました。\", \"二人は山の狭い道を行きました。\", \"道はとても危ない道でした。\", \"ときどき崖の近くを通りました。\", \"木の根や大きな岩がありました。\", \"二人は山の上の広い場所に来ました。\", \"空には満月がありました。\", \"小さな小屋がありました。\", \"小屋から明るい光が出ていました。\", \"二人は足を洗いました。\", \"小屋のうしろに森がありました。\", \"遠くに高い滝が見えました。\", \"滝は白い着物のように見えました。\"], \"question\": {\"prompt\": \"二人はどこへ行きましたか。\", \"options\": [\"海へ行きました。\", \"山の上の小屋へ行きました。\", \"町の店へ行きました。\"], \"answer\": 1}}",
+    "{\"sentences\": [\"男は親切でした。\", \"囘龍はこの男が気に入りました。\", \"二人は山の狭い道を行きました。\", \"道はとても危ない道でした。\", \"ときどき崖の近くを通りました。\", \"木の根や大きな岩がありました。\", \"二人は山の上の広い場所に来ました。\", \"空には満月がありました。\", \"小さな小屋がありました。\", \"小屋から明るい光が出ていました。\", \"二人は足を洗いました。\", \"小屋のうしろに森がありました。\", \"遠くに高い滝が見えました。\", \"滝は白い着物のように見えました。\"], \"question\": {\"prompt\": \"二人はどこへ行きましたか。\", \"options\": [\"海へ行きました。\", \"山の上の小屋へ行きました。\", \"町の店へ行きました。\"], \"answer\": 1}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"男はしんせつでした。\"}, {\"index\": 1, \"sentence\": \"囘龍はこの男をすきになりました。\"}, {\"index\": 2, \"sentence\": \"二人は山のせまい道を行きました。\"}, {\"index\": 3, \"sentence\": \"道はとてもあぶない道でした。\"}, {\"index\": 4, \"sentence\": \"ときどきがけの近くを通りました。\"}, {\"index\": 5, \"sentence\": \"きのねや大きないわがありました。\"}, {\"index\": 6, \"sentence\": \"二人は山の上の広いばしょに来ました。\"}, {\"index\": 7, \"sentence\": \"空にはまんげつがありました。\"}, {\"index\": 8, \"sentence\": \"小さなこやがありました。\"}, {\"index\": 9, \"sentence\": \"こやから明るいひかりが出ていました。\"}, {\"index\": 10, \"sentence\": \"二人は足をあらいました。\"}, {\"index\": 11, \"sentence\": \"こやのうしろにもりがありました。\"}, {\"index\": 12, \"sentence\": \"とおくに高いたきが見えました。\"}, {\"index\": 13, \"sentence\": \"たきは白い着物のように見えました。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"男はやさしい人でした。\"}, {\"index\": 4, \"sentence\": \"ときどきがけの近くを通りました。\"}, {\"index\": 6, \"sentence\": \"二人は山の上の広いところに来ました。\"}, {\"index\": 7, \"sentence\": \"空にはまんげつがありました。\"}]}",
+    "{\"rewrites\": [{\"index\": 4, \"sentence\": \"ときどきがけのちかくを通りました。\"}, {\"index\": 7, \"sentence\": \"そらにはまんげつがありました。\"}]}",
+    "{\"question\": {\"prompt\": \"二人はどこへ行きましたか。\", \"options\": [\"海へ行きました。\", \"山の上の家へ行きました。\", \"町の店へ行きました。\"], \"answer\": 1}}"
   ],
   "metrics": {
-    "kanjiCoverage": 0.9166666666666666,
-    "kanjiDensity": 0.0975609756097561,
-    "firstCoverage": 0.8813559322033898,
-    "finalCoverage": 0.9629629629629629,
-    "retries": 3,
-    "seconds": 23.688603799999925,
+    "kanjiCoverage": 1,
+    "kanjiDensity": 0.1588785046728972,
+    "firstCoverage": 0.78,
+    "finalCoverage": 0.94,
+    "retries": 6,
+    "seconds": 26.7738358,
     "offendingFirst": [
-      "しん",
+      "気に入る",
+      "崖",
       "岩",
+      "満月",
+      "小屋",
       "うし",
       "ろ",
       "滝"
     ],
     "ghostWords": [
-      "うし",
-      "ろ"
-    ]
+      "がけ",
+      "はまる",
+      "げ"
+    ],
+    "faithIssues": []
   },
   "retelling": {
     "level": "N4",
@@ -49,22 +53,10 @@
         "tokens": [
           {
             "s": "男",
+            "k": "known",
             "r": "おとこ",
             "b": "男",
-            "k": "known",
             "g": "man, male",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
             "gs": "jlpt"
           },
           {
@@ -72,18 +64,33 @@
             "k": "plain"
           },
           {
-            "s": "やさしかっ",
-            "b": "やさしい",
+            "s": "とても",
             "k": "known",
+            "b": "とても",
+            "g": "very (much), greatly, exceedingly",
+            "gs": "jlpt"
+          },
+          {
+            "s": "やさしい",
+            "k": "known",
+            "b": "やさしい",
             "g": "easy, plain, simple",
             "gs": "jlpt"
           },
           {
-            "s": "た",
+            "s": "人",
+            "k": "known",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "でし",
             "k": "plain"
           },
           {
-            "s": "です",
+            "s": "た",
             "k": "plain"
           },
           {
@@ -96,36 +103,36 @@
         "tokens": [
           {
             "s": "囘龍",
-            "hk": true,
             "r": "かいりゅう",
             "b": "囘龍",
             "k": "story",
-            "g": "Kairyu, the warrior's monk name"
+            "g": "Kairyu, the warrior's monk name",
+            "hk": true
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "その",
+            "s": "この",
             "k": "plain"
           },
           {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
+            "s": "男",
             "k": "known",
-            "g": "counter for people",
+            "r": "おとこ",
+            "b": "男",
+            "g": "man, male",
             "gs": "jlpt"
           },
           {
-            "s": "が",
+            "s": "を",
             "k": "plain"
           },
           {
             "s": "すき",
-            "b": "すき",
             "k": "known",
+            "b": "すき",
             "g": "liking, fondness, love",
             "gs": "jlpt"
           },
@@ -135,8 +142,8 @@
           },
           {
             "s": "なり",
-            "b": "なる",
             "k": "known",
+            "b": "なる",
             "g": "to become",
             "gs": "jlpt"
           },
@@ -157,15 +164,28 @@
       {
         "tokens": [
           {
-            "s": "そこで",
+            "s": "二",
+            "k": "plain",
+            "r": "に"
+          },
+          {
+            "s": "人",
+            "k": "known",
+            "r": "にん",
+            "b": "人",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
             "k": "plain"
           },
           {
-            "s": "男",
-            "r": "おとこ",
-            "b": "男",
+            "s": "山",
             "k": "known",
-            "g": "man, male",
+            "r": "やま",
+            "b": "山",
+            "g": "mountain",
             "gs": "jlpt"
           },
           {
@@ -173,32 +193,29 @@
             "k": "plain"
           },
           {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
+            "s": "せまい",
             "k": "known",
-            "g": "counter for people",
+            "b": "せまい",
+            "g": "narrow; not spacious",
             "gs": "jlpt"
           },
           {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "つい",
-            "b": "つく",
+            "s": "道",
             "k": "known",
-            "g": "to arrive at, to reach",
+            "r": "みち",
+            "b": "道",
+            "g": "road, street; way, directions",
             "gs": "jlpt"
           },
           {
-            "s": "て",
+            "s": "を",
             "k": "plain"
           },
           {
-            "s": "いき",
-            "b": "いく",
+            "s": "行き",
             "k": "known",
+            "r": "いき",
+            "b": "行く",
             "g": "to go",
             "gs": "jlpt"
           },
@@ -220,9 +237,9 @@
         "tokens": [
           {
             "s": "道",
+            "k": "known",
             "r": "みち",
             "b": "道",
-            "k": "known",
             "g": "road, street; way, directions",
             "gs": "jlpt"
           },
@@ -231,53 +248,33 @@
             "k": "plain"
           },
           {
-            "s": "せまかっ",
-            "b": "せまい",
+            "s": "とても",
             "k": "known",
-            "g": "narrow; not spacious",
+            "b": "とても",
+            "g": "very (much), greatly, exceedingly",
             "gs": "jlpt"
           },
           {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "です",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "道",
-            "r": "みち",
-            "b": "道",
+            "s": "あぶない",
             "k": "known",
-            "g": "road, street; way, directions",
-            "gs": "jlpt"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "あぶなかっ",
             "b": "あぶない",
-            "k": "known",
             "g": "dangerous, critical",
             "gs": "jlpt"
           },
           {
-            "s": "た",
+            "s": "道",
+            "k": "known",
+            "r": "みち",
+            "b": "道",
+            "g": "road, street; way, directions",
+            "gs": "jlpt"
+          },
+          {
+            "s": "でし",
             "k": "plain"
           },
           {
-            "s": "です",
+            "s": "た",
             "k": "plain"
           },
           {
@@ -290,28 +287,27 @@
         "tokens": [
           {
             "s": "ときどき",
-            "b": "ときどき",
             "k": "known",
+            "b": "ときどき",
             "g": "sometimes",
             "gs": "jlpt"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "高い",
-            "r": "たかい",
-            "b": "高い",
-            "k": "known",
-            "g": "tall, high; expensive",
+            "s": "がけ",
+            "k": "ghost",
+            "b": "がけ",
+            "g": "cliff",
             "gs": "jlpt"
           },
           {
-            "s": "ところ",
-            "b": "ところ",
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "ちかく",
             "k": "known",
-            "g": "place",
+            "b": "ちかく",
+            "g": "nearby; in the neighborhood",
             "gs": "jlpt"
           },
           {
@@ -320,9 +316,9 @@
           },
           {
             "s": "通り",
+            "k": "known",
             "r": "とおり",
             "b": "通る",
-            "k": "known",
             "g": "to pass (by), to go through",
             "gs": "jlpt"
           },
@@ -343,26 +339,7 @@
       {
         "tokens": [
           {
-            "s": "ときどき",
-            "b": "ときどき",
-            "k": "known",
-            "g": "sometimes",
-            "gs": "jlpt"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "木",
-            "r": "き",
-            "b": "木",
-            "k": "known",
-            "g": "tree, wood, timber",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
+            "s": "きの",
             "k": "plain"
           },
           {
@@ -370,48 +347,15 @@
             "k": "plain"
           },
           {
-            "s": "が",
+            "s": "や",
             "k": "plain"
           },
           {
-            "s": "あり",
-            "b": "ある",
+            "s": "大き",
             "k": "known",
-            "g": "to be, to have",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "ときどき",
-            "b": "ときどき",
-            "k": "known",
-            "g": "sometimes",
-            "gs": "jlpt"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "おおき",
-            "b": "おおい",
-            "k": "known",
-            "g": "many; there are a lot",
+            "r": "おおき",
+            "b": "大きい",
+            "g": "big, large",
             "gs": "jlpt"
           },
           {
@@ -428,8 +372,8 @@
           },
           {
             "s": "あり",
-            "b": "ある",
             "k": "known",
+            "b": "ある",
             "g": "to be, to have",
             "gs": "jlpt"
           },
@@ -450,25 +394,55 @@
       {
         "tokens": [
           {
-            "s": "やっと",
-            "b": "やっと",
+            "s": "二",
+            "k": "plain",
+            "r": "に"
+          },
+          {
+            "s": "人",
             "k": "known",
-            "g": "at last, finally",
+            "r": "にん",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
-            "s": "山の上",
-            "r": "やまのうえ",
+            "s": "は",
             "k": "plain"
+          },
+          {
+            "s": "山の上",
+            "k": "plain",
+            "r": "やまのうえ"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "広い",
+            "k": "known",
+            "r": "ひろい",
+            "b": "広い",
+            "g": "spacious; wide; broad",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ところ",
+            "k": "known",
+            "b": "ところ",
+            "g": "place",
+            "gs": "jlpt"
           },
           {
             "s": "に",
             "k": "plain"
           },
           {
-            "s": "き",
-            "b": "くる",
+            "s": "来",
             "k": "known",
+            "r": "き",
+            "b": "来る",
             "g": "to come",
             "gs": "jlpt"
           },
@@ -489,70 +463,34 @@
       {
         "tokens": [
           {
-            "s": "月",
-            "r": "つき",
-            "b": "月",
+            "s": "空",
             "k": "known",
-            "g": "month of year",
+            "r": "そら",
+            "b": "空",
+            "g": "sky",
             "gs": "jlpt"
           },
           {
-            "s": "が",
+            "s": "に",
             "k": "plain"
           },
           {
-            "s": "あかるく",
-            "b": "あかるい",
-            "k": "known",
-            "g": "bright (in reference to personality or weather); cheerful",
+            "s": "はまん",
+            "k": "ghost",
+            "b": "はまる",
+            "g": "to get into, to go into, to fit, to be fit for, to suit",
             "gs": "jlpt"
           },
           {
-            "s": "ひかっ",
-            "b": "ひかる",
-            "k": "known",
-            "g": "to shine, to glitter",
+            "s": "げ",
+            "k": "ghost",
+            "b": "げ",
+            "g": "under, below, beneath",
             "gs": "jlpt"
           },
           {
-            "s": "て",
+            "s": "つ",
             "k": "plain"
-          },
-          {
-            "s": "い",
-            "b": "いる",
-            "k": "known",
-            "g": "(humble) to be (animate), to exist",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "小さな",
-            "r": "ちいさな",
-            "k": "plain"
-          },
-          {
-            "s": "家",
-            "r": "いえ",
-            "b": "家",
-            "k": "known",
-            "g": "house, home",
-            "gs": "jlpt"
           },
           {
             "s": "が",
@@ -560,8 +498,8 @@
           },
           {
             "s": "あり",
-            "b": "ある",
             "k": "known",
+            "b": "ある",
             "g": "to be, to have",
             "gs": "jlpt"
           },
@@ -582,21 +520,68 @@
       {
         "tokens": [
           {
-            "s": "家",
-            "r": "いえ",
-            "b": "家",
+            "s": "小さな",
+            "k": "plain",
+            "r": "ちいさな"
+          },
+          {
+            "s": "こ",
             "k": "known",
-            "g": "house, home",
+            "b": "こ",
+            "g": "counter for small items (e.g., fruits, cups)",
             "gs": "jlpt"
+          },
+          {
+            "s": "や",
+            "k": "plain"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "あり",
+            "k": "known",
+            "b": "ある",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "こ",
+            "k": "known",
+            "b": "こ",
+            "g": "counter for small items (e.g., fruits, cups)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "や",
+            "k": "plain"
           },
           {
             "s": "から",
             "k": "plain"
           },
           {
-            "s": "あかるい",
-            "b": "あかるい",
+            "s": "明るい",
             "k": "known",
+            "r": "あかるい",
+            "b": "明るい",
             "g": "bright (in reference to personality or weather); cheerful",
             "gs": "jlpt"
           },
@@ -610,9 +595,9 @@
           },
           {
             "s": "出",
+            "k": "known",
             "r": "で",
             "b": "出る",
-            "k": "known",
             "g": "to appear, to leave",
             "gs": "jlpt"
           },
@@ -622,8 +607,8 @@
           },
           {
             "s": "い",
-            "b": "いる",
             "k": "known",
+            "b": "いる",
             "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
@@ -645,14 +630,14 @@
         "tokens": [
           {
             "s": "二",
-            "r": "に",
-            "k": "plain"
+            "k": "plain",
+            "r": "に"
           },
           {
             "s": "人",
+            "k": "known",
             "r": "にん",
             "b": "人",
-            "k": "known",
             "g": "counter for people",
             "gs": "jlpt"
           },
@@ -662,9 +647,9 @@
           },
           {
             "s": "足",
+            "k": "known",
             "r": "あし",
             "b": "足",
-            "k": "known",
             "g": "foot; leg",
             "gs": "jlpt"
           },
@@ -674,8 +659,8 @@
           },
           {
             "s": "あらい",
-            "b": "あらう",
             "k": "known",
+            "b": "あらう",
             "g": "to wash",
             "gs": "jlpt"
           },
@@ -696,11 +681,139 @@
       {
         "tokens": [
           {
-            "s": "家",
-            "r": "いえ",
-            "b": "家",
+            "s": "こ",
             "k": "known",
-            "g": "house, home",
+            "b": "こ",
+            "g": "counter for small items (e.g., fruits, cups)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "や",
+            "k": "plain"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "後ろ",
+            "k": "known",
+            "r": "うしろ",
+            "b": "後ろ",
+            "g": "back, behind, rear",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "もり",
+            "k": "known",
+            "b": "もる",
+            "g": "to serve (food); to fill up; to prescribe",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "あり",
+            "k": "known",
+            "b": "ある",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "とおく",
+            "k": "known",
+            "b": "とおく",
+            "g": "far away, distant",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "高い",
+            "k": "known",
+            "r": "たかい",
+            "b": "高い",
+            "g": "tall, high; expensive",
+            "gs": "jlpt"
+          },
+          {
+            "s": "たき",
+            "k": "plain"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "見え",
+            "k": "known",
+            "r": "みえ",
+            "b": "見える",
+            "g": "to be visible; -- polite verb meaning 来る (くる) --",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "たき",
+            "k": "plain"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "白い",
+            "k": "known",
+            "r": "しろい",
+            "b": "白い",
+            "g": "white",
+            "gs": "jlpt"
+          },
+          {
+            "s": "着物",
+            "k": "known",
+            "r": "きもの",
+            "b": "着物",
+            "g": "kimono; Japanese traditional dress",
             "gs": "jlpt"
           },
           {
@@ -708,76 +821,10 @@
             "k": "plain"
           },
           {
-            "s": "うし",
-            "b": "うし",
-            "k": "ghost",
-            "g": "cattle, cow",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ろ",
-            "b": "ろ",
-            "k": "ghost",
-            "g": "six",
-            "gs": "model"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "もり",
-            "b": "もる",
+            "s": "よう",
             "k": "known",
-            "g": "to serve (food); to fill up; to prescribe",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "あり",
-            "b": "ある",
-            "k": "known",
-            "g": "to be, to have",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "もり",
-            "b": "もる",
-            "k": "known",
-            "g": "to serve (food); to fill up; to prescribe",
-            "gs": "jlpt"
-          },
-          {
-            "s": "のむ",
-            "b": "のむ",
-            "k": "known",
-            "g": "to drink",
-            "gs": "jlpt"
-          },
-          {
-            "s": "こう",
-            "b": "こう",
-            "k": "known",
-            "g": "like this, this way",
+            "b": "よう",
+            "g": "errand, task, business (to take care of)",
             "gs": "jlpt"
           },
           {
@@ -785,121 +832,11 @@
             "k": "plain"
           },
           {
-            "s": "たき",
-            "k": "plain"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "あり",
-            "b": "ある",
+            "s": "見え",
             "k": "known",
-            "g": "to be, to have",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "たき",
-            "k": "plain"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "しろく",
-            "b": "しろい",
-            "k": "known",
-            "g": "white",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ひかっ",
-            "b": "ひかる",
-            "k": "known",
-            "g": "to shine, to glitter",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "い",
-            "b": "いる",
-            "k": "known",
-            "g": "(humble) to be (animate), to exist",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "たき",
-            "k": "plain"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "うごい",
-            "b": "うごく",
-            "k": "known",
-            "g": "to move",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "いる",
-            "b": "いる",
-            "k": "known",
-            "g": "(humble) to be (animate), to exist",
-            "gs": "jlpt"
-          },
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "思い",
-            "r": "おもい",
-            "b": "思う",
-            "k": "known",
-            "g": "to think, to feel",
+            "r": "みえ",
+            "b": "見える",
+            "g": "to be visible; -- polite verb meaning 来る (くる) --",
             "gs": "jlpt"
           },
           {
@@ -921,11 +858,17 @@
       "prompt": {
         "tokens": [
           {
-            "s": "かいりゅう",
-            "r": "かいりゅう",
-            "b": "囘龍",
-            "k": "story",
-            "g": "Kairyu, the warrior's monk name"
+            "s": "二",
+            "k": "plain",
+            "r": "に"
+          },
+          {
+            "s": "人",
+            "k": "known",
+            "r": "にん",
+            "b": "人",
+            "g": "counter for people",
+            "gs": "jlpt"
           },
           {
             "s": "は",
@@ -940,9 +883,10 @@
             "k": "plain"
           },
           {
-            "s": "いき",
-            "b": "いく",
+            "s": "行き",
             "k": "known",
+            "r": "いき",
+            "b": "行く",
             "g": "to go",
             "gs": "jlpt"
           },
@@ -968,80 +912,270 @@
         {
           "tokens": [
             {
-              "s": "あおい",
-              "b": "あおい",
+              "s": "町",
               "k": "known",
-              "g": "blue",
-              "gs": "jlpt"
-            },
-            {
-              "s": "うみ",
-              "b": "うむ",
-              "k": "known",
-              "g": "yes or no, presence or absence",
-              "gs": "jlpt"
-            }
-          ]
-        },
-        {
-          "tokens": [
-            {
-              "s": "おおきい",
-              "b": "おおきい",
-              "k": "known",
-              "g": "big, large",
-              "gs": "jlpt"
-            },
-            {
-              "s": "まち",
-              "b": "まち",
-              "k": "known",
+              "r": "まち",
+              "b": "町",
               "g": "town; city",
               "gs": "jlpt"
-            }
-          ]
-        },
-        {
-          "tokens": [
-            {
-              "s": "やま",
-              "b": "やむ",
-              "k": "known",
-              "g": "to cease, to stop",
-              "gs": "jlpt"
             },
             {
-              "s": "のう",
+              "s": "の",
               "k": "plain"
             },
             {
-              "s": "え",
+              "s": "店",
+              "k": "known",
+              "r": "みせ",
+              "b": "店",
+              "g": "store, shop",
+              "gs": "jlpt"
+            },
+            {
+              "s": "へ",
+              "k": "plain"
+            },
+            {
+              "s": "行き",
+              "k": "known",
+              "r": "いき",
+              "b": "行く",
+              "g": "to go",
+              "gs": "jlpt"
+            },
+            {
+              "s": "まし",
+              "k": "plain"
+            },
+            {
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "山の上",
+              "k": "plain",
+              "r": "やまのうえ"
+            },
+            {
+              "s": "の",
+              "k": "plain"
+            },
+            {
+              "s": "家",
+              "k": "known",
+              "r": "いえ",
+              "b": "家",
+              "g": "house, home",
+              "gs": "jlpt"
+            },
+            {
+              "s": "へ",
+              "k": "plain"
+            },
+            {
+              "s": "行き",
+              "k": "known",
+              "r": "いき",
+              "b": "行く",
+              "g": "to go",
+              "gs": "jlpt"
+            },
+            {
+              "s": "まし",
+              "k": "plain"
+            },
+            {
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "海",
+              "k": "known",
+              "r": "うみ",
+              "b": "海",
+              "g": "sea, beach",
+              "gs": "jlpt"
+            },
+            {
+              "s": "へ",
+              "k": "plain"
+            },
+            {
+              "s": "行き",
+              "k": "known",
+              "r": "いき",
+              "b": "行く",
+              "g": "to go",
+              "gs": "jlpt"
+            },
+            {
+              "s": "まし",
+              "k": "plain"
+            },
+            {
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "。",
               "k": "plain"
             }
           ]
         }
       ],
-      "answer": 2
+      "answer": 1
     },
     "metrics": {
-      "kanjiCoverage": 0.9166666666666666,
-      "kanjiDensity": 0.0975609756097561,
-      "firstCoverage": 0.8813559322033898,
-      "finalCoverage": 0.9629629629629629,
-      "retries": 3,
-      "seconds": 23.688603799999925,
+      "kanjiCoverage": 1,
+      "kanjiDensity": 0.1588785046728972,
+      "firstCoverage": 0.78,
+      "finalCoverage": 0.94,
+      "retries": 6,
+      "seconds": 26.7738358,
       "offendingFirst": [
-        "しん",
+        "気に入る",
+        "崖",
         "岩",
+        "満月",
+        "小屋",
         "うし",
         "ろ",
         "滝"
       ],
       "ghostWords": [
-        "うし",
-        "ろ"
-      ]
+        "がけ",
+        "はまる",
+        "げ"
+      ],
+      "faithIssues": []
     }
   },
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "levelRepairs": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n熱心に云うので、囘龍はこの男の親切な調子が気に入って、この謙遜な申出を受けた。きこりは往来から分れて、山の森の間の狭い道を案内して上って行った。凸凹の危険な道で、――時々断崖の縁を通ったり、――時々足の踏み場処としては、滑りやすい木の根のからんだものだけであったり、――時々尖った大きな岩の上、または間をうねりくねったりして行った。しかし、ようやく囘龍はある山の頂きの平らな場所へ来た。満月が頭上を照らしていた。見ると自分の前に小さな草ふき屋根の小屋があって、中からは陽気な光がもれていた。きこりは裏口から案内したが、そこへは近処の流れから、竹の筧で水を取ってあった。それから二人は足を洗った。小屋の向うは野菜畠につづいて、竹藪と杉の森になっていた。それからその森の向うに、どこか遥かに高い処から落ちている滝が微かに光って、長い白い着物のように、月光のうちに動いているのが見えた。\nCurrent retelling:\n男はやさしい人でした。\n囘龍はこの男をすきになりました。\n二人は山のせまい道を行きました。\n道はとてもあぶない道でした。\nときどきがけのちかくを通りました。\nきのねや大きないわがありました。\n二人は山の上の広いところに来ました。\nそらにはまんげつがありました。\n小さなこやがありました。\nこやから明るいひかりが出ていました。\n二人は足をあらいました。\nこやのうしろにもりがありました。\nとおくに高いたきが見えました。\nたきは白い着物のように見えました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.15023474178403756,\"meanLength\":15.214285714285714,\"advancedShare\":0.14583333333333334}; vocabulary 0.9375. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: がけ、はまる、げ. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences([\": \")', '男はやさしい人でした。', '囘龍はこの男をすきになりました。', '二人は山のせまい道を行きました。', '道はとてもあぶない道でした。', 'ときどきがけのちかくを通りました。', 'きのねや大きないわがありました。', '二人は山の上の広いところに来ました。', '空にはまんげつがありました。', '小さな小屋がありました。', '小屋から明るい光が出ていました。', '二人は足をあらいました。', '小屋の後ろに森がありました。', '遠くに高いたきが見えました。', 'たきは白い着物のように見えました。'],\"}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n熱心に云うので、囘龍はこの男の親切な調子が気に入って、この謙遜な申出を受けた。きこりは往来から分れて、山の森の間の狭い道を案内して上って行った。凸凹の危険な道で、――時々断崖の縁を通ったり、――時々足の踏み場処としては、滑りやすい木の根のからんだものだけであったり、――時々尖った大きな岩の上、または間をうねりくねったりして行った。しかし、ようやく囘龍はある山の頂きの平らな場所へ来た。満月が頭上を照らしていた。見ると自分の前に小さな草ふき屋根の小屋があって、中からは陽気な光がもれていた。きこりは裏口から案内したが、そこへは近処の流れから、竹の筧で水を取ってあった。それから二人は足を洗った。小屋の向うは野菜畠につづいて、竹藪と杉の森になっていた。それからその森の向うに、どこか遥かに高い処から落ちている滝が微かに光って、長い白い着物のように、月光のうちに動いているのが見えた。\nCurrent retelling:\n男はやさしい人でした。\n囘龍はこの男をすきになりました。\n二人は山のせまい道を行きました。\n道はとてもあぶない道でした。\nときどきがけのちかくを通りました。\nきのねや大きないわがありました。\n二人は山の上の広いところに来ました。\nそらにはまんげつがありました。\n小さなこやがありました。\nこやから明るいひかりが出ていました。\n二人は足をあらいました。\nこやのうしろにもりがありました。\nとおくに高いたきが見えました。\nたきは白い着物のように見えました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.15023474178403756,\"meanLength\":15.214285714285714,\"advancedShare\":0.14583333333333334}; vocabulary 0.9375. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: がけ、はまる、げ. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"sentences([\": \")', '男はやさしい人でした。', '囘龍はこの男をすきになりました。', '二人は山のせまい道を行きました。', '道はとてもあぶない道でした。', 'ときどきがけのちかくを通りました。', 'きのねや大きないわがありました。', '二人は山の上の広いところに来ました。', '空にはまんげつがありました。', '小さな小屋がありました。', '小屋から明るい光が出ていました。', '二人は足をあらいました。', '小屋の後ろに森がありました。', '遠くに高いたきが見えました。', 'たきは白い着物のように見えました。'],\"}"
+        },
+        {
+          "role": "user",
+          "content": "Return valid JSON only. Validation: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"array\",\n    \"received\": \"string\",\n    \"path\": [\n      \"sentences\"\n    ],\n    \"message\": \"Expected array, received string\"\n  }\n]"
+        }
+      ],
+      "response": "{\"sentences([\": \")', '男はやさしい人でした。', '囘龍はこの男をすきになりました。', '二人は山のせまい道を行きました。', '道はとてもあぶない道でした。', 'ときどきがけのちかくを通りました。', 'きのねや大きないわがありました。', '二人は山の上の広いところに来ました。', '空にはまんげつがありました。', '小さな小屋がありました。', '小屋から明るい光が出ていました。', '二人は足をあらいました。', '小屋の後ろに森がありました。', '遠くに高いたきが見えました。', 'たきは白い着物のように見えました。'],\"}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n熱心に云うので、囘龍はこの男の親切な調子が気に入って、この謙遜な申出を受けた。きこりは往来から分れて、山の森の間の狭い道を案内して上って行った。凸凹の危険な道で、――時々断崖の縁を通ったり、――時々足の踏み場処としては、滑りやすい木の根のからんだものだけであったり、――時々尖った大きな岩の上、または間をうねりくねったりして行った。しかし、ようやく囘龍はある山の頂きの平らな場所へ来た。満月が頭上を照らしていた。見ると自分の前に小さな草ふき屋根の小屋があって、中からは陽気な光がもれていた。きこりは裏口から案内したが、そこへは近処の流れから、竹の筧で水を取ってあった。それから二人は足を洗った。小屋の向うは野菜畠につづいて、竹藪と杉の森になっていた。それからその森の向うに、どこか遥かに高い処から落ちている滝が微かに光って、長い白い着物のように、月光のうちに動いているのが見えた。\nCurrent retelling:\n男はやさしい人でした。\n囘龍はこの男をすきになりました。\n二人は山のせまい道を行きました。\n道はとてもあぶない道でした。\nときどきがけのちかくを通りました。\nきのねや大きないわがありました。\n二人は山の上の広いところに来ました。\nそらにはまんげつがありました。\n小さなこやがありました。\nこやから明るいひかりが出ていました。\n二人は足をあらいました。\nこやのうしろにもりがありました。\nとおくに高いたきが見えました。\nたきは白い着物のように見えました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.15023474178403756,\"meanLength\":15.214285714285714,\"advancedShare\":0.14583333333333334}; vocabulary 0.9375. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: がけ、はまる、げ. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"sentences([\": \")', '男はやさしい人でした。', '囘龍はこの男をすきになりました。', '二人は山のせまい道を行きました。', '道はとてもあぶない道でした。', 'ときどきがけのちかくを通りました。', 'きのねや大きないわがありました。', '二人は山の上の広いところに来ました。', '空にはまんげつがありました。', '小さな小屋がありました。', '小屋から明るい光が出ていました。', '二人は足をあらいました。', '小屋の後ろに森がありました。', '遠くに高いたきが見えました。', 'たきは白い着物のように見えました。'],\"}"
+        },
+        {
+          "role": "user",
+          "content": "Return valid JSON only. Validation: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"array\",\n    \"received\": \"string\",\n    \"path\": [\n      \"sentences\"\n    ],\n    \"message\": \"Expected array, received string\"\n  }\n]"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"sentences([\": \")', '男はやさしい人でした。', '囘龍はこの男をすきになりました。', '二人は山のせまい道を行きました。', '道はとてもあぶない道でした。', 'ときどきがけのちかくを通りました。', 'きのねや大きないわがありました。', '二人は山の上の広いところに来ました。', '空にはまんげつがありました。', '小さな小屋がありました。', '小屋から明るい光が出ていました。', '二人は足をあらいました。', '小屋の後ろに森がありました。', '遠くに高いたきが見えました。', 'たきは白い着物のように見えました。'],\"}"
+        },
+        {
+          "role": "user",
+          "content": "Return valid JSON only. Validation: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"array\",\n    \"received\": \"string\",\n    \"path\": [\n      \"sentences\"\n    ],\n    \"message\": \"Expected array, received string\"\n  }\n]"
+        }
+      ],
+      "response": "{\"sentences\": [\"男はやさしい人でした。\", \"囘龍はこの男をすきになりました。\", \"二人は山のせまい道を行きました。\", \"道はとてもあぶない道でした。\", \"ときどきがけのちかくを通りました。\", \"きのねや大きないわがありました。\", \"二人は山の上の広いところに来ました。\", \"空にはまんげつがありました。\", \"小さな小屋がありました。\", \"小屋から明るい光が出ていました。\", \"二人は足をあらいました。\", \"小屋の後ろに森がありました。\", \"遠くに高いたきが見えました。\", \"たきは白い着物のように見えました。\"], \"question\": {\"prompt\": \"二人はどこへ行きましたか。\", \"options\": [\"山の上\", \"海の方\", \"町の中\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n熱心に云うので、囘龍はこの男の親切な調子が気に入って、この謙遜な申出を受けた。きこりは往来から分れて、山の森の間の狭い道を案内して上って行った。凸凹の危険な道で、――時々断崖の縁を通ったり、――時々足の踏み場処としては、滑りやすい木の根のからんだものだけであったり、――時々尖った大きな岩の上、または間をうねりくねったりして行った。しかし、ようやく囘龍はある山の頂きの平らな場所へ来た。満月が頭上を照らしていた。見ると自分の前に小さな草ふき屋根の小屋があって、中からは陽気な光がもれていた。きこりは裏口から案内したが、そこへは近処の流れから、竹の筧で水を取ってあった。それから二人は足を洗った。小屋の向うは野菜畠につづいて、竹藪と杉の森になっていた。それからその森の向うに、どこか遥かに高い処から落ちている滝が微かに光って、長い白い着物のように、月光のうちに動いているのが見えた。\nCurrent retelling:\n男はやさしい人でした。\n囘龍はこの男をすきになりました。\n二人は山のせまい道を行きました。\n道はとてもあぶない道でした。\nときどきがけのちかくを通りました。\nきのねや大きないわがありました。\n二人は山の上の広いところに来ました。\n空にはまんげつがありました。\n小さな小屋がありました。\n小屋から明るいひかりが出ていました。\n二人は足をあらいました。\n小屋の後ろにもりがありました。\nとおくに高いたきが見えました。\nたきは白い着物のように見えました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.1895734597156398,\"meanLength\":15.071428571428571,\"advancedShare\":0.20408163265306123}; vocabulary 0.8775510204081632. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: がけ、はまる、げ、小屋. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"男はとてもやさしい人でした。\", \"囘龍はこの男をすきになりました。\", \"二人は山のせまい道を行きました。\", \"道はとてもあぶない道でした。\", \"ときどきがけのちかくを通りました。\", \"きのねや大きないわがありました。\", \"二人は山の上の広いところに来ました。\", \"空にはまんげつがありました。\", \"小さなこやがありました。\", \"こやから明るいひかりが出ていました。\", \"二人は足をあらいました。\", \"こやの後ろにもりがありました。\", \"とおくに高いたきが見えました。\", \"たきは白い着物のように見えました。\"], \"question\": {\"prompt\": \"二人はどこへ行きましたか。\", \"options\": [\"海へ行きました。\", \"山へ行きました。\", \"町へ行きました。\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n熱心に云うので、囘龍はこの男の親切な調子が気に入って、この謙遜な申出を受けた。きこりは往来から分れて、山の森の間の狭い道を案内して上って行った。凸凹の危険な道で、――時々断崖の縁を通ったり、――時々足の踏み場処としては、滑りやすい木の根のからんだものだけであったり、――時々尖った大きな岩の上、または間をうねりくねったりして行った。しかし、ようやく囘龍はある山の頂きの平らな場所へ来た。満月が頭上を照らしていた。見ると自分の前に小さな草ふき屋根の小屋があって、中からは陽気な光がもれていた。きこりは裏口から案内したが、そこへは近処の流れから、竹の筧で水を取ってあった。それから二人は足を洗った。小屋の向うは野菜畠につづいて、竹藪と杉の森になっていた。それからその森の向うに、どこか遥かに高い処から落ちている滝が微かに光って、長い白い着物のように、月光のうちに動いているのが見えた。\nCurrent retelling:\n男はとてもやさしい人でした。\n囘龍はこの男をすきになりました。\n二人は山のせまい道を行きました。\n道はとてもあぶない道でした。\nときどきがけのちかくを通りました。\nきのねや大きないわがありました。\n二人は山の上の広いところに来ました。\n空にはまんげつがありました。\n小さなこやがありました。\nこやから明るいひかりが出ていました。\n二人は足をあらいました。\nこやの後ろにもりがありました。\nとおくに高いたきが見えました。\nたきは白い着物のように見えました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.1588785046728972,\"meanLength\":15.285714285714286,\"advancedShare\":0.14}; vocabulary 0.94. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: がけ、はまる、げ. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences([\": [\"男はとてもやさしい人でした。\", \"囘龍はこの男をすきになりました。\", \"二人は山のせまい道を行きました。\", \"道はとてもあぶない道でした。\", \"ときどきがけのちかくを通りました。\", \"きのねや大きないわがありました。\", \"二人は山の上の広いところに来ました。\", \"空にはまんげつがありました。\", \"小さなこやがありました。\", \"こやから明るいひかりが出ていました。\", \"二人は足をあらいました。\", \"こやの後ろにもりがありました。\", \"とおくに高いたきが見えました。\", \"たきは白い着物のように見えました。\"]}"
+    }
+  ],
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n熱心に云うので、囘龍はこの男の親切な調子が気に入って、この謙遜な申出を受けた。きこりは往来から分れて、山の森の間の狭い道を案内して上って行った。凸凹の危険な道で、――時々断崖の縁を通ったり、――時々足の踏み場処としては、滑りやすい木の根のからんだものだけであったり、――時々尖った大きな岩の上、または間をうねりくねったりして行った。しかし、ようやく囘龍はある山の頂きの平らな場所へ来た。満月が頭上を照らしていた。見ると自分の前に小さな草ふき屋根の小屋があって、中からは陽気な光がもれていた。きこりは裏口から案内したが、そこへは近処の流れから、竹の筧で水を取ってあった。それから二人は足を洗った。小屋の向うは野菜畠につづいて、竹藪と杉の森になっていた。それからその森の向うに、どこか遥かに高い処から落ちている滝が微かに光って、長い白い着物のように、月光のうちに動いているのが見えた。\n\n語り直し:\n男はとてもやさしい人でした。\n囘龍はこの男をすきになりました。\n二人は山のせまい道を行きました。\n道はとてもあぶない道でした。\nときどきがけのちかくを通りました。\nきのねや大きないわがありました。\n二人は山の上の広いところに来ました。\n空にはまんげつがありました。\n小さなこやがありました。\nこやから明るいひかりが出ていました。\n二人は足をあらいました。\nこやの後ろにもりがありました。\nとおくに高いたきが見えました。\nたきは白い着物のように見えました。"
+          }
+        ],
+        "response": "{\"issues\": []}"
+      }
+    ],
+    "rewrites": [],
+    "before": [],
+    "after": []
+  },
+  "ladderBuild": "P4b"
 }

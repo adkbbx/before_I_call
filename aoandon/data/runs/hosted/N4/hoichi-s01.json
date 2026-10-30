@@ -4,37 +4,55 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Adds ～とき, ～たら, ～ている, ～と思います, potential forms and ～ても. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Use them only when needed, in hiragana when their kanji is above the level. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\n七百年以上も昔の事、下ノ関海峡の壇ノ浦で、平家すなわち平族と、源氏すなわち源族との間の、永い争いの最後の戦闘が戦われた。この壇ノ浦で平家は、その一族の婦人子供ならびにその幼帝――今日安徳天皇として記憶されている――と共に、まったく滅亡した。そうしてその海と浜辺とは七百年間その怨霊に祟られていた……他の個処で私はそこに居る平家蟹という不思議な蟹の事を読者諸君に語った事があるが、それはその背中が人間の顔になっており、平家の武者の魂であると云われているのである。しかしその海岸一帯には、たくさん不思議な事が見聞きされる。闇夜には幾千となき幽霊火が、水うち際にふわふわさすらうか、もしくは波の上にちらちら飛ぶ――すなわち漁夫の呼んで鬼火すなわち魔の火と称する青白い光りである。そして風の立つ時には大きな叫び声が、戦の叫喚のように、海から聞えて来る。"
+        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\n七百年以上も昔の事、下ノ関海峡の壇ノ浦で、平家すなわち平族と、源氏すなわち源族との間の、永い争いの最後の戦闘が戦われた。この壇ノ浦で平家は、その一族の婦人子供ならびにその幼帝――今日安徳天皇として記憶されている――と共に、まったく滅亡した。そうしてその海と浜辺とは七百年間その怨霊に祟られていた……他の個処で私はそこに居る平家蟹という不思議な蟹の事を読者諸君に語った事があるが、それはその背中が人間の顔になっており、平家の武者の魂であると云われているのである。しかしその海岸一帯には、たくさん不思議な事が見聞きされる。闇夜には幾千となき幽霊火が、水うち際にふわふわさすらうか、もしくは波の上にちらちら飛ぶ――すなわち漁夫の呼んで鬼火すなわち魔の火と称する青白い光りである。そして風の立つ時には大きな叫び声が、戦の叫喚のように、海から聞えて来る。\nThe scene's middle level is too difficult relative to N3. Place N4 strictly between these measurements in kanji density and mean sentence length: N5 {\"kanjiCoverage\":1,\"kanjiDensity\":0.09615384615384616,\"meanLength\":11.555555555555555,\"advancedShare\":0.2727272727272727}, N3 {\"kanjiCoverage\":1,\"kanjiDensity\":0.1935483870967742,\"meanLength\":35.42857142857143,\"advancedShare\":0.3181818181818182}. Its N4+N3 vocabulary share must be >= 0.2727272727272727 and < 0.3181818181818182. Use easier words than N3. Preserve all events."
       }
     ]
   },
   "responses": [
-    "{\"sentences\": [\"むかし、うみで大きなたたかいがありました。\", \"へいけのひとたちは、みんなしにました。\", \"しんだひとたちは、おばけになりました。\", \"よるになると、あおいひが見えます。\", \"かぜがふくとき、こえがきこえます。\", \"たたかいのこえだと思います。\"], \"question\": {\"prompt\": \"よるに、なにが見えますか。\", \"options\": [\"あかいひ\", \"あおいひ\", \"しろいひ\"], \"answer\": 1}}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"むかし、うみで大きなけんかがありました。\"}, {\"index\": 2, \"sentence\": \"しんだひとたちは、ゆうれいになりました。\"}, {\"index\": 5, \"sentence\": \"けんかのこえだと思います。\"}]}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"むかし、うみで大きなことがありました。\"}, {\"index\": 2, \"sentence\": \"しんだひとたちは、むごいものになりました。\"}, {\"index\": 5, \"sentence\": \"あのときのこえだと思います。\"}]}",
-    "{\"rewrites\": [{\"index\": 2, \"sentence\": \"しんだひとたちは、こわいものになりました。\"}]}",
-    "{\"question\": {\"prompt\": \"よるに、なにが見えますか。\", \"options\": [\"あかいひ\", \"あおいひ\", \"しろいひ\"], \"answer\": 1}}",
-    "{\"glosses\": {\"いふ\": \"to say\"}}"
+    "{\"sentencesにつながる\": [\"700年より前のことです。\", \"海で平家と別の人が戦いました。\", \"平家の人たちはみんな死にました。\", \"その海は長い間、怖かったです。\", \"海に不思議な蟹がいます。\", \"背中が人の顔に似ている蟹です。\", \"それは平家の魂だと思います。\", \"夜になると青い火が見えます。\", \"漁師はそれを魔の火と言います。\", \"風があるとき、声が聞こえます。\", \"それは戦の声のように聞こえます。\"], \"question\": {\"prompt\": \"海にいる不思議な蟹の背中は何に似ていますか。\", \"options\": [\"人の顔\", \"魚の体\", \"青い火\"], \"answer\": 0}}",
+    "{\"sentences\": [\"700年より前のことです。\", \"海で平家と別の人が戦いました。\", \"平家の人たちはみんな死にました。\", \"その海は長い間、怖かったです。\", \"海に不思議な蟹がいます。\", \"背中が人の顔に似ている蟹です。\", \"それは平家の魂だと思います。\", \"夜になると青い火が見えます。\", \"漁師はそれを魔の火と言います。\", \"風があるとき、声が聞こえます。\", \"それは戦の声のように聞こえます。\"], \"question\": {\"prompt\": \"海にいる不思議な蟹の背中は何に似ていますか。\", \"options\": [\"人の顔\", \"魚の体\", \"青い火\"], \"answer\": 0}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"700年より前のことです。\"}, {\"index\": 1, \"sentence\": \"海で平家と別の人がたたかいました。\"}, {\"index\": 2, \"sentence\": \"平家の人たちはみんな死にました。\"}, {\"index\": 3, \"sentence\": \"その海は長い間、こわかったです。\"}, {\"index\": 4, \"sentence\": \"海にふしぎなかにがいます。\"}, {\"index\": 5, \"sentence\": \"せなかが人のかおににているかにです。\"}, {\"index\": 6, \"sentence\": \"それは平家のたましいだと思います。\"}, {\"index\": 7, \"sentence\": \"夜になると青い火が見えます。\"}, {\"index\": 8, \"sentence\": \"りょうしはそれをまの火と言います。\"}, {\"index\": 9, \"sentence\": \"風があるとき、こえが聞こえます。\"}, {\"index\": 10, \"sentence\": \"それはせんのこえのように聞こえます。\"}]}",
+    "{\"rewrites\": [{\"index\": 1, \"sentence\": \"海で平家と別の人が争いました。\"}, {\"index\": 4, \"sentence\": \"海にふしぎなかにがいます。\"}, {\"index\": 5, \"sentence\": \"せなかが人のかおににているかにです。\"}, {\"index\": 6, \"sentence\": \"それは平家のたましいだと思います。\"}, {\"index\": 8, \"sentence\": \"りょうしはそれをまの火と言います。\"}]}",
+    "{\"rewrites\": [{\"index\": 1, \"sentence\": \"海で平家と別の人があらそいました。\"}, {\"index\": 4, \"sentence\": \"海にふしぎなかにがいます。\"}, {\"index\": 5, \"sentence\": \"せなかが人のかおににているかにです。\"}, {\"index\": 6, \"sentence\": \"それは平家のたましいだと思います。\"}, {\"index\": 8, \"sentence\": \"りょうしはそれをまの火と言います。\"}]}",
+    "{\"question\": {\"prompt\": \"海にいるふしぎなかにのせなかは、なにににていますか。\", \"options\": [\"人のかお\", \"魚の体\", \"青い火\"], \"answer\": 0}}",
+    "{\"glosses\": {\"かに\": \"crab\", \"せる\": \"back\", \"ょうしはそれをまの\": \"fisherman calls it demon's\", \"ぎなかにのせなかは\": \"strange crab's back\"}}"
   ],
   "metrics": {
     "kanjiCoverage": 1,
-    "kanjiDensity": 0.028037383177570093,
-    "firstCoverage": 0.84,
-    "finalCoverage": 0.9615384615384616,
-    "retries": 3,
-    "seconds": 13.01134349999996,
+    "kanjiDensity": 0.1694915254237288,
+    "firstCoverage": 0.8181818181818182,
+    "finalCoverage": 0.8541666666666666,
+    "retries": 9,
+    "seconds": 269.75483740000004,
     "offendingFirst": [
-      "たたかう",
-      "しむ",
-      "おばけ"
+      "戦う",
+      "不思議",
+      "蟹",
+      "魂",
+      "漁師",
+      "魔",
+      "戦"
     ],
     "ghostWords": [
-      "しむ",
-      "いふ"
+      "たたかう",
+      "ふしぎ",
+      "かに",
+      "せる",
+      "たま",
+      "ょうしはそれをまの",
+      "ふし",
+      "ぎなかにのせなかは"
+    ],
+    "faithIssues": [
+      {
+        "sentence": "海で平家と別の人がたたかいました。",
+        "problem": "「別の人が」ではなく、源氏（源族）との戦闘であることを明記すべきです。",
+        "kind": "who"
+      }
     ]
   },
   "retelling": {
@@ -45,21 +63,62 @@
       {
         "tokens": [
           {
-            "s": "むかし",
-            "b": "むかし",
-            "k": "known",
-            "g": "old days; past",
-            "gs": "jlpt"
-          },
-          {
-            "s": "、",
+            "s": "700",
             "k": "plain"
           },
           {
-            "s": "うみ",
-            "b": "うむ",
+            "s": "年",
             "k": "known",
-            "g": "yes or no, presence or absence",
+            "r": "ねん",
+            "b": "年",
+            "g": "year, age",
+            "gs": "jlpt"
+          },
+          {
+            "s": "以上",
+            "k": "known",
+            "r": "いじょう",
+            "b": "以上",
+            "g": "more than; this is all",
+            "gs": "jlpt"
+          },
+          {
+            "s": "前",
+            "k": "known",
+            "r": "まえ",
+            "b": "前",
+            "g": "before, in front",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "こと",
+            "k": "known",
+            "b": "こと",
+            "g": "thing(s), matter(s), fact",
+            "gs": "jlpt"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "海",
+            "k": "known",
+            "r": "うみ",
+            "b": "海",
+            "g": "sea, beach",
             "gs": "jlpt"
           },
           {
@@ -67,15 +126,35 @@
             "k": "plain"
           },
           {
-            "s": "大きな",
-            "r": "おおきな",
+            "s": "平家",
+            "r": "へいけ",
+            "b": "平家",
+            "k": "story",
+            "g": "the Heike clan",
+            "hk": true
+          },
+          {
+            "s": "と",
             "k": "plain"
           },
           {
-            "s": "こと",
-            "b": "こと",
+            "s": "別",
             "k": "known",
-            "g": "thing(s), matter(s), fact",
+            "r": "べつ",
+            "b": "別",
+            "g": "distinction, different",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "k": "known",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
@@ -83,10 +162,10 @@
             "k": "plain"
           },
           {
-            "s": "あり",
-            "b": "ある",
-            "k": "known",
-            "g": "to be, to have",
+            "s": "たたかい",
+            "k": "ghost",
+            "b": "たたかう",
+            "g": "to fight, to compete, to battle",
             "gs": "jlpt"
           },
           {
@@ -106,27 +185,29 @@
       {
         "tokens": [
           {
-            "s": "へいけ",
+            "s": "平家",
             "r": "へいけ",
             "b": "平家",
             "k": "story",
-            "g": "the Heike clan"
+            "g": "the Heike clan",
+            "hk": true
           },
           {
             "s": "の",
             "k": "plain"
           },
           {
-            "s": "ひと",
-            "b": "ひと",
+            "s": "人",
             "k": "known",
-            "g": "man, person",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
             "s": "たち",
-            "b": "たち",
             "k": "known",
+            "b": "たち",
             "g": "plural suffix",
             "gs": "jlpt"
           },
@@ -135,17 +216,14 @@
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
             "s": "みんな",
             "k": "plain"
           },
           {
-            "s": "しに",
-            "b": "しぬ",
+            "s": "死に",
             "k": "known",
+            "r": "しに",
+            "b": "死ぬ",
             "g": "to die",
             "gs": "jlpt"
           },
@@ -166,28 +244,15 @@
       {
         "tokens": [
           {
-            "s": "しん",
-            "b": "しむ",
-            "k": "ghost",
-            "g": "core, heart, wick",
-            "gs": "jlpt"
-          },
-          {
-            "s": "だ",
+            "s": "その",
             "k": "plain"
           },
           {
-            "s": "ひと",
-            "b": "ひと",
+            "s": "海",
             "k": "known",
-            "g": "man, person",
-            "gs": "jlpt"
-          },
-          {
-            "s": "たち",
-            "b": "たち",
-            "k": "known",
-            "g": "plural suffix",
+            "r": "うみ",
+            "b": "海",
+            "g": "sea, beach",
             "gs": "jlpt"
           },
           {
@@ -195,36 +260,41 @@
             "k": "plain"
           },
           {
+            "s": "長い",
+            "k": "known",
+            "r": "ながい",
+            "b": "長い",
+            "g": "long, lengthy",
+            "gs": "jlpt"
+          },
+          {
+            "s": "間",
+            "k": "known",
+            "r": "ま",
+            "b": "間",
+            "g": "space, interval",
+            "gs": "jlpt"
+          },
+          {
             "s": "、",
             "k": "plain"
           },
           {
             "s": "こわい",
-            "b": "こわい",
             "k": "known",
+            "b": "こわい",
             "g": "scary, frightening",
             "gs": "jlpt"
           },
           {
-            "s": "もの",
-            "b": "もの",
+            "s": "ところ",
             "k": "known",
-            "g": "thing (concrete object)",
+            "b": "ところ",
+            "g": "place",
             "gs": "jlpt"
           },
           {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "なり",
-            "b": "なる",
-            "k": "known",
-            "g": "to become",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
+            "s": "でし",
             "k": "plain"
           },
           {
@@ -240,9 +310,210 @@
       {
         "tokens": [
           {
-            "s": "よる",
-            "b": "よる",
+            "s": "海",
             "k": "known",
+            "r": "うみ",
+            "b": "海",
+            "g": "sea, beach",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "ふしぎ",
+            "k": "ghost",
+            "b": "ふしぎ",
+            "g": "mystery, curiosity",
+            "gs": "jlpt"
+          },
+          {
+            "s": "な",
+            "k": "plain"
+          },
+          {
+            "s": "かに",
+            "k": "ghost",
+            "b": "かに",
+            "g": "crab",
+            "gs": "model"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "k": "known",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "せ",
+            "k": "ghost",
+            "b": "せる",
+            "g": "to cause to ride/place",
+            "gs": "model"
+          },
+          {
+            "s": "なか",
+            "k": "known",
+            "b": "なか",
+            "g": "inside, middle, among",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "k": "known",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "かお",
+            "k": "known",
+            "b": "かお",
+            "g": "face (body part)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "に",
+            "k": "known",
+            "b": "にる",
+            "g": "to resemble, to be similar",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "いる",
+            "k": "known",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "かに",
+            "k": "ghost",
+            "b": "かに",
+            "g": "crab",
+            "gs": "model"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "それ",
+            "k": "plain"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "平家",
+            "r": "へいけ",
+            "b": "平家",
+            "k": "story",
+            "g": "the Heike clan",
+            "hk": true
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "たま",
+            "k": "ghost",
+            "b": "たま",
+            "g": "ball, sphere, coin",
+            "gs": "jlpt"
+          },
+          {
+            "s": "し",
+            "k": "known",
+            "b": "する",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "い",
+            "k": "known",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "だ",
+            "k": "plain"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "思い",
+            "k": "known",
+            "r": "おもい",
+            "b": "思う",
+            "g": "to think, to feel",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "夜",
+            "k": "known",
+            "r": "よる",
+            "b": "夜",
             "g": "evening, night",
             "gs": "jlpt"
           },
@@ -252,8 +523,8 @@
           },
           {
             "s": "なる",
-            "b": "なる",
             "k": "known",
+            "b": "なる",
             "g": "to become",
             "gs": "jlpt"
           },
@@ -262,21 +533,19 @@
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "あおい",
-            "b": "あおい",
+            "s": "青い",
             "k": "known",
+            "r": "あおい",
+            "b": "青い",
             "g": "blue",
             "gs": "jlpt"
           },
           {
-            "s": "ひ",
-            "b": "ひる",
+            "s": "火",
             "k": "known",
-            "g": "noon, daytime",
+            "r": "ひ",
+            "b": "火",
+            "g": "fire",
             "gs": "jlpt"
           },
           {
@@ -285,9 +554,9 @@
           },
           {
             "s": "見え",
+            "k": "known",
             "r": "みえ",
             "b": "見える",
-            "k": "known",
             "g": "to be visible; -- polite verb meaning 来る (くる) --",
             "gs": "jlpt"
           },
@@ -304,9 +573,53 @@
       {
         "tokens": [
           {
-            "s": "かぜ",
-            "b": "かぜ",
+            "s": "り",
+            "k": "plain"
+          },
+          {
+            "s": "ょうしはそれをまの",
+            "k": "ghost",
+            "b": "ょうしはそれをまの",
+            "g": "unknown/fragment",
+            "gs": "model"
+          },
+          {
+            "s": "火",
             "k": "known",
+            "r": "ひ",
+            "b": "火",
+            "g": "fire",
+            "gs": "jlpt"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "言い",
+            "k": "known",
+            "r": "いい",
+            "b": "言う",
+            "g": "to say",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "風",
+            "k": "known",
+            "r": "かぜ",
+            "b": "風",
             "g": "wind, breeze",
             "gs": "jlpt"
           },
@@ -315,16 +628,16 @@
             "k": "plain"
           },
           {
-            "s": "ふく",
-            "b": "ふく",
+            "s": "ある",
             "k": "known",
-            "g": "to blow (wind, etc.)",
+            "b": "ある",
+            "g": "to be, to have",
             "gs": "jlpt"
           },
           {
             "s": "とき",
-            "b": "とき",
             "k": "known",
+            "b": "とき",
             "g": "at the time of ~",
             "gs": "jlpt"
           },
@@ -334,8 +647,8 @@
           },
           {
             "s": "こえ",
-            "b": "こえる",
             "k": "known",
+            "b": "こえる",
             "g": "to exceed, to cross over, to cross",
             "gs": "jlpt"
           },
@@ -344,9 +657,10 @@
             "k": "plain"
           },
           {
-            "s": "きこえ",
-            "b": "きこえる",
+            "s": "聞こえ",
             "k": "known",
+            "r": "きこえ",
+            "b": "聞こえる",
             "g": "to be heard, to be audible",
             "gs": "jlpt"
           },
@@ -363,14 +677,18 @@
       {
         "tokens": [
           {
-            "s": "あの",
+            "s": "それ",
             "k": "plain"
           },
           {
-            "s": "とき",
-            "b": "とき",
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "せん",
             "k": "known",
-            "g": "at the time of ~",
+            "b": "せん",
+            "g": "thousand",
             "gs": "jlpt"
           },
           {
@@ -379,25 +697,32 @@
           },
           {
             "s": "こえ",
-            "b": "こえる",
             "k": "known",
+            "b": "こえる",
             "g": "to exceed, to cross over, to cross",
             "gs": "jlpt"
           },
           {
-            "s": "だ",
+            "s": "の",
             "k": "plain"
           },
           {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "思い",
-            "r": "おもい",
-            "b": "思う",
+            "s": "よう",
             "k": "known",
-            "g": "to think, to feel",
+            "b": "よう",
+            "g": "errand, task, business (to take care of)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "聞こえ",
+            "k": "known",
+            "r": "きこえ",
+            "b": "聞こえる",
+            "g": "to be heard, to be audible",
             "gs": "jlpt"
           },
           {
@@ -415,15 +740,37 @@
       "prompt": {
         "tokens": [
           {
-            "s": "よる",
-            "b": "よる",
+            "s": "海",
             "k": "known",
-            "g": "evening, night",
+            "r": "うみ",
+            "b": "海",
+            "g": "sea, beach",
             "gs": "jlpt"
           },
           {
             "s": "に",
             "k": "plain"
+          },
+          {
+            "s": "いる",
+            "k": "known",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ふし",
+            "k": "ghost",
+            "b": "ふし",
+            "g": "tune, tone, knob",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ぎなかにのせなかは",
+            "k": "ghost",
+            "b": "ぎなかにのせなかは",
+            "g": "unknown/fragment",
+            "gs": "model"
           },
           {
             "s": "、",
@@ -434,15 +781,25 @@
             "k": "plain"
           },
           {
-            "s": "が",
+            "s": "に",
             "k": "plain"
           },
           {
-            "s": "見え",
-            "r": "みえ",
-            "b": "見える",
+            "s": "に",
             "k": "known",
-            "g": "to be visible; -- polite verb meaning 来る (くる) --",
+            "b": "にる",
+            "g": "to resemble, to be similar",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "k": "known",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
           {
@@ -463,79 +820,335 @@
         {
           "tokens": [
             {
-              "s": "あか",
-              "b": "あか",
+              "s": "人",
               "k": "known",
-              "g": "red",
+              "r": "ひと",
+              "b": "人",
+              "g": "counter for people",
               "gs": "jlpt"
             },
             {
-              "s": "いひ",
-              "b": "いふ",
-              "k": "ghost",
-              "g": "to say",
-              "gs": "model"
+              "s": "の",
+              "k": "plain"
+            },
+            {
+              "s": "かお",
+              "k": "known",
+              "b": "かお",
+              "g": "face (body part)",
+              "gs": "jlpt"
             }
           ]
         },
         {
           "tokens": [
             {
-              "s": "あ",
+              "s": "魚",
+              "k": "known",
+              "r": "さかな",
+              "b": "魚",
+              "g": "fish",
+              "gs": "jlpt"
+            },
+            {
+              "s": "の",
               "k": "plain"
             },
             {
-              "s": "お",
-              "k": "plain"
-            },
-            {
-              "s": "いひ",
-              "b": "いふ",
-              "k": "ghost",
-              "g": "to say",
-              "gs": "model"
+              "s": "体",
+              "k": "known",
+              "r": "からだ",
+              "b": "体",
+              "g": "body; health",
+              "gs": "jlpt"
             }
           ]
         },
         {
           "tokens": [
             {
-              "s": "しろい",
-              "b": "しろい",
+              "s": "青い",
               "k": "known",
-              "g": "white",
+              "r": "あおい",
+              "b": "青い",
+              "g": "blue",
               "gs": "jlpt"
             },
             {
-              "s": "ひ",
-              "b": "ひる",
+              "s": "火",
               "k": "known",
-              "g": "noon, daytime",
+              "r": "ひ",
+              "b": "火",
+              "g": "fire",
               "gs": "jlpt"
             }
           ]
         }
       ],
-      "answer": 1
+      "answer": 0
     },
     "metrics": {
       "kanjiCoverage": 1,
-      "kanjiDensity": 0.028037383177570093,
-      "firstCoverage": 0.84,
-      "finalCoverage": 0.9615384615384616,
-      "retries": 3,
-      "seconds": 13.01134349999996,
+      "kanjiDensity": 0.1694915254237288,
+      "firstCoverage": 0.8181818181818182,
+      "finalCoverage": 0.8541666666666666,
+      "retries": 9,
+      "seconds": 269.75483740000004,
       "offendingFirst": [
-        "たたかう",
-        "しむ",
-        "おばけ"
+        "戦う",
+        "不思議",
+        "蟹",
+        "魂",
+        "漁師",
+        "魔",
+        "戦"
       ],
       "ghostWords": [
-        "しむ",
-        "いふ"
+        "たたかう",
+        "ふしぎ",
+        "かに",
+        "せる",
+        "たま",
+        "ょうしはそれをまの",
+        "ふし",
+        "ぎなかにのせなかは"
+      ],
+      "faithIssues": [
+        {
+          "sentence": "海で平家と別の人がたたかいました。",
+          "problem": "「別の人が」ではなく、源氏（源族）との戦闘であることを明記すべきです。",
+          "kind": "who"
+        }
       ]
     }
   },
-  "failedSceneRetry": true,
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "ladderBuild": "P4b",
+  "ladderRetry": {
+    "before": {
+      "ladderOk": false,
+      "reasons": [
+        "advancedShare"
+      ],
+      "stats": {
+        "N5": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.09615384615384616,
+          "meanLength": 11.555555555555555,
+          "advancedShare": 0.2727272727272727
+        },
+        "N4": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.18446601941747573,
+          "meanLength": 14.714285714285714,
+          "advancedShare": 0.35714285714285715
+        },
+        "N3": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.21761658031088082,
+          "meanLength": 32.166666666666664,
+          "advancedShare": 0.2830188679245283
+        }
+      }
+    },
+    "feedback": "The scene's middle level is too difficult relative to N3. Place N4 strictly between these measurements in kanji density and mean sentence length: N5 {\"kanjiCoverage\":1,\"kanjiDensity\":0.09615384615384616,\"meanLength\":11.555555555555555,\"advancedShare\":0.2727272727272727}, N3 {\"kanjiCoverage\":1,\"kanjiDensity\":0.1935483870967742,\"meanLength\":35.42857142857143,\"advancedShare\":0.3181818181818182}. Its N4+N3 vocabulary share must be >= 0.2727272727272727 and < 0.3181818181818182. Use easier words than N3. Preserve all events."
+  },
+  "levelRepairs": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n七百年以上も昔の事、下ノ関海峡の壇ノ浦で、平家すなわち平族と、源氏すなわち源族との間の、永い争いの最後の戦闘が戦われた。この壇ノ浦で平家は、その一族の婦人子供ならびにその幼帝――今日安徳天皇として記憶されている――と共に、まったく滅亡した。そうしてその海と浜辺とは七百年間その怨霊に祟られていた……他の個処で私はそこに居る平家蟹という不思議な蟹の事を読者諸君に語った事があるが、それはその背中が人間の顔になっており、平家の武者の魂であると云われているのである。しかしその海岸一帯には、たくさん不思議な事が見聞きされる。闇夜には幾千となき幽霊火が、水うち際にふわふわさすらうか、もしくは波の上にちらちら飛ぶ――すなわち漁夫の呼んで鬼火すなわち魔の火と称する青白い光りである。そして風の立つ時には大きな叫び声が、戦の叫喚のように、海から聞えて来る。\nCurrent retelling:\n700年より前のことです。\n海で平家と別の人があらそいました。\n平家の人たちはみんな死にました。\nその海は長い間、こわかったです。\n海にふしぎなかにがいます。\nせなかが人のかおににているかにです。\nそれは平家のたましいだと思います。\n夜になると青い火が見えます。\nりょうしはそれをまの火と言います。\n風があるとき、こえが聞こえます。\nそれはせんのこえのように聞こえます。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.16,\"meanLength\":15.909090909090908,\"advancedShare\":0.3695652173913043}; vocabulary 0.8478260869565217. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: あらそう、ふしぎ、かに、せる、たま、ょうしはそれをまの. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"700年より前のことです。\", \"海で平家と別の人がたたかいました。\", \"平家の人たちはみんな死にました。\", \"その海は長い間、こわい所でした。\", \"海にふしぎなかにがいます。\", \"せなかが人の顔ににているかにです。\", \"それは平家のたましいだと思います。\", \"夜になると青い火が見えます。\", \"りょうしはそれをまの火と言います。\", \"風があるとき、こえが聞こえます。\", \"それはせんのこえのように聞こえます。\"], \"question\": {\"prompt\": \"海にいるかにのせなかは、なにににていますか。\", \"options\": [\"人の顔\", \"魚\", \"火\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n七百年以上も昔の事、下ノ関海峡の壇ノ浦で、平家すなわち平族と、源氏すなわち源族との間の、永い争いの最後の戦闘が戦われた。この壇ノ浦で平家は、その一族の婦人子供ならびにその幼帝――今日安徳天皇として記憶されている――と共に、まったく滅亡した。そうしてその海と浜辺とは七百年間その怨霊に祟られていた……他の個処で私はそこに居る平家蟹という不思議な蟹の事を読者諸君に語った事があるが、それはその背中が人間の顔になっており、平家の武者の魂であると云われているのである。しかしその海岸一帯には、たくさん不思議な事が見聞きされる。闇夜には幾千となき幽霊火が、水うち際にふわふわさすらうか、もしくは波の上にちらちら飛ぶ――すなわち漁夫の呼んで鬼火すなわち魔の火と称する青白い光りである。そして風の立つ時には大きな叫び声が、戦の叫喚のように、海から聞えて来る。\nCurrent retelling:\n700年より前のことです。\n海で平家と別の人がたたかいました。\n平家の人たちはみんな死にました。\nその海は長い間、こわいところでした。\n海にふしぎなかにがいます。\nせなかが人のかおににているかにです。\nそれは平家のたましいだと思います。\n夜になると青い火が見えます。\nりょうしはそれをまの火と言います。\n風があるとき、こえが聞こえます。\nそれはせんのこえのように聞こえます。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.15819209039548024,\"meanLength\":16.09090909090909,\"advancedShare\":0.3617021276595745}; vocabulary 0.851063829787234. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: たたかう、ふしぎ、かに、せる、たま、ょうしはそれをまの. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentencesにつながる\": null, \"sentences\": [\"700年より前のことです。\", \"海で平家と別の人がたたかいました。\", \"平家の人たちはみんな死にました。\", \"その海は長い間、こわいところでした。\", \"海にふしぎなかにがいます。\", \"せなかが人の顔ににているかにです。\", \"それは平家のたましいだと思います。\", \"夜になると青い火が見えます。\", \"りょうしはそれをまの火と言います。\", \"風があるとき、こえが聞こえます。\", \"それはせんのこえのように聞こえます。\"], \"question\": {\"prompt\": \"海にいるかにのせなかは、なにににていますか。\", \"options\": [\"人の顔\", \"魚の顔\", \"鳥の顔\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n七百年以上も昔の事、下ノ関海峡の壇ノ浦で、平家すなわち平族と、源氏すなわち源族との間の、永い争いの最後の戦闘が戦われた。この壇ノ浦で平家は、その一族の婦人子供ならびにその幼帝――今日安徳天皇として記憶されている――と共に、まったく滅亡した。そうしてその海と浜辺とは七百年間その怨霊に祟られていた……他の個処で私はそこに居る平家蟹という不思議な蟹の事を読者諸君に語った事があるが、それはその背中が人間の顔になっており、平家の武者の魂であると云われているのである。しかしその海岸一帯には、たくさん不思議な事が見聞きされる。闇夜には幾千となき幽霊火が、水うち際にふわふわさすらうか、もしくは波の上にちらちら飛ぶ――すなわち漁夫の呼んで鬼火すなわち魔の火と称する青白い光りである。そして風の立つ時には大きな叫び声が、戦の叫喚のように、海から聞えて来る。\nCurrent retelling:\n700年より前のことです。\n海で平家と別の人がたたかいました。\n平家の人たちはみんな死にました。\nその海は長い間、こわいところでした。\n海にふしぎなかにがいます。\nせなかが人のかおににているかにです。\nそれは平家のたましいだと思います。\n夜になると青い火が見えます。\nりょうしはそれをまの火と言います。\n風があるとき、こえが聞こえます。\nそれはせんのこえのように聞こえます。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.15819209039548024,\"meanLength\":16.09090909090909,\"advancedShare\":0.3617021276595745}; vocabulary 0.851063829787234. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: たたかう、ふしぎ、かに、せる、たま、ょうしはそれをまの. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"700年より前のことです。\", \"海で平家と別の人がたたかいました。\", \"平家の人たちはみんな死にました。\", \"その海は長い間、こわいところでした。\", \"海にふしぎなかにがいます。\", \"せなかが人の顔ににているかにです。\", \"それは平家のたましいだと思います。\", \"夜になると青い火が見えます。\", \"りょうしはそれをまの火と言います。\", \"風があるとき、声が聞こえます。\", \"それはせんの声のように聞こえます。\"], \"question\": {\"prompt\": \"かにのせなかは、なにににていますか。\", \"options\": [\"人の顔\", \"魚の顔\", \"鳥の顔\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: かに、せる、ょうしはそれをまの、ぎなかにのせなかは. Return JSON {\"glosses\":{\"かに\":\"English gloss\",\"せる\":\"English gloss\",\"ょうしはそれをまの\":\"English gloss\",\"ぎなかにのせなかは\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"かに\": \"crab\", \"せる\": \"to make/let someone do\", \"ょうしはそれをまの\": \"unknown/fragment\", \"ぎなかにのせなかは\": \"unknown/fragment\"}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n七百年以上も昔の事、下ノ関海峡の壇ノ浦で、平家すなわち平族と、源氏すなわち源族との間の、永い争いの最後の戦闘が戦われた。この壇ノ浦で平家は、その一族の婦人子供ならびにその幼帝――今日安徳天皇として記憶されている――と共に、まったく滅亡した。そうしてその海と浜辺とは七百年間その怨霊に祟られていた……他の個処で私はそこに居る平家蟹という不思議な蟹の事を読者諸君に語った事があるが、それはその背中が人間の顔になっており、平家の武者の魂であると云われているのである。しかしその海岸一帯には、たくさん不思議な事が見聞きされる。闇夜には幾千となき幽霊火が、水うち際にふわふわさすらうか、もしくは波の上にちらちら飛ぶ――すなわち漁夫の呼んで鬼火すなわち魔の火と称する青白い光りである。そして風の立つ時には大きな叫び声が、戦の叫喚のように、海から聞えて来る。\nCurrent retelling:\n700年以上前のことです。\n海で平家と別の人がたたかいました。\n平家の人たちはみんな死にました。\nその海は長い間、こわいところでした。\n海にふしぎなかにがいます。\nせなかが人のかおににているかにです。\nそれは平家のたましいだと思います。\n夜になると青い火が見えます。\nりょうしはそれをまの火と言います。\n風があるとき、こえが聞こえます。\nそれはせんのこえのように聞こえます。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.1694915254237288,\"meanLength\":16.09090909090909,\"advancedShare\":0.375}; vocabulary 0.8541666666666666. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: たたかう、ふしぎ、かに、せる、たま、ょうしはそれをまの. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences([\": 70000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n七百年以上も昔の事、下ノ関海峡の壇ノ浦で、平家すなわち平族と、源氏すなわち源族との間の、永い争いの最後の戦闘が戦われた。この壇ノ浦で平家は、その一族の婦人子供ならびにその幼帝――今日安徳天皇として記憶されている――と共に、まったく滅亡した。そうしてその海と浜辺とは七百年間その怨霊に祟られていた……他の個処で私はそこに居る平家蟹という不思議な蟹の事を読者諸君に語った事があるが、それはその背中が人間の顔になっており、平家の武者の魂であると云われているのである。しかしその海岸一帯には、たくさん不思議な事が見聞きされる。闇夜には幾千となき幽霊火が、水うち際にふわふわさすらうか、もしくは波の上にちらちら飛ぶ――すなわち漁夫の呼んで鬼火すなわち魔の火と称する青白い光りである。そして風の立つ時には大きな叫び声が、戦の叫喚のように、海から聞えて来る。\nCurrent retelling:\n700年以上前のことです。\n海で平家と別の人がたたかいました。\n平家の人たちはみんな死にました。\nその海は長い間、こわいところでした。\n海にふしぎなかにがいます。\nせなかが人のかおににているかにです。\nそれは平家のたましいだと思います。\n夜になると青い火が見えます。\nりょうしはそれをまの火と言います。\n風があるとき、こえが聞こえます。\nそれはせんのこえのように聞こえます。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.1694915254237288,\"meanLength\":16.09090909090909,\"advancedShare\":0.375}; vocabulary 0.8541666666666666. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: たたかう、ふしぎ、かに、せる、たま、ょうしはそれをまの. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"sentences([\": 70000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "role": "user",
+          "content": "Return valid JSON only. Validation: Unexpected end of JSON input"
+        }
+      ],
+      "response": "{\"sentences\": [\"700年以上前のことです。\", \"海で平家と別の人がたたかいました。\", \"平家の人たちはみんな死にました。\", \"その海は長い間、こわいところでした。\", \"海にふしぎなかにがいます。\", \"せなかが人のかおににているかにです。\", \"それは平家のたましいだと思います。\", \"夜になると青い火が見えます。\", \"りょうしはそれをまの火と言います。\", \"風があるとき、こえが聞こえます。\", \"それはせんのこえのように聞こえます。\"], \"question\": {\"prompt\": \"海にいるふしぎなかには、どこが人のかおににていますか。\", \"options\": [\"あし\", \"せなか\", \"め\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n七百年以上も昔の事、下ノ関海峡の壇ノ浦で、平家すなわち平族と、源氏すなわち源族との間の、永い争いの最後の戦闘が戦われた。この壇ノ浦で平家は、その一族の婦人子供ならびにその幼帝――今日安徳天皇として記憶されている――と共に、まったく滅亡した。そうしてその海と浜辺とは七百年間その怨霊に祟られていた……他の個処で私はそこに居る平家蟹という不思議な蟹の事を読者諸君に語った事があるが、それはその背中が人間の顔になっており、平家の武者の魂であると云われているのである。しかしその海岸一帯には、たくさん不思議な事が見聞きされる。闇夜には幾千となき幽霊火が、水うち際にふわふわさすらうか、もしくは波の上にちらちら飛ぶ――すなわち漁夫の呼んで鬼火すなわち魔の火と称する青白い光りである。そして風の立つ時には大きな叫び声が、戦の叫喚のように、海から聞えて来る。\nCurrent retelling:\n700年以上前のことです。\n海で平家と別の人がたたかいました。\n平家の人たちはみんな死にました。\nその海は長い間、こわいところでした。\n海にふしぎなかにがいます。\nせなかが人のかおににているかにです。\nそれは平家のたましいだと思います。\n夜になると青い火が見えます。\nりょうしはそれをまの火と言います。\n風があるとき、こえが聞こえます。\nそれはせんのこえのように聞こえます。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.1694915254237288,\"meanLength\":16.09090909090909,\"advancedShare\":0.375}; vocabulary 0.8541666666666666. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: たたかう、ふしぎ、かに、せる、たま、ょうしはそれをまの. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences([\": 70000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n七百年以上も昔の事、下ノ関海峡の壇ノ浦で、平家すなわち平族と、源氏すなわち源族との間の、永い争いの最後の戦闘が戦われた。この壇ノ浦で平家は、その一族の婦人子供ならびにその幼帝――今日安徳天皇として記憶されている――と共に、まったく滅亡した。そうしてその海と浜辺とは七百年間その怨霊に祟られていた……他の個処で私はそこに居る平家蟹という不思議な蟹の事を読者諸君に語った事があるが、それはその背中が人間の顔になっており、平家の武者の魂であると云われているのである。しかしその海岸一帯には、たくさん不思議な事が見聞きされる。闇夜には幾千となき幽霊火が、水うち際にふわふわさすらうか、もしくは波の上にちらちら飛ぶ――すなわち漁夫の呼んで鬼火すなわち魔の火と称する青白い光りである。そして風の立つ時には大きな叫び声が、戦の叫喚のように、海から聞えて来る。\nCurrent retelling:\n700年以上前のことです。\n海で平家と別の人がたたかいました。\n平家の人たちはみんな死にました。\nその海は長い間、こわいところでした。\n海にふしぎなかにがいます。\nせなかが人のかおににているかにです。\nそれは平家のたましいだと思います。\n夜になると青い火が見えます。\nりょうしはそれをまの火と言います。\n風があるとき、こえが聞こえます。\nそれはせんのこえのように聞こえます。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.1694915254237288,\"meanLength\":16.09090909090909,\"advancedShare\":0.375}; vocabulary 0.8541666666666666. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: たたかう、ふしぎ、かに、せる、たま、ょうしはそれをまの. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"sentences([\": 70000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+          "role": "user",
+          "content": "Return valid JSON only. Validation: Unexpected end of JSON input"
+        }
+      ],
+      "response": "{\"sentences\": [\"700年以上前のことです。\", \"海で平家と別の人がたたかいました。\", \"平家の人たちはみんな死にました。\", \"その海は長い間、こわいところでした。\", \"海にふしぎなかにがいます。\", \"せなかが人のかおににているかにです。\", \"それは平家のたましいだと思います。\", \"夜になると青い火が見えます。\", \"りょうしはそれをまの火と言います。\", \"風があるとき、こえが聞こえます。\", \"それはせんのこえのように聞こえます。\"], \"question\": {\"prompt\": \"海にいるふしぎなかにのせなかは、なにににていますか。\", \"options\": [\"鳥のかお\", \"人のかお\", \"魚のかお\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n七百年以上も昔の事、下ノ関海峡の壇ノ浦で、平家すなわち平族と、源氏すなわち源族との間の、永い争いの最後の戦闘が戦われた。この壇ノ浦で平家は、その一族の婦人子供ならびにその幼帝――今日安徳天皇として記憶されている――と共に、まったく滅亡した。そうしてその海と浜辺とは七百年間その怨霊に祟られていた……他の個処で私はそこに居る平家蟹という不思議な蟹の事を読者諸君に語った事があるが、それはその背中が人間の顔になっており、平家の武者の魂であると云われているのである。しかしその海岸一帯には、たくさん不思議な事が見聞きされる。闇夜には幾千となき幽霊火が、水うち際にふわふわさすらうか、もしくは波の上にちらちら飛ぶ――すなわち漁夫の呼んで鬼火すなわち魔の火と称する青白い光りである。そして風の立つ時には大きな叫び声が、戦の叫喚のように、海から聞えて来る。\nCurrent retelling:\n700年以上前のことです。\n海で平家と別の人がたたかいました。\n平家の人たちはみんな死にました。\nその海は長い間、こわいところでした。\n海にふしぎなかにがいます。\nせなかが人のかおににているかにです。\nそれは平家のたましいだと思います。\n夜になると青い火が見えます。\nりょうしはそれをまの火と言います。\n風があるとき、こえが聞こえます。\nそれはせんのこえのように聞こえます。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.1694915254237288,\"meanLength\":16.09090909090909,\"advancedShare\":0.375}; vocabulary 0.8541666666666666. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: たたかう、ふしぎ、かに、せる、たま、ょうしはそれをまの. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"700年以上前のことです。\", \"海で平家と別の人がたたかいました。\", \"平家の人たちはみんな死にました。\", \"その海は長い間、こわいところでした。\", \"海にふしぎなかにがいます。\", \"せなかが人の顔ににているかにです。\", \"それは平家のたましいだと思います。\", \"夜になると青い火が見えます。\", \"りょうしはそれをまの火と言います。\", \"風があるとき、声が聞こえます。\", \"それはせんの声のように聞こえます。\"], \"question\": {\"prompt\": \"海にいるかにのせなかは、なんににていますか。\", \"options\": [\"人の顔\", \"青い火\", \"白い花\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: かに、せる、ょうしはそれをまの、ぎなかにのせなかは. Return JSON {\"glosses\":{\"かに\":\"English gloss\",\"せる\":\"English gloss\",\"ょうしはそれをまの\":\"English gloss\",\"ぎなかにのせなかは\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"かに\": \"crab\", \"せる\": \"to cause to ride/place\", \"ょうしはそれをまの\": \"unknown/fragment\", \"ぎなかにのせなかは\": \"unknown/fragment\"}}"
+    }
+  ],
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n七百年以上も昔の事、下ノ関海峡の壇ノ浦で、平家すなわち平族と、源氏すなわち源族との間の、永い争いの最後の戦闘が戦われた。この壇ノ浦で平家は、その一族の婦人子供ならびにその幼帝――今日安徳天皇として記憶されている――と共に、まったく滅亡した。そうしてその海と浜辺とは七百年間その怨霊に祟られていた……他の個処で私はそこに居る平家蟹という不思議な蟹の事を読者諸君に語った事があるが、それはその背中が人間の顔になっており、平家の武者の魂であると云われているのである。しかしその海岸一帯には、たくさん不思議な事が見聞きされる。闇夜には幾千となき幽霊火が、水うち際にふわふわさすらうか、もしくは波の上にちらちら飛ぶ――すなわち漁夫の呼んで鬼火すなわち魔の火と称する青白い光りである。そして風の立つ時には大きな叫び声が、戦の叫喚のように、海から聞えて来る。\n\n語り直しの文（JSON配列。sentenceは必ずこの配列の文字列をそのままコピーする）:\n[\"700年より前のことです。\",\"海で平家と別の人がたたかいました。\",\"平家の人たちはみんな死にました。\",\"その海は長い間、こわいところでした。\",\"海にふしぎなかにがいます。\",\"せなかが人のかおににているかにです。\",\"それは平家のたましいだと思います。\",\"夜になると青い火が見えます。\",\"りょうしはそれをまの火と言います。\",\"風があるとき、こえが聞こえます。\",\"それはせんのこえのように聞こえます。\"]"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"700年より前のことです。\", \"problem\": \"700年以上前（七百年以上も昔）であるため、「700年より前」ではなく「700年以上前」とするべき。\", \"kind\": \"number\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n七百年以上も昔の事、下ノ関海峡の壇ノ浦で、平家すなわち平族と、源氏すなわち源族との間の、永い争いの最後の戦闘が戦われた。この壇ノ浦で平家は、その一族の婦人子供ならびにその幼帝――今日安徳天皇として記憶されている――と共に、まったく滅亡した。そうしてその海と浜辺とは七百年間その怨霊に祟られていた……他の個処で私はそこに居る平家蟹という不思議な蟹の事を読者諸君に語った事があるが、それはその背中が人間の顔になっており、平家の武者の魂であると云われているのである。しかしその海岸一帯には、たくさん不思議な事が見聞きされる。闇夜には幾千となき幽霊火が、水うち際にふわふわさすらうか、もしくは波の上にちらちら飛ぶ――すなわち漁夫の呼んで鬼火すなわち魔の火と称する青白い光りである。そして風の立つ時には大きな叫び声が、戦の叫喚のように、海から聞えて来る。\n\n語り直しの文（JSON配列。sentenceは必ずこの配列の文字列をそのままコピーする）:\n[\"700年以上前のことです。\",\"海で平家と別の人がたたかいました。\",\"平家の人たちはみんな死にました。\",\"その海は長い間、こわいところでした。\",\"海にふしぎなかにがいます。\",\"せなかが人のかおににているかにです。\",\"それは平家のたましいだと思います。\",\"夜になると青い火が見えます。\",\"りょうしはそれをまの火と言います。\",\"風があるとき、こえが聞こえます。\",\"それはせんのこえのように聞こえます。\"]"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"海で平家と別の人がたたかいました。\", \"problem\": \"「別の人が」ではなく、源氏（源族）との戦闘であることを明記すべきです。\", \"kind\": \"who\"}]}"
+      }
+    ],
+    "rewrites": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Repair only the specified sentences at JLPT N4. Preserve all other sentences and events. Use natural Japanese, numeric digits for numbers, and maintain the meaning of the original. Return only JSON {\"rewrites\":[{\"index\":0,\"sentence\":\"...\"}]}."
+          },
+          {
+            "role": "user",
+            "content": "Original:\n七百年以上も昔の事、下ノ関海峡の壇ノ浦で、平家すなわち平族と、源氏すなわち源族との間の、永い争いの最後の戦闘が戦われた。この壇ノ浦で平家は、その一族の婦人子供ならびにその幼帝――今日安徳天皇として記憶されている――と共に、まったく滅亡した。そうしてその海と浜辺とは七百年間その怨霊に祟られていた……他の個処で私はそこに居る平家蟹という不思議な蟹の事を読者諸君に語った事があるが、それはその背中が人間の顔になっており、平家の武者の魂であると云われているのである。しかしその海岸一帯には、たくさん不思議な事が見聞きされる。闇夜には幾千となき幽霊火が、水うち際にふわふわさすらうか、もしくは波の上にちらちら飛ぶ――すなわち漁夫の呼んで鬼火すなわち魔の火と称する青白い光りである。そして風の立つ時には大きな叫び声が、戦の叫喚のように、海から聞えて来る。\nSentences:\n0: 700年より前のことです。\n1: 海で平家と別の人がたたかいました。\n2: 平家の人たちはみんな死にました。\n3: その海は長い間、こわいところでした。\n4: 海にふしぎなかにがいます。\n5: せなかが人のかおににているかにです。\n6: それは平家のたましいだと思います。\n7: 夜になると青い火が見えます。\n8: りょうしはそれをまの火と言います。\n9: 風があるとき、こえが聞こえます。\n10: それはせんのこえのように聞こえます。\nIssues:\n[{\"sentence\":\"700年より前のことです。\",\"problem\":\"700年以上前（七百年以上も昔）であるため、「700年より前」ではなく「700年以上前」とするべき。\",\"kind\":\"number\"}]\nRewrite exactly indexes: 0"
+          }
+        ],
+        "response": "{\"rewrites\": [{\"index\": 0, \"sentence\": \"700年以上前のことです。\"}]}"
+      }
+    ],
+    "before": [
+      {
+        "sentence": "700年より前のことです。",
+        "problem": "700年以上前（七百年以上も昔）であるため、「700年より前」ではなく「700年以上前」とするべき。",
+        "kind": "number"
+      }
+    ],
+    "after": [
+      {
+        "sentence": "海で平家と別の人がたたかいました。",
+        "problem": "「別の人が」ではなく、源氏（源族）との戦闘であることを明記すべきです。",
+        "kind": "who"
+      }
+    ]
+  }
 }

@@ -20,11 +20,11 @@
     "{\"question\": {\"prompt\": \"ほういちはどうでしたか。\", \"options\": [\"いいきもちでした\", \"わるいでした\", \"しずかでした\"], \"answer\": 0}}"
   ],
   "metrics": {
-    "kanjiCoverage": 0.6875,
-    "kanjiDensity": 0.07692307692307693,
+    "kanjiCoverage": 1,
+    "kanjiDensity": 0.09743589743589744,
     "firstCoverage": 0.6956521739130435,
-    "finalCoverage": 0.868421052631579,
-    "retries": 3,
+    "finalCoverage": 0.8780487804878049,
+    "retries": 9,
     "seconds": 19.114382500000065,
     "offendingFirst": [
       "はう",
@@ -42,12 +42,19 @@
       "ん"
     ],
     "ghostWords": [
-      "はて",
-      "つかむ",
-      "音",
-      "うれしい",
-      "ふしぎ",
+      "てつ",
+      "よう",
+      "おと",
+      "おかしい",
+      "らい",
       "もち"
+    ],
+    "faithIssues": [
+      {
+        "sentence": "高い人のいえだとおもいました。",
+        "problem": "「高い身分」を「高い人」と訳しているが、これは地位が高い（えらい）という意味であり、身長が高いという意味に誤解される可能性があるため「えらい人の家」とするべきである。",
+        "kind": "unnatural"
+      }
     ]
   },
   "retelling": {
@@ -59,11 +66,11 @@
         "tokens": [
           {
             "s": "芳一",
-            "hk": true,
             "r": "ほういち",
             "b": "芳一",
             "k": "story",
-            "g": "Hoichi, a blind musician"
+            "g": "Hoichi, a blind musician",
+            "hk": true
           },
           {
             "s": "は",
@@ -71,8 +78,8 @@
           },
           {
             "s": "ひと",
-            "b": "ひと",
             "k": "known",
+            "b": "ひと",
             "g": "man, person",
             "gs": "jlpt"
           },
@@ -82,9 +89,9 @@
           },
           {
             "s": "行き",
+            "k": "known",
             "r": "いき",
             "b": "行く",
-            "k": "known",
             "g": "to go",
             "gs": "jlpt"
           },
@@ -105,29 +112,22 @@
       {
         "tokens": [
           {
-            "s": "その",
-            "k": "plain"
-          },
-          {
-            "s": "ひと",
-            "k": "plain"
-          },
-          {
-            "s": "はて",
-            "b": "はて",
-            "k": "ghost",
-            "g": "the end, the extremity, the limit(s)",
-            "gs": "jlpt"
+            "s": "琵琶",
+            "r": "びわ",
+            "b": "琵琶",
+            "k": "story",
+            "g": "Japanese lute",
+            "hk": true
           },
           {
             "s": "を",
             "k": "plain"
           },
           {
-            "s": "つかみ",
-            "b": "つかむ",
-            "k": "ghost",
-            "g": "to seize, to catch, to grasp",
+            "s": "もち",
+            "k": "known",
+            "b": "もつ",
+            "g": "to hold, to carry; to possess",
             "gs": "jlpt"
           },
           {
@@ -155,10 +155,21 @@
             "k": "plain"
           },
           {
-            "s": "つめたい",
-            "b": "つめたい",
-            "k": "known",
-            "g": "cold (things, people)",
+            "s": "てつ",
+            "k": "ghost",
+            "b": "てつ",
+            "g": "iron",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "よう",
+            "k": "ghost",
+            "b": "よう",
+            "g": "errand, task, business (to take care of)",
             "gs": "jlpt"
           },
           {
@@ -178,11 +189,23 @@
       {
         "tokens": [
           {
-            "s": "音",
-            "hk": true,
-            "r": "おと",
-            "b": "音",
+            "s": "かた",
+            "k": "known",
+            "b": "かたい",
+            "g": "solid, hard, firm",
+            "gs": "jlpt"
+          },
+          {
+            "s": "かた",
+            "k": "known",
+            "b": "かた",
+            "g": "-- honorific form for 人 (ひと) --; way of doing",
+            "gs": "jlpt"
+          },
+          {
+            "s": "おと",
             "k": "ghost",
+            "b": "おと",
             "g": "sound, note",
             "gs": "jlpt"
           },
@@ -192,8 +215,8 @@
           },
           {
             "s": "し",
-            "b": "する",
             "k": "known",
+            "b": "する",
             "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
             "gs": "jlpt"
           },
@@ -215,21 +238,21 @@
         "tokens": [
           {
             "s": "芳一",
-            "hk": true,
             "r": "ほういち",
             "b": "芳一",
             "k": "story",
-            "g": "Hoichi, a blind musician"
+            "g": "Hoichi, a blind musician",
+            "hk": true
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "うれしかっ",
-            "b": "うれしい",
-            "k": "ghost",
-            "g": "to be happy; to be glad",
+            "s": "たのしかっ",
+            "k": "known",
+            "b": "たのしい",
+            "g": "enjoyable, fun",
             "gs": "jlpt"
           },
           {
@@ -249,44 +272,53 @@
       {
         "tokens": [
           {
-            "s": "たかい",
-            "b": "たかい",
+            "s": "高い",
             "k": "known",
+            "r": "たかい",
+            "b": "高い",
             "g": "tall, high; expensive",
             "gs": "jlpt"
           },
           {
-            "s": "ひと",
-            "b": "ひと",
+            "s": "人",
             "k": "known",
-            "g": "man, person",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
-            "s": "に",
+            "s": "の",
             "k": "plain"
           },
           {
-            "s": "あい",
-            "b": "あう",
+            "s": "いえ",
             "k": "known",
-            "g": "to meet, to see",
+            "b": "いえる",
+            "g": "house, home",
             "gs": "jlpt"
           },
           {
-            "s": "たかっ",
+            "s": "だ",
+            "k": "plain"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "おもい",
+            "k": "known",
+            "b": "おもう",
+            "g": "to think, to feel",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
             "k": "plain"
           },
           {
             "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "です",
-            "k": "plain"
-          },
-          {
-            "s": "から",
             "k": "plain"
           },
           {
@@ -298,10 +330,15 @@
       {
         "tokens": [
           {
-            "s": "ふたり",
-            "b": "ふたり",
+            "s": "2",
+            "k": "plain"
+          },
+          {
+            "s": "人",
             "k": "known",
-            "g": "two people",
+            "r": "にん",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
@@ -310,13 +347,13 @@
           },
           {
             "s": "大きな",
-            "r": "おおきな",
-            "k": "plain"
+            "k": "plain",
+            "r": "おおきな"
           },
           {
             "s": "もん",
-            "b": "もん",
             "k": "known",
+            "b": "もん",
             "g": "gate",
             "gs": "jlpt"
           },
@@ -326,8 +363,8 @@
           },
           {
             "s": "つき",
-            "b": "つく",
             "k": "known",
+            "b": "つく",
             "g": "to arrive at, to reach",
             "gs": "jlpt"
           },
@@ -349,25 +386,36 @@
         "tokens": [
           {
             "s": "芳一",
-            "hk": true,
             "r": "ほういち",
             "b": "芳一",
             "k": "story",
-            "g": "Hoichi, a blind musician"
+            "g": "Hoichi, a blind musician",
+            "hk": true
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "ふしぎ",
-            "b": "ふしぎ",
+            "s": "おかしい",
             "k": "ghost",
-            "g": "mystery, curiosity",
+            "b": "おかしい",
+            "g": "strange; odd; funny",
             "gs": "jlpt"
           },
           {
-            "s": "でし",
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "おもい",
+            "k": "known",
+            "b": "おもう",
+            "g": "to think, to feel",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
             "k": "plain"
           },
           {
@@ -383,65 +431,15 @@
       {
         "tokens": [
           {
-            "s": "そこ",
+            "s": "2",
             "k": "plain"
           },
           {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "大きな",
-            "r": "おおきな",
-            "k": "plain"
-          },
-          {
-            "s": "もん",
-            "b": "もん",
+            "s": "人",
             "k": "known",
-            "g": "gate",
-            "gs": "jlpt"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "あり",
-            "b": "ある",
-            "k": "known",
-            "g": "to be, to have",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ませ",
-            "k": "plain"
-          },
-          {
-            "s": "ん",
-            "k": "plain"
-          },
-          {
-            "s": "でし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "ふたり",
-            "b": "ふたり",
-            "k": "known",
-            "g": "two people",
+            "r": "にん",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
@@ -450,8 +448,8 @@
           },
           {
             "s": "なか",
-            "b": "なか",
             "k": "known",
+            "b": "なか",
             "g": "inside, middle, among",
             "gs": "jlpt"
           },
@@ -461,8 +459,8 @@
           },
           {
             "s": "いり",
-            "b": "いる",
             "k": "known",
+            "b": "いる",
             "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
@@ -483,10 +481,21 @@
       {
         "tokens": [
           {
-            "s": "ひと",
-            "b": "ひと",
+            "s": "お",
+            "k": "plain"
+          },
+          {
+            "s": "さむ",
             "k": "known",
-            "g": "man, person",
+            "b": "さむい",
+            "g": "cold (in reference to weather)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "らい",
+            "k": "ghost",
+            "b": "らい",
+            "g": "next ~",
             "gs": "jlpt"
           },
           {
@@ -495,8 +504,8 @@
           },
           {
             "s": "よび",
-            "b": "よぶ",
             "k": "known",
+            "b": "よぶ",
             "g": "to call (one's name); to invite",
             "gs": "jlpt"
           },
@@ -518,9 +527,9 @@
         "tokens": [
           {
             "s": "女",
+            "k": "known",
             "r": "おんな",
             "b": "女",
-            "k": "known",
             "g": "woman, female",
             "gs": "jlpt"
           },
@@ -530,15 +539,15 @@
           },
           {
             "s": "ひと",
-            "b": "ひと",
             "k": "known",
+            "b": "ひと",
             "g": "man, person",
             "gs": "jlpt"
           },
           {
             "s": "たち",
-            "b": "たち",
             "k": "known",
+            "b": "たち",
             "g": "plural suffix",
             "gs": "jlpt"
           },
@@ -548,8 +557,8 @@
           },
           {
             "s": "き",
-            "b": "くる",
             "k": "known",
+            "b": "くる",
             "g": "to come",
             "gs": "jlpt"
           },
@@ -571,21 +580,20 @@
         "tokens": [
           {
             "s": "芳一",
-            "hk": true,
             "r": "ほういち",
             "b": "芳一",
             "k": "story",
-            "g": "Hoichi, a blind musician"
+            "g": "Hoichi, a blind musician",
+            "hk": true
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "上",
-            "r": "うえ",
-            "b": "上",
+            "s": "うえ",
             "k": "known",
+            "b": "うえ",
             "g": "above (up, top, etc.), over, on top of",
             "gs": "jlpt"
           },
@@ -594,10 +602,9 @@
             "k": "plain"
           },
           {
-            "s": "行き",
-            "r": "いき",
-            "b": "行く",
+            "s": "いき",
             "k": "known",
+            "b": "いく",
             "g": "to go",
             "gs": "jlpt"
           },
@@ -619,8 +626,8 @@
         "tokens": [
           {
             "s": "くつ",
-            "b": "くつ",
             "k": "known",
+            "b": "くつ",
             "g": "shoes, footwear",
             "gs": "jlpt"
           },
@@ -630,8 +637,8 @@
           },
           {
             "s": "ぬぎ",
-            "b": "ぬぐ",
             "k": "known",
+            "b": "ぬぐ",
             "g": "to take off (clothes)",
             "gs": "jlpt"
           },
@@ -653,22 +660,22 @@
         "tokens": [
           {
             "s": "とても",
-            "b": "とても",
             "k": "known",
+            "b": "とても",
             "g": "very (much), greatly, exceedingly",
             "gs": "jlpt"
           },
           {
             "s": "ひろい",
-            "b": "ひろい",
             "k": "known",
+            "b": "ひろい",
             "g": "spacious; wide; broad",
             "gs": "jlpt"
           },
           {
             "s": "へや",
-            "b": "へや",
             "k": "known",
+            "b": "へや",
             "g": "a room",
             "gs": "jlpt"
           },
@@ -690,8 +697,8 @@
         "tokens": [
           {
             "s": "たくさん",
-            "b": "たくさん",
             "k": "known",
+            "b": "たくさん",
             "g": "many, much",
             "gs": "jlpt"
           },
@@ -700,10 +707,11 @@
             "k": "plain"
           },
           {
-            "s": "ひと",
-            "b": "ひと",
+            "s": "人",
             "k": "known",
-            "g": "man, person",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
@@ -712,8 +720,8 @@
           },
           {
             "s": "い",
-            "b": "いる",
             "k": "known",
+            "b": "いる",
             "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
@@ -739,8 +747,8 @@
           },
           {
             "s": "しずか",
-            "b": "しずか",
             "k": "known",
+            "b": "しずか",
             "g": "quiet, calm",
             "gs": "jlpt"
           },
@@ -750,9 +758,9 @@
           },
           {
             "s": "話し",
+            "k": "known",
             "r": "はなし",
             "b": "話す",
-            "k": "known",
             "g": "to speak",
             "gs": "jlpt"
           },
@@ -775,11 +783,12 @@
       "prompt": {
         "tokens": [
           {
-            "s": "ほういち",
+            "s": "芳一",
             "r": "ほういち",
             "b": "芳一",
             "k": "story",
-            "g": "Hoichi, a blind musician"
+            "g": "Hoichi, a blind musician",
+            "hk": true
           },
           {
             "s": "は",
@@ -787,8 +796,8 @@
           },
           {
             "s": "どう",
-            "b": "どう",
             "k": "known",
+            "b": "どう",
             "g": "how, in what way",
             "gs": "jlpt"
           },
@@ -815,8 +824,8 @@
           "tokens": [
             {
               "s": "しずか",
-              "b": "しずか",
               "k": "known",
+              "b": "しずか",
               "g": "quiet, calm",
               "gs": "jlpt"
             },
@@ -834,8 +843,8 @@
           "tokens": [
             {
               "s": "わるい",
-              "b": "わるい",
               "k": "known",
+              "b": "わるい",
               "g": "bad, sinful; inferior",
               "gs": "jlpt"
             },
@@ -853,8 +862,8 @@
           "tokens": [
             {
               "s": "いい",
-              "b": "いう",
               "k": "known",
+              "b": "いう",
               "g": "to say",
               "gs": "jlpt"
             },
@@ -864,8 +873,8 @@
             },
             {
               "s": "もち",
-              "b": "もち",
               "k": "ghost",
+              "b": "もち",
               "g": "person who has ~",
               "gs": "jlpt"
             },
@@ -883,11 +892,11 @@
       "answer": 2
     },
     "metrics": {
-      "kanjiCoverage": 0.6875,
-      "kanjiDensity": 0.07692307692307693,
+      "kanjiCoverage": 1,
+      "kanjiDensity": 0.09743589743589744,
       "firstCoverage": 0.6956521739130435,
-      "finalCoverage": 0.868421052631579,
-      "retries": 3,
+      "finalCoverage": 0.8780487804878049,
+      "retries": 9,
       "seconds": 19.114382500000065,
       "offendingFirst": [
         "はう",
@@ -905,14 +914,209 @@
         "ん"
       ],
       "ghostWords": [
-        "はて",
-        "つかむ",
-        "音",
-        "うれしい",
-        "ふしぎ",
+        "てつ",
+        "よう",
+        "おと",
+        "おかしい",
+        "らい",
         "もち"
+      ],
+      "faithIssues": [
+        {
+          "sentence": "高い人のいえだとおもいました。",
+          "problem": "「高い身分」を「高い人」と訳しているが、これは地位が高い（えらい）という意味であり、身長が高いという意味に誤解される可能性があるため「えらい人の家」とするべきである。",
+          "kind": "unnatural"
+        }
       ]
     }
   },
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b.",
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling; for a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n当時、侍の命令と云えば容易に、反くわけにはいかなかった。で、芳一は草履をはき琵琶をもち、知らぬ人と一緒に出て行ったが、その人は巧者に芳一を案内して行ったけれども、芳一はよほど急ぎ足で歩かなければならなかった。また手引きをしたその手は鉄のようであった。武者の足どりのカタカタいう音はやがて、その人がすっかり甲冑を著けている事を示した――定めし何か殿居の衛士ででもあろうか、芳一の最初の驚きは去って、今や自分の幸運を考え始めた――何故かというに、この家来の人の「大した高い身分の人」と云った事を思い出し、自分の吟誦を聞きたいと所望された殿様は、第一流の大名に外ならぬと考えたからである。やがて侍は立ち止った。芳一は大きな門口に達したのだと覚った――ところで、自分は町のその辺には、阿彌陀寺の大門を外にしては、別に大きな門があったとは思わなかったので不思議に思った。「開門！」と侍は呼ばわった――すると閂を抜く音がして、二人は這入って行った。二人は広い庭を過ぎ再びある入口の前で止った。そこでこの武士は大きな声で「これ誰れか内のもの！　芳一を連れて来た」と叫んだ。すると急いで歩く跫音、襖のあく音、雨戸の開く音、女達の話し声などが聞えて来た。女達の言葉から察して、芳一はそれが高貴な家の召使である事を知った。しかしどういう処へ自分は連れられて来たのか見当が付かなかった。が、それをとにかく考えている間もなかった。手を引かれて幾箇かの石段を登ると、その一番最後の段の上で、草履をぬげと云われ、それから女の手に導かれて、拭き込んだ板鋪のはてしのない区域を過ぎ、覚え切れないほどたくさんな柱の角を〓り、驚くべきほど広い畳を敷いた床を通り――大きな部屋の真中に案内された。そこに大勢の人が集っていたと芳一は思った。絹のすれる音は森の木の葉の音のようであった。それからまた何んだかガヤガヤ云っている大勢の声も聞えた――低音で話している。そしてその言葉は宮中の言葉であった。\n\n語り直し:\n芳一はひとと行きました。\nそのひとはてをつかみました。\nてはつめたいでした。\n音がしました。\n芳一はうれしかったです。\nたかいひとにあいたかったですから。\nふたりは大きなもんにつきました。\n芳一はふしぎでした。\nそこに大きなもんはありませんでした。\nふたりはなかにいりました。\nひとがよびました。\n女のひとたちがきました。\n芳一は上に行きました。\nくつをぬぎました。\nとてもひろいへやでした。\nたくさんのひとがいました。\nみんなしずかに話しました。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"てはつめたいでした。\", \"problem\": \"The text states the hand was like iron (鉄のよう), not cold (つめたい).\", \"kind\": \"invented\"}, {\"sentence\": \"たかいひとにあいたかったですから。\", \"problem\": \"芳一 thought he was lucky because he believed the person requesting his music was a high-ranking daimyo, not that he personally wanted to meet a high-ranking person. Correction: 殿様がえらい人だと思ったので、運がいいと考えました。\", \"kind\": \"who\"}, {\"sentence\": \"そこに大きなもんはありませんでした。\", \"problem\": \"The original says he didn't recall any other large gates in that area besides the temple gate, not that there was no gate there (as he had just reached one). Correction: その辺に大きな門があるとは思わなかったので不思議でした。\", \"kind\": \"event\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling; for a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n当時、侍の命令と云えば容易に、反くわけにはいかなかった。で、芳一は草履をはき琵琶をもち、知らぬ人と一緒に出て行ったが、その人は巧者に芳一を案内して行ったけれども、芳一はよほど急ぎ足で歩かなければならなかった。また手引きをしたその手は鉄のようであった。武者の足どりのカタカタいう音はやがて、その人がすっかり甲冑を著けている事を示した――定めし何か殿居の衛士ででもあろうか、芳一の最初の驚きは去って、今や自分の幸運を考え始めた――何故かというに、この家来の人の「大した高い身分の人」と云った事を思い出し、自分の吟誦を聞きたいと所望された殿様は、第一流の大名に外ならぬと考えたからである。やがて侍は立ち止った。芳一は大きな門口に達したのだと覚った――ところで、自分は町のその辺には、阿彌陀寺の大門を外にしては、別に大きな門があったとは思わなかったので不思議に思った。「開門！」と侍は呼ばわった――すると閂を抜く音がして、二人は這入って行った。二人は広い庭を過ぎ再びある入口の前で止った。そこでこの武士は大きな声で「これ誰れか内のもの！　芳一を連れて来た」と叫んだ。すると急いで歩く跫音、襖のあく音、雨戸の開く音、女達の話し声などが聞えて来た。女達の言葉から察して、芳一はそれが高貴な家の召使である事を知った。しかしどういう処へ自分は連れられて来たのか見当が付かなかった。が、それをとにかく考えている間もなかった。手を引かれて幾箇かの石段を登ると、その一番最後の段の上で、草履をぬげと云われ、それから女の手に導かれて、拭き込んだ板鋪のはてしのない区域を過ぎ、覚え切れないほどたくさんな柱の角を〓り、驚くべきほど広い畳を敷いた床を通り――大きな部屋の真中に案内された。そこに大勢の人が集っていたと芳一は思った。絹のすれる音は森の木の葉の音のようであった。それからまた何んだかガヤガヤ云っている大勢の声も聞えた――低音で話している。そしてその言葉は宮中の言葉であった。\n\n語り直し:\n芳一はひとと行きました。\n琵琶をもちました。\nてはてつのようでした。\nおとがしました。\n芳一はうれしかったです。\nえらい人だとおもいました。\nふたりは大きなもんにつきました。\n芳一はふしぎでした。\nふたりはなかにいりました。\nおさむらいがよびました。\n女のひとたちがきました。\n芳一は上に行きました。\nくつをぬぎました。\nとてもひろいへやでした。\nたくさんの人がいました。\nみんなしずかに話しました。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"おさむらいがよびました。\", \"problem\": \"The samurai called to open the gate before entering, but the retelling places this after entering the gate. Correction: Restore the order so he calls before they enter.\", \"kind\": \"event\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n当時、侍の命令と云えば容易に、反くわけにはいかなかった。で、芳一は草履をはき琵琶をもち、知らぬ人と一緒に出て行ったが、その人は巧者に芳一を案内して行ったけれども、芳一はよほど急ぎ足で歩かなければならなかった。また手引きをしたその手は鉄のようであった。武者の足どりのカタカタいう音はやがて、その人がすっかり甲冑を著けている事を示した――定めし何か殿居の衛士ででもあろうか、芳一の最初の驚きは去って、今や自分の幸運を考え始めた――何故かというに、この家来の人の「大した高い身分の人」と云った事を思い出し、自分の吟誦を聞きたいと所望された殿様は、第一流の大名に外ならぬと考えたからである。やがて侍は立ち止った。芳一は大きな門口に達したのだと覚った――ところで、自分は町のその辺には、阿彌陀寺の大門を外にしては、別に大きな門があったとは思わなかったので不思議に思った。「開門！」と侍は呼ばわった――すると閂を抜く音がして、二人は這入って行った。二人は広い庭を過ぎ再びある入口の前で止った。そこでこの武士は大きな声で「これ誰れか内のもの！　芳一を連れて来た」と叫んだ。すると急いで歩く跫音、襖のあく音、雨戸の開く音、女達の話し声などが聞えて来た。女達の言葉から察して、芳一はそれが高貴な家の召使である事を知った。しかしどういう処へ自分は連れられて来たのか見当が付かなかった。が、それをとにかく考えている間もなかった。手を引かれて幾箇かの石段を登ると、その一番最後の段の上で、草履をぬげと云われ、それから女の手に導かれて、拭き込んだ板鋪のはてしのない区域を過ぎ、覚え切れないほどたくさんな柱の角を〓り、驚くべきほど広い畳を敷いた床を通り――大きな部屋の真中に案内された。そこに大勢の人が集っていたと芳一は思った。絹のすれる音は森の木の葉の音のようであった。それからまた何んだかガヤガヤ云っている大勢の声も聞えた――低音で話している。そしてその言葉は宮中の言葉であった。\n\n語り直し:\n芳一はひとと行きました。\n琵琶をもちました。\nてはてつのようでした。\nおとがしました。\n芳一はうれしかったです。\nえらい人だとおもいました。\nふたりは大きなもんにつきました。\n芳一はふしぎでした。\nふたりはなかにいりました。\nおさむらいがよびました。\n女のひとたちがきました。\n芳一は上に行きました。\nくつをぬぎました。\nとてもひろいへやでした。\nたくさんの人がいました。\nみんなしずかに話しました。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"おさむらいがよびました。\", \"problem\": \"The call to open the gate happened before entering the gate, not after. Swap order with 'ふたりはなかにいりました。'\", \"kind\": \"event\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n当時、侍の命令と云えば容易に、反くわけにはいかなかった。で、芳一は草履をはき琵琶をもち、知らぬ人と一緒に出て行ったが、その人は巧者に芳一を案内して行ったけれども、芳一はよほど急ぎ足で歩かなければならなかった。また手引きをしたその手は鉄のようであった。武者の足どりのカタカタいう音はやがて、その人がすっかり甲冑を著けている事を示した――定めし何か殿居の衛士ででもあろうか、芳一の最初の驚きは去って、今や自分の幸運を考え始めた――何故かというに、この家来の人の「大した高い身分の人」と云った事を思い出し、自分の吟誦を聞きたいと所望された殿様は、第一流の大名に外ならぬと考えたからである。やがて侍は立ち止った。芳一は大きな門口に達したのだと覚った――ところで、自分は町のその辺には、阿彌陀寺の大門を外にしては、別に大きな門があったとは思わなかったので不思議に思った。「開門！」と侍は呼ばわった――すると閂を抜く音がして、二人は這入って行った。二人は広い庭を過ぎ再びある入口の前で止った。そこでこの武士は大きな声で「これ誰れか内のもの！　芳一を連れて来た」と叫んだ。すると急いで歩く跫音、襖のあく音、雨戸の開く音、女達の話し声などが聞えて来た。女達の言葉から察して、芳一はそれが高貴な家の召使である事を知った。しかしどういう処へ自分は連れられて来たのか見当が付かなかった。が、それをとにかく考えている間もなかった。手を引かれて幾箇かの石段を登ると、その一番最後の段の上で、草履をぬげと云われ、それから女の手に導かれて、拭き込んだ板鋪のはてしのない区域を過ぎ、覚え切れないほどたくさんな柱の角を〓り、驚くべきほど広い畳を敷いた床を通り――大きな部屋の真中に案内された。そこに大勢の人が集っていたと芳一は思った。絹のすれる音は森の木の葉の音のようであった。それからまた何んだかガヤガヤ云っている大勢の声も聞えた――低音で話している。そしてその言葉は宮中の言葉であった。\n\n語り直し:\n芳一はひとと行きました。\n琵琶をもちました。\nてはてつのようでした。\nかたかたおとがしました。\n芳一はたのしかったです。\n高い人のいえだとおもいました。\n2人は大きなもんにつきました。\n芳一はおかしいとおもいました。\n2人はなかにいりました。\nおさむらいがよびました。\n女のひとたちがきました。\n芳一はうえにいきました。\nくつをぬぎました。\nとてもひろいへやでした。\nたくさんの人がいました。\nみんなしずかに話しました。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"高い人のいえだとおもいました。\", \"problem\": \"「高い身分」を「高い人」と訳しているが、これは地位が高い（えらい）という意味であり、身長が高いという意味に誤解される可能性があるため「えらい人の家」とするべきである。\", \"kind\": \"unnatural\"}]}"
+      }
+    ],
+    "rewrites": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Repair only the specified sentences at JLPT N5. Preserve all other sentences and events. Use natural Japanese, numeric digits for numbers, and maintain the meaning of the original. Return only JSON {\"rewrites\":[{\"index\":0,\"sentence\":\"...\"}]}."
+          },
+          {
+            "role": "user",
+            "content": "Original:\n当時、侍の命令と云えば容易に、反くわけにはいかなかった。で、芳一は草履をはき琵琶をもち、知らぬ人と一緒に出て行ったが、その人は巧者に芳一を案内して行ったけれども、芳一はよほど急ぎ足で歩かなければならなかった。また手引きをしたその手は鉄のようであった。武者の足どりのカタカタいう音はやがて、その人がすっかり甲冑を著けている事を示した――定めし何か殿居の衛士ででもあろうか、芳一の最初の驚きは去って、今や自分の幸運を考え始めた――何故かというに、この家来の人の「大した高い身分の人」と云った事を思い出し、自分の吟誦を聞きたいと所望された殿様は、第一流の大名に外ならぬと考えたからである。やがて侍は立ち止った。芳一は大きな門口に達したのだと覚った――ところで、自分は町のその辺には、阿彌陀寺の大門を外にしては、別に大きな門があったとは思わなかったので不思議に思った。「開門！」と侍は呼ばわった――すると閂を抜く音がして、二人は這入って行った。二人は広い庭を過ぎ再びある入口の前で止った。そこでこの武士は大きな声で「これ誰れか内のもの！　芳一を連れて来た」と叫んだ。すると急いで歩く跫音、襖のあく音、雨戸の開く音、女達の話し声などが聞えて来た。女達の言葉から察して、芳一はそれが高貴な家の召使である事を知った。しかしどういう処へ自分は連れられて来たのか見当が付かなかった。が、それをとにかく考えている間もなかった。手を引かれて幾箇かの石段を登ると、その一番最後の段の上で、草履をぬげと云われ、それから女の手に導かれて、拭き込んだ板鋪のはてしのない区域を過ぎ、覚え切れないほどたくさんな柱の角を〓り、驚くべきほど広い畳を敷いた床を通り――大きな部屋の真中に案内された。そこに大勢の人が集っていたと芳一は思った。絹のすれる音は森の木の葉の音のようであった。それからまた何んだかガヤガヤ云っている大勢の声も聞えた――低音で話している。そしてその言葉は宮中の言葉であった。\nSentences:\n0: 芳一はひとと行きました。\n1: そのひとはてをつかみました。\n2: てはつめたいでした。\n3: 音がしました。\n4: 芳一はうれしかったです。\n5: たかいひとにあいたかったですから。\n6: ふたりは大きなもんにつきました。\n7: 芳一はふしぎでした。\n8: そこに大きなもんはありませんでした。\n9: ふたりはなかにいりました。\n10: ひとがよびました。\n11: 女のひとたちがきました。\n12: 芳一は上に行きました。\n13: くつをぬぎました。\n14: とてもひろいへやでした。\n15: たくさんのひとがいました。\n16: みんなしずかに話しました。\nIssues:\n[{\"sentence\":\"てはつめたいでした。\",\"problem\":\"The text states the hand was like iron (鉄のよう), not cold (つめたい).\",\"kind\":\"invented\"},{\"sentence\":\"たかいひとにあいたかったですから。\",\"problem\":\"芳一 thought he was lucky because he believed the person requesting his music was a high-ranking daimyo, not that he personally wanted to meet a high-ranking person. Correction: 殿様がえらい人だと思ったので、運がいいと考えました。\",\"kind\":\"who\"},{\"sentence\":\"そこに大きなもんはありませんでした。\",\"problem\":\"The original says he didn't recall any other large gates in that area besides the temple gate, not that there was no gate there (as he had just reached one). Correction: その辺に大きな門があるとは思わなかったので不思議でした。\",\"kind\":\"event\"}]\nRewrite exactly indexes: 2,5,8"
+          }
+        ],
+        "response": "{\"rewrites\": [{\"index\": 2, \"sentence\": \"てはてつのようでした。\"}, {\"index\": 5, \"sentence\": \"殿様がえらい人だと思ったので、運がいいと考えました。\"}, {\"index\": 8, \"sentence\": \"その辺に大きな門があるとは思わなかったので、ふしぎでした。\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Repair only the specified sentences at JLPT N5. Preserve all other sentences and events. Use natural Japanese, numeric digits for numbers, and maintain the meaning of the original. Return only JSON {\"rewrites\":[{\"index\":0,\"sentence\":\"...\"}]}."
+          },
+          {
+            "role": "user",
+            "content": "Original:\n当時、侍の命令と云えば容易に、反くわけにはいかなかった。で、芳一は草履をはき琵琶をもち、知らぬ人と一緒に出て行ったが、その人は巧者に芳一を案内して行ったけれども、芳一はよほど急ぎ足で歩かなければならなかった。また手引きをしたその手は鉄のようであった。武者の足どりのカタカタいう音はやがて、その人がすっかり甲冑を著けている事を示した――定めし何か殿居の衛士ででもあろうか、芳一の最初の驚きは去って、今や自分の幸運を考え始めた――何故かというに、この家来の人の「大した高い身分の人」と云った事を思い出し、自分の吟誦を聞きたいと所望された殿様は、第一流の大名に外ならぬと考えたからである。やがて侍は立ち止った。芳一は大きな門口に達したのだと覚った――ところで、自分は町のその辺には、阿彌陀寺の大門を外にしては、別に大きな門があったとは思わなかったので不思議に思った。「開門！」と侍は呼ばわった――すると閂を抜く音がして、二人は這入って行った。二人は広い庭を過ぎ再びある入口の前で止った。そこでこの武士は大きな声で「これ誰れか内のもの！　芳一を連れて来た」と叫んだ。すると急いで歩く跫音、襖のあく音、雨戸の開く音、女達の話し声などが聞えて来た。女達の言葉から察して、芳一はそれが高貴な家の召使である事を知った。しかしどういう処へ自分は連れられて来たのか見当が付かなかった。が、それをとにかく考えている間もなかった。手を引かれて幾箇かの石段を登ると、その一番最後の段の上で、草履をぬげと云われ、それから女の手に導かれて、拭き込んだ板鋪のはてしのない区域を過ぎ、覚え切れないほどたくさんな柱の角を〓り、驚くべきほど広い畳を敷いた床を通り――大きな部屋の真中に案内された。そこに大勢の人が集っていたと芳一は思った。絹のすれる音は森の木の葉の音のようであった。それからまた何んだかガヤガヤ云っている大勢の声も聞えた――低音で話している。そしてその言葉は宮中の言葉であった。\nSentences:\n0: 芳一はひとと行きました。\n1: 琵琶をもちました。\n2: てはてつのようでした。\n3: おとがしました。\n4: 芳一はうれしかったです。\n5: えらい人だとおもいました。\n6: ふたりは大きなもんにつきました。\n7: 芳一はふしぎでした。\n8: ふたりはなかにいりました。\n9: おさむらいがよびました。\n10: 女のひとたちがきました。\n11: 芳一は上に行きました。\n12: くつをぬぎました。\n13: とてもひろいへやでした。\n14: たくさんの人がいました。\n15: みんなしずかに話しました。\nIssues:\n[{\"sentence\":\"おさむらいがよびました。\",\"problem\":\"The call to open the gate happened before entering the gate, not after. Swap order with 'ふたりはなかにいりました。'\",\"kind\":\"event\"},{\"sentence\":\"ふたりは大きなもんにつきました。\",\"kind\":\"number\",\"problem\":\"Write number words in digits or permitted kanji, never kana. Preserve their numerical value.\"},{\"sentence\":\"ふたりはなかにいりました。\",\"kind\":\"number\",\"problem\":\"Write number words in digits or permitted kanji, never kana. Preserve their numerical value.\"}]\nRewrite exactly indexes: 9,6,8"
+          }
+        ],
+        "response": "{\"rewrites\": [{\"index\": 6, \"sentence\": \"2人は大きなもんにつきました。\"}, {\"index\": 8, \"sentence\": \"2人はなかにいりました。\"}, {\"index\": 9, \"sentence\": \"おさむらいがよびました。\"}]}"
+      }
+    ],
+    "before": [
+      {
+        "sentence": "てはつめたいでした。",
+        "problem": "The text states the hand was like iron (鉄のよう), not cold (つめたい).",
+        "kind": "invented"
+      },
+      {
+        "sentence": "たかいひとにあいたかったですから。",
+        "problem": "芳一 thought he was lucky because he believed the person requesting his music was a high-ranking daimyo, not that he personally wanted to meet a high-ranking person. Correction: 殿様がえらい人だと思ったので、運がいいと考えました。",
+        "kind": "who"
+      },
+      {
+        "sentence": "そこに大きなもんはありませんでした。",
+        "problem": "The original says he didn't recall any other large gates in that area besides the temple gate, not that there was no gate there (as he had just reached one). Correction: その辺に大きな門があるとは思わなかったので不思議でした。",
+        "kind": "event"
+      }
+    ],
+    "after": [
+      {
+        "sentence": "高い人のいえだとおもいました。",
+        "problem": "「高い身分」を「高い人」と訳しているが、これは地位が高い（えらい）という意味であり、身長が高いという意味に誤解される可能性があるため「えらい人の家」とするべきである。",
+        "kind": "unnatural"
+      }
+    ]
+  },
+  "levelRepairs": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N5.\nPicture-book style. Use です/ます and ました/ませんでした only, with ～て, ～たい, ～から and ～が (but). One idea per sentence. Replace personal names with roles (おさむらい, おぼうさん, おじいさん, わかい男), except the one main character listed as a story word.\nUse only vocabulary at or below N5. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 20 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八十三上下大女山川土千子小中五六円天日月木水火出右四左本白万今午友父北半外母休先名年気百男見車毎行西何来学金雨国東長前南後食校時高間話電聞語読生書. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 0–12 percent. Aim for 8 percent and mean sentence length 6–20 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n当時、侍の命令と云えば容易に、反くわけにはいかなかった。で、芳一は草履をはき琵琶をもち、知らぬ人と一緒に出て行ったが、その人は巧者に芳一を案内して行ったけれども、芳一はよほど急ぎ足で歩かなければならなかった。また手引きをしたその手は鉄のようであった。武者の足どりのカタカタいう音はやがて、その人がすっかり甲冑を著けている事を示した――定めし何か殿居の衛士ででもあろうか、芳一の最初の驚きは去って、今や自分の幸運を考え始めた――何故かというに、この家来の人の「大した高い身分の人」と云った事を思い出し、自分の吟誦を聞きたいと所望された殿様は、第一流の大名に外ならぬと考えたからである。やがて侍は立ち止った。芳一は大きな門口に達したのだと覚った――ところで、自分は町のその辺には、阿彌陀寺の大門を外にしては、別に大きな門があったとは思わなかったので不思議に思った。「開門！」と侍は呼ばわった――すると閂を抜く音がして、二人は這入って行った。二人は広い庭を過ぎ再びある入口の前で止った。そこでこの武士は大きな声で「これ誰れか内のもの！　芳一を連れて来た」と叫んだ。すると急いで歩く跫音、襖のあく音、雨戸の開く音、女達の話し声などが聞えて来た。女達の言葉から察して、芳一はそれが高貴な家の召使である事を知った。しかしどういう処へ自分は連れられて来たのか見当が付かなかった。が、それをとにかく考えている間もなかった。手を引かれて幾箇かの石段を登ると、その一番最後の段の上で、草履をぬげと云われ、それから女の手に導かれて、拭き込んだ板鋪のはてしのない区域を過ぎ、覚え切れないほどたくさんな柱の角を〓り、驚くべきほど広い畳を敷いた床を通り――大きな部屋の真中に案内された。そこに大勢の人が集っていたと芳一は思った。絹のすれる音は森の木の葉の音のようであった。それからまた何んだかガヤガヤ云っている大勢の声も聞えた――低音で話している。そしてその言葉は宮中の言葉であった。\nCurrent retelling:\n芳一はひとと行きました。\nそのひとはてをつかみました。\nてはてつのようでした。\nおとがしました。\n芳一はうれしかったです。\nとのさまがえらい人だとおもったので、うんがいいとかんがえました。\nふたりは大きなもんにつきました。\n芳一はふしぎでした。\nそのあたりに大きなもんがあるとはおもわなかったので、ふしぎでした。\nふたりはなかにいりました。\nひとがよびました。\n女のひとたちがきました。\n芳一は上に行きました。\nくつをぬぎました。\nとてもひろいへやでした。\nたくさんのひとがいました。\nみんなしずかに話しました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.06666666666666667,\"meanLength\":14.117647058823529,\"advancedShare\":0.26666666666666666}; vocabulary 0.6888888888888889. Required kanji density 0–0.12, kanji coverage 1.0. Above-level vocabulary: はて、つかむ、てつ、よう、おと、うれしい、さま、えらい、おもう、かんがえる、ふしぎ、あたり. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 20 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"芳一はひとと行きました。\", \"琵琶をもちました。\", \"そのひとはてをひきました。\", \"てはてつのようでした。\", \"おとがしました。\", \"芳一はうれしかったです。\", \"えらい人だとおもいました。\", \"ふたりは大きなもんにつきました。\", \"芳一はふしぎでした。\", \"ここにもんがあるとはおもいませんでした。\", \"ふたりはなかにいりました。\", \"おさむらいがよびました。\", \"女のひとたちがきました。\", \"芳一は上に行きました。\", \"くつをぬぎました。\", \"とてもひろいへやでした。\", \"たくさんのひとがいました。\", \"みんなしずかに話しました。\"], \"question\": {\"prompt\": \"芳一は何を持ちましたか。\", \"options\": [\"本\", \"琵琶\", \"お金\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N5.\nPicture-book style. Use です/ます and ました/ませんでした only, with ～て, ～たい, ～から and ～が (but). One idea per sentence. Replace personal names with roles (おさむらい, おぼうさん, おじいさん, わかい男), except the one main character listed as a story word.\nUse only vocabulary at or below N5. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 20 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八十三上下大女山川土千子小中五六円天日月木水火出右四左本白万今午友父北半外母休先名年気百男見車毎行西何来学金雨国東長前南後食校時高間話電聞語読生書. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 0–12 percent. Aim for 8 percent and mean sentence length 6–20 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n当時、侍の命令と云えば容易に、反くわけにはいかなかった。で、芳一は草履をはき琵琶をもち、知らぬ人と一緒に出て行ったが、その人は巧者に芳一を案内して行ったけれども、芳一はよほど急ぎ足で歩かなければならなかった。また手引きをしたその手は鉄のようであった。武者の足どりのカタカタいう音はやがて、その人がすっかり甲冑を著けている事を示した――定めし何か殿居の衛士ででもあろうか、芳一の最初の驚きは去って、今や自分の幸運を考え始めた――何故かというに、この家来の人の「大した高い身分の人」と云った事を思い出し、自分の吟誦を聞きたいと所望された殿様は、第一流の大名に外ならぬと考えたからである。やがて侍は立ち止った。芳一は大きな門口に達したのだと覚った――ところで、自分は町のその辺には、阿彌陀寺の大門を外にしては、別に大きな門があったとは思わなかったので不思議に思った。「開門！」と侍は呼ばわった――すると閂を抜く音がして、二人は這入って行った。二人は広い庭を過ぎ再びある入口の前で止った。そこでこの武士は大きな声で「これ誰れか内のもの！　芳一を連れて来た」と叫んだ。すると急いで歩く跫音、襖のあく音、雨戸の開く音、女達の話し声などが聞えて来た。女達の言葉から察して、芳一はそれが高貴な家の召使である事を知った。しかしどういう処へ自分は連れられて来たのか見当が付かなかった。が、それをとにかく考えている間もなかった。手を引かれて幾箇かの石段を登ると、その一番最後の段の上で、草履をぬげと云われ、それから女の手に導かれて、拭き込んだ板鋪のはてしのない区域を過ぎ、覚え切れないほどたくさんな柱の角を〓り、驚くべきほど広い畳を敷いた床を通り――大きな部屋の真中に案内された。そこに大勢の人が集っていたと芳一は思った。絹のすれる音は森の木の葉の音のようであった。それからまた何んだかガヤガヤ云っている大勢の声も聞えた――低音で話している。そしてその言葉は宮中の言葉であった。\nCurrent retelling:\n芳一はひとと行きました。\n琵琶をもちました。\nそのひとはてをひきました。\nてはてつのようでした。\nおとがしました。\n芳一はうれしかったです。\nえらい人だとおもいました。\nふたりは大きなもんにつきました。\n芳一はふしぎでした。\nここにもんがあるとはおもいませんでした。\nふたりはなかにいりました。\nおさむらいがよびました。\n女のひとたちがきました。\n芳一は上に行きました。\nくつをぬぎました。\nとてもひろいへやでした。\nたくさんのひとがいました。\nみんなしずかに話しました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.0776255707762557,\"meanLength\":12.166666666666666,\"advancedShare\":0.19047619047619047}; vocabulary 0.8095238095238095. Required kanji density 0–0.12, kanji coverage 1.0. Above-level vocabulary: はて、てつ、よう、おと、うれしい、えらい、ふしぎ、らい. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 20 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"芳一はひとと行きました。\", \"琵琶をもちました。\", \"てはてつのようでした。\", \"おとがしました。\", \"芳一はうれしかったです。\", \"えらい人だと思いました。\", \"ふたりは大きなもんにつきました。\", \"芳一はふしぎでした。\", \"ふたりはなかにいりました。\", \"おさむらいがよびました。\", \"女のひとたちがきました。\", \"芳一は上に行きました。\", \"くつをぬぎました。\", \"とてもひろいへやでした。\", \"たくさんのひとがいました。\", \"みんなしずかに話しました。\"], \"question\": {\"prompt\": \"芳一は何をもちましたか。\", \"options\": [\"本\", \"琵琶\", \"金\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N5.\nPicture-book style. Use です/ます and ました/ませんでした only, with ～て, ～たい, ～から and ～が (but). One idea per sentence. Replace personal names with roles (おさむらい, おぼうさん, おじいさん, わかい男), except the one main character listed as a story word.\nUse only vocabulary at or below N5. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 20 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八十三上下大女山川土千子小中五六円天日月木水火出右四左本白万今午友父北半外母休先名年気百男見車毎行西何来学金雨国東長前南後食校時高間話電聞語読生書. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 0–12 percent. Aim for 8 percent and mean sentence length 6–20 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n当時、侍の命令と云えば容易に、反くわけにはいかなかった。で、芳一は草履をはき琵琶をもち、知らぬ人と一緒に出て行ったが、その人は巧者に芳一を案内して行ったけれども、芳一はよほど急ぎ足で歩かなければならなかった。また手引きをしたその手は鉄のようであった。武者の足どりのカタカタいう音はやがて、その人がすっかり甲冑を著けている事を示した――定めし何か殿居の衛士ででもあろうか、芳一の最初の驚きは去って、今や自分の幸運を考え始めた――何故かというに、この家来の人の「大した高い身分の人」と云った事を思い出し、自分の吟誦を聞きたいと所望された殿様は、第一流の大名に外ならぬと考えたからである。やがて侍は立ち止った。芳一は大きな門口に達したのだと覚った――ところで、自分は町のその辺には、阿彌陀寺の大門を外にしては、別に大きな門があったとは思わなかったので不思議に思った。「開門！」と侍は呼ばわった――すると閂を抜く音がして、二人は這入って行った。二人は広い庭を過ぎ再びある入口の前で止った。そこでこの武士は大きな声で「これ誰れか内のもの！　芳一を連れて来た」と叫んだ。すると急いで歩く跫音、襖のあく音、雨戸の開く音、女達の話し声などが聞えて来た。女達の言葉から察して、芳一はそれが高貴な家の召使である事を知った。しかしどういう処へ自分は連れられて来たのか見当が付かなかった。が、それをとにかく考えている間もなかった。手を引かれて幾箇かの石段を登ると、その一番最後の段の上で、草履をぬげと云われ、それから女の手に導かれて、拭き込んだ板鋪のはてしのない区域を過ぎ、覚え切れないほどたくさんな柱の角を〓り、驚くべきほど広い畳を敷いた床を通り――大きな部屋の真中に案内された。そこに大勢の人が集っていたと芳一は思った。絹のすれる音は森の木の葉の音のようであった。それからまた何んだかガヤガヤ云っている大勢の声も聞えた――低音で話している。そしてその言葉は宮中の言葉であった。\nCurrent retelling:\n芳一はひとと行きました。\n琵琶をもちました。\nてはてつのようでした。\nおとがしました。\n芳一はうれしかったです。\nえらい人だとおもいました。\nふたりは大きなもんにつきました。\n芳一はふしぎでした。\nふたりはなかにいりました。\nおさむらいがよびました。\n女のひとたちがきました。\n芳一は上に行きました。\nくつをぬぎました。\nとてもひろいへやでした。\nたくさんのひとがいました。\nみんなしずかに話しました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.0913978494623656,\"meanLength\":11.625,\"advancedShare\":0.1891891891891892}; vocabulary 0.8108108108108109. Required kanji density 0–0.12, kanji coverage 1.0. Above-level vocabulary: てつ、よう、おと、うれしい、えらい、ふしぎ、らい. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 20 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"芳一はひとと行きました。\", \"琵琶をもちました。\", \"てはてつのようでした。\", \"おとがしました。\", \"芳一はうれしかったです。\", \"えらい人だとおもいました。\", \"ふたりは大きなもんにつきました。\", \"芳一はふしぎでした。\", \"ふたりはなかにいりました。\", \"おさむらいがよびました。\", \"女のひとたちがきました。\", \"芳一は上に行きました。\", \"くつをぬぎました。\", \"とてもひろいへやでした。\", \"たくさんの人がいました。\", \"みんなしずかに話しました。\"], \"question\": {\"prompt\": \"芳一は何をもちましたか。\", \"options\": [\"本\", \"琵琶\", \"金\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N5.\nPicture-book style. Use です/ます and ました/ませんでした only, with ～て, ～たい, ～から and ～が (but). One idea per sentence. Replace personal names with roles (おさむらい, おぼうさん, おじいさん, わかい男), except the one main character listed as a story word.\nUse only vocabulary at or below N5. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 20 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八十三上下大女山川土千子小中五六円天日月木水火出右四左本白万今午友父北半外母休先名年気百男見車毎行西何来学金雨国東長前南後食校時高間話電聞語読生書. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 0–12 percent. Aim for 8 percent and mean sentence length 6–20 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n当時、侍の命令と云えば容易に、反くわけにはいかなかった。で、芳一は草履をはき琵琶をもち、知らぬ人と一緒に出て行ったが、その人は巧者に芳一を案内して行ったけれども、芳一はよほど急ぎ足で歩かなければならなかった。また手引きをしたその手は鉄のようであった。武者の足どりのカタカタいう音はやがて、その人がすっかり甲冑を著けている事を示した――定めし何か殿居の衛士ででもあろうか、芳一の最初の驚きは去って、今や自分の幸運を考え始めた――何故かというに、この家来の人の「大した高い身分の人」と云った事を思い出し、自分の吟誦を聞きたいと所望された殿様は、第一流の大名に外ならぬと考えたからである。やがて侍は立ち止った。芳一は大きな門口に達したのだと覚った――ところで、自分は町のその辺には、阿彌陀寺の大門を外にしては、別に大きな門があったとは思わなかったので不思議に思った。「開門！」と侍は呼ばわった――すると閂を抜く音がして、二人は這入って行った。二人は広い庭を過ぎ再びある入口の前で止った。そこでこの武士は大きな声で「これ誰れか内のもの！　芳一を連れて来た」と叫んだ。すると急いで歩く跫音、襖のあく音、雨戸の開く音、女達の話し声などが聞えて来た。女達の言葉から察して、芳一はそれが高貴な家の召使である事を知った。しかしどういう処へ自分は連れられて来たのか見当が付かなかった。が、それをとにかく考えている間もなかった。手を引かれて幾箇かの石段を登ると、その一番最後の段の上で、草履をぬげと云われ、それから女の手に導かれて、拭き込んだ板鋪のはてしのない区域を過ぎ、覚え切れないほどたくさんな柱の角を〓り、驚くべきほど広い畳を敷いた床を通り――大きな部屋の真中に案内された。そこに大勢の人が集っていたと芳一は思った。絹のすれる音は森の木の葉の音のようであった。それからまた何んだかガヤガヤ云っている大勢の声も聞えた――低音で話している。そしてその言葉は宮中の言葉であった。\nCurrent retelling:\n芳一はひとと行きました。\n琵琶をもちました。\nてはてつのようでした。\nおとがしました。\n芳一はうれしかったです。\nえらい人だとおもいました。\n2人は大きなもんにつきました。\n芳一はふしぎでした。\n2人はなかにいりました。\nおさむらいがよびました。\n女のひとたちがきました。\n芳一は上に行きました。\nくつをぬぎました。\nとてもひろいへやでした。\nたくさんの人がいました。\nみんなしずかに話しました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.1092896174863388,\"meanLength\":11.4375,\"advancedShare\":0.1891891891891892}; vocabulary 0.8108108108108109. Required kanji density 0–0.12, kanji coverage 1.0. Above-level vocabulary: てつ、よう、おと、うれしい、えらい、ふしぎ、らい. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 20 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"芳一はひとと行きました。\", \"琵琶をもちました。\", \"てはつめたいでした。\", \"かたかたおとがしました。\", \"芳一はわくわくしました。\", \"えらい人だとおもいました。\", \"2人は大きなもんにつきました。\", \"芳一はおどろきました。\", \"2人はなかにいりました。\", \"おさむらいがよびました。\", \"女のひとたちがきました。\", \"芳一はうえにいきました。\", \"くつをぬぎました。\", \"とてもひろいへやでした。\", \"たくさんの人がいました。\", \"みんなしずかに話しました。\"], \"question\": {\"prompt\": \"芳一はなにをもちましたか。\", \"options\": [\"本\", \"琵琶\", \"金\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N5.\nPicture-book style. Use です/ます and ました/ませんでした only, with ～て, ～たい, ～から and ～が (but). One idea per sentence. Replace personal names with roles (おさむらい, おぼうさん, おじいさん, わかい男), except the one main character listed as a story word.\nUse only vocabulary at or below N5. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 20 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八十三上下大女山川土千子小中五六円天日月木水火出右四左本白万今午友父北半外母休先名年気百男見車毎行西何来学金雨国東長前南後食校時高間話電聞語読生書. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 0–12 percent. Aim for 8 percent and mean sentence length 6–20 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n当時、侍の命令と云えば容易に、反くわけにはいかなかった。で、芳一は草履をはき琵琶をもち、知らぬ人と一緒に出て行ったが、その人は巧者に芳一を案内して行ったけれども、芳一はよほど急ぎ足で歩かなければならなかった。また手引きをしたその手は鉄のようであった。武者の足どりのカタカタいう音はやがて、その人がすっかり甲冑を著けている事を示した――定めし何か殿居の衛士ででもあろうか、芳一の最初の驚きは去って、今や自分の幸運を考え始めた――何故かというに、この家来の人の「大した高い身分の人」と云った事を思い出し、自分の吟誦を聞きたいと所望された殿様は、第一流の大名に外ならぬと考えたからである。やがて侍は立ち止った。芳一は大きな門口に達したのだと覚った――ところで、自分は町のその辺には、阿彌陀寺の大門を外にしては、別に大きな門があったとは思わなかったので不思議に思った。「開門！」と侍は呼ばわった――すると閂を抜く音がして、二人は這入って行った。二人は広い庭を過ぎ再びある入口の前で止った。そこでこの武士は大きな声で「これ誰れか内のもの！　芳一を連れて来た」と叫んだ。すると急いで歩く跫音、襖のあく音、雨戸の開く音、女達の話し声などが聞えて来た。女達の言葉から察して、芳一はそれが高貴な家の召使である事を知った。しかしどういう処へ自分は連れられて来たのか見当が付かなかった。が、それをとにかく考えている間もなかった。手を引かれて幾箇かの石段を登ると、その一番最後の段の上で、草履をぬげと云われ、それから女の手に導かれて、拭き込んだ板鋪のはてしのない区域を過ぎ、覚え切れないほどたくさんな柱の角を〓り、驚くべきほど広い畳を敷いた床を通り――大きな部屋の真中に案内された。そこに大勢の人が集っていたと芳一は思った。絹のすれる音は森の木の葉の音のようであった。それからまた何んだかガヤガヤ云っている大勢の声も聞えた――低音で話している。そしてその言葉は宮中の言葉であった。\nCurrent retelling:\n芳一はひとと行きました。\n琵琶をもちました。\nてはつめたいでした。\nかたかたおとがしました。\n芳一はわくわくしました。\nえらい人だとおもいました。\n2人は大きなもんにつきました。\n芳一はおどろきました。\n2人はなかにいりました。\nおさむらいがよびました。\n女のひとたちがきました。\n芳一はうえにいきました。\nくつをぬぎました。\nとてもひろいへやでした。\nたくさんの人がいました。\nみんなしずかに話しました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.09574468085106383,\"meanLength\":11.75,\"advancedShare\":0.1282051282051282}; vocabulary 0.8717948717948718. Required kanji density 0–0.12, kanji coverage 1.0. Above-level vocabulary: おと、わくわく、えらい、おどろく、らい. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 20 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"芳一はひとと行きました。\", \"琵琶をもちました。\", \"てはてつのようでした。\", \"かたかたおとがしました。\", \"芳一はうれしくなりました。\", \"高い人のいえだと思いました。\", \"2人は大きなもんにつきました。\", \"芳一はふしぎに思いました。\", \"2人はなかにいりました。\", \"おさむらいがよびました。\", \"女のひとたちがきました。\", \"芳一はうえにいきました。\", \"くつをぬぎました。\", \"とてもひろいへやでした。\", \"たくさんの人がいました。\", \"みんなしずかに話しました。\"], \"question\": {\"prompt\": \"芳一はなにをもちましたか。\", \"options\": [\"本\", \"琵琶\", \"金\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N5.\nPicture-book style. Use です/ます and ました/ませんでした only, with ～て, ～たい, ～から and ～が (but). One idea per sentence. Replace personal names with roles (おさむらい, おぼうさん, おじいさん, わかい男), except the one main character listed as a story word.\nUse only vocabulary at or below N5. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 20 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八十三上下大女山川土千子小中五六円天日月木水火出右四左本白万今午友父北半外母休先名年気百男見車毎行西何来学金雨国東長前南後食校時高間話電聞語読生書. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 0–12 percent. Aim for 8 percent and mean sentence length 6–20 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n当時、侍の命令と云えば容易に、反くわけにはいかなかった。で、芳一は草履をはき琵琶をもち、知らぬ人と一緒に出て行ったが、その人は巧者に芳一を案内して行ったけれども、芳一はよほど急ぎ足で歩かなければならなかった。また手引きをしたその手は鉄のようであった。武者の足どりのカタカタいう音はやがて、その人がすっかり甲冑を著けている事を示した――定めし何か殿居の衛士ででもあろうか、芳一の最初の驚きは去って、今や自分の幸運を考え始めた――何故かというに、この家来の人の「大した高い身分の人」と云った事を思い出し、自分の吟誦を聞きたいと所望された殿様は、第一流の大名に外ならぬと考えたからである。やがて侍は立ち止った。芳一は大きな門口に達したのだと覚った――ところで、自分は町のその辺には、阿彌陀寺の大門を外にしては、別に大きな門があったとは思わなかったので不思議に思った。「開門！」と侍は呼ばわった――すると閂を抜く音がして、二人は這入って行った。二人は広い庭を過ぎ再びある入口の前で止った。そこでこの武士は大きな声で「これ誰れか内のもの！　芳一を連れて来た」と叫んだ。すると急いで歩く跫音、襖のあく音、雨戸の開く音、女達の話し声などが聞えて来た。女達の言葉から察して、芳一はそれが高貴な家の召使である事を知った。しかしどういう処へ自分は連れられて来たのか見当が付かなかった。が、それをとにかく考えている間もなかった。手を引かれて幾箇かの石段を登ると、その一番最後の段の上で、草履をぬげと云われ、それから女の手に導かれて、拭き込んだ板鋪のはてしのない区域を過ぎ、覚え切れないほどたくさんな柱の角を〓り、驚くべきほど広い畳を敷いた床を通り――大きな部屋の真中に案内された。そこに大勢の人が集っていたと芳一は思った。絹のすれる音は森の木の葉の音のようであった。それからまた何んだかガヤガヤ云っている大勢の声も聞えた――低音で話している。そしてその言葉は宮中の言葉であった。\nCurrent retelling:\n芳一はひとと行きました。\n琵琶をもちました。\nてはてつのようでした。\nかたかたおとがしました。\n芳一はうれしくなりました。\n高い人のいえだとおもいました。\n2人は大きなもんにつきました。\n芳一はふしぎにおもいました。\n2人はなかにいりました。\nおさむらいがよびました。\n女のひとたちがきました。\n芳一はうえにいきました。\nくつをぬぎました。\nとてもひろいへやでした。\nたくさんの人がいました。\nみんなしずかに話しました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.09743589743589744,\"meanLength\":12.1875,\"advancedShare\":0.21428571428571427}; vocabulary 0.8571428571428571. Required kanji density 0–0.12, kanji coverage 1.0. Above-level vocabulary: てつ、よう、おと、うれしい、ふしぎ、らい. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 20 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"芳一はひとと行きました。\", \"琵琶をもちました。\", \"てはてつのようでした。\", \"かたかたおとがしました。\", \"芳一はたのしかったです。\", \"高い人のいえだと思いました。\", \"2人は大きなもんにつきました。\", \"芳一はおかしいと思いました。\", \"2人はなかにいりました。\", \"おさむらいがよびました。\", \"女のひとたちがきました。\", \"芳一はうえにいきました。\", \"くつをぬぎました。\", \"とてもひろいへやでした。\", \"たくさんの人がいました。\", \"みんなしずかに話しました。\"], \"question\": {\"prompt\": \"芳一はなにをもちましたか。\", \"options\": [\"本\", \"琵琶\", \"金\"], \"answer\": 1}}"
+    }
+  ]
 }

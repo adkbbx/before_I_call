@@ -4,35 +4,40 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Adds ～とき, ～たら, ～ている, ～と思います, potential forms and ～ても. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 巳之吉（みのきち）、お雪（おゆき）、木こり（きこり）、吹雪（ふぶき）. Copy every story word exactly in kanji when it is needed; do not insert unused words.\nWrite normal Japanese with no spaces between words. Outside story words, use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 巳之吉（みのきち）、お雪（おゆき）、木こり（きこり）、吹雪（ふぶき）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: つぎの冬の夜でした。巳之吉はうちに帰っていました。みちでわかい女にあいました。その女はとてもきれいでした。こえも鳥のようにきれいでした。ふたりでいっしょに歩きました。なまえはお雪だと言いました。お雪はえどへ行くつもりでした。親が死んで、しんせきに会いたかったです。巳之吉はお雪がとてもすきになりました。ふたりはけっこんの話をしました。どちらもけっこんしていませんでした。むらに着いたとき、巳之吉は言いました。うちで休んでもいいと思います。お雪は巳之吉の家へ行きました。はははお雪がとてもすきになりました。お雪はえどへ行かなくてもいいと思いました。お雪は巳之吉のつまになりました。\n\n場面（原文）:\nお雪は大層よい嫁である事が分った。巳之吉の母が死ぬようになった時――五年ばかりの後――彼女の最後の言葉は、彼女の嫁に対する愛情と賞賛の言葉であった、――そしてお雪は巳之吉に男女十人の子供を生んだ、――皆綺麗な子供で色が非常に白かった。\n田舎の人々はお雪を、生れつき自分等と違った不思議な人と考えた。大概の農夫の女は早く年を取る、しかしお雪は十人の子供の母となったあとでも、始めて村へ来た日と同じように若くて、みずみずしく見えた。\nある晩子供等が寝たあとで、お雪は行燈の光で針仕事をしていた。そして巳之吉は彼女を見つめながら云った、――"
+        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\nお雪は大層よい嫁である事が分った。巳之吉の母が死ぬようになった時――五年ばかりの後――彼女の最後の言葉は、彼女の嫁に対する愛情と賞賛の言葉であった、――そしてお雪は巳之吉に男女十人の子供を生んだ、――皆綺麗な子供で色が非常に白かった。\n田舎の人々はお雪を、生れつき自分等と違った不思議な人と考えた。大概の農夫の女は早く年を取る、しかしお雪は十人の子供の母となったあとでも、始めて村へ来た日と同じように若くて、みずみずしく見えた。\nある晩子供等が寝たあとで、お雪は行燈の光で針仕事をしていた。そして巳之吉は彼女を見つめながら云った、――\n"
       }
     ]
   },
   "responses": [
-    "{\"sentencesExpenses\": null, \"sentences\": [\"お雪はとてもよいつまでした。\", \"五年後に巳之吉のははが死にました。\", \"はははお雪がすきでした。\", \"お雪は子供を十人生みました。\", \"子供はみんな白くてきれいでした。\", \"むらの人はお雪をふしぎに思いました。\", \"ふつうの女ははやく年をとります。\", \"でもお雪は若いままでした。\", \"はじめて会ったときと同じでした。\", \"ある夜、子供が寝ていました。\", \"お雪はあかりで仕事をしていました。\", \"巳之吉はお雪を見ていました。\"], \"question\": {\"prompt\": \"お雪は子供を何人生みましたか。\", \"options\": [\"五人\", \"十人\", \"一人\"], \"answer\": 1}}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"お雪はとてもいいつまでした。\"}, {\"index\": 1, \"sentence\": \"五年後に巳之吉のははが死にました。\"}, {\"index\": 2, \"sentence\": \"はははお雪がすきでした。\"}, {\"index\": 3, \"sentence\": \"お雪はこどもを十人つくりました。\"}, {\"index\": 4, \"sentence\": \"こどもはみんな白くてきれいでした。\"}, {\"index\": 5, \"sentence\": \"むらの人はお雪をへんな人と思いました。\"}, {\"index\": 7, \"sentence\": \"でもお雪はわかいままでした。\"}, {\"index\": 9, \"sentence\": \"ある夜、こどもがねていました。\"}, {\"index\": 10, \"sentence\": \"お雪はあかりで仕事をしていました。\"}, {\"index\": 11, \"sentence\": \"巳之吉はお雪を見ていました。\"}]}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"お雪はとてもいいつまでした。\"}, {\"index\": 1, \"sentence\": \"五年後に巳之吉のははが死にました。\"}, {\"index\": 2, \"sentence\": \"はははお雪がすきでした。\"}, {\"index\": 3, \"sentence\": \"お雪はこどもを十人つくりました。\"}, {\"index\": 5, \"sentence\": \"むらの人はお雪をへんな人と思いました。\"}, {\"index\": 7, \"sentence\": \"でもお雪はわかいままでした。\"}, {\"index\": 10, \"sentence\": \"お雪はあかりで仕事をしていました。\"}, {\"index\": 11, \"sentence\": \"巳之吉はお雪を見ていました。\"}]}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"お雪はとてもいいつまでした。\"}, {\"index\": 1, \"sentence\": \"五年後に巳之吉のははが死にました。\"}, {\"index\": 2, \"sentence\": \"はははお雪がすきでした。\"}, {\"index\": 3, \"sentence\": \"お雪はこどもを十人つくりました。\"}, {\"index\": 5, \"sentence\": \"むらの人はお雪をへんな人と思いました。\"}, {\"index\": 7, \"sentence\": \"でもお雪はわかいままでした。\"}, {\"index\": 10, \"sentence\": \"お雪はあかりで仕事をしていました。\"}, {\"index\": 11, \"sentence\": \"巳之吉はお雪を見ていました。\"}]}",
-    "{\"question\": {\"prompt\": \"おゆきはこどもを何人つくりましたか。\", \"options\": [\"五人\", \"十人\", \"一人\"], \"answer\": 1}}"
+    "{\"sentences([\": [\"お雪はとてもいい女でした。\", \"5年後に巳之吉の母が死にました。\", \"母はお雪のことをほめました。\", \"お雪は子供を10人生みました。\", \"子供たちはみんな白かったです。\", \"村の人はお雪をふしぎに思いました。\", \"ふつうの女は早く年をとります。\", \"でもお雪はずっと若かったです。\", \"ある夜、子供たちが寝ました。\", \"お雪は明かりで仕事をしました。\", \"巳之吉はお雪を見て言いました。\"], \"question\": {\"prompt\": \"お雪は子供を何人生みましたか。\", \"options\": [\"5人\", \"7人\", \"10人\"], \"answer\": 2}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"お雪はとてもいい女でした。\"}, {\"index\": 1, \"sentence\": \"5年後に巳之吉の母が死にました。\"}, {\"index\": 2, \"sentence\": \"母はお雪のことをほめました。\"}, {\"index\": 3, \"sentence\": \"お雪はこどもを10人つくりました。\"}, {\"index\": 4, \"sentence\": \"こどもたちはみんな白かったです。\"}, {\"index\": 5, \"sentence\": \"むらの人はお雪をへんな人だと思いました。\"}, {\"index\": 6, \"sentence\": \"ふつうの女は早く年をとります。\"}, {\"index\": 7, \"sentence\": \"でもお雪はわかかったです。\"}, {\"index\": 8, \"sentence\": \"ある夜、こどもたちがねました。\"}, {\"index\": 9, \"sentence\": \"お雪はあかりで仕事をしました。\"}, {\"index\": 10, \"sentence\": \"巳之吉はお雪を見て言いました。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"お雪はとてもいいおんなでした。\"}, {\"index\": 1, \"sentence\": \"5年後に巳之吉の母がしにました。\"}, {\"index\": 2, \"sentence\": \"母はお雪のことをほめました。\"}, {\"index\": 3, \"sentence\": \"お雪はこどもを10人つくりました。\"}, {\"index\": 4, \"sentence\": \"こどもたちはみんな白かったです。\"}, {\"index\": 5, \"sentence\": \"むらの人はお雪をへんな人だと思いました。\"}, {\"index\": 6, \"sentence\": \"ふつうのおんなは早く年をとります。\"}, {\"index\": 7, \"sentence\": \"でもお雪はわかかったです。\"}, {\"index\": 8, \"sentence\": \"ある夜、こどもたちがねました。\"}, {\"index\": 9, \"sentence\": \"お雪はあかりで仕事をしました。\"}, {\"index\": 10, \"sentence\": \"巳之吉はお雪を見ていいました。\"}]}",
+    "{\"question\": {\"prompt\": \"おゆきさんはこどもを何人つくりましたか。\", \"options\": [\"5人\", \"7人\", \"10人\"], \"answer\": 2}}"
   ],
   "metrics": {
-    "kanjiCoverage": 0.5806451612903226,
-    "kanjiDensity": 0.1657754010695187,
-    "firstCoverage": 0.918918918918919,
-    "finalCoverage": 0.9736842105263158,
-    "retries": 3,
-    "seconds": 18.997562999999964,
+    "kanjiCoverage": 1,
+    "kanjiDensity": 0.15384615384615385,
+    "firstCoverage": 0.8888888888888888,
+    "finalCoverage": 1,
+    "retries": 2,
+    "seconds": 23.758100199999994,
     "offendingFirst": [
-      "の",
       "生む",
-      "ふしぎ"
+      "ふしぎ",
+      "ずっと",
+      "明かり"
     ],
-    "ghostWords": [
-      "の"
+    "ghostWords": [],
+    "faithIssues": [
+      {
+        "sentence": "5年くらい後に、巳之吉のお母さんがなくなりました。",
+        "problem": "The original says the mother died about five years after the marriage/entry into the house, not simply '5 years later'. Restore the context of the timeline relative to the start of the marriage.",
+        "kind": "event"
+      }
     ]
   },
   "retelling": {
@@ -44,11 +49,11 @@
         "tokens": [
           {
             "s": "お雪",
-            "hk": true,
             "r": "おゆき",
             "b": "お雪",
             "k": "story",
-            "g": "Oyuki, a young woman"
+            "g": "Oyuki, a young woman",
+            "hk": true
           },
           {
             "s": "は",
@@ -56,23 +61,23 @@
           },
           {
             "s": "とても",
-            "b": "とても",
             "k": "known",
+            "b": "とても",
             "g": "very (much), greatly, exceedingly",
             "gs": "jlpt"
           },
           {
             "s": "いい",
-            "b": "いい",
             "k": "known",
+            "b": "いい",
             "g": "good",
             "gs": "jlpt"
           },
           {
-            "s": "つま",
-            "b": "つま",
+            "s": "おんな",
             "k": "known",
-            "g": "wife (humble)",
+            "b": "おんな",
+            "g": "woman, female",
             "gs": "jlpt"
           },
           {
@@ -92,23 +97,29 @@
       {
         "tokens": [
           {
-            "s": "五",
-            "r": "ご",
+            "s": "5",
             "k": "plain"
           },
           {
             "s": "年",
+            "k": "known",
             "r": "ねん",
             "b": "年",
-            "k": "known",
             "g": "year, age",
             "gs": "jlpt"
           },
           {
-            "s": "後",
-            "r": "ご",
-            "b": "後",
+            "s": "くらい",
             "k": "known",
+            "b": "くらい",
+            "g": "dark, gloomy",
+            "gs": "jlpt"
+          },
+          {
+            "s": "後",
+            "k": "known",
+            "r": "のち",
+            "b": "後",
             "g": "afterwards (later); in the future; the rest; since then",
             "gs": "jlpt"
           },
@@ -117,38 +128,38 @@
             "k": "plain"
           },
           {
+            "s": "、",
+            "k": "plain"
+          },
+          {
             "s": "巳之吉",
-            "hk": true,
             "r": "みのきち",
             "b": "巳之吉",
             "k": "story",
-            "g": "Minokichi, the young woodcutter"
+            "g": "Minokichi, the young woodcutter",
+            "hk": true
           },
           {
             "s": "の",
-            "b": "の",
-            "k": "ghost",
-            "g": "field",
+            "k": "plain"
+          },
+          {
+            "s": "お母さん",
+            "k": "known",
+            "r": "おかあさん",
+            "b": "お母さん",
+            "g": "mother (formal)",
             "gs": "jlpt"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "は",
-            "k": "plain"
           },
           {
             "s": "が",
             "k": "plain"
           },
           {
-            "s": "死に",
-            "r": "しに",
-            "b": "死ぬ",
+            "s": "なくなり",
             "k": "known",
-            "g": "to die",
+            "b": "なくなる",
+            "g": "to disappear, to get lost",
             "gs": "jlpt"
           },
           {
@@ -168,12 +179,12 @@
       {
         "tokens": [
           {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "は",
-            "k": "plain"
+            "s": "母",
+            "k": "known",
+            "r": "はは",
+            "b": "母",
+            "g": "(my) mother",
+            "gs": "jlpt"
           },
           {
             "s": "は",
@@ -181,25 +192,36 @@
           },
           {
             "s": "お雪",
-            "hk": true,
             "r": "おゆき",
             "b": "お雪",
             "k": "story",
-            "g": "Oyuki, a young woman"
+            "g": "Oyuki, a young woman",
+            "hk": true
           },
           {
-            "s": "が",
+            "s": "の",
             "k": "plain"
           },
           {
-            "s": "すき",
-            "b": "すき",
+            "s": "こと",
             "k": "known",
-            "g": "liking, fondness, love",
+            "b": "こと",
+            "g": "thing(s), matter(s), fact",
             "gs": "jlpt"
           },
           {
-            "s": "でし",
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "ほめ",
+            "k": "known",
+            "b": "ほめる",
+            "g": "to praise; to say nice things",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
             "k": "plain"
           },
           {
@@ -216,11 +238,11 @@
         "tokens": [
           {
             "s": "お雪",
-            "hk": true,
             "r": "おゆき",
             "b": "お雪",
             "k": "story",
-            "g": "Oyuki, a young woman"
+            "g": "Oyuki, a young woman",
+            "hk": true
           },
           {
             "s": "は",
@@ -228,8 +250,8 @@
           },
           {
             "s": "こども",
-            "b": "こども",
             "k": "known",
+            "b": "こども",
             "g": "child(ren)",
             "gs": "jlpt"
           },
@@ -238,22 +260,21 @@
             "k": "plain"
           },
           {
-            "s": "十",
-            "r": "じゅう",
+            "s": "10",
             "k": "plain"
           },
           {
             "s": "人",
+            "k": "known",
             "r": "にん",
             "b": "人",
-            "k": "known",
             "g": "counter for people",
             "gs": "jlpt"
           },
           {
             "s": "つくり",
-            "b": "つくる",
             "k": "known",
+            "b": "つくる",
             "g": "to make, to create",
             "gs": "jlpt"
           },
@@ -275,9 +296,16 @@
         "tokens": [
           {
             "s": "こども",
-            "b": "こども",
             "k": "known",
+            "b": "こども",
             "g": "child(ren)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "たち",
+            "k": "known",
+            "b": "たち",
+            "g": "plural suffix",
             "gs": "jlpt"
           },
           {
@@ -289,30 +317,19 @@
             "k": "plain"
           },
           {
-            "s": "白く",
-            "r": "しろく",
-            "b": "白い",
+            "s": "白かっ",
             "k": "known",
+            "r": "しろかっ",
+            "b": "白い",
             "g": "white",
             "gs": "jlpt"
           },
           {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "きれい",
-            "b": "きれい",
-            "k": "known",
-            "g": "pretty, clean, tidy",
-            "gs": "jlpt"
-          },
-          {
-            "s": "でし",
-            "k": "plain"
-          },
-          {
             "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "です",
             "k": "plain"
           },
           {
@@ -325,8 +342,8 @@
         "tokens": [
           {
             "s": "むら",
-            "b": "むら",
             "k": "known",
+            "b": "むら",
             "g": "village",
             "gs": "jlpt"
           },
@@ -336,9 +353,9 @@
           },
           {
             "s": "人",
+            "k": "known",
             "r": "ひと",
             "b": "人",
-            "k": "known",
             "g": "counter for people",
             "gs": "jlpt"
           },
@@ -348,11 +365,11 @@
           },
           {
             "s": "お雪",
-            "hk": true,
             "r": "おゆき",
             "b": "お雪",
             "k": "story",
-            "g": "Oyuki, a young woman"
+            "g": "Oyuki, a young woman",
+            "hk": true
           },
           {
             "s": "を",
@@ -360,8 +377,8 @@
           },
           {
             "s": "へん",
-            "b": "へん",
             "k": "known",
+            "b": "へん",
             "g": "area, vicinity",
             "gs": "jlpt"
           },
@@ -371,11 +388,15 @@
           },
           {
             "s": "人",
+            "k": "known",
             "r": "ひと",
             "b": "人",
-            "k": "known",
             "g": "counter for people",
             "gs": "jlpt"
+          },
+          {
+            "s": "だ",
+            "k": "plain"
           },
           {
             "s": "と",
@@ -383,9 +404,9 @@
           },
           {
             "s": "思い",
+            "k": "known",
             "r": "おもい",
             "b": "思う",
-            "k": "known",
             "g": "to think, to feel",
             "gs": "jlpt"
           },
@@ -407,8 +428,8 @@
         "tokens": [
           {
             "s": "ふつう",
-            "b": "ふつう",
             "k": "known",
+            "b": "ふつう",
             "g": "common; usual",
             "gs": "jlpt"
           },
@@ -417,10 +438,9 @@
             "k": "plain"
           },
           {
-            "s": "女",
-            "r": "おんな",
-            "b": "女",
+            "s": "おんな",
             "k": "known",
+            "b": "おんな",
             "g": "woman, female",
             "gs": "jlpt"
           },
@@ -429,17 +449,18 @@
             "k": "plain"
           },
           {
-            "s": "はやく",
-            "b": "はやい",
+            "s": "早く",
             "k": "known",
+            "r": "はやく",
+            "b": "早い",
             "g": "early",
             "gs": "jlpt"
           },
           {
             "s": "年",
+            "k": "known",
             "r": "とし",
             "b": "年",
-            "k": "known",
             "g": "year, age",
             "gs": "jlpt"
           },
@@ -449,8 +470,8 @@
           },
           {
             "s": "とり",
-            "b": "とる",
             "k": "known",
+            "b": "とる",
             "g": "to take (a class); to get (a grade)",
             "gs": "jlpt"
           },
@@ -472,87 +493,29 @@
           },
           {
             "s": "お雪",
-            "hk": true,
             "r": "おゆき",
             "b": "お雪",
             "k": "story",
-            "g": "Oyuki, a young woman"
+            "g": "Oyuki, a young woman",
+            "hk": true
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "わかい",
-            "b": "わかい",
+            "s": "わかかっ",
             "k": "known",
+            "b": "わかい",
             "g": "young",
             "gs": "jlpt"
           },
           {
-            "s": "まま",
-            "b": "まま",
-            "k": "known",
-            "g": "as it is",
-            "gs": "jlpt"
-          },
-          {
-            "s": "でし",
-            "k": "plain"
-          },
-          {
             "s": "た",
             "k": "plain"
           },
           {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "はじめて",
-            "b": "はじめて",
-            "k": "known",
-            "g": "for the first time",
-            "gs": "jlpt"
-          },
-          {
-            "s": "会っ",
-            "r": "あっ",
-            "b": "会う",
-            "k": "known",
-            "g": "to meet, to see",
-            "gs": "jlpt"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "とき",
-            "b": "とき",
-            "k": "known",
-            "g": "at the time of ~",
-            "gs": "jlpt"
-          },
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "同じ",
-            "r": "おなじ",
-            "k": "plain"
-          },
-          {
-            "s": "でし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
+            "s": "です",
             "k": "plain"
           },
           {
@@ -569,9 +532,9 @@
           },
           {
             "s": "夜",
+            "k": "known",
             "r": "よる",
             "b": "夜",
-            "k": "known",
             "g": "evening, night",
             "gs": "jlpt"
           },
@@ -581,9 +544,16 @@
           },
           {
             "s": "こども",
-            "b": "こども",
             "k": "known",
+            "b": "こども",
             "g": "child(ren)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "たち",
+            "k": "known",
+            "b": "たち",
+            "g": "plural suffix",
             "gs": "jlpt"
           },
           {
@@ -592,20 +562,9 @@
           },
           {
             "s": "ね",
+            "k": "known",
             "b": "ねる",
-            "k": "known",
             "g": "to sleep; to go to sleep; to go to bed",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "い",
-            "b": "いる",
-            "k": "known",
-            "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
           {
@@ -626,11 +585,11 @@
         "tokens": [
           {
             "s": "お雪",
-            "hk": true,
             "r": "おゆき",
             "b": "お雪",
             "k": "story",
-            "g": "Oyuki, a young woman"
+            "g": "Oyuki, a young woman",
+            "hk": true
           },
           {
             "s": "は",
@@ -646,9 +605,9 @@
           },
           {
             "s": "仕事",
+            "k": "known",
             "r": "しごと",
             "b": "仕事",
-            "k": "known",
             "g": "work, job, occupation, employment",
             "gs": "jlpt"
           },
@@ -658,20 +617,9 @@
           },
           {
             "s": "し",
+            "k": "known",
             "b": "する",
-            "k": "known",
             "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "い",
-            "b": "いる",
-            "k": "known",
-            "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
           {
@@ -692,11 +640,11 @@
         "tokens": [
           {
             "s": "巳之吉",
-            "hk": true,
             "r": "みのきち",
             "b": "巳之吉",
             "k": "story",
-            "g": "Minokichi, the young woodcutter"
+            "g": "Minokichi, the young woodcutter",
+            "hk": true
           },
           {
             "s": "は",
@@ -704,11 +652,11 @@
           },
           {
             "s": "お雪",
-            "hk": true,
             "r": "おゆき",
             "b": "お雪",
             "k": "story",
-            "g": "Oyuki, a young woman"
+            "g": "Oyuki, a young woman",
+            "hk": true
           },
           {
             "s": "を",
@@ -716,9 +664,9 @@
           },
           {
             "s": "見",
+            "k": "known",
             "r": "み",
             "b": "見る",
-            "k": "known",
             "g": "to see, to look",
             "gs": "jlpt"
           },
@@ -727,10 +675,10 @@
             "k": "plain"
           },
           {
-            "s": "い",
-            "b": "いる",
+            "s": "いい",
             "k": "known",
-            "g": "(humble) to be (animate), to exist",
+            "b": "いう",
+            "g": "to say",
             "gs": "jlpt"
           },
           {
@@ -752,11 +700,19 @@
       "prompt": {
         "tokens": [
           {
-            "s": "おゆき",
+            "s": "お雪",
             "r": "おゆき",
             "b": "お雪",
             "k": "story",
-            "g": "Oyuki, a young woman"
+            "g": "Oyuki, a young woman",
+            "hk": true
+          },
+          {
+            "s": "さん",
+            "k": "known",
+            "b": "さん",
+            "g": "Mr. ~, Ms. ~",
+            "gs": "jlpt"
           },
           {
             "s": "は",
@@ -764,8 +720,8 @@
           },
           {
             "s": "こども",
-            "b": "こども",
             "k": "known",
+            "b": "こども",
             "g": "child(ren)",
             "gs": "jlpt"
           },
@@ -775,21 +731,21 @@
           },
           {
             "s": "何",
-            "r": "なん",
-            "k": "plain"
+            "k": "plain",
+            "r": "なん"
           },
           {
             "s": "人",
+            "k": "known",
             "r": "にん",
             "b": "人",
-            "k": "known",
             "g": "counter for people",
             "gs": "jlpt"
           },
           {
             "s": "つくり",
-            "b": "つくる",
             "k": "known",
+            "b": "つくる",
             "g": "to make, to create",
             "gs": "jlpt"
           },
@@ -815,15 +771,14 @@
         {
           "tokens": [
             {
-              "s": "五",
-              "r": "ご",
+              "s": "5",
               "k": "plain"
             },
             {
               "s": "人",
+              "k": "known",
               "r": "にん",
               "b": "人",
-              "k": "known",
               "g": "counter for people",
               "gs": "jlpt"
             }
@@ -832,15 +787,14 @@
         {
           "tokens": [
             {
-              "s": "十",
-              "r": "じゅう",
+              "s": "7",
               "k": "plain"
             },
             {
               "s": "人",
+              "k": "known",
               "r": "にん",
               "b": "人",
-              "k": "known",
               "g": "counter for people",
               "gs": "jlpt"
             }
@@ -849,39 +803,104 @@
         {
           "tokens": [
             {
-              "s": "一",
-              "r": "いち",
+              "s": "10",
               "k": "plain"
             },
             {
               "s": "人",
+              "k": "known",
               "r": "にん",
               "b": "人",
-              "k": "known",
               "g": "counter for people",
               "gs": "jlpt"
             }
           ]
         }
       ],
-      "answer": 1
+      "answer": 2
     },
     "metrics": {
-      "kanjiCoverage": 0.5806451612903226,
-      "kanjiDensity": 0.1657754010695187,
-      "firstCoverage": 0.918918918918919,
-      "finalCoverage": 0.9736842105263158,
-      "retries": 3,
-      "seconds": 18.997562999999964,
+      "kanjiCoverage": 1,
+      "kanjiDensity": 0.15384615384615385,
+      "firstCoverage": 0.8888888888888888,
+      "finalCoverage": 1,
+      "retries": 2,
+      "seconds": 23.758100199999994,
       "offendingFirst": [
-        "の",
         "生む",
-        "ふしぎ"
+        "ふしぎ",
+        "ずっと",
+        "明かり"
       ],
-      "ghostWords": [
-        "の"
+      "ghostWords": [],
+      "faithIssues": [
+        {
+          "sentence": "5年くらい後に、巳之吉のお母さんがなくなりました。",
+          "problem": "The original says the mother died about five years after the marriage/entry into the house, not simply '5 years later'. Restore the context of the timeline relative to the start of the marriage.",
+          "kind": "event"
+        }
       ]
     }
   },
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "levelRepairs": [],
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\nお雪は大層よい嫁である事が分った。巳之吉の母が死ぬようになった時――五年ばかりの後――彼女の最後の言葉は、彼女の嫁に対する愛情と賞賛の言葉であった、――そしてお雪は巳之吉に男女十人の子供を生んだ、――皆綺麗な子供で色が非常に白かった。\n田舎の人々はお雪を、生れつき自分等と違った不思議な人と考えた。大概の農夫の女は早く年を取る、しかしお雪は十人の子供の母となったあとでも、始めて村へ来た日と同じように若くて、みずみずしく見えた。\nある晩子供等が寝たあとで、お雪は行燈の光で針仕事をしていた。そして巳之吉は彼女を見つめながら云った、――\n\n語り直し:\nお雪はとてもいいおんなでした。\n5年後に巳之吉の母がしにました。\n母はお雪のことをほめました。\nお雪はこどもを10人つくりました。\nこどもたちはみんな白かったです。\nむらの人はお雪をへんな人だと思いました。\nふつうのおんなは早く年をとります。\nでもお雪はわかかったです。\nある夜、こどもたちがねました。\nお雪はあかりで仕事をしました。\n巳之吉はお雪を見ていいました。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"5年後に巳之吉の母がしにました。\", \"problem\": \"The mother died about five years after the marriage, not five years after the story started; the original says 'five years later' in the context of the marriage period. More importantly, it implies a sequence that suggests the marriage happened, then 5 years passed, then she died. The original means she died after about five years (of the marriage).\", \"kind\": \"event\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\nお雪は大層よい嫁である事が分った。巳之吉の母が死ぬようになった時――五年ばかりの後――彼女の最後の言葉は、彼女の嫁に対する愛情と賞賛の言葉であった、――そしてお雪は巳之吉に男女十人の子供を生んだ、――皆綺麗な子供で色が非常に白かった。\n田舎の人々はお雪を、生れつき自分等と違った不思議な人と考えた。大概の農夫の女は早く年を取る、しかしお雪は十人の子供の母となったあとでも、始めて村へ来た日と同じように若くて、みずみずしく見えた。\nある晩子供等が寝たあとで、お雪は行燈の光で針仕事をしていた。そして巳之吉は彼女を見つめながら云った、――\n\n語り直し:\nお雪はとてもいいおんなでした。\n5年くらい後に、巳之吉のお母さんがなくなりました。\n母はお雪のことをほめました。\nお雪はこどもを10人つくりました。\nこどもたちはみんな白かったです。\nむらの人はお雪をへんな人だと思いました。\nふつうのおんなは早く年をとります。\nでもお雪はわかかったです。\nある夜、こどもたちがねました。\nお雪はあかりで仕事をしました。\n巳之吉はお雪を見ていいました。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"5年くらい後に、巳之吉のお母さんがなくなりました。\", \"problem\": \"The original says the mother died about five years after the marriage/entry into the house, not simply '5 years later'. Restore the context of the timeline relative to the start of the marriage.\", \"kind\": \"event\"}]}"
+      }
+    ],
+    "rewrites": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Repair only the specified sentences at JLPT N4. Preserve all other sentences and events. Use natural Japanese, numeric digits for numbers, and maintain the meaning of the original. Return only JSON {\"rewrites\":[{\"index\":0,\"sentence\":\"...\"}]}."
+          },
+          {
+            "role": "user",
+            "content": "Original:\nお雪は大層よい嫁である事が分った。巳之吉の母が死ぬようになった時――五年ばかりの後――彼女の最後の言葉は、彼女の嫁に対する愛情と賞賛の言葉であった、――そしてお雪は巳之吉に男女十人の子供を生んだ、――皆綺麗な子供で色が非常に白かった。\n田舎の人々はお雪を、生れつき自分等と違った不思議な人と考えた。大概の農夫の女は早く年を取る、しかしお雪は十人の子供の母となったあとでも、始めて村へ来た日と同じように若くて、みずみずしく見えた。\nある晩子供等が寝たあとで、お雪は行燈の光で針仕事をしていた。そして巳之吉は彼女を見つめながら云った、――\nSentences:\n0: お雪はとてもいいおんなでした。\n1: 5年後に巳之吉の母がしにました。\n2: 母はお雪のことをほめました。\n3: お雪はこどもを10人つくりました。\n4: こどもたちはみんな白かったです。\n5: むらの人はお雪をへんな人だと思いました。\n6: ふつうのおんなは早く年をとります。\n7: でもお雪はわかかったです。\n8: ある夜、こどもたちがねました。\n9: お雪はあかりで仕事をしました。\n10: 巳之吉はお雪を見ていいました。\nIssues:\n[{\"sentence\":\"5年後に巳之吉の母がしにました。\",\"problem\":\"The mother died about five years after the marriage, not five years after the story started; the original says 'five years later' in the context of the marriage period. More importantly, it implies a sequence that suggests the marriage happened, then 5 years passed, then she died. The original means she died after about five years (of the marriage).\",\"kind\":\"event\"}]\nRewrite exactly indexes: 1"
+          }
+        ],
+        "response": "{\"rewrites\": [{\"index\": 1, \"sentence\": \"5年くらい後に、巳之吉のお母さんが亡くなりました。\"}]}"
+      }
+    ],
+    "before": [
+      {
+        "sentence": "5年後に巳之吉の母がしにました。",
+        "problem": "The mother died about five years after the marriage, not five years after the story started; the original says 'five years later' in the context of the marriage period. More importantly, it implies a sequence that suggests the marriage happened, then 5 years passed, then she died. The original means she died after about five years (of the marriage).",
+        "kind": "event"
+      }
+    ],
+    "after": [
+      {
+        "sentence": "5年くらい後に、巳之吉のお母さんがなくなりました。",
+        "problem": "The original says the mother died about five years after the marriage/entry into the house, not simply '5 years later'. Restore the context of the timeline relative to the start of the marriage.",
+        "kind": "event"
+      }
+    ]
+  },
+  "ladderBuild": "P4b"
 }

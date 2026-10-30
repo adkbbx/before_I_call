@@ -4,6 +4,9 @@ import { join } from 'node:path';
 import { paths, tales, levels } from './config.mjs';
 import { taleSchema, taleIndexSchema } from '../src/lib/schema.ts';
 import { readStoryWords } from './retell.mjs';
+import { loadVocab } from './jlpt.mjs';
+import { checkLadder } from './ladder.mjs';
+const vocab=loadVocab();
 const read = file => JSON.parse(readFileSync(file,'utf8'));
 export function assembleTale(config, source, storyWords, getRun) {
   const scenes = source.scenes.map(scene => {
@@ -12,7 +15,7 @@ export function assembleTale(config, source, storyWords, getRun) {
       const run = getRun(provider,level,scene.id);
       if (run && !run.failed && run.retelling) { retellings[level] = run.retelling; break; }
     }
-    return {id:scene.id,original:scene.original,retellings};
+    return {id:scene.id,original:scene.original,retellings,ladderOk:checkLadder(retellings,vocab).ladderOk};
   });
   if (scenes.some(s=>!Object.keys(s.retellings).length)) return null;
   return taleSchema.parse({...config,colophon:source.colophon,illustration:`assets/tale-${config.id}.webp`,storyWords,scenes});

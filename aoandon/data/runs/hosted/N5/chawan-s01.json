@@ -21,7 +21,7 @@
   ],
   "metrics": {
     "kanjiCoverage": 1,
-    "kanjiDensity": 0.03225806451612903,
+    "kanjiDensity": 0.03278688524590164,
     "firstCoverage": 0.6363636363636364,
     "finalCoverage": 1,
     "retries": 3,
@@ -32,7 +32,8 @@
       "わり",
       "選ぶ"
     ],
-    "ghostWords": []
+    "ghostWords": [],
+    "faithIssues": []
   },
   "retelling": {
     "level": "N5",
@@ -43,8 +44,8 @@
         "tokens": [
           {
             "s": "まえ",
-            "b": "まえる",
             "k": "known",
+            "b": "まえる",
             "g": "before, in front",
             "gs": "jlpt"
           },
@@ -58,9 +59,9 @@
           },
           {
             "s": "本",
+            "k": "known",
             "r": "ほん",
             "b": "本",
-            "k": "known",
             "g": "book",
             "gs": "jlpt"
           },
@@ -70,8 +71,8 @@
           },
           {
             "s": "あり",
-            "b": "ある",
             "k": "known",
+            "b": "ある",
             "g": "to be, to have",
             "gs": "jlpt"
           },
@@ -93,8 +94,8 @@
         "tokens": [
           {
             "s": "とても",
-            "b": "とても",
             "k": "known",
+            "b": "とても",
             "g": "very (much), greatly, exceedingly",
             "gs": "jlpt"
           },
@@ -108,9 +109,9 @@
           },
           {
             "s": "本",
+            "k": "known",
             "r": "ほん",
             "b": "本",
-            "k": "known",
             "g": "book",
             "gs": "jlpt"
           },
@@ -136,8 +137,8 @@
           },
           {
             "s": "さい",
-            "b": "さい",
             "k": "known",
+            "b": "さい",
             "g": "~ years old",
             "gs": "jlpt"
           },
@@ -151,8 +152,8 @@
           },
           {
             "s": "あり",
-            "b": "ある",
             "k": "known",
+            "b": "ある",
             "g": "to be, to have",
             "gs": "jlpt"
           },
@@ -182,8 +183,8 @@
           },
           {
             "s": "わかり",
-            "b": "わかる",
             "k": "known",
+            "b": "わかる",
             "g": "to understand",
             "gs": "jlpt"
           },
@@ -224,16 +225,17 @@
             "k": "plain"
           },
           {
-            "s": "ひとつ",
-            "b": "ひとつ",
-            "k": "known",
-            "g": "one thing",
-            "gs": "jlpt"
+            "s": "1",
+            "k": "plain"
+          },
+          {
+            "s": "つ",
+            "k": "plain"
           },
           {
             "s": "とり",
-            "b": "とる",
             "k": "known",
+            "b": "とる",
             "g": "to take (a class); to get (a grade)",
             "gs": "jlpt"
           },
@@ -257,9 +259,9 @@
         "tokens": [
           {
             "s": "本",
+            "k": "known",
             "r": "ほん",
             "b": "本",
-            "k": "known",
             "g": "book",
             "gs": "jlpt"
           },
@@ -269,8 +271,8 @@
           },
           {
             "s": "どう",
-            "b": "どう",
             "k": "known",
+            "b": "どう",
             "g": "how, in what way",
             "gs": "jlpt"
           },
@@ -297,8 +299,8 @@
           "tokens": [
             {
               "s": "さい",
-              "b": "さい",
               "k": "known",
+              "b": "さい",
               "g": "~ years old",
               "gs": "jlpt"
             },
@@ -312,8 +314,8 @@
             },
             {
               "s": "あり",
-              "b": "ある",
               "k": "known",
+              "b": "ある",
               "g": "to be, to have",
               "gs": "jlpt"
             },
@@ -335,8 +337,8 @@
           "tokens": [
             {
               "s": "ちいさかっ",
-              "b": "ちいさい",
               "k": "known",
+              "b": "ちいさい",
               "g": "small, little",
               "gs": "jlpt"
             },
@@ -358,8 +360,8 @@
           "tokens": [
             {
               "s": "さい",
-              "b": "さい",
               "k": "known",
+              "b": "さい",
               "g": "~ years old",
               "gs": "jlpt"
             },
@@ -373,8 +375,8 @@
             },
             {
               "s": "あり",
-              "b": "ある",
               "k": "known",
+              "b": "ある",
               "g": "to be, to have",
               "gs": "jlpt"
             },
@@ -405,7 +407,7 @@
     },
     "metrics": {
       "kanjiCoverage": 1,
-      "kanjiDensity": 0.03225806451612903,
+      "kanjiDensity": 0.03278688524590164,
       "firstCoverage": 0.6363636363636364,
       "finalCoverage": 1,
       "retries": 3,
@@ -416,8 +418,76 @@
         "わり",
         "選ぶ"
       ],
-      "ghostWords": []
+      "ghostWords": [],
+      "faithIssues": []
     }
   },
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b.",
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling; for a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n読者はどこか古い塔の階段を上って、真黒の中をまったてに上って行って、さてその真黒の真中に、蜘蛛の巣のかかった処が終りで外には何もないことを見出したことがありませんか。あるいは絶壁に沿うて切り開いてある海ぞいの道をたどって行って、結局一つ曲るとすぐごつごつした断崖になっていることを見出したことはありませんか。こういう経験の感情的価値は――文学上から見れば――その時起された感覚の強さと、その感覚の記憶の鮮かさによってきまる。\nところで日本の古い話し本に、今云った事と殆んど同じ感情的経験を起させる小説の断片が、不思議にも残っている。……多分、作者は無精だったのであろう、あるいは出版書肆と喧嘩したのであろう、いや事によれば作者はその小さな机から不意に呼ばれて、かえって来なかったのであろう、あるいはまたその文章の丁度真中で死の神が筆を止めさせたのであろう。とにかく何故この話が結末をつけないで、そのままになっているのか、誰にも分らない。……私は一つ代表的なのを選ぶ。\n＊\n\n語り直し:\nまえに、本がありました。\nとてもへんな本です。\nでも、さいごがありません。\nだれもわかりませんでした。\nわたしは、ひとつとりました。"
+          }
+        ],
+        "response": "{\"issues\": []}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n読者はどこか古い塔の階段を上って、真黒の中をまったてに上って行って、さてその真黒の真中に、蜘蛛の巣のかかった処が終りで外には何もないことを見出したことがありませんか。あるいは絶壁に沿うて切り開いてある海ぞいの道をたどって行って、結局一つ曲るとすぐごつごつした断崖になっていることを見出したことはありませんか。こういう経験の感情的価値は――文学上から見れば――その時起された感覚の強さと、その感覚の記憶の鮮かさによってきまる。\nところで日本の古い話し本に、今云った事と殆んど同じ感情的経験を起させる小説の断片が、不思議にも残っている。……多分、作者は無精だったのであろう、あるいは出版書肆と喧嘩したのであろう、いや事によれば作者はその小さな机から不意に呼ばれて、かえって来なかったのであろう、あるいはまたその文章の丁度真中で死の神が筆を止めさせたのであろう。とにかく何故この話が結末をつけないで、そのままになっているのか、誰にも分らない。……私は一つ代表的なのを選ぶ。\n＊\n\n語り直し:\nまえに、本がありました。\nとてもへんな本です。\nでも、さいごがありません。\nだれもわかりませんでした。\nわたしは、ひとつとりました。"
+          }
+        ],
+        "response": "{\"issues\": []}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n読者はどこか古い塔の階段を上って、真黒の中をまったてに上って行って、さてその真黒の真中に、蜘蛛の巣のかかった処が終りで外には何もないことを見出したことがありませんか。あるいは絶壁に沿うて切り開いてある海ぞいの道をたどって行って、結局一つ曲るとすぐごつごつした断崖になっていることを見出したことはありませんか。こういう経験の感情的価値は――文学上から見れば――その時起された感覚の強さと、その感覚の記憶の鮮かさによってきまる。\nところで日本の古い話し本に、今云った事と殆んど同じ感情的経験を起させる小説の断片が、不思議にも残っている。……多分、作者は無精だったのであろう、あるいは出版書肆と喧嘩したのであろう、いや事によれば作者はその小さな机から不意に呼ばれて、かえって来なかったのであろう、あるいはまたその文章の丁度真中で死の神が筆を止めさせたのであろう。とにかく何故この話が結末をつけないで、そのままになっているのか、誰にも分らない。……私は一つ代表的なのを選ぶ。\n＊\n\n語り直し:\nまえに、本がありました。\nとてもへんな本です。\nでも、さいごがありません。\nだれもわかりませんでした。\nわたしは、1つとりました。"
+          }
+        ],
+        "response": "{\"issues\": []}"
+      }
+    ],
+    "rewrites": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Repair only the specified sentences at JLPT N5. Preserve all other sentences and events. Use natural Japanese, numeric digits for numbers, and maintain the meaning of the original. Return only JSON {\"rewrites\":[{\"index\":0,\"sentence\":\"...\"}]}."
+          },
+          {
+            "role": "user",
+            "content": "Original:\n読者はどこか古い塔の階段を上って、真黒の中をまったてに上って行って、さてその真黒の真中に、蜘蛛の巣のかかった処が終りで外には何もないことを見出したことがありませんか。あるいは絶壁に沿うて切り開いてある海ぞいの道をたどって行って、結局一つ曲るとすぐごつごつした断崖になっていることを見出したことはありませんか。こういう経験の感情的価値は――文学上から見れば――その時起された感覚の強さと、その感覚の記憶の鮮かさによってきまる。\nところで日本の古い話し本に、今云った事と殆んど同じ感情的経験を起させる小説の断片が、不思議にも残っている。……多分、作者は無精だったのであろう、あるいは出版書肆と喧嘩したのであろう、いや事によれば作者はその小さな机から不意に呼ばれて、かえって来なかったのであろう、あるいはまたその文章の丁度真中で死の神が筆を止めさせたのであろう。とにかく何故この話が結末をつけないで、そのままになっているのか、誰にも分らない。……私は一つ代表的なのを選ぶ。\n＊\nSentences:\n0: まえに、本がありました。\n1: とてもへんな本です。\n2: でも、さいごがありません。\n3: だれもわかりませんでした。\n4: わたしは、ひとつとりました。\nIssues:\n[{\"sentence\":\"わたしは、ひとつとりました。\",\"kind\":\"number\",\"problem\":\"Write number words in digits or permitted kanji, never kana. Preserve their numerical value.\"}]\nRewrite exactly indexes: 4"
+          }
+        ],
+        "response": "{\"rewrites\": [{\"index\": 4, \"sentence\": \"わたしは、1つとりました。\"}]}"
+      }
+    ],
+    "before": [
+      {
+        "sentence": "わたしは、ひとつとりました。",
+        "kind": "number",
+        "problem": "Write number words in digits or permitted kanji, never kana. Preserve their numerical value."
+      }
+    ],
+    "after": []
+  },
+  "levelRepairs": []
 }

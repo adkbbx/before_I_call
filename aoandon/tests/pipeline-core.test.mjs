@@ -1,4 +1,4 @@
-import { test } from 'node:test';
+﻿import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { parseRubyLine, stripHeaderAndColophon, splitScenes, parseAozora } from '../pipeline/aozora.mjs';
 import { normalize, parseCsv, vocabFromRows, loadVocab } from '../pipeline/jlpt.mjs';
@@ -12,7 +12,8 @@ const vocab=loadVocab();
 const scene={id:'s01',original:[[{base:'人が来ました。'}]]};
 const question={prompt:'何が来ましたか。',options:['人','山','川'],answer:0};
 const provider=(answers)=>({name:'ollama',model:'fake',call:async()=>{assert.ok(answers.length,'unexpected model call');return answers.shift();}});
-const draft=(sentences, q=question)=>JSON.stringify({sentences,question:q});
+// Fixtures used for unrelated JSON/HTTP tests must also meet N4's density band.
+const draft=(sentences, q=question)=>JSON.stringify({sentences:sentences.map(s=>s==='人。'?'人ですかね。':s),question:q});
 
 test('Aozora ruby: explicit bases, trailing kanji, repetition and kana variants',()=>{
   assert.deepEqual(parseRubyLine('前｜かな交じり《よみ》後、漢字々〆ヵヶ《かんじ》。'),[{base:'前'},{base:'かな交じり',rt:'よみ'},{base:'後、'},{base:'漢字々〆ヵヶ',rt:'かんじ'},{base:'。'}]);
@@ -53,8 +54,8 @@ test('coverage maths, plain kinds, story span protection, readings and JLPT glos
 test('retell retries replace only offending sentences, preserving first metrics',async()=>{
   const v=vocabFromRows({N5:[{expression:'人',reading:'ねこ',meaning:'cat'}]});
   const q={prompt:'人？',options:['人','人。','人！'],answer:0};
-  const result=await retellScene({taleId:'sample',scene,level:'N4',vocab:v,provider:provider([draft(['人。','魑魅。'],q),JSON.stringify({rewrites:[{index:1,sentence:'人！'}]})])});
-  assert.ok(!result.failed,result.error);assert.equal(result.metrics.firstCoverage,0.5);assert.equal(result.metrics.finalCoverage,1);assert.equal(result.metrics.retries,1);assert.deepEqual(result.retelling.sentences.map(s=>s.tokens.map(t=>t.s).join('')),['人。','人！']);
+  const result=await retellScene({taleId:'sample',scene,level:'N4',vocab:v,provider:provider([draft(['人ですかね。','魑魅ですからですから。'],q),JSON.stringify({rewrites:[{index:1,sentence:'人ですかね！'}]})])});
+  assert.ok(!result.failed,result.error);assert.equal(result.metrics.firstCoverage,0.5);assert.equal(result.metrics.finalCoverage,1);assert.equal(result.metrics.retries,1);assert.deepEqual(result.retelling.sentences.map(s=>s.tokens.map(t=>t.s).join('')),['人ですかね。','人ですかね！']);
 });
 test('ghost glosses use higher JLPT entries and one model batch; question leftovers are ghosts',async()=>{
   const v=vocabFromRows({N5:[{expression:'人',reading:'ねこ',meaning:'cat'}],N2:[{expression:'魑魅',reading:'ちみ',meaning:'mountain spirit'}]});
@@ -75,7 +76,7 @@ test('provider HTTP payloads use correct schemas, timeout and mocked hosted key 
   for(const name of ['hosted','ollama']) {
     const p=createProvider({name,baseUrl:'http://example.invalid/v1/',model:'fake',apiKey:'fake-test-key'},async(url,options)=>{
       assert.ok(options.signal);const body=JSON.parse(options.body);assert.equal(body.model,'fake');
-      if(name==='hosted'){assert.equal(url,'http://example.invalid/v1/chat/completions');assert.equal(options.headers.Authorization,'Bearer fake-test-key');assert.deepEqual(body.response_format,{type:'json_object'});assert.equal(body.max_tokens,1536);}else{assert.equal(body.think,false);assert.equal(body.stream,false);assert.deepEqual(body.options,{temperature:0.4,num_ctx:8192,num_predict:1536,repeat_penalty:1.15});assert.deepEqual(body.format,{type:'object'});}
+      if(name==='hosted'){assert.equal(url,'http://example.invalid/v1/chat/completions');assert.equal(options.headers.Authorization,'Bearer fake-test-key');assert.deepEqual(body.response_format,{type:'json_object'});assert.equal(body.max_tokens,4096);}else{assert.equal(body.think,false);assert.equal(body.stream,false);assert.deepEqual(body.options,{temperature:0.4,num_ctx:8192,num_predict:1536,repeat_penalty:1.15});assert.deepEqual(body.format,{type:'object'});}
       return {ok:true,json:async()=>name==='ollama'?{message:{content:'{}'}}:{choices:[{message:{content:'{}'}}]}};
     });assert.equal(await p.call([],{type:'object'}),'{}');
   }
@@ -109,7 +110,7 @@ test('live API health, malformed body, unknown scene, busy 429 and schema-valid 
 test('JSON re-ask identifies missing rewrite indexes rather than repeating a generic error',async()=>{
   const v=vocabFromRows({N5:[{expression:'人',reading:'ねこ',meaning:'cat'}]});
   const q={prompt:'人？',options:['人','人。','人！'],answer:0};
-  const answers=[draft(['人。','魑魅。'],q),'{"rewrites":[]}','{"rewrites":[{"index":1,"sentence":"人。"}]}'];
+  const answers=[draft(['人ですかね。','魑魅ですからですから。'],q),'{"rewrites":[]}','{"rewrites":[{"index":1,"sentence":"人ですかね。"}]}'];
   let corrected=false;
   const fake={name:'ollama',model:'fake',async call(messages){if(answers.length===1){assert.match(messages.at(-1).content,/Expected exactly one rewrite for each index: 1/);corrected=true;}return answers.shift();}};
   const result=await retellScene({taleId:'sample',scene,level:'N4',vocab:v,provider:fake});
@@ -132,3 +133,4 @@ test('local JSON repair restores only a missing final rewrite-string quote',()=>
   assert.throws(()=>repairJson('{"rewrites":[{"index":0,"sentence":"unfinished}]}'));
   assert.throws(()=>repairJson('{"other":"文。}]}'));
 });
+

@@ -28,6 +28,7 @@ export const questionSchema = z.object({
 });
 
 export const metricsSchema = z.object({
+  faithIssues: z.array(z.object({ sentence: z.string(), problem: z.string(), kind: z.enum(['number', 'who', 'event', 'death', 'invented', 'unnatural']) })).optional(),
   kanjiCoverage: z.number().min(0).max(1).optional(),
   kanjiDensity: z.number().min(0).max(1).optional(),
   firstCoverage: z.number().min(0).max(1),
@@ -50,6 +51,7 @@ export const retellingSchema = z.object({
 export const sceneSchema = z
   .object({
     id: z.string().min(1),
+    ladderOk: z.boolean().optional(),
     original: z.array(z.array(rubySchema).min(1)).min(1),
     retellings: z.object({
       N5: retellingSchema.optional(),

@@ -24,7 +24,7 @@ test('blow: defaults, invalid frames and invalid timing', () => {
   assert.throws(() => createBlowDetector({ frameMs: 0 }));
 });
 test('furigana: every token kind and mode, including story readings in off mode', () => {
-  const expected = { known: [false, true, false], story: [true, true, true], ghost: [true, true, false], plain: [false, false, false] };
+  const expected = { known: [false, true, false], story: [true, true, true], ghost: [false, true, false], plain: [false, false, false] };
   for (const k of ['known', 'story', 'ghost', 'plain'] as const) for (const [i, mode] of (['above-level', 'all', 'off'] as const).entries()) {
     assert.equal(showFurigana({ s: '語', r: 'ご', k } satisfies Token, mode), expected[k][i]);
     assert.equal(showFurigana({ s: '語', k }, mode), false);

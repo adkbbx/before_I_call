@@ -1,6 +1,6 @@
 # Retelling metrics
 
-Date: 2026-10-29
+Date: 2026-10-30
 
 Models: gemma-4-31B-it, gemma4:e2b-it-qat
 
@@ -10,19 +10,19 @@ Coverage counts known content tokens; story words are excluded. Failed scenes ar
 
 | Scenes | First vocabulary | Final vocabulary | Kanji coverage | Kanji density | Retries / scene | Seconds / scene | Ghost words / scene | Failed scenes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 53 | 0.877 | 0.952 | 0.917 | 0.047 | 2.849 | 27.042 | 2.170 | 0 |
+| 53 | 0.864 | 0.922 | 1.000 | 0.215 | 6.566 | 61.730 | 4.434 | 0 |
 
 ## hosted / N4
 
 | Scenes | First vocabulary | Final vocabulary | Kanji coverage | Kanji density | Retries / scene | Seconds / scene | Ghost words / scene | Failed scenes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 53 | 0.845 | 0.933 | 0.757 | 0.062 | 2.830 | 28.802 | 3.019 | 0 |
+| 53 | 0.814 | 0.862 | 1.000 | 0.152 | 6.962 | 54.588 | 6.226 | 0 |
 
 ## hosted / N5
 
 | Scenes | First vocabulary | Final vocabulary | Kanji coverage | Kanji density | Retries / scene | Seconds / scene | Ghost words / scene | Failed scenes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 53 | 0.753 | 0.908 | 0.606 | 0.072 | 2.925 | 25.964 | 3.019 | 0 |
+| 53 | 0.758 | 0.829 | 1.000 | 0.089 | 5.642 | 36.744 | 4.981 | 0 |
 
 ## ollama / N4
 

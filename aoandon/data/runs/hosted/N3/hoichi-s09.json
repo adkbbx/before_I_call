@@ -4,36 +4,47 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration, adding ～ようだ, ～らしい, the passive and ～ために.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Use them only when needed, in hiragana when their kanji is above the level. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小才中五六円天手文日月木水火犬王出右四左本正田白目石立万今元公内切午友太少引心方牛父止兄冬北半古台外市広母用世主他代写去号平打申礼休先名字年早気百耳男町花見赤足車不仕交会光同回多当毎米考肉自色行西何体作図声売弟形来社言走近学空金雨青草音化地両全向安曲有次死京国夜妹姉店明東歩画直知長前南室後思活海点科茶食首欠由民付以失必未末校夏家時紙記通高強教理組船週雪魚鳥黒支住助医君対局役投決究者研馬場朝番答絵買道間数楽話電所事使具受和始定実服泳物苦表部乗客屋度待持界発相美負送重談要勝起速配酒院終習転進落葉運開集飲業漢路歌聞語読鳴横調親頭顔病最争伝共好成老位初別利努労命放昔注育指洋神追戦良特便働意味勉庭息旅流消員都動商悪族深球陽寒悲期歯港登着野生亡合風予反新返問宿想感暗様福銀題館駅料殺然熱選願情映疑皆例参完念折望束残求約性格能術私帰春昼晴秋計列式信単変夫建昨法英飯晩猫園曜書遠係取品守幸急真箱面喜治笑辞関政留険危存原薬側堂席敗果因常識非官察愛警覚説試告種達類報等借座忘洗験許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差質供限与渡景抜候構捕慣満掛居突招段腹痛退貸迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\nその女はこう云った――\n『私共は貴方が琵琶の名人であって、また謡う方でも肩を並べるもののない事は聞き及んでいた事では御座いますが、貴方が今晩御聴かせ下すったようなあんなお腕前をお有ちになろうとは思いも致しませんでした。殿様には大層御気に召し、貴方に十分な御礼を下さる御考えである由を御伝え申すようにとの事に御座います。が、これから後六日の間毎晩一度ずつ殿様の御前で演奏をお聞きに入れるようとの御意に御座います――その上で殿様にはたぶん御帰りの旅に上られる事と存じます。それ故明晩も同じ時刻に、ここへ御出向きなされませ。今夜、貴方を御案内いたしたあの家来が、また、御迎えに参るで御座いましょう……それからも一つ貴方に御伝えするように申しつけられた事が御座います。それは殿様がこの赤間ヶ関に御滞在中、貴方がこの御殿に御上りになる事を誰れにも御話しにならぬようとの御所望に御座います。殿様には御忍びの御旅行ゆえ、かような事はいっさい口外致さぬようにとの御上意によりますので。……ただ今、御自由に御坊に御帰りあそばせ』"
+        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\nその女はこう云った――\n『私共は貴方が琵琶の名人であって、また謡う方でも肩を並べるもののない事は聞き及んでいた事では御座いますが、貴方が今晩御聴かせ下すったようなあんなお腕前をお有ちになろうとは思いも致しませんでした。殿様には大層御気に召し、貴方に十分な御礼を下さる御考えである由を御伝え申すようにとの事に御座います。が、これから後六日の間毎晩一度ずつ殿様の御前で演奏をお聞きに入れるようとの御意に御座います――その上で殿様にはたぶん御帰りの旅に上られる事と存じます。それ故明晩も同じ時刻に、ここへ御出向きなされませ。今夜、貴方を御案内いたしたあの家来が、また、御迎えに参るで御座いましょう……それからも一つ貴方に御伝えするように申しつけられた事が御座います。それは殿様がこの赤間ヶ関に御滞在中、貴方がこの御殿に御上りになる事を誰れにも御話しにならぬようとの御所望に御座います。殿様には御忍びの御旅行ゆえ、かような事はいっさい口外致さぬようにとの御上意によりますので。……ただ今、御自由に御坊に御帰りあそばせ』\nThis N3 retelling must be harder than N4. N4 measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.15432098765432098,\"meanLength\":16.2,\"advancedShare\":0.3684210526315789}. Make kanji density and mean sentence length strictly larger, and N4+N3 vocabulary share strictly larger than 0.3684210526315789. Use longer connected sentences and relevant N3 vocabulary, preserving the original meaning. Current ladder failures: advancedShare."
       }
     ]
   },
   "responses": [
-    "{\"sentences\": [\"女の人が話した。芳一の琵琶はとても上手だったようだ。殿様はとても喜んだらしい。殿様は芳一に礼をしたいと考えた。そのため、六日の間、毎晩演奏してほしいと言った。明日も同じ時間にここへ来てほしいと言った。家来がまた迎えに来るだろう。しかし、誰にもこのことを話してはいけない。殿様はひそかに旅行をしていたからだ。それから、和尚がいるところへ帰っていいと言われた。\"], \"question\": {\"prompt\": \"殿様は芳一に、いつまで演奏してほしいと言いましたか。\", \"options\": [\"六日の間\", \"一日の間\", \"一年の間\"], \"answer\": 0}}",
-    "{\"rewrites\":[{\"index\":1,\"sentence\":\"ほういちのびわはとてもじょうずだったようだ。\"},{\"index\":2,\"sentence\":\"とのさまはとてもよろこんだらしい。\"},{\"index\":3,\"sentence\":\"とのさまはほういちにれいをしたいとかんがえた。\"},{\"index\":4,\"sentence\":\"そのため、むいかのあいだ、まいばんえんそうしてほしいと言った。\"},{\"index\":6,\"sentence\":\"けらいがまたむかえにくるだろう。\"},{\"index\":7,\"sentence\":\"しかし、だれにもこのことをはなしてはいけない。\"},{\"index\":8,\"sentence\":\"とのさまは ひそかに りょこうをしていたからだ。\"},{\"index\":9,\"sentence\":\"それから、おしょうがいるところへかえっていいと言われた。\"}]}",
-    "{\"rewrites\": [{\"index\": 4, \"sentence\": \"そのため、六日の間、まいばん音をだしてほしいと言った。\"}, {\"index\": 6, \"sentence\": \"つかいの人がまたむかえに来るだろう。\"}, {\"index\": 8, \"sentence\": \"とのさまは、だれにもしらず旅をしていたからだ。\"}, {\"index\": 9, \"sentence\": \"それから、おしょうのところへ戻れと言われた。\"}]}",
-    "{\"question\": {\"prompt\": \"とのさまは、ほういちにいつまでえんそうしてほしいと言いましたか。\", \"options\": [\"六日の間\", \"一日の間\", \"一年の間\"], \"answer\": 0}}",
-    "{\"glosses\": {\"れる\": \"passive voice marker\"}}"
+    "{\"sentencesにつながる\": [\"女は、芳一が琵琶の名人であることは聞いていたが、\", \"今夜の演奏は想像以上の素晴らしさだったと言ったので、\", \"殿様がとても気に入り、十分な礼を出すつもりだと言った。\", \"そして、あと6日の間、毎晩殿様の前で演奏してほしいので、\", \"明日も同じ時間にここに来るようにと伝えられた。\", \"今夜案内した家来が、また芳一を迎えに来るようだ。\", \"さらに、殿様がここにいることは誰にも話してはいけないので、\", \"秘密にするようにと言われて、芳一は坊に帰った。\"], \"question\": {\"prompt\": \"殿様は芳一に何を頼みましたか。\", \"options\": [\"6日間、毎晩演奏すること\", \"家来と一緒に旅行すること\", \"琵琶を殿様にプレゼントすること\"], \"answer\": 0}}",
+    "{\"sentences\": [\"女は、芳一が琵琶の名人であることは聞いていたが、\", \"今夜の演奏は想像以上の素晴らしさだったと言ったので、\", \"殿様がとても気に入り、十分な礼を出すつもりだと言った。\", \"そして、あと6日の間、毎晩殿様の前で演奏してほしいので、\", \"明日も同じ時間にここに来るようにと伝えられた。\", \"今夜案内した家来が、また芳一を迎えに来るようだ。\", \"さらに、殿様がここにいることは誰にも話してはいけないので、\", \"秘密にするようにと言われて、芳一は坊に帰った。\"], \"question\": {\"prompt\": \"殿様は芳一に何を頼みましたか。\", \"options\": [\"6日間、毎晩演奏すること\", \"家来と一緒に旅行すること\", \"琵琶を殿様にプレゼントすること\"], \"answer\": 0}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"女は、芳一が琵琶の名人であることは聞いていたが、\"}, {\"index\": 1, \"sentence\": \"今夜のえんそうはそうぞう以上のすばらしさだったので、\"}, {\"index\": 2, \"sentence\": \"とのさまがとても気に入り、じゅうぶんな礼を出すと言った。\"}, {\"index\": 3, \"sentence\": \"そして、あと6日の間、毎晩とのさまの前でえんそうしてほしいので、\"}, {\"index\": 4, \"sentence\": \"明日も同じ時間にここに来るようにと伝えられた。\"}, {\"index\": 5, \"sentence\": \"今夜あんないした人が、また芳一を迎えに来るようだ。\"}, {\"index\": 6, \"sentence\": \"さらに、とのさまがここにいることはだれにも話してはいけないので、\"}, {\"index\": 7, \"sentence\": \"ひみつにするようにと言われて、芳一はぼうに帰った。\"}]}",
+    "{\"rewrites\": [{\"index\": 1, \"sentence\": \"今夜のえんそうはそうぞう以上に良かったので、\"}, {\"index\": 4, \"sentence\": \"明日も同じ時間にここに来てほしいと伝えられた。\"}, {\"index\": 7, \"sentence\": \"口に出さないようにと言われて、芳一はぼうに帰った。\"}]}",
+    "{\"rewrites\": [{\"index\": 4, \"sentence\": \"明日も同じ時間にここに来るようにと言われた。\"}, {\"index\": 7, \"sentence\": \"口に出さないようにと言われたので、芳一はぼうに帰った。\"}]}",
+    "{\"question\": {\"prompt\": \"とのさまは芳一に何を頼みましたか。\", \"options\": [\"6日間、毎晩えんそうすること\", \"とのさまと一緒に旅行すること\", \"琵琶をとのさまにプレゼントすること\"], \"answer\": 0}}",
+    "{\"glosses\": {\"れる\": \"passive voice marker\", \"日間\": \"number of days\"}}"
   ],
   "metrics": {
     "kanjiCoverage": 1,
-    "kanjiDensity": 0.09803921568627451,
-    "firstCoverage": 0.8636363636363636,
-    "finalCoverage": 0.9772727272727273,
-    "retries": 2,
-    "seconds": 8.532899900000004,
+    "kanjiDensity": 0.22580645161290322,
+    "firstCoverage": 0.8727272727272727,
+    "finalCoverage": 0.96,
+    "retries": 9,
+    "seconds": 76.90030279999998,
     "offendingFirst": [
       "殿様",
+      "られる",
       "家来",
-      "ひそか",
-      "れる"
+      "れる",
+      "坊"
     ],
     "ghostWords": [
-      "れる"
+      "れる",
+      "日間"
+    ],
+    "faithIssues": [
+      {
+        "sentence": "あと6日の間、毎晩とのさまの前でひいてほしいので、",
+        "problem": "Number words must not be spelled in kana. Change 6 to 6 or 六.",
+        "kind": "number"
+      }
     ]
   },
   "retelling": {
@@ -45,10 +56,97 @@
         "tokens": [
           {
             "s": "女",
+            "k": "known",
             "r": "おんな",
             "b": "女",
-            "k": "known",
             "g": "woman, female",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "芳一",
+            "r": "ほういち",
+            "b": "芳一",
+            "k": "story",
+            "g": "Hoichi, a blind musician",
+            "hk": true
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "琵琶",
+            "r": "びわ",
+            "b": "琵琶",
+            "k": "story",
+            "g": "Japanese lute",
+            "hk": true
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "名人",
+            "k": "known",
+            "r": "めいじん",
+            "b": "名人",
+            "g": "master, expert",
+            "gs": "jlpt"
+          },
+          {
+            "s": "だ",
+            "k": "plain"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "聞い",
+            "k": "known",
+            "r": "きい",
+            "b": "聞く",
+            "g": "to hear, to listen, to ask",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "k": "known",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "今夜",
+            "k": "known",
+            "r": "こんや",
+            "b": "今夜",
+            "g": "this evening, tonight",
             "gs": "jlpt"
           },
           {
@@ -56,11 +154,86 @@
             "k": "plain"
           },
           {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
+            "s": "えん",
             "k": "known",
-            "g": "counter for people",
+            "b": "える",
+            "g": "to get, to gain, to win, to learn",
+            "gs": "jlpt"
+          },
+          {
+            "s": "そう",
+            "k": "known",
+            "b": "そう",
+            "g": "yes; appears, to be the case",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "そう",
+            "k": "known",
+            "b": "そう",
+            "g": "yes; appears, to be the case",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ぞう",
+            "k": "known",
+            "b": "ぞう",
+            "g": "elephant",
+            "gs": "jlpt"
+          },
+          {
+            "s": "以上",
+            "k": "known",
+            "r": "いじょう",
+            "b": "以上",
+            "g": "more than; this is all",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "良かっ",
+            "k": "known",
+            "r": "よかっ",
+            "b": "良い",
+            "g": "good, nice",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "ので",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "さま",
+            "k": "known",
+            "b": "さま",
+            "g": "Mr., Mrs., Ms.",
             "gs": "jlpt"
           },
           {
@@ -68,11 +241,58 @@
             "k": "plain"
           },
           {
-            "s": "話し",
-            "r": "はなし",
-            "b": "話す",
+            "s": "気に入り",
             "k": "known",
-            "g": "to speak",
+            "r": "きにいり",
+            "b": "気に入る",
+            "g": "to like, to be please",
+            "gs": "jlpt"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "じゅうぶん",
+            "k": "known",
+            "b": "じゅうぶん",
+            "g": "enough",
+            "gs": "jlpt"
+          },
+          {
+            "s": "な",
+            "k": "plain"
+          },
+          {
+            "s": "礼",
+            "k": "known",
+            "r": "れい",
+            "b": "礼",
+            "g": "expression of gratitude; bow",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "出す",
+            "k": "known",
+            "r": "だす",
+            "b": "出す",
+            "g": "to take (something) out; to hand in (something)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "言っ",
+            "k": "known",
+            "r": "いっ",
+            "b": "言う",
+            "g": "to say",
             "gs": "jlpt"
           },
           {
@@ -88,53 +308,266 @@
       {
         "tokens": [
           {
-            "s": "ほういち",
-            "r": "ほういち",
-            "b": "芳一",
-            "k": "story",
-            "g": "Hoichi, a blind musician"
+            "s": "あと",
+            "k": "known",
+            "b": "あと",
+            "g": "afterwards (later); in the future; the rest; since then",
+            "gs": "jlpt"
+          },
+          {
+            "s": "6",
+            "k": "plain"
+          },
+          {
+            "s": "日",
+            "k": "known",
+            "r": "にち",
+            "b": "日",
+            "g": "~ day of the month, for ~ days",
+            "gs": "jlpt"
           },
           {
             "s": "の",
             "k": "plain"
           },
           {
-            "s": "びわ",
-            "r": "びわ",
-            "b": "琵琶",
-            "k": "story",
-            "g": "Japanese lute"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "とても",
-            "b": "とても",
+            "s": "間",
             "k": "known",
-            "g": "very (much), greatly, exceedingly",
+            "r": "ま",
+            "b": "間",
+            "g": "space, interval",
             "gs": "jlpt"
           },
           {
-            "s": "じょうず",
-            "b": "じょうず",
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "毎晩",
             "k": "known",
-            "g": "be good at, skillful",
+            "r": "まいばん",
+            "b": "毎晩",
+            "g": "every night",
             "gs": "jlpt"
           },
           {
-            "s": "だっ",
+            "s": "と",
             "k": "plain"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "さま",
+            "k": "known",
+            "b": "さま",
+            "g": "Mr., Mrs., Ms.",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "前",
+            "k": "known",
+            "r": "まえ",
+            "b": "前",
+            "g": "before, in front",
+            "gs": "jlpt"
+          },
+          {
+            "s": "で",
+            "k": "plain"
+          },
+          {
+            "s": "ひい",
+            "k": "known",
+            "b": "ひく",
+            "g": "to pull, to draw; subtract",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "ほしい",
+            "k": "known",
+            "b": "ほしい",
+            "g": "to want, in need of",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ので",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "明日",
+            "k": "known",
+            "r": "あした",
+            "b": "明日",
+            "g": "tomorrow",
+            "gs": "jlpt"
+          },
+          {
+            "s": "も",
+            "k": "plain"
+          },
+          {
+            "s": "同じ",
+            "k": "plain",
+            "r": "おなじ"
+          },
+          {
+            "s": "時間",
+            "k": "known",
+            "r": "じかん",
+            "b": "時間",
+            "g": "time",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "ここ",
+            "k": "plain"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "来る",
+            "k": "known",
+            "r": "くる",
+            "b": "来る",
+            "g": "to come",
+            "gs": "jlpt"
+          },
+          {
+            "s": "よう",
+            "k": "known",
+            "b": "よう",
+            "g": "errand, task, business (to take care of)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "言わ",
+            "k": "known",
+            "r": "いわ",
+            "b": "言う",
+            "g": "to say",
+            "gs": "jlpt"
+          },
+          {
+            "s": "れ",
+            "k": "ghost",
+            "b": "れる",
+            "g": "passive/potential auxiliary",
+            "gs": "model"
           },
           {
             "s": "た",
             "k": "plain"
           },
           {
-            "s": "よう",
-            "b": "よう",
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "今夜",
             "k": "known",
+            "r": "こんや",
+            "b": "今夜",
+            "g": "this evening, tonight",
+            "gs": "jlpt"
+          },
+          {
+            "s": "あんな",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "k": "known",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "し",
+            "k": "known",
+            "b": "する",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "k": "known",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "また",
+            "k": "plain"
+          },
+          {
+            "s": "迎え",
+            "k": "known",
+            "r": "むかえ",
+            "b": "迎える",
+            "g": "to welcome; to meet; to greet",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "来る",
+            "k": "known",
+            "r": "くる",
+            "b": "来る",
+            "g": "to come",
+            "gs": "jlpt"
+          },
+          {
+            "s": "よう",
+            "k": "known",
+            "b": "よう",
             "g": "errand, task, business (to take care of)",
             "gs": "jlpt"
           },
@@ -160,329 +593,9 @@
           },
           {
             "s": "さま",
+            "k": "known",
             "b": "さま",
-            "k": "known",
             "g": "Mr., Mrs., Ms.",
-            "gs": "jlpt"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "とても",
-            "b": "とても",
-            "k": "known",
-            "g": "very (much), greatly, exceedingly",
-            "gs": "jlpt"
-          },
-          {
-            "s": "よろこん",
-            "b": "よろこぶ",
-            "k": "known",
-            "g": "to rejoice, to be delighted, to be glad",
-            "gs": "jlpt"
-          },
-          {
-            "s": "だ",
-            "k": "plain"
-          },
-          {
-            "s": "らしい",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "さま",
-            "b": "さま",
-            "k": "known",
-            "g": "Mr., Mrs., Ms.",
-            "gs": "jlpt"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "ほういち",
-            "r": "ほういち",
-            "b": "芳一",
-            "k": "story",
-            "g": "Hoichi, a blind musician"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "れい",
-            "b": "れい",
-            "k": "known",
-            "g": "zero, nought",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "し",
-            "b": "する",
-            "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "たい",
-            "k": "plain"
-          },
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "かんがえ",
-            "b": "かんがえる",
-            "k": "known",
-            "g": "to think (about); to consider",
-            "gs": "jlpt"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "その",
-            "k": "plain"
-          },
-          {
-            "s": "ため",
-            "b": "ため",
-            "k": "known",
-            "g": "good, advantage, in order to",
-            "gs": "jlpt"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "六",
-            "r": "ろく",
-            "k": "plain"
-          },
-          {
-            "s": "日",
-            "r": "にち",
-            "b": "日",
-            "k": "known",
-            "g": "~ day of the month, for ~ days",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "間",
-            "r": "ま",
-            "b": "間",
-            "k": "known",
-            "g": "space, interval",
-            "gs": "jlpt"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "まい",
-            "b": "まう",
-            "k": "known",
-            "g": "to dance, to flutter about, to revolve",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ばん",
-            "b": "ばん",
-            "k": "known",
-            "g": "evening",
-            "gs": "jlpt"
-          },
-          {
-            "s": "音",
-            "r": "おん",
-            "b": "音",
-            "k": "known",
-            "g": "sound, note",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "だし",
-            "b": "だす",
-            "k": "known",
-            "g": "to take (something) out; to hand in (something)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "ほしい",
-            "b": "ほしい",
-            "k": "known",
-            "g": "to want, in need of",
-            "gs": "jlpt"
-          },
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "言っ",
-            "r": "いっ",
-            "b": "言う",
-            "k": "known",
-            "g": "to say",
-            "gs": "jlpt"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "明日",
-            "r": "あした",
-            "b": "明日",
-            "k": "known",
-            "g": "tomorrow",
-            "gs": "jlpt"
-          },
-          {
-            "s": "も",
-            "k": "plain"
-          },
-          {
-            "s": "同じ",
-            "r": "おなじ",
-            "k": "plain"
-          },
-          {
-            "s": "時間",
-            "r": "じかん",
-            "b": "時間",
-            "k": "known",
-            "g": "time",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "ここ",
-            "k": "plain"
-          },
-          {
-            "s": "へ",
-            "k": "plain"
-          },
-          {
-            "s": "来",
-            "r": "き",
-            "b": "来る",
-            "k": "known",
-            "g": "to come",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "ほしい",
-            "b": "ほしい",
-            "k": "known",
-            "g": "to want, in need of",
-            "gs": "jlpt"
-          },
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "言っ",
-            "r": "いっ",
-            "b": "言う",
-            "k": "known",
-            "g": "to say",
-            "gs": "jlpt"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "つかい",
-            "b": "つかう",
-            "k": "known",
-            "g": "to use",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
             "gs": "jlpt"
           },
           {
@@ -490,53 +603,29 @@
             "k": "plain"
           },
           {
-            "s": "また",
-            "b": "また",
-            "k": "known",
-            "g": "and; furthermore",
-            "gs": "jlpt"
-          },
-          {
-            "s": "むかえ",
-            "b": "むかう",
-            "k": "known",
-            "g": "to face, to go towards",
-            "gs": "jlpt"
+            "s": "ここ",
+            "k": "plain"
           },
           {
             "s": "に",
             "k": "plain"
           },
           {
-            "s": "来る",
-            "r": "くる",
-            "b": "来る",
+            "s": "いる",
             "k": "known",
-            "g": "to come",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
           {
-            "s": "だろ",
-            "k": "plain"
+            "s": "こと",
+            "k": "known",
+            "b": "こと",
+            "g": "thing(s), matter(s), fact",
+            "gs": "jlpt"
           },
           {
-            "s": "う",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "しかし",
-            "k": "plain"
-          },
-          {
-            "s": "、",
+            "s": "は",
             "k": "plain"
           },
           {
@@ -552,24 +641,10 @@
             "k": "plain"
           },
           {
-            "s": "この",
-            "k": "plain"
-          },
-          {
-            "s": "こと",
-            "b": "こと",
+            "s": "話し",
             "k": "known",
-            "g": "thing(s), matter(s), fact",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "はなし",
-            "b": "はなす",
-            "k": "known",
+            "r": "はなし",
+            "b": "話す",
             "g": "to speak",
             "gs": "jlpt"
           },
@@ -583,8 +658,8 @@
           },
           {
             "s": "いけ",
-            "b": "いける",
             "k": "known",
+            "b": "いける",
             "g": "to arrange (flowers)",
             "gs": "jlpt"
           },
@@ -593,7 +668,11 @@
             "k": "plain"
           },
           {
-            "s": "。",
+            "s": "ので",
+            "k": "plain"
+          },
+          {
+            "s": "、",
             "k": "plain"
           }
         ]
@@ -601,103 +680,57 @@
       {
         "tokens": [
           {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "さま",
-            "b": "さま",
+            "s": "口",
             "k": "known",
-            "g": "Mr., Mrs., Ms.",
+            "r": "くち",
+            "b": "口",
+            "g": "job opening; mouth",
             "gs": "jlpt"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "だれ",
-            "k": "plain"
           },
           {
             "s": "に",
             "k": "plain"
           },
           {
-            "s": "も",
-            "k": "plain"
-          },
-          {
-            "s": "しら",
-            "b": "しる",
+            "s": "出さ",
             "k": "known",
-            "g": "to know, to understand",
+            "r": "ださ",
+            "b": "出す",
+            "g": "to take (something) out; to hand in (something)",
             "gs": "jlpt"
           },
           {
-            "s": "ず",
+            "s": "ない",
             "k": "plain"
           },
           {
-            "s": "旅",
-            "r": "たび",
-            "b": "旅",
+            "s": "よう",
             "k": "known",
-            "g": "travel, trip, journey",
+            "b": "よう",
+            "g": "errand, task, business (to take care of)",
             "gs": "jlpt"
           },
           {
-            "s": "を",
+            "s": "に",
             "k": "plain"
           },
           {
-            "s": "し",
-            "b": "する",
+            "s": "言わ",
             "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "r": "いわ",
+            "b": "言う",
+            "g": "to say",
             "gs": "jlpt"
+          },
+          {
+            "s": "れ",
+            "k": "ghost",
+            "b": "れる",
+            "g": "passive/potential auxiliary",
+            "gs": "model"
           },
           {
             "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "い",
-            "b": "いる",
-            "k": "known",
-            "g": "(humble) to be (animate), to exist",
-            "gs": "jlpt"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "から",
-            "k": "plain"
-          },
-          {
-            "s": "だ",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "それから",
             "k": "plain"
           },
           {
@@ -705,53 +738,35 @@
             "k": "plain"
           },
           {
-            "s": "おしょう",
-            "r": "おしょう",
-            "b": "和尚",
+            "s": "芳一",
+            "r": "ほういち",
+            "b": "芳一",
             "k": "story",
-            "g": "Buddhist head priest"
+            "g": "Hoichi, a blind musician",
+            "hk": true
           },
           {
-            "s": "の",
+            "s": "は",
             "k": "plain"
           },
           {
-            "s": "ところ",
-            "b": "ところ",
+            "s": "ぼう",
             "k": "known",
-            "g": "place",
+            "b": "ぼう",
+            "g": "pole, rod, stick",
             "gs": "jlpt"
           },
           {
-            "s": "へ",
+            "s": "に",
             "k": "plain"
           },
           {
-            "s": "戻れ",
-            "r": "もどれ",
-            "b": "戻る",
+            "s": "帰っ",
             "k": "known",
-            "g": "to return (v.i.); to come back",
+            "r": "かえっ",
+            "b": "帰る",
+            "g": "to go back, to go home, to return",
             "gs": "jlpt"
-          },
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "言わ",
-            "r": "いわ",
-            "b": "言う",
-            "k": "known",
-            "g": "to say",
-            "gs": "jlpt"
-          },
-          {
-            "s": "れ",
-            "b": "れる",
-            "k": "ghost",
-            "g": "passive voice marker",
-            "gs": "model"
           },
           {
             "s": "た",
@@ -777,8 +792,8 @@
           },
           {
             "s": "さま",
-            "b": "さま",
             "k": "known",
+            "b": "さま",
             "g": "Mr., Mrs., Ms.",
             "gs": "jlpt"
           },
@@ -787,77 +802,32 @@
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "ほういち",
+            "s": "芳一",
             "r": "ほういち",
             "b": "芳一",
             "k": "story",
-            "g": "Hoichi, a blind musician"
+            "g": "Hoichi, a blind musician",
+            "hk": true
           },
           {
             "s": "に",
             "k": "plain"
           },
           {
-            "s": "い",
-            "b": "いる",
-            "k": "known",
-            "g": "(humble) to be (animate), to exist",
-            "gs": "jlpt"
+            "s": "何",
+            "k": "plain",
+            "r": "なに"
           },
           {
-            "s": "つ",
+            "s": "を",
             "k": "plain"
           },
           {
-            "s": "まで",
-            "k": "plain"
-          },
-          {
-            "s": "えん",
-            "b": "えむ",
+            "s": "頼み",
             "k": "known",
-            "g": "Yen",
-            "gs": "jlpt"
-          },
-          {
-            "s": "そう",
-            "b": "そう",
-            "k": "known",
-            "g": "yes; appears, to be the case",
-            "gs": "jlpt"
-          },
-          {
-            "s": "し",
-            "b": "する",
-            "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "ほしい",
-            "b": "ほしい",
-            "k": "known",
-            "g": "to want, in need of",
-            "gs": "jlpt"
-          },
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "言い",
-            "r": "いい",
-            "b": "言う",
-            "k": "known",
-            "g": "to say",
+            "r": "たのみ",
+            "b": "頼む",
+            "g": "to request, to ask (a favor)",
             "gs": "jlpt"
           },
           {
@@ -882,28 +852,56 @@
         {
           "tokens": [
             {
-              "s": "一",
-              "r": "いち",
+              "s": "と",
               "k": "plain"
-            },
-            {
-              "s": "日",
-              "r": "にち",
-              "b": "日",
-              "k": "known",
-              "g": "~ day of the month, for ~ days",
-              "gs": "jlpt"
             },
             {
               "s": "の",
               "k": "plain"
             },
             {
-              "s": "間",
-              "r": "ま",
-              "b": "間",
+              "s": "さま",
               "k": "known",
-              "g": "space, interval",
+              "b": "さま",
+              "g": "Mr., Mrs., Ms.",
+              "gs": "jlpt"
+            },
+            {
+              "s": "と",
+              "k": "plain"
+            },
+            {
+              "s": "一緒",
+              "k": "known",
+              "r": "いっしょ",
+              "b": "一緒",
+              "g": "together",
+              "gs": "jlpt"
+            },
+            {
+              "s": "に",
+              "k": "plain"
+            },
+            {
+              "s": "旅行",
+              "k": "known",
+              "r": "りょこう",
+              "b": "旅行",
+              "g": "travel, trip",
+              "gs": "jlpt"
+            },
+            {
+              "s": "する",
+              "k": "known",
+              "b": "する",
+              "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+              "gs": "jlpt"
+            },
+            {
+              "s": "こと",
+              "k": "known",
+              "b": "こと",
+              "g": "thing(s), matter(s), fact",
               "gs": "jlpt"
             }
           ]
@@ -911,28 +909,55 @@
         {
           "tokens": [
             {
-              "s": "六",
-              "r": "ろく",
+              "s": "6",
               "k": "plain"
             },
             {
-              "s": "日",
-              "r": "にち",
-              "b": "日",
+              "s": "日間",
+              "k": "ghost",
+              "r": "にちかん",
+              "b": "日間",
+              "g": "number of days",
+              "gs": "model"
+            },
+            {
+              "s": "、",
+              "k": "plain"
+            },
+            {
+              "s": "毎晩",
               "k": "known",
-              "g": "~ day of the month, for ~ days",
+              "r": "まいばん",
+              "b": "毎晩",
+              "g": "every night",
               "gs": "jlpt"
             },
             {
-              "s": "の",
-              "k": "plain"
+              "s": "えん",
+              "k": "known",
+              "b": "えむ",
+              "g": "Yen",
+              "gs": "jlpt"
             },
             {
-              "s": "間",
-              "r": "ま",
-              "b": "間",
+              "s": "そう",
               "k": "known",
-              "g": "space, interval",
+              "b": "そう",
+              "g": "yes; appears, to be the case",
+              "gs": "jlpt"
+            },
+            {
+              "s": "する",
+              "k": "known",
+              "b": "する",
+              "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+              "gs": "jlpt"
+            },
+            {
+              "s": "こと",
+              "k": "known",
+              "b": "こと",
+              "g": "thing(s), matter(s), fact",
               "gs": "jlpt"
             }
           ]
@@ -940,28 +965,55 @@
         {
           "tokens": [
             {
-              "s": "一",
-              "r": "いち",
+              "s": "琵琶",
+              "r": "びわ",
+              "b": "琵琶",
+              "k": "story",
+              "g": "Japanese lute",
+              "hk": true
+            },
+            {
+              "s": "を",
               "k": "plain"
             },
             {
-              "s": "年",
-              "r": "ねん",
-              "b": "年",
-              "k": "known",
-              "g": "year, age",
-              "gs": "jlpt"
+              "s": "と",
+              "k": "plain"
             },
             {
               "s": "の",
               "k": "plain"
             },
             {
-              "s": "間",
-              "r": "ま",
-              "b": "間",
+              "s": "さま",
               "k": "known",
-              "g": "space, interval",
+              "b": "さま",
+              "g": "Mr., Mrs., Ms.",
+              "gs": "jlpt"
+            },
+            {
+              "s": "に",
+              "k": "plain"
+            },
+            {
+              "s": "プレゼント",
+              "k": "known",
+              "b": "プレゼント",
+              "g": "present, gift",
+              "gs": "jlpt"
+            },
+            {
+              "s": "する",
+              "k": "known",
+              "b": "する",
+              "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+              "gs": "jlpt"
+            },
+            {
+              "s": "こと",
+              "k": "known",
+              "b": "こと",
+              "g": "thing(s), matter(s), fact",
               "gs": "jlpt"
             }
           ]
@@ -971,58 +1023,216 @@
     },
     "metrics": {
       "kanjiCoverage": 1,
-      "kanjiDensity": 0.09803921568627451,
-      "firstCoverage": 0.8636363636363636,
-      "finalCoverage": 0.9772727272727273,
-      "retries": 2,
-      "seconds": 8.532899900000004,
+      "kanjiDensity": 0.22580645161290322,
+      "firstCoverage": 0.8727272727272727,
+      "finalCoverage": 0.96,
+      "retries": 9,
+      "seconds": 76.90030279999998,
       "offendingFirst": [
         "殿様",
+        "られる",
         "家来",
-        "ひそか",
-        "れる"
+        "れる",
+        "坊"
       ],
       "ghostWords": [
-        "れる"
+        "れる",
+        "日間"
+      ],
+      "faithIssues": [
+        {
+          "sentence": "あと6日の間、毎晩とのさまの前でひいてほしいので、",
+          "problem": "Number words must not be spelled in kana. Change 6 to 6 or 六.",
+          "kind": "number"
+        }
       ]
     }
   },
-  "arrayRepair": {
-    "sourceFile": "docs/array-repair-before-hoichi-s09-N3.json",
-    "request": {
-      "model": "gemma-4-31B-it",
+  "ladderBuild": "P4b",
+  "ladderRetry": {
+    "before": {
+      "ladderOk": false,
+      "reasons": [
+        "advancedShare"
+      ],
+      "stats": {
+        "N5": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.08661417322834646,
+          "meanLength": 12.7,
+          "advancedShare": 0.22580645161290322
+        },
+        "N4": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.15432098765432098,
+          "meanLength": 16.2,
+          "advancedShare": 0.3684210526315789
+        },
+        "N3": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.20901639344262296,
+          "meanLength": 27.11111111111111,
+          "advancedShare": 0.3548387096774194
+        }
+      }
+    },
+    "feedback": "This N3 retelling must be harder than N4. N4 measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.15432098765432098,\"meanLength\":16.2,\"advancedShare\":0.3684210526315789}. Make kanji density and mean sentence length strictly larger, and N4+N3 vocabulary share strictly larger than 0.3684210526315789. Use longer connected sentences and relevant N3 vocabulary, preserving the original meaning. Current ladder failures: advancedShare."
+  },
+  "levelRepairs": [
+    {
       "messages": [
         {
           "role": "system",
-          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration, adding ～ようだ, ～らしい, the passive and ～ために.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Copy every story word exactly in kanji when it is needed; do not insert unused words.\nWrite normal Japanese with no spaces between words. Outside story words, use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小才中五六円天手文日月木水火犬王出右四左本正田白目石立万今元公内切午友太少引心方牛父止兄冬北半古台外市広母用世主他代写去号平打申礼休先名字年早気百耳男町花見赤足車不仕交会光同回多当毎米考肉自色行西何体作図声売弟形来社言走近学空金雨青草音化地両全向安曲有次死京国夜妹姉店明東歩画直知長前南室後思活海点科茶食首欠由民付以失必未末校夏家時紙記通高強教理組船週雪魚鳥黒支住助医君対局役投決究者研馬場朝番答絵買道間数楽話電所事使具受和始定実服泳物苦表部乗客屋度待持界発相美負送重談要勝起速配酒院終習転進落葉運開集飲業漢路歌聞語読鳴横調親頭顔病最争伝共好成老位初別利努労命放昔注育指洋神追戦良特便働意味勉庭息旅流消員都動商悪族深球陽寒悲期歯港登着野生亡合風予反新返問宿想感暗様福銀題館駅料殺然熱選願情映疑皆例参完念折望束残求約性格能術私帰春昼晴秋計列式信単変夫建昨法英飯晩猫園曜書遠係取品守幸急真箱面喜治笑辞関政留険危存原薬側堂席敗果因常識非官察愛警覚説試告種達類報等借座忘洗験許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差質供限与渡景抜候構捕慣満掛居突招段腹痛退貸迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
         },
         {
           "role": "user",
-          "content": "前の場面（やさしく語り直したもの）: 芳一はおおきなこえでうたった。海でのたたかいのうただった。琵琶でふねのおとややのおとをだした。人のさけぶ声も出した。とてもじょうずなえんそうだったようだ。左右から小さなこえが聞こえた。芳一をほめるこえだったらしい。芳一はゆうきがでた。もっとうまくうたった。まわりは静かになった。つぎに、女や子供の死をうたった。みんながかなしいこえを出した。みんながないた。芳一は、そのこえにおどろいた。しばらくの間、なくこえが続いた。それから、とても静かになった。女の声がまた聞こえた。それはおばあさんのようだった。\n\n場面（原文）:\nその女はこう云った――\n『私共は貴方が琵琶の名人であって、また謡う方でも肩を並べるもののない事は聞き及んでいた事では御座いますが、貴方が今晩御聴かせ下すったようなあんなお腕前をお有ちになろうとは思いも致しませんでした。殿様には大層御気に召し、貴方に十分な御礼を下さる御考えである由を御伝え申すようにとの事に御座います。が、これから後六日の間毎晩一度ずつ殿様の御前で演奏をお聞きに入れるようとの御意に御座います――その上で殿様にはたぶん御帰りの旅に上られる事と存じます。それ故明晩も同じ時刻に、ここへ御出向きなされませ。今夜、貴方を御案内いたしたあの家来が、また、御迎えに参るで御座いましょう……それからも一つ貴方に御伝えするように申しつけられた事が御座います。それは殿様がこの赤間ヶ関に御滞在中、貴方がこの御殿に御上りになる事を誰れにも御話しにならぬようとの御所望に御座います。殿様には御忍びの御旅行ゆえ、かような事はいっさい口外致さぬようにとの御上意によりますので。……ただ今、御自由に御坊に御帰りあそばせ』"
+          "content": "Original:\nその女はこう云った――\n『私共は貴方が琵琶の名人であって、また謡う方でも肩を並べるもののない事は聞き及んでいた事では御座いますが、貴方が今晩御聴かせ下すったようなあんなお腕前をお有ちになろうとは思いも致しませんでした。殿様には大層御気に召し、貴方に十分な御礼を下さる御考えである由を御伝え申すようにとの事に御座います。が、これから後六日の間毎晩一度ずつ殿様の御前で演奏をお聞きに入れるようとの御意に御座います――その上で殿様にはたぶん御帰りの旅に上られる事と存じます。それ故明晩も同じ時刻に、ここへ御出向きなされませ。今夜、貴方を御案内いたしたあの家来が、また、御迎えに参るで御座いましょう……それからも一つ貴方に御伝えするように申しつけられた事が御座います。それは殿様がこの赤間ヶ関に御滞在中、貴方がこの御殿に御上りになる事を誰れにも御話しにならぬようとの御所望に御座います。殿様には御忍びの御旅行ゆえ、かような事はいっさい口外致さぬようにとの御上意によりますので。……ただ今、御自由に御坊に御帰りあそばせ』\nCurrent retelling:\n女は、芳一が琵琶の名人であることは聞いていたが、\n今夜のえんそうはそうぞう以上に良かったので、\nとのさまがとても気に入り、じゅうぶんな礼を出すと言った。\nそして、あと6日の間、毎晩とのさまの前でえんそうしてほしいので、\n明日も同じ時間にここに来るようにと言われた。\n今夜あんないした人が、また芳一を迎えに来るようだ。\nさらに、とのさまがここにいることはだれにも話してはいけないので、\n口に出さないようにと言われたので、芳一はぼうに帰った。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.20754716981132076,\"meanLength\":53,\"advancedShare\":0.4}; vocabulary 0.9636363636363636. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: れる. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
         }
-      ]
+      ],
+      "response": "{\"sentences([\": [\"女は芳一が琵琶の名人だと聞いていたが、\", \"今夜のえんそうはそうぞう以上に良かったので、\", \"とのさまが気に入り、十分な礼を出すと言った。\", \"あと6日の間、毎晩とのさまの前で弾いてほしいので、\", \"明日も同じ時間にここに来るようにと言われた。\", \"今夜あんないした人が、また迎えに来るようだ。\", \"とのさまがここにいることはだれにも話してはいけないので、\", \"口に出さないようにと言われて、芳一は坊に帰った。\"], \"question\": {\"prompt\": \"女は芳一に何を言いましたか。\", \"options\": [\"誰にも話してはいけない。\", \"明日はいらなくていい。\", \"もう弾かなくていい。\"], \"answer\": 0}}"
     },
-    "replayed": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nその女はこう云った――\n『私共は貴方が琵琶の名人であって、また謡う方でも肩を並べるもののない事は聞き及んでいた事では御座いますが、貴方が今晩御聴かせ下すったようなあんなお腕前をお有ちになろうとは思いも致しませんでした。殿様には大層御気に召し、貴方に十分な御礼を下さる御考えである由を御伝え申すようにとの事に御座います。が、これから後六日の間毎晩一度ずつ殿様の御前で演奏をお聞きに入れるようとの御意に御座います――その上で殿様にはたぶん御帰りの旅に上られる事と存じます。それ故明晩も同じ時刻に、ここへ御出向きなされませ。今夜、貴方を御案内いたしたあの家来が、また、御迎えに参るで御座いましょう……それからも一つ貴方に御伝えするように申しつけられた事が御座います。それは殿様がこの赤間ヶ関に御滞在中、貴方がこの御殿に御上りになる事を誰れにも御話しにならぬようとの御所望に御座います。殿様には御忍びの御旅行ゆえ、かような事はいっさい口外致さぬようにとの御上意によりますので。……ただ今、御自由に御坊に御帰りあそばせ』\nCurrent retelling:\n女は芳一が琵琶の名人だと聞いていたが、\n今夜のえんそうはそうぞう以上に良かったので、\nとのさまが気に入り、じゅうぶんな礼を出すと言った。\nあと6日の間、毎晩とのさまの前でひいてほしいので、\n明日も同じ時間にここに来るようにと言われた。\n今夜あんないした人が、また迎えに来るようだ。\nとのさまがここにいることはだれにも話してはいけないので、\n口に出さないようにと言われて、芳一はぼうに帰った。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.22340425531914893,\"meanLength\":47,\"advancedShare\":0.4}; vocabulary 0.96. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: れる. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"女は芳一が琵琶の名人だと聞いていたが、\", \"今夜のえんそうはそうぞう以上に良かったので、\", \"とのさまが気に入り、じゅうぶんな礼を出すと言った。\", \"あと6日の間、毎晩とのさまの前でひいてほしいので、\", \"明日も同じ時間にここに来るようにと言われた。\", \"今夜あんないした人が、また迎えに来るようだ。\", \"とのさまがここにいることはだれにも話してはいけないので、\", \"口に出さないようにと言われて、芳一はぼうに帰った。\"], \"question\": {\"prompt\": \"芳一はあと何日の間、演奏をしなければなりませんか。\", \"options\": [\"3日間\", \"6日間\", \"10日間\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nその女はこう云った――\n『私共は貴方が琵琶の名人であって、また謡う方でも肩を並べるもののない事は聞き及んでいた事では御座いますが、貴方が今晩御聴かせ下すったようなあんなお腕前をお有ちになろうとは思いも致しませんでした。殿様には大層御気に召し、貴方に十分な御礼を下さる御考えである由を御伝え申すようにとの事に御座います。が、これから後六日の間毎晩一度ずつ殿様の御前で演奏をお聞きに入れるようとの御意に御座います――その上で殿様にはたぶん御帰りの旅に上られる事と存じます。それ故明晩も同じ時刻に、ここへ御出向きなされませ。今夜、貴方を御案内いたしたあの家来が、また、御迎えに参るで御座いましょう……それからも一つ貴方に御伝えするように申しつけられた事が御座います。それは殿様がこの赤間ヶ関に御滞在中、貴方がこの御殿に御上りになる事を誰れにも御話しにならぬようとの御所望に御座います。殿様には御忍びの御旅行ゆえ、かような事はいっさい口外致さぬようにとの御上意によりますので。……ただ今、御自由に御坊に御帰りあそばせ』\nCurrent retelling:\n女は芳一が琵琶の名人だと聞いていたが、\n今夜のえんそうはそうぞう以上に良かったので、\nとのさまが気に入り、じゅうぶんな礼を出すと言った。\nあと6日の間、毎晩とのさまの前でひいてほしいので、\n明日も同じ時間にここに来るようにと言われた。\n今夜あんないした人が、また迎えに来るようだ。\nとのさまがここにいることはだれにも話してはいけないので、\n口に出さないようにと言われて、芳一はぼうに帰った。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.22340425531914893,\"meanLength\":47,\"advancedShare\":0.4}; vocabulary 0.96. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: れる. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences([\": [\"女は芳一が琵琶の名人だと聞いていたが、\", \"今夜のえんそうはそうぞう以上に良かったので、\", \"とのさまが気に入り、十分な礼を出すと言った。\", \"あと6日の間、毎晩とのさまの前でひいてほしいので、\", \"明日も同じ時間にここに来るようにと言われた。\", \"今夜案内した人が、また迎えに来るようだ。\", \"とのさまがここにいることはだれにも話してはいけないので、\", \"口に出さないようにと言われて、芳一はぼうに帰った。\"], \"question\": {\"prompt\": \"女は芳一に何と言いましたか。\", \"options\": [\"もう来なくていいと言った。\", \"だれにも話さないでと言った。\", \"礼は出さないと言った。\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: れる、日間. Return JSON {\"glosses\":{\"れる\":\"English gloss\",\"日間\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"れる\": \"passive/potential auxiliary\", \"日間\": \"number of days\"}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nその女はこう云った――\n『私共は貴方が琵琶の名人であって、また謡う方でも肩を並べるもののない事は聞き及んでいた事では御座いますが、貴方が今晩御聴かせ下すったようなあんなお腕前をお有ちになろうとは思いも致しませんでした。殿様には大層御気に召し、貴方に十分な御礼を下さる御考えである由を御伝え申すようにとの事に御座います。が、これから後六日の間毎晩一度ずつ殿様の御前で演奏をお聞きに入れるようとの御意に御座います――その上で殿様にはたぶん御帰りの旅に上られる事と存じます。それ故明晩も同じ時刻に、ここへ御出向きなされませ。今夜、貴方を御案内いたしたあの家来が、また、御迎えに参るで御座いましょう……それからも一つ貴方に御伝えするように申しつけられた事が御座います。それは殿様がこの赤間ヶ関に御滞在中、貴方がこの御殿に御上りになる事を誰れにも御話しにならぬようとの御所望に御座います。殿様には御忍びの御旅行ゆえ、かような事はいっさい口外致さぬようにとの御上意によりますので。……ただ今、御自由に御坊に御帰りあそばせ』\nCurrent retelling:\n女は芳一が琵琶の名人だと聞いていたが、\n今夜のえんそうはそうぞう以上に良かったので、\nとのさまが気に入り、じゅうぶんな礼を出すと言った。\nあと6日の間、毎晩とのさまの前でひいてほしいので、\n明日も同じ時間にここに来るようにと言われた。\n今夜あんないした人が、また迎えに来るようだ。\nとのさまがここにいることはだれにも話してはいけないので、\n口に出さないようにと言われて、芳一はぼうに帰った。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.22340425531914893,\"meanLength\":47,\"advancedShare\":0.4}; vocabulary 0.96. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: れる. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"女は芳一が琵琶の名人だと聞いていたが、\", \"今夜のえんそうは想像以上に良かったので、\", \"殿様が気に入り、十分な礼を出すと言った。\", \"あと6日の間、毎晩殿様の前でひいてほしいので、\", \"明日も同じ時間にここに来るように言われた。\", \"今夜案内した人が、また迎えに来るようだ。\", \"殿様がここにいることは誰にも話してはいけないので、\", \"口に出さないように言われて、芳一は坊に帰った。\"], \"question\": {\"prompt\": \"芳一は、あと何日の間、演奏をしなければなりませんか。\", \"options\": [\"3日間\", \"6日間\", \"10日間\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nその女はこう云った――\n『私共は貴方が琵琶の名人であって、また謡う方でも肩を並べるもののない事は聞き及んでいた事では御座いますが、貴方が今晩御聴かせ下すったようなあんなお腕前をお有ちになろうとは思いも致しませんでした。殿様には大層御気に召し、貴方に十分な御礼を下さる御考えである由を御伝え申すようにとの事に御座います。が、これから後六日の間毎晩一度ずつ殿様の御前で演奏をお聞きに入れるようとの御意に御座います――その上で殿様にはたぶん御帰りの旅に上られる事と存じます。それ故明晩も同じ時刻に、ここへ御出向きなされませ。今夜、貴方を御案内いたしたあの家来が、また、御迎えに参るで御座いましょう……それからも一つ貴方に御伝えするように申しつけられた事が御座います。それは殿様がこの赤間ヶ関に御滞在中、貴方がこの御殿に御上りになる事を誰れにも御話しにならぬようとの御所望に御座います。殿様には御忍びの御旅行ゆえ、かような事はいっさい口外致さぬようにとの御上意によりますので。……ただ今、御自由に御坊に御帰りあそばせ』\nCurrent retelling:\n女は芳一が琵琶の名人だと聞いていたが、\n今夜のえんそうはそうぞう以上に良かったので、\nとのさまが気に入り、じゅうぶんな礼を出すと言った。\nあと6日の間、毎晩とのさまの前でひいてほしいので、\n明日も同じ時間にここに来るように言われた。\n今夜あんないした人が、また迎えに来るようだ。\nとのさまがここにいることはだれにも話してはいけないので、\n口に出さないように言われて、芳一はぼうに帰った。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.22580645161290322,\"meanLength\":46.5,\"advancedShare\":0.4}; vocabulary 0.96. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: れる. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentencesにつながる\": null, \"sentences\": [\"女は芳一が琵琶の名人だと聞いていたが、\", \"今夜のえんそうはそうぞう以上に良かったので、\", \"とのさまが気に入り、十分な礼を出すと言った。\", \"あと6日の間、毎晩とのさまの前でひいてほしいので、\", \"明日も同じ時間にここに来るように言われた。\", \"今夜あんないした人が、また迎えに来るようだ。\", \"とのさまがここにいることはだれにも話してはいけないので、\", \"口に出さないように言われて、芳一はぼうに帰った。\"], \"question\": {\"prompt\": \"芳一は、あと何日、演奏をしなければなりませんか。\", \"options\": [\"3日\", \"6日\", \"10日\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nその女はこう云った――\n『私共は貴方が琵琶の名人であって、また謡う方でも肩を並べるもののない事は聞き及んでいた事では御座いますが、貴方が今晩御聴かせ下すったようなあんなお腕前をお有ちになろうとは思いも致しませんでした。殿様には大層御気に召し、貴方に十分な御礼を下さる御考えである由を御伝え申すようにとの事に御座います。が、これから後六日の間毎晩一度ずつ殿様の御前で演奏をお聞きに入れるようとの御意に御座います――その上で殿様にはたぶん御帰りの旅に上られる事と存じます。それ故明晩も同じ時刻に、ここへ御出向きなされませ。今夜、貴方を御案内いたしたあの家来が、また、御迎えに参るで御座いましょう……それからも一つ貴方に御伝えするように申しつけられた事が御座います。それは殿様がこの赤間ヶ関に御滞在中、貴方がこの御殿に御上りになる事を誰れにも御話しにならぬようとの御所望に御座います。殿様には御忍びの御旅行ゆえ、かような事はいっさい口外致さぬようにとの御上意によりますので。……ただ今、御自由に御坊に御帰りあそばせ』\nCurrent retelling:\n女は芳一が琵琶の名人だと聞いていたが、\n今夜のえんそうはそうぞう以上に良かったので、\nとのさまが気に入り、じゅうぶんな礼を出すと言った。\nあと6日の間、毎晩とのさまの前でひいてほしいので、\n明日も同じ時間にここに来るように言われた。\n今夜あんないした人が、また迎えに来るようだ。\nとのさまがここにいることはだれにも話してはいけないので、\n口に出さないように言われて、芳一はぼうに帰った。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.22580645161290322,\"meanLength\":46.5,\"advancedShare\":0.4}; vocabulary 0.96. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: れる. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentencesにつながる\": [\"女は芳一が琵琶の名人だと聞いていたが、\", \"今夜のえんそうはそうぞう以上に良かったので、\", \"とのさまが気に入り、十分な礼を出すと言った。\", \"あと6日の間、毎晩とのさまの前でひいてほしいので、\", \"明日も同じ時間にここに来るように言われた。\", \"今夜あんないした人が、また迎えに来るようだ。\", \"とのさまがここにいることはだれにも話してはいけないので、\", \"口に出さないように言われて、芳一はぼうに帰った。\"], \"sentences\": [\"女は芳一が琵琶の名人だと聞いていたが、\", \"今夜のえんそうはそうぞう以上に良かったので、\", \"とのさまが気に入り、十分な礼を出すと言った。\", \"あと6日の間、毎晩とのさまの前でひいてほしいので、\", \"明日も同じ時間にここに来るように言われた。\", \"今夜あんないした人が、また迎えに来るようだ。\", \"とのさまがここにいることはだれにも話してはいけないので、\", \"口に出さないように言われて、芳一はぼうに帰った。\"], \"question\": {\"prompt\": \"芳一はあと何日間、演奏をしなければなりませんか。\", \"options\": [\"6日間\", \"1日間\", \"30日間\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: れる、日間. Return JSON {\"glosses\":{\"れる\":\"English gloss\",\"日間\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"れる\": \"passive/potential auxiliary\", \"日間\": \"number of days\"}}"
+    }
+  ],
+  "faithfulness": {
+    "reviews": [
       {
-        "responseIndex": 1,
-        "kind": "full preserved draft"
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\nその女はこう云った――\n『私共は貴方が琵琶の名人であって、また謡う方でも肩を並べるもののない事は聞き及んでいた事では御座いますが、貴方が今晩御聴かせ下すったようなあんなお腕前をお有ちになろうとは思いも致しませんでした。殿様には大層御気に召し、貴方に十分な御礼を下さる御考えである由を御伝え申すようにとの事に御座います。が、これから後六日の間毎晩一度ずつ殿様の御前で演奏をお聞きに入れるようとの御意に御座います――その上で殿様にはたぶん御帰りの旅に上られる事と存じます。それ故明晩も同じ時刻に、ここへ御出向きなされませ。今夜、貴方を御案内いたしたあの家来が、また、御迎えに参るで御座いましょう……それからも一つ貴方に御伝えするように申しつけられた事が御座います。それは殿様がこの赤間ヶ関に御滞在中、貴方がこの御殿に御上りになる事を誰れにも御話しにならぬようとの御所望に御座います。殿様には御忍びの御旅行ゆえ、かような事はいっさい口外致さぬようにとの御上意によりますので。……ただ今、御自由に御坊に御帰りあそばせ』\n\n語り直しの文（JSON配列。sentenceは必ずこの配列の文字列をそのままコピーする）:\n[\"女は芳一が琵琶の名人だと聞いていたが、\",\"今夜のえんそうはそうぞう以上に良かったので、\",\"とのさまが気に入り、じゅうぶんな礼を出すと言った。\",\"あと6日の間、毎晩とのさまの前でひいてほしいので、\",\"明日も同じ時間にここに来るようにと言われた。\",\"今夜あんないした人が、また迎えに来るようだ。\",\"とのさまがここにいることはだれにも話してはいけないので、\",\"口に出さないようにと言われて、芳一はぼうに帰った。\"]"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"あと6日の間、毎晩とのさまの前でひいてほしいので、\", \"problem\": \"Numbers must not be spelled in kana; 6 should be 6 or 六\", \"kind\": \"number\"}]}"
       },
       {
-        "responseIndex": 2,
-        "kind": "preserved rewrites",
-        "indexes": [
-          1,
-          2,
-          3,
-          4,
-          6,
-          7,
-          8,
-          9
-        ]
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\nその女はこう云った――\n『私共は貴方が琵琶の名人であって、また謡う方でも肩を並べるもののない事は聞き及んでいた事では御座いますが、貴方が今晩御聴かせ下すったようなあんなお腕前をお有ちになろうとは思いも致しませんでした。殿様には大層御気に召し、貴方に十分な御礼を下さる御考えである由を御伝え申すようにとの事に御座います。が、これから後六日の間毎晩一度ずつ殿様の御前で演奏をお聞きに入れるようとの御意に御座います――その上で殿様にはたぶん御帰りの旅に上られる事と存じます。それ故明晩も同じ時刻に、ここへ御出向きなされませ。今夜、貴方を御案内いたしたあの家来が、また、御迎えに参るで御座いましょう……それからも一つ貴方に御伝えするように申しつけられた事が御座います。それは殿様がこの赤間ヶ関に御滞在中、貴方がこの御殿に御上りになる事を誰れにも御話しにならぬようとの御所望に御座います。殿様には御忍びの御旅行ゆえ、かような事はいっさい口外致さぬようにとの御上意によりますので。……ただ今、御自由に御坊に御帰りあそばせ』\n\n語り直しの文（JSON配列。sentenceは必ずこの配列の文字列をそのままコピーする）:\n[\"女は芳一が琵琶の名人だと聞いていたが、\",\"今夜のえんそうはそうぞう以上に良かったので、\",\"とのさまが気に入り、じゅうぶんな礼を出すと言った。\",\"あと6日の間、毎晩とのさまの前でひいてほしいので、\",\"明日も同じ時間にここに来るように言われた。\",\"今夜あんないした人が、また迎えに来るようだ。\",\"とのさまがここにいることはだれにも話してはいけないので、\",\"口に出さないように言われて、芳一はぼうに帰った。\"]"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"あと6日の間、毎晩とのさまの前でひいてほしいので、\", \"problem\": \"Number words must not be spelled in kana. Change 6 to 6 or 六.\", \"kind\": \"number\"}]}"
       }
     ],
-    "note": "Full draft split before indexed repairs. Replayed text is verbatim from hosted evidence; only requested rewrite rows were selected. Other responses are fresh hosted repair/gloss calls."
-  },
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+    "rewrites": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Repair only the specified sentences at JLPT N3. Preserve all other sentences and events. Use natural Japanese, numeric digits for numbers, and maintain the meaning of the original. Return only JSON {\"rewrites\":[{\"index\":0,\"sentence\":\"...\"}]}."
+          },
+          {
+            "role": "user",
+            "content": "Original:\nその女はこう云った――\n『私共は貴方が琵琶の名人であって、また謡う方でも肩を並べるもののない事は聞き及んでいた事では御座いますが、貴方が今晩御聴かせ下すったようなあんなお腕前をお有ちになろうとは思いも致しませんでした。殿様には大層御気に召し、貴方に十分な御礼を下さる御考えである由を御伝え申すようにとの事に御座います。が、これから後六日の間毎晩一度ずつ殿様の御前で演奏をお聞きに入れるようとの御意に御座います――その上で殿様にはたぶん御帰りの旅に上られる事と存じます。それ故明晩も同じ時刻に、ここへ御出向きなされませ。今夜、貴方を御案内いたしたあの家来が、また、御迎えに参るで御座いましょう……それからも一つ貴方に御伝えするように申しつけられた事が御座います。それは殿様がこの赤間ヶ関に御滞在中、貴方がこの御殿に御上りになる事を誰れにも御話しにならぬようとの御所望に御座います。殿様には御忍びの御旅行ゆえ、かような事はいっさい口外致さぬようにとの御上意によりますので。……ただ今、御自由に御坊に御帰りあそばせ』\nSentences:\n0: 女は芳一が琵琶の名人だと聞いていたが、\n1: 今夜のえんそうはそうぞう以上に良かったので、\n2: とのさまが気に入り、じゅうぶんな礼を出すと言った。\n3: あと6日の間、毎晩とのさまの前でひいてほしいので、\n4: 明日も同じ時間にここに来るようにと言われた。\n5: 今夜あんないした人が、また迎えに来るようだ。\n6: とのさまがここにいることはだれにも話してはいけないので、\n7: 口に出さないようにと言われて、芳一はぼうに帰った。\nIssues:\n[{\"sentence\":\"あと6日の間、毎晩とのさまの前でひいてほしいので、\",\"problem\":\"Numbers must not be spelled in kana; 6 should be 6 or 六\",\"kind\":\"number\"}]\nRewrite exactly indexes: 3"
+          }
+        ],
+        "response": "{\"rewrites\": [{\"index\": 3, \"sentence\": \"あと6日の間、毎晩とのさまの前でひいてほしいので、\"}]}"
+      }
+    ],
+    "before": [
+      {
+        "sentence": "あと6日の間、毎晩とのさまの前でひいてほしいので、",
+        "problem": "Numbers must not be spelled in kana; 6 should be 6 or 六",
+        "kind": "number"
+      }
+    ],
+    "after": [
+      {
+        "sentence": "あと6日の間、毎晩とのさまの前でひいてほしいので、",
+        "problem": "Number words must not be spelled in kana. Change 6 to 6 or 六.",
+        "kind": "number"
+      }
+    ]
+  }
 }

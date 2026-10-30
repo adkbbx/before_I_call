@@ -23,7 +23,7 @@
   ],
   "metrics": {
     "kanjiCoverage": 1,
-    "kanjiDensity": 0.0761904761904762,
+    "kanjiDensity": 0.09615384615384616,
     "firstCoverage": 0.72,
     "finalCoverage": 0.9090909090909091,
     "retries": 3,
@@ -40,7 +40,8 @@
       "こと",
       "いふ",
       "たたかう"
-    ]
+    ],
+    "faithIssues": []
   },
   "retelling": {
     "level": "N5",
@@ -159,11 +160,12 @@
       {
         "tokens": [
           {
-            "s": "へいけ",
+            "s": "平家",
             "r": "へいけ",
             "b": "平家",
             "k": "story",
-            "g": "the Heike clan"
+            "g": "the Heike clan",
+            "hk": true
           },
           {
             "s": "の",
@@ -545,7 +547,7 @@
     },
     "metrics": {
       "kanjiCoverage": 1,
-      "kanjiDensity": 0.0761904761904762,
+      "kanjiDensity": 0.09615384615384616,
       "firstCoverage": 0.72,
       "finalCoverage": 0.9090909090909091,
       "retries": 3,
@@ -562,9 +564,67 @@
         "こと",
         "いふ",
         "たたかう"
-      ]
+      ],
+      "faithIssues": []
     }
   },
   "failedSceneRetry": true,
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b.",
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling; for a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n七百年以上も昔の事、下ノ関海峡の壇ノ浦で、平家すなわち平族と、源氏すなわち源族との間の、永い争いの最後の戦闘が戦われた。この壇ノ浦で平家は、その一族の婦人子供ならびにその幼帝――今日安徳天皇として記憶されている――と共に、まったく滅亡した。そうしてその海と浜辺とは七百年間その怨霊に祟られていた……他の個処で私はそこに居る平家蟹という不思議な蟹の事を読者諸君に語った事があるが、それはその背中が人間の顔になっており、平家の武者の魂であると云われているのである。しかしその海岸一帯には、たくさん不思議な事が見聞きされる。闇夜には幾千となき幽霊火が、水うち際にふわふわさすらうか、もしくは波の上にちらちら飛ぶ――すなわち漁夫の呼んで鬼火すなわち魔の火と称する青白い光りである。そして風の立つ時には大きな叫び声が、戦の叫喚のように、海から聞えて来る。\n\n語り直し:\n前の話です。\nうみがありました。\nそこで大きなことがありました。\nへいけの人がしにました。\nうみに人が入りました。\nこのうみはよくないです。\nよるに白いひがありました。\nかぜのとき、こえがありました。\nそれは大きなこえでした。"
+          }
+        ],
+        "response": "{\"issues\": []}"
+      }
+    ],
+    "rewrites": [],
+    "before": [],
+    "after": []
+  },
+  "ladderSpellingRepair": {
+    "originalFlag": {
+      "tale": "hoichi",
+      "scene": "s01",
+      "ladderOk": false,
+      "reasons": [
+        "kanjiDensity"
+      ],
+      "stats": {
+        "N5": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.0761904761904762,
+          "meanLength": 11.666666666666666,
+          "advancedShare": 0.2727272727272727
+        },
+        "N4": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.028037383177570093,
+          "meanLength": 17.833333333333332,
+          "advancedShare": 0.34615384615384615
+        },
+        "N3": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.06470588235294118,
+          "meanLength": 18.88888888888889,
+          "advancedShare": 0.3611111111111111
+        }
+      },
+      "n5Hash": "267094def7a99c1b131de7732de7b28b70bffee0701bfef8025cb1be704ff605"
+    },
+    "changes": [
+      {
+        "before": "へいけ",
+        "after": "平家"
+      }
+    ]
+  }
 }

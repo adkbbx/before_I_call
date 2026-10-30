@@ -4,31 +4,37 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N5.\nPicture-book style. Use です/ます and ました/ませんでした only, with ～て, ～たい, ～から and ～が (but). One idea per sentence. Replace personal names with roles (おさむらい, おぼうさん, おじいさん, わかい男), except the one main character listed as a story word.\nUse only vocabulary at or below N5. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 20 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 巳之吉（みのきち）、お雪（おゆき）、木こり（きこり）、吹雪（ふぶき）. Copy every story word exactly in kanji when it is needed; do not insert unused words.\nWrite normal Japanese with no spaces between words. Outside story words, use ONLY these kanji: 一二九七人入八十三上下大女山川土千子小中五六円天日月木水火出右四左本白万今午友父北半外母休先名年気百男見車毎行西何来学金雨国東長前南後食校時高間話電聞語読生書. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N5.\nPicture-book style. Use です/ます and ました/ませんでした only, with ～て, ～たい, ～から and ～が (but). One idea per sentence. Replace personal names with roles (おさむらい, おぼうさん, おじいさん, わかい男), except the one main character listed as a story word.\nUse only vocabulary at or below N5. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 20 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 巳之吉（みのきち）、お雪（おゆき）、木こり（きこり）、吹雪（ふぶき）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八十三上下大女山川土千子小中五六円天日月木水火出右四左本白万今午友父北半外母休先名年気百男見車毎行西何来学金雨国東長前南後食校時高間話電聞語読生書. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 0–12 percent. Aim for 8 percent and mean sentence length 6–20 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\n武蔵の国のある村に茂作、巳之吉と云う二人の木こりがいた。この話のあった時分には、茂作は老人であった。そして、彼の年季奉公人であった巳之吉は、十八の少年であった。毎日、彼等は村から約二里離れた森へ一緒に出かけた。その森へ行く道に、越さねばならない大きな河がある。そして、渡し船がある。渡しのある処にたびたび、橋が架けられたが、その橋は洪水のあるたびごとに流された。河の溢れる時には、普通の橋では、その急流を防ぐ事はできない。"
+        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\n武蔵の国のある村に茂作、巳之吉と云う二人の木こりがいた。この話のあった時分には、茂作は老人であった。そして、彼の年季奉公人であった巳之吉は、十八の少年であった。毎日、彼等は村から約二里離れた森へ一緒に出かけた。その森へ行く道に、越さねばならない大きな河がある。そして、渡し船がある。渡しのある処にたびたび、橋が架けられたが、その橋は洪水のあるたびごとに流された。河の溢れる時には、普通の橋では、その急流を防ぐ事はできない。\nThe scene ladder failed. The N5 text has 0 forbidden non-story kanji tokens and density 0.1652892561983471. Use only N5 kanji, numeric digits, short simple sentences, and basic N5 vocabulary. Keep density below 12%, and make it clearly easier than N4. Avoid repeating long story names; use the main name once and then simple roles or omit the subject when clear."
       }
     ]
   },
   "responses": [
-    "{\"sentences\": [\"むらに二人の木こりがいました。\", \"ひとりはおじいさんでした。\", \"もうひとりは巳之吉でした。\", \"巳之吉はわかい男でした。\", \"ふたりは毎日山へ行きました。\", \"山に大きな川がありました。\", \"川にふねがありました。\", \"はしもありました。\", \"が、雨がふりました。\", \"はしは流れました。\"], \"question\": {\"prompt\": \"木こりは何人いましたか。\", \"options\": [\"一人です\", \"二人です\", \"三人です\"], \"answer\": 1}}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"むらに二人の木こりがいました。\"}, {\"index\": 2, \"sentence\": \"もうひとりは巳之吉でした。\"}, {\"index\": 3, \"sentence\": \"巳之吉はわかい男でした。\"}, {\"index\": 4, \"sentence\": \"ふたりは毎日山へ行きました。\"}, {\"index\": 5, \"sentence\": \"山に大きな川がありました。\"}, {\"index\": 9, \"sentence\": \"はしはなくなりました。\"}]}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"むらに二人の木こりがいました。\"}, {\"index\": 2, \"sentence\": \"もうひとりは巳之吉でした。\"}, {\"index\": 3, \"sentence\": \"巳之吉はわかい男でした。\"}, {\"index\": 4, \"sentence\": \"ふたりは毎日山へ行きました。\"}, {\"index\": 5, \"sentence\": \"山に大きな川がありました。\"}, {\"index\": 9, \"sentence\": \"はしはいなくなりました。\"}]}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"むらに二人の木こりがいました。\"}, {\"index\": 2, \"sentence\": \"もうひとりは巳之吉でした。\"}, {\"index\": 3, \"sentence\": \"巳之吉はわかい男でした。\"}, {\"index\": 4, \"sentence\": \"ふたりは毎日山へ行きました。\"}, {\"index\": 5, \"sentence\": \"山に大きな川がありました。\"}]}"
+    "{\"sentencesにつながる\": [\"ある村に二人の木こりがいました。\", \"一人はおじいさんでした。\", \"もう一人は巳之吉です。\", \"巳之吉は18歳でした。\", \"二人は毎日山へ行きました。\", \"山は村から遠かったです。\", \"道に大きな川がありました。\", \"そこには舟がありました。\", \"橋もありました。\", \"でも川の水が多かったです。\", \"だから橋はなくなりました。\"], \"question\": {\"prompt\": \"巳之吉は何歳でしたか。\", \"options\": [\"10歳\", \"18歳\", \"80歳\"], \"answer\": 1}}",
+    "{\"sentences\": [\"ある村に二人の木こりがいました。\", \"一人はおじいさんでした。\", \"もう一人は巳之吉です。\", \"巳之吉は18歳でした。\", \"二人は毎日山へ行きました。\", \"山は村から遠かったです。\", \"道に大きな川がありました。\", \"そこには舟がありました。\", \"橋もありました。\", \"でも川の水が多かったです。\", \"だから橋はなくなりました。\"], \"question\": {\"prompt\": \"巳之吉は何歳でしたか。\", \"options\": [\"10歳\", \"18歳\", \"80歳\"], \"answer\": 1}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"あるむらに二人の木こりがいました。\"}, {\"index\": 1, \"sentence\": \"一人はおじいさんでした。\"}, {\"index\": 2, \"sentence\": \"もう一人は巳之吉です。\"}, {\"index\": 3, \"sentence\": \"巳之吉は18さいでした。\"}, {\"index\": 4, \"sentence\": \"二人は毎日山へ行きました。\"}, {\"index\": 5, \"sentence\": \"山はむらからとおかったです。\"}, {\"index\": 6, \"sentence\": \"みちに大きな川がありました。\"}, {\"index\": 7, \"sentence\": \"そこにはふねがありました。\"}, {\"index\": 8, \"sentence\": \"はしもありました。\"}, {\"index\": 9, \"sentence\": \"でも川の水がおおかったです。\"}, {\"index\": 10, \"sentence\": \"だからはしは消えました。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"あるむらに2人の木こりがいました。\"}, {\"index\": 1, \"sentence\": \"1人はおじいさんでした。\"}, {\"index\": 2, \"sentence\": \"もう1人は巳之吉です。\"}, {\"index\": 3, \"sentence\": \"巳之吉は18さいでした。\"}, {\"index\": 4, \"sentence\": \"2人はまいにち山へ行きました。\"}, {\"index\": 5, \"sentence\": \"山はむらからとおかったです。\"}, {\"index\": 6, \"sentence\": \"みちに大きな川がありました。\"}, {\"index\": 7, \"sentence\": \"そこにはふねがありました。\"}, {\"index\": 8, \"sentence\": \"はしもありました。\"}, {\"index\": 9, \"sentence\": \"でも川の水がおおかったです。\"}, {\"index\": 10, \"sentence\": \"だからはしはきえました。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"あるむらに2人の木こりがいました。\"}, {\"index\": 1, \"sentence\": \"1人はおじいさんでした。\"}, {\"index\": 2, \"sentence\": \"もう1人は巳之吉です。\"}, {\"index\": 3, \"sentence\": \"巳之吉は18さいでした。\"}, {\"index\": 4, \"sentence\": \"2人はまいにちやまへ行きました。\"}, {\"index\": 5, \"sentence\": \"やまはむらからとおかったです。\"}, {\"index\": 6, \"sentence\": \"みちにおおきな川がありました。\"}, {\"index\": 7, \"sentence\": \"そこにはふねがありました。\"}, {\"index\": 8, \"sentence\": \"はしもありました。\"}, {\"index\": 9, \"sentence\": \"でも川の水がおおかったです。\"}, {\"index\": 10, \"sentence\": \"だからはしはきえました。\"}]}",
+    "{\"question\": {\"prompt\": \"巳之吉はなんさいでしたか。\", \"options\": [\"10さい\", \"18さい\", \"80さい\"], \"answer\": 1}}"
   ],
   "metrics": {
-    "kanjiCoverage": 0.6842105263157895,
-    "kanjiDensity": 0.1557377049180328,
-    "firstCoverage": 0.96,
-    "finalCoverage": 1,
-    "retries": 3,
-    "seconds": 16.228494199999986,
+    "kanjiCoverage": 1,
+    "kanjiDensity": 0.11486486486486487,
+    "firstCoverage": 0.9259259259259259,
+    "finalCoverage": 0.9615384615384616,
+    "retries": 4,
+    "seconds": 54.7777359,
     "offendingFirst": [
-      "流れる"
+      "舟",
+      "なくなる"
     ],
-    "ghostWords": []
+    "ghostWords": [
+      "ながれる"
+    ],
+    "faithIssues": []
   },
   "retelling": {
     "level": "N5",
@@ -38,9 +44,13 @@
       {
         "tokens": [
           {
+            "s": "ある",
+            "k": "plain"
+          },
+          {
             "s": "むら",
-            "b": "むら",
             "k": "known",
+            "b": "むら",
             "g": "village",
             "gs": "jlpt"
           },
@@ -50,14 +60,14 @@
           },
           {
             "s": "二",
-            "r": "に",
-            "k": "plain"
+            "k": "plain",
+            "r": "に"
           },
           {
             "s": "人",
+            "k": "known",
             "r": "にん",
             "b": "人",
-            "k": "known",
             "g": "counter for people",
             "gs": "jlpt"
           },
@@ -78,8 +88,8 @@
           },
           {
             "s": "い",
-            "b": "いる",
             "k": "known",
+            "b": "いる",
             "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
@@ -100,10 +110,15 @@
       {
         "tokens": [
           {
-            "s": "ひとり",
-            "b": "ひとり",
+            "s": "1",
+            "k": "plain"
+          },
+          {
+            "s": "人",
             "k": "known",
-            "g": "one person",
+            "r": "にん",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
@@ -112,8 +127,8 @@
           },
           {
             "s": "おじいさん",
-            "b": "おじいさん",
             "k": "known",
+            "b": "おじいさん",
             "g": "grandfather, male senior citizen",
             "gs": "jlpt"
           },
@@ -135,16 +150,21 @@
         "tokens": [
           {
             "s": "もう",
-            "b": "もう",
             "k": "known",
+            "b": "もう",
             "g": "already; again; more",
             "gs": "jlpt"
           },
           {
-            "s": "ひとり",
-            "b": "ひとり",
+            "s": "1",
+            "k": "plain"
+          },
+          {
+            "s": "人",
             "k": "known",
-            "g": "one person",
+            "r": "にん",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
@@ -153,11 +173,11 @@
           },
           {
             "s": "巳之吉",
-            "hk": true,
             "r": "みのきち",
             "b": "巳之吉",
             "k": "story",
-            "g": "Minokichi, the young woodcutter"
+            "g": "Minokichi, the young woodcutter",
+            "hk": true
           },
           {
             "s": "でし",
@@ -177,29 +197,25 @@
         "tokens": [
           {
             "s": "巳之吉",
-            "hk": true,
             "r": "みのきち",
             "b": "巳之吉",
             "k": "story",
-            "g": "Minokichi, the young woodcutter"
+            "g": "Minokichi, the young woodcutter",
+            "hk": true
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "わかい",
-            "b": "わかい",
-            "k": "known",
-            "g": "young",
-            "gs": "jlpt"
+            "s": "18",
+            "k": "plain"
           },
           {
-            "s": "男",
-            "r": "おとこ",
-            "b": "男",
+            "s": "さい",
             "k": "known",
-            "g": "man, male",
+            "b": "さい",
+            "g": "~ years old",
             "gs": "jlpt"
           },
           {
@@ -219,10 +235,16 @@
       {
         "tokens": [
           {
-            "s": "ふたり",
-            "b": "ふたり",
+            "s": "二",
+            "k": "plain",
+            "r": "に"
+          },
+          {
+            "s": "人",
             "k": "known",
-            "g": "two people",
+            "r": "にん",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
@@ -230,20 +252,23 @@
             "k": "plain"
           },
           {
-            "s": "毎日",
-            "r": "まいにち",
-            "b": "毎日",
+            "s": "まい",
             "k": "known",
-            "g": "every day",
+            "b": "まう",
+            "g": "to dance, to flutter about, to revolve",
             "gs": "jlpt"
           },
           {
-            "s": "山",
-            "r": "やま",
-            "b": "山",
-            "k": "known",
-            "g": "mountain",
-            "gs": "jlpt"
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "ちや",
+            "k": "plain"
+          },
+          {
+            "s": "ま",
+            "k": "plain"
           },
           {
             "s": "へ",
@@ -251,9 +276,9 @@
           },
           {
             "s": "行き",
+            "k": "known",
             "r": "いき",
             "b": "行く",
-            "k": "known",
             "g": "to go",
             "gs": "jlpt"
           },
@@ -274,11 +299,55 @@
       {
         "tokens": [
           {
-            "s": "山",
-            "r": "やま",
-            "b": "山",
+            "s": "やま",
             "k": "known",
-            "g": "mountain",
+            "b": "やむ",
+            "g": "to cease, to stop",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "むら",
+            "k": "known",
+            "b": "むら",
+            "g": "village",
+            "gs": "jlpt"
+          },
+          {
+            "s": "から",
+            "k": "plain"
+          },
+          {
+            "s": "とおかっ",
+            "k": "known",
+            "b": "とおい",
+            "g": "far (away), distant",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "みち",
+            "k": "known",
+            "b": "みち",
+            "g": "road, street; way, directions",
             "gs": "jlpt"
           },
           {
@@ -286,15 +355,14 @@
             "k": "plain"
           },
           {
-            "s": "大きな",
-            "r": "おおきな",
+            "s": "おおきな",
             "k": "plain"
           },
           {
             "s": "川",
+            "k": "known",
             "r": "かわ",
             "b": "川",
-            "k": "known",
             "g": "river",
             "gs": "jlpt"
           },
@@ -304,8 +372,8 @@
           },
           {
             "s": "あり",
-            "b": "ある",
             "k": "known",
+            "b": "ある",
             "g": "to be, to have",
             "gs": "jlpt"
           },
@@ -326,21 +394,21 @@
       {
         "tokens": [
           {
-            "s": "川",
-            "r": "かわ",
-            "b": "川",
-            "k": "known",
-            "g": "river",
-            "gs": "jlpt"
+            "s": "そこ",
+            "k": "plain"
           },
           {
             "s": "に",
             "k": "plain"
           },
           {
+            "s": "は",
+            "k": "plain"
+          },
+          {
             "s": "ふ",
-            "b": "ふる",
             "k": "known",
+            "b": "ふる",
             "g": "to precipitate, to fall (e.g., rain, snow, etc.)",
             "gs": "jlpt"
           },
@@ -354,8 +422,8 @@
           },
           {
             "s": "あり",
-            "b": "ある",
             "k": "known",
+            "b": "ある",
             "g": "to be, to have",
             "gs": "jlpt"
           },
@@ -377,8 +445,8 @@
         "tokens": [
           {
             "s": "はし",
-            "b": "はし",
             "k": "known",
+            "b": "はし",
             "g": "bridge",
             "gs": "jlpt"
           },
@@ -388,8 +456,8 @@
           },
           {
             "s": "あり",
-            "b": "ある",
             "k": "known",
+            "b": "ある",
             "g": "to be, to have",
             "gs": "jlpt"
           },
@@ -410,19 +478,27 @@
       {
         "tokens": [
           {
-            "s": "が",
+            "s": "でも",
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "雨",
-            "r": "あめ",
-            "b": "雨",
+            "s": "川",
             "k": "known",
-            "g": "rain",
+            "r": "かわ",
+            "b": "川",
+            "g": "river",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "水",
+            "k": "known",
+            "r": "みず",
+            "b": "水",
+            "g": "water",
             "gs": "jlpt"
           },
           {
@@ -430,18 +506,18 @@
             "k": "plain"
           },
           {
-            "s": "ふり",
-            "b": "ふる",
+            "s": "おおかっ",
             "k": "known",
-            "g": "to precipitate, to fall (e.g., rain, snow, etc.)",
+            "b": "おおい",
+            "g": "many; there are a lot",
             "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
           },
           {
             "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "です",
             "k": "plain"
           },
           {
@@ -453,9 +529,13 @@
       {
         "tokens": [
           {
+            "s": "だから",
+            "k": "plain"
+          },
+          {
             "s": "はし",
-            "b": "はし",
             "k": "known",
+            "b": "はし",
             "g": "bridge",
             "gs": "jlpt"
           },
@@ -464,21 +544,10 @@
             "k": "plain"
           },
           {
-            "s": "い",
-            "b": "いる",
-            "k": "known",
-            "g": "(humble) to be (animate), to exist",
-            "gs": "jlpt"
-          },
-          {
-            "s": "なく",
-            "k": "plain"
-          },
-          {
-            "s": "なり",
-            "b": "なる",
-            "k": "known",
-            "g": "to become",
+            "s": "ながれ",
+            "k": "ghost",
+            "b": "ながれる",
+            "g": "to flow, to be washed away",
             "gs": "jlpt"
           },
           {
@@ -500,38 +569,30 @@
       "prompt": {
         "tokens": [
           {
-            "s": "木こり",
-            "r": "きこり",
-            "b": "木こり",
+            "s": "巳之吉",
+            "r": "みのきち",
+            "b": "巳之吉",
             "k": "story",
-            "g": "woodcutter"
+            "g": "Minokichi, the young woodcutter",
+            "hk": true
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "何",
-            "r": "なん",
+            "s": "なん",
             "k": "plain"
           },
           {
-            "s": "人",
-            "r": "にん",
-            "b": "人",
+            "s": "さい",
             "k": "known",
-            "g": "counter for people",
+            "b": "さい",
+            "g": "~ years old",
             "gs": "jlpt"
           },
           {
-            "s": "い",
-            "b": "いる",
-            "k": "known",
-            "g": "(humble) to be (animate), to exist",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
+            "s": "でし",
             "k": "plain"
           },
           {
@@ -552,63 +613,45 @@
         {
           "tokens": [
             {
-              "s": "二",
-              "r": "に",
+              "s": "18",
               "k": "plain"
             },
             {
-              "s": "人",
-              "r": "にん",
-              "b": "人",
+              "s": "さい",
               "k": "known",
-              "g": "counter for people",
+              "b": "さい",
+              "g": "~ years old",
               "gs": "jlpt"
-            },
-            {
-              "s": "です",
-              "k": "plain"
             }
           ]
         },
         {
           "tokens": [
             {
-              "s": "一",
-              "r": "いち",
+              "s": "10",
               "k": "plain"
             },
             {
-              "s": "人",
-              "r": "にん",
-              "b": "人",
+              "s": "さい",
               "k": "known",
-              "g": "counter for people",
+              "b": "さい",
+              "g": "~ years old",
               "gs": "jlpt"
-            },
-            {
-              "s": "です",
-              "k": "plain"
             }
           ]
         },
         {
           "tokens": [
             {
-              "s": "三",
-              "r": "さん",
+              "s": "80",
               "k": "plain"
             },
             {
-              "s": "人",
-              "r": "にん",
-              "b": "人",
+              "s": "さい",
               "k": "known",
-              "g": "counter for people",
+              "b": "さい",
+              "g": "~ years old",
               "gs": "jlpt"
-            },
-            {
-              "s": "です",
-              "k": "plain"
             }
           ]
         }
@@ -616,17 +659,177 @@
       "answer": 0
     },
     "metrics": {
-      "kanjiCoverage": 0.6842105263157895,
-      "kanjiDensity": 0.1557377049180328,
-      "firstCoverage": 0.96,
-      "finalCoverage": 1,
-      "retries": 3,
-      "seconds": 16.228494199999986,
+      "kanjiCoverage": 1,
+      "kanjiDensity": 0.11486486486486487,
+      "firstCoverage": 0.9259259259259259,
+      "finalCoverage": 0.9615384615384616,
+      "retries": 4,
+      "seconds": 54.7777359,
       "offendingFirst": [
-        "流れる"
+        "舟",
+        "なくなる"
       ],
-      "ghostWords": []
+      "ghostWords": [
+        "ながれる"
+      ],
+      "faithIssues": []
     }
   },
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "ladderRetry": {
+    "before": {
+      "ladderOk": false,
+      "reasons": [
+        "kanjiDensity"
+      ],
+      "stats": {
+        "N5": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.1652892561983471,
+          "meanLength": 12.1,
+          "advancedShare": 0.04
+        },
+        "N4": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.11842105263157894,
+          "meanLength": 16.88888888888889,
+          "advancedShare": 0.15151515151515152
+        },
+        "N3": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.2233502538071066,
+          "meanLength": 28.142857142857142,
+          "advancedShare": 0.24528301886792453
+        }
+      }
+    },
+    "originalFlag": {
+      "tale": "yukionna",
+      "scene": "s01",
+      "ladderOk": false,
+      "reasons": [
+        "kanjiDensity"
+      ],
+      "stats": {
+        "N5": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.1557377049180328,
+          "meanLength": 12.2,
+          "advancedShare": 0
+        },
+        "N4": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.06164383561643835,
+          "meanLength": 14.6,
+          "advancedShare": 0.06896551724137931
+        },
+        "N3": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.05405405405405406,
+          "meanLength": 16.444444444444443,
+          "advancedShare": 0.16129032258064516
+        }
+      },
+      "n5Hash": "6dbe15607bd146a4eab749dad1df014cbd236c5b5c438699efc900b5f180ce85"
+    },
+    "feedback": "The scene ladder failed. The N5 text has 0 forbidden non-story kanji tokens and density 0.1652892561983471. Use only N5 kanji, numeric digits, short simple sentences, and basic N5 vocabulary. Keep density below 12%, and make it clearly easier than N4. Avoid repeating long story names; use the main name once and then simple roles or omit the subject when clear."
+  },
+  "levelRepairs": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N5.\nPicture-book style. Use です/ます and ました/ませんでした only, with ～て, ～たい, ～から and ～が (but). One idea per sentence. Replace personal names with roles (おさむらい, おぼうさん, おじいさん, わかい男), except the one main character listed as a story word.\nUse only vocabulary at or below N5. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 20 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 巳之吉（みのきち）、お雪（おゆき）、木こり（きこり）、吹雪（ふぶき）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八十三上下大女山川土千子小中五六円天日月木水火出右四左本白万今午友父北半外母休先名年気百男見車毎行西何来学金雨国東長前南後食校時高間話電聞語読生書. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 0–12 percent. Aim for 8 percent and mean sentence length 6–20 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n武蔵の国のある村に茂作、巳之吉と云う二人の木こりがいた。この話のあった時分には、茂作は老人であった。そして、彼の年季奉公人であった巳之吉は、十八の少年であった。毎日、彼等は村から約二里離れた森へ一緒に出かけた。その森へ行く道に、越さねばならない大きな河がある。そして、渡し船がある。渡しのある処にたびたび、橋が架けられたが、その橋は洪水のあるたびごとに流された。河の溢れる時には、普通の橋では、その急流を防ぐ事はできない。\nCurrent retelling:\nあるむらに二人の木こりがいました。\n1人はおじいさんでした。\nもう1人は巳之吉です。\n巳之吉は十八さいでした。\n二人はまいにちやまへ行きました。\nやまはむらからとおかったです。\nみちにおおきな川がありました。\nそこにはふねがありました。\nはしもありました。\nでも川の水がおおかったです。\nだからはしはきえました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.13013698630136986,\"meanLength\":13.272727272727273,\"advancedShare\":0.038461538461538464}; vocabulary 1. Required kanji density 0–0.12, kanji coverage 1.0. Above-level vocabulary: . Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 20 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentencesにつながる\": null, \"sentences\": [\"あるむらに二人の木こりがいました。\", \"1人はおじいさんでした。\", \"もう1人は巳之吉でした。\", \"巳之吉は18さいでした。\", \"二人はまいにちやまへ行きました。\", \"やまはむらからとおかったです。\", \"みちにおおきな川がありました。\", \"そこにはふねがありました。\", \"はしもありました。\", \"でも川の水がおおかったです。\", \"だからはしは流れました。\"], \"question\": {\"prompt\": \"巳之吉は何さいでしたか。\", \"options\": [\"10さい\", \"18さい\", \"20さい\"], \"answer\": 1}}"
+    }
+  ],
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n武蔵の国のある村に茂作、巳之吉と云う二人の木こりがいた。この話のあった時分には、茂作は老人であった。そして、彼の年季奉公人であった巳之吉は、十八の少年であった。毎日、彼等は村から約二里離れた森へ一緒に出かけた。その森へ行く道に、越さねばならない大きな河がある。そして、渡し船がある。渡しのある処にたびたび、橋が架けられたが、その橋は洪水のあるたびごとに流された。河の溢れる時には、普通の橋では、その急流を防ぐ事はできない。\n\n語り直しの文（JSON配列。sentenceは必ずこの配列の文字列をそのままコピーする）:\n[\"あるむらに2人の木こりがいました。\",\"1人はおじいさんでした。\",\"もう1人は巳之吉です。\",\"巳之吉は18さいでした。\",\"2人はまいにちやまへ行きました。\",\"やまはむらからとおかったです。\",\"みちにおおきな川がありました。\",\"そこにはふねがありました。\",\"はしもありました。\",\"でも川の水がおおかったです。\",\"だからはしはきえました。\"]"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"2人の木こりがいました。\", \"problem\": \" numbers must not be spelled in kana or digits, use 2 → 二\", \"kind\": \"number\"}, {\"sentence\": \"巳之吉は18さいでした。\", \"problem\": \" numbers must not be spelled in kana or digits, use 18 → 十八\", \"kind\": \"number\"}, {\"sentence\": \"2人はまいにちやまへ行きました。\", \"problem\": \" numbers must not be spelled in kana or digits, use 2 → 二\", \"kind\": \"number\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n武蔵の国のある村に茂作、巳之吉と云う二人の木こりがいた。この話のあった時分には、茂作は老人であった。そして、彼の年季奉公人であった巳之吉は、十八の少年であった。毎日、彼等は村から約二里離れた森へ一緒に出かけた。その森へ行く道に、越さねばならない大きな河がある。そして、渡し船がある。渡しのある処にたびたび、橋が架けられたが、その橋は洪水のあるたびごとに流された。河の溢れる時には、普通の橋では、その急流を防ぐ事はできない。\n\n語り直しの文（JSON配列。sentenceは必ずこの配列の文字列をそのままコピーする）:\n[\"あるむらに2人の木こりがいました。\",\"1人はおじいさんでした。\",\"もう1人は巳之吉です。\",\"巳之吉は18さいでした。\",\"2人はまいにちやまへ行きました。\",\"やまはむらからとおかったです。\",\"みちにおおきな川がありました。\",\"そこにはふねがありました。\",\"はしもありました。\",\"でも川の水がおおかったです。\",\"だからはしはきえました。\"]"
+          },
+          {
+            "role": "assistant",
+            "content": "{\"issues\": [{\"sentence\": \"2人の木こりがいました。\", \"problem\": \" numbers must not be spelled in kana or digits, use 2 → 二\", \"kind\": \"number\"}, {\"sentence\": \"巳之吉は18さいでした。\", \"problem\": \" numbers must not be spelled in kana or digits, use 18 → 十八\", \"kind\": \"number\"}, {\"sentence\": \"2人はまいにちやまへ行きました。\", \"problem\": \" numbers must not be spelled in kana or digits, use 2 → 二\", \"kind\": \"number\"}]}"
+          },
+          {
+            "role": "user",
+            "content": "Return valid JSON only. Validation: [\n  {\n    \"code\": \"custom\",\n    \"message\": \"Every sentence must exactly match one of these strings, including punctuation: [\\\"あるむらに2人の木こりがいました。\\\",\\\"1人はおじいさんでした。\\\",\\\"もう1人は巳之吉です。\\\",\\\"巳之吉は18さいでした。\\\",\\\"2人はまいにちやまへ行きました。\\\",\\\"やまはむらからとおかったです。\\\",\\\"みちにおおきな川がありました。\\\",\\\"そこにはふねがありました。\\\",\\\"はしもありました。\\\",\\\"でも川の水がおおかったです。\\\",\\\"だからはしはきえました。\\\"]\",\n    \"path\": []\n  }\n]"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"あるむらに2人の木こりがいました。\", \"problem\": \"numbers must not be spelled in kana or digits, use 2 \\u2192 \\u4e8c\", \"kind\": \"number\"}, {\"sentence\": \"巳之吉は18さいでした。\", \"problem\": \"numbers must not be spelled in kana or digits, use 18 \\u2192 \\u5341\\u516b\", \"kind\": \"number\"}, {\"sentence\": \"2人はまいにちやまへ行きました。\", \"problem\": \"numbers must not be spelled in kana or digits, use 2 \\u2192 \\u4e8c\", \"kind\": \"number\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n武蔵の国のある村に茂作、巳之吉と云う二人の木こりがいた。この話のあった時分には、茂作は老人であった。そして、彼の年季奉公人であった巳之吉は、十八の少年であった。毎日、彼等は村から約二里離れた森へ一緒に出かけた。その森へ行く道に、越さねばならない大きな河がある。そして、渡し船がある。渡しのある処にたびたび、橋が架けられたが、その橋は洪水のあるたびごとに流された。河の溢れる時には、普通の橋では、その急流を防ぐ事はできない。\n\n語り直しの文（JSON配列。sentenceは必ずこの配列の文字列をそのままコピーする）:\n[\"あるむらに二人の木こりがいました。\",\"1人はおじいさんでした。\",\"もう1人は巳之吉でした。\",\"巳之吉は18さいでした。\",\"二人はまいにちやまへ行きました。\",\"やまはむらからとおかったです。\",\"みちにおおきな川がありました。\",\"そこにはふねがありました。\",\"はしもありました。\",\"でも川の水がおおかったです。\",\"だからはしはながれました。\"]"
+          }
+        ],
+        "response": "{\"issues\": []}"
+      }
+    ],
+    "rewrites": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Repair only the specified sentences at JLPT N5. Preserve all other sentences and events. Use natural Japanese, numeric digits for numbers, and maintain the meaning of the original. Return only JSON {\"rewrites\":[{\"index\":0,\"sentence\":\"...\"}]}."
+          },
+          {
+            "role": "user",
+            "content": "Original:\n武蔵の国のある村に茂作、巳之吉と云う二人の木こりがいた。この話のあった時分には、茂作は老人であった。そして、彼の年季奉公人であった巳之吉は、十八の少年であった。毎日、彼等は村から約二里離れた森へ一緒に出かけた。その森へ行く道に、越さねばならない大きな河がある。そして、渡し船がある。渡しのある処にたびたび、橋が架けられたが、その橋は洪水のあるたびごとに流された。河の溢れる時には、普通の橋では、その急流を防ぐ事はできない。\nSentences:\n0: あるむらに2人の木こりがいました。\n1: 1人はおじいさんでした。\n2: もう1人は巳之吉です。\n3: 巳之吉は18さいでした。\n4: 2人はまいにちやまへ行きました。\n5: やまはむらからとおかったです。\n6: みちにおおきな川がありました。\n7: そこにはふねがありました。\n8: はしもありました。\n9: でも川の水がおおかったです。\n10: だからはしはきえました。\nIssues:\n[{\"sentence\":\"あるむらに2人の木こりがいました。\",\"problem\":\"numbers must not be spelled in kana or digits, use 2 → 二\",\"kind\":\"number\"},{\"sentence\":\"巳之吉は18さいでした。\",\"problem\":\"numbers must not be spelled in kana or digits, use 18 → 十八\",\"kind\":\"number\"},{\"sentence\":\"2人はまいにちやまへ行きました。\",\"problem\":\"numbers must not be spelled in kana or digits, use 2 → 二\",\"kind\":\"number\"}]\nRewrite exactly indexes: 0,3,4"
+          }
+        ],
+        "response": "{\"rewrites\": [{\"index\": 0, \"sentence\": \"あるむらに二人の木こりがいました。\"}, {\"index\": 3, \"sentence\": \"巳之吉は十八さいでした。\"}, {\"index\": 4, \"sentence\": \"二人はまいにちやまへ行きました。\"}]}"
+      }
+    ],
+    "before": [
+      {
+        "sentence": "あるむらに2人の木こりがいました。",
+        "problem": "numbers must not be spelled in kana or digits, use 2 → 二",
+        "kind": "number"
+      },
+      {
+        "sentence": "巳之吉は18さいでした。",
+        "problem": "numbers must not be spelled in kana or digits, use 18 → 十八",
+        "kind": "number"
+      },
+      {
+        "sentence": "2人はまいにちやまへ行きました。",
+        "problem": "numbers must not be spelled in kana or digits, use 2 → 二",
+        "kind": "number"
+      }
+    ],
+    "after": []
+  }
 }

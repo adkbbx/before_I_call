@@ -4,45 +4,62 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration, adding ～ようだ, ～らしい, the passive and ～ために.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Copy every story word exactly in kanji when it is needed; do not insert unused words.\nWrite normal Japanese with no spaces between words. Outside story words, use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小才中五六円天手文日月木水火犬王出右四左本正田白目石立万今元公内切午友太少引心方牛父止兄冬北半古台外市広母用世主他代写去号平打申礼休先名字年早気百耳男町花見赤足車不仕交会光同回多当毎米考肉自色行西何体作図声売弟形来社言走近学空金雨青草音化地両全向安曲有次死京国夜妹姉店明東歩画直知長前南室後思活海点科茶食首欠由民付以失必未末校夏家時紙記通高強教理組船週雪魚鳥黒支住助医君対局役投決究者研馬場朝番答絵買道間数楽話電所事使具受和始定実服泳物苦表部乗客屋度待持界発相美負送重談要勝起速配酒院終習転進落葉運開集飲業漢路歌聞語読鳴横調親頭顔病最争伝共好成老位初別利努労命放昔注育指洋神追戦良特便働意味勉庭息旅流消員都動商悪族深球陽寒悲期歯港登着野生亡合風予反新返問宿想感暗様福銀題館駅料殺然熱選願情映疑皆例参完念折望束残求約性格能術私帰春昼晴秋計列式信単変夫建昨法英飯晩猫園曜書遠係取品守幸急真箱面喜治笑辞関政留険危存原薬側堂席敗果因常識非官察愛警覚説試告種達類報等借座忘洗験許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差質供限与渡景抜候構捕慣満掛居突招段腹痛退貸迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: むかし、海で大きなたたかいがありました。\n\n場面（原文）:\n平家の人達は以前は今よりも遥かに焦慮いていた。夜、漕ぎ行く船のほとりに立ち顕れ、それを沈めようとし、また水泳する人をたえず待ち受けていては、それを引きずり込もうとするのである。これ等の死者を慰めるために建立されたのが、すなわち赤間ヶ関の仏教の御寺なる阿彌陀寺であったが、その墓地もまた、それに接して海岸に設けられた。そしてその墓地の内には入水された皇帝と、その歴歴の臣下との名を刻みつけた幾箇かの石碑が立てられ、かつそれ等の人々の霊のために、仏教の法会がそこで整然と行われていたのである。この寺が建立され、その墓が出来てから以後、平家の人達は以前よりも禍いをする事が少くなった。しかしそれでもなお引き続いておりおり、怪しい事をするのではあった――彼等が完き平和を得ていなかった事の証拠として。"
+        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\n平家の人達は以前は今よりも遥かに焦慮いていた。夜、漕ぎ行く船のほとりに立ち顕れ、それを沈めようとし、また水泳する人をたえず待ち受けていては、それを引きずり込もうとするのである。これ等の死者を慰めるために建立されたのが、すなわち赤間ヶ関の仏教の御寺なる阿彌陀寺であったが、その墓地もまた、それに接して海岸に設けられた。そしてその墓地の内には入水された皇帝と、その歴歴の臣下との名を刻みつけた幾箇かの石碑が立てられ、かつそれ等の人々の霊のために、仏教の法会がそこで整然と行われていたのである。この寺が建立され、その墓が出来てから以後、平家の人達は以前よりも禍いをする事が少くなった。しかしそれでもなお引き続いておりおり、怪しい事をするのではあった――彼等が完き平和を得ていなかった事の証拠として。\n"
       }
     ]
   },
   "responses": [
-    "{\"sentences([\": \"平家のひとたちは、とてもこわかったようだ。\", \"よるに、ふねのそばにたったらしい。_fune_をしずめるためだった。_oyogu_ひとをまって、ひきずりこもうとした。_shisha_をねぐやすために、おてらがつくられた。_bochi_も、うみのそばにあった。そこには、なまえがかれたいしがたてられた。れいのために、ほうえがおこなわれた。おてらができてから、わるいことはすくなくなった。でも、たまにふしぎなことがあった。かれらは、まだしずかにねむれなかったようだ。),\": \"question\", \"prompt\": \"なぜおてらがつくられましたか。\", \"options\": [\"ふねをしずめるため\", \"ししゃをねぐやすため\", \"いしをたてるため\"], \"answer\": 1}",
-    "{\"sentences\": [\"平家のひとたちは、とてもこわかったようだ。\", \"よるに、ふねのそばにたったらしい。\", \"ふねをしずめるためだった。\", \"およぐひとをまって、ひきずりこもうとした。\", \"しんだひとをねぐやすために、おてらがつくられた。\", \"おてらのそばに、おはかがあった。\", \"そこには、なまえがかれたいしがあった。\", \"れいのために、ほうえがおこなわれた。\", \"おてらができてから、わるいことはすくなくなった。\", \"でも、たまにふしぎなことがあった。\", \"かれらは、まだしずかにねむれなかったようだ。\"], \"question\": {\"prompt\": \"なぜおてらがつくられましたか。\", \"options\": [\"ふねをしずめるため\", \"しんだひとをねぐやすため\", \"いしをたてるため\"], \"answer\": 1}}",
-    "{\"rewrites\": [{\"index\": 2, \"sentence\": \"ふねをなくすためだった。\"}, {\"index\": 3, \"sentence\": \"およぐひとをまって、つかまえた。\"}, {\"index\": 4, \"sentence\": \"しんだひとをやすめるために、おてらがあった。\"}, {\"index\": 6, \"sentence\": \"そこには、なまえのいしがあった。\"}, {\"index\": 7, \"sentence\": \"れいのために、ぎょうじがあった。\"}, {\"index\": 10, \"sentence\": \"かれらは、まだしずかではなかったようだ。\"}]}",
-    "{\"rewrites\": [{\"index\": 4, \"sentence\": \"しんだひとのために、おてらがあった。\"}, {\"index\": 7, \"sentence\": \"れいのために、おいのりがあった。\"}, {\"index\": 10, \"sentence\": \"かれらは、まだしずかではなかったようだ。\"}]}",
-    "{\"rewrites\": [{\"index\": 4, \"sentence\": \"しんだひとのために、おてらがあった。\"}, {\"index\": 7, \"sentence\": \"れいのために、おいのりがあった。\"}, {\"index\": 10, \"sentence\": \"かれらは、まだしずかではなかったようだ。\"}]}",
-    "{\"question\": {\"prompt\": \"なぜおてらがつくられましたか。\", \"options\": [\"ふねをなくすため\", \"しんだひとのため\", \"いしをたてるため\"], \"answer\": 1}}",
-    "{\"glosses\": {\"れる\": \"passive voice marker\"}}"
+    "{\"sentences\": [\"平家の人達は昔、今よりもずっと恐ろしかったので、夜に船を沈めようとしました。\", \"泳いでいる人を待っていて、その人を水の中に引きずり込もうとしたようです。\", \"死んだ人を慰めるために、海岸に阿彌陀寺というお寺が作られました。\", \"墓地にも、皇帝や家来の名前が書いてある石碑がいくつか立てられました。\", \"そこで霊のために法会が行われて、平家の人達の悪い事は少なくなりました。\", \"それでも、時々まだ怪しい事をしていたので、安心できなかったようです。\"], \"question\": {\"prompt\": \"平家の人達は、泳いでいる人に何をしようとしましたか。\", \"options\": [\"助けようとした。\", \"水の中に引きずり込もうとした。\", \"一緒に泳ごうとした。\"], \"answer\": 1}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"平家の人たちは昔、今よりずっと怖かったので、夜にふねをしずめようとしました。\"}, {\"index\": 1, \"sentence\": \"泳いでいる人を待っていて、その人を水の中にひきずりこもうとしたようです。\"}, {\"index\": 2, \"sentence\": \"死んだ人をなぐさめるために、かいがんにあみだてらというおてらが作られました。\"}, {\"index\": 3, \"sentence\": \"ぼちにも、こうていや家来の名前が書いてあるせきひがいくつか立てられました。\"}, {\"index\": 4, \"sentence\": \"そこでれいのために法会が行われて、平家の人たちの悪い事は少なくなりました。\"}, {\"index\": 5, \"sentence\": \"それでも、ときどきまだあやしい事をしていたので、安心できなかったようです。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"平家の人たちは昔、今よりずっと怖かったので、夜にふねをしずめようとしました。\"}, {\"index\": 1, \"sentence\": \"泳いでいる人を待っていて、その人を水の中にひきずりこもうとしたようです。\"}, {\"index\": 2, \"sentence\": \"死んだ人をなぐさめるために、かいがんにあみだてらというおてらが作られました。\"}, {\"index\": 3, \"sentence\": \"ぼちにも、こうていや家来の名前が書いてあるせきひがいくつか立てられました。\"}, {\"index\": 4, \"sentence\": \"そこでれいのためにほうえが行われて、平家の人たちの悪い事は少なくなりました。\"}, {\"index\": 5, \"sentence\": \"それでも、ときどきまだあやしい事をしていたので、安心できなかったようです。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"平家の人たちは昔、今よりずっと怖かったので、夜にふねをしずめようとしました。\"}, {\"index\": 1, \"sentence\": \"泳いでいる人を待っていて、その人を水の中にひきずりこもうとしたようです。\"}, {\"index\": 2, \"sentence\": \"死んだ人をなぐさめるために、かいがんにあみだてらというおてらが作られました。\"}, {\"index\": 3, \"sentence\": \"ぼちにも、こうていや家来の名前が書いてあるせきひがいくつか立てられました。\"}, {\"index\": 4, \"sentence\": \"そこでれいのためにほうえが行われて、平家の人たちの悪い事は少なくなりました。\"}, {\"index\": 5, \"sentence\": \"それでも、ときどきまだあやしい事をしていたので、安心できなかったようです。\"}]}",
+    "{\"question\": {\"prompt\": \"平家の人たちは、泳いでいる人に何をしようとしましたか。\", \"options\": [\"助けようとした。\", \"水の中にひきずりこもうとした。\", \"一緒に泳ごうとした。\"], \"answer\": 1}}",
+    "{\"glosses\": {\"ひきずりこむ\": \"to drag into\", \"れる\": \"passive auxiliary\", \"ぼる\": \"error in prompt\", \"られる\": \"passive auxiliary\"}}"
   ],
   "metrics": {
     "kanjiCoverage": 1,
-    "kanjiDensity": 0.010362694300518135,
-    "firstCoverage": 0.8269230769230769,
-    "finalCoverage": 0.9375,
-    "retries": 3,
-    "seconds": 25.286751500000012,
+    "kanjiDensity": 0.15566037735849056,
+    "firstCoverage": 0.6896551724137931,
+    "finalCoverage": 0.7796610169491526,
+    "retries": 6,
+    "seconds": 29.743412899999996,
     "offendingFirst": [
-      "しずめる",
-      "ひきずりこむ",
-      "しむ",
-      "ねぐ",
+      "人達",
+      "船",
+      "沈める",
+      "引きずり込む",
+      "慰める",
+      "阿彌陀",
+      "お寺",
       "れる",
-      "ら",
-      "ねむれる"
+      "墓地",
+      "皇帝",
+      "家来",
+      "石碑",
+      "られる",
+      "霊",
+      "法会",
+      "怪しい"
     ],
     "ghostWords": [
-      "しむ",
-      "のり",
+      "船",
+      "しずめる",
+      "ひきずりこむ",
+      "なぐさめる",
+      "あみ",
       "ら",
-      "れる"
-    ]
+      "れる",
+      "ぼる",
+      "部下",
+      "られる",
+      "法会",
+      "あやしい"
+    ],
+    "faithIssues": []
   },
   "retelling": {
     "level": "N3",
@@ -63,16 +80,17 @@
             "k": "plain"
           },
           {
-            "s": "ひと",
-            "b": "ひと",
+            "s": "人",
             "k": "known",
-            "g": "man, person",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
             "s": "たち",
-            "b": "たち",
             "k": "known",
+            "b": "たち",
             "g": "plural suffix",
             "gs": "jlpt"
           },
@@ -81,20 +99,41 @@
             "k": "plain"
           },
           {
+            "s": "昔",
+            "k": "known",
+            "r": "むかし",
+            "b": "昔",
+            "g": "old days; past",
+            "gs": "jlpt"
+          },
+          {
             "s": "、",
             "k": "plain"
           },
           {
-            "s": "とても",
-            "b": "とても",
+            "s": "今",
             "k": "known",
-            "g": "very (much), greatly, exceedingly",
+            "r": "いま",
+            "b": "今",
+            "g": "now",
             "gs": "jlpt"
           },
           {
-            "s": "こわかっ",
-            "b": "こわい",
+            "s": "より",
+            "k": "plain"
+          },
+          {
+            "s": "ずっと",
             "k": "known",
+            "b": "ずっと",
+            "g": "for a long time; all the time; consecutively",
+            "gs": "jlpt"
+          },
+          {
+            "s": "怖かっ",
+            "k": "known",
+            "r": "こわかっ",
+            "b": "怖い",
             "g": "scary, frightening",
             "gs": "jlpt"
           },
@@ -103,28 +142,18 @@
             "k": "plain"
           },
           {
-            "s": "よう",
-            "b": "よう",
-            "k": "known",
-            "g": "errand, task, business (to take care of)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "だ",
+            "s": "ので",
             "k": "plain"
           },
           {
-            "s": "。",
+            "s": "、",
             "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
+          },
           {
-            "s": "よる",
-            "b": "よる",
+            "s": "夜",
             "k": "known",
+            "r": "よる",
+            "b": "夜",
             "g": "evening, night",
             "gs": "jlpt"
           },
@@ -133,89 +162,41 @@
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "ふ",
-            "b": "ふる",
-            "k": "known",
-            "g": "to precipitate, to fall (e.g., rain, snow, etc.)",
+            "s": "船",
+            "k": "ghost",
+            "r": "ふね",
+            "b": "船",
+            "g": "counter for ships",
             "gs": "jlpt"
-          },
-          {
-            "s": "ね",
-            "k": "plain"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "そば",
-            "b": "そば",
-            "k": "known",
-            "g": "near, close, beside; Japanese traditional buckwheat noodle",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "たっ",
-            "b": "たつ",
-            "k": "known",
-            "g": "to stand up",
-            "gs": "jlpt"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "らしい",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "ふ",
-            "b": "ふる",
-            "k": "known",
-            "g": "to precipitate, to fall (e.g., rain, snow, etc.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ね",
-            "k": "plain"
           },
           {
             "s": "を",
             "k": "plain"
           },
           {
-            "s": "なくす",
-            "b": "なくす",
-            "k": "known",
-            "g": "to lose something",
+            "s": "しずめよ",
+            "k": "ghost",
+            "b": "しずめる",
+            "g": "to sink, to submerge",
             "gs": "jlpt"
           },
           {
-            "s": "ため",
-            "b": "ため",
+            "s": "う",
+            "k": "plain"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "し",
             "k": "known",
-            "g": "good, advantage, in order to",
+            "b": "する",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
             "gs": "jlpt"
           },
           {
-            "s": "だっ",
+            "s": "まし",
             "k": "plain"
           },
           {
@@ -231,17 +212,30 @@
       {
         "tokens": [
           {
-            "s": "およぐ",
-            "b": "およぐ",
+            "s": "泳い",
             "k": "known",
+            "r": "およい",
+            "b": "泳ぐ",
             "g": "to swim",
             "gs": "jlpt"
           },
           {
-            "s": "ひと",
-            "b": "ひと",
+            "s": "で",
+            "k": "plain"
+          },
+          {
+            "s": "いる",
             "k": "known",
-            "g": "man, person",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "人",
+            "k": "known",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
@@ -249,9 +243,10 @@
             "k": "plain"
           },
           {
-            "s": "まっ",
-            "b": "まつ",
+            "s": "待っ",
             "k": "known",
+            "r": "まっ",
+            "b": "待つ",
             "g": "to wait",
             "gs": "jlpt"
           },
@@ -260,304 +255,10 @@
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "つかまえ",
-            "b": "つかまえる",
+            "s": "い",
             "k": "known",
-            "g": "to catch, to arrest",
-            "gs": "jlpt"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "しん",
-            "b": "しむ",
-            "k": "ghost",
-            "g": "core, heart, wick",
-            "gs": "jlpt"
-          },
-          {
-            "s": "だ",
-            "k": "plain"
-          },
-          {
-            "s": "ひと",
-            "b": "ひと",
-            "k": "known",
-            "g": "man, person",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "ため",
-            "b": "ため",
-            "k": "known",
-            "g": "good, advantage, in order to",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "お",
-            "k": "plain"
-          },
-          {
-            "s": "てら",
-            "b": "てる",
-            "k": "known",
-            "g": "to shine",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "あっ",
-            "b": "ある",
-            "k": "known",
-            "g": "to be, to have",
-            "gs": "jlpt"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "お",
-            "k": "plain"
-          },
-          {
-            "s": "てら",
-            "b": "てる",
-            "k": "known",
-            "g": "to shine",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "そば",
-            "b": "そば",
-            "k": "known",
-            "g": "near, close, beside; Japanese traditional buckwheat noodle",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "お",
-            "k": "plain"
-          },
-          {
-            "s": "はか",
-            "b": "はか",
-            "k": "known",
-            "g": "grave, tomb",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "あっ",
-            "b": "ある",
-            "k": "known",
-            "g": "to be, to have",
-            "gs": "jlpt"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "そこ",
-            "k": "plain"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "な",
-            "k": "plain"
-          },
-          {
-            "s": "まえ",
-            "b": "まえる",
-            "k": "known",
-            "g": "before, in front",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "いし",
-            "b": "いし",
-            "k": "known",
-            "g": "stone",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "あっ",
-            "b": "ある",
-            "k": "known",
-            "g": "to be, to have",
-            "gs": "jlpt"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "れい",
-            "b": "れい",
-            "k": "known",
-            "g": "zero, nought",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "ため",
-            "b": "ため",
-            "k": "known",
-            "g": "good, advantage, in order to",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "おい",
-            "k": "plain"
-          },
-          {
-            "s": "のり",
-            "b": "のり",
-            "k": "ghost",
-            "g": "glue, paste, starch",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "あっ",
-            "b": "ある",
-            "k": "known",
-            "g": "to be, to have",
-            "gs": "jlpt"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "お",
-            "k": "plain"
-          },
-          {
-            "s": "てら",
-            "b": "てる",
-            "k": "known",
-            "g": "to shine",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "でき",
-            "b": "できる",
-            "k": "known",
-            "g": "to be able to (to accomplish)",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
           {
@@ -565,166 +266,69 @@
             "k": "plain"
           },
           {
-            "s": "から",
-            "k": "plain"
-          },
-          {
             "s": "、",
             "k": "plain"
           },
           {
-            "s": "わるい",
-            "b": "わるい",
+            "s": "その",
+            "k": "plain"
+          },
+          {
+            "s": "人",
             "k": "known",
-            "g": "bad, sinful; inferior",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
-            "s": "こと",
-            "b": "こと",
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "水",
             "k": "known",
-            "g": "thing(s), matter(s), fact",
+            "r": "みず",
+            "b": "水",
+            "g": "water",
             "gs": "jlpt"
           },
           {
-            "s": "は",
+            "s": "の",
             "k": "plain"
           },
           {
-            "s": "すく",
-            "b": "すい",
+            "s": "中",
             "k": "known",
-            "g": "essence",
+            "r": "なか",
+            "b": "中",
+            "g": "during, while",
             "gs": "jlpt"
           },
           {
-            "s": "なく",
+            "s": "に",
             "k": "plain"
           },
           {
-            "s": "なっ",
-            "b": "なる",
-            "k": "known",
-            "g": "to become",
-            "gs": "jlpt"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "でも",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "たまに",
-            "b": "たまに",
-            "k": "known",
-            "g": "occasionally",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ふしぎ",
-            "b": "ふしぎ",
-            "k": "known",
-            "g": "mystery, curiosity",
-            "gs": "jlpt"
-          },
-          {
-            "s": "な",
-            "k": "plain"
-          },
-          {
-            "s": "こと",
-            "b": "こと",
-            "k": "known",
-            "g": "thing(s), matter(s), fact",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "あっ",
-            "b": "ある",
-            "k": "known",
-            "g": "to be, to have",
-            "gs": "jlpt"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "かれ",
-            "b": "かれる",
-            "k": "known",
-            "g": "to wither, to die (plant), to be blasted (plant)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ら",
-            "b": "ら",
+            "s": "ひきずりこも",
             "k": "ghost",
-            "g": "plural persons",
-            "gs": "jlpt"
+            "b": "ひきずりこむ",
+            "g": "to drag into",
+            "gs": "model"
           },
           {
-            "s": "は",
+            "s": "う",
             "k": "plain"
           },
           {
-            "s": "、",
+            "s": "と",
             "k": "plain"
           },
           {
-            "s": "まだ",
-            "b": "まだ",
+            "s": "し",
             "k": "known",
-            "g": "yet, still, besides",
-            "gs": "jlpt"
-          },
-          {
-            "s": "しずか",
-            "b": "しずか",
-            "k": "known",
-            "g": "quiet, calm",
-            "gs": "jlpt"
-          },
-          {
-            "s": "で",
-            "k": "plain"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "なかっ",
-            "b": "ない",
-            "k": "known",
-            "g": "there isn't, doesn't have",
+            "b": "する",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
             "gs": "jlpt"
           },
           {
@@ -733,13 +337,487 @@
           },
           {
             "s": "よう",
-            "b": "よう",
             "k": "known",
+            "b": "よう",
             "g": "errand, task, business (to take care of)",
             "gs": "jlpt"
           },
           {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "死ん",
+            "k": "known",
+            "r": "しん",
+            "b": "死ぬ",
+            "g": "to die",
+            "gs": "jlpt"
+          },
+          {
             "s": "だ",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "k": "known",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "なぐさめる",
+            "k": "ghost",
+            "b": "なぐさめる",
+            "g": "to comfort, to console",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ため",
+            "k": "known",
+            "b": "ため",
+            "g": "good, advantage, in order to",
+            "gs": "jlpt"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "かいがん",
+            "k": "known",
+            "b": "かいがん",
+            "g": "coast, seashore",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "あみ",
+            "k": "ghost",
+            "b": "あみ",
+            "g": "net",
+            "gs": "jlpt"
+          },
+          {
+            "s": "だて",
+            "k": "known",
+            "b": "だて",
+            "g": "~ storied, separate housing",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ら",
+            "k": "ghost",
+            "b": "ら",
+            "g": "plural persons",
+            "gs": "jlpt"
+          },
+          {
+            "s": "という",
+            "k": "plain"
+          },
+          {
+            "s": "お",
+            "k": "plain"
+          },
+          {
+            "s": "てら",
+            "k": "known",
+            "b": "てる",
+            "g": "to shine",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "作ら",
+            "k": "known",
+            "r": "つくら",
+            "b": "作る",
+            "g": "to make, to create",
+            "gs": "jlpt"
+          },
+          {
+            "s": "れ",
+            "k": "ghost",
+            "b": "れる",
+            "g": "to be (passive/honorific)",
+            "gs": "model"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "ぼ",
+            "k": "ghost",
+            "b": "ぼる",
+            "g": "to dig/carve",
+            "gs": "model"
+          },
+          {
+            "s": "ち",
+            "k": "known",
+            "b": "ちる",
+            "g": "to fall, to scatter (e.g., blossoms)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "こう",
+            "k": "known",
+            "b": "こう",
+            "g": "like this, this way",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "いや",
+            "k": "plain"
+          },
+          {
+            "s": "部下",
+            "k": "ghost",
+            "r": "ぶか",
+            "b": "部下",
+            "g": "one's subordinate",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "名前",
+            "k": "known",
+            "r": "なまえ",
+            "b": "名前",
+            "g": "name",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "書い",
+            "k": "known",
+            "r": "かい",
+            "b": "書く",
+            "g": "to write",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "ある",
+            "k": "known",
+            "b": "ある",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "せき",
+            "k": "known",
+            "b": "せき",
+            "g": "a seat",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ひ",
+            "k": "known",
+            "b": "ひる",
+            "g": "noon, daytime",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "いくつ",
+            "k": "plain"
+          },
+          {
+            "s": "か",
+            "k": "plain"
+          },
+          {
+            "s": "立て",
+            "k": "known",
+            "r": "たて",
+            "b": "立てる",
+            "g": "to stand (something) up, to erect (something)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "られ",
+            "k": "ghost",
+            "b": "られる",
+            "g": "to be (passive/potential/honorific)",
+            "gs": "model"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "そこで",
+            "k": "plain"
+          },
+          {
+            "s": "法会",
+            "k": "ghost",
+            "r": "ほうえ",
+            "b": "法会",
+            "g": "Buddhist memorial service",
+            "gs": "model"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "行わ",
+            "k": "known",
+            "r": "おこなわ",
+            "b": "行う",
+            "g": "to carry out; to conduct (typically used in written language)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "れ",
+            "k": "ghost",
+            "b": "れる",
+            "g": "to be (passive/honorific)",
+            "gs": "model"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "平家",
+            "r": "へいけ",
+            "b": "平家",
+            "k": "story",
+            "g": "the Heike clan"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "k": "known",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "たち",
+            "k": "known",
+            "b": "たち",
+            "g": "plural suffix",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "悪い",
+            "k": "known",
+            "r": "わるい",
+            "b": "悪い",
+            "g": "bad, sinful; inferior",
+            "gs": "jlpt"
+          },
+          {
+            "s": "こと",
+            "k": "known",
+            "b": "こと",
+            "g": "thing(s), matter(s), fact",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "少なく",
+            "k": "known",
+            "r": "すくなく",
+            "b": "少ない",
+            "g": "a little; a few",
+            "gs": "jlpt"
+          },
+          {
+            "s": "なり",
+            "k": "known",
+            "b": "なる",
+            "g": "to become",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "それでも",
+            "k": "plain"
+          },
+          {
+            "s": "ときどき",
+            "k": "known",
+            "b": "ときどき",
+            "g": "sometimes",
+            "gs": "jlpt"
+          },
+          {
+            "s": "あやしい",
+            "k": "ghost",
+            "b": "あやしい",
+            "g": "suspicious, dubious, doubtful",
+            "gs": "jlpt"
+          },
+          {
+            "s": "こと",
+            "k": "known",
+            "b": "こと",
+            "g": "thing(s), matter(s), fact",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "し",
+            "k": "known",
+            "b": "する",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "ので",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "安心",
+            "k": "known",
+            "r": "あんしん",
+            "b": "安心",
+            "g": "peace of mind, relief",
+            "gs": "jlpt"
+          },
+          {
+            "s": "でき",
+            "k": "known",
+            "b": "できる",
+            "g": "to be able to (to accomplish)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "なかっ",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "よう",
+            "k": "known",
+            "b": "よう",
+            "g": "errand, task, business (to take care of)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "です",
             "k": "plain"
           },
           {
@@ -753,40 +831,100 @@
       "prompt": {
         "tokens": [
           {
-            "s": "なぜ",
-            "b": "なぜ",
-            "k": "known",
-            "g": "why (same as どうして)",
-            "gs": "jlpt"
+            "s": "平家",
+            "r": "へいけ",
+            "b": "平家",
+            "k": "story",
+            "g": "the Heike clan"
           },
           {
-            "s": "お",
+            "s": "の",
             "k": "plain"
           },
           {
-            "s": "てら",
-            "b": "てる",
+            "s": "人",
             "k": "known",
-            "g": "to shine",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
-            "s": "が",
+            "s": "たち",
+            "k": "known",
+            "b": "たち",
+            "g": "plural suffix",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
             "k": "plain"
           },
           {
-            "s": "つくら",
-            "b": "つくる",
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "泳い",
             "k": "known",
-            "g": "to make, to create",
+            "r": "およい",
+            "b": "泳ぐ",
+            "g": "to swim",
             "gs": "jlpt"
           },
           {
-            "s": "れ",
-            "b": "れる",
-            "k": "ghost",
-            "g": "passive voice marker",
-            "gs": "model"
+            "s": "で",
+            "k": "plain"
+          },
+          {
+            "s": "いる",
+            "k": "known",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "人",
+            "k": "known",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "何",
+            "k": "plain",
+            "r": "なに"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "しよ",
+            "k": "known",
+            "b": "する",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "う",
+            "k": "plain"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "し",
+            "k": "known",
+            "b": "する",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "gs": "jlpt"
           },
           {
             "s": "まし",
@@ -810,83 +948,93 @@
         {
           "tokens": [
             {
-              "s": "ふ",
-              "b": "ふる",
+              "s": "助けよ",
               "k": "known",
-              "g": "to precipitate, to fall (e.g., rain, snow, etc.)",
+              "r": "たすけよ",
+              "b": "助ける",
+              "g": "to help (v.t.), to save, to rescue",
               "gs": "jlpt"
             },
             {
-              "s": "ね",
+              "s": "う",
               "k": "plain"
             },
             {
-              "s": "を",
+              "s": "と",
               "k": "plain"
             },
             {
-              "s": "なくす",
-              "b": "なくす",
+              "s": "し",
               "k": "known",
-              "g": "to lose something",
+              "b": "する",
+              "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
               "gs": "jlpt"
             },
             {
-              "s": "ため",
-              "b": "ため",
-              "k": "known",
-              "g": "good, advantage, in order to",
-              "gs": "jlpt"
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
             }
           ]
         },
         {
           "tokens": [
             {
-              "s": "いし",
-              "b": "いし",
+              "s": "一緒",
               "k": "known",
-              "g": "stone",
+              "r": "いっしょ",
+              "b": "一緒",
+              "g": "together",
               "gs": "jlpt"
             },
             {
-              "s": "を",
+              "s": "に",
               "k": "plain"
             },
             {
-              "s": "たてる",
-              "b": "たてる",
+              "s": "泳ご",
               "k": "known",
-              "g": "to build",
+              "r": "およご",
+              "b": "泳ぐ",
+              "g": "to swim",
               "gs": "jlpt"
             },
             {
-              "s": "ため",
-              "b": "ため",
+              "s": "う",
+              "k": "plain"
+            },
+            {
+              "s": "と",
+              "k": "plain"
+            },
+            {
+              "s": "し",
               "k": "known",
-              "g": "good, advantage, in order to",
+              "b": "する",
+              "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
               "gs": "jlpt"
+            },
+            {
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
             }
           ]
         },
         {
           "tokens": [
             {
-              "s": "しん",
-              "b": "しむ",
-              "k": "ghost",
-              "g": "core, heart, wick",
-              "gs": "jlpt"
-            },
-            {
-              "s": "だ",
-              "k": "plain"
-            },
-            {
-              "s": "ひと",
-              "b": "ひと",
+              "s": "水",
               "k": "known",
-              "g": "man, person",
+              "r": "みず",
+              "b": "水",
+              "g": "water",
               "gs": "jlpt"
             },
             {
@@ -894,11 +1042,46 @@
               "k": "plain"
             },
             {
-              "s": "ため",
-              "b": "ため",
+              "s": "中",
               "k": "known",
-              "g": "good, advantage, in order to",
+              "r": "なか",
+              "b": "中",
+              "g": "during, while",
               "gs": "jlpt"
+            },
+            {
+              "s": "に",
+              "k": "plain"
+            },
+            {
+              "s": "ひきずりこも",
+              "k": "ghost",
+              "b": "ひきずりこむ",
+              "g": "to drag into",
+              "gs": "model"
+            },
+            {
+              "s": "う",
+              "k": "plain"
+            },
+            {
+              "s": "と",
+              "k": "plain"
+            },
+            {
+              "s": "し",
+              "k": "known",
+              "b": "する",
+              "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+              "gs": "jlpt"
+            },
+            {
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
             }
           ]
         }
@@ -907,27 +1090,115 @@
     },
     "metrics": {
       "kanjiCoverage": 1,
-      "kanjiDensity": 0.010362694300518135,
-      "firstCoverage": 0.8269230769230769,
-      "finalCoverage": 0.9375,
-      "retries": 3,
-      "seconds": 25.286751500000012,
+      "kanjiDensity": 0.15566037735849056,
+      "firstCoverage": 0.6896551724137931,
+      "finalCoverage": 0.7796610169491526,
+      "retries": 6,
+      "seconds": 29.743412899999996,
       "offendingFirst": [
-        "しずめる",
-        "ひきずりこむ",
-        "しむ",
-        "ねぐ",
+        "人達",
+        "船",
+        "沈める",
+        "引きずり込む",
+        "慰める",
+        "阿彌陀",
+        "お寺",
         "れる",
-        "ら",
-        "ねむれる"
+        "墓地",
+        "皇帝",
+        "家来",
+        "石碑",
+        "られる",
+        "霊",
+        "法会",
+        "怪しい"
       ],
       "ghostWords": [
-        "しむ",
-        "のり",
+        "船",
+        "しずめる",
+        "ひきずりこむ",
+        "なぐさめる",
+        "あみ",
         "ら",
-        "れる"
-      ]
+        "れる",
+        "ぼる",
+        "部下",
+        "られる",
+        "法会",
+        "あやしい"
+      ],
+      "faithIssues": []
     }
   },
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "levelRepairs": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n平家の人達は以前は今よりも遥かに焦慮いていた。夜、漕ぎ行く船のほとりに立ち顕れ、それを沈めようとし、また水泳する人をたえず待ち受けていては、それを引きずり込もうとするのである。これ等の死者を慰めるために建立されたのが、すなわち赤間ヶ関の仏教の御寺なる阿彌陀寺であったが、その墓地もまた、それに接して海岸に設けられた。そしてその墓地の内には入水された皇帝と、その歴歴の臣下との名を刻みつけた幾箇かの石碑が立てられ、かつそれ等の人々の霊のために、仏教の法会がそこで整然と行われていたのである。この寺が建立され、その墓が出来てから以後、平家の人達は以前よりも禍いをする事が少くなった。しかしそれでもなお引き続いておりおり、怪しい事をするのではあった――彼等が完き平和を得ていなかった事の証拠として。\nCurrent retelling:\n平家の人たちは昔、今よりずっと怖かったので、夜にふねをしずめようとしました。\n泳いでいる人を待っていて、その人を水の中にひきずりこもうとしたようです。\n死んだ人をなぐさめるために、かいがんにあみだてらというおてらが作られました。\nぼちにも、こうていや家来の名前が書いてあるせきひがいくつか立てられました。\nそこでれいのためにほうえが行われて、平家の人たちの悪い事は少なくなりました。\nそれでも、ときどきまだあやしい事をしていたので、安心できなかったようです。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.14285714285714285,\"meanLength\":37.333333333333336,\"advancedShare\":0.27419354838709675}; vocabulary 0.8225806451612904. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: しずめる、ひきずりこむ、なぐさめる、あみ、ら、れる、ぼる、家来、られる、あやしい. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences([\": [\"平家の人たちは昔、今よりずっと怖かったので、夜にふねを沈めようとしました。\", \"泳いでいる人を待っていて、その人を水の中にひきずりこもうとしたようです。\", \"死んだ人をなぐさめるため、海岸に阿彌陀寺というお寺が作られました。\", \"墓地にも、皇帝や家来の名前が書いてある石碑がいくつか立てられました。\", \"そこで法会が行われて、平家の人たちの悪いことは少なくなりました。\", \"それでもときどきあやしいことをしていたので、安心できなかったようです。\"], \"question\": {\"prompt\": \"なぜ海岸にお寺が作られましたか。\", \"options\": [\"死んだ人をなぐさめるため\", \"ふねを沈めるため\", \"石碑を立てるため\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n平家の人達は以前は今よりも遥かに焦慮いていた。夜、漕ぎ行く船のほとりに立ち顕れ、それを沈めようとし、また水泳する人をたえず待ち受けていては、それを引きずり込もうとするのである。これ等の死者を慰めるために建立されたのが、すなわち赤間ヶ関の仏教の御寺なる阿彌陀寺であったが、その墓地もまた、それに接して海岸に設けられた。そしてその墓地の内には入水された皇帝と、その歴歴の臣下との名を刻みつけた幾箇かの石碑が立てられ、かつそれ等の人々の霊のために、仏教の法会がそこで整然と行われていたのである。この寺が建立され、その墓が出来てから以後、平家の人達は以前よりも禍いをする事が少くなった。しかしそれでもなお引き続いておりおり、怪しい事をするのではあった――彼等が完き平和を得ていなかった事の証拠として。\nCurrent retelling:\n平家の人たちは昔、今よりずっと怖かったので、夜にふねをしずめようとしました。\n泳いでいる人を待っていて、その人を水の中にひきずりこもうとしたようです。\n死んだ人をなぐさめるため、かいがんにあみだてらというおてらが作られました。\nぼちにも、こうていや家来の名前が書いてあるせきひがいくつか立てられました。\nそこで法会が行われて、平家の人たちの悪いことは少なくなりました。\nそれでもときどきあやしいことをしていたので、安心できなかったようです。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.14883720930232558,\"meanLength\":35.833333333333336,\"advancedShare\":0.26666666666666666}; vocabulary 0.8. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: しずめる、ひきずりこむ、なぐさめる、あみ、ら、れる、ぼる、家来、られる、法会、あやしい. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"平家の人たちは昔、今よりずっと怖かったので、夜に船を沈めようとしました。\", \"泳いでいる人を待っていて、その人を水の中にひきずりこもうとしたようです。\", \"死んだ人をなぐさめるため、海岸に阿彌陀寺というお寺が作られました。\", \"墓地には、皇帝や部下の名前が書いてある石碑がいくつか立てられました。\", \"そこで法会が行われて、平家の人たちの悪いことは少なくなりました。\", \"それでも時々あやしいことをしたので、安心できなかったようです。\"], \"question\": {\"prompt\": \"なぜ海岸にお寺が作られましたか。\", \"options\": [\"平家の人をなぐさめるため\", \"船を沈めるため\", \"石碑をなくしたため\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N3.\nPlain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.\nUse only vocabulary at or below N3. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 40 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 才王石内太引市他号平打申礼耳交光回当米声形草化両全向曲次直活点科首欠由民付失必未末記組船雪支助君対局役投決馬番絵数所具受和定実泳苦表部乗客相美負談要勝速配酒進落葉路鳴横調頭顔最争伝共好成老位初利努労命放昔育指神追戦良便働庭息流消都商深球陽寒悲期歯港登亡合予反返宿想感暗様福殺然熱選願情疑皆例参完念折望束残求約性格能術晴列式信単変夫昨法晩猫園遠係取守幸箱面喜治笑辞関政留険危存原薬側席敗果因常識非官察愛警覚説告種達類報等座忘洗許静煙加容易財若忙徒得続連困機飛害余難確在夢産倒妻議犯罪論経済判制務資権件断任責増解際認過寝置費示観値吸状収職規割演師備優宅現呼違差供限与渡景抜候構捕慣満掛居突招段腹痛退迷訪怒眠靴途給冷処婦程精絶杯積寄娘怖恐婚遊貧適押更浮越背盗除幾散似富探迎祖雑賛込欲閉窓否暮誤降勤刻遅破互彼恥払舞頼戻抱緒逃御吹到髪疲歳偶偉頂. All N5 and N4 kanji are also allowed. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 18–28 percent. Aim for 23 percent and mean sentence length 22–40 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n平家の人達は以前は今よりも遥かに焦慮いていた。夜、漕ぎ行く船のほとりに立ち顕れ、それを沈めようとし、また水泳する人をたえず待ち受けていては、それを引きずり込もうとするのである。これ等の死者を慰めるために建立されたのが、すなわち赤間ヶ関の仏教の御寺なる阿彌陀寺であったが、その墓地もまた、それに接して海岸に設けられた。そしてその墓地の内には入水された皇帝と、その歴歴の臣下との名を刻みつけた幾箇かの石碑が立てられ、かつそれ等の人々の霊のために、仏教の法会がそこで整然と行われていたのである。この寺が建立され、その墓が出来てから以後、平家の人達は以前よりも禍いをする事が少くなった。しかしそれでもなお引き続いておりおり、怪しい事をするのではあった――彼等が完き平和を得ていなかった事の証拠として。\nCurrent retelling:\n平家の人たちは昔、今よりずっと怖かったので、夜に船をしずめようとしました。\n泳いでいる人を待っていて、その人を水の中にひきずりこもうとしたようです。\n死んだ人をなぐさめるため、かいがんにあみだてらというおてらが作られました。\nぼちには、こうていや部下の名前が書いてあるせきひがいくつか立てられました。\nそこで法会が行われて、平家の人たちの悪いことは少なくなりました。\nそれでもときどきあやしいことをしたので、安心できなかったようです。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.15566037735849056,\"meanLength\":35.333333333333336,\"advancedShare\":0.2711864406779661}; vocabulary 0.7796610169491526. Required kanji density 0.18–0.28, kanji coverage 1.0. Above-level vocabulary: 船、しずめる、ひきずりこむ、なぐさめる、あみ、ら、れる、ぼる、部下、られる、法会、あやしい. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 40 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences([\": [\"平家の人たちは昔、今よりずっと怖かったので、夜に船を沈めようとしました。\", \"泳いでいる人を待っていて、その人を水の中にひきずりこもうとしたようです。\", \"死んだ人をなぐさめるため、海岸に阿彌陀寺というお寺が作られました。\", \"墓地には、皇帝や部下の名前が書いてある石碑がいくつか立てられました。\", \"そこで法会が行われて、平家の人たちの悪いことは少なくなりました。\", \"それでもときどきあやしいことをしたので、安心できなかったようです。\"], \"question\": {\"prompt\": \"平家の人たちは、夜に何をしようとしましたか。\", \"options\": [\"船を沈めようとした。\", \"お寺を作ろうとした。\", \"石碑を立てようとした。\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: ひきずりこむ、れる、ぼる、られる、法会. Return JSON {\"glosses\":{\"ひきずりこむ\":\"English gloss\",\"れる\":\"English gloss\",\"ぼる\":\"English gloss\",\"られる\":\"English gloss\",\"法会\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"ひきずりこむ\": \"to drag into\", \"れる\": \"to be (passive/honorific)\", \"ぼる\": \"to dig/carve\", \"られる\": \"to be (passive/potential/honorific)\", \"法会\": \"Buddhist memorial service\"}}"
+    }
+  ],
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n平家の人達は以前は今よりも遥かに焦慮いていた。夜、漕ぎ行く船のほとりに立ち顕れ、それを沈めようとし、また水泳する人をたえず待ち受けていては、それを引きずり込もうとするのである。これ等の死者を慰めるために建立されたのが、すなわち赤間ヶ関の仏教の御寺なる阿彌陀寺であったが、その墓地もまた、それに接して海岸に設けられた。そしてその墓地の内には入水された皇帝と、その歴歴の臣下との名を刻みつけた幾箇かの石碑が立てられ、かつそれ等の人々の霊のために、仏教の法会がそこで整然と行われていたのである。この寺が建立され、その墓が出来てから以後、平家の人達は以前よりも禍いをする事が少くなった。しかしそれでもなお引き続いておりおり、怪しい事をするのではあった――彼等が完き平和を得ていなかった事の証拠として。\n\n語り直し:\n平家の人たちは昔、今よりずっと怖かったので、夜に船をしずめようとしました。\n泳いでいる人を待っていて、その人を水の中にひきずりこもうとしたようです。\n死んだ人をなぐさめるため、かいがんにあみだてらというおてらが作られました。\nぼちには、こうていや部下の名前が書いてあるせきひがいくつか立てられました。\nそこで法会が行われて、平家の人たちの悪いことは少なくなりました。\nそれでもときどきあやしいことをしたので、安心できなかったようです。"
+          }
+        ],
+        "response": "{\"issues\": []}"
+      }
+    ],
+    "rewrites": [],
+    "before": [],
+    "after": []
+  },
+  "ladderBuild": "P4b"
 }

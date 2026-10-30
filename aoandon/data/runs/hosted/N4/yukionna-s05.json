@@ -4,42 +4,62 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Adds ～とき, ～たら, ～ている, ～と思います, potential forms and ～ても. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 巳之吉（みのきち）、お雪（おゆき）、木こり（きこり）、吹雪（ふぶき）. Copy every story word exactly in kanji when it is needed; do not insert unused words.\nWrite normal Japanese with no spaces between words. Outside story words, use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 巳之吉（みのきち）、お雪（おゆき）、木こり（きこり）、吹雪（ふぶき）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: お雪は外へ出ました。そのとき、巳之吉は起きました。外を見ましたが、女はいませんでした。吹雪がこやに入りました。巳之吉はとをしめました。きのぼうを使いました。かぜでとが動いたと思いました。ゆめを見たと思いました。白い女だと思いました。でも、わかりませんでした。巳之吉は木こりをよびました。木こりは答えませんでした。巳之吉はかおにさわりました。とてもつめたかったです。木こりは死んでいました。\n\n場面（原文）:\nあけ方になって吹雪は止んだ。そして日の出の後少ししてから、渡し守がその小屋に戻って来た時、茂作の凍えた死体の側に、巳之吉が知覚を失うて倒れているのを発見した。巳之吉は直ちに介抱された、そして、すぐに正気に帰った、しかし、彼はその恐ろしい夜の寒さの結果、長い間病んでいた。彼はまた老人の死によってひどく驚かされた。しかし、彼は白衣の女の現れた事については何も云わなかった。再び、達者になるとすぐに、彼の職業に帰った、――毎朝、独りで森へ行き、夕方、木の束をもって帰った。彼の母は彼を助けてそれを売った。"
+        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\nあけ方になって吹雪は止んだ。そして日の出の後少ししてから、渡し守がその小屋に戻って来た時、茂作の凍えた死体の側に、巳之吉が知覚を失うて倒れているのを発見した。巳之吉は直ちに介抱された、そして、すぐに正気に帰った、しかし、彼はその恐ろしい夜の寒さの結果、長い間病んでいた。彼はまた老人の死によってひどく驚かされた。しかし、彼は白衣の女の現れた事については何も云わなかった。再び、達者になるとすぐに、彼の職業に帰った、――毎朝、独りで森へ行き、夕方、木の束をもって帰った。彼の母は彼を助けてそれを売った。\n"
       }
     ]
   },
   "responses": [
-    "{\"sentences-\": [\"あしたになりました。\", \"吹雪がやみました。\", \"日の出のあとでした。\", \"舟の人がこやにきました。\", \"巳之吉がねていました。\", \"木こりのしたいのそばでした。\", \"巳之吉はすぐにおきました。\", \"でも、ながいあいだ病気でした。\", \"とてもさむかったからです。\", \"木こりが死んでいて、おどろきました。\", \"白い女のことをいいませんでした。\", \"元気になったとき、仕事をしました。\", \"まいあさ、ひとりで山へいきました。\", \"ゆうがたに、木をもってかえりました。\", \"ははがそれをうりました。\"], \"question\": {\"prompt\": \"巳之吉は白い女についてどうしましたか。\", \"options\": [\"いいませんでした。\", \"話しました。\", \"よびました。\"], \"answer\": 0}}",
-    "{\"sentences\": [\"あしたになりました。\", \"吹雪がやみました。\", \"日の出のあとでした。\", \"舟の人がこやにきました。\", \"巳之吉がねていました。\", \"木こりのしたいのそばでした。\", \"巳之吉はすぐにおきました。\", \"でも、ながいあいだ病気でした。\", \"とてもさむかったからです。\", \"木こりが死んでいて、おどろきました。\", \"白い女のことをいいませんでした。\", \"元気になったとき、仕事をしました。\", \"まいあさ、ひとりで山へいきました。\", \"ゆうがたに、木をもってかえりました。\", \"ははがそれをうりました。\"], \"question\": {\"prompt\": \"巳之吉は白い女についてどうしましたか。\", \"options\": [\"いいませんでした。\", \"話しました。\", \"よびました。\"], \"answer\": 0}}",
-    "{\"rewrites\": [{\"index\": 1, \"sentence\": \"ふぶきがやみました。\"}, {\"index\": 2, \"sentence\": \"ひのでのあとでした。\"}, {\"index\": 3, \"sentence\": \"ふねの人がこやにきました。\"}, {\"index\": 4, \"sentence\": \"巳之吉がねていました。\"}, {\"index\": 5, \"sentence\": \"木こりのしたいのそばでした。\"}, {\"index\": 6, \"sentence\": \"巳之吉はすぐに起きました。\"}, {\"index\": 13, \"sentence\": \"ゆうがたに、木をもってかえりました。\"}]}",
-    "{\"rewrites\": [{\"index\": 1, \"sentence\": \"吹雪がやみました。\"}, {\"index\": 4, \"sentence\": \"巳之吉がねていました。\"}, {\"index\": 5, \"sentence\": \"木こりのしたいのそばでした。\"}, {\"index\": 6, \"sentence\": \"巳之吉はすぐに起きました。\"}, {\"index\": 13, \"sentence\": \"ゆうがたに、木をもってかえりました。\"}]}",
-    "{\"rewrites\": [{\"index\": 1, \"sentence\": \"吹雪がやみました。\"}, {\"index\": 4, \"sentence\": \"巳之吉がねていました。\"}, {\"index\": 5, \"sentence\": \"木こりのしたいのそばでした。\"}, {\"index\": 6, \"sentence\": \"巳之吉はすぐに起きました。\"}, {\"index\": 13, \"sentence\": \"ゆうがたに、木をもってかえりました。\"}]}",
-    "{\"question\": {\"prompt\": \"みのきちは、白い女についてどうしましたか。\", \"options\": [\"いいませんでした。\", \"はなしました。\", \"よびました。\"], \"answer\": 0}}",
-    "{\"glosses\": {\"のす\": \"not found in text\", \"すぐ\": \"immediately\", \"がた\": \"time/period\"}}"
+    "{\"sentencesにつながる\": [\"あけ方になると吹雪は止みました。\", \"渡し守が小屋に戻ったときです。\", \"巳之吉は死体のそばにいました。\", \"彼は意識を失って倒れていました。\", \"巳之吉はすぐに介抱されました。\", \"すぐに正気に戻ったと思います。\", \"でも長い間病気になりました。\", \"老人の死にとても驚きました。\", \"白い服の女のことは言いませんでした。\", \"元気になったら仕事をしました。\", \"毎朝一人で森へ行きました。\", \"夕方に木の束を持って帰りました。\", \"母がそれを売るのを助けました。\"], \"question\": {\"prompt\": \"巳之吉は白い服の女のことを話しましたか。\", \"options\": [\"はい、話しました。\", \"いいえ、話しませんでした。\", \"わかりません。\"], \"answer\": 1}}",
+    "{\"sentences\": [\"あけ方になると吹雪は止みました。\", \"渡し守が小屋に戻ったときです。\", \"巳之吉は死体のそばにいました。\", \"彼は意識を失って倒れていました。\", \"巳之吉はすぐに介抱されました。\", \"すぐに正気に戻ったと思います。\", \"でも長い間病気になりました。\", \"老人の死にとても驚きました。\", \"白い服の女のことは言いませんでした。\", \"元気になったら仕事をしました。\", \"毎朝一人で森へ行きました。\", \"夕方に木の束を持って帰りました。\", \"母がそれを売るのを助けました。\"], \"question\": {\"prompt\": \"巳之吉は白い服の女のことを話しましたか。\", \"options\": [\"はい、話しました。\", \"いいえ、話しませんでした。\", \"わかりません。\"], \"answer\": 1}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"あけ方になると吹雪は止みました。\"}, {\"index\": 1, \"sentence\": \"わたしもりがこやにもどったときです。\"}, {\"index\": 2, \"sentence\": \"巳之吉はしたいのそばにいました。\"}, {\"index\": 3, \"sentence\": \"かれはいしきをうしなってたおれていました。\"}, {\"index\": 4, \"sentence\": \"巳之吉はすぐにかいほうされました。\"}, {\"index\": 5, \"sentence\": \"すぐにしょうきにもどったと思います。\"}, {\"index\": 6, \"sentence\": \"でも長い間病気になりました。\"}, {\"index\": 7, \"sentence\": \"ろうじんのしにおどろきました。\"}, {\"index\": 8, \"sentence\": \"白い服の女のことは言いませんでした。\"}, {\"index\": 9, \"sentence\": \"元気になったら仕事をしました。\"}, {\"index\": 10, \"sentence\": \"毎朝一人でもりへ行きました。\"}, {\"index\": 11, \"sentence\": \"夕方に木のたばを持って帰りました。\"}, {\"index\": 12, \"sentence\": \"母がそれをうるのをたすけました。\"}]}",
+    "{\"rewrites\": [{\"index\": 3, \"sentence\": \"かれは意識をなくして倒れていました。\"}, {\"index\": 4, \"sentence\": \"巳之吉はすぐにかいほうされました。\"}, {\"index\": 5, \"sentence\": \"すぐにしょうきにもどったと思います。\"}, {\"index\": 7, \"sentence\": \"ろうじんの死におどろきました。\"}, {\"index\": 11, \"sentence\": \"夕方に木のたばを持って帰りました。\"}, {\"index\": 12, \"sentence\": \"母がそれを売るのをたすけました。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"あけ方になるとふぶきは止みました。\"}, {\"index\": 1, \"sentence\": \"わたしもりがこやにもどったときです。\"}, {\"index\": 2, \"sentence\": \"巳之吉はしたいのそばにいました。\"}, {\"index\": 3, \"sentence\": \"かれはいしきをなくしてたおれていました。\"}, {\"index\": 4, \"sentence\": \"巳之吉はすぐにかいほうされました。\"}, {\"index\": 5, \"sentence\": \"すぐにしょうきにもどったと思います。\"}, {\"index\": 6, \"sentence\": \"でも長い間病気になりました。\"}, {\"index\": 7, \"sentence\": \"ろうじんのしにおどろきました。\"}, {\"index\": 8, \"sentence\": \"白い服の女のことは言いませんでした。\"}, {\"index\": 9, \"sentence\": \"元気になったら仕事をしました。\"}, {\"index\": 10, \"sentence\": \"毎朝一人でもりへ行きました。\"}, {\"index\": 11, \"sentence\": \"夕方に木のたばを持って帰りました。\"}, {\"index\": 12, \"sentence\": \"母がそれをうるのをたすけました。\"}]}",
+    "{\"glosses\": {\"すぐ\": \"immediately\", \"れる\": \"passive voice marker\", \"ぐにしょうきにもどったと\": \"that he regained consciousness\", \"ろう\": \"old\"}}"
   ],
   "metrics": {
-    "kanjiCoverage": 0.6521739130434783,
-    "kanjiDensity": 0.11165048543689321,
-    "firstCoverage": 0.8837209302325582,
-    "finalCoverage": 0.9047619047619048,
-    "retries": 3,
-    "seconds": 23.19144589999999,
+    "kanjiCoverage": 1,
+    "kanjiDensity": 0.19339622641509435,
+    "firstCoverage": 0.7169811320754716,
+    "finalCoverage": 0.8113207547169812,
+    "retries": 9,
+    "seconds": 37.8097356,
     "offendingFirst": [
-      "日の出",
-      "のす",
+      "渡し守",
+      "小屋",
+      "死体",
+      "意識",
+      "失う",
       "すぐ",
-      "ゆう",
-      "がた"
+      "介抱",
+      "れる",
+      "正気",
+      "老人",
+      "死",
+      "束",
+      "の",
+      "助ける"
     ],
     "ghostWords": [
-      "のす",
+      "小屋",
       "すぐ",
-      "ゆう",
-      "がた"
+      "手あて",
+      "れる",
+      "ろう",
+      "死",
+      "たぶ",
+      "の",
+      "たすける"
+    ],
+    "faithIssues": [
+      {
+        "sentence": "すぐに元気になったと思います。",
+        "problem": "The original states he regained consciousness (正気に帰った) but then fell ill for a long time; the retelling incorrectly claims he became healthy (元気になった).",
+        "kind": "event"
+      }
     ]
   },
   "retelling": {
@@ -50,10 +70,411 @@
       {
         "tokens": [
           {
-            "s": "あした",
-            "b": "あした",
+            "s": "あけ",
             "k": "known",
-            "g": "tomorrow",
+            "b": "あける",
+            "g": "to open (v.t.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "方",
+            "k": "known",
+            "r": "かた",
+            "b": "方",
+            "g": "-- honorific form for 人 (ひと) --; way of doing",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "なる",
+            "k": "known",
+            "b": "なる",
+            "g": "to become",
+            "gs": "jlpt"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "吹雪",
+            "r": "ふぶき",
+            "b": "吹雪",
+            "k": "story",
+            "g": "snowstorm",
+            "hk": true
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "止まり",
+            "k": "known",
+            "r": "とまり",
+            "b": "止まる",
+            "g": "to come to a halt",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "わたし",
+            "k": "plain"
+          },
+          {
+            "s": "も",
+            "k": "plain"
+          },
+          {
+            "s": "り",
+            "k": "plain"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "小屋",
+            "k": "ghost",
+            "r": "こや",
+            "b": "小屋",
+            "g": "hut, cabin, shed",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "もどっ",
+            "k": "known",
+            "b": "もどる",
+            "g": "to return (v.i.); to come back",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "とき",
+            "k": "known",
+            "b": "とき",
+            "g": "at the time of ~",
+            "gs": "jlpt"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "巳之吉",
+            "r": "みのきち",
+            "b": "巳之吉",
+            "k": "story",
+            "g": "Minokichi, the young woodcutter",
+            "hk": true
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "死ん",
+            "k": "known",
+            "r": "しん",
+            "b": "死ぬ",
+            "g": "to die",
+            "gs": "jlpt"
+          },
+          {
+            "s": "だ",
+            "k": "plain"
+          },
+          {
+            "s": "人",
+            "k": "known",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "そば",
+            "k": "known",
+            "b": "そば",
+            "g": "near, close, beside; Japanese traditional buckwheat noodle",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "k": "known",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "かれ",
+            "k": "known",
+            "b": "かれる",
+            "g": "to wither, to die (plant), to be blasted (plant)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "はい",
+            "k": "plain"
+          },
+          {
+            "s": "しき",
+            "k": "known",
+            "b": "しき",
+            "g": "~ ceremony; ~ style",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "なくし",
+            "k": "known",
+            "b": "なくす",
+            "g": "to lose something",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "たおれ",
+            "k": "known",
+            "b": "たおれる",
+            "g": "to collapse, to break down",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "k": "known",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "巳之吉",
+            "r": "みのきち",
+            "b": "巳之吉",
+            "k": "story",
+            "g": "Minokichi, the young woodcutter",
+            "hk": true
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "すぐ",
+            "k": "ghost",
+            "b": "すぐ",
+            "g": "immediately",
+            "gs": "model"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "手あて",
+            "k": "ghost",
+            "r": "てあて",
+            "b": "手あて",
+            "g": "medical treatment",
+            "gs": "model"
+          },
+          {
+            "s": "さ",
+            "k": "known",
+            "b": "する",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "れ",
+            "k": "ghost",
+            "b": "れる",
+            "g": "passive/potential suffix",
+            "gs": "model"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "すぐ",
+            "k": "ghost",
+            "b": "すぐ",
+            "g": "immediately",
+            "gs": "model"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "元気",
+            "k": "known",
+            "r": "げんき",
+            "b": "元気",
+            "g": "health(y), energetic",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "なっ",
+            "k": "known",
+            "b": "なる",
+            "g": "to become",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "思い",
+            "k": "known",
+            "r": "おもい",
+            "b": "思う",
+            "g": "to think, to feel",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "でも",
+            "k": "plain"
+          },
+          {
+            "s": "長い",
+            "k": "known",
+            "r": "ながい",
+            "b": "長い",
+            "g": "long, lengthy",
+            "gs": "jlpt"
+          },
+          {
+            "s": "間",
+            "k": "known",
+            "r": "ま",
+            "b": "間",
+            "g": "space, interval",
+            "gs": "jlpt"
+          },
+          {
+            "s": "病気",
+            "k": "known",
+            "r": "びょうき",
+            "b": "病気",
+            "g": "illness; sickness",
             "gs": "jlpt"
           },
           {
@@ -62,8 +483,8 @@
           },
           {
             "s": "なり",
-            "b": "なる",
             "k": "known",
+            "b": "なる",
             "g": "to become",
             "gs": "jlpt"
           },
@@ -84,396 +505,39 @@
       {
         "tokens": [
           {
-            "s": "吹雪",
-            "hk": true,
-            "r": "ふぶき",
-            "b": "吹雪",
-            "k": "story",
-            "g": "snowstorm"
+            "s": "ろう",
+            "k": "ghost",
+            "b": "ろう",
+            "g": "labor/toil",
+            "gs": "model"
           },
           {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "やみ",
-            "b": "やむ",
+            "s": "じん",
             "k": "known",
-            "g": "to cease, to stop",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "ひので",
-            "k": "plain"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "あと",
-            "b": "あと",
-            "k": "known",
-            "g": "afterwards (later); in the future; the rest; since then",
-            "gs": "jlpt"
-          },
-          {
-            "s": "でし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "ふ",
-            "b": "ふる",
-            "k": "known",
-            "g": "to precipitate, to fall (e.g., rain, snow, etc.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ね",
-            "k": "plain"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
+            "b": "じん",
             "g": "counter for people",
             "gs": "jlpt"
           },
           {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "こ",
-            "b": "こ",
-            "k": "known",
-            "g": "counter for small items (e.g., fruits, cups)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "や",
-            "k": "plain"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "き",
-            "b": "くる",
-            "k": "known",
-            "g": "to come",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "巳之吉",
-            "hk": true,
-            "r": "みのきち",
-            "b": "巳之吉",
-            "k": "story",
-            "g": "Minokichi, the young woodcutter"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "ね",
-            "b": "ねる",
-            "k": "known",
-            "g": "to sleep; to go to sleep; to go to bed",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "い",
-            "b": "いる",
-            "k": "known",
-            "g": "(humble) to be (animate), to exist",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "木こり",
-            "r": "きこり",
-            "b": "木こり",
-            "k": "story",
-            "g": "woodcutter"
-          },
-          {
-            "s": "のし",
-            "b": "のす",
-            "k": "ghost",
-            "g": "not found in text",
-            "gs": "model"
-          },
-          {
-            "s": "たい",
-            "k": "plain"
-          },
-          {
             "s": "の",
             "k": "plain"
           },
           {
-            "s": "そば",
-            "b": "そば",
-            "k": "known",
-            "g": "near, close, beside; Japanese traditional buckwheat noodle",
-            "gs": "jlpt"
-          },
-          {
-            "s": "でし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "巳之吉",
-            "hk": true,
-            "r": "みのきち",
-            "b": "巳之吉",
-            "k": "story",
-            "g": "Minokichi, the young woodcutter"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "すぐ",
-            "b": "すぐ",
+            "s": "死",
             "k": "ghost",
-            "g": "immediately",
-            "gs": "model"
+            "r": "し",
+            "b": "死",
+            "g": "death, decease",
+            "gs": "jlpt"
           },
           {
             "s": "に",
             "k": "plain"
           },
           {
-            "s": "起き",
-            "r": "おき",
-            "b": "起きる",
-            "k": "known",
-            "g": "to get up (e.g., from sleeping); to happen",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "でも",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "ながい",
-            "b": "ながい",
-            "k": "known",
-            "g": "long, lengthy",
-            "gs": "jlpt"
-          },
-          {
-            "s": "あいだ",
-            "b": "あいだ",
-            "k": "known",
-            "g": "space, interval",
-            "gs": "jlpt"
-          },
-          {
-            "s": "病気",
-            "r": "びょうき",
-            "b": "病気",
-            "k": "known",
-            "g": "illness; sickness",
-            "gs": "jlpt"
-          },
-          {
-            "s": "でし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "とても",
-            "b": "とても",
-            "k": "known",
-            "g": "very (much), greatly, exceedingly",
-            "gs": "jlpt"
-          },
-          {
-            "s": "さむかっ",
-            "b": "さむい",
-            "k": "known",
-            "g": "cold (in reference to weather)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "から",
-            "k": "plain"
-          },
-          {
-            "s": "です",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "木こり",
-            "r": "きこり",
-            "b": "木こり",
-            "k": "story",
-            "g": "woodcutter"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "死ん",
-            "r": "しん",
-            "b": "死ぬ",
-            "k": "known",
-            "g": "to die",
-            "gs": "jlpt"
-          },
-          {
-            "s": "で",
-            "k": "plain"
-          },
-          {
-            "s": "い",
-            "b": "いる",
-            "k": "known",
-            "g": "(humble) to be (animate), to exist",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
             "s": "おどろき",
-            "b": "おどろく",
             "k": "known",
+            "b": "おどろく",
             "g": "to be surprised, to be astonished",
             "gs": "jlpt"
           },
@@ -495,17 +559,29 @@
         "tokens": [
           {
             "s": "白い",
+            "k": "known",
             "r": "しろい",
             "b": "白い",
-            "k": "known",
             "g": "white",
             "gs": "jlpt"
           },
           {
+            "s": "服",
+            "k": "known",
+            "r": "ふく",
+            "b": "服",
+            "g": "clothes",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
             "s": "女",
+            "k": "known",
             "r": "おんな",
             "b": "女",
-            "k": "known",
             "g": "woman, female",
             "gs": "jlpt"
           },
@@ -515,19 +591,19 @@
           },
           {
             "s": "こと",
-            "b": "こと",
             "k": "known",
+            "b": "こと",
             "g": "thing(s), matter(s), fact",
             "gs": "jlpt"
           },
           {
-            "s": "を",
+            "s": "は",
             "k": "plain"
           },
           {
             "s": "いい",
-            "b": "いう",
             "k": "known",
+            "b": "いう",
             "g": "to say",
             "gs": "jlpt"
           },
@@ -557,9 +633,9 @@
         "tokens": [
           {
             "s": "元気",
+            "k": "known",
             "r": "げんき",
             "b": "元気",
-            "k": "known",
             "g": "health(y), energetic",
             "gs": "jlpt"
           },
@@ -569,31 +645,20 @@
           },
           {
             "s": "なっ",
-            "b": "なる",
             "k": "known",
+            "b": "なる",
             "g": "to become",
             "gs": "jlpt"
           },
           {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "とき",
-            "b": "とき",
-            "k": "known",
-            "g": "at the time of ~",
-            "gs": "jlpt"
-          },
-          {
-            "s": "、",
+            "s": "たら",
             "k": "plain"
           },
           {
             "s": "仕事",
+            "k": "known",
             "r": "しごと",
             "b": "仕事",
-            "k": "known",
             "g": "work, job, occupation, employment",
             "gs": "jlpt"
           },
@@ -603,8 +668,8 @@
           },
           {
             "s": "し",
-            "b": "する",
             "k": "known",
+            "b": "する",
             "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
             "gs": "jlpt"
           },
@@ -625,54 +690,42 @@
       {
         "tokens": [
           {
-            "s": "まい",
-            "b": "まく",
+            "s": "毎朝",
             "k": "known",
-            "g": "to wind, to coil, to roll",
+            "r": "まいあさ",
+            "b": "毎朝",
+            "g": "every morning",
             "gs": "jlpt"
           },
           {
-            "s": "あ",
-            "b": "ある",
-            "k": "known",
-            "g": "to be, to have",
-            "gs": "jlpt"
-          },
-          {
-            "s": "さ",
+            "s": "1",
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "ひとり",
-            "b": "ひとり",
+            "s": "人",
             "k": "known",
-            "g": "one person",
+            "r": "にん",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
-            "s": "で",
+            "s": "でも",
             "k": "plain"
           },
           {
-            "s": "山",
-            "r": "やま",
-            "b": "山",
-            "k": "known",
-            "g": "mountain",
-            "gs": "jlpt"
+            "s": "り",
+            "k": "plain"
           },
           {
             "s": "へ",
             "k": "plain"
           },
           {
-            "s": "いき",
-            "b": "いく",
+            "s": "行き",
             "k": "known",
+            "r": "いき",
+            "b": "行く",
             "g": "to go",
             "gs": "jlpt"
           },
@@ -693,33 +746,34 @@
       {
         "tokens": [
           {
-            "s": "ゆう",
-            "b": "ゆう",
-            "k": "ghost",
-            "g": "superiority, high grade",
+            "s": "夕方",
+            "k": "known",
+            "r": "ゆうがた",
+            "b": "夕方",
+            "g": "late afternoon (typically just before dinner time), evening",
             "gs": "jlpt"
-          },
-          {
-            "s": "がた",
-            "b": "がた",
-            "k": "ghost",
-            "g": "time/period",
-            "gs": "model"
           },
           {
             "s": "に",
             "k": "plain"
           },
           {
-            "s": "、",
+            "s": "木",
+            "k": "known",
+            "r": "き",
+            "b": "木",
+            "g": "tree, wood, timber",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
             "k": "plain"
           },
           {
-            "s": "木",
-            "r": "き",
-            "b": "木",
-            "k": "known",
-            "g": "tree, wood, timber",
+            "s": "たば",
+            "k": "ghost",
+            "b": "たぶ",
+            "g": "bunch, bundle",
             "gs": "jlpt"
           },
           {
@@ -727,9 +781,10 @@
             "k": "plain"
           },
           {
-            "s": "もっ",
-            "b": "もつ",
+            "s": "持っ",
             "k": "known",
+            "r": "もっ",
+            "b": "持つ",
             "g": "to hold, to carry; to possess",
             "gs": "jlpt"
           },
@@ -738,9 +793,10 @@
             "k": "plain"
           },
           {
-            "s": "かえり",
-            "b": "かえる",
+            "s": "帰り",
             "k": "known",
+            "r": "かえり",
+            "b": "帰る",
             "g": "to go back, to go home, to return",
             "gs": "jlpt"
           },
@@ -761,12 +817,12 @@
       {
         "tokens": [
           {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "は",
-            "k": "plain"
+            "s": "母",
+            "k": "known",
+            "r": "はは",
+            "b": "母",
+            "g": "(my) mother",
+            "gs": "jlpt"
           },
           {
             "s": "が",
@@ -781,10 +837,29 @@
             "k": "plain"
           },
           {
-            "s": "うり",
-            "b": "うる",
+            "s": "売る",
             "k": "known",
+            "r": "うる",
+            "b": "売る",
             "g": "to sell (v.t.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "ghost",
+            "b": "の",
+            "g": "field",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "たすけ",
+            "k": "ghost",
+            "b": "たすける",
+            "g": "to help (v.t.), to save, to rescue",
             "gs": "jlpt"
           },
           {
@@ -806,52 +881,66 @@
       "prompt": {
         "tokens": [
           {
-            "s": "みのきち",
+            "s": "巳之吉",
             "r": "みのきち",
             "b": "巳之吉",
             "k": "story",
-            "g": "Minokichi, the young woodcutter"
+            "g": "Minokichi, the young woodcutter",
+            "hk": true
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
             "s": "白い",
+            "k": "known",
             "r": "しろい",
             "b": "白い",
-            "k": "known",
             "g": "white",
             "gs": "jlpt"
           },
           {
+            "s": "服",
+            "k": "known",
+            "r": "ふく",
+            "b": "服",
+            "g": "clothes",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
             "s": "女",
+            "k": "known",
             "r": "おんな",
             "b": "女",
-            "k": "known",
             "g": "woman, female",
             "gs": "jlpt"
           },
           {
-            "s": "について",
+            "s": "の",
             "k": "plain"
           },
           {
-            "s": "どう",
-            "b": "どう",
+            "s": "こと",
             "k": "known",
-            "g": "how, in what way",
+            "b": "こと",
+            "g": "thing(s), matter(s), fact",
             "gs": "jlpt"
           },
           {
-            "s": "し",
-            "b": "する",
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "話し",
             "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "r": "はなし",
+            "b": "話す",
+            "g": "to speak",
             "gs": "jlpt"
           },
           {
@@ -876,10 +965,74 @@
         {
           "tokens": [
             {
-              "s": "いい",
-              "b": "いう",
+              "s": "はい",
+              "k": "plain"
+            },
+            {
+              "s": "、",
+              "k": "plain"
+            },
+            {
+              "s": "話し",
               "k": "known",
-              "g": "to say",
+              "r": "はなし",
+              "b": "話す",
+              "g": "to speak",
+              "gs": "jlpt"
+            },
+            {
+              "s": "まし",
+              "k": "plain"
+            },
+            {
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "わかり",
+              "k": "known",
+              "b": "わかる",
+              "g": "to understand",
+              "gs": "jlpt"
+            },
+            {
+              "s": "ませ",
+              "k": "plain"
+            },
+            {
+              "s": "ん",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "いいえ",
+              "k": "plain"
+            },
+            {
+              "s": "、",
+              "k": "plain"
+            },
+            {
+              "s": "話し",
+              "k": "known",
+              "r": "はなし",
+              "b": "話す",
+              "g": "to speak",
               "gs": "jlpt"
             },
             {
@@ -903,77 +1056,209 @@
               "k": "plain"
             }
           ]
-        },
-        {
-          "tokens": [
-            {
-              "s": "よび",
-              "b": "よぶ",
-              "k": "known",
-              "g": "to call (one's name); to invite",
-              "gs": "jlpt"
-            },
-            {
-              "s": "まし",
-              "k": "plain"
-            },
-            {
-              "s": "た",
-              "k": "plain"
-            },
-            {
-              "s": "。",
-              "k": "plain"
-            }
-          ]
-        },
-        {
-          "tokens": [
-            {
-              "s": "はなし",
-              "b": "はなす",
-              "k": "known",
-              "g": "to speak",
-              "gs": "jlpt"
-            },
-            {
-              "s": "まし",
-              "k": "plain"
-            },
-            {
-              "s": "た",
-              "k": "plain"
-            },
-            {
-              "s": "。",
-              "k": "plain"
-            }
-          ]
         }
       ],
-      "answer": 0
+      "answer": 2
     },
     "metrics": {
-      "kanjiCoverage": 0.6521739130434783,
-      "kanjiDensity": 0.11165048543689321,
-      "firstCoverage": 0.8837209302325582,
-      "finalCoverage": 0.9047619047619048,
-      "retries": 3,
-      "seconds": 23.19144589999999,
+      "kanjiCoverage": 1,
+      "kanjiDensity": 0.19339622641509435,
+      "firstCoverage": 0.7169811320754716,
+      "finalCoverage": 0.8113207547169812,
+      "retries": 9,
+      "seconds": 37.8097356,
       "offendingFirst": [
-        "日の出",
-        "のす",
+        "渡し守",
+        "小屋",
+        "死体",
+        "意識",
+        "失う",
         "すぐ",
-        "ゆう",
-        "がた"
+        "介抱",
+        "れる",
+        "正気",
+        "老人",
+        "死",
+        "束",
+        "の",
+        "助ける"
       ],
       "ghostWords": [
-        "のす",
+        "小屋",
         "すぐ",
-        "ゆう",
-        "がた"
+        "手あて",
+        "れる",
+        "ろう",
+        "死",
+        "たぶ",
+        "の",
+        "たすける"
+      ],
+      "faithIssues": [
+        {
+          "sentence": "すぐに元気になったと思います。",
+          "problem": "The original states he regained consciousness (正気に帰った) but then fell ill for a long time; the retelling incorrectly claims he became healthy (元気になった).",
+          "kind": "event"
+        }
       ]
     }
   },
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "levelRepairs": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 巳之吉（みのきち）、お雪（おゆき）、木こり（きこり）、吹雪（ふぶき）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nあけ方になって吹雪は止んだ。そして日の出の後少ししてから、渡し守がその小屋に戻って来た時、茂作の凍えた死体の側に、巳之吉が知覚を失うて倒れているのを発見した。巳之吉は直ちに介抱された、そして、すぐに正気に帰った、しかし、彼はその恐ろしい夜の寒さの結果、長い間病んでいた。彼はまた老人の死によってひどく驚かされた。しかし、彼は白衣の女の現れた事については何も云わなかった。再び、達者になるとすぐに、彼の職業に帰った、――毎朝、独りで森へ行き、夕方、木の束をもって帰った。彼の母は彼を助けてそれを売った。\nCurrent retelling:\nあけ方になると吹雪は止みました。\nわたしもりがこやにもどったときです。\n巳之吉はしたいのそばにいました。\nかれはいしきをなくしてたおれていました。\n巳之吉はすぐにかいほうされました。\nすぐにしょうきにもどったと思います。\nでも長い間病気になりました。\nろうじんのしにおどろきました。\n白い服の女のことは言いませんでした。\n元気になったら仕事をしました。\n毎朝一人でもりへ行きました。\n夕方に木のたばを持って帰りました。\n母がそれをうるのをたすけました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.1588785046728972,\"meanLength\":16.46153846153846,\"advancedShare\":0.21568627450980393}; vocabulary 0.8431372549019608. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: すぐ、ほう、れる、ぐにしょうきにもどったと、ろう、たぶ、の、たすける. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"あけ方になると吹雪は止みました。\", \"わたしもりが小屋に戻ったときです。\", \"巳之吉は死体のそばにいました。\", \"彼は意識をなくして倒れていました。\", \"巳之吉はすぐに手当てされました。\", \"すぐに正気に戻ったと思います。\", \"でも長い間病気になりました。\", \"老人の死に驚きました。\", \"白い服の女のことは言いませんでした。\", \"元気になったら仕事をしました。\", \"毎朝1人で森へ行きました。\", \"夕方に木の束を持って帰りました。\", \"母がそれを売るのを助けました。\"], \"question\": {\"prompt\": \"巳之吉はだれに助けてもらいましたか。\", \"options\": [\"白い服の女\", \"わたしもり\", \"母\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 巳之吉（みのきち）、お雪（おゆき）、木こり（きこり）、吹雪（ふぶき）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nあけ方になって吹雪は止んだ。そして日の出の後少ししてから、渡し守がその小屋に戻って来た時、茂作の凍えた死体の側に、巳之吉が知覚を失うて倒れているのを発見した。巳之吉は直ちに介抱された、そして、すぐに正気に帰った、しかし、彼はその恐ろしい夜の寒さの結果、長い間病んでいた。彼はまた老人の死によってひどく驚かされた。しかし、彼は白衣の女の現れた事については何も云わなかった。再び、達者になるとすぐに、彼の職業に帰った、――毎朝、独りで森へ行き、夕方、木の束をもって帰った。彼の母は彼を助けてそれを売った。\nCurrent retelling:\nあけ方になると吹雪は止みました。\nわたしもりが小屋にもどったときです。\n巳之吉は死体のそばにいました。\nかれはいしきをなくしてたおれていました。\n巳之吉はすぐにてあてされました。\nすぐに正気にもどったと思います。\nでも長い間病気になりました。\nろうじんの死におどろきました。\n白い服の女のことは言いませんでした。\n元気になったら仕事をしました。\n毎朝1人でもりへ行きました。\n夕方に木のたばを持って帰りました。\n母がそれを売るのをたすけました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.19523809523809524,\"meanLength\":16.153846153846153,\"advancedShare\":0.25}; vocabulary 0.7692307692307693. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: 小屋、死体、すぐ、あて、れる、正気、ろう、死、たぶ、の、たすける. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"あけ方になると吹雪は止まりました。\", \"わたしもりがこやにもどったときです。\", \"巳之吉はしたいのそばにいました。\", \"かれはいしきをなくしてたおれていました。\", \"巳之吉はすぐにてあてされました。\", \"すぐにせいきにもどったと思います。\", \"でも長い間びょうきになりました。\", \"ろうじんのしにおどろきました。\", \"白い服の女のことはいいませんでした。\", \"元気になったら仕事をしました。\", \"毎朝1人でもりへ行きました。\", \"夕方に木のたばを持って帰りました。\", \"母がそれを売るのをたすけました。\"], \"question\": {\"prompt\": \"巳之吉は白い服の女についてどうしましたか。\", \"options\": [\"いいませんでした。\", \"たくさん話しました。\", \"母に教えました。\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 巳之吉（みのきち）、お雪（おゆき）、木こり（きこり）、吹雪（ふぶき）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nあけ方になって吹雪は止んだ。そして日の出の後少ししてから、渡し守がその小屋に戻って来た時、茂作の凍えた死体の側に、巳之吉が知覚を失うて倒れているのを発見した。巳之吉は直ちに介抱された、そして、すぐに正気に帰った、しかし、彼はその恐ろしい夜の寒さの結果、長い間病んでいた。彼はまた老人の死によってひどく驚かされた。しかし、彼は白衣の女の現れた事については何も云わなかった。再び、達者になるとすぐに、彼の職業に帰った、――毎朝、独りで森へ行き、夕方、木の束をもって帰った。彼の母は彼を助けてそれを売った。\nCurrent retelling:\nあけ方になると吹雪は止まりました。\nわたしもりがこやにもどったときです。\n巳之吉はしたいのそばにいました。\nかれはいしきをなくしてたおれていました。\n巳之吉はすぐにてあてされました。\nすぐにせいきにもどったと思います。\nでも長い間びょうきになりました。\nろうじんのしにおどろきました。\n白い服の女のことはいいませんでした。\n元気になったら仕事をしました。\n毎朝1人でもりへ行きました。\n夕方に木のたばを持って帰りました。\n母がそれを売るのをたすけました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.14418604651162792,\"meanLength\":16.53846153846154,\"advancedShare\":0.19607843137254902}; vocabulary 0.8235294117647058. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: すぐ、あて、れる、ぐにせいきにもどったと、びょう、ろう、たぶ、の、たすける. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"あけ方になると吹雪は止まりました。\", \"渡し守がこやにもどったときです。\", \"巳之吉はしたいのそばにいました。\", \"かれはいしきをなくしてたおれていました。\", \"巳之吉はすぐに手あてされました。\", \"すぐに元気になったと思います。\", \"でも長い間病気になりました。\", \"老人の死におどろきました。\", \"白い服の女のことはいいませんでした。\", \"元気になったら仕事をしました。\", \"毎朝1人でもりへ行きました。\", \"夕方に木の束を持って帰りました。\", \"母がそれを売るのをたすけました。\"], \"question\": {\"prompt\": \"巳之吉はだれにたすけてもらいましたか。\", \"options\": [\"母に\", \"渡し守に\", \"白い服の女に\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: すぐ、手あて、れる、ろう. Return JSON {\"glosses\":{\"すぐ\":\"English gloss\",\"手あて\":\"English gloss\",\"れる\":\"English gloss\",\"ろう\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"すぐ\": \"immediately\", \"手あて\": \"treatment\", \"れる\": \"passive/spontaneous marker\", \"ろう\": \"labor\"}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 巳之吉（みのきち）、お雪（おゆき）、木こり（きこり）、吹雪（ふぶき）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nあけ方になって吹雪は止んだ。そして日の出の後少ししてから、渡し守がその小屋に戻って来た時、茂作の凍えた死体の側に、巳之吉が知覚を失うて倒れているのを発見した。巳之吉は直ちに介抱された、そして、すぐに正気に帰った、しかし、彼はその恐ろしい夜の寒さの結果、長い間病んでいた。彼はまた老人の死によってひどく驚かされた。しかし、彼は白衣の女の現れた事については何も云わなかった。再び、達者になるとすぐに、彼の職業に帰った、――毎朝、独りで森へ行き、夕方、木の束をもって帰った。彼の母は彼を助けてそれを売った。\nCurrent retelling:\nあけ方になると吹雪は止まりました。\nわたしもりがこやにもどったときです。\n巳之吉はしげさくの死体のそばにいました。\nかれはいしきをなくしてたおれていました。\n巳之吉はすぐに手あてされました。\nすぐに元気になったと思います。\nでも長い間病気になりました。\nろうじんの死におどろきました。\n白い服の女のことはいいませんでした。\n元気になったら仕事をしました。\n毎朝1人でもりへ行きました。\n夕方に木のたばを持って帰りました。\n母がそれを売るのをたすけました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.1813953488372093,\"meanLength\":16.53846153846154,\"advancedShare\":0.2}; vocabulary 0.8. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: げ、死体、すぐ、手あて、れる、ろう、死、たぶ、の、たすける. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"あけ方になると吹雪は止まりました。\", \"わたしもりが小屋にもどったときです。\", \"巳之吉は死んだ人のそばにいました。\", \"かれは意識をなくしてたおれていました。\", \"巳之吉はすぐに手あてされました。\", \"すぐに元気になったと思います。\", \"でも長い間病気になりました。\", \"老人の死におどろきました。\", \"白い服の女のことはいいませんでした。\", \"元気になったら仕事をしました。\", \"毎朝1人で森へ行きました。\", \"夕方に木のたばを持って帰りました。\", \"母がそれを売るのをたすけました。\"], \"question\": {\"prompt\": \"巳之吉は白い服の女について何をしましたか。\", \"options\": [\"話しました\", \"いいませんでした\", \"助けました\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 巳之吉（みのきち）、お雪（おゆき）、木こり（きこり）、吹雪（ふぶき）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nあけ方になって吹雪は止んだ。そして日の出の後少ししてから、渡し守がその小屋に戻って来た時、茂作の凍えた死体の側に、巳之吉が知覚を失うて倒れているのを発見した。巳之吉は直ちに介抱された、そして、すぐに正気に帰った、しかし、彼はその恐ろしい夜の寒さの結果、長い間病んでいた。彼はまた老人の死によってひどく驚かされた。しかし、彼は白衣の女の現れた事については何も云わなかった。再び、達者になるとすぐに、彼の職業に帰った、――毎朝、独りで森へ行き、夕方、木の束をもって帰った。彼の母は彼を助けてそれを売った。\nCurrent retelling:\nあけ方になると吹雪は止まりました。\nわたしもりが小屋にもどったときです。\n巳之吉は死んだ人のそばにいました。\nかれはいしきをなくしてたおれていました。\n巳之吉はすぐに手あてされました。\nすぐに元気になったと思います。\nでも長い間病気になりました。\nろうじんの死におどろきました。\n白い服の女のことはいいませんでした。\n元気になったら仕事をしました。\n毎朝1人でもりへ行きました。\n夕方に木のたばを持って帰りました。\n母がそれを売るのをたすけました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.19339622641509435,\"meanLength\":16.307692307692307,\"advancedShare\":0.20754716981132076}; vocabulary 0.8113207547169812. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: 小屋、すぐ、手あて、れる、ろう、死、たぶ、の、たすける. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentencesにつながる\": null, \"sentences\": [\"あけ方になると吹雪は止まりました。\", \"わたしもりがこやにもどったときです。\", \"巳之吉は死んだ人のそばにいました。\", \"かれはいしきをなくしてたおれていました。\", \"巳之吉はすぐにてあてされました。\", \"すぐに元気になったと思います。\", \"でも長い間病気になりました。\", \"ろうじんのしにおどろきました。\", \"白い服の女のことはいいませんでした。\", \"元気になったら仕事をしました。\", \"毎朝1人でもりへ行きました。\", \"夕方に木のたばを持って帰りました。\", \"母がそれを売るのをたすけました。\"], \"question\": {\"prompt\": \"巳之吉はだれについていいませんでしたか。\", \"options\": [\"母について\", \"白い服の女について\", \"わたしもりについて\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 巳之吉（みのきち）、お雪（おゆき）、木こり（きこり）、吹雪（ふぶき）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nあけ方になって吹雪は止んだ。そして日の出の後少ししてから、渡し守がその小屋に戻って来た時、茂作の凍えた死体の側に、巳之吉が知覚を失うて倒れているのを発見した。巳之吉は直ちに介抱された、そして、すぐに正気に帰った、しかし、彼はその恐ろしい夜の寒さの結果、長い間病んでいた。彼はまた老人の死によってひどく驚かされた。しかし、彼は白衣の女の現れた事については何も云わなかった。再び、達者になるとすぐに、彼の職業に帰った、――毎朝、独りで森へ行き、夕方、木の束をもって帰った。彼の母は彼を助けてそれを売った。\nCurrent retelling:\nあけ方になると吹雪は止まりました。\nわたしもりがこやにもどったときです。\n巳之吉は死んだ人のそばにいました。\nかれはいしきをなくしてたおれていました。\n巳之吉はすぐにてあてされました。\nすぐに元気になったと思います。\nでも長い間病気になりました。\nろうじんのしにおどろきました。\n白い服の女のことはいいませんでした。\n元気になったら仕事をしました。\n毎朝1人でもりへ行きました。\n夕方に木のたばを持って帰りました。\n母がそれを売るのをたすけました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.17452830188679244,\"meanLength\":16.307692307692307,\"advancedShare\":0.16981132075471697}; vocabulary 0.8490566037735849. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: すぐ、あて、れる、ろう、たぶ、の、たすける. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"あけ方になると吹雪は止まりました。\", \"渡し守が小屋にもどったときです。\", \"巳之吉は死んだ人のそばにいました。\", \"かれは意識をなくしてたおれていました。\", \"巳之吉はすぐに手あてされました。\", \"すぐに元気になったと思います。\", \"でも長い間病気になりました。\", \"老人の死におどろきました。\", \"白い服の女のことはいいませんでした。\", \"元気になったら仕事をしました。\", \"毎朝1人でもりへ行きました。\", \"夕方に木のたばを持って帰りました。\", \"母がそれを売るのをたすけました。\"], \"question\": {\"prompt\": \"巳之吉は白い服の女についてどうしましたか。\", \"options\": [\"いいませんでした。\", \"話しました。\", \"書きました。\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: すぐ、手あて、れる、ろう. Return JSON {\"glosses\":{\"すぐ\":\"English gloss\",\"手あて\":\"English gloss\",\"れる\":\"English gloss\",\"ろう\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"すぐ\": \"immediately\", \"手あて\": \"medical treatment\", \"れる\": \"passive/potential suffix\", \"ろう\": \"labor/toil\"}}"
+    }
+  ],
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\nあけ方になって吹雪は止んだ。そして日の出の後少ししてから、渡し守がその小屋に戻って来た時、茂作の凍えた死体の側に、巳之吉が知覚を失うて倒れているのを発見した。巳之吉は直ちに介抱された、そして、すぐに正気に帰った、しかし、彼はその恐ろしい夜の寒さの結果、長い間病んでいた。彼はまた老人の死によってひどく驚かされた。しかし、彼は白衣の女の現れた事については何も云わなかった。再び、達者になるとすぐに、彼の職業に帰った、――毎朝、独りで森へ行き、夕方、木の束をもって帰った。彼の母は彼を助けてそれを売った。\n\n語り直し:\nあけ方になると吹雪は止まりました。\nわたしもりがこやにもどったときです。\n巳之吉はしたいのそばにいました。\nかれはいしきをなくしてたおれていました。\n巳之吉はすぐに手あてされました。\nすぐに元気になったと思います。\nでも長い間病気になりました。\nろうじんの死におどろきました。\n白い服の女のことはいいませんでした。\n元気になったら仕事をしました。\n毎朝1人でもりへ行きました。\n夕方に木のたばを持って帰りました。\n母がそれを売るのをたすけました。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"巳之吉はしたいのそばにいました。\", \"problem\": \"The original specifies the corpse was Shigesaku's (茂作の死体); this sentence omits who died, making it vague. It should be 茂作の死体のそばにいました。\", \"kind\": \"who\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\nあけ方になって吹雪は止んだ。そして日の出の後少ししてから、渡し守がその小屋に戻って来た時、茂作の凍えた死体の側に、巳之吉が知覚を失うて倒れているのを発見した。巳之吉は直ちに介抱された、そして、すぐに正気に帰った、しかし、彼はその恐ろしい夜の寒さの結果、長い間病んでいた。彼はまた老人の死によってひどく驚かされた。しかし、彼は白衣の女の現れた事については何も云わなかった。再び、達者になるとすぐに、彼の職業に帰った、――毎朝、独りで森へ行き、夕方、木の束をもって帰った。彼の母は彼を助けてそれを売った。\n\n語り直し:\nあけ方になると吹雪は止まりました。\nわたしもりが小屋にもどったときです。\n巳之吉は死んだ人のそばにいました。\nかれはいしきをなくしてたおれていました。\n巳之吉はすぐに手あてされました。\nすぐに元気になったと思います。\nでも長い間病気になりました。\nろうじんの死におどろきました。\n白い服の女のことはいいませんでした。\n元気になったら仕事をしました。\n毎朝1人でもりへ行きました。\n夕方に木のたばを持って帰りました。\n母がそれを売るのをたすけました。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"すぐに元気になったと思います。\", \"problem\": \"The original states he regained consciousness (正気に帰った) but then fell ill for a long time; the retelling incorrectly claims he became healthy (元気になった).\", \"kind\": \"event\"}]}"
+      }
+    ],
+    "rewrites": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Repair only the specified sentences at JLPT N4. Preserve all other sentences and events. Use natural Japanese, numeric digits for numbers, and maintain the meaning of the original. Return only JSON {\"rewrites\":[{\"index\":0,\"sentence\":\"...\"}]}."
+          },
+          {
+            "role": "user",
+            "content": "Original:\nあけ方になって吹雪は止んだ。そして日の出の後少ししてから、渡し守がその小屋に戻って来た時、茂作の凍えた死体の側に、巳之吉が知覚を失うて倒れているのを発見した。巳之吉は直ちに介抱された、そして、すぐに正気に帰った、しかし、彼はその恐ろしい夜の寒さの結果、長い間病んでいた。彼はまた老人の死によってひどく驚かされた。しかし、彼は白衣の女の現れた事については何も云わなかった。再び、達者になるとすぐに、彼の職業に帰った、――毎朝、独りで森へ行き、夕方、木の束をもって帰った。彼の母は彼を助けてそれを売った。\nSentences:\n0: あけ方になると吹雪は止まりました。\n1: わたしもりがこやにもどったときです。\n2: 巳之吉はしたいのそばにいました。\n3: かれはいしきをなくしてたおれていました。\n4: 巳之吉はすぐに手あてされました。\n5: すぐに元気になったと思います。\n6: でも長い間病気になりました。\n7: ろうじんの死におどろきました。\n8: 白い服の女のことはいいませんでした。\n9: 元気になったら仕事をしました。\n10: 毎朝1人でもりへ行きました。\n11: 夕方に木のたばを持って帰りました。\n12: 母がそれを売るのをたすけました。\nIssues:\n[{\"sentence\":\"巳之吉はしたいのそばにいました。\",\"problem\":\"The original specifies the corpse was Shigesaku's (茂作の死体); this sentence omits who died, making it vague. It should be 茂作の死体のそばにいました。\",\"kind\":\"who\"}]\nRewrite exactly indexes: 2"
+          }
+        ],
+        "response": "{\"rewrites\": [{\"index\": 2, \"sentence\": \"巳之吉は茂作の死体のそばにいました。\"}]}"
+      }
+    ],
+    "before": [
+      {
+        "sentence": "巳之吉はしたいのそばにいました。",
+        "problem": "The original specifies the corpse was Shigesaku's (茂作の死体); this sentence omits who died, making it vague. It should be 茂作の死体のそばにいました。",
+        "kind": "who"
+      }
+    ],
+    "after": [
+      {
+        "sentence": "すぐに元気になったと思います。",
+        "problem": "The original states he regained consciousness (正気に帰った) but then fell ill for a long time; the retelling incorrectly claims he became healthy (元気になった).",
+        "kind": "event"
+      }
+    ]
+  },
+  "ladderBuild": "P4b"
 }

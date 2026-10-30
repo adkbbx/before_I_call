@@ -4,52 +4,70 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Adds ～とき, ～たら, ～ている, ～と思います, potential forms and ～ても. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Copy every story word exactly in kanji when it is needed; do not insert unused words.\nWrite normal Japanese with no spaces between words. Outside story words, use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: きこりはおどろいて立ちました。そこにちはありませんでした。あたまはきられていないと思いました。これは変化だと思います。またはろくろ首の家だと思います。本に書いてありました。くびのない体を見つけたら。体を別のところにいれます。そうすればくびはきません。くびがもどってきたとき。体がないことを知ったら。くびは三かいちをうちます。そして死ぬと思います。ろくろ首は悪いものです。だからいれてもいいと思います。\n\n場面（原文）:\n彼は主人の足をつかんで、窓まで引いて来て、からだを押し出した。それから裏口に来てみると戸が締っていた。それで彼は首は開いていた屋根の煙出しから出て行った事を察した。静かに戸を開けて庭に出て、向うの森の方へできるだけ用心して進んだ。森の中で話し声が聞えた、それでよい隠れ場所を見つけるまで影から影へと忍びながら――声の方向へ行った。そこで、一本の樹の幹のうしろから首が――五つとも――飛び〓って、そして飛び〓りながら談笑しているのを見た。首は地の上や樹の間で見つけた虫類を喰べていた。やがて主人の首が喰べる事を止めて云った、\n『ああ、今夜来たあの旅の僧、――全身よく肥えているじゃないか、あれを皆で喰べたら、さぞ満腹する事であろう。……あんな事を云って、つまらない事をした、――だからおれの魂のために、読経をさせる事になってしまった。経をよんでいるうちは近よる事がむつかしい。称名を唱えている間は手を下す事はできない。しかしもう今は朝に近いから、たぶん眠ったろう。……誰かうちへ行って、あれが何をしているか見届けて来てくれないか』"
+        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\n彼は主人の足をつかんで、窓まで引いて来て、からだを押し出した。それから裏口に来てみると戸が締っていた。それで彼は首は開いていた屋根の煙出しから出て行った事を察した。静かに戸を開けて庭に出て、向うの森の方へできるだけ用心して進んだ。森の中で話し声が聞えた、それでよい隠れ場所を見つけるまで影から影へと忍びながら――声の方向へ行った。そこで、一本の樹の幹のうしろから首が――五つとも――飛び〓って、そして飛び〓りながら談笑しているのを見た。首は地の上や樹の間で見つけた虫類を喰べていた。やがて主人の首が喰べる事を止めて云った、\n『ああ、今夜来たあの旅の僧、――全身よく肥えているじゃないか、あれを皆で喰べたら、さぞ満腹する事であろう。……あんな事を云って、つまらない事をした、――だからおれの魂のために、読経をさせる事になってしまった。経をよんでいるうちは近よる事がむつかしい。称名を唱えている間は手を下す事はできない。しかしもう今は朝に近いから、たぶん眠ったろう。……誰かうちへ行って、あれが何をしているか見届けて来てくれないか』\nThis N4 retelling must be harder than N5. N5 measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.04,\"meanLength\":11.25,\"advancedShare\":0.24390243902439024}. Make kanji density and mean sentence length strictly larger, and N4+N3 vocabulary share at least as large than 0.24390243902439024. Use longer connected sentences and relevant N4 vocabulary, preserving the original meaning. Current ladder failures: advancedShare."
       }
     ]
   },
   "responses": [
-    "{\"sentences\": [\"おとこはしゅじんのあしをつかみました。\", \"まどまでひいてからだをだしました。\", \"うらぐちのどはしまっていました。\", \"くびはやねからでたと思いました。\", \"おとこはしずかにそとにでました。\", \"もりへしずかにすすみました。\", \"もりのなかでこえがきこえました。\", \"かげからかげへすすみました。\", \"きのみのうしろにくびがありました。\", \"くびはいつつありました。\", \"ろくろ首ははなしてわらっていました。\", \"くびはむしをたべていました。\", \"しゅじんのくびがいいました。\", \"あの旅のそうはふとっています。\", \"みんなでたべたらおなかいっぱいになります。\", \"いまはあさちかいです。\", \"あの人はねていると思います。\", \"だれかうちへいってください。\", \"あの人がなにをしているか見てください。\"], \"question\": {\"prompt\": \"ろくろ首はいくつありましたか。\", \"options\": [\"いつつ\", \"みっつ\", \"ひとつ\"], \"answer\": 0}}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"おとこはしゅじんのあしをつかみました。\"}, {\"index\": 2, \"sentence\": \"うらぐちのどはしまっていました。\"}, {\"index\": 4, \"sentence\": \"おとこはしずかにそとにでました。\"}, {\"index\": 7, \"sentence\": \"かげからかげへすすみました。\"}, {\"index\": 8, \"sentence\": \"きのみのうしろにくびがありました。\"}, {\"index\": 10, \"sentence\": \"ろくろ首ははなしてわらっていました。\"}, {\"index\": 12, \"sentence\": \"しゅじんのくびがいいました。\"}, {\"index\": 13, \"sentence\": \"あのたびのそうはふとっています。\"}, {\"index\": 15, \"sentence\": \"いまはあさちかいです。\"}, {\"index\": 16, \"sentence\": \"あの人はねていると思います。\"}]}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"おとこはしゅじんのあしをつかみました。\"}, {\"index\": 2, \"sentence\": \"うらぐちのどはしまっていました。\"}, {\"index\": 4, \"sentence\": \"おとこはしずかにそとにでました。\"}, {\"index\": 7, \"sentence\": \"かげからかげへすすみました。\"}, {\"index\": 8, \"sentence\": \"きのみのうしろにくびがありました。\"}, {\"index\": 10, \"sentence\": \"ろくろ首ははなしてわらっていました。\"}, {\"index\": 12, \"sentence\": \"しゅじんのくびがいいました。\"}, {\"index\": 13, \"sentence\": \"あのたびのそうはふとっています。\"}, {\"index\": 15, \"sentence\": \"いまはあさちかいです。\"}, {\"index\": 16, \"sentence\": \"あの人はねていると思います。\"}]}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"おとこはしゅじんのあしをつかみました。\"}, {\"index\": 2, \"sentence\": \"うらぐちのどはしまっていました。\"}, {\"index\": 4, \"sentence\": \"おとこはしずかにそとにでました。\"}, {\"index\": 7, \"sentence\": \"かげからかげへすすみました。\"}, {\"index\": 8, \"sentence\": \"きのうしろにくびがありました。\"}, {\"index\": 10, \"sentence\": \"ろくろ首ははなしてわらっていました。\"}, {\"index\": 12, \"sentence\": \"しゅじんのくびがいいました。\"}, {\"index\": 13, \"sentence\": \"あのたびのそうはふとっています。\"}, {\"index\": 15, \"sentence\": \"いまはあさちかいです。\"}, {\"index\": 16, \"sentence\": \"あの人はねていると思います。\"}]}",
-    "{\"question\": {\"prompt\": \"ろくろくびはいくつありましたか。\", \"options\": [\"いつつ\", \"さんこ\", \"ひとつ\"], \"answer\": 0}}",
-    "{\"glosses\": {\"とこ\": \"place\", \"ゅじんのあしをつかみました\": \"grabbed the master's leg\", \"そ\": \"that\", \"びがありました\": \"there was a neck\", \"ゅじんのくびがいいました\": \"the master's head spoke\"}}"
+    "{\"sentences\": [\"彼は主人の足を引いて、窓から外に出しました。\", \"裏の戸が閉まっていたとき、彼は考えました。\", \"首は屋根の穴から出たと思います。\", \"彼は静かに庭に出て、森の方へ歩きました。\", \"森で話し声が聞こえたので、影から行きました。\", \"木のうしろから5つのろくろ首が見えました。\", \"ろくろ首は飛びながら、楽しく話していました。\", \"彼らは地面にある虫を食べていました。\", \"主人の首が止まって、こう言いました。\", \"あの旅の僧は、体がとても太っていますね。\", \"皆で食べたら、おなかいっぱいになるでしょう。\", \"僧に経を読ませたのは、つまらない事でした。\", \"経を読んでいるときは、近づくのが難しいです。\", \"今はもう朝に近いので、彼は眠ったでしょう。\", \"誰か家に行って、彼が何をしているか見てください。\"], \"question\": {\"prompt\": \"主人の首は、旅の僧について何と言いましたか。\", \"options\": [\"とても太っている\", \"とても強い\", \"とても親切だ\"], \"answer\": 0}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"かれはしゅじんのあしをひいて、まどから外に出しました。\"}, {\"index\": 1, \"sentence\": \"うらのとがしまっていたとき、かれは考えました。\"}, {\"index\": 2, \"sentence\": \"くびはやねのあなから出たと思います。\"}, {\"index\": 3, \"sentence\": \"かれはしずかににわに出て、もりの方へ歩きました。\"}, {\"index\": 4, \"sentence\": \"もりではなしごえが聞こえたので、かげから行きました。\"}, {\"index\": 5, \"sentence\": \"木のうしろから5つのろくろ首が見えました。\"}, {\"index\": 6, \"sentence\": \"ろくろ首はとびながら、楽しく話していました。\"}, {\"index\": 7, \"sentence\": \"かれらはじめんにあるむしを食べていました。\"}, {\"index\": 8, \"sentence\": \"しゅじんのくびが止まって、こう言いました。\"}, {\"index\": 9, \"sentence\": \"あのたびのそうは、体がとてもふとっていますね。\"}, {\"index\": 10, \"sentence\": \"みなで食べたら、おなかいっぱいになるでしょう。\"}, {\"index\": 11, \"sentence\": \"そうにけいをよませたのは、つまらない事でした。\"}, {\"index\": 12, \"sentence\": \"けいをよんでいるときは、ちかづくのがむずかしいです。\"}, {\"index\": 13, \"sentence\": \"今はもう朝に近いので、かれはねむったでしょう。\"}, {\"index\": 14, \"sentence\": \"だれか家に行って、かれが何をしているか見てください。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"彼はずしゅじんの足をひいて、まどから外に出しました。\"}, {\"index\": 1, \"sentence\": \"うらのとがしまっていたとき、彼は考えました。\"}, {\"index\": 2, \"sentence\": \"くびはやねのあなから出たと思います。\"}, {\"index\": 3, \"sentence\": \"彼はしずかににわに出て、もりの方へ歩きました。\"}, {\"index\": 4, \"sentence\": \"もりで声が聞こえたので、かげから行きました。\"}, {\"index\": 5, \"sentence\": \"木のうしろから5つのろくろ首が見えました。\"}, {\"index\": 6, \"sentence\": \"ろくろ首はとびながら、楽しく話していました。\"}, {\"index\": 7, \"sentence\": \"彼らはじめんにあるむしを食べていました。\"}, {\"index\": 8, \"sentence\": \"しゅじんのくびが止まって、こう言いました。\"}, {\"index\": 9, \"sentence\": \"あのたびのそうは、体がとてもふとっていますね。\"}, {\"index\": 10, \"sentence\": \"皆で食べたら、おなかいっぱいになるでしょう。\"}, {\"index\": 11, \"sentence\": \"そうにけいをよませたのは、つまらない事でした。\"}, {\"index\": 12, \"sentence\": \"けいをよんでいるときは、ちかづくのがむずかしいです。\"}, {\"index\": 13, \"sentence\": \"今はもう朝に近いので、彼はねむったでしょう。\"}, {\"index\": 14, \"sentence\": \"だれか家に行って、彼が何をしているか見てください。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"かれはずしゅじんの足をひいて、まどから外に出しました。\"}, {\"index\": 1, \"sentence\": \"うらのとがしまっていたとき、かれは考えました。\"}, {\"index\": 3, \"sentence\": \"かれはしずかににわに出て、もりの方へ歩きました。\"}, {\"index\": 4, \"sentence\": \"もりでこえが聞こえたので、かげから行きました。\"}, {\"index\": 5, \"sentence\": \"木のうしろから5つのろくろ首が見えました。\"}, {\"index\": 7, \"sentence\": \"かれらはじめんにあるむしを食べていました。\"}, {\"index\": 8, \"sentence\": \"しゅじんのくびが止まって、こう言いました。\"}, {\"index\": 9, \"sentence\": \"あのたびのそうは、体がとてもふとっていますね。\"}, {\"index\": 10, \"sentence\": \"みなで食べたら、おなかいっぱいになるでしょう。\"}, {\"index\": 11, \"sentence\": \"そうにけいをよませたのは、つまらない事でした。\"}, {\"index\": 12, \"sentence\": \"けいをよんでいるときは、ちかづくのがむずかしいです。\"}, {\"index\": 13, \"sentence\": \"今はもう朝に近いので、かれはねむったでしょう。\"}, {\"index\": 14, \"sentence\": \"だれか家に行って、かれが何をしているか見てください。\"}]}",
+    "{\"question\": {\"prompt\": \"くびは、あのそうについて何と言いましたか。\", \"options\": [\"とてもふとっている\", \"とても強い\", \"とても親切だ\"], \"answer\": 0}}",
+    "{\"glosses\": {\"ゅじんの\": \"master's\", \"わに\": \"in the garden\", \"でく\": \"go out\", \"ろ\": \"long-necked ghost\", \"ん\": \"ground\", \"ゅじんのくびが\": \"master's head\", \"せる\": \"make someone do\", \"ちかづく\": \"approach\"}}"
   ],
   "metrics": {
-    "kanjiCoverage": 0.8333333333333334,
-    "kanjiDensity": 0.02027027027027027,
-    "firstCoverage": 0.8,
-    "finalCoverage": 0.8,
-    "retries": 3,
-    "seconds": 29.152775000000023,
+    "kanjiCoverage": 1,
+    "kanjiDensity": 0.13354037267080746,
+    "firstCoverage": 0.7777777777777778,
+    "finalCoverage": 0.8170731707317073,
+    "retries": 9,
+    "seconds": 109.2540119,
     "offendingFirst": [
-      "とこ",
-      "ゅじんのあしをつかみました",
-      "ぐち",
-      "そ",
-      "かげる",
-      "びがありました",
-      "ゅじんのくびがいいました",
+      "主人",
+      "屋根",
+      "穴",
+      "話し声",
+      "影",
+      "うし",
+      "ろ",
+      "地面",
       "旅",
-      "さ",
-      "はねる"
+      "僧",
+      "経",
+      "せる",
+      "の",
+      "近づく"
     ],
     "ghostWords": [
-      "とこ",
-      "ゅじんのあしをつかみました",
-      "ぐち",
-      "そ",
+      "主人",
+      "の",
+      "わに",
+      "でく",
       "かげる",
-      "びがありました",
-      "ゅじんのくびがいいました",
-      "たび",
-      "さ",
-      "はねる"
+      "ら",
+      "地",
+      "のく",
+      "びが",
+      "旅",
+      "ぼう",
+      "せる"
+    ],
+    "faithIssues": [
+      {
+        "sentence": "木の後ろから5つのろくろ首が見えました。",
+        "problem": "The original describes detached heads (首), not Rokurokubi (long-necked humans). Change ろくろ首 to 首.",
+        "kind": "invented"
+      },
+      {
+        "sentence": "ろくろ首はとびながら、楽しく話していました。",
+        "problem": "The original describes detached heads (首), not Rokurokubi. Change ろくろ首 to 首.",
+        "kind": "invented"
+      }
     ]
   },
   "retelling": {
@@ -60,42 +78,56 @@
       {
         "tokens": [
           {
-            "s": "お",
-            "k": "plain"
-          },
-          {
-            "s": "とこ",
-            "b": "とこ",
-            "k": "ghost",
-            "g": "place",
-            "gs": "model"
+            "s": "男",
+            "k": "known",
+            "r": "おとこ",
+            "b": "男",
+            "g": "man, male",
+            "gs": "jlpt"
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "し",
-            "b": "する",
-            "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "s": "主人",
+            "k": "ghost",
+            "r": "しゅじん",
+            "b": "主人",
+            "g": "(one's own) husband",
             "gs": "jlpt"
           },
           {
-            "s": "ゅじんのあしをつかみました",
-            "b": "ゅじんのあしをつかみました",
-            "k": "ghost",
-            "g": "grabbed the master's leg",
-            "gs": "model"
+            "s": "の",
+            "k": "plain"
           },
           {
-            "s": "。",
+            "s": "足",
+            "k": "known",
+            "r": "あし",
+            "b": "足",
+            "g": "foot; leg",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
             "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
+          },
+          {
+            "s": "ひい",
+            "k": "known",
+            "b": "ひく",
+            "g": "to pull, to draw; subtract",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
           {
             "s": "ま",
             "k": "plain"
@@ -105,36 +137,14 @@
             "k": "plain"
           },
           {
-            "s": "まで",
-            "k": "plain"
-          },
-          {
-            "s": "ひい",
-            "b": "ひく",
-            "k": "known",
-            "g": "to pull, to draw; subtract",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
             "s": "から",
             "k": "plain"
           },
           {
-            "s": "だ",
-            "k": "plain"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "だし",
-            "b": "だす",
+            "s": "出し",
             "k": "known",
+            "r": "だし",
+            "b": "出す",
             "g": "to take (something) out; to hand in (something)",
             "gs": "jlpt"
           },
@@ -156,33 +166,30 @@
         "tokens": [
           {
             "s": "うら",
-            "b": "うる",
             "k": "known",
+            "b": "うる",
             "g": "to sell (v.t.)",
             "gs": "jlpt"
           },
           {
-            "s": "ぐち",
-            "b": "ぐち",
+            "s": "の",
             "k": "ghost",
-            "g": "idle complaint, grumble",
+            "b": "の",
+            "g": "field",
             "gs": "jlpt"
           },
           {
-            "s": "のど",
-            "b": "のど",
-            "k": "known",
-            "g": "throat",
-            "gs": "jlpt"
+            "s": "と",
+            "k": "plain"
           },
           {
-            "s": "は",
+            "s": "が",
             "k": "plain"
           },
           {
             "s": "しまっ",
-            "b": "しまう",
             "k": "known",
+            "b": "しまう",
             "g": "to end up ~",
             "gs": "jlpt"
           },
@@ -192,9 +199,44 @@
           },
           {
             "s": "い",
-            "b": "いる",
             "k": "known",
+            "b": "いる",
             "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "とき",
+            "k": "known",
+            "b": "とき",
+            "g": "at the time of ~",
+            "gs": "jlpt"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "男",
+            "k": "known",
+            "r": "おとこ",
+            "b": "男",
+            "g": "man, male",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "考え",
+            "k": "known",
+            "r": "かんがえ",
+            "b": "考える",
+            "g": "to think (about); to consider",
             "gs": "jlpt"
           },
           {
@@ -215,29 +257,41 @@
         "tokens": [
           {
             "s": "く",
-            "b": "くい",
             "k": "known",
+            "b": "くい",
             "g": "nine",
             "gs": "jlpt"
           },
           {
-            "s": "びはやねからでたと",
+            "s": "びはやねのあなから",
+            "k": "plain"
+          },
+          {
+            "s": "出",
+            "k": "known",
+            "r": "で",
+            "b": "出る",
+            "g": "to appear, to leave",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "と",
             "k": "plain"
           },
           {
             "s": "思い",
+            "k": "known",
             "r": "おもい",
             "b": "思う",
-            "k": "known",
             "g": "to think, to feel",
             "gs": "jlpt"
           },
           {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
+            "s": "ます",
             "k": "plain"
           },
           {
@@ -249,15 +303,12 @@
       {
         "tokens": [
           {
-            "s": "お",
-            "k": "plain"
-          },
-          {
-            "s": "とこ",
-            "b": "とこ",
-            "k": "ghost",
-            "g": "place",
-            "gs": "model"
+            "s": "男",
+            "k": "known",
+            "r": "おとこ",
+            "b": "男",
+            "g": "man, male",
+            "gs": "jlpt"
           },
           {
             "s": "は",
@@ -265,8 +316,8 @@
           },
           {
             "s": "しずか",
-            "b": "しずか",
             "k": "known",
+            "b": "しずか",
             "g": "quiet, calm",
             "gs": "jlpt"
           },
@@ -275,92 +326,36 @@
             "k": "plain"
           },
           {
-            "s": "そ",
-            "b": "そ",
-            "k": "ghost",
-            "g": "that",
-            "gs": "model"
-          },
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
             "s": "に",
             "k": "plain"
           },
           {
-            "s": "で",
-            "b": "でる",
+            "s": "わに",
+            "k": "ghost",
+            "b": "わに",
+            "g": "crocodile",
+            "gs": "model"
+          },
+          {
+            "s": "出",
             "k": "known",
+            "r": "で",
+            "b": "出る",
             "g": "to appear, to leave",
             "gs": "jlpt"
           },
           {
-            "s": "まし",
+            "s": "て",
             "k": "plain"
           },
           {
-            "s": "た",
+            "s": "、",
             "k": "plain"
           },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
           {
             "s": "もり",
+            "k": "known",
             "b": "もる",
-            "k": "known",
-            "g": "to serve (food); to fill up; to prescribe",
-            "gs": "jlpt"
-          },
-          {
-            "s": "へ",
-            "k": "plain"
-          },
-          {
-            "s": "しずか",
-            "b": "しずか",
-            "k": "known",
-            "g": "quiet, calm",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "すすみ",
-            "b": "すすむ",
-            "k": "known",
-            "g": "to advance, to proceed",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "もり",
-            "b": "もる",
-            "k": "known",
             "g": "to serve (food); to fill up; to prescribe",
             "gs": "jlpt"
           },
@@ -369,32 +364,23 @@
             "k": "plain"
           },
           {
-            "s": "なか",
-            "b": "なか",
+            "s": "方",
             "k": "known",
-            "g": "inside, middle, among",
+            "r": "ほう",
+            "b": "方",
+            "g": "-- honorific form for 人 (ひと) --; way of doing",
             "gs": "jlpt"
           },
           {
-            "s": "で",
+            "s": "へ",
             "k": "plain"
           },
           {
-            "s": "こえ",
-            "b": "こえる",
+            "s": "歩き",
             "k": "known",
-            "g": "to exceed, to cross over, to cross",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "きこえ",
-            "b": "きこえる",
-            "k": "known",
-            "g": "to be heard, to be audible",
+            "r": "あるき",
+            "b": "歩く",
+            "g": "to walk",
             "gs": "jlpt"
           },
           {
@@ -414,9 +400,51 @@
       {
         "tokens": [
           {
-            "s": "かげ",
-            "b": "かげる",
+            "s": "もり",
+            "k": "known",
+            "b": "もる",
+            "g": "to serve (food); to fill up; to prescribe",
+            "gs": "jlpt"
+          },
+          {
+            "s": "でこ",
             "k": "ghost",
+            "b": "でく",
+            "g": "block",
+            "gs": "model"
+          },
+          {
+            "s": "え",
+            "k": "plain"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "聞こえ",
+            "k": "known",
+            "r": "きこえ",
+            "b": "聞こえる",
+            "g": "to be heard, to be audible",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "ので",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "かげ",
+            "k": "ghost",
+            "b": "かげる",
             "g": "shade, shadow, other side",
             "gs": "jlpt"
           },
@@ -425,21 +453,11 @@
             "k": "plain"
           },
           {
-            "s": "かげ",
-            "b": "かげる",
-            "k": "ghost",
-            "g": "shade, shadow, other side",
-            "gs": "jlpt"
-          },
-          {
-            "s": "へ",
-            "k": "plain"
-          },
-          {
-            "s": "すすみ",
-            "b": "すすむ",
+            "s": "行き",
             "k": "known",
-            "g": "to advance, to proceed",
+            "r": "いき",
+            "b": "行く",
+            "g": "to go",
             "gs": "jlpt"
           },
           {
@@ -459,50 +477,67 @@
       {
         "tokens": [
           {
-            "s": "きのう",
-            "b": "きのう",
+            "s": "木",
             "k": "known",
-            "g": "yesterday",
+            "r": "き",
+            "b": "木",
+            "g": "tree, wood, timber",
             "gs": "jlpt"
           },
           {
-            "s": "しろ",
-            "b": "する",
-            "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "にく",
-            "b": "にくい",
-            "k": "known",
-            "g": "difficult to do ~",
-            "gs": "jlpt"
-          },
-          {
-            "s": "びがありました",
-            "b": "びがありました",
-            "k": "ghost",
-            "g": "there was a neck",
-            "gs": "model"
-          },
-          {
-            "s": "。",
+            "s": "の",
             "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
+          },
           {
-            "s": "く",
-            "b": "くい",
+            "s": "後ろ",
             "k": "known",
-            "g": "nine",
+            "r": "うしろ",
+            "b": "後ろ",
+            "g": "back, behind, rear",
             "gs": "jlpt"
           },
           {
-            "s": "びはいつつありました",
+            "s": "から",
+            "k": "plain"
+          },
+          {
+            "s": "5",
+            "k": "plain"
+          },
+          {
+            "s": "つ",
+            "k": "plain"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "ろくろ首",
+            "r": "ろくろくび",
+            "b": "ろくろ首",
+            "k": "story",
+            "g": "a creature with a detached head",
+            "hk": true
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "見え",
+            "k": "known",
+            "r": "みえ",
+            "b": "見える",
+            "g": "to be visible; -- polite verb meaning 来る (くる) --",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
             "k": "plain"
           },
           {
@@ -515,20 +550,44 @@
         "tokens": [
           {
             "s": "ろくろ首",
-            "hk": true,
             "r": "ろくろくび",
             "b": "ろくろ首",
             "k": "story",
-            "g": "a creature with a detached head"
+            "g": "a creature with a detached head",
+            "hk": true
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "はなし",
-            "b": "はなす",
+            "s": "とび",
             "k": "known",
+            "b": "とぶ",
+            "g": "to fly, to hop",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ながら",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "楽しく",
+            "k": "known",
+            "r": "たのしく",
+            "b": "楽しい",
+            "g": "enjoyable, fun",
+            "gs": "jlpt"
+          },
+          {
+            "s": "話し",
+            "k": "known",
+            "r": "はなし",
+            "b": "話す",
             "g": "to speak",
             "gs": "jlpt"
           },
@@ -537,20 +596,9 @@
             "k": "plain"
           },
           {
-            "s": "わらっ",
-            "b": "わらう",
-            "k": "known",
-            "g": "to laugh, to smile",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
             "s": "い",
-            "b": "いる",
             "k": "known",
+            "b": "いる",
             "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
@@ -571,14 +619,78 @@
       {
         "tokens": [
           {
-            "s": "く",
-            "b": "くい",
+            "s": "かれ",
             "k": "known",
-            "g": "nine",
+            "b": "かれる",
+            "g": "to wither, to die (plant), to be blasted (plant)",
             "gs": "jlpt"
           },
           {
-            "s": "びはむしをたべていました",
+            "s": "ら",
+            "k": "ghost",
+            "b": "ら",
+            "g": "plural persons",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "地",
+            "k": "ghost",
+            "r": "ち",
+            "b": "地",
+            "g": "earth",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "ある",
+            "k": "known",
+            "b": "ある",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "むし",
+            "k": "known",
+            "b": "むし",
+            "g": "insect",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "食べ",
+            "k": "known",
+            "r": "たべ",
+            "b": "食べる",
+            "g": "to eat",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "k": "known",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
             "k": "plain"
           },
           {
@@ -590,18 +702,65 @@
       {
         "tokens": [
           {
-            "s": "し",
-            "b": "する",
-            "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "s": "主人",
+            "k": "ghost",
+            "r": "しゅじん",
+            "b": "主人",
+            "g": "(one's own) husband",
             "gs": "jlpt"
           },
           {
-            "s": "ゅじんのくびがいいました",
-            "b": "ゅじんのくびがいいました",
+            "s": "のく",
             "k": "ghost",
-            "g": "the master's head spoke",
+            "b": "のく",
+            "g": "move aside",
             "gs": "model"
+          },
+          {
+            "s": "びが",
+            "k": "ghost",
+            "b": "びが",
+            "g": "beauty",
+            "gs": "model"
+          },
+          {
+            "s": "止まっ",
+            "k": "known",
+            "r": "とまっ",
+            "b": "止まる",
+            "g": "to come to a halt",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "こう",
+            "k": "known",
+            "b": "こう",
+            "g": "like this, this way",
+            "gs": "jlpt"
+          },
+          {
+            "s": "言い",
+            "k": "known",
+            "r": "いい",
+            "b": "言う",
+            "g": "to say",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
           },
           {
             "s": "。",
@@ -616,10 +775,11 @@
             "k": "plain"
           },
           {
-            "s": "たび",
-            "b": "たび",
+            "s": "旅",
             "k": "ghost",
-            "g": "Japanese socks (with split toe)",
+            "r": "たび",
+            "b": "旅",
+            "g": "travel, trip, journey",
             "gs": "jlpt"
           },
           {
@@ -627,10 +787,21 @@
             "k": "plain"
           },
           {
-            "s": "そう",
-            "b": "そう",
+            "s": "お",
+            "k": "plain"
+          },
+          {
+            "s": "ぼう",
+            "k": "ghost",
+            "b": "ぼう",
+            "g": "pole, rod, stick",
+            "gs": "jlpt"
+          },
+          {
+            "s": "さん",
             "k": "known",
-            "g": "yes; appears, to be the case",
+            "b": "さん",
+            "g": "Mr. ~, Ms. ~",
             "gs": "jlpt"
           },
           {
@@ -638,9 +809,25 @@
             "k": "plain"
           },
           {
-            "s": "ふとっ",
-            "b": "ふとる",
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "体",
             "k": "known",
+            "r": "からだ",
+            "b": "体",
+            "g": "body; health",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "ふとっ",
+            "k": "known",
+            "b": "ふとる",
             "g": "to gain weight",
             "gs": "jlpt"
           },
@@ -650,13 +837,17 @@
           },
           {
             "s": "い",
-            "b": "いる",
             "k": "known",
+            "b": "いる",
             "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
           {
             "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "ね",
             "k": "plain"
           },
           {
@@ -676,9 +867,10 @@
             "k": "plain"
           },
           {
-            "s": "たべ",
-            "b": "たべる",
+            "s": "食べ",
             "k": "known",
+            "r": "たべ",
+            "b": "食べる",
             "g": "to eat",
             "gs": "jlpt"
           },
@@ -687,16 +879,20 @@
             "k": "plain"
           },
           {
+            "s": "、",
+            "k": "plain"
+          },
+          {
             "s": "おなか",
-            "b": "おなか",
             "k": "known",
+            "b": "おなか",
             "g": "stomach",
             "gs": "jlpt"
           },
           {
             "s": "いっぱい",
-            "b": "いっぱい",
             "k": "known",
+            "b": "いっぱい",
             "g": "full, to the utmost",
             "gs": "jlpt"
           },
@@ -706,8 +902,8 @@
           },
           {
             "s": "なり",
-            "b": "なる",
             "k": "known",
+            "b": "なる",
             "g": "to become",
             "gs": "jlpt"
           },
@@ -724,10 +920,40 @@
       {
         "tokens": [
           {
-            "s": "いま",
-            "b": "いま",
+            "s": "きょう",
             "k": "known",
-            "g": "now",
+            "b": "きょう",
+            "g": "today, this day",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "読ま",
+            "k": "known",
+            "r": "よま",
+            "b": "読む",
+            "g": "to read",
+            "gs": "jlpt"
+          },
+          {
+            "s": "せ",
+            "k": "ghost",
+            "b": "せる",
+            "g": "make stand",
+            "gs": "model"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "の",
+            "k": "ghost",
+            "b": "の",
+            "g": "field",
             "gs": "jlpt"
           },
           {
@@ -735,21 +961,110 @@
             "k": "plain"
           },
           {
-            "s": "あ",
+            "s": "、",
             "k": "plain"
           },
           {
-            "s": "さ",
-            "b": "さ",
-            "k": "ghost",
-            "g": "difference, variation",
+            "s": "つまらない",
+            "k": "known",
+            "b": "つまらない",
+            "g": "boring, dull; insignificant",
             "gs": "jlpt"
           },
           {
-            "s": "ちかい",
-            "b": "ちかい",
+            "s": "事",
             "k": "known",
-            "g": "near, close by, short",
+            "r": "こと",
+            "b": "事",
+            "g": "thing(s), matter(s), fact",
+            "gs": "jlpt"
+          },
+          {
+            "s": "でし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "読ん",
+            "k": "known",
+            "r": "よん",
+            "b": "読む",
+            "g": "to read",
+            "gs": "jlpt"
+          },
+          {
+            "s": "で",
+            "k": "plain"
+          },
+          {
+            "s": "いる",
+            "k": "known",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "とき",
+            "k": "known",
+            "b": "とき",
+            "g": "at the time of ~",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "近く",
+            "k": "known",
+            "r": "ちかく",
+            "b": "近く",
+            "g": "nearby; in the neighborhood",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "行く",
+            "k": "known",
+            "r": "いく",
+            "b": "行く",
+            "g": "to go",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "ghost",
+            "b": "の",
+            "g": "field",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "むずかしい",
+            "k": "known",
+            "b": "むずかしい",
+            "g": "difficult",
             "gs": "jlpt"
           },
           {
@@ -765,49 +1080,80 @@
       {
         "tokens": [
           {
-            "s": "あの",
+            "s": "今",
+            "k": "known",
+            "r": "いま",
+            "b": "今",
+            "g": "now",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
             "k": "plain"
           },
           {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
+            "s": "もう",
             "k": "known",
-            "g": "counter for people",
+            "b": "もう",
+            "g": "already; again; more",
             "gs": "jlpt"
           },
           {
-            "s": "はね",
-            "b": "はねる",
-            "k": "ghost",
-            "g": "to jump, to leap",
+            "s": "朝",
+            "k": "known",
+            "r": "あさ",
+            "b": "朝",
+            "g": "morning",
             "gs": "jlpt"
           },
           {
-            "s": "て",
+            "s": "に",
             "k": "plain"
           },
           {
-            "s": "いる",
-            "b": "いる",
+            "s": "近い",
             "k": "known",
-            "g": "(humble) to be (animate), to exist",
+            "r": "ちかい",
+            "b": "近い",
+            "g": "near, close by, short",
             "gs": "jlpt"
           },
           {
-            "s": "と",
+            "s": "ので",
             "k": "plain"
           },
           {
-            "s": "思い",
-            "r": "おもい",
-            "b": "思う",
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "かれ",
             "k": "known",
-            "g": "to think, to feel",
+            "b": "かれる",
+            "g": "to wither, to die (plant), to be blasted (plant)",
             "gs": "jlpt"
           },
           {
-            "s": "ます",
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "ねむっ",
+            "k": "known",
+            "b": "ねむる",
+            "g": "to sleep",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "でしょ",
+            "k": "plain"
+          },
+          {
+            "s": "う",
             "k": "plain"
           },
           {
@@ -827,20 +1173,22 @@
             "k": "plain"
           },
           {
-            "s": "うち",
-            "b": "うち",
+            "s": "家",
             "k": "known",
-            "g": "home; house; my place",
+            "r": "いえ",
+            "b": "家",
+            "g": "house, home",
             "gs": "jlpt"
           },
           {
-            "s": "へ",
+            "s": "に",
             "k": "plain"
           },
           {
-            "s": "いっ",
-            "b": "いく",
+            "s": "行っ",
             "k": "known",
+            "r": "いっ",
+            "b": "行く",
             "g": "to go",
             "gs": "jlpt"
           },
@@ -849,39 +1197,13 @@
             "k": "plain"
           },
           {
-            "s": "ください",
-            "b": "くださる",
-            "k": "known",
-            "g": "(hon.) to give, to confer",
-            "gs": "jlpt"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "あの",
+            "s": "、",
             "k": "plain"
           },
           {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "なに",
-            "k": "plain"
+            "s": "何",
+            "k": "plain",
+            "r": "なに"
           },
           {
             "s": "を",
@@ -889,8 +1211,8 @@
           },
           {
             "s": "し",
-            "b": "する",
             "k": "known",
+            "b": "する",
             "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
             "gs": "jlpt"
           },
@@ -900,8 +1222,8 @@
           },
           {
             "s": "いる",
-            "b": "いる",
             "k": "known",
+            "b": "いる",
             "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
@@ -911,9 +1233,9 @@
           },
           {
             "s": "見",
+            "k": "known",
             "r": "み",
             "b": "見る",
-            "k": "known",
             "g": "to see, to look",
             "gs": "jlpt"
           },
@@ -923,8 +1245,8 @@
           },
           {
             "s": "ください",
-            "b": "くださる",
             "k": "known",
+            "b": "くださる",
             "g": "(hon.) to give, to confer",
             "gs": "jlpt"
           },
@@ -939,25 +1261,50 @@
       "prompt": {
         "tokens": [
           {
-            "s": "ろくろくび",
-            "r": "ろくろくび",
-            "b": "ろくろ首",
-            "k": "story",
-            "g": "a creature with a detached head"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "いくつ",
-            "k": "plain"
-          },
-          {
-            "s": "あり",
-            "b": "ある",
+            "s": "く",
             "k": "known",
-            "g": "to be, to have",
+            "b": "くい",
+            "g": "nine",
+            "gs": "jlpt"
+          },
+          {
+            "s": "びは",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "あの",
+            "k": "plain"
+          },
+          {
+            "s": "そう",
+            "k": "known",
+            "b": "そう",
+            "g": "yes; appears, to be the case",
+            "gs": "jlpt"
+          },
+          {
+            "s": "について",
+            "k": "plain"
+          },
+          {
+            "s": "何",
+            "k": "plain",
+            "r": "なに"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "言い",
+            "k": "known",
+            "r": "いい",
+            "b": "言う",
+            "g": "to say",
             "gs": "jlpt"
           },
           {
@@ -982,17 +1329,18 @@
         {
           "tokens": [
             {
-              "s": "さん",
-              "b": "さん",
+              "s": "とても",
               "k": "known",
-              "g": "Mr. ~, Ms. ~",
+              "b": "とても",
+              "g": "very (much), greatly, exceedingly",
               "gs": "jlpt"
             },
             {
-              "s": "こ",
-              "b": "こ",
+              "s": "強い",
               "k": "known",
-              "g": "counter for small items (e.g., fruits, cups)",
+              "r": "つよい",
+              "b": "強い",
+              "g": "strong, powerful",
               "gs": "jlpt"
             }
           ]
@@ -1000,26 +1348,52 @@
         {
           "tokens": [
             {
-              "s": "い",
-              "b": "いる",
+              "s": "とても",
               "k": "known",
+              "b": "とても",
+              "g": "very (much), greatly, exceedingly",
+              "gs": "jlpt"
+            },
+            {
+              "s": "ふとっ",
+              "k": "known",
+              "b": "ふとる",
+              "g": "to gain weight",
+              "gs": "jlpt"
+            },
+            {
+              "s": "て",
+              "k": "plain"
+            },
+            {
+              "s": "いる",
+              "k": "known",
+              "b": "いる",
               "g": "(humble) to be (animate), to exist",
               "gs": "jlpt"
-            },
-            {
-              "s": "つつ",
-              "k": "plain"
             }
           ]
         },
         {
           "tokens": [
             {
-              "s": "ひとつ",
-              "b": "ひとつ",
+              "s": "とても",
               "k": "known",
-              "g": "one thing",
+              "b": "とても",
+              "g": "very (much), greatly, exceedingly",
               "gs": "jlpt"
+            },
+            {
+              "s": "親切",
+              "k": "known",
+              "r": "しんせつ",
+              "b": "親切",
+              "g": "kindness",
+              "gs": "jlpt"
+            },
+            {
+              "s": "だ",
+              "k": "plain"
             }
           ]
         }
@@ -1027,37 +1401,251 @@
       "answer": 1
     },
     "metrics": {
-      "kanjiCoverage": 0.8333333333333334,
-      "kanjiDensity": 0.02027027027027027,
-      "firstCoverage": 0.8,
-      "finalCoverage": 0.8,
-      "retries": 3,
-      "seconds": 29.152775000000023,
+      "kanjiCoverage": 1,
+      "kanjiDensity": 0.13354037267080746,
+      "firstCoverage": 0.7777777777777778,
+      "finalCoverage": 0.8170731707317073,
+      "retries": 9,
+      "seconds": 109.2540119,
       "offendingFirst": [
-        "とこ",
-        "ゅじんのあしをつかみました",
-        "ぐち",
-        "そ",
-        "かげる",
-        "びがありました",
-        "ゅじんのくびがいいました",
+        "主人",
+        "屋根",
+        "穴",
+        "話し声",
+        "影",
+        "うし",
+        "ろ",
+        "地面",
         "旅",
-        "さ",
-        "はねる"
+        "僧",
+        "経",
+        "せる",
+        "の",
+        "近づく"
       ],
       "ghostWords": [
-        "とこ",
-        "ゅじんのあしをつかみました",
-        "ぐち",
-        "そ",
+        "主人",
+        "の",
+        "わに",
+        "でく",
         "かげる",
-        "びがありました",
-        "ゅじんのくびがいいました",
-        "たび",
-        "さ",
-        "はねる"
+        "ら",
+        "地",
+        "のく",
+        "びが",
+        "旅",
+        "ぼう",
+        "せる"
+      ],
+      "faithIssues": [
+        {
+          "sentence": "木の後ろから5つのろくろ首が見えました。",
+          "problem": "The original describes detached heads (首), not Rokurokubi (long-necked humans). Change ろくろ首 to 首.",
+          "kind": "invented"
+        },
+        {
+          "sentence": "ろくろ首はとびながら、楽しく話していました。",
+          "problem": "The original describes detached heads (首), not Rokurokubi. Change ろくろ首 to 首.",
+          "kind": "invented"
+        }
       ]
     }
   },
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "ladderBuild": "P4b",
+  "ladderRetry": {
+    "before": {
+      "ladderOk": false,
+      "reasons": [
+        "advancedShare"
+      ],
+      "stats": {
+        "N5": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.04,
+          "meanLength": 11.25,
+          "advancedShare": 0.24390243902439024
+        },
+        "N4": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.14232209737827714,
+          "meanLength": 17.8,
+          "advancedShare": 0.19402985074626866
+        },
+        "N3": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.1888111888111888,
+          "meanLength": 26,
+          "advancedShare": 0.2692307692307692
+        }
+      }
+    },
+    "feedback": "This N4 retelling must be harder than N5. N5 measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.04,\"meanLength\":11.25,\"advancedShare\":0.24390243902439024}. Make kanji density and mean sentence length strictly larger, and N4+N3 vocabulary share at least as large than 0.24390243902439024. Use longer connected sentences and relevant N4 vocabulary, preserving the original meaning. Current ladder failures: advancedShare."
+  },
+  "levelRepairs": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n彼は主人の足をつかんで、窓まで引いて来て、からだを押し出した。それから裏口に来てみると戸が締っていた。それで彼は首は開いていた屋根の煙出しから出て行った事を察した。静かに戸を開けて庭に出て、向うの森の方へできるだけ用心して進んだ。森の中で話し声が聞えた、それでよい隠れ場所を見つけるまで影から影へと忍びながら――声の方向へ行った。そこで、一本の樹の幹のうしろから首が――五つとも――飛び〓って、そして飛び〓りながら談笑しているのを見た。首は地の上や樹の間で見つけた虫類を喰べていた。やがて主人の首が喰べる事を止めて云った、\n『ああ、今夜来たあの旅の僧、――全身よく肥えているじゃないか、あれを皆で喰べたら、さぞ満腹する事であろう。……あんな事を云って、つまらない事をした、――だからおれの魂のために、読経をさせる事になってしまった。経をよんでいるうちは近よる事がむつかしい。称名を唱えている間は手を下す事はできない。しかしもう今は朝に近いから、たぶん眠ったろう。……誰かうちへ行って、あれが何をしているか見届けて来てくれないか』\nCurrent retelling:\nかれはずしゅじんの足をひいて、まどから外に出しました。\nうらのとがしまっていたとき、かれは考えました。\nくびはやねのあなから出たと思います。\nかれはしずかににわに出て、もりの方へ歩きました。\nもりでこえが聞こえたので、かげから行きました。\n木のうしろから5つのろくろ首が見えました。\nろくろ首はとびながら、楽しく話していました。\nかれらはじめんにあるむしを食べていました。\nしゅじんのくびが止まって、こう言いました。\nあのたびのそうは、体がとてもふとっていますね。\nみなで食べたら、おなかいっぱいになるでしょう。\nそうにけいをよませたのは、つまらない事でした。\nけいをよんでいるときは、ちかづくのがむずかしいです。\n今はもう朝に近いので、かれはねむったでしょう。\nだれか家に行って、かれが何をしているか見てください。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.0872093023255814,\"meanLength\":22.933333333333334,\"advancedShare\":0.23863636363636365}; vocabulary 0.7954545454545454. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: ゅじんの、ら、の、わに、でく、かげる、うし、ろ、ん、ゅじんのくびが、たび、けい、せる、ちかづく. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"男は主人の足を引いて、窓から外に出しました。\", \"裏の戸が閉まっていたとき、男は考えました。\", \"首は屋根の穴から出たと思います。\", \"男は静かに庭に出て、森の方へ歩きました。\", \"森で声が聞こえたので、影から行きました。\", \"木の後ろから5つのろくろ首が見えました。\", \"ろくろ首は飛びながら、楽しく話していました。\", \"彼らは地面にある虫を食べていました。\", \"主人の首が止まって、こう言いました。\", \"あの旅のそうは、体がとても太っていますね。\", \"皆で食べたら、おなかいっぱいになるでしょう。\", \"そうに経を読ませたのは、つまらない事でした。\", \"経を読んでいるときは、近づくのが難しいです。\", \"今はもう朝に近いので、彼は眠ったでしょう。\", \"誰か家に行って、彼が何をしているか見てください。\"], \"question\": {\"prompt\": \"ろくろ首は何を食べていましたか。\", \"options\": [\"虫\", \"魚\", \"肉\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n彼は主人の足をつかんで、窓まで引いて来て、からだを押し出した。それから裏口に来てみると戸が締っていた。それで彼は首は開いていた屋根の煙出しから出て行った事を察した。静かに戸を開けて庭に出て、向うの森の方へできるだけ用心して進んだ。森の中で話し声が聞えた、それでよい隠れ場所を見つけるまで影から影へと忍びながら――声の方向へ行った。そこで、一本の樹の幹のうしろから首が――五つとも――飛び〓って、そして飛び〓りながら談笑しているのを見た。首は地の上や樹の間で見つけた虫類を喰べていた。やがて主人の首が喰べる事を止めて云った、\n『ああ、今夜来たあの旅の僧、――全身よく肥えているじゃないか、あれを皆で喰べたら、さぞ満腹する事であろう。……あんな事を云って、つまらない事をした、――だからおれの魂のために、読経をさせる事になってしまった。経をよんでいるうちは近よる事がむつかしい。称名を唱えている間は手を下す事はできない。しかしもう今は朝に近いから、たぶん眠ったろう。……誰かうちへ行って、あれが何をしているか見届けて来てくれないか』\nCurrent retelling:\n男は主人の足をひいて、まどから外に出しました。\nうらのとがしまっていたとき、男は考えました。\nくびはやねのあなから出たと思います。\n男はしずかににわに出て、もりの方へ歩きました。\nもりでこえが聞こえたので、かげから行きました。\n木の後ろから5つのろくろ首が見えました。\nろくろ首はとびながら、楽しく話していました。\nかれらはじめんにあるむしを食べていました。\n主人のくびが止まって、こう言いました。\nあの旅のそうは、体がとてもふとっていますね。\nみなで食べたら、おなかいっぱいになるでしょう。\nそうにけいを読ませたのは、つまらない事でした。\nけいを読んでいるときは、近づくのがむずかしいです。\n今はもう朝に近いので、かれはねむったでしょう。\nだれか家に行って、かれが何をしているか見てください。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.12612612612612611,\"meanLength\":22.2,\"advancedShare\":0.20689655172413793}; vocabulary 0.7931034482758621. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: 主人、ら、の、わに、でく、かげる、ん、のく、びが、旅、けい、せる、近づく. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"男はしゅじんの足をひいて、まどから外に出しました。\", \"うらのとがしまっていたとき、男は考えました。\", \"くびはやねのあなから出たと思います。\", \"男はしずかににわに出て、もりの方へ歩きました。\", \"もりでこえが聞こえたので、かげから行きました。\", \"木の後ろから5つのろくろ首が見えました。\", \"ろくろ首はとびながら、楽しく話していました。\", \"かれらは地面にあるむしを食べていました。\", \"しゅじんのくびが止まって、こう言いました。\", \"あのたびのそうは、体がとてもふとっていますね。\", \"みなで食べたら、おなかいっぱいになるでしょう。\", \"そうにけいをよませたのは、つまらない事でした。\", \"けいをよんでいるときは、ちかづくのがむずかしいです。\", \"今はもう朝に近いので、かれはねむったでしょう。\", \"だれか家に行って、かれが何をしているか見てください。\"], \"question\": {\"prompt\": \"ろくろ首はもりで何をしていましたか。\", \"options\": [\"むしを食べていました。\", \"本を読んでいました。\", \"水を飲んでいました。\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n彼は主人の足をつかんで、窓まで引いて来て、からだを押し出した。それから裏口に来てみると戸が締っていた。それで彼は首は開いていた屋根の煙出しから出て行った事を察した。静かに戸を開けて庭に出て、向うの森の方へできるだけ用心して進んだ。森の中で話し声が聞えた、それでよい隠れ場所を見つけるまで影から影へと忍びながら――声の方向へ行った。そこで、一本の樹の幹のうしろから首が――五つとも――飛び〓って、そして飛び〓りながら談笑しているのを見た。首は地の上や樹の間で見つけた虫類を喰べていた。やがて主人の首が喰べる事を止めて云った、\n『ああ、今夜来たあの旅の僧、――全身よく肥えているじゃないか、あれを皆で喰べたら、さぞ満腹する事であろう。……あんな事を云って、つまらない事をした、――だからおれの魂のために、読経をさせる事になってしまった。経をよんでいるうちは近よる事がむつかしい。称名を唱えている間は手を下す事はできない。しかしもう今は朝に近いから、たぶん眠ったろう。……誰かうちへ行って、あれが何をしているか見届けて来てくれないか』\nCurrent retelling:\n男はしゅじんの足をひいて、まどから外に出しました。\nうらのとがしまっていたとき、男は考えました。\nくびはやねのあなから出たと思います。\n男はしずかににわに出て、もりの方へ歩きました。\nもりでこえが聞こえたので、かげから行きました。\n木の後ろから5つのろくろ首が見えました。\nろくろ首はとびながら、楽しく話していました。\nかれらはじめんにあるむしを食べていました。\nしゅじんのくびが止まって、こう言いました。\nあのたびのそうは、体がとてもふとっていますね。\nみなで食べたら、おなかいっぱいになるでしょう。\nそうにけいをよませたのは、つまらない事でした。\nけいをよんでいるときは、ちかづくのがむずかしいです。\n今はもう朝に近いので、かれはねむったでしょう。\nだれか家に行って、かれが何をしているか見てください。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.10029498525073746,\"meanLength\":22.6,\"advancedShare\":0.20689655172413793}; vocabulary 0.8160919540229885. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: はしゅ、ら、の、わに、でく、かげる、ん、ゅじんのくびが、たび、けい、せる、ちかづく. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"男は主人の足をひいて、窓から外に出しました。\", \"裏の戸がしまっていたとき、男は考えました。\", \"首は屋根のあなから出たと思います。\", \"男はしずかに庭に出て、森の方へ歩きました。\", \"森で声が聞こえたので、かげから行きました。\", \"木の後ろから5つのろくろ首が見えました。\", \"ろくろ首は飛びながら、楽しく話していました。\", \"かれらは地面にあるむしを食べていました。\", \"主人の首が止まって、こう言いました。\", \"あの旅のそうは、体がとても太っていますね。\", \"みんなで食べたら、おなかいっぱいになります。\", \"そうにけいをよませたのは、つまらない事でした。\", \"けいをよんでいるときは、近づくのが難しいです。\", \"今はもう朝に近いので、かれは眠ったでしょう。\", \"だれか家に行って、何をしているか見てください。\"], \"question\": {\"prompt\": \"ろくろ首は何を食べていましたか。\", \"options\": [\"むし\", \"魚\", \"肉\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: わに、でく、ん、のく、びが、せる、近づく. Return JSON {\"glosses\":{\"わに\":\"English gloss\",\"でく\":\"English gloss\",\"ん\":\"English gloss\",\"のく\":\"English gloss\",\"びが\":\"English gloss\",\"せる\":\"English gloss\",\"近づく\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"わに\": \"crocodile\", \"でく\": \"wooden doll\", \"ん\": \"n (sound)\", \"のく\": \"to leave\", \"びが\": \"beauty (with particle)\", \"せる\": \"to make someone sit\", \"近づく\": \"to approach\"}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n彼は主人の足をつかんで、窓まで引いて来て、からだを押し出した。それから裏口に来てみると戸が締っていた。それで彼は首は開いていた屋根の煙出しから出て行った事を察した。静かに戸を開けて庭に出て、向うの森の方へできるだけ用心して進んだ。森の中で話し声が聞えた、それでよい隠れ場所を見つけるまで影から影へと忍びながら――声の方向へ行った。そこで、一本の樹の幹のうしろから首が――五つとも――飛び〓って、そして飛び〓りながら談笑しているのを見た。首は地の上や樹の間で見つけた虫類を喰べていた。やがて主人の首が喰べる事を止めて云った、\n『ああ、今夜来たあの旅の僧、――全身よく肥えているじゃないか、あれを皆で喰べたら、さぞ満腹する事であろう。……あんな事を云って、つまらない事をした、――だからおれの魂のために、読経をさせる事になってしまった。経をよんでいるうちは近よる事がむつかしい。称名を唱えている間は手を下す事はできない。しかしもう今は朝に近いから、たぶん眠ったろう。……誰かうちへ行って、あれが何をしているか見届けて来てくれないか』\nCurrent retelling:\n男は主人の足をひいて、まどから外に出しました。\nうらのとがしまっていたとき、男は考えました。\nくびはやねのあなから出たと思います。\n男はしずかににわに出て、もりの方へ歩きました。\nもりでこえが聞こえたので、かげから行きました。\n木の後ろから5つのくびが見えました。\nくびはとびながら、楽しく話していました。\nかれらはじめんにあるむしを食べていました。\n主人のくびが止まって、こう言いました。\nあの旅のそうは、体がとてもふとっていますね。\nみんなで食べたら、おなかいっぱいになります。\nそうにけいをよませたのは、つまらない事でした。\nけいをよんでいるときは、近づくのがむずかしいです。\n今はもう朝に近いので、かれはねむったでしょう。\nだれか家に行って、何をしているか見てください。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.11692307692307692,\"meanLength\":21.666666666666668,\"advancedShare\":0.20454545454545456}; vocabulary 0.7727272727272727. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: 主人、ら、の、わに、でく、かげる、のく、びが、ん、旅、けい、せる、近づく. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"男は主人の足をひいて、まどから外に出しました。\", \"うらのとがしまっていたとき、男は考えました。\", \"くびはやねのあなから出たと思います。\", \"男はしずかににわに出て、もりの方へ歩きました。\", \"もりでこえが聞こえたので、かげから行きました。\", \"木の後ろから5つのろくろ首が見えました。\", \"ろくろ首はとびながら、楽しく話していました。\", \"かれらはじめんにあるむしを食べていました。\", \"主人のくびが止まって、こう言いました。\", \"あの旅のそうは、体がとてもふとっていますね。\", \"みんなで食べたら、おなかいっぱいになります。\", \"そうにけいをよませたのは、つまらない事でした。\", \"けいをよんでいるときは、ちかくに行くのがむずかしいです。\", \"今はもう朝に近いので、かれはねむったでしょう。\", \"だれか家に行って、何をしているか見てください。\"], \"question\": {\"prompt\": \"ろくろ首は何を食べていましたか。\", \"options\": [\"むし\", \"魚\", \"肉\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n彼は主人の足をつかんで、窓まで引いて来て、からだを押し出した。それから裏口に来てみると戸が締っていた。それで彼は首は開いていた屋根の煙出しから出て行った事を察した。静かに戸を開けて庭に出て、向うの森の方へできるだけ用心して進んだ。森の中で話し声が聞えた、それでよい隠れ場所を見つけるまで影から影へと忍びながら――声の方向へ行った。そこで、一本の樹の幹のうしろから首が――五つとも――飛び〓って、そして飛び〓りながら談笑しているのを見た。首は地の上や樹の間で見つけた虫類を喰べていた。やがて主人の首が喰べる事を止めて云った、\n『ああ、今夜来たあの旅の僧、――全身よく肥えているじゃないか、あれを皆で喰べたら、さぞ満腹する事であろう。……あんな事を云って、つまらない事をした、――だからおれの魂のために、読経をさせる事になってしまった。経をよんでいるうちは近よる事がむつかしい。称名を唱えている間は手を下す事はできない。しかしもう今は朝に近いから、たぶん眠ったろう。……誰かうちへ行って、あれが何をしているか見届けて来てくれないか』\nCurrent retelling:\n男は主人の足をひいて、まどから外に出しました。\nうらのとがしまっていたとき、男は考えました。\nくびはやねのあなから出たと思います。\n男はしずかににわに出て、もりの方へ歩きました。\nもりでこえが聞こえたので、かげから行きました。\n木の後ろから5つのろくろ首が見えました。\nろくろ首はとびながら、楽しく話していました。\nかれらはじめんにあるむしを食べていました。\n主人のくびが止まって、こう言いました。\nあの旅のそうは、体がとてもふとっていますね。\nみんなで食べたら、おなかいっぱいになります。\nそうにけいをよませたのは、つまらない事でした。\nけいをよんでいるときは、ちかくに行くのがむずかしいです。\n今はもう朝に近いので、かれはねむったでしょう。\nだれか家に行って、何をしているか見てください。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.12048192771084337,\"meanLength\":22.133333333333333,\"advancedShare\":0.20689655172413793}; vocabulary 0.8045977011494253. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: 主人、ら、の、わに、でく、かげる、ん、のく、びが、旅、けい、せる. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentencesにつながる\": null, \"sentences\": [\"男はしゅじんの足をひいて、まどから出しました。\", \"うらのとがしまっていたとき、男は考えました。\", \"くびはやねのあなから出たと思います。\", \"男はしずかににわに出て、もりの方へ歩きました。\", \"もりでこえが聞こえたので、かげから行きました。\", \"木の後ろから5つのろくろ首が見えました。\", \"ろくろ首はとびながら、楽しく話していました。\", \"かれらは地にあるむしを食べていました。\", \"しゅじんのくびが止まって、こう言いました。\", \"あのたびのおぼうさんは、体がふとっていますね。\", \"みんなで食べたら、おなかいっぱいになります。\", \"おぼうさんにきょうをよませたのは、つまらない事でした。\", \"きょうをよんでいるときは、ちかくに行くのがむずかしいです。\", \"今はもう朝に近いので、かれはねむったでしょう。\", \"だれか家に行って、何をしているか見てください。\"], \"question\": {\"prompt\": \"ろくろ首は何を食べていましたか。\", \"options\": [\"むし\", \"おぼうさん\", \"木\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n彼は主人の足をつかんで、窓まで引いて来て、からだを押し出した。それから裏口に来てみると戸が締っていた。それで彼は首は開いていた屋根の煙出しから出て行った事を察した。静かに戸を開けて庭に出て、向うの森の方へできるだけ用心して進んだ。森の中で話し声が聞えた、それでよい隠れ場所を見つけるまで影から影へと忍びながら――声の方向へ行った。そこで、一本の樹の幹のうしろから首が――五つとも――飛び〓って、そして飛び〓りながら談笑しているのを見た。首は地の上や樹の間で見つけた虫類を喰べていた。やがて主人の首が喰べる事を止めて云った、\n『ああ、今夜来たあの旅の僧、――全身よく肥えているじゃないか、あれを皆で喰べたら、さぞ満腹する事であろう。……あんな事を云って、つまらない事をした、――だからおれの魂のために、読経をさせる事になってしまった。経をよんでいるうちは近よる事がむつかしい。称名を唱えている間は手を下す事はできない。しかしもう今は朝に近いから、たぶん眠ったろう。……誰かうちへ行って、あれが何をしているか見届けて来てくれないか』\nCurrent retelling:\n男はしゅじんの足をひいて、まどから出しました。\nうらのとがしまっていたとき、男は考えました。\nくびはやねのあなから出たと思います。\n男はしずかににわに出て、もりの方へ歩きました。\nもりでこえが聞こえたので、かげから行きました。\n木の後ろから5つのろくろ首が見えました。\nろくろ首はとびながら、楽しく話していました。\nかれらは地にあるむしを食べていました。\nしゅじんのくびが止まって、こう言いました。\nあのたびのおぼうさんは、体がふとっていますね。\nみんなで食べたら、おなかいっぱいになります。\nおぼうさんにきょうをよませたのは、つまらない事でした。\nきょうをよんでいるときは、ちかくに行くのがむずかしいです。\n今はもう朝に近いので、かれはねむったでしょう。\nだれか家に行って、何をしているか見てください。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.10355029585798817,\"meanLength\":22.533333333333335,\"advancedShare\":0.2235294117647059}; vocabulary 0.8352941176470589. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: はしゅ、の、わに、でく、かげる、ら、地、ゅじんのくびが、たび、ぼう、せる. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"男は主人の足をひいて、窓から出しました。\", \"裏の戸が閉まっていたとき、男は考えました。\", \"首は屋根のあなから出たと思います。\", \"男は静かに庭に出て、森の方へ歩きました。\", \"森で声が聞こえたので、影から行きました。\", \"木の後ろから5つのろくろ首が見えました。\", \"ろくろ首は飛びながら、楽しく話していました。\", \"彼らは地にある虫を食べていました。\", \"主人の首が止まって、こう言いました。\", \"あの旅のおぼうさんは、体がふとっていますね。\", \"みんなで食べたら、おなかいっぱいになります。\", \"きょうを読ませたのは、つまらない事でした。\", \"読んでいるときは、近くに行くのがむずかしいです。\", \"今はもう朝に近いので、彼は眠ったでしょう。\", \"誰か家に行って、何をしているか見てください。\"], \"question\": {\"prompt\": \"ろくろ首は何を食べていましたか。\", \"options\": [\"虫\", \"魚\", \"肉\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: わに、でく、のく、びが、せる. Return JSON {\"glosses\":{\"わに\":\"English gloss\",\"でく\":\"English gloss\",\"のく\":\"English gloss\",\"びが\":\"English gloss\",\"せる\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"わに\": \"crocodile\", \"でく\": \"block\", \"のく\": \"move aside\", \"びが\": \"beauty\", \"せる\": \"make stand\"}}"
+    }
+  ],
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n彼は主人の足をつかんで、窓まで引いて来て、からだを押し出した。それから裏口に来てみると戸が締っていた。それで彼は首は開いていた屋根の煙出しから出て行った事を察した。静かに戸を開けて庭に出て、向うの森の方へできるだけ用心して進んだ。森の中で話し声が聞えた、それでよい隠れ場所を見つけるまで影から影へと忍びながら――声の方向へ行った。そこで、一本の樹の幹のうしろから首が――五つとも――飛び〓って、そして飛び〓りながら談笑しているのを見た。首は地の上や樹の間で見つけた虫類を喰べていた。やがて主人の首が喰べる事を止めて云った、\n『ああ、今夜来たあの旅の僧、――全身よく肥えているじゃないか、あれを皆で喰べたら、さぞ満腹する事であろう。……あんな事を云って、つまらない事をした、――だからおれの魂のために、読経をさせる事になってしまった。経をよんでいるうちは近よる事がむつかしい。称名を唱えている間は手を下す事はできない。しかしもう今は朝に近いから、たぶん眠ったろう。……誰かうちへ行って、あれが何をしているか見届けて来てくれないか』\n\n語り直しの文（JSON配列。sentenceは必ずこの配列の文字列をそのままコピーする）:\n[\"男は主人の足をひいて、まどから外に出しました。\",\"うらのとがしまっていたとき、男は考えました。\",\"くびはやねのあなから出たと思います。\",\"男はしずかににわに出て、もりの方へ歩きました。\",\"もりでこえが聞こえたので、かげから行きました。\",\"木の後ろから5つのろくろ首が見えました。\",\"ろくろ首はとびながら、楽しく話していました。\",\"かれらはじめんにあるむしを食べていました。\",\"主人のくびが止まって、こう言いました。\",\"あの旅のそうは、体がとてもふとっていますね。\",\"みんなで食べたら、おなかいっぱいになります。\",\"そうにけいをよませたのは、つまらない事でした。\",\"けいをよんでいるときは、近づくのがむずかしいです。\",\"今はもう朝に近いので、かれはねむったでしょう。\",\"だれか家に行って、何をしているか見てください。\"]"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"木の後ろから5つのろくろ首が見えました。\", \"problem\": \"They are detached heads, not long-necked Rokurokubi. Change ろくろ首 to 首.\", \"kind\": \"invented\"}, {\"sentence\": \"ろくろ首はとびながら、楽しく話していました。\", \"problem\": \"They are detached heads, not long-necked Rokurokubi. Change ろくろ首 to 首.\", \"kind\": \"invented\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n彼は主人の足をつかんで、窓まで引いて来て、からだを押し出した。それから裏口に来てみると戸が締っていた。それで彼は首は開いていた屋根の煙出しから出て行った事を察した。静かに戸を開けて庭に出て、向うの森の方へできるだけ用心して進んだ。森の中で話し声が聞えた、それでよい隠れ場所を見つけるまで影から影へと忍びながら――声の方向へ行った。そこで、一本の樹の幹のうしろから首が――五つとも――飛び〓って、そして飛び〓りながら談笑しているのを見た。首は地の上や樹の間で見つけた虫類を喰べていた。やがて主人の首が喰べる事を止めて云った、\n『ああ、今夜来たあの旅の僧、――全身よく肥えているじゃないか、あれを皆で喰べたら、さぞ満腹する事であろう。……あんな事を云って、つまらない事をした、――だからおれの魂のために、読経をさせる事になってしまった。経をよんでいるうちは近よる事がむつかしい。称名を唱えている間は手を下す事はできない。しかしもう今は朝に近いから、たぶん眠ったろう。……誰かうちへ行って、あれが何をしているか見届けて来てくれないか』\n\n語り直しの文（JSON配列。sentenceは必ずこの配列の文字列をそのままコピーする）:\n[\"男は主人の足をひいて、まどから出しました。\",\"うらのとがしまっていたとき、男は考えました。\",\"くびはやねのあなから出たと思います。\",\"男はしずかににわに出て、もりの方へ歩きました。\",\"もりでこえが聞こえたので、かげから行きました。\",\"木の後ろから5つのろくろ首が見えました。\",\"ろくろ首はとびながら、楽しく話していました。\",\"かれらは地にあるむしを食べていました。\",\"主人のくびが止まって、こう言いました。\",\"あの旅のおぼうさんは、体がふとっていますね。\",\"みんなで食べたら、おなかいっぱいになります。\",\"きょうを読ませたのは、つまらない事でした。\",\"読んでいるときは、近くに行くのがむずかしいです。\",\"今はもう朝に近いので、かれはねむったでしょう。\",\"だれか家に行って、何をしているか見てください。\"]"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"木の後ろから5つのろくろ首が見えました。\", \"problem\": \"The original describes detached heads (首), not Rokurokubi (long-necked humans). Change ろくろ首 to 首.\", \"kind\": \"invented\"}, {\"sentence\": \"ろくろ首はとびながら、楽しく話していました。\", \"problem\": \"The original describes detached heads (首), not Rokurokubi. Change ろくろ首 to 首.\", \"kind\": \"invented\"}]}"
+      }
+    ],
+    "rewrites": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Repair only the specified sentences at JLPT N4. Preserve all other sentences and events. Use natural Japanese, numeric digits for numbers, and maintain the meaning of the original. Return only JSON {\"rewrites\":[{\"index\":0,\"sentence\":\"...\"}]}."
+          },
+          {
+            "role": "user",
+            "content": "Original:\n彼は主人の足をつかんで、窓まで引いて来て、からだを押し出した。それから裏口に来てみると戸が締っていた。それで彼は首は開いていた屋根の煙出しから出て行った事を察した。静かに戸を開けて庭に出て、向うの森の方へできるだけ用心して進んだ。森の中で話し声が聞えた、それでよい隠れ場所を見つけるまで影から影へと忍びながら――声の方向へ行った。そこで、一本の樹の幹のうしろから首が――五つとも――飛び〓って、そして飛び〓りながら談笑しているのを見た。首は地の上や樹の間で見つけた虫類を喰べていた。やがて主人の首が喰べる事を止めて云った、\n『ああ、今夜来たあの旅の僧、――全身よく肥えているじゃないか、あれを皆で喰べたら、さぞ満腹する事であろう。……あんな事を云って、つまらない事をした、――だからおれの魂のために、読経をさせる事になってしまった。経をよんでいるうちは近よる事がむつかしい。称名を唱えている間は手を下す事はできない。しかしもう今は朝に近いから、たぶん眠ったろう。……誰かうちへ行って、あれが何をしているか見届けて来てくれないか』\nSentences:\n0: 男は主人の足をひいて、まどから外に出しました。\n1: うらのとがしまっていたとき、男は考えました。\n2: くびはやねのあなから出たと思います。\n3: 男はしずかににわに出て、もりの方へ歩きました。\n4: もりでこえが聞こえたので、かげから行きました。\n5: 木の後ろから5つのろくろ首が見えました。\n6: ろくろ首はとびながら、楽しく話していました。\n7: かれらはじめんにあるむしを食べていました。\n8: 主人のくびが止まって、こう言いました。\n9: あの旅のそうは、体がとてもふとっていますね。\n10: みんなで食べたら、おなかいっぱいになります。\n11: そうにけいをよませたのは、つまらない事でした。\n12: けいをよんでいるときは、近づくのがむずかしいです。\n13: 今はもう朝に近いので、かれはねむったでしょう。\n14: だれか家に行って、何をしているか見てください。\nIssues:\n[{\"sentence\":\"木の後ろから5つのろくろ首が見えました。\",\"problem\":\"They are detached heads, not long-necked Rokurokubi. Change ろくろ首 to 首.\",\"kind\":\"invented\"},{\"sentence\":\"ろくろ首はとびながら、楽しく話していました。\",\"problem\":\"They are detached heads, not long-necked Rokurokubi. Change ろくろ首 to 首.\",\"kind\":\"invented\"}]\nRewrite exactly indexes: 5,6"
+          }
+        ],
+        "response": "{\"rewrites\": [{\"index\": 5, \"sentence\": \"木の後ろから5つの首が見えました。\"}, {\"index\": 6, \"sentence\": \"首はとびながら、楽しく話していました。\"}]}"
+      }
+    ],
+    "before": [
+      {
+        "sentence": "木の後ろから5つのろくろ首が見えました。",
+        "problem": "They are detached heads, not long-necked Rokurokubi. Change ろくろ首 to 首.",
+        "kind": "invented"
+      },
+      {
+        "sentence": "ろくろ首はとびながら、楽しく話していました。",
+        "problem": "They are detached heads, not long-necked Rokurokubi. Change ろくろ首 to 首.",
+        "kind": "invented"
+      }
+    ],
+    "after": [
+      {
+        "sentence": "木の後ろから5つのろくろ首が見えました。",
+        "problem": "The original describes detached heads (首), not Rokurokubi (long-necked humans). Change ろくろ首 to 首.",
+        "kind": "invented"
+      },
+      {
+        "sentence": "ろくろ首はとびながら、楽しく話していました。",
+        "problem": "The original describes detached heads (首), not Rokurokubi. Change ろくろ首 to 首.",
+        "kind": "invented"
+      }
+    ]
+  }
 }

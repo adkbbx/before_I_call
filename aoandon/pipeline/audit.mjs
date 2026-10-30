@@ -2,8 +2,11 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { resolve } from 'node:path';
-import { tales, levels, sentenceCaps } from './config.mjs';
-import { kanjiMetrics, hasHardKanji } from './check.mjs';
+import { createHash } from 'node:crypto';
+import { tales, levels, sentenceCaps, targets } from './config.mjs';
+import { kanjiMetrics, hasHardKanji, isKanji } from './check.mjs';
+import { loadVocab } from './jlpt.mjs';
+import { checkLadder, levelStats, mean, inDensityBand, illegalTokens, numberWordIssues } from './ladder.mjs';
 import { getTokenizer } from './tokenize.mjs';
 import { showFurigana } from '../src/lib/reader.ts';
 import { taleSchema } from '../src/lib/schema.ts';
@@ -63,6 +66,7 @@ async function main() {
     console.log('HEAD readability baseline saved'); return;
   }
   const input=tales.map(t=>taleSchema.parse(JSON.parse(readFileSync(`public/tales/${t.id}.json`,'utf8'))));
+  const vocab=loadVocab();
   const rows=await auditTales(input), before=JSON.parse(readFileSync('docs/readability-before.json','utf8')).rows;
   let report='# Readability audit\n\nVocabulary is mean stored scene coverage; kanji ratios count narrative characters. Length counts Unicode characters including punctuation, splitting at 。！？. Missing ruby counts hard-kanji tokens in narrative and questions using the actual reader decision. Names are IPADIC person-name candidates, not an exact person count. JLPT lists are approximate.\n';
   for (const level of levels) report+=`\n## ${level}\n\n${comparisonTable(rows,before,level)}\n`;
@@ -72,10 +76,83 @@ async function main() {
   let samples='# Human readability samples\n\nRate each sample: easy / ok / hard. Parentheses show readings after hard-kanji words.\n';
   for (const [id,sceneId] of [['mujina','s01'],['hoichi','s05']]) for (const level of levels) {
     const r=input.find(t=>t.id===id).scenes.find(s=>s.id===sceneId).retellings[level];
-    samples+=`\n## ${id} ${sceneId} ${level}\n\n`+r.sentences.map(s=>s.tokens.map(t=>t.s+(t.hk&&t.r?`（${t.r}）`:'')).join('')).join('\n\n')+'\n\nAuthor rating (easy / ok / hard): __________\n';
+    const stats=levelStats(r,vocab);
+    samples+=`\n## ${id} ${sceneId} ${level}\n\nKanji density: ${(100*stats.kanjiDensity).toFixed(2)}%; mean sentence length: ${stats.meanLength.toFixed(2)} characters.\n\n`+r.sentences.map(s=>s.tokens.map(t=>t.s+(t.hk&&t.r?`（${t.r}）`:'')).join('')).join('\n\n')+'\n\nAuthor rating (easy / ok / hard): __________\n';
   }
   writeFileSync('docs/samples.md',samples);
   const failures=[];
+  const ladder=input.flatMap(t=>t.scenes.map(s=>({tale:t.id,scene:s.id,...checkLadder(s.retellings,vocab)})));
+  report+='\n## Scene ladder\n\nEach cell is N5 / N4 / N3. Vocabulary share counts N4+N3 entries among non-story content tokens, looking up their base form in the same JLPT vocabulary index.\n\n| Scene | Density | Mean sentence length | N4+N3 vocabulary share | ladderOk |\n|---|---|---|---|---|\n';
+  const format=(row,key,pct=false)=>levels.map(l=>(row.stats[l][key]*(pct?100:1)).toFixed(2)+(pct?'%':'')).join(' / ');
+  for(const row of ladder)report+=`| ${row.tale}/${row.scene} | ${format(row,'kanjiDensity',true)} | ${format(row,'meanLength')} | ${format(row,'advancedShare',true)} | ${row.ladderOk?'yes':row.reasons.join(', ')} |\n`;
+  const rate=ladder.filter(r=>r.ladderOk).length/ladder.length;
+  report+=`\nLadder pass rate: ${ladder.filter(r=>r.ladderOk).length}/${ladder.length} (${(rate*100).toFixed(2)}%).\n`;
+  if(rate<.9)failures.push(`Ladder rate ${(rate*100).toFixed(2)}% is below 90%`);
+  const summary=[];
+  report+='\n## Level means and cumulative kanji compliance\n\nStory-word kanji are the explicit list exception, always with furigana. Distinct non-story kanji below must all belong to the cumulative list. Density includes story words and punctuation; coverage excludes story words.\n\n| Level | Density | Sentence length | Vocabulary coverage | N4+N3 share | Distinct non-story kanji | All distinct kanji | Illegal tokens |\n|---|---:|---:|---:|---:|---:|---:|---:|\n';
+  for(const level of levels) {
+    const runs=input.flatMap(t=>t.scenes.map(s=>s.retellings[level]));
+    const stats=runs.map(r=>levelStats(r,vocab));
+    const all=runs.flatMap(r=>[...r.sentences,r.question.prompt,...r.question.options].flatMap(s=>s.tokens));
+    const distinct=tokens=>[...new Set(tokens.flatMap(t=>[...t.s].filter(isKanji)))].sort().join('');
+    const used=distinct(all.filter(t=>t.k!=='story')),every=distinct(all),illegal=runs.flatMap(illegalTokens);
+    const row={level,density:mean(stats.map(s=>s.kanjiDensity)),meanLength:mean(stats.map(s=>s.meanLength)),coverage:mean(runs.map(r=>r.metrics.finalCoverage)),advancedShare:mean(stats.map(s=>s.advancedShare)),distinctNonStory:[...used].length,distinctAll:[...every].length,illegal:illegal.length};
+    summary.push(row);
+    report+=`| ${level} | ${(100*row.density).toFixed(2)}% | ${row.meanLength.toFixed(2)} | ${(100*row.coverage).toFixed(2)}% | ${(100*row.advancedShare).toFixed(2)}% | ${row.distinctNonStory} | ${row.distinctAll} | ${illegal.length} |\n`;
+    report+=`\n<!-- ${level} verified non-story set: ${used}; story exceptions: ${distinct(all.filter(t=>t.k==='story'))} -->\n`;
+    if(!inDensityBand(row.density,level))failures.push(`${level} mean density outside band: ${row.density}`);
+    if(illegal.length)failures.push(`${level}: ${illegal.length} illegal non-story kanji tokens`);
+    for(const r of runs) {
+      if(r.metrics.faithIssues===undefined)failures.push(`${level}: missing faithfulness review`);
+      for(const sentence of [...r.sentences,r.question.prompt,...r.question.options]) {
+        const text=sentence.tokens.map(t=>t.s).join('');
+        if(numberWordIssues(text).length)failures.push(`${level}: kana number ${text}`);
+        for(const token of sentence.tokens)if(token.k==='story'&&(!token.r||!showFurigana(token,'above-level')))failures.push(`${level}: story word without ruby`);
+      }
+    }
+  }
+  if(!(summary[0].meanLength<summary[1].meanLength&&summary[1].meanLength<summary[2].meanLength))failures.push('Mean sentence length is not strictly increasing');
+  // These are the four regressions named in the brief, checked against the real output.
+  for(const level of ['N4','N3']) {
+    const text=input.find(t=>t.id==='mujina').scenes[0].retellings[level].sentences.flatMap(s=>s.tokens).map(t=>t.s).join('');
+    if(!/(?:三十|30)年/.test(text)||!/(?:死|し)[んぬに]/.test(text))failures.push(`mujina/s01/${level}: merchant death date missing`);
+    if(text.includes('さんにじゅう'))failures.push(`mujina/s01/${level}: malformed number`);
+  }
+  const rank=input.find(t=>t.id==='hoichi').scenes[4].retellings.N5.sentences.flatMap(s=>s.tokens).map(t=>t.s).join('');
+  if(rank.includes('高い人'))failures.push('hoichi/s05/N5: rank confused with height');
+  const snow=input.find(t=>t.id==='yukionna').scenes[2].retellings.N4.sentences.flatMap(s=>s.tokens).map(t=>t.s).join('');
+  if(snow.includes('しぬようにしました'))failures.push('yukionna/s03/N4: unnatural death expression');
+  writeFileSync('docs/ladder-after.json',JSON.stringify({summary,scenes:ladder,rate},null,2)+'\n');
+  const beforeLadder=JSON.parse(readFileSync('data/ladder-before.json','utf8')).scenes;
+  report+=`\nP4 baseline ladder: ${beforeLadder.filter(s=>s.ladderOk).length}/${beforeLadder.length}. Remaining failures: ${ladder.filter(s=>!s.ladderOk).map(s=>s.tale+'/'+s.scene).join(', ')||'none'}.\n`;
+  let faith='# Faithfulness audit\n\nHosted gemma-4-31B-it compares each original scene and retelling. Before counts refer to the first review of the selected run before its targeted rewrite. Remaining counts combine the final hosted review and manual findings from data/faithfulness-manual.json. Raw calls live in each hosted run. Simplification may omit decorative detail. The model judge is fallible; its remaining findings include possible false positives. In particular, 紀伊国坂 is the accepted story-word spelling of 紀国坂.\n';
+  const findings=[],initialFindings=[],counts={before:0,after:0};
+  let preservedN5=0,flaggedN5=0;
+  for(const tale of input)for(const scene of tale.scenes)for(const level of levels) {
+    const file=`data/runs/hosted/${level}/${tale.id}-${scene.id}.json`,run=JSON.parse(readFileSync(file,'utf8'));
+    if(!run.faithfulness?.reviews?.length)failures.push(`${tale.id}/${scene.id}/${level}: no hosted faithfulness call evidence`);
+    counts.before+=run.faithfulness?.before?.length??0;
+    initialFindings.push(...run.faithfulness?.before??[]);
+    if(level==='N5') {
+      const original=beforeLadder.find(s=>s.tale===tale.id&&s.scene===scene.id);
+      const r=run.retelling,hash=createHash('sha256').update(JSON.stringify({sentences:r.sentences,question:r.question})).digest('hex');
+      if(hash===original.n5Hash)preservedN5++;
+      else if(run.faithfulness?.before?.length||run.ladderRetry||run.ladderSpellingRepair||run.questionRepairs?.length)flaggedN5++;
+      else failures.push(`${tale.id}/${scene.id}/N5: content changed without a faithfulness or ladder flag`);
+    }
+    for(const issue of scene.retellings[level].metrics.faithIssues??[])findings.push({tale:tale.id,scene:scene.id,level,...issue});
+  }
+  counts.after=findings.length;
+  faith+=`\nIssues before targeted rewrite: ${counts.before}. Remaining issues: ${counts.after}.\n`;
+  faith+='\n| Kind | Before targeted rewrite | Remaining |\n|---|---:|---:|\n'+['number','who','event','death','invented','unnatural'].map(k=>`| ${k} | ${initialFindings.filter(f=>f.kind===k).length} | ${findings.filter(f=>f.kind===k).length} |`).join('\n')+'\n';
+  report+=`\nN5 preservation: ${preservedN5} scenes retain identical narrative and question tokens; ${flaggedN5} changed only after a recorded faithfulness, number-word, or ladder flag. Hashes are in data/ladder-before.json.\n`;
+  for(const kind of ['number','who','event','death','invented','unnatural']) {
+    const list=findings.filter(f=>f.kind===kind);
+    faith+=`\n## ${kind} (${list.length})\n\n`+(list.map(f=>`- ${f.tale}/${f.scene}/${f.level}: ${f.sentence} — ${f.problem}`).join('\n')||'None.')+'\n';
+  }
+  writeFileSync('docs/faithfulness.md',faith);
+  const top=summary.map(r=>`${r.level}: density ${(100*r.density).toFixed(2)}%, mean sentence ${r.meanLength.toFixed(2)} chars`).join('; ');
+  writeFileSync('docs/samples.md',samples.replace('# Human readability samples',`# Human readability samples\n\n${top}`));
   for (const r of rows) {
     if(r.missingRuby) failures.push(`${r.tale}/${r.level}: missing ruby`);
     if(r.meanLength>sentenceCaps[r.level]) failures.push(`${r.tale}/${r.level}: mean sentence length ${r.meanLength}`);
@@ -83,6 +160,7 @@ async function main() {
   }
   for(const tale of input) for(const scene of tale.scenes) for(const level of levels) {
     const r=scene.retellings[level];
+    if(scene.ladderOk!==checkLadder(scene.retellings,vocab).ladderOk)failures.push(`${tale.id}/${scene.id}: stale ladderOk`);
     if(!r || r.provider!=='hosted' || r.model!=='gemma-4-31B-it' || r.metrics.kanjiCoverage===undefined || r.metrics.kanjiDensity===undefined)
       failures.push(`${tale.id}/${scene.id}/${level}: missing regenerated hosted evidence`);
   }
@@ -91,7 +169,7 @@ async function main() {
   report+=`\nN5 mean scene kanji density: ${(100*density).toFixed(2)}%. Sentence means in each tale must be at most 20 / 28 / 40 for N5 / N4 / N3.\n`;
   writeFileSync('docs/readability.md',report);
   if(density>.12) failures.push(`N5 mean density ${density}`);
-  console.log(failures.length?failures.join('\n'):`Readability gate passed; N5 mean density ${(100*density).toFixed(2)}%`);
+  console.log(failures.length?failures.join('\n'):`Readability gate passed; ladder ${ladder.filter(r=>r.ladderOk).length}/${ladder.length}; density ${summary.map(r=>r.level+' '+(100*r.density).toFixed(2)+'%').join(', ')}`);
   if(failures.length) process.exitCode=1;
 }
 if(process.argv[1]?.endsWith('audit.mjs')) await main();

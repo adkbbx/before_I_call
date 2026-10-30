@@ -4,7 +4,7 @@ import type { FuriganaMode, WritingMode } from './prefs.ts';
 import { sceneKey, type NightState } from './night.ts';
 export const sentenceText = (s: Sentence) => s.tokens.map(t => t.s).join('');
 export function showFurigana(token: Token, mode: FuriganaMode): boolean {
-  return !!token.r && (token.k === 'story' || (mode === 'all' && (token.k !== 'plain' || !!token.hk)) || (mode === 'above-level' && (token.k === 'ghost' || !!token.hk)));
+  return !!token.r && (token.k === 'story' || (mode === 'all' && (token.k !== 'plain' || !!token.hk)) || (mode === 'above-level' && !!token.hk));
 }
 export function availableLevels(tale: Tale): Level[] { return levels.filter(l => tale.scenes.every(s => !!s.retellings[l])); }
 export function nextScene(tale: Tale, index: number): number | null { return index + 1 < tale.scenes.length ? index + 1 : null; }

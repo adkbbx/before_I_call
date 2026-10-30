@@ -21,7 +21,7 @@
     "{\"question\": {\"prompt\": \"きいのくにざかのよるはどうでしたか。\", \"options\": [\"あかるかったです。\", \"しずかでした。\", \"人がおおかったです。\"], \"answer\": 1}}"
   ],
   "metrics": {
-    "kanjiCoverage": 0.3333333333333333,
+    "kanjiCoverage": 1,
     "kanjiDensity": 0.0891089108910891,
     "firstCoverage": 0.8235294117647058,
     "finalCoverage": 0.8888888888888888,
@@ -35,7 +35,8 @@
     "ghostWords": [
       "とう",
       "こわい"
-    ]
+    ],
+    "faithIssues": []
   },
   "retelling": {
     "level": "N5",
@@ -391,11 +392,12 @@
       "prompt": {
         "tokens": [
           {
-            "s": "きいのくにざか",
+            "s": "紀伊国坂",
             "r": "きいのくにざか",
             "b": "紀伊国坂",
             "k": "story",
-            "g": "the hill named for Kii province"
+            "g": "the hill named for Kii province",
+            "hk": true
           },
           {
             "s": "の",
@@ -523,7 +525,7 @@
       "answer": 2
     },
     "metrics": {
-      "kanjiCoverage": 0.3333333333333333,
+      "kanjiCoverage": 1,
       "kanjiDensity": 0.0891089108910891,
       "firstCoverage": 0.8235294117647058,
       "finalCoverage": 0.8888888888888888,
@@ -537,8 +539,66 @@
       "ghostWords": [
         "とう",
         "こわい"
-      ]
+      ],
+      "faithIssues": []
     }
   },
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b.",
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling; for a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n東京の、赤坂への道に紀国坂という坂道がある――これは紀伊の国の坂という意である。何故それが紀伊の国の坂と呼ばれているのか、それは私の知らない事である。この坂の一方の側には昔からの深い極わめて広い濠があって、それに添って高い緑の堤が高く立ち、その上が庭地になっている、――道の他の側には皇居の長い宏大な塀が長くつづいている。街灯、人力車の時代以前にあっては、その辺は夜暗くなると非常に寂しかった。ためにおそく通る徒歩者は、日没後に、ひとりでこの紀国坂を登るよりは、むしろ幾哩も〓り道をしたものである。\nこれは皆、その辺をよく歩いた貉のためである。\n貉を見た最後の人は、約三十年前に死んだ京橋方面の年とった商人であった。当人の語った話というのはこうである、――\n\n語り直し:\nとうきょうにさかがあります。\n紀伊国坂です。\nそこに濠があります。\n濠はとてもひろいです。\nよるはとてもくらいです。\nよるはとてもしずかです。\n人はとてもこわかったです。\nだから人はあるきません。\nそこに貉がいました。"
+          }
+        ],
+        "response": "{\"issues\": []}"
+      }
+    ],
+    "rewrites": [],
+    "before": [],
+    "after": []
+  },
+  "ladderSpellingRepair": {
+    "originalFlag": {
+      "tale": "mujina",
+      "scene": "s01",
+      "ladderOk": false,
+      "reasons": [
+        "kanjiDensity"
+      ],
+      "stats": {
+        "N5": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.0891089108910891,
+          "meanLength": 11.222222222222221,
+          "advancedShare": 0.1111111111111111
+        },
+        "N4": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.0873015873015873,
+          "meanLength": 15.75,
+          "advancedShare": 0.2
+        },
+        "N3": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.08484848484848485,
+          "meanLength": 20.625,
+          "advancedShare": 0.38235294117647056
+        }
+      },
+      "n5Hash": "7cc8eefcca2d7dc360715c454705277db446996e1bb08fa3996c4824fe5ce736"
+    },
+    "changes": [
+      {
+        "before": "きいのくにざか",
+        "after": "紀伊国坂"
+      }
+    ]
+  }
 }

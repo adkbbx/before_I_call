@@ -20,7 +20,7 @@
     "{\"question\": {\"prompt\": \"ほういちさんはどうしますか。\", \"options\": [\"はなします。\", \"うごきます。\", \"まちます。\"], \"answer\": 2}}"
   ],
   "metrics": {
-    "kanjiCoverage": 0.6153846153846154,
+    "kanjiCoverage": 1,
     "kanjiDensity": 0.07878787878787878,
     "firstCoverage": 0.8529411764705882,
     "finalCoverage": 1,
@@ -35,7 +35,8 @@
     ],
     "ghostWords": [
       "うごく"
-    ]
+    ],
+    "faithIssues": []
   },
   "retelling": {
     "level": "N5",
@@ -604,11 +605,12 @@
       "prompt": {
         "tokens": [
           {
-            "s": "ほういち",
+            "s": "芳一",
             "r": "ほういち",
             "b": "芳一",
             "k": "story",
-            "g": "Hoichi, a blind musician"
+            "g": "Hoichi, a blind musician",
+            "hk": true
           },
           {
             "s": "さん",
@@ -711,7 +713,7 @@
       "answer": 2
     },
     "metrics": {
-      "kanjiCoverage": 0.6153846153846154,
+      "kanjiCoverage": 1,
       "kanjiDensity": 0.07878787878787878,
       "firstCoverage": 0.8529411764705882,
       "finalCoverage": 1,
@@ -726,8 +728,66 @@
       ],
       "ghostWords": [
         "うごく"
-      ]
+      ],
+      "faithIssues": []
     }
   },
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b.",
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling; for a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n日没前住職と納所とで芳一を裸にし、筆を以て二人して芳一の、胸、背、頭、顔、頸、手足――身体中どこと云わず、足の裏にさえも――般若心経というお経の文句を書きつけた。それが済むと、住職は芳一にこう言いつけた。――\n『今夜、私が出て行ったらすぐに、お前は縁側に坐って、待っていなさい。すると迎えが来る。が、どんな事があっても、返事をしたり、動いてはならぬ。口を利かず静かに坐っていなさい――禅定に入っているようにして。もし動いたり、少しでも声を立てたりすると、お前は切りさいなまれてしまう。恐わがらず、助けを呼んだりしようと思ってはいかぬ。――助けを呼んだところで助かるわけのものではないから。私が云う通りに間違いなくしておれば、危険は通り過ぎて、もう恐わい事はなくなる』\n\n語り直し:\n和尚さんは芳一さんに書きました。\nからだのあちこちに書きました。\nあしのしたにも書きました。\n和尚さんはいいました。\nわたしが出たらまってください。\nだれが来てもはなさないでください。\nそこにいてください。\n話をするとあぶないです。\nとてもあぶないです。\nしずかにしてください。\nいいわないでください。\nわたしの話をきいてください。\nそうすればいいです。"
+          }
+        ],
+        "response": "{\"issues\": []}"
+      }
+    ],
+    "rewrites": [],
+    "before": [],
+    "after": []
+  },
+  "ladderSpellingRepair": {
+    "originalFlag": {
+      "tale": "hoichi",
+      "scene": "s15",
+      "ladderOk": false,
+      "reasons": [
+        "kanjiDensity"
+      ],
+      "stats": {
+        "N5": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.07878787878787878,
+          "meanLength": 12.692307692307692,
+          "advancedShare": 0.17647058823529413
+        },
+        "N4": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.028268551236749116,
+          "meanLength": 16.647058823529413,
+          "advancedShare": 0.2765957446808511
+        },
+        "N3": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0,
+          "meanLength": 19.916666666666668,
+          "advancedShare": 0.2916666666666667
+        }
+      },
+      "n5Hash": "2de66762f0f7a9e77e75cccda3dcc446a6e12c8f900260ccd806a00873cef4cc"
+    },
+    "changes": [
+      {
+        "before": "ほういち",
+        "after": "芳一"
+      }
+    ]
+  }
 }

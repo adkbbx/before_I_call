@@ -4,50 +4,58 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Adds ～とき, ～たら, ～ている, ～と思います, potential forms and ～ても. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Use them only when needed, in hiragana when their kanji is above the level. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: 囘龍はこたえました。むかしはぶしでした。そのときはだれもこわくなかったです。なまえをいいました。たくさんの人がしっていました。ひとはともだちになりました。そしてやさしくしました。いえまでいきました。そこでいいごはんをたべました。プレゼントをもらいました。そして、そこを出ました。とてもいいときだと思いました。くびをもってかえりました。おみやげにするといいました。\n\n場面（原文）:\nさて、首はその後どうなったか、その話だけ残っている。\n諏訪を出て一両日のあと、囘龍は淋しい処で一人の盗賊に止められて、衣類を脱ぐ事を命ぜられた。囘龍は直ちに衣を脱して盗賊に渡した。盗賊はその時、始めて袖にかかっているものに気がついた。さすがの追剥ぎも驚いて、衣を取り落して、飛び退いた。それから叫んだ、『やあ、こりゃとんでもない坊さんだ。おれよりもっと悪党だね。おれも実際これまで人を殺した事はある、しかし袖に人の首をつけて歩いた事はない。……よし、お坊さん、こりゃおれ達は同じ商売仲間だぜ、どうしてもおれは感心せずには居られない。ところで、その首はおれの役に立ちそうだ。おれはそれで人をおどかすんだね。売ってくれないか。おれのきものと、この衣と取り替えよう、それから首の方は五両出す』\n囘龍は答えた、\n『お前が是非と云うなら、首も衣も上げるが、実はこれは人間の首じゃない。化物の首だ。それで、これを買って、そのために困っても、わしのために欺かれたと思ってはいけない』"
+        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\nさて、首はその後どうなったか、その話だけ残っている。\n諏訪を出て一両日のあと、囘龍は淋しい処で一人の盗賊に止められて、衣類を脱ぐ事を命ぜられた。囘龍は直ちに衣を脱して盗賊に渡した。盗賊はその時、始めて袖にかかっているものに気がついた。さすがの追剥ぎも驚いて、衣を取り落して、飛び退いた。それから叫んだ、『やあ、こりゃとんでもない坊さんだ。おれよりもっと悪党だね。おれも実際これまで人を殺した事はある、しかし袖に人の首をつけて歩いた事はない。……よし、お坊さん、こりゃおれ達は同じ商売仲間だぜ、どうしてもおれは感心せずには居られない。ところで、その首はおれの役に立ちそうだ。おれはそれで人をおどかすんだね。売ってくれないか。おれのきものと、この衣と取り替えよう、それから首の方は五両出す』\n囘龍は答えた、\n『お前が是非と云うなら、首も衣も上げるが、実はこれは人間の首じゃない。化物の首だ。それで、これを買って、そのために困っても、わしのために欺かれたと思ってはいけない』\n"
       }
     ]
   },
   "responses": [
-    "{\"sentences([\": [\"そのあと、首はどうなったか。話します。\", \"囘龍はまちを出ました。\", \"二日たったとき、ひとりにあいました。\", \"そのひとはどろぼうでした。\", \"どろぼうはふくをくださいました。\", \"囘龍はすぐふくをわたしました。\", \"そのとき、どろぼうはきづきました。\", \"そでに首がありました。\", \"どろぼうはとてもおどろきました。\", \"ふくを落として、とびのきました。\", \"どろぼうはさけびました。\", \"おまえはわるいひとだね。\", \"わたしは人をころしました。\", \"でも、首をもってあるいたことはありません。\", \"この首をください。\", \"人をびっくりさせたいです。\", \"ふくとお金をだしますから。\", \"囘龍はこたえました。\", \"いいです。あげます。\", \"でも、これは人の首ではありません。\", \"これは変化の首だと思います。\", \"こまったとき、わたしをわるいひとだといわないでください。\"], \"question\": {\"prompt\": \"どろぼうは、なぜおどろきましたか。\", \"options\": [\"お金がなかったからです。\", \"首をみたからです。\", \"ふくがきれいだったからです。\"], \"answer\": 1}}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"そのあと、くびはどうなったか。\"}, {\"index\": 1, \"sentence\": \"かいりゅうはまちをでました。\"}, {\"index\": 3, \"sentence\": \"そのひとはわるいひとでした。\"}, {\"index\": 4, \"sentence\": \"そのひとはふくをほしいと言いました。\"}, {\"index\": 5, \"sentence\": \"かいりゅうはふくをあげました。\"}, {\"index\": 6, \"sentence\": \"そのとき、そのひとはみました。\"}, {\"index\": 7, \"sentence\": \"ふくにくびがありました。\"}, {\"index\": 8, \"sentence\": \"そのひとはとてもおどろきました。\"}, {\"index\": 9, \"sentence\": \"ふくをおとして、うしろへいきました。\"}, {\"index\": 10, \"sentence\": \"そのひとはおおきなこえでいいました。\"}, {\"index\": 12, \"sentence\": \"わたしは人をころしたことがあります。\"}, {\"index\": 13, \"sentence\": \"でも、くびをもちませんでした。\"}, {\"index\": 14, \"sentence\": \"このくびをください。\"}, {\"index\": 15, \"sentence\": \"これで人をこわがらせたいです。\"}, {\"index\": 17, \"sentence\": \"かいりゅうはこたえました。\"}, {\"index\": 19, \"sentence\": \"でも、これはひとのくびではありません。\"}, {\"index\": 20, \"sentence\": \"これはへんげのくびだと思います。\"}]}",
-    "{\"rewrites\": [{\"index\": 7, \"sentence\": \"ふくに　くびが　ありました。\"}, {\"index\": 9, \"sentence\": \"ふくを　おとして、とおくへ　いきました。\"}, {\"index\": 12, \"sentence\": \"わたしは　人を　ころしました。\"}, {\"index\": 15, \"sentence\": \"これで　人を　おどろかせたいです。\"}, {\"index\": 19, \"sentence\": \"でも、これは　ひとの　くびでは　ないです。\"}, {\"index\": 20, \"sentence\": \"これは　へんげの　くびだと　おもいます。\"}]}",
-    "{\"rewrites\": [{\"index\": 7, \"sentence\": \"ふくに　くびが　ありました。\"}, {\"index\": 12, \"sentence\": \"わたしは　人を　やばい　ことにしました。\"}, {\"index\": 15, \"sentence\": \"これで　人が　おどろけば　いいです。\"}, {\"index\": 19, \"sentence\": \"でも、これは　ひとの　くびでは　ないです。\"}, {\"index\": 20, \"sentence\": \"これは　へんげの　くびだと　おもいます。\"}]}",
-    "{\"question\": {\"prompt\": \"なぜ　わるいひとは　おどろきましたか。\", \"options\": [\"くびを　みたからです。\", \"おかねが　ないからです。\", \"ふくが　きれいだからです。\"], \"answer\": 0}}",
-    "{\"glosses\": {\"びがありました\": \"there was a neck\", \"やばい\": \"dangerous or bad\", \"のく\": \"to move away\", \"びではないです\": \"it is not a neck\", \"びだとおもいます\": \"I think it is a neck\"}}"
+    "{\"sentences\": [\"囘龍は旅をしていたときです。\", \"1人のどろぼうに会いました。\", \"どろぼうは服をだしました。\", \"囘龍は服をわたしました。\", \"どろぼうは袖に首を見つけました。\", \"どろぼうはとても驚きました。\", \"どろぼうは叫んでいました。\", \"この首を売ってください。\", \"服と5両でかいたいです。\", \"囘龍は答えました。\", \"これは人の首ではありません。\", \"これは変化の首だと思います。\", \"困っても私をわるい人だと思わないでください。\"], \"question\": {\"prompt\": \"どろぼうは、何を見て驚きましたか。\", \"options\": [\"5両の金\", \"袖の首\", \"きれいな服\"], \"answer\": 1}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"囘龍はたびをしていたときです。\"}, {\"index\": 1, \"sentence\": \"1人のどろぼうに会いました。\"}, {\"index\": 2, \"sentence\": \"どろぼうは服をだしました。\"}, {\"index\": 4, \"sentence\": \"どろぼうはそでにくびを見つけました。\"}, {\"index\": 5, \"sentence\": \"どろぼうはとてもおどろきました。\"}, {\"index\": 6, \"sentence\": \"どろぼうはさけんていました。\"}, {\"index\": 7, \"sentence\": \"このくびを売ってください。\"}, {\"index\": 8, \"sentence\": \"服と5りょうでかいたいです。\"}, {\"index\": 10, \"sentence\": \"これは人のくびではありません。\"}, {\"index\": 11, \"sentence\": \"これは変化のくびだと思います。\"}, {\"index\": 12, \"sentence\": \"こまっても私をわるい人だと思わないでください。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"囘龍は歩いていたときです。\"}, {\"index\": 1, \"sentence\": \"1人のどろぼうに会いました。\"}, {\"index\": 2, \"sentence\": \"どろぼうは服をだしました。\"}, {\"index\": 4, \"sentence\": \"どろぼうはそでにくびを見つけました。\"}, {\"index\": 5, \"sentence\": \"どろぼうはとてもおどろきました。\"}, {\"index\": 6, \"sentence\": \"どろぼうはさけんていました。\"}, {\"index\": 8, \"sentence\": \"服と5りょうでかいたいです。\"}, {\"index\": 10, \"sentence\": \"これは人のくびではありません。\"}, {\"index\": 11, \"sentence\": \"これは変化のくびだと思います。\"}]}",
+    "{\"rewrites\": [{\"index\": 1, \"sentence\": \"1人の悪い人に会いました。\"}, {\"index\": 2, \"sentence\": \"悪い人は服をだしました。\"}, {\"index\": 4, \"sentence\": \"悪い人はそでにくびを見つけました。\"}, {\"index\": 5, \"sentence\": \"悪い人はとてもおどろきました。\"}, {\"index\": 6, \"sentence\": \"悪い人はさけんていました。\"}, {\"index\": 8, \"sentence\": \"服と5りょうでかいたいです。\"}, {\"index\": 10, \"sentence\": \"これは人のくびではありません。\"}, {\"index\": 11, \"sentence\": \"これは変化のくびだと思います。\"}]}",
+    "{\"question\": {\"prompt\": \"悪い人は、何を見ておどろきましたか。\", \"options\": [\"そでのくび\", \"5りょうのおかね\", \"きれいな服\"], \"answer\": 0}}",
+    "{\"glosses\": {\"そ\": \"sleeve\", \"びを\": \"neck (object marker)\", \"のく\": \"of the neck\", \"びではありません\": \"is not a neck\", \"びだと\": \"that it is a neck\"}}"
   ],
   "metrics": {
     "kanjiCoverage": 1,
-    "kanjiDensity": 0.017595307917888565,
-    "firstCoverage": 0.7361111111111112,
-    "finalCoverage": 0.9032258064516129,
-    "retries": 3,
-    "seconds": 24.2273681,
+    "kanjiDensity": 0.17370892018779344,
+    "firstCoverage": 0.6818181818181818,
+    "finalCoverage": 0.7884615384615384,
+    "retries": 9,
+    "seconds": 28.835395599999988,
     "offendingFirst": [
-      "どる",
-      "ぼう",
+      "旅",
       "ろ",
-      "すぐ",
-      "きづく",
-      "そで",
-      "落とす",
-      "とびのく",
-      "さけぶ",
-      "ころす",
-      "びっくり",
-      "せる"
+      "ぼう",
+      "袖",
+      "叫ぶ",
+      "両"
     ],
     "ghostWords": [
-      "びがありました",
-      "やばい",
+      "すぐ",
+      "そ",
+      "びがあることに",
+      "気づく",
+      "さけぶ",
+      "ぶん",
+      "りょう",
       "のく",
-      "びではないです",
-      "びだとおもいます",
+      "びではありません",
+      "びだと",
+      "そで",
+      "び",
       "かね"
+    ],
+    "faithIssues": [
+      {
+        "sentence": "じぶんの服と5りょうでかいたいと言いました。",
+        "problem": "The original says he offers his own clothes AND the clothes he just stole from Kairyu (おれのきものと、この衣と), not just his own. Restore the stolen clothes to the exchange.",
+        "kind": "event"
+      }
     ]
   },
   "retelling": {
@@ -58,102 +66,34 @@
       {
         "tokens": [
           {
-            "s": "その",
-            "k": "plain"
-          },
-          {
-            "s": "あと",
-            "b": "あと",
-            "k": "known",
-            "g": "afterwards (later); in the future; the rest; since then",
-            "gs": "jlpt"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "く",
-            "b": "くい",
-            "k": "known",
-            "g": "nine",
-            "gs": "jlpt"
-          },
-          {
-            "s": "びはどうなったか",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "かいりゅう",
+            "s": "囘龍",
             "r": "かいりゅう",
             "b": "囘龍",
             "k": "story",
-            "g": "Kairyu, the warrior's monk name"
+            "g": "Kairyu, the warrior's monk name",
+            "hk": true
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "まち",
-            "b": "まち",
+            "s": "歩い",
             "k": "known",
-            "g": "town; city",
+            "r": "あるい",
+            "b": "歩く",
+            "g": "to walk",
             "gs": "jlpt"
           },
           {
-            "s": "を",
+            "s": "て",
             "k": "plain"
           },
           {
-            "s": "で",
-            "b": "でる",
+            "s": "い",
             "k": "known",
-            "g": "to appear, to leave",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "二",
-            "r": "に",
-            "k": "plain"
-          },
-          {
-            "s": "日",
-            "r": "にち",
-            "b": "日",
-            "k": "known",
-            "g": "~ day of the month, for ~ days",
-            "gs": "jlpt"
-          },
-          {
-            "s": "たっ",
-            "b": "たつ",
-            "k": "known",
-            "g": "to stand up",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
           {
@@ -162,20 +102,53 @@
           },
           {
             "s": "とき",
-            "b": "とき",
             "k": "known",
+            "b": "とき",
             "g": "at the time of ~",
             "gs": "jlpt"
           },
           {
-            "s": "、",
+            "s": "です",
             "k": "plain"
           },
           {
-            "s": "ひとり",
-            "b": "ひとり",
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "1",
+            "k": "plain"
+          },
+          {
+            "s": "人",
             "k": "known",
-            "g": "one person",
+            "r": "にん",
+            "b": "人",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "悪い",
+            "k": "known",
+            "r": "わるい",
+            "b": "悪い",
+            "g": "bad, sinful; inferior",
+            "gs": "jlpt"
+          },
+          {
+            "s": "人",
+            "k": "known",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
@@ -183,9 +156,10 @@
             "k": "plain"
           },
           {
-            "s": "あい",
-            "b": "あう",
+            "s": "会い",
             "k": "known",
+            "r": "あい",
+            "b": "会う",
             "g": "to meet, to see",
             "gs": "jlpt"
           },
@@ -206,59 +180,19 @@
       {
         "tokens": [
           {
-            "s": "その",
-            "k": "plain"
-          },
-          {
-            "s": "ひと",
-            "b": "ひと",
+            "s": "悪い",
             "k": "known",
-            "g": "man, person",
-            "gs": "jlpt"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "わるい",
-            "b": "わるい",
-            "k": "known",
+            "r": "わるい",
+            "b": "悪い",
             "g": "bad, sinful; inferior",
             "gs": "jlpt"
           },
           {
-            "s": "ひと",
-            "b": "ひと",
+            "s": "人",
             "k": "known",
-            "g": "man, person",
-            "gs": "jlpt"
-          },
-          {
-            "s": "でし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "その",
-            "k": "plain"
-          },
-          {
-            "s": "ひと",
-            "b": "ひと",
-            "k": "known",
-            "g": "man, person",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
@@ -266,10 +200,11 @@
             "k": "plain"
           },
           {
-            "s": "ふく",
-            "b": "ふく",
+            "s": "服",
             "k": "known",
-            "g": "to blow (wind, etc.)",
+            "r": "ふく",
+            "b": "服",
+            "g": "clothes",
             "gs": "jlpt"
           },
           {
@@ -277,21 +212,28 @@
             "k": "plain"
           },
           {
-            "s": "ほしい",
-            "b": "ほしい",
+            "s": "ぬぐ",
             "k": "known",
-            "g": "to want, in need of",
+            "b": "ぬぐ",
+            "g": "to take off (clothes)",
             "gs": "jlpt"
           },
           {
-            "s": "と",
+            "s": "よう",
+            "k": "known",
+            "b": "よう",
+            "g": "errand, task, business (to take care of)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "に",
             "k": "plain"
           },
           {
             "s": "言い",
+            "k": "known",
             "r": "いい",
             "b": "言う",
-            "k": "known",
             "g": "to say",
             "gs": "jlpt"
           },
@@ -312,21 +254,34 @@
       {
         "tokens": [
           {
-            "s": "かいりゅう",
+            "s": "囘龍",
             "r": "かいりゅう",
             "b": "囘龍",
             "k": "story",
-            "g": "Kairyu, the warrior's monk name"
+            "g": "Kairyu, the warrior's monk name",
+            "hk": true
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "ふく",
-            "b": "ふく",
+            "s": "すぐ",
+            "k": "ghost",
+            "b": "すぐ",
+            "g": "immediately",
+            "gs": "model"
+          },
+          {
+            "s": "に",
+            "k": "plain"
+          },
+          {
+            "s": "服",
             "k": "known",
-            "g": "to blow (wind, etc.)",
+            "r": "ふく",
+            "b": "服",
+            "g": "clothes",
             "gs": "jlpt"
           },
           {
@@ -334,10 +289,10 @@
             "k": "plain"
           },
           {
-            "s": "あげ",
-            "b": "あげる",
+            "s": "わたし",
             "k": "known",
-            "g": "to raise, to lift",
+            "b": "わたす",
+            "g": "to hand (something) over (v.t.); to get across",
             "gs": "jlpt"
           },
           {
@@ -357,29 +312,19 @@
       {
         "tokens": [
           {
-            "s": "その",
-            "k": "plain"
-          },
-          {
-            "s": "とき",
-            "b": "とき",
+            "s": "悪い",
             "k": "known",
-            "g": "at the time of ~",
+            "r": "わるい",
+            "b": "悪い",
+            "g": "bad, sinful; inferior",
             "gs": "jlpt"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "その",
-            "k": "plain"
-          },
-          {
-            "s": "ひと",
-            "b": "ひと",
+            "s": "人",
             "k": "known",
-            "g": "man, person",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
@@ -387,11 +332,37 @@
             "k": "plain"
           },
           {
-            "s": "み",
-            "b": "みる",
+            "s": "そ",
+            "k": "ghost",
+            "b": "そ",
+            "g": "that (prefix/fragment)",
+            "gs": "model"
+          },
+          {
+            "s": "で",
+            "k": "plain"
+          },
+          {
+            "s": "にく",
             "k": "known",
-            "g": "to see, to look",
+            "b": "にくい",
+            "g": "difficult to do ~",
             "gs": "jlpt"
+          },
+          {
+            "s": "びがあることに",
+            "k": "ghost",
+            "b": "びがあることに",
+            "g": "that there is a [something]bi",
+            "gs": "model"
+          },
+          {
+            "s": "気づき",
+            "k": "ghost",
+            "r": "きづき",
+            "b": "気づく",
+            "g": "to notice",
+            "gs": "model"
           },
           {
             "s": "まし",
@@ -410,43 +381,19 @@
       {
         "tokens": [
           {
-            "s": "ふく",
-            "b": "ふく",
+            "s": "悪い",
             "k": "known",
-            "g": "to blow (wind, etc.)",
+            "r": "わるい",
+            "b": "悪い",
+            "g": "bad, sinful; inferior",
             "gs": "jlpt"
           },
           {
-            "s": "にく",
-            "b": "にくい",
+            "s": "人",
             "k": "known",
-            "g": "difficult to do ~",
-            "gs": "jlpt"
-          },
-          {
-            "s": "びがありました",
-            "b": "びがありました",
-            "k": "ghost",
-            "g": "there was a neck",
-            "gs": "model"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "その",
-            "k": "plain"
-          },
-          {
-            "s": "ひと",
-            "b": "ひと",
-            "k": "known",
-            "g": "man, person",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
@@ -455,15 +402,15 @@
           },
           {
             "s": "とても",
-            "b": "とても",
             "k": "known",
+            "b": "とても",
             "g": "very (much), greatly, exceedingly",
             "gs": "jlpt"
           },
           {
             "s": "おどろき",
-            "b": "おどろく",
             "k": "known",
+            "b": "おどろく",
             "g": "to be surprised, to be astonished",
             "gs": "jlpt"
           },
@@ -484,199 +431,38 @@
       {
         "tokens": [
           {
-            "s": "ふく",
-            "b": "ふく",
+            "s": "悪い",
             "k": "known",
-            "g": "to blow (wind, etc.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "おとし",
-            "b": "おとす",
-            "k": "known",
-            "g": "to drop, to lose",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "とおく",
-            "b": "とおく",
-            "k": "known",
-            "g": "far away, distant",
-            "gs": "jlpt"
-          },
-          {
-            "s": "へ",
-            "k": "plain"
-          },
-          {
-            "s": "いき",
-            "b": "いく",
-            "k": "known",
-            "g": "to go",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "その",
-            "k": "plain"
-          },
-          {
-            "s": "ひと",
-            "b": "ひと",
-            "k": "known",
-            "g": "man, person",
-            "gs": "jlpt"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "おおきな",
-            "k": "plain"
-          },
-          {
-            "s": "こえ",
-            "b": "こえる",
-            "k": "known",
-            "g": "to exceed, to cross over, to cross",
-            "gs": "jlpt"
-          },
-          {
-            "s": "で",
-            "k": "plain"
-          },
-          {
-            "s": "いい",
-            "b": "いう",
-            "k": "known",
-            "g": "to say",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "おまえ",
-            "k": "plain"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "わるい",
-            "b": "わるい",
-            "k": "known",
+            "r": "わるい",
+            "b": "悪い",
             "g": "bad, sinful; inferior",
             "gs": "jlpt"
           },
           {
-            "s": "ひと",
-            "b": "ひと",
+            "s": "人",
             "k": "known",
-            "g": "man, person",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
-          },
-          {
-            "s": "だ",
-            "k": "plain"
-          },
-          {
-            "s": "ね",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "わたし",
-            "k": "plain"
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
+            "s": "大きく",
             "k": "known",
-            "g": "counter for people",
+            "r": "おおきく",
+            "b": "大きい",
+            "g": "big, large",
             "gs": "jlpt"
           },
           {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "やばい",
-            "b": "やばい",
+            "s": "さけび",
             "k": "ghost",
-            "g": "dangerous or bad",
-            "gs": "model"
-          },
-          {
-            "s": "こと",
-            "b": "こと",
-            "k": "known",
-            "g": "thing(s), matter(s), fact",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "し",
-            "b": "する",
-            "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "b": "さけぶ",
+            "g": "to shout, to cry",
             "gs": "jlpt"
           },
           {
@@ -685,33 +471,6 @@
           },
           {
             "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "でも",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "く",
-            "b": "くい",
-            "k": "known",
-            "g": "nine",
-            "gs": "jlpt"
-          },
-          {
-            "s": "びをもちませんでした",
             "k": "plain"
           },
           {
@@ -728,78 +487,32 @@
           },
           {
             "s": "く",
-            "b": "くい",
             "k": "known",
+            "b": "くい",
             "g": "nine",
             "gs": "jlpt"
           },
           {
-            "s": "びをください",
+            "s": "びを",
             "k": "plain"
           },
           {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "これ",
-            "k": "plain"
-          },
-          {
-            "s": "で",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
+            "s": "売っ",
             "k": "known",
-            "g": "counter for people",
+            "r": "うっ",
+            "b": "売る",
+            "g": "to sell (v.t.)",
             "gs": "jlpt"
           },
           {
-            "s": "が",
+            "s": "て",
             "k": "plain"
           },
           {
-            "s": "おどろけ",
-            "b": "おどろく",
+            "s": "ください",
             "k": "known",
-            "g": "to be surprised, to be astonished",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ば",
-            "k": "plain"
-          },
-          {
-            "s": "いい",
-            "b": "いい",
-            "k": "known",
-            "g": "good",
-            "gs": "jlpt"
-          },
-          {
-            "s": "です",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "ふく",
-            "b": "ふく",
-            "k": "known",
-            "g": "to blow (wind, etc.)",
+            "b": "くださる",
+            "g": "(hon.) to give, to confer",
             "gs": "jlpt"
           },
           {
@@ -807,30 +520,19 @@
             "k": "plain"
           },
           {
-            "s": "お金",
-            "r": "おかね",
-            "b": "お金",
+            "s": "言い",
             "k": "known",
-            "g": "money",
+            "r": "いい",
+            "b": "言う",
+            "g": "to say",
             "gs": "jlpt"
           },
           {
-            "s": "を",
+            "s": "まし",
             "k": "plain"
           },
           {
-            "s": "だし",
-            "b": "だす",
-            "k": "known",
-            "g": "to take (something) out; to hand in (something)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ます",
-            "k": "plain"
-          },
-          {
-            "s": "から",
+            "s": "た",
             "k": "plain"
           },
           {
@@ -842,20 +544,110 @@
       {
         "tokens": [
           {
-            "s": "かいりゅう",
+            "s": "じ",
+            "k": "plain"
+          },
+          {
+            "s": "ぶん",
+            "k": "ghost",
+            "b": "ぶん",
+            "g": "dividing, part, segment",
+            "gs": "jlpt"
+          },
+          {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "服",
+            "k": "known",
+            "r": "ふく",
+            "b": "服",
+            "g": "clothes",
+            "gs": "jlpt"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "5",
+            "k": "plain"
+          },
+          {
+            "s": "りょう",
+            "k": "ghost",
+            "b": "りょう",
+            "g": "quantity, amount",
+            "gs": "jlpt"
+          },
+          {
+            "s": "で",
+            "k": "plain"
+          },
+          {
+            "s": "かい",
+            "k": "known",
+            "b": "かう",
+            "g": "to buy",
+            "gs": "jlpt"
+          },
+          {
+            "s": "たい",
+            "k": "plain"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "言い",
+            "k": "known",
+            "r": "いい",
+            "b": "言う",
+            "g": "to say",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "囘龍",
             "r": "かいりゅう",
             "b": "囘龍",
             "k": "story",
-            "g": "Kairyu, the warrior's monk name"
+            "g": "Kairyu, the warrior's monk name",
+            "hk": true
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "こたえ",
-            "b": "こたえる",
+            "s": "こう",
             "k": "known",
+            "b": "こう",
+            "g": "like this, this way",
+            "gs": "jlpt"
+          },
+          {
+            "s": "答え",
+            "k": "known",
+            "r": "こたえ",
+            "b": "答える",
             "g": "to answer, to reply",
             "gs": "jlpt"
           },
@@ -876,25 +668,79 @@
       {
         "tokens": [
           {
-            "s": "いい",
-            "b": "いい",
+            "s": "これ",
+            "k": "plain"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "人",
             "k": "known",
-            "g": "good",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
-            "s": "です",
-            "k": "plain"
+            "s": "のく",
+            "k": "ghost",
+            "b": "のく",
+            "g": "to leave/remove (fragment)",
+            "gs": "model"
+          },
+          {
+            "s": "びではありません",
+            "k": "ghost",
+            "b": "びではありません",
+            "g": "is not [something]bi",
+            "gs": "model"
           },
           {
             "s": "。",
             "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "これ",
+            "k": "plain"
           },
           {
-            "s": "あげ",
-            "b": "あげる",
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "変化",
+            "r": "へんげ",
+            "b": "変化",
+            "k": "story",
+            "g": "shape-shifting spirit",
+            "hk": true
+          },
+          {
+            "s": "のく",
+            "k": "ghost",
+            "b": "のく",
+            "g": "to leave/remove (fragment)",
+            "gs": "model"
+          },
+          {
+            "s": "びだと",
+            "k": "ghost",
+            "b": "びだと",
+            "g": "that it is [something]bi",
+            "gs": "model"
+          },
+          {
+            "s": "思い",
             "k": "known",
-            "g": "to raise, to lift",
+            "r": "おもい",
+            "b": "思う",
+            "g": "to think, to feel",
             "gs": "jlpt"
           },
           {
@@ -910,129 +756,43 @@
       {
         "tokens": [
           {
-            "s": "でも",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "これ",
-            "k": "plain"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "ひと",
-            "b": "ひと",
-            "k": "known",
-            "g": "man, person",
-            "gs": "jlpt"
-          },
-          {
-            "s": "のく",
-            "b": "のく",
-            "k": "ghost",
-            "g": "to move away",
-            "gs": "model"
-          },
-          {
-            "s": "びではないです",
-            "b": "びではないです",
-            "k": "ghost",
-            "g": "it is not a neck",
-            "gs": "model"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "これ",
-            "k": "plain"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "へんげ",
-            "r": "へんげ",
-            "b": "変化",
-            "k": "story",
-            "g": "shape-shifting spirit"
-          },
-          {
-            "s": "のく",
-            "b": "のく",
-            "k": "ghost",
-            "g": "to move away",
-            "gs": "model"
-          },
-          {
-            "s": "びだとおもいます",
-            "b": "びだとおもいます",
-            "k": "ghost",
-            "g": "I think it is a neck",
-            "gs": "model"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
             "s": "こまっ",
-            "b": "こまる",
             "k": "known",
+            "b": "こまる",
             "g": "to be bothered, to have difficulty",
             "gs": "jlpt"
           },
           {
-            "s": "た",
+            "s": "て",
             "k": "plain"
           },
           {
-            "s": "とき",
-            "b": "とき",
-            "k": "known",
-            "g": "at the time of ~",
-            "gs": "jlpt"
-          },
-          {
-            "s": "、",
+            "s": "も",
             "k": "plain"
           },
           {
-            "s": "わたし",
-            "k": "plain"
+            "s": "私",
+            "k": "plain",
+            "r": "わたし"
           },
           {
             "s": "を",
             "k": "plain"
           },
           {
-            "s": "わるい",
-            "b": "わるい",
+            "s": "悪い",
             "k": "known",
+            "r": "わるい",
+            "b": "悪い",
             "g": "bad, sinful; inferior",
             "gs": "jlpt"
           },
           {
-            "s": "ひと",
-            "b": "ひと",
+            "s": "人",
             "k": "known",
-            "g": "man, person",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
@@ -1044,10 +804,11 @@
             "k": "plain"
           },
           {
-            "s": "いわ",
-            "b": "いう",
+            "s": "思わ",
             "k": "known",
-            "g": "to say",
+            "r": "おもわ",
+            "b": "思う",
+            "g": "to think, to feel",
             "gs": "jlpt"
           },
           {
@@ -1060,8 +821,8 @@
           },
           {
             "s": "ください",
-            "b": "くださる",
             "k": "known",
+            "b": "くださる",
             "g": "(hon.) to give, to confer",
             "gs": "jlpt"
           },
@@ -1076,24 +837,19 @@
       "prompt": {
         "tokens": [
           {
-            "s": "なぜ",
-            "b": "なぜ",
+            "s": "悪い",
             "k": "known",
-            "g": "why (same as どうして)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "わるい",
-            "b": "わるい",
-            "k": "known",
+            "r": "わるい",
+            "b": "悪い",
             "g": "bad, sinful; inferior",
             "gs": "jlpt"
           },
           {
-            "s": "ひと",
-            "b": "ひと",
+            "s": "人",
             "k": "known",
-            "g": "man, person",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
@@ -1101,9 +857,34 @@
             "k": "plain"
           },
           {
-            "s": "おどろき",
-            "b": "おどろく",
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "何",
+            "k": "plain",
+            "r": "なに"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "見",
             "k": "known",
+            "r": "み",
+            "b": "見る",
+            "g": "to see, to look",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "おどろき",
+            "k": "known",
+            "b": "おどろく",
             "g": "to be surprised, to be astonished",
             "gs": "jlpt"
           },
@@ -1129,95 +910,78 @@
         {
           "tokens": [
             {
-              "s": "ふく",
-              "b": "ふく",
-              "k": "known",
-              "g": "to blow (wind, etc.)",
-              "gs": "jlpt"
-            },
-            {
-              "s": "が",
-              "k": "plain"
-            },
-            {
               "s": "きれい",
-              "b": "きれい",
               "k": "known",
+              "b": "きれい",
               "g": "pretty, clean, tidy",
               "gs": "jlpt"
             },
             {
-              "s": "だ",
+              "s": "な",
               "k": "plain"
             },
             {
-              "s": "から",
-              "k": "plain"
-            },
-            {
-              "s": "です",
-              "k": "plain"
-            },
-            {
-              "s": "。",
-              "k": "plain"
+              "s": "服",
+              "k": "known",
+              "r": "ふく",
+              "b": "服",
+              "g": "clothes",
+              "gs": "jlpt"
             }
           ]
         },
         {
           "tokens": [
             {
-              "s": "く",
-              "b": "くい",
-              "k": "known",
-              "g": "nine",
+              "s": "そで",
+              "k": "ghost",
+              "b": "そで",
+              "g": "sleeve",
               "gs": "jlpt"
             },
             {
-              "s": "びをみたからです",
-              "k": "plain"
+              "s": "のく",
+              "k": "ghost",
+              "b": "のく",
+              "g": "to leave/remove (fragment)",
+              "gs": "model"
             },
             {
-              "s": "。",
-              "k": "plain"
+              "s": "び",
+              "k": "ghost",
+              "b": "び",
+              "g": "beauty",
+              "gs": "jlpt"
             }
           ]
         },
         {
           "tokens": [
+            {
+              "s": "5",
+              "k": "plain"
+            },
+            {
+              "s": "りょう",
+              "k": "ghost",
+              "b": "りょう",
+              "g": "quantity, amount",
+              "gs": "jlpt"
+            },
+            {
+              "s": "の",
+              "k": "plain"
+            },
             {
               "s": "お",
               "k": "plain"
             },
             {
               "s": "かね",
-              "b": "かね",
               "k": "ghost",
+              "b": "かね",
               "g": "gold, metal; money",
               "gs": "jlpt"
-            },
-            {
-              "s": "が",
-              "k": "plain"
-            },
-            {
-              "s": "ない",
-              "b": "ない",
-              "k": "known",
-              "g": "there isn't, doesn't have",
-              "gs": "jlpt"
-            },
-            {
-              "s": "から",
-              "k": "plain"
-            },
-            {
-              "s": "です",
-              "k": "plain"
-            },
-            {
-              "s": "。",
-              "k": "plain"
             }
           ]
         }
@@ -1226,53 +990,199 @@
     },
     "metrics": {
       "kanjiCoverage": 1,
-      "kanjiDensity": 0.017595307917888565,
-      "firstCoverage": 0.7361111111111112,
-      "finalCoverage": 0.9032258064516129,
-      "retries": 3,
-      "seconds": 24.2273681,
+      "kanjiDensity": 0.17370892018779344,
+      "firstCoverage": 0.6818181818181818,
+      "finalCoverage": 0.7884615384615384,
+      "retries": 9,
+      "seconds": 28.835395599999988,
       "offendingFirst": [
-        "どる",
-        "ぼう",
+        "旅",
         "ろ",
-        "すぐ",
-        "きづく",
-        "そで",
-        "落とす",
-        "とびのく",
-        "さけぶ",
-        "ころす",
-        "びっくり",
-        "せる"
+        "ぼう",
+        "袖",
+        "叫ぶ",
+        "両"
       ],
       "ghostWords": [
-        "びがありました",
-        "やばい",
+        "すぐ",
+        "そ",
+        "びがあることに",
+        "気づく",
+        "さけぶ",
+        "ぶん",
+        "りょう",
         "のく",
-        "びではないです",
-        "びだとおもいます",
+        "びではありません",
+        "びだと",
+        "そで",
+        "び",
         "かね"
+      ],
+      "faithIssues": [
+        {
+          "sentence": "じぶんの服と5りょうでかいたいと言いました。",
+          "problem": "The original says he offers his own clothes AND the clothes he just stole from Kairyu (おれのきものと、この衣と), not just his own. Restore the stolen clothes to the exchange.",
+          "kind": "event"
+        }
       ]
     }
   },
-  "failedSceneRetry": true,
-  "recoveredDraft": {
-    "file": "docs/failed-first-rokurokubi-s16-N4.json",
-    "responseIndex": 1,
-    "request": {
-      "model": "gemma-4-31B-it",
+  "levelRepairs": [
+    {
       "messages": [
         {
           "role": "system",
-          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Adds ～とき, ～たら, ～ている, ～と思います, potential forms and ～ても. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Copy every story word exactly in kanji when it is needed; do not insert unused words.\nWrite normal Japanese with no spaces between words. Outside story words, use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
         },
         {
           "role": "user",
-          "content": "前の場面（やさしく語り直したもの）: 囘龍はこたえました。むかしはぶしでした。そのときはだれもこわくなかったです。なまえをいいました。たくさんの人がしっていました。ひとはともだちになりました。そしてやさしくしました。いえまでいきました。そこでいいごはんをたべました。プレゼントをもらいました。そして、そこを出ました。とてもいいときだと思いました。くびをもってかえりました。おみやげにするといいました。\n\n場面（原文）:\nさて、首はその後どうなったか、その話だけ残っている。\n諏訪を出て一両日のあと、囘龍は淋しい処で一人の盗賊に止められて、衣類を脱ぐ事を命ぜられた。囘龍は直ちに衣を脱して盗賊に渡した。盗賊はその時、始めて袖にかかっているものに気がついた。さすがの追剥ぎも驚いて、衣を取り落して、飛び退いた。それから叫んだ、『やあ、こりゃとんでもない坊さんだ。おれよりもっと悪党だね。おれも実際これまで人を殺した事はある、しかし袖に人の首をつけて歩いた事はない。……よし、お坊さん、こりゃおれ達は同じ商売仲間だぜ、どうしてもおれは感心せずには居られない。ところで、その首はおれの役に立ちそうだ。おれはそれで人をおどかすんだね。売ってくれないか。おれのきものと、この衣と取り替えよう、それから首の方は五両出す』\n囘龍は答えた、\n『お前が是非と云うなら、首も衣も上げるが、実はこれは人間の首じゃない。化物の首だ。それで、これを買って、そのために困っても、わしのために欺かれたと思ってはいけない』"
+          "content": "Original:\nさて、首はその後どうなったか、その話だけ残っている。\n諏訪を出て一両日のあと、囘龍は淋しい処で一人の盗賊に止められて、衣類を脱ぐ事を命ぜられた。囘龍は直ちに衣を脱して盗賊に渡した。盗賊はその時、始めて袖にかかっているものに気がついた。さすがの追剥ぎも驚いて、衣を取り落して、飛び退いた。それから叫んだ、『やあ、こりゃとんでもない坊さんだ。おれよりもっと悪党だね。おれも実際これまで人を殺した事はある、しかし袖に人の首をつけて歩いた事はない。……よし、お坊さん、こりゃおれ達は同じ商売仲間だぜ、どうしてもおれは感心せずには居られない。ところで、その首はおれの役に立ちそうだ。おれはそれで人をおどかすんだね。売ってくれないか。おれのきものと、この衣と取り替えよう、それから首の方は五両出す』\n囘龍は答えた、\n『お前が是非と云うなら、首も衣も上げるが、実はこれは人間の首じゃない。化物の首だ。それで、これを買って、そのために困っても、わしのために欺かれたと思ってはいけない』\nCurrent retelling:\n囘龍は歩いていたときです。\n1人の悪い人に会いました。\n悪い人は服をだしました。\n囘龍は服をわたしました。\n悪い人はそでにくびを見つけました。\n悪い人はとてもおどろきました。\n悪い人はさけんていました。\nこのくびを売ってください。\n服と5りょうでかいたいです。\n囘龍は答えました。\nこれは人のくびではありません。\nこれは変化のくびだと思います。\nこまっても私をわるい人だと思わないでください。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.17391304347826086,\"meanLength\":14.153846153846153,\"advancedShare\":0.2}; vocabulary 0.8222222222222222. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: そ、びを、さけぶ、りょう、のく、びではありません、びだと. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
         }
-      ]
+      ],
+      "response": "{\"sentences\": [\"囘龍は歩いていたときです。\", \"1人の悪い人に会いました。\", \"悪い人は服を脱ぐように言いました。\", \"囘龍はすぐに服をわたしました。\", \"悪い人はそでの首に気がつきました。\", \"悪い人はとてもおどろきました。\", \"悪い人は大きくさけびました。\", \"この首を売ってください。\", \"服と5りょうでかいたいです。\", \"囘龍はこう答えました。\", \"これは人の首ではありません。\", \"これは変化の首だと思います。\", \"こまっても私をわるい人だと思わないでください。\"], \"question\": {\"prompt\": \"悪い人は何をかいたかったですか。\", \"options\": [\"服\", \"首\", \"金\"], \"answer\": 1}}"
     },
-    "note": "Response zero was replayed from this preserved draft; subsequent responses are hosted repairs. No further full-scene draft was requested."
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nさて、首はその後どうなったか、その話だけ残っている。\n諏訪を出て一両日のあと、囘龍は淋しい処で一人の盗賊に止められて、衣類を脱ぐ事を命ぜられた。囘龍は直ちに衣を脱して盗賊に渡した。盗賊はその時、始めて袖にかかっているものに気がついた。さすがの追剥ぎも驚いて、衣を取り落して、飛び退いた。それから叫んだ、『やあ、こりゃとんでもない坊さんだ。おれよりもっと悪党だね。おれも実際これまで人を殺した事はある、しかし袖に人の首をつけて歩いた事はない。……よし、お坊さん、こりゃおれ達は同じ商売仲間だぜ、どうしてもおれは感心せずには居られない。ところで、その首はおれの役に立ちそうだ。おれはそれで人をおどかすんだね。売ってくれないか。おれのきものと、この衣と取り替えよう、それから首の方は五両出す』\n囘龍は答えた、\n『お前が是非と云うなら、首も衣も上げるが、実はこれは人間の首じゃない。化物の首だ。それで、これを買って、そのために困っても、わしのために欺かれたと思ってはいけない』\nCurrent retelling:\n囘龍は歩いていたときです。\n1人の悪い人に会いました。\n悪い人は服をぬぐように言いました。\n囘龍はすぐに服をわたしました。\n悪い人はそでのくびに気がつきました。\n悪い人はとてもおどろきました。\n悪い人は大きくさけびました。\nこのくびを売ってください。\n服と5りょうでかいたいです。\n囘龍はこう答えました。\nこれは人のくびではありません。\nこれは変化のくびだと思います。\nこまっても私をわるい人だと思わないでください。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.17346938775510204,\"meanLength\":15.076923076923077,\"advancedShare\":0.22}; vocabulary 0.8. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: すぐ、そで、のく、びに、さけぶ、りょう、びではありません、びだと. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"囘龍は歩いていたときです。\", \"1人の悪い人に会いました。\", \"悪い人は服をぬぐように言いました。\", \"囘龍はすぐに服をわたしました。\", \"悪い人はそでのくびに気がつきました。\", \"悪い人はとてもおどろきました。\", \"悪い人は大きくさけびました。\", \"このくびを売ってください。\", \"服と5りょうでかいたいです。\", \"囘龍はこう答えました。\", \"これは人のくびではありません。\", \"これは変化のくびだと思います。\", \"こまっても私をわるい人だと思わないでください。\"], \"question\": {\"prompt\": \"悪い人は何をかいたかったですか。\", \"options\": [\"服\", \"くび\", \"金\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nさて、首はその後どうなったか、その話だけ残っている。\n諏訪を出て一両日のあと、囘龍は淋しい処で一人の盗賊に止められて、衣類を脱ぐ事を命ぜられた。囘龍は直ちに衣を脱して盗賊に渡した。盗賊はその時、始めて袖にかかっているものに気がついた。さすがの追剥ぎも驚いて、衣を取り落して、飛び退いた。それから叫んだ、『やあ、こりゃとんでもない坊さんだ。おれよりもっと悪党だね。おれも実際これまで人を殺した事はある、しかし袖に人の首をつけて歩いた事はない。……よし、お坊さん、こりゃおれ達は同じ商売仲間だぜ、どうしてもおれは感心せずには居られない。ところで、その首はおれの役に立ちそうだ。おれはそれで人をおどかすんだね。売ってくれないか。おれのきものと、この衣と取り替えよう、それから首の方は五両出す』\n囘龍は答えた、\n『お前が是非と云うなら、首も衣も上げるが、実はこれは人間の首じゃない。化物の首だ。それで、これを買って、そのために困っても、わしのために欺かれたと思ってはいけない』\nCurrent retelling:\n囘龍は歩いていたときです。\n1人の悪い人に会いました。\n悪い人は服をぬぐように言いました。\n囘龍はすぐに服をわたしました。\n悪い人はそでのくびに気がつきました。\n悪い人はとてもおどろきました。\n悪い人は大きくさけびました。\nこのくびを売ってください。\n服と5りょうでかいたいです。\n囘龍はこう答えました。\nこれは人のくびではありません。\nこれは変化のくびだと思います。\nこまっても私をわるい人だと思わないでください。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.17346938775510204,\"meanLength\":15.076923076923077,\"advancedShare\":0.22}; vocabulary 0.8. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: すぐ、そで、のく、びに、さけぶ、りょう、びではありません、びだと. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"囘龍は歩いていたときです。\", \"1人の悪い人に会いました。\", \"悪い人は服をぬぐように言いました。\", \"囘龍はすぐに服をわたしました。\", \"悪い人はそでのくびに気がつきました。\", \"悪い人はとてもおどろきました。\", \"悪い人は大きくさけびました。\", \"このくびを売ってください。\", \"服と5りょうでかいたいです。\", \"囘龍はこう答えました。\", \"これは人のくびではありません。\", \"これは変化のくびだと思います。\", \"こまっても私をわるい人だと思わないでください。\"], \"question\": {\"prompt\": \"悪い人は何がほしいと思いましたか。\", \"options\": [\"服\", \"くび\", \"お金\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: すぐ、のく、びに、びではありません、びだと. Return JSON {\"glosses\":{\"すぐ\":\"English gloss\",\"のく\":\"English gloss\",\"びに\":\"English gloss\",\"びではありません\":\"English gloss\",\"びだと\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"すぐ\": \"immediately\", \"のく\": \"to leave/avoid\", \"びに\": \"conveniently\", \"びではありません\": \"it is not a day\", \"びだと\": \"if it is a day\"}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nさて、首はその後どうなったか、その話だけ残っている。\n諏訪を出て一両日のあと、囘龍は淋しい処で一人の盗賊に止められて、衣類を脱ぐ事を命ぜられた。囘龍は直ちに衣を脱して盗賊に渡した。盗賊はその時、始めて袖にかかっているものに気がついた。さすがの追剥ぎも驚いて、衣を取り落して、飛び退いた。それから叫んだ、『やあ、こりゃとんでもない坊さんだ。おれよりもっと悪党だね。おれも実際これまで人を殺した事はある、しかし袖に人の首をつけて歩いた事はない。……よし、お坊さん、こりゃおれ達は同じ商売仲間だぜ、どうしてもおれは感心せずには居られない。ところで、その首はおれの役に立ちそうだ。おれはそれで人をおどかすんだね。売ってくれないか。おれのきものと、この衣と取り替えよう、それから首の方は五両出す』\n囘龍は答えた、\n『お前が是非と云うなら、首も衣も上げるが、実はこれは人間の首じゃない。化物の首だ。それで、これを買って、そのために困っても、わしのために欺かれたと思ってはいけない』\nCurrent retelling:\n囘龍は歩いていたときです。\n1人の悪い人に会いました。\n悪い人は服をぬぐように言いました。\n囘龍はすぐに服をわたしました。\n悪い人はそでのくびに気がつきました。\n悪い人はとてもおどろきました。\n悪い人は大きくさけびました。\nこのくびを売ってください。\nじぶんの服とうばった服、そして5りょうでかいとりたいと言いました。\n囘龍はこう答えました。\nこれは人のくびではありません。\nこれは変化のくびだと思います。\nこまっても私をわるい人だと思わないでください。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.16744186046511628,\"meanLength\":16.53846153846154,\"advancedShare\":0.24074074074074073}; vocabulary 0.7592592592592593. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: すぐ、そで、のく、びに、さけぶ、ぶん、うばう、りょう、かいとる、びではありません、びだと. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"囘龍は歩いていたときです。\", \"1人の悪い人に会いました。\", \"悪い人は服をぬぐように言いました。\", \"囘龍はすぐに服をわたしました。\", \"悪い人はそでにくびがあることに気づきました。\", \"悪い人はとてもおどろきました。\", \"悪い人は大きくさけびました。\", \"このくびを売ってくださいと言いました。\", \"自分の服と5りょうでかいたいと言いました。\", \"囘龍はこう答えました。\", \"これは人のくびではありません。\", \"これは変化のくびだと思います。\", \"こまっても私をわるい人だと思わないでください。\"], \"question\": {\"prompt\": \"悪い人は何をかいたいと言いましたか。\", \"options\": [\"服\", \"くび\", \"お金\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nさて、首はその後どうなったか、その話だけ残っている。\n諏訪を出て一両日のあと、囘龍は淋しい処で一人の盗賊に止められて、衣類を脱ぐ事を命ぜられた。囘龍は直ちに衣を脱して盗賊に渡した。盗賊はその時、始めて袖にかかっているものに気がついた。さすがの追剥ぎも驚いて、衣を取り落して、飛び退いた。それから叫んだ、『やあ、こりゃとんでもない坊さんだ。おれよりもっと悪党だね。おれも実際これまで人を殺した事はある、しかし袖に人の首をつけて歩いた事はない。……よし、お坊さん、こりゃおれ達は同じ商売仲間だぜ、どうしてもおれは感心せずには居られない。ところで、その首はおれの役に立ちそうだ。おれはそれで人をおどかすんだね。売ってくれないか。おれのきものと、この衣と取り替えよう、それから首の方は五両出す』\n囘龍は答えた、\n『お前が是非と云うなら、首も衣も上げるが、実はこれは人間の首じゃない。化物の首だ。それで、これを買って、そのために困っても、わしのために欺かれたと思ってはいけない』\nCurrent retelling:\n囘龍は歩いていたときです。\n1人の悪い人に会いました。\n悪い人は服をぬぐように言いました。\n囘龍はすぐに服をわたしました。\n悪い人はそでにくびがあることに気づきました。\n悪い人はとてもおどろきました。\n悪い人は大きくさけびました。\nこのくびを売ってくださいと言いました。\nじぶんの服と5りょうでかいたいと言いました。\n囘龍はこう答えました。\nこれは人のくびではありません。\nこれは変化のくびだと思います。\nこまっても私をわるい人だと思わないでください。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.16822429906542055,\"meanLength\":16.46153846153846,\"advancedShare\":0.21153846153846154}; vocabulary 0.7884615384615384. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: すぐ、そ、びがあることに、気づく、さけぶ、ぶん、りょう、のく、びではありません、びだと. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"囘龍は歩いていたときです。\", \"1人の悪い人に会いました。\", \"悪い人は服をぬぐように言いました。\", \"囘龍はすぐに服をわたしました。\", \"悪い人は袖に首があることに気づきました。\", \"悪い人はとてもおどろきました。\", \"悪い人は大きくさけびました。\", \"この首を売ってくださいと言いました。\", \"自分の服と5りょうでかいたいと言いました。\", \"囘龍はこう答えました。\", \"これは人の首ではありません。\", \"これは変化の首だと思います。\", \"こまっても私を悪い人だと思わないでください。\"], \"question\": {\"prompt\": \"悪い人は何をかいたかったですか。\", \"options\": [\"服\", \"首\", \"お金\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nさて、首はその後どうなったか、その話だけ残っている。\n諏訪を出て一両日のあと、囘龍は淋しい処で一人の盗賊に止められて、衣類を脱ぐ事を命ぜられた。囘龍は直ちに衣を脱して盗賊に渡した。盗賊はその時、始めて袖にかかっているものに気がついた。さすがの追剥ぎも驚いて、衣を取り落して、飛び退いた。それから叫んだ、『やあ、こりゃとんでもない坊さんだ。おれよりもっと悪党だね。おれも実際これまで人を殺した事はある、しかし袖に人の首をつけて歩いた事はない。……よし、お坊さん、こりゃおれ達は同じ商売仲間だぜ、どうしてもおれは感心せずには居られない。ところで、その首はおれの役に立ちそうだ。おれはそれで人をおどかすんだね。売ってくれないか。おれのきものと、この衣と取り替えよう、それから首の方は五両出す』\n囘龍は答えた、\n『お前が是非と云うなら、首も衣も上げるが、実はこれは人間の首じゃない。化物の首だ。それで、これを買って、そのために困っても、わしのために欺かれたと思ってはいけない』\nCurrent retelling:\n囘龍は歩いていたときです。\n1人の悪い人に会いました。\n悪い人は服をぬぐように言いました。\n囘龍はすぐに服をわたしました。\n悪い人はそでにくびがあることに気づきました。\n悪い人はとてもおどろきました。\n悪い人は大きくさけびました。\nこのくびを売ってくださいと言いました。\nじぶんの服と5りょうでかいたいと言いました。\n囘龍はこう答えました。\nこれは人のくびではありません。\nこれは変化のくびだと思います。\nこまっても私を悪い人だと思わないでください。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.17370892018779344,\"meanLength\":16.384615384615383,\"advancedShare\":0.21153846153846154}; vocabulary 0.7884615384615384. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: すぐ、そ、びがあることに、気づく、さけぶ、ぶん、りょう、のく、びではありません、びだと. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"囘龍は歩いていたときです。\", \"1人の悪い人に会いました。\", \"悪い人は服をぬぐように言いました。\", \"囘龍はすぐに服をわたしました。\", \"悪い人は袖に首があることに気づきました。\", \"悪い人はとてもおどろきました。\", \"悪い人は大きくさけびました。\", \"この首を売ってくださいと言いました。\", \"自分の服と5りょうでかいたいと言いました。\", \"囘龍はこう答えました。\", \"これは人の首ではありません。\", \"これは変化の首だと思います。\", \"こまっても私を悪い人だと思わないでください。\"], \"question\": {\"prompt\": \"悪い人は何をかいたいと言いましたか。\", \"options\": [\"服\", \"首\", \"お金\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: すぐ、そ、びがあることに、気づく、のく、びではありません、びだと. Return JSON {\"glosses\":{\"すぐ\":\"English gloss\",\"そ\":\"English gloss\",\"びがあることに\":\"English gloss\",\"気づく\":\"English gloss\",\"のく\":\"English gloss\",\"びではありません\":\"English gloss\",\"びだと\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"すぐ\": \"immediately\", \"そ\": \"that (prefix/fragment)\", \"びがあることに\": \"that there is a [something]bi\", \"気づく\": \"to notice\", \"のく\": \"to leave/remove (fragment)\", \"びではありません\": \"is not [something]bi\", \"びだと\": \"that it is [something]bi\"}}"
+    }
+  ],
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\nさて、首はその後どうなったか、その話だけ残っている。\n諏訪を出て一両日のあと、囘龍は淋しい処で一人の盗賊に止められて、衣類を脱ぐ事を命ぜられた。囘龍は直ちに衣を脱して盗賊に渡した。盗賊はその時、始めて袖にかかっているものに気がついた。さすがの追剥ぎも驚いて、衣を取り落して、飛び退いた。それから叫んだ、『やあ、こりゃとんでもない坊さんだ。おれよりもっと悪党だね。おれも実際これまで人を殺した事はある、しかし袖に人の首をつけて歩いた事はない。……よし、お坊さん、こりゃおれ達は同じ商売仲間だぜ、どうしてもおれは感心せずには居られない。ところで、その首はおれの役に立ちそうだ。おれはそれで人をおどかすんだね。売ってくれないか。おれのきものと、この衣と取り替えよう、それから首の方は五両出す』\n囘龍は答えた、\n『お前が是非と云うなら、首も衣も上げるが、実はこれは人間の首じゃない。化物の首だ。それで、これを買って、そのために困っても、わしのために欺かれたと思ってはいけない』\n\n語り直し:\n囘龍は歩いていたときです。\n1人の悪い人に会いました。\n悪い人は服をぬぐように言いました。\n囘龍はすぐに服をわたしました。\n悪い人はそでのくびに気がつきました。\n悪い人はとてもおどろきました。\n悪い人は大きくさけびました。\nこのくびを売ってください。\n服と5りょうでかいたいです。\n囘龍はこう答えました。\nこれは人のくびではありません。\nこれは変化のくびだと思います。\nこまっても私をわるい人だと思わないでください。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"服と5りょうでかいたいです。\", \"problem\": \"The thief offered his own clothes AND the stolen clothes plus 5 ryo, not just one set of clothes. Change to '自分の服と奪った服、そして5両で買い取りたいと言いました。'\", \"kind\": \"number\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\nさて、首はその後どうなったか、その話だけ残っている。\n諏訪を出て一両日のあと、囘龍は淋しい処で一人の盗賊に止められて、衣類を脱ぐ事を命ぜられた。囘龍は直ちに衣を脱して盗賊に渡した。盗賊はその時、始めて袖にかかっているものに気がついた。さすがの追剥ぎも驚いて、衣を取り落して、飛び退いた。それから叫んだ、『やあ、こりゃとんでもない坊さんだ。おれよりもっと悪党だね。おれも実際これまで人を殺した事はある、しかし袖に人の首をつけて歩いた事はない。……よし、お坊さん、こりゃおれ達は同じ商売仲間だぜ、どうしてもおれは感心せずには居られない。ところで、その首はおれの役に立ちそうだ。おれはそれで人をおどかすんだね。売ってくれないか。おれのきものと、この衣と取り替えよう、それから首の方は五両出す』\n囘龍は答えた、\n『お前が是非と云うなら、首も衣も上げるが、実はこれは人間の首じゃない。化物の首だ。それで、これを買って、そのために困っても、わしのために欺かれたと思ってはいけない』\n\n語り直し:\n囘龍は歩いていたときです。\n1人の悪い人に会いました。\n悪い人は服をぬぐように言いました。\n囘龍はすぐに服をわたしました。\n悪い人はそでにくびがあることに気づきました。\n悪い人はとてもおどろきました。\n悪い人は大きくさけびました。\nこのくびを売ってくださいと言いました。\nじぶんの服と5りょうでかいたいと言いました。\n囘龍はこう答えました。\nこれは人のくびではありません。\nこれは変化のくびだと思います。\nこまっても私を悪い人だと思わないでください。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"じぶんの服と5りょうでかいたいと言いました。\", \"problem\": \"The original says he offers his own clothes AND the clothes he just stole from Kairyu (おれのきものと、この衣と), not just his own. Restore the stolen clothes to the exchange.\", \"kind\": \"event\"}]}"
+      }
+    ],
+    "rewrites": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Repair only the specified sentences at JLPT N4. Preserve all other sentences and events. Use natural Japanese, numeric digits for numbers, and maintain the meaning of the original. Return only JSON {\"rewrites\":[{\"index\":0,\"sentence\":\"...\"}]}."
+          },
+          {
+            "role": "user",
+            "content": "Original:\nさて、首はその後どうなったか、その話だけ残っている。\n諏訪を出て一両日のあと、囘龍は淋しい処で一人の盗賊に止められて、衣類を脱ぐ事を命ぜられた。囘龍は直ちに衣を脱して盗賊に渡した。盗賊はその時、始めて袖にかかっているものに気がついた。さすがの追剥ぎも驚いて、衣を取り落して、飛び退いた。それから叫んだ、『やあ、こりゃとんでもない坊さんだ。おれよりもっと悪党だね。おれも実際これまで人を殺した事はある、しかし袖に人の首をつけて歩いた事はない。……よし、お坊さん、こりゃおれ達は同じ商売仲間だぜ、どうしてもおれは感心せずには居られない。ところで、その首はおれの役に立ちそうだ。おれはそれで人をおどかすんだね。売ってくれないか。おれのきものと、この衣と取り替えよう、それから首の方は五両出す』\n囘龍は答えた、\n『お前が是非と云うなら、首も衣も上げるが、実はこれは人間の首じゃない。化物の首だ。それで、これを買って、そのために困っても、わしのために欺かれたと思ってはいけない』\nSentences:\n0: 囘龍は歩いていたときです。\n1: 1人の悪い人に会いました。\n2: 悪い人は服をぬぐように言いました。\n3: 囘龍はすぐに服をわたしました。\n4: 悪い人はそでのくびに気がつきました。\n5: 悪い人はとてもおどろきました。\n6: 悪い人は大きくさけびました。\n7: このくびを売ってください。\n8: 服と5りょうでかいたいです。\n9: 囘龍はこう答えました。\n10: これは人のくびではありません。\n11: これは変化のくびだと思います。\n12: こまっても私をわるい人だと思わないでください。\nIssues:\n[{\"sentence\":\"服と5りょうでかいたいです。\",\"problem\":\"The thief offered his own clothes AND the stolen clothes plus 5 ryo, not just one set of clothes. Change to '自分の服と奪った服、そして5両で買い取りたいと言いました。'\",\"kind\":\"number\"}]\nRewrite exactly indexes: 8"
+          }
+        ],
+        "response": "{\"rewrites\": [{\"index\": 8, \"sentence\": \"自分の服と奪った服、そして5両で買い取りたいと言いました。\"}]}"
+      }
+    ],
+    "before": [
+      {
+        "sentence": "服と5りょうでかいたいです。",
+        "problem": "The thief offered his own clothes AND the stolen clothes plus 5 ryo, not just one set of clothes. Change to '自分の服と奪った服、そして5両で買い取りたいと言いました。'",
+        "kind": "number"
+      }
+    ],
+    "after": [
+      {
+        "sentence": "じぶんの服と5りょうでかいたいと言いました。",
+        "problem": "The original says he offers his own clothes AND the clothes he just stole from Kairyu (おれのきものと、この衣と), not just his own. Restore the stolen clothes to the exchange.",
+        "kind": "event"
+      }
+    ]
   },
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "ladderBuild": "P4b"
 }

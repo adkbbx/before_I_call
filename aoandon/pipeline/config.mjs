@@ -20,6 +20,8 @@ export const targets = { N5: 0.95, N4: 0.95, N3: 0.97 };
 
 /** Sentence length caps in characters per level. */
 export const sentenceCaps = { N5: 20, N4: 28, N3: 40 };
+export const densityBands = { N5: [0, 0.12], N4: [0.10, 0.18], N3: [0.18, 0.28] };
+export const sentenceBands = { N5: [6, 20], N4: [15, 28], N3: [22, 40] };
 
 export const maxRetries = 3;
 

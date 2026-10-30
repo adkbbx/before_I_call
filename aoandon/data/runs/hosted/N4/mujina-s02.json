@@ -4,41 +4,58 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Adds ～とき, ～たら, ～ている, ～と思います, potential forms and ～ても. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 貉（むじな）、濠（ほり）、蕎麦屋（そばや）、紀伊国坂（きいのくにざか）. Copy every story word exactly in kanji when it is needed; do not insert unused words.\nWrite normal Japanese with no spaces between words. Outside story words, use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 貉（むじな）、濠（ほり）、蕎麦屋（そばや）、紀伊国坂（きいのくにざか）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: とうきょうに紀伊国坂があります。このさかには濠があります。むかしはよるになるととてもしずかでした。ひとりでのぼるとこわいと思いました。だからひとはみちをかえました。そこに貉がいたからです。さんにじゅうねんまえに、ある人がいました。その人は貉を見ました。\n\n場面（原文）:\nこの商人がある晩おそく紀国坂を急いで登って行くと、ただひとり濠の縁に踞んで、ひどく泣いている女を見た。身を投げるのではないかと心配して、商人は足をとどめ、自分の力に及ぶだけの助力、もしくは慰藉を与えようとした。女は華奢な上品な人らしく、服装も綺麗であったし、それから髪は良家の若い娘のそれのように結ばれていた。――『お女中』と商人は女に近寄って声をかけた――『お女中、そんなにお泣きなさるな！……何がお困りなのか、私に仰しゃい。その上でお助けをする道があれば、喜んでお助け申しましょう』（実際、男は自分の云った通りの事をする積りであった。何となれば、この人は非常に深切な人であったから。）しかし女は泣き続けていた――その長い一方の袖を以て商人に顔を隠して。『お女中』と出来る限りやさしく商人は再び云った――『どうぞ、どうぞ、私の言葉を聴いて下さい！……ここは夜若い御婦人などの居るべき場処ではありません！　御頼み申すから、お泣きなさるな！――どうしたら少しでも、お助けをする事が出来るのか、それを云って下さい！』徐ろに女は起ち上ったが、商人には背中を向けていた。そしてその袖のうしろで呻き咽びつづけていた。商人はその手を軽く女の肩の上に置いて説き立てた――『お女中！――お女中！――お女中！　私の言葉をお聴きなさい。ただちょっとでいいから！……お女中！――お女中！』……するとそのお女中なるものは向きかえった。そしてその袖を下に落し、手で自分の顔を撫でた――見ると目も鼻も口もない――きゃッと声をあげて商人は逃げ出した。"
+        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\nこの商人がある晩おそく紀国坂を急いで登って行くと、ただひとり濠の縁に踞んで、ひどく泣いている女を見た。身を投げるのではないかと心配して、商人は足をとどめ、自分の力に及ぶだけの助力、もしくは慰藉を与えようとした。女は華奢な上品な人らしく、服装も綺麗であったし、それから髪は良家の若い娘のそれのように結ばれていた。――『お女中』と商人は女に近寄って声をかけた――『お女中、そんなにお泣きなさるな！……何がお困りなのか、私に仰しゃい。その上でお助けをする道があれば、喜んでお助け申しましょう』（実際、男は自分の云った通りの事をする積りであった。何となれば、この人は非常に深切な人であったから。）しかし女は泣き続けていた――その長い一方の袖を以て商人に顔を隠して。『お女中』と出来る限りやさしく商人は再び云った――『どうぞ、どうぞ、私の言葉を聴いて下さい！……ここは夜若い御婦人などの居るべき場処ではありません！　御頼み申すから、お泣きなさるな！――どうしたら少しでも、お助けをする事が出来るのか、それを云って下さい！』徐ろに女は起ち上ったが、商人には背中を向けていた。そしてその袖のうしろで呻き咽びつづけていた。商人はその手を軽く女の肩の上に置いて説き立てた――『お女中！――お女中！――お女中！　私の言葉をお聴きなさい。ただちょっとでいいから！……お女中！――お女中！』……するとそのお女中なるものは向きかえった。そしてその袖を下に落し、手で自分の顔を撫でた――見ると目も鼻も口もない――きゃッと声をあげて商人は逃げ出した。\n"
       }
     ]
   },
   "responses": [
-    "{\"sentences\": [\"ある夜、商人が紀伊国坂をのぼりました。\", \"濠のそばに女がいました。\", \"女はひどくないていました。\", \"商人はしんぱいしました。\", \"たすけたいと思いました。\", \"女のふくはきれいでした。\", \"商人はやさしく話しました。\", \"なかないでくださいと言いました。\", \"たすけることができます。\", \"そう言っても、女はないていました。\", \"女はそでで顔をかくしていました。\", \"もういちど話しました。\", \"ここにとどまらないでください。\", \"どうしたらいいか教えてください。\", \"女がゆっくりたちました。\", \"でも、せなかをむいていました。\", \"商人が女のかたに手を置きました。\", \"おんなのひと、きいてください。\", \"そう言ったら、女がむきました。\", \"女はそでをおろしました。\", \"顔をみました。\", \"目もはなもくちもありませんでした。\", \"商人はびっくりしてにげました。\"], \"question\": {\"prompt\": \"商人が見た女の顔はどうでしたか。\", \"options\": [\"きれいでした。\", \"目や口がありませんでした。\", \"とてもかなしそうでした。\"], \"answer\": 1}}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"あるよる、しょうにんが紀伊国坂をのぼりました。\"}, {\"index\": 1, \"sentence\": \"濠のそばに女がいました。\"}, {\"index\": 3, \"sentence\": \"しょうにんは、こまったと思いました。\"}, {\"index\": 4, \"sentence\": \"てつだいたいと思いました。\"}, {\"index\": 6, \"sentence\": \"しょうにんはやさしく話しました。\"}, {\"index\": 8, \"sentence\": \"てつだうことができます。\"}, {\"index\": 10, \"sentence\": \"女はふくでかおをかくしていました。\"}, {\"index\": 12, \"sentence\": \"ここにいないでください。\"}, {\"index\": 15, \"sentence\": \"でも、うしろをむいていました。\"}, {\"index\": 16, \"sentence\": \"しょうにんが女のかたに手をしました。\"}, {\"index\": 18, \"sentence\": \"そう言ったら、女がむきました。\"}, {\"index\": 19, \"sentence\": \"女はふくをさげました。\"}, {\"index\": 20, \"sentence\": \"かおをみました。\"}, {\"index\": 22, \"sentence\": \"しょうにんはおどろいてにげました。\"}]}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"あるよる、おとこが紀伊国坂をのぼりました。\"}, {\"index\": 1, \"sentence\": \"濠のそばに女がいました。\"}, {\"index\": 3, \"sentence\": \"おとこは、こまったと思いました。\"}, {\"index\": 6, \"sentence\": \"おとこはやさしく話しました。\"}, {\"index\": 10, \"sentence\": \"女はふくでかおをみえなくしました。\"}, {\"index\": 15, \"sentence\": \"でも、あちらをみていました。\"}, {\"index\": 16, \"sentence\": \"おとこが女のかたに手をしました。\"}, {\"index\": 18, \"sentence\": \"そう言ったら、女がこちらをみました。\"}, {\"index\": 22, \"sentence\": \"おとこはおどろいてにげました。\"}]}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"あるよる、ひとが紀伊国坂をのぼりました。\"}, {\"index\": 1, \"sentence\": \"濠のそばに女がいました。\"}, {\"index\": 3, \"sentence\": \"ひとは、こまったと思いました。\"}, {\"index\": 6, \"sentence\": \"ひとはやさしく話しました。\"}, {\"index\": 16, \"sentence\": \"ひとが女のかたに手をしました。\"}, {\"index\": 22, \"sentence\": \"ひとはおどろいてにげました。\"}]}",
-    "{\"question\": {\"prompt\": \"ひとは、女のかおをみてどう思いましたか。\", \"options\": [\"おどろきました。\", \"きれいだと思いました。\", \"かなしいと思いました。\"], \"answer\": 0}}"
+    "{\"sentencesにつながる\": [\"ある夜、商人が紀伊国坂を登りました。\", \"すると、濠のそばで泣く女がいました。\", \"商人は女が心配だと思いました。\", \"女はきれいな服を着ていました。\", \"商人は女に、どうしましたかと言いました。\", \"商人は女を助けたいと思いました。\", \"しかし女は、袖で顔を隠して泣いています。\", \"商人はもう一度やさしく話しました。\", \"ここは夜に女がいる場所ではありません。\", \"どうすれば助けられますかと言いました。\", \"女は立ちましたが、後ろを向いていました。\", \"商人が女の肩に手を置きました。\", \"すると女がゆっくり向きました。\", \"女が顔を出すと、目や口がありませんでした。\", \"商人はびっくりして逃げました。\"], \"question\": {\"prompt\": \"商人が見た女はどうでしたか。\", \"options\": [\"目や口がなかった。\", \"服がとても古かった。\", \"全然泣いていなかった。\"], \"answer\": 0}}",
+    "{\"sentences\": [\"ある夜、商人が紀伊国坂を登りました。\", \"すると、濠のそばで泣く女がいました。\", \"商人は女が心配だと思いました。\", \"女はきれいな服を着ていました。\", \"商人は女に、どうしましたかと言いました。\", \"商人は女を助けたいと思いました。\", \"しかし女は、袖で顔を隠して泣いています。\", \"商人はもう一度やさしく話しました。\", \"ここは夜に女がいる場所ではありません。\", \"どうすれば助けられますかと言いました。\", \"女は立ちましたが、後ろを向いていました。\", \"商人が女の肩に手を置きました。\", \"すると女がゆっくり向きました。\", \"女が顔を出すと、目や口がありませんでした。\", \"商人はびっくりして逃げました。\"], \"question\": {\"prompt\": \"商人が見た女はどうでしたか。\", \"options\": [\"目や口がなかった。\", \"服がとても古かった。\", \"全然泣いていなかった。\"], \"answer\": 0}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"ある夜、しょうにんが紀伊国坂をのぼりました。\"}, {\"index\": 1, \"sentence\": \"すると、濠のそばでなく女がいました。\"}, {\"index\": 2, \"sentence\": \"しょうにんは女がしんぱいだと思いました。\"}, {\"index\": 3, \"sentence\": \"女はきれいな服を着ていました。\"}, {\"index\": 4, \"sentence\": \"しょうにんは女に、どうしましたかと言いました。\"}, {\"index\": 5, \"sentence\": \"しょうにんは女をたすけたいと思いました。\"}, {\"index\": 6, \"sentence\": \"しかし女は、そででかおをかくしてないています。\"}, {\"index\": 7, \"sentence\": \"しょうにんはもう1どやさしく話しました。\"}, {\"index\": 8, \"sentence\": \"ここは夜に女がいるばしょではありません。\"}, {\"index\": 9, \"sentence\": \"どうすればたすけられますかと言いました。\"}, {\"index\": 10, \"sentence\": \"女は立ちましたが、後ろをむいていました。\"}, {\"index\": 11, \"sentence\": \"しょうにんが女のかたにてをおきました。\"}, {\"index\": 12, \"sentence\": \"すると女がゆっくりむきました。\"}, {\"index\": 13, \"sentence\": \"女がかおを出すと、目や口がありませんでした。\"}, {\"index\": 14, \"sentence\": \"しょうにんはびっくりしてにげました。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"ある夜、商人が紀伊国坂をのぼりました。\"}, {\"index\": 2, \"sentence\": \"商人は女が心配だと思いました。\"}, {\"index\": 4, \"sentence\": \"商人は女に、どうしましたかと言いました。\"}, {\"index\": 5, \"sentence\": \"商人は女をたすけたいと思いました。\"}, {\"index\": 6, \"sentence\": \"しかし女は、そででかおをかくしてないています。\"}, {\"index\": 7, \"sentence\": \"商人はもう1どやさしく話しました。\"}, {\"index\": 8, \"sentence\": \"ここは夜に女がいる場所ではありません。\"}, {\"index\": 9, \"sentence\": \"どうすればたすけられますかと言いました。\"}, {\"index\": 10, \"sentence\": \"女は立ちましたが、後ろをむいていました。\"}, {\"index\": 11, \"sentence\": \"商人が女のかたにてをおきました。\"}, {\"index\": 12, \"sentence\": \"すると女がゆっくりむきました。\"}, {\"index\": 14, \"sentence\": \"商人はびっくりしてにげました。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"ある夜、しょうにんが紀伊国坂をのぼりました。\"}, {\"index\": 2, \"sentence\": \"しょうにんは女がしんぱいだと思いました。\"}, {\"index\": 4, \"sentence\": \"しょうにんは女に、どうしましたかと言いました。\"}, {\"index\": 5, \"sentence\": \"しょうにんは女をたすけたいと思いました。\"}, {\"index\": 6, \"sentence\": \"しかし女は、そででかおをかくしてないています。\"}, {\"index\": 7, \"sentence\": \"しょうにんはもう1どやさしく話しました。\"}, {\"index\": 8, \"sentence\": \"ここは夜に女がいるばしょではありません。\"}, {\"index\": 9, \"sentence\": \"どうすればたすけられますかと言いました。\"}, {\"index\": 10, \"sentence\": \"女は立ちましたが、後ろをむいていました。\"}, {\"index\": 11, \"sentence\": \"しょうにんが女のかたにてをおきました。\"}, {\"index\": 12, \"sentence\": \"すると女がゆっくりむきました。\"}, {\"index\": 14, \"sentence\": \"しょうにんはびっくりしてにげました。\"}]}",
+    "{\"question\": {\"prompt\": \"しょうにんが見た女はどうでしたか。\", \"options\": [\"目や口がなかった。\", \"服がとても古かった。\", \"ぜんぜんないていなかった。\"], \"answer\": 0}}",
+    "{\"glosses\": {\"しんぱい\": \"worried\", \"られる\": \"can (potential form)\", \"ょうにんはびっくりしてにげました\": \"The merchant was surprised and fled\"}}"
   ],
   "metrics": {
-    "kanjiCoverage": 0.8333333333333334,
-    "kanjiDensity": 0.07430340557275542,
-    "firstCoverage": 0.782051282051282,
-    "finalCoverage": 1,
-    "retries": 3,
-    "seconds": 28.85325,
+    "kanjiCoverage": 1,
+    "kanjiDensity": 0.09933774834437085,
+    "firstCoverage": 0.75,
+    "finalCoverage": 0.7611940298507462,
+    "retries": 9,
+    "seconds": 41.7050268,
     "offendingFirst": [
       "商人",
+      "助ける",
+      "袖",
+      "隠す",
+      "もう一度",
+      "られる",
+      "向く",
+      "肩",
+      "びっくり"
+    ],
+    "ghostWords": [
+      "しょうにん",
       "しんぱい",
       "たすける",
       "そで",
       "かくす",
-      "とどまる",
-      "せる",
-      "むく",
-      "おろす",
-      "びっくり"
+      "しょ",
+      "られる",
+      "むく"
     ],
-    "ghostWords": []
+    "faithIssues": [
+      {
+        "sentence": "女がかおを出すと、目や口がありませんでした。",
+        "problem": "The original states there were no eyes, nose, or mouth (目も鼻も口もない). The nose (鼻) is missing from the retelling.",
+        "kind": "event"
+      }
+    ]
   },
   "retelling": {
     "level": "N4",
@@ -49,15 +66,13 @@
         "tokens": [
           {
             "s": "ある",
-            "b": "ある",
-            "k": "known",
-            "g": "to be, to have",
-            "gs": "jlpt"
+            "k": "plain"
           },
           {
-            "s": "よる",
-            "b": "よる",
+            "s": "夜",
             "k": "known",
+            "r": "よる",
+            "b": "夜",
             "g": "evening, night",
             "gs": "jlpt"
           },
@@ -66,10 +81,10 @@
             "k": "plain"
           },
           {
-            "s": "ひと",
-            "b": "ひと",
-            "k": "known",
-            "g": "man, person",
+            "s": "しょうにん",
+            "k": "ghost",
+            "b": "しょうにん",
+            "g": "trader, shopkeeper, merchant",
             "gs": "jlpt"
           },
           {
@@ -78,11 +93,11 @@
           },
           {
             "s": "紀伊国坂",
-            "hk": true,
             "r": "きいのくにざか",
             "b": "紀伊国坂",
             "k": "story",
-            "g": "the hill named for Kii province"
+            "g": "the hill named for Kii province",
+            "hk": true
           },
           {
             "s": "を",
@@ -90,8 +105,8 @@
           },
           {
             "s": "のぼり",
-            "b": "のぼる",
             "k": "known",
+            "b": "のぼる",
             "g": "to climb",
             "gs": "jlpt"
           },
@@ -112,12 +127,20 @@
       {
         "tokens": [
           {
+            "s": "すると",
+            "k": "plain"
+          },
+          {
+            "s": "、",
+            "k": "plain"
+          },
+          {
             "s": "濠",
-            "hk": true,
             "r": "ほり",
             "b": "濠",
             "k": "story",
-            "g": "moat"
+            "g": "moat",
+            "hk": true
           },
           {
             "s": "の",
@@ -125,68 +148,14 @@
           },
           {
             "s": "そば",
-            "b": "そば",
             "k": "known",
+            "b": "そば",
             "g": "near, close, beside; Japanese traditional buckwheat noodle",
             "gs": "jlpt"
           },
           {
-            "s": "に",
+            "s": "で",
             "k": "plain"
-          },
-          {
-            "s": "女",
-            "r": "おんな",
-            "b": "女",
-            "k": "known",
-            "g": "woman, female",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "い",
-            "b": "いる",
-            "k": "known",
-            "g": "(humble) to be (animate), to exist",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "女",
-            "r": "おんな",
-            "b": "女",
-            "k": "known",
-            "g": "woman, female",
-            "gs": "jlpt"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "ひどく",
-            "b": "ひどい",
-            "k": "known",
-            "g": "terrible, awful, unfair, cruel",
-            "gs": "jlpt"
           },
           {
             "s": "ない",
@@ -197,9 +166,28 @@
             "k": "plain"
           },
           {
-            "s": "い",
-            "b": "いる",
+            "s": "いる",
             "k": "known",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "女",
+            "k": "known",
+            "r": "おんな",
+            "b": "女",
+            "g": "woman, female",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "k": "known",
+            "b": "いる",
             "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
@@ -220,10 +208,10 @@
       {
         "tokens": [
           {
-            "s": "ひと",
-            "b": "ひと",
-            "k": "known",
-            "g": "man, person",
+            "s": "しょうにん",
+            "k": "ghost",
+            "b": "しょうにん",
+            "g": "trader, shopkeeper, merchant",
             "gs": "jlpt"
           },
           {
@@ -235,14 +223,26 @@
             "k": "plain"
           },
           {
-            "s": "こまっ",
-            "b": "こまる",
+            "s": "女",
             "k": "known",
-            "g": "to be bothered, to have difficulty",
+            "r": "おんな",
+            "b": "女",
+            "g": "woman, female",
             "gs": "jlpt"
           },
           {
-            "s": "た",
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "しんぱい",
+            "k": "ghost",
+            "b": "しんぱい",
+            "g": "worry",
+            "gs": "model"
+          },
+          {
+            "s": "だ",
             "k": "plain"
           },
           {
@@ -251,48 +251,9 @@
           },
           {
             "s": "思い",
+            "k": "known",
             "r": "おもい",
             "b": "思う",
-            "k": "known",
-            "g": "to think, to feel",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "てつだい",
-            "b": "てつだう",
-            "k": "known",
-            "g": "to help",
-            "gs": "jlpt"
-          },
-          {
-            "s": "たい",
-            "k": "plain"
-          },
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "思い",
-            "r": "おもい",
-            "b": "思う",
-            "k": "known",
             "g": "to think, to feel",
             "gs": "jlpt"
           },
@@ -314,21 +275,10 @@
         "tokens": [
           {
             "s": "女",
+            "k": "known",
             "r": "おんな",
             "b": "女",
-            "k": "known",
             "g": "woman, female",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "ふく",
-            "b": "ふく",
-            "k": "known",
-            "g": "to blow (wind, etc.)",
             "gs": "jlpt"
           },
           {
@@ -336,14 +286,56 @@
             "k": "plain"
           },
           {
-            "s": "きれい",
-            "b": "きれい",
+            "s": "とても",
             "k": "known",
+            "b": "とても",
+            "g": "very (much), greatly, exceedingly",
+            "gs": "jlpt"
+          },
+          {
+            "s": "きれい",
+            "k": "known",
+            "b": "きれい",
             "g": "pretty, clean, tidy",
             "gs": "jlpt"
           },
           {
-            "s": "でし",
+            "s": "な",
+            "k": "plain"
+          },
+          {
+            "s": "服",
+            "k": "known",
+            "r": "ふく",
+            "b": "服",
+            "g": "clothes",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "着",
+            "k": "known",
+            "r": "き",
+            "b": "着る",
+            "g": "to put on (clothes above your waist); to wear",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "k": "known",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
             "k": "plain"
           },
           {
@@ -359,10 +351,10 @@
       {
         "tokens": [
           {
-            "s": "ひと",
-            "b": "ひと",
-            "k": "known",
-            "g": "man, person",
+            "s": "しょうにん",
+            "k": "ghost",
+            "b": "しょうにん",
+            "g": "trader, shopkeeper, merchant",
             "gs": "jlpt"
           },
           {
@@ -370,17 +362,44 @@
             "k": "plain"
           },
           {
-            "s": "やさしく",
-            "b": "やさしい",
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "どう",
             "k": "known",
-            "g": "easy, plain, simple",
+            "b": "どう",
+            "g": "how, in what way",
             "gs": "jlpt"
           },
           {
+            "s": "し",
+            "k": "known",
+            "b": "する",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "か",
+            "k": "plain"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
             "s": "話し",
+            "k": "known",
             "r": "はなし",
             "b": "話す",
-            "k": "known",
             "g": "to speak",
             "gs": "jlpt"
           },
@@ -401,37 +420,53 @@
       {
         "tokens": [
           {
-            "s": "なか",
-            "b": "なく",
-            "k": "known",
-            "g": "to make sound (animal)",
+            "s": "しょうにん",
+            "k": "ghost",
+            "b": "しょうにん",
+            "g": "trader, shopkeeper, merchant",
             "gs": "jlpt"
           },
           {
-            "s": "ない",
+            "s": "は",
             "k": "plain"
           },
           {
-            "s": "で",
+            "s": "、",
             "k": "plain"
           },
           {
-            "s": "ください",
-            "b": "くださる",
+            "s": "女",
             "k": "known",
-            "g": "(hon.) to give, to confer",
+            "r": "おんな",
+            "b": "女",
+            "g": "woman, female",
             "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "たすけ",
+            "k": "ghost",
+            "b": "たすける",
+            "g": "to help (v.t.), to save, to rescue",
+            "gs": "jlpt"
+          },
+          {
+            "s": "たい",
+            "k": "plain"
           },
           {
             "s": "と",
             "k": "plain"
           },
           {
-            "s": "言い",
-            "r": "いい",
-            "b": "言う",
+            "s": "思い",
             "k": "known",
-            "g": "to say",
+            "r": "おもい",
+            "b": "思う",
+            "g": "to think, to feel",
             "gs": "jlpt"
           },
           {
@@ -451,74 +486,14 @@
       {
         "tokens": [
           {
-            "s": "てつだう",
-            "b": "てつだう",
-            "k": "known",
-            "g": "to help",
-            "gs": "jlpt"
-          },
-          {
-            "s": "こと",
-            "b": "こと",
-            "k": "known",
-            "g": "thing(s), matter(s), fact",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "でき",
-            "b": "できる",
-            "k": "known",
-            "g": "to be able to (to accomplish)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ます",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "そう",
-            "b": "そう",
-            "k": "known",
-            "g": "yes; appears, to be the case",
-            "gs": "jlpt"
-          },
-          {
-            "s": "言っ",
-            "r": "いっ",
-            "b": "言う",
-            "k": "known",
-            "g": "to say",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "も",
-            "k": "plain"
-          },
-          {
-            "s": "、",
+            "s": "しかし",
             "k": "plain"
           },
           {
             "s": "女",
+            "k": "known",
             "r": "おんな",
             "b": "女",
-            "k": "known",
             "g": "woman, female",
             "gs": "jlpt"
           },
@@ -527,10 +502,36 @@
             "k": "plain"
           },
           {
-            "s": "ない",
-            "b": "ない",
+            "s": "、",
+            "k": "plain"
+          },
+          {
+            "s": "そで",
+            "k": "ghost",
+            "b": "そで",
+            "g": "sleeve",
+            "gs": "jlpt"
+          },
+          {
+            "s": "で",
+            "k": "plain"
+          },
+          {
+            "s": "かお",
             "k": "known",
-            "g": "there isn't, doesn't have",
+            "b": "かお",
+            "g": "face (body part)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "かくし",
+            "k": "ghost",
+            "b": "かくす",
+            "g": "to hide, to conceal",
             "gs": "jlpt"
           },
           {
@@ -539,8 +540,8 @@
           },
           {
             "s": "い",
-            "b": "いる",
             "k": "known",
+            "b": "いる",
             "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
@@ -561,11 +562,10 @@
       {
         "tokens": [
           {
-            "s": "女",
-            "r": "おんな",
-            "b": "女",
-            "k": "known",
-            "g": "woman, female",
+            "s": "しょうにん",
+            "k": "ghost",
+            "b": "しょうにん",
+            "g": "trader, shopkeeper, merchant",
             "gs": "jlpt"
           },
           {
@@ -573,80 +573,32 @@
             "k": "plain"
           },
           {
-            "s": "ふく",
-            "b": "ふく",
-            "k": "known",
-            "g": "to blow (wind, etc.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "で",
-            "k": "plain"
-          },
-          {
-            "s": "かお",
-            "b": "かお",
-            "k": "known",
-            "g": "face (body part)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "みえ",
-            "b": "みえる",
-            "k": "known",
-            "g": "to be visible; -- polite verb meaning 来る (くる) --",
-            "gs": "jlpt"
-          },
-          {
-            "s": "なく",
-            "k": "plain"
-          },
-          {
-            "s": "し",
-            "b": "する",
-            "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
             "s": "もう",
-            "b": "もう",
             "k": "known",
+            "b": "もう",
             "g": "already; again; more",
             "gs": "jlpt"
           },
           {
-            "s": "いちど",
-            "b": "いちど",
+            "s": "1",
+            "k": "plain"
+          },
+          {
+            "s": "ど",
+            "k": "plain"
+          },
+          {
+            "s": "やさしく",
             "k": "known",
-            "g": "once, one time",
+            "b": "やさしい",
+            "g": "easy, plain, simple",
             "gs": "jlpt"
           },
           {
             "s": "話し",
+            "k": "known",
             "r": "はなし",
             "b": "話す",
-            "k": "known",
             "g": "to speak",
             "gs": "jlpt"
           },
@@ -671,30 +623,73 @@
             "k": "plain"
           },
           {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "夜",
+            "k": "known",
+            "r": "よる",
+            "b": "夜",
+            "g": "evening, night",
+            "gs": "jlpt"
+          },
+          {
             "s": "に",
             "k": "plain"
           },
           {
-            "s": "い",
-            "b": "いる",
+            "s": "女",
             "k": "known",
+            "r": "おんな",
+            "b": "女",
+            "g": "woman, female",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "いる",
+            "k": "known",
+            "b": "いる",
             "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
           {
-            "s": "ない",
+            "s": "ば",
             "k": "plain"
+          },
+          {
+            "s": "しょ",
+            "k": "ghost",
+            "b": "しょ",
+            "g": "place",
+            "gs": "jlpt"
           },
           {
             "s": "で",
             "k": "plain"
           },
           {
-            "s": "ください",
-            "b": "くださる",
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "あり",
             "k": "known",
-            "g": "(hon.) to give, to confer",
+            "b": "ある",
+            "g": "to be, to have",
             "gs": "jlpt"
+          },
+          {
+            "s": "ませ",
+            "k": "plain"
+          },
+          {
+            "s": "ん",
+            "k": "plain"
           },
           {
             "s": "。",
@@ -706,51 +701,63 @@
         "tokens": [
           {
             "s": "どう",
-            "b": "どう",
             "k": "known",
+            "b": "どう",
             "g": "how, in what way",
             "gs": "jlpt"
           },
           {
-            "s": "し",
-            "b": "する",
+            "s": "すれ",
             "k": "known",
+            "b": "する",
             "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
             "gs": "jlpt"
           },
           {
-            "s": "たら",
+            "s": "ば",
             "k": "plain"
           },
           {
-            "s": "いい",
-            "b": "いい",
-            "k": "known",
-            "g": "good",
+            "s": "たすけ",
+            "k": "ghost",
+            "b": "たすける",
+            "g": "to help (v.t.), to save, to rescue",
             "gs": "jlpt"
+          },
+          {
+            "s": "られ",
+            "k": "ghost",
+            "b": "られる",
+            "g": "can / be (passive)",
+            "gs": "model"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
           },
           {
             "s": "か",
             "k": "plain"
           },
           {
-            "s": "教え",
-            "r": "おしえ",
-            "b": "教える",
-            "k": "known",
-            "g": "to teach, to inform, to instruct",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
+            "s": "と",
             "k": "plain"
           },
           {
-            "s": "ください",
-            "b": "くださる",
+            "s": "聞き",
             "k": "known",
-            "g": "(hon.) to give, to confer",
+            "r": "きき",
+            "b": "聞く",
+            "g": "to hear, to listen, to ask",
             "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
           },
           {
             "s": "。",
@@ -762,27 +769,21 @@
         "tokens": [
           {
             "s": "女",
+            "k": "known",
             "r": "おんな",
             "b": "女",
-            "k": "known",
             "g": "woman, female",
             "gs": "jlpt"
           },
           {
-            "s": "が",
+            "s": "は",
             "k": "plain"
           },
           {
-            "s": "ゆっくり",
-            "b": "ゆっくり",
+            "s": "立ち",
             "k": "known",
-            "g": "slowly, at ease",
-            "gs": "jlpt"
-          },
-          {
-            "s": "たち",
-            "b": "たつ",
-            "k": "known",
+            "r": "たち",
+            "b": "立つ",
             "g": "to stand up",
             "gs": "jlpt"
           },
@@ -795,15 +796,7 @@
             "k": "plain"
           },
           {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "でも",
+            "s": "が",
             "k": "plain"
           },
           {
@@ -811,18 +804,22 @@
             "k": "plain"
           },
           {
-            "s": "あちら",
-            "k": "plain"
+            "s": "後ろ",
+            "k": "known",
+            "r": "うしろ",
+            "b": "後ろ",
+            "g": "back, behind, rear",
+            "gs": "jlpt"
           },
           {
             "s": "を",
             "k": "plain"
           },
           {
-            "s": "み",
-            "b": "みる",
-            "k": "known",
-            "g": "to see, to look",
+            "s": "むい",
+            "k": "ghost",
+            "b": "むく",
+            "g": "to face",
             "gs": "jlpt"
           },
           {
@@ -831,8 +828,8 @@
           },
           {
             "s": "い",
-            "b": "いる",
             "k": "known",
+            "b": "いる",
             "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
@@ -853,10 +850,10 @@
       {
         "tokens": [
           {
-            "s": "ひと",
-            "b": "ひと",
-            "k": "known",
-            "g": "man, person",
+            "s": "しょうにん",
+            "k": "ghost",
+            "b": "しょうにん",
+            "g": "trader, shopkeeper, merchant",
             "gs": "jlpt"
           },
           {
@@ -865,9 +862,9 @@
           },
           {
             "s": "女",
+            "k": "known",
             "r": "おんな",
             "b": "女",
-            "k": "known",
             "g": "woman, female",
             "gs": "jlpt"
           },
@@ -877,8 +874,8 @@
           },
           {
             "s": "かた",
-            "b": "かた",
             "k": "known",
+            "b": "かた",
             "g": "-- honorific form for 人 (ひと) --; way of doing",
             "gs": "jlpt"
           },
@@ -888,9 +885,9 @@
           },
           {
             "s": "手",
+            "k": "known",
             "r": "て",
             "b": "手",
-            "k": "known",
             "g": "hand",
             "gs": "jlpt"
           },
@@ -899,10 +896,10 @@
             "k": "plain"
           },
           {
-            "s": "し",
-            "b": "する",
+            "s": "おき",
             "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "b": "おく",
+            "g": "to put; to lay; to place",
             "gs": "jlpt"
           },
           {
@@ -922,81 +919,14 @@
       {
         "tokens": [
           {
-            "s": "おんな",
-            "b": "おんな",
-            "k": "known",
-            "g": "woman, female",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "ひと",
-            "b": "ひと",
-            "k": "known",
-            "g": "man, person",
-            "gs": "jlpt"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "きい",
-            "b": "きく",
-            "k": "known",
-            "g": "to hear, to listen, to ask",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "ください",
-            "b": "くださる",
-            "k": "known",
-            "g": "(hon.) to give, to confer",
-            "gs": "jlpt"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "そう",
-            "b": "そう",
-            "k": "known",
-            "g": "yes; appears, to be the case",
-            "gs": "jlpt"
-          },
-          {
-            "s": "言っ",
-            "r": "いっ",
-            "b": "言う",
-            "k": "known",
-            "g": "to say",
-            "gs": "jlpt"
-          },
-          {
-            "s": "たら",
-            "k": "plain"
-          },
-          {
-            "s": "、",
+            "s": "すると",
             "k": "plain"
           },
           {
             "s": "女",
+            "k": "known",
             "r": "おんな",
             "b": "女",
-            "k": "known",
             "g": "woman, female",
             "gs": "jlpt"
           },
@@ -1005,18 +935,24 @@
             "k": "plain"
           },
           {
-            "s": "こちら",
-            "k": "plain"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "み",
-            "b": "みる",
+            "s": "ゆっくり",
             "k": "known",
-            "g": "to see, to look",
+            "b": "ゆっくり",
+            "g": "slowly, at ease",
+            "gs": "jlpt"
+          },
+          {
+            "s": "むき",
+            "k": "ghost",
+            "b": "むく",
+            "g": "to face",
+            "gs": "jlpt"
+          },
+          {
+            "s": "かえり",
+            "k": "known",
+            "b": "かえる",
+            "g": "to go back, to go home, to return",
             "gs": "jlpt"
           },
           {
@@ -1037,54 +973,20 @@
         "tokens": [
           {
             "s": "女",
+            "k": "known",
             "r": "おんな",
             "b": "女",
-            "k": "known",
             "g": "woman, female",
             "gs": "jlpt"
           },
           {
-            "s": "は",
+            "s": "が",
             "k": "plain"
           },
-          {
-            "s": "ふく",
-            "b": "ふく",
-            "k": "known",
-            "g": "to blow (wind, etc.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "さげ",
-            "b": "さげる",
-            "k": "known",
-            "g": "to lower (v.t.); to hang",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
           {
             "s": "かお",
-            "b": "かお",
             "k": "known",
+            "b": "かお",
             "g": "face (body part)",
             "gs": "jlpt"
           },
@@ -1093,63 +995,49 @@
             "k": "plain"
           },
           {
-            "s": "み",
-            "b": "みる",
+            "s": "出す",
             "k": "known",
-            "g": "to see, to look",
+            "r": "だす",
+            "b": "出す",
+            "g": "to take (something) out; to hand in (something)",
             "gs": "jlpt"
           },
           {
-            "s": "まし",
+            "s": "と",
             "k": "plain"
           },
           {
-            "s": "た",
+            "s": "、",
             "k": "plain"
           },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
           {
             "s": "目",
+            "k": "known",
             "r": "め",
             "b": "目",
-            "k": "known",
             "g": "eye(s)",
             "gs": "jlpt"
           },
           {
-            "s": "も",
+            "s": "や",
             "k": "plain"
           },
           {
-            "s": "はな",
-            "k": "plain"
-          },
-          {
-            "s": "も",
-            "k": "plain"
-          },
-          {
-            "s": "くち",
-            "b": "くちる",
+            "s": "口",
             "k": "known",
-            "g": "to rot",
+            "r": "くち",
+            "b": "口",
+            "g": "job opening; mouth",
             "gs": "jlpt"
           },
           {
-            "s": "も",
+            "s": "が",
             "k": "plain"
           },
           {
             "s": "あり",
-            "b": "ある",
             "k": "known",
+            "b": "ある",
             "g": "to be, to have",
             "gs": "jlpt"
           },
@@ -1178,10 +1066,10 @@
       {
         "tokens": [
           {
-            "s": "ひと",
-            "b": "ひと",
-            "k": "known",
-            "g": "man, person",
+            "s": "しょうにん",
+            "k": "ghost",
+            "b": "しょうにん",
+            "g": "trader, shopkeeper, merchant",
             "gs": "jlpt"
           },
           {
@@ -1189,9 +1077,13 @@
             "k": "plain"
           },
           {
+            "s": "、",
+            "k": "plain"
+          },
+          {
             "s": "おどろい",
-            "b": "おどろく",
             "k": "known",
+            "b": "おどろく",
             "g": "to be surprised, to be astonished",
             "gs": "jlpt"
           },
@@ -1201,8 +1093,8 @@
           },
           {
             "s": "にげ",
-            "b": "にげる",
             "k": "known",
+            "b": "にげる",
             "g": "to escape, to run away",
             "gs": "jlpt"
           },
@@ -1225,10 +1117,34 @@
       "prompt": {
         "tokens": [
           {
-            "s": "ひと",
-            "b": "ひと",
+            "s": "しょうにん",
+            "k": "ghost",
+            "b": "しょうにん",
+            "g": "trader, shopkeeper, merchant",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "見",
             "k": "known",
-            "g": "man, person",
+            "r": "み",
+            "b": "見る",
+            "g": "to see, to look",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "女",
+            "k": "known",
+            "r": "おんな",
+            "b": "女",
+            "g": "woman, female",
             "gs": "jlpt"
           },
           {
@@ -1236,60 +1152,14 @@
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "女",
-            "r": "おんな",
-            "b": "女",
-            "k": "known",
-            "g": "woman, female",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "かお",
-            "b": "かお",
-            "k": "known",
-            "g": "face (body part)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "み",
-            "b": "みる",
-            "k": "known",
-            "g": "to see, to look",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
             "s": "どう",
-            "b": "どう",
             "k": "known",
+            "b": "どう",
             "g": "how, in what way",
             "gs": "jlpt"
           },
           {
-            "s": "思い",
-            "r": "おもい",
-            "b": "思う",
-            "k": "known",
-            "g": "to think, to feel",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
+            "s": "でし",
             "k": "plain"
           },
           {
@@ -1310,26 +1180,32 @@
         {
           "tokens": [
             {
-              "s": "かなしい",
-              "b": "かなしい",
+              "s": "ぜんぜん",
               "k": "known",
-              "g": "sad, sorrowful",
+              "b": "ぜんぜん",
+              "g": "not at all; wholly, entirely",
               "gs": "jlpt"
             },
             {
-              "s": "と",
+              "s": "ない",
+              "k": "known",
+              "b": "ない",
+              "g": "there isn't, doesn't have",
+              "gs": "jlpt"
+            },
+            {
+              "s": "て",
               "k": "plain"
             },
             {
-              "s": "思い",
-              "r": "おもい",
-              "b": "思う",
+              "s": "い",
               "k": "known",
-              "g": "to think, to feel",
+              "b": "いる",
+              "g": "(humble) to be (animate), to exist",
               "gs": "jlpt"
             },
             {
-              "s": "まし",
+              "s": "なかっ",
               "k": "plain"
             },
             {
@@ -1345,15 +1221,35 @@
         {
           "tokens": [
             {
-              "s": "おどろき",
-              "b": "おどろく",
+              "s": "目",
               "k": "known",
-              "g": "to be surprised, to be astonished",
+              "r": "め",
+              "b": "目",
+              "g": "eye(s)",
               "gs": "jlpt"
             },
             {
-              "s": "まし",
+              "s": "や",
               "k": "plain"
+            },
+            {
+              "s": "口",
+              "k": "known",
+              "r": "くち",
+              "b": "口",
+              "g": "job opening; mouth",
+              "gs": "jlpt"
+            },
+            {
+              "s": "が",
+              "k": "plain"
+            },
+            {
+              "s": "なかっ",
+              "k": "known",
+              "b": "ない",
+              "g": "there isn't, doesn't have",
+              "gs": "jlpt"
             },
             {
               "s": "た",
@@ -1368,31 +1264,31 @@
         {
           "tokens": [
             {
-              "s": "きれい",
-              "b": "きれい",
+              "s": "服",
               "k": "known",
-              "g": "pretty, clean, tidy",
+              "r": "ふく",
+              "b": "服",
+              "g": "clothes",
               "gs": "jlpt"
             },
             {
-              "s": "だ",
+              "s": "が",
               "k": "plain"
             },
             {
-              "s": "と",
-              "k": "plain"
-            },
-            {
-              "s": "思い",
-              "r": "おもい",
-              "b": "思う",
+              "s": "とても",
               "k": "known",
-              "g": "to think, to feel",
+              "b": "とても",
+              "g": "very (much), greatly, exceedingly",
               "gs": "jlpt"
             },
             {
-              "s": "まし",
-              "k": "plain"
+              "s": "古かっ",
+              "k": "known",
+              "r": "ふるかっ",
+              "b": "古い",
+              "g": "old (in reference to objects, not people), aged, ancient",
+              "gs": "jlpt"
             },
             {
               "s": "た",
@@ -1408,26 +1304,219 @@
       "answer": 1
     },
     "metrics": {
-      "kanjiCoverage": 0.8333333333333334,
-      "kanjiDensity": 0.07430340557275542,
-      "firstCoverage": 0.782051282051282,
-      "finalCoverage": 1,
-      "retries": 3,
-      "seconds": 28.85325,
+      "kanjiCoverage": 1,
+      "kanjiDensity": 0.09933774834437085,
+      "firstCoverage": 0.75,
+      "finalCoverage": 0.7611940298507462,
+      "retries": 9,
+      "seconds": 41.7050268,
       "offendingFirst": [
         "商人",
+        "助ける",
+        "袖",
+        "隠す",
+        "もう一度",
+        "られる",
+        "向く",
+        "肩",
+        "びっくり"
+      ],
+      "ghostWords": [
+        "しょうにん",
         "しんぱい",
         "たすける",
         "そで",
         "かくす",
-        "とどまる",
-        "せる",
-        "むく",
-        "おろす",
-        "びっくり"
+        "しょ",
+        "られる",
+        "むく"
       ],
-      "ghostWords": []
+      "faithIssues": [
+        {
+          "sentence": "女がかおを出すと、目や口がありませんでした。",
+          "problem": "The original states there were no eyes, nose, or mouth (目も鼻も口もない). The nose (鼻) is missing from the retelling.",
+          "kind": "event"
+        }
+      ]
     }
   },
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "levelRepairs": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 貉（むじな）、濠（ほり）、蕎麦屋（そばや）、紀伊国坂（きいのくにざか）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nこの商人がある晩おそく紀国坂を急いで登って行くと、ただひとり濠の縁に踞んで、ひどく泣いている女を見た。身を投げるのではないかと心配して、商人は足をとどめ、自分の力に及ぶだけの助力、もしくは慰藉を与えようとした。女は華奢な上品な人らしく、服装も綺麗であったし、それから髪は良家の若い娘のそれのように結ばれていた。――『お女中』と商人は女に近寄って声をかけた――『お女中、そんなにお泣きなさるな！……何がお困りなのか、私に仰しゃい。その上でお助けをする道があれば、喜んでお助け申しましょう』（実際、男は自分の云った通りの事をする積りであった。何となれば、この人は非常に深切な人であったから。）しかし女は泣き続けていた――その長い一方の袖を以て商人に顔を隠して。『お女中』と出来る限りやさしく商人は再び云った――『どうぞ、どうぞ、私の言葉を聴いて下さい！……ここは夜若い御婦人などの居るべき場処ではありません！　御頼み申すから、お泣きなさるな！――どうしたら少しでも、お助けをする事が出来るのか、それを云って下さい！』徐ろに女は起ち上ったが、商人には背中を向けていた。そしてその袖のうしろで呻き咽びつづけていた。商人はその手を軽く女の肩の上に置いて説き立てた――『お女中！――お女中！――お女中！　私の言葉をお聴きなさい。ただちょっとでいいから！……お女中！――お女中！』……するとそのお女中なるものは向きかえった。そしてその袖を下に落し、手で自分の顔を撫でた――見ると目も鼻も口もない――きゃッと声をあげて商人は逃げ出した。\nCurrent retelling:\nある夜、しょうにんが紀伊国坂をのぼりました。\nすると、濠のそばでなく女がいました。\nしょうにんは女がしんぱいだと思いました。\n女はきれいな服を着ていました。\nしょうにんは女に、どうしましたかと言いました。\nしょうにんは女をたすけたいと思いました。\nしかし女は、そででかおをかくしてないています。\nしょうにんはもう1どやさしく話しました。\nここは夜に女がいるばしょではありません。\nどうすればたすけられますかと言いました。\n女は立ちましたが、後ろをむいていました。\nしょうにんが女のかたにてをおきました。\nすると女がゆっくりむきました。\n女がかおを出すと、目や口がありませんでした。\nしょうにんはびっくりしてにげました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.1016949152542373,\"meanLength\":19.666666666666668,\"advancedShare\":0.21875}; vocabulary 0.75. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: しょうにん、しんぱい、たすける、そで、かくす、しょ、られる、むく、ょうにんはびっくりしてにげました. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentencesにつながる\": null, \"sentences\": [\"ある夜、商人が紀伊国坂をのぼりました。\", \"すると、濠のそばで泣く女がいました。\", \"商人は女がしんぱいだと思いました。\", \"女はとてもきれいな服を着ていました。\", \"商人は女に、どうしましたかと言いました。\", \"商人は女をたすけたいと思いました。\", \"しかし女は、そででかおをかくしていました。\", \"商人はもう1どやさしく話しました。\", \"ここは夜に女がいるばしょではありません。\", \"どうすればたすけられますかと言いました。\", \"女は立ちましたが、後ろをむいていました。\", \"商人が女のかたに手をおきました。\", \"すると女がゆっくりむきました。\", \"女がかおを出すと、目や口がありませんでした。\", \"商人はおどろいてにげました。\"], \"question\": {\"prompt\": \"女のかおはどうでしたか。\", \"options\": [\"とてもきれいでした。\", \"目や口がありませんでした。\", \"泣いていました。\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 貉（むじな）、濠（ほり）、蕎麦屋（そばや）、紀伊国坂（きいのくにざか）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nこの商人がある晩おそく紀国坂を急いで登って行くと、ただひとり濠の縁に踞んで、ひどく泣いている女を見た。身を投げるのではないかと心配して、商人は足をとどめ、自分の力に及ぶだけの助力、もしくは慰藉を与えようとした。女は華奢な上品な人らしく、服装も綺麗であったし、それから髪は良家の若い娘のそれのように結ばれていた。――『お女中』と商人は女に近寄って声をかけた――『お女中、そんなにお泣きなさるな！……何がお困りなのか、私に仰しゃい。その上でお助けをする道があれば、喜んでお助け申しましょう』（実際、男は自分の云った通りの事をする積りであった。何となれば、この人は非常に深切な人であったから。）しかし女は泣き続けていた――その長い一方の袖を以て商人に顔を隠して。『お女中』と出来る限りやさしく商人は再び云った――『どうぞ、どうぞ、私の言葉を聴いて下さい！……ここは夜若い御婦人などの居るべき場処ではありません！　御頼み申すから、お泣きなさるな！――どうしたら少しでも、お助けをする事が出来るのか、それを云って下さい！』徐ろに女は起ち上ったが、商人には背中を向けていた。そしてその袖のうしろで呻き咽びつづけていた。商人はその手を軽く女の肩の上に置いて説き立てた――『お女中！――お女中！――お女中！　私の言葉をお聴きなさい。ただちょっとでいいから！……お女中！――お女中！』……するとそのお女中なるものは向きかえった。そしてその袖を下に落し、手で自分の顔を撫でた――見ると目も鼻も口もない――きゃッと声をあげて商人は逃げ出した。\nCurrent retelling:\nある夜、しょうにんが紀伊国坂をのぼりました。\nすると、濠のそばでなく女がいました。\nしょうにんは女がしんぱいだと思いました。\n女はとてもきれいな服を着ていました。\nしょうにんは女に、どうしましたかと言いました。\nしょうにんは女をたすけたいと思いました。\nしかし女は、そででかおをかくしていました。\nしょうにんはもう1どやさしく話しました。\nここは夜に女がいるばしょではありません。\nどうすればたすけられますかと言いました。\n女は立ちましたが、後ろをむいていました。\nしょうにんが女のかたに手をおきました。\nすると女がゆっくりむきました。\n女がかおを出すと、目や口がありませんでした。\nしょうにんはおどろいてにげました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.10508474576271186,\"meanLength\":19.666666666666668,\"advancedShare\":0.25757575757575757}; vocabulary 0.7575757575757576. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: しょうにん、しんぱい、たすける、そで、かくす、しょ、られる、むく. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"ある夜、商人が紀伊国坂をのぼりました。\", \"すると、濠のそばで泣く女がいました。\", \"商人は女が心配だと思いました。\", \"女はとてもきれいな服を着ていました。\", \"商人は女に、どうしましたかと言いました。\", \"商人は女をたすけたいと思いました。\", \"しかし女は、そででかおをかくしていました。\", \"商人はもう1どやさしく話しました。\", \"ここは夜に女がいるばしょではありません。\", \"どうすればたすけられますかと言いました。\", \"女は立ちましたが、後ろをむいていました。\", \"商人が女のかたに手をおきました。\", \"すると女がゆっくりむきました。\", \"女がかおを出すと、目や口がありませんでした。\", \"商人はおどろいてにげました。\"], \"question\": {\"prompt\": \"女のかおはどうでしたか。\", \"options\": [\"とてもきれいでした。\", \"目や口がありませんでした。\", \"泣いていました。\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 貉（むじな）、濠（ほり）、蕎麦屋（そばや）、紀伊国坂（きいのくにざか）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nこの商人がある晩おそく紀国坂を急いで登って行くと、ただひとり濠の縁に踞んで、ひどく泣いている女を見た。身を投げるのではないかと心配して、商人は足をとどめ、自分の力に及ぶだけの助力、もしくは慰藉を与えようとした。女は華奢な上品な人らしく、服装も綺麗であったし、それから髪は良家の若い娘のそれのように結ばれていた。――『お女中』と商人は女に近寄って声をかけた――『お女中、そんなにお泣きなさるな！……何がお困りなのか、私に仰しゃい。その上でお助けをする道があれば、喜んでお助け申しましょう』（実際、男は自分の云った通りの事をする積りであった。何となれば、この人は非常に深切な人であったから。）しかし女は泣き続けていた――その長い一方の袖を以て商人に顔を隠して。『お女中』と出来る限りやさしく商人は再び云った――『どうぞ、どうぞ、私の言葉を聴いて下さい！……ここは夜若い御婦人などの居るべき場処ではありません！　御頼み申すから、お泣きなさるな！――どうしたら少しでも、お助けをする事が出来るのか、それを云って下さい！』徐ろに女は起ち上ったが、商人には背中を向けていた。そしてその袖のうしろで呻き咽びつづけていた。商人はその手を軽く女の肩の上に置いて説き立てた――『お女中！――お女中！――お女中！　私の言葉をお聴きなさい。ただちょっとでいいから！……お女中！――お女中！』……するとそのお女中なるものは向きかえった。そしてその袖を下に落し、手で自分の顔を撫でた――見ると目も鼻も口もない――きゃッと声をあげて商人は逃げ出した。\nCurrent retelling:\nある夜、しょうにんが紀伊国坂をのぼりました。\nすると、濠のそばでなく女がいました。\nしょうにんは女がしんぱいだと思いました。\n女はとてもきれいな服を着ていました。\nしょうにんは女に、どうしましたかと言いました。\nしょうにんは女をたすけたいと思いました。\nしかし女は、そででかおをかくしていました。\nしょうにんはもう1どやさしく話しました。\nここは夜に女がいるばしょではありません。\nどうすればたすけられますかと言いました。\n女は立ちましたが、後ろをむいていました。\nしょうにんが女のかたに手をおきました。\nすると女がゆっくりむきました。\n女がかおを出すと、目や口がありませんでした。\nしょうにんはおどろいてにげました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.10508474576271186,\"meanLength\":19.666666666666668,\"advancedShare\":0.25757575757575757}; vocabulary 0.7575757575757576. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: しょうにん、しんぱい、たすける、そで、かくす、しょ、られる、むく. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"ある夜、あきんどが紀伊国坂をのぼりました。\", \"すると、濠のそばでなく女がいました。\", \"あきんどは、女がしんぱいだと思いました。\", \"女はとてもきれいな服を着ていました。\", \"あきんどは女に、どうしましたかと言いました。\", \"あきんどは、女をたすけたいと思いました。\", \"しかし女は、そででかおをかくしていました。\", \"あきんどはもう1どやさしく話しました。\", \"ここは夜に女がいるばしょではありません。\", \"どうすればたすけられますかと言いました。\", \"女は立ちましたが、後ろをむいていました。\", \"あきんどが女のかたに手をおきました。\", \"すると女がゆっくりむきました。\", \"女がかおを出すと、目や口がありませんでした。\", \"あきんどはおどろいてにげました。\"], \"question\": {\"prompt\": \"女のかおはどうでしたか。\", \"options\": [\"とてもきれいでした。\", \"目や口がありませんでした。\", \"とてもこわい顔でした。\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: しんぱい、られる. Return JSON {\"glosses\":{\"しんぱい\":\"English gloss\",\"られる\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"しんぱい\": \"worry\", \"られる\": \"passive/potential marker\"}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 貉（むじな）、濠（ほり）、蕎麦屋（そばや）、紀伊国坂（きいのくにざか）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nこの商人がある晩おそく紀国坂を急いで登って行くと、ただひとり濠の縁に踞んで、ひどく泣いている女を見た。身を投げるのではないかと心配して、商人は足をとどめ、自分の力に及ぶだけの助力、もしくは慰藉を与えようとした。女は華奢な上品な人らしく、服装も綺麗であったし、それから髪は良家の若い娘のそれのように結ばれていた。――『お女中』と商人は女に近寄って声をかけた――『お女中、そんなにお泣きなさるな！……何がお困りなのか、私に仰しゃい。その上でお助けをする道があれば、喜んでお助け申しましょう』（実際、男は自分の云った通りの事をする積りであった。何となれば、この人は非常に深切な人であったから。）しかし女は泣き続けていた――その長い一方の袖を以て商人に顔を隠して。『お女中』と出来る限りやさしく商人は再び云った――『どうぞ、どうぞ、私の言葉を聴いて下さい！……ここは夜若い御婦人などの居るべき場処ではありません！　御頼み申すから、お泣きなさるな！――どうしたら少しでも、お助けをする事が出来るのか、それを云って下さい！』徐ろに女は起ち上ったが、商人には背中を向けていた。そしてその袖のうしろで呻き咽びつづけていた。商人はその手を軽く女の肩の上に置いて説き立てた――『お女中！――お女中！――お女中！　私の言葉をお聴きなさい。ただちょっとでいいから！……お女中！――お女中！』……するとそのお女中なるものは向きかえった。そしてその袖を下に落し、手で自分の顔を撫でた――見ると目も鼻も口もない――きゃッと声をあげて商人は逃げ出した。\nCurrent retelling:\nある夜、あきんどが紀伊国坂をのぼりました。\nすると、濠のそばでないている女がいました。\nあきんどは、女がしんぱいだと思いました。\n女はとてもきれいな服を着ていました。\nあきんどは女に、どうしましたかと言いました。\nあきんどは、女をたすけたいと思いました。\nしかし女は、そででかおをかくしていました。\nあきんどはもう1どやさしく話しました。\nここは夜に女がいるばしょではありません。\nどうすればたすけられますかと言いました。\n女は立ちましたが、後ろをむいていました。\nあきんどが女のかたに手をおきました。\nすると女がゆっくりむきました。\n女がかおを出すと、目や口がありませんでした。\nあきんどはおどろいてにげました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.10580204778156997,\"meanLength\":19.533333333333335,\"advancedShare\":0.2537313432835821}; vocabulary 0.7611940298507462. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: あきる、しんぱい、たすける、そで、かくす、しょ、られる、むく. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"ある夜、あきんどが紀伊国坂をのぼりました。\", \"すると、濠のそばで泣いている女がいました。\", \"あきんどは、女がしんぱいだと思いました。\", \"女はとてもきれいな服を着ていました。\", \"あきんどは、どうしましたかと話しました。\", \"あきんどは、女をたすけたいと思いました。\", \"しかし女は、そででかおをかくしていました。\", \"あきんどはもう1どやさしく話しました。\", \"ここは夜に女がいるばしょではありません。\", \"どうすればたすけられますかと聞きました。\", \"女は立ちましたが、後ろを向いていました。\", \"あきんどが女のかたに手をおきました。\", \"すると女がゆっくり向きかえりました。\", \"女がかおを出すと、目や口がありませんでした。\", \"あきんどは、おどろいてにげました。\"], \"question\": {\"prompt\": \"女のかおはどうでしたか。\", \"options\": [\"とてもきれいでした。\", \"目や口がありませんでした。\", \"泣いていました。\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 貉（むじな）、濠（ほり）、蕎麦屋（そばや）、紀伊国坂（きいのくにざか）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nこの商人がある晩おそく紀国坂を急いで登って行くと、ただひとり濠の縁に踞んで、ひどく泣いている女を見た。身を投げるのではないかと心配して、商人は足をとどめ、自分の力に及ぶだけの助力、もしくは慰藉を与えようとした。女は華奢な上品な人らしく、服装も綺麗であったし、それから髪は良家の若い娘のそれのように結ばれていた。――『お女中』と商人は女に近寄って声をかけた――『お女中、そんなにお泣きなさるな！……何がお困りなのか、私に仰しゃい。その上でお助けをする道があれば、喜んでお助け申しましょう』（実際、男は自分の云った通りの事をする積りであった。何となれば、この人は非常に深切な人であったから。）しかし女は泣き続けていた――その長い一方の袖を以て商人に顔を隠して。『お女中』と出来る限りやさしく商人は再び云った――『どうぞ、どうぞ、私の言葉を聴いて下さい！……ここは夜若い御婦人などの居るべき場処ではありません！　御頼み申すから、お泣きなさるな！――どうしたら少しでも、お助けをする事が出来るのか、それを云って下さい！』徐ろに女は起ち上ったが、商人には背中を向けていた。そしてその袖のうしろで呻き咽びつづけていた。商人はその手を軽く女の肩の上に置いて説き立てた――『お女中！――お女中！――お女中！　私の言葉をお聴きなさい。ただちょっとでいいから！……お女中！――お女中！』……するとそのお女中なるものは向きかえった。そしてその袖を下に落し、手で自分の顔を撫でた――見ると目も鼻も口もない――きゃッと声をあげて商人は逃げ出した。\nCurrent retelling:\nある夜、あきんどが紀伊国坂をのぼりました。\nすると、濠のそばでないている女がいました。\nあきんどは、女がしんぱいだと思いました。\n女はとてもきれいな服を着ていました。\nあきんどは、どうしましたかと話しました。\nあきんどは、女をたすけたいと思いました。\nしかし女は、そででかおをかくしていました。\nあきんどはもう1どやさしく話しました。\nここは夜に女がいるばしょではありません。\nどうすればたすけられますかと聞きました。\n女は立ちましたが、後ろをむいていました。\nあきんどが女のかたに手をおきました。\nすると女がゆっくりむきかえりました。\n女がかおを出すと、目や口がありませんでした。\nあきんどは、おどろいてにげました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.1016949152542373,\"meanLength\":19.666666666666668,\"advancedShare\":0.2537313432835821}; vocabulary 0.7611940298507462. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: あきる、しんぱい、たすける、そで、かくす、しょ、られる、むく. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentencesട്ടെ\": [\"ある夜、商人が紀伊国坂をのぼりました。\", \"すると、濠のそばで泣いている女がいました。\", \"商人は、女がしんぱいだと思いました。\", \"女はとてもきれいな服を着ていました。\", \"商人は、どうしましたかと話しました。\", \"商人は、女をたすけたいと思いました。\", \"しかし女は、そでで顔をかくしていました。\", \"商人はもう1どやさしく話しました。\", \"ここは夜に女がいる場所ではありません。\", \"どうすればたすけられますかと聞きました。\", \"女は立ちましたが、後ろを向いていました。\", \"商人が女の肩に手をおきました。\", \"すると女がゆっくり向きかえりました。\", \"女が顔を出すと、目や口がありませんでした。\", \"商人は、おどろいて逃げました。\"], \"question\": {\"prompt\": \"女の顔はどうでしたか。\", \"options\": [\"とてもきれいでした。\", \"目や口がありませんでした。\", \"とても大きな口がありました。\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 貉（むじな）、濠（ほり）、蕎麦屋（そばや）、紀伊国坂（きいのくにざか）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nこの商人がある晩おそく紀国坂を急いで登って行くと、ただひとり濠の縁に踞んで、ひどく泣いている女を見た。身を投げるのではないかと心配して、商人は足をとどめ、自分の力に及ぶだけの助力、もしくは慰藉を与えようとした。女は華奢な上品な人らしく、服装も綺麗であったし、それから髪は良家の若い娘のそれのように結ばれていた。――『お女中』と商人は女に近寄って声をかけた――『お女中、そんなにお泣きなさるな！……何がお困りなのか、私に仰しゃい。その上でお助けをする道があれば、喜んでお助け申しましょう』（実際、男は自分の云った通りの事をする積りであった。何となれば、この人は非常に深切な人であったから。）しかし女は泣き続けていた――その長い一方の袖を以て商人に顔を隠して。『お女中』と出来る限りやさしく商人は再び云った――『どうぞ、どうぞ、私の言葉を聴いて下さい！……ここは夜若い御婦人などの居るべき場処ではありません！　御頼み申すから、お泣きなさるな！――どうしたら少しでも、お助けをする事が出来るのか、それを云って下さい！』徐ろに女は起ち上ったが、商人には背中を向けていた。そしてその袖のうしろで呻き咽びつづけていた。商人はその手を軽く女の肩の上に置いて説き立てた――『お女中！――お女中！――お女中！　私の言葉をお聴きなさい。ただちょっとでいいから！……お女中！――お女中！』……するとそのお女中なるものは向きかえった。そしてその袖を下に落し、手で自分の顔を撫でた――見ると目も鼻も口もない――きゃッと声をあげて商人は逃げ出した。\nCurrent retelling:\nある夜、あきんどが紀伊国坂をのぼりました。\nすると、濠のそばでないている女がいました。\nあきんどは、女がしんぱいだと思いました。\n女はとてもきれいな服を着ていました。\nあきんどは、どうしましたかと話しました。\nあきんどは、女をたすけたいと思いました。\nしかし女は、そででかおをかくしていました。\nあきんどはもう1どやさしく話しました。\nここは夜に女がいるばしょではありません。\nどうすればたすけられますかと聞きました。\n女は立ちましたが、後ろをむいていました。\nあきんどが女のかたに手をおきました。\nすると女がゆっくりむきかえりました。\n女がかおを出すと、目や口がありませんでした。\nあきんどは、おどろいてにげました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.1016949152542373,\"meanLength\":19.666666666666668,\"advancedShare\":0.2537313432835821}; vocabulary 0.7611940298507462. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: あきる、しんぱい、たすける、そで、かくす、しょ、られる、むく. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"sentencesട്ടെ\": [\"ある夜、商人が紀伊国坂をのぼりました。\", \"すると、濠のそばで泣いている女がいました。\", \"商人は、女がしんぱいだと思いました。\", \"女はとてもきれいな服を着ていました。\", \"商人は、どうしましたかと話しました。\", \"商人は、女をたすけたいと思いました。\", \"しかし女は、そでで顔をかくしていました。\", \"商人はもう1どやさしく話しました。\", \"ここは夜に女がいる場所ではありません。\", \"どうすればたすけられますかと聞きました。\", \"女は立ちましたが、後ろを向いていました。\", \"商人が女の肩に手をおきました。\", \"すると女がゆっくり向きかえりました。\", \"女が顔を出すと、目や口がありませんでした。\", \"商人は、おどろいて逃げました。\"], \"question\": {\"prompt\": \"女の顔はどうでしたか。\", \"options\": [\"とてもきれいでした。\", \"目や口がありませんでした。\", \"とても大きな口がありました。\"], \"answer\": 1}}"
+        },
+        {
+          "role": "user",
+          "content": "Return valid JSON only. Validation: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"array\",\n    \"received\": \"undefined\",\n    \"path\": [\n      \"sentences\"\n    ],\n    \"message\": \"Required\"\n  }\n]"
+        }
+      ],
+      "response": "{\"sentences\": [\"ある夜、商人が紀伊国坂をのぼりました。\", \"すると、濠のそばで泣いている女がいました。\", \"商人は、女がしんぱいだと思いました。\", \"女はとてもきれいな服を着ていました。\", \"商人は、どうしましたかと話しました。\", \"商人は、女をたすけたいと思いました。\", \"しかし女は、そでで顔をかくしていました。\", \"商人はもう1どやさしく話しました。\", \"ここは夜に女がいる場所ではありません。\", \"どうすればたすけられますかと聞きました。\", \"女は立ちましたが、後ろを向いていました。\", \"商人が女の肩に手をおきました。\", \"すると女がゆっくり向きかえりました。\", \"女が顔を出すと、目や口がありませんでした。\", \"商人は、おどろいて逃げました。\"], \"question\": {\"prompt\": \"女の顔はどうでしたか。\", \"options\": [\"とてもきれいでした。\", \"目や口がありませんでした。\", \"とても大きな口がありました。\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 貉（むじな）、濠（ほり）、蕎麦屋（そばや）、紀伊国坂（きいのくにざか）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\nこの商人がある晩おそく紀国坂を急いで登って行くと、ただひとり濠の縁に踞んで、ひどく泣いている女を見た。身を投げるのではないかと心配して、商人は足をとどめ、自分の力に及ぶだけの助力、もしくは慰藉を与えようとした。女は華奢な上品な人らしく、服装も綺麗であったし、それから髪は良家の若い娘のそれのように結ばれていた。――『お女中』と商人は女に近寄って声をかけた――『お女中、そんなにお泣きなさるな！……何がお困りなのか、私に仰しゃい。その上でお助けをする道があれば、喜んでお助け申しましょう』（実際、男は自分の云った通りの事をする積りであった。何となれば、この人は非常に深切な人であったから。）しかし女は泣き続けていた――その長い一方の袖を以て商人に顔を隠して。『お女中』と出来る限りやさしく商人は再び云った――『どうぞ、どうぞ、私の言葉を聴いて下さい！……ここは夜若い御婦人などの居るべき場処ではありません！　御頼み申すから、お泣きなさるな！――どうしたら少しでも、お助けをする事が出来るのか、それを云って下さい！』徐ろに女は起ち上ったが、商人には背中を向けていた。そしてその袖のうしろで呻き咽びつづけていた。商人はその手を軽く女の肩の上に置いて説き立てた――『お女中！――お女中！――お女中！　私の言葉をお聴きなさい。ただちょっとでいいから！……お女中！――お女中！』……するとそのお女中なるものは向きかえった。そしてその袖を下に落し、手で自分の顔を撫でた――見ると目も鼻も口もない――きゃッと声をあげて商人は逃げ出した。\nCurrent retelling:\nある夜、しょうにんが紀伊国坂をのぼりました。\nすると、濠のそばでないている女がいました。\nしょうにんは、女がしんぱいだと思いました。\n女はとてもきれいな服を着ていました。\nしょうにんは、どうしましたかと話しました。\nしょうにんは、女をたすけたいと思いました。\nしかし女は、そででかおをかくしていました。\nしょうにんはもう1どやさしく話しました。\nここは夜に女がいるばしょではありません。\nどうすればたすけられますかと聞きました。\n女は立ちましたが、後ろをむいていました。\nしょうにんが女のかたに手をおきました。\nすると女がゆっくりむきかえりました。\n女がかおを出すと、目や口がありませんでした。\nしょうにんは、おどろいてにげました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.09933774834437085,\"meanLength\":20.133333333333333,\"advancedShare\":0.2537313432835821}; vocabulary 0.7611940298507462. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: しょうにん、しんぱい、たすける、そで、かくす、しょ、られる、むく. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"ある夜、商人が紀伊国坂をのぼりました。\", \"すると、濠のそばで泣いている女がいました。\", \"商人は、女が心配だと思いました。\", \"女はとてもきれいな服を着ていました。\", \"商人は、どうしましたかと話しました。\", \"商人は、女をたすけたいと思いました。\", \"しかし女は、そででかおをかくしていました。\", \"商人はもう1どやさしく話しました。\", \"ここは夜に女がいるばしょではありません。\", \"どうすればたすけられますかと聞きました。\", \"女は立ちましたが、後ろをむいていました。\", \"商人が女のかたに手をおきました。\", \"すると女がゆっくりむきかえりました。\", \"女がかおを出すと、目や口がありませんでした。\", \"商人は、おどろいてにげました。\"], \"question\": {\"prompt\": \"女のかおはどうでしたか。\", \"options\": [\"とてもきれいでした。\", \"目や口がありませんでした。\", \"泣いていました。\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: しんぱい、られる. Return JSON {\"glosses\":{\"しんぱい\":\"English gloss\",\"られる\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"しんぱい\": \"worry\", \"られる\": \"can / be (passive)\"}}"
+    }
+  ],
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling; for a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\nこの商人がある晩おそく紀国坂を急いで登って行くと、ただひとり濠の縁に踞んで、ひどく泣いている女を見た。身を投げるのではないかと心配して、商人は足をとどめ、自分の力に及ぶだけの助力、もしくは慰藉を与えようとした。女は華奢な上品な人らしく、服装も綺麗であったし、それから髪は良家の若い娘のそれのように結ばれていた。――『お女中』と商人は女に近寄って声をかけた――『お女中、そんなにお泣きなさるな！……何がお困りなのか、私に仰しゃい。その上でお助けをする道があれば、喜んでお助け申しましょう』（実際、男は自分の云った通りの事をする積りであった。何となれば、この人は非常に深切な人であったから。）しかし女は泣き続けていた――その長い一方の袖を以て商人に顔を隠して。『お女中』と出来る限りやさしく商人は再び云った――『どうぞ、どうぞ、私の言葉を聴いて下さい！……ここは夜若い御婦人などの居るべき場処ではありません！　御頼み申すから、お泣きなさるな！――どうしたら少しでも、お助けをする事が出来るのか、それを云って下さい！』徐ろに女は起ち上ったが、商人には背中を向けていた。そしてその袖のうしろで呻き咽びつづけていた。商人はその手を軽く女の肩の上に置いて説き立てた――『お女中！――お女中！――お女中！　私の言葉をお聴きなさい。ただちょっとでいいから！……お女中！――お女中！』……するとそのお女中なるものは向きかえった。そしてその袖を下に落し、手で自分の顔を撫でた――見ると目も鼻も口もない――きゃッと声をあげて商人は逃げ出した。\n\n語り直し:\nある夜、あきんどが紀伊国坂をのぼりました。\nすると、濠のそばでなく女がいました。\nあきんどは、女がしんぱいだと思いました。\n女はとてもきれいな服を着ていました。\nあきんどは女に、どうしましたかと言いました。\nあきんどは、女をたすけたいと思いました。\nしかし女は、そででかおをかくしていました。\nあきんどはもう1どやさしく話しました。\nここは夜に女がいるばしょではありません。\nどうすればたすけられますかと言いました。\n女は立ちましたが、後ろをむいていました。\nあきんどが女のかたに手をおきました。\nすると女がゆっくりむきました。\n女がかおを出すと、目や口がありませんでした。\nあきんどはおどろいてにげました。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"すると、濠のそばでなく女がいました。\", \"problem\": \"The original says she was sitting by the moat (濠の縁に踞んで). 'でなく' means 'not', which contradicts the original. Correction: '濠のそばで泣いている女がいました。'\", \"kind\": \"event\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling; for a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\nこの商人がある晩おそく紀国坂を急いで登って行くと、ただひとり濠の縁に踞んで、ひどく泣いている女を見た。身を投げるのではないかと心配して、商人は足をとどめ、自分の力に及ぶだけの助力、もしくは慰藉を与えようとした。女は華奢な上品な人らしく、服装も綺麗であったし、それから髪は良家の若い娘のそれのように結ばれていた。――『お女中』と商人は女に近寄って声をかけた――『お女中、そんなにお泣きなさるな！……何がお困りなのか、私に仰しゃい。その上でお助けをする道があれば、喜んでお助け申しましょう』（実際、男は自分の云った通りの事をする積りであった。何となれば、この人は非常に深切な人であったから。）しかし女は泣き続けていた――その長い一方の袖を以て商人に顔を隠して。『お女中』と出来る限りやさしく商人は再び云った――『どうぞ、どうぞ、私の言葉を聴いて下さい！……ここは夜若い御婦人などの居るべき場処ではありません！　御頼み申すから、お泣きなさるな！――どうしたら少しでも、お助けをする事が出来るのか、それを云って下さい！』徐ろに女は起ち上ったが、商人には背中を向けていた。そしてその袖のうしろで呻き咽びつづけていた。商人はその手を軽く女の肩の上に置いて説き立てた――『お女中！――お女中！――お女中！　私の言葉をお聴きなさい。ただちょっとでいいから！……お女中！――お女中！』……するとそのお女中なるものは向きかえった。そしてその袖を下に落し、手で自分の顔を撫でた――見ると目も鼻も口もない――きゃッと声をあげて商人は逃げ出した。\n\n語り直し:\nある夜、しょうにんが紀伊国坂をのぼりました。\nすると、濠のそばでないている女がいました。\nしょうにんは、女がしんぱいだと思いました。\n女はとてもきれいな服を着ていました。\nしょうにんは、どうしましたかと話しました。\nしょうにんは、女をたすけたいと思いました。\nしかし女は、そででかおをかくしていました。\nしょうにんはもう1どやさしく話しました。\nここは夜に女がいるばしょではありません。\nどうすればたすけられますかと聞きました。\n女は立ちましたが、後ろをむいていました。\nしょうにんが女のかたに手をおきました。\nすると女がゆっくりむきかえりました。\n女がかおを出すと、目や口がありませんでした。\nしょうにんは、おどろいてにげました。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"女がかおを出すと、目や口がありませんでした。\", \"problem\": \"The original states there were no eyes, nose, or mouth (目も鼻も口もない). The nose (鼻) is missing from the retelling.\", \"kind\": \"event\"}]}"
+      }
+    ],
+    "rewrites": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Repair only the specified sentences at JLPT N4. Preserve all other sentences and events. Use natural Japanese, numeric digits for numbers, and maintain the meaning of the original. Return only JSON {\"rewrites\":[{\"index\":0,\"sentence\":\"...\"}]}."
+          },
+          {
+            "role": "user",
+            "content": "Original:\nこの商人がある晩おそく紀国坂を急いで登って行くと、ただひとり濠の縁に踞んで、ひどく泣いている女を見た。身を投げるのではないかと心配して、商人は足をとどめ、自分の力に及ぶだけの助力、もしくは慰藉を与えようとした。女は華奢な上品な人らしく、服装も綺麗であったし、それから髪は良家の若い娘のそれのように結ばれていた。――『お女中』と商人は女に近寄って声をかけた――『お女中、そんなにお泣きなさるな！……何がお困りなのか、私に仰しゃい。その上でお助けをする道があれば、喜んでお助け申しましょう』（実際、男は自分の云った通りの事をする積りであった。何となれば、この人は非常に深切な人であったから。）しかし女は泣き続けていた――その長い一方の袖を以て商人に顔を隠して。『お女中』と出来る限りやさしく商人は再び云った――『どうぞ、どうぞ、私の言葉を聴いて下さい！……ここは夜若い御婦人などの居るべき場処ではありません！　御頼み申すから、お泣きなさるな！――どうしたら少しでも、お助けをする事が出来るのか、それを云って下さい！』徐ろに女は起ち上ったが、商人には背中を向けていた。そしてその袖のうしろで呻き咽びつづけていた。商人はその手を軽く女の肩の上に置いて説き立てた――『お女中！――お女中！――お女中！　私の言葉をお聴きなさい。ただちょっとでいいから！……お女中！――お女中！』……するとそのお女中なるものは向きかえった。そしてその袖を下に落し、手で自分の顔を撫でた――見ると目も鼻も口もない――きゃッと声をあげて商人は逃げ出した。\nSentences:\n0: ある夜、あきんどが紀伊国坂をのぼりました。\n1: すると、濠のそばでなく女がいました。\n2: あきんどは、女がしんぱいだと思いました。\n3: 女はとてもきれいな服を着ていました。\n4: あきんどは女に、どうしましたかと言いました。\n5: あきんどは、女をたすけたいと思いました。\n6: しかし女は、そででかおをかくしていました。\n7: あきんどはもう1どやさしく話しました。\n8: ここは夜に女がいるばしょではありません。\n9: どうすればたすけられますかと言いました。\n10: 女は立ちましたが、後ろをむいていました。\n11: あきんどが女のかたに手をおきました。\n12: すると女がゆっくりむきました。\n13: 女がかおを出すと、目や口がありませんでした。\n14: あきんどはおどろいてにげました。\nIssues:\n[{\"sentence\":\"すると、濠のそばでなく女がいました。\",\"problem\":\"The original says she was sitting by the moat (濠の縁に踞んで). 'でなく' means 'not', which contradicts the original. Correction: '濠のそばで泣いている女がいました。'\",\"kind\":\"event\"}]\nRewrite exactly indexes: 1"
+          }
+        ],
+        "response": "{\"rewrites\": [{\"index\": 1, \"sentence\": \"すると、濠のそばで泣いている女がいました。\"}]}"
+      }
+    ],
+    "before": [
+      {
+        "sentence": "すると、濠のそばでなく女がいました。",
+        "problem": "The original says she was sitting by the moat (濠の縁に踞んで). 'でなく' means 'not', which contradicts the original. Correction: '濠のそばで泣いている女がいました。'",
+        "kind": "event"
+      }
+    ],
+    "after": [
+      {
+        "sentence": "女がかおを出すと、目や口がありませんでした。",
+        "problem": "The original states there were no eyes, nose, or mouth (目も鼻も口もない). The nose (鼻) is missing from the retelling.",
+        "kind": "event"
+      }
+    ]
+  },
+  "ladderBuild": "P4b"
 }

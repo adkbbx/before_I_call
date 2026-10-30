@@ -6,7 +6,8 @@ export const isKanji = c => /\p{Script=Han}|々/u.test(c);
 export const hasHardKanji = (text, level) => [...text].some(c => isKanji(c) && (kanjiLevels[c] ?? 0) < Number(level.slice(1)));
 export function kanjiMetrics(tokens, level) {
   const chars = [...tokens.map(t => t.s).join('')], kanji = chars.filter(isKanji);
-  return { kanjiCoverage: kanji.length ? kanji.filter(c => !hasHardKanji(c, level)).length / kanji.length : 1, kanjiDensity: chars.length ? kanji.length / chars.length : 0 };
+  const nonStory = [...tokens.filter(t=>t.k!=='story').map(t=>t.s).join('')].filter(isKanji);
+  return { kanjiCoverage: nonStory.length ? nonStory.filter(c => !hasHardKanji(c, level)).length / nonStory.length : 1, kanjiDensity: chars.length ? kanji.length / chars.length : 0 };
 }
 export function normalizeText(text) {
   return text.replace(/[ 　]/g, '').replace(/[０-９]/g, c => String.fromCharCode(c.charCodeAt(0) - 0xfee0));
@@ -28,6 +29,11 @@ export async function tokenizeForLevel(text, level, { storyWords = [], vocab }) 
       const token = { s, k: content ? keys.some(k => allowed.has(k)) ? 'known' : 'ghost' : 'plain' };
       if (/[一-龯々〆ヵヶ]/u.test(s) && t.reading) token.r = reading;
       if (content) { token.b = b; if (entry) { token.g = entry.meaning; token.gs = 'jlpt'; } }
+      // Explicit number-word exception: hard numeral glyphs retain their
+      // spelling with mandatory ruby, like protected story words.
+      if((t.pos_detail_1==='数'||/^[一二三四五六七八九十百千万億兆零〇壱弐参拾廿卅]+$/u.test(s)) && hasHardKanji(s,level) && t.reading) {
+        token.k='story';token.b=b;token.g='number';
+      }
       tokens.push(token);
     }
   }
@@ -37,9 +43,8 @@ export async function tokenizeForLevel(text, level, { storyWords = [], vocab }) 
     const word = matched?.word;
     if (!word) { cursor++; continue; }
     segment(text.slice(start, cursor));
-    // Preserve kana repairs: canonicalising a reading back to kanji defeats the
-    // hard-kanji retry. The canonical form stays in b for the glossary.
-    tokens.push({ s: matched.match, r: toHiragana(word.reading), b: word.text, k: 'story', g: word.gloss });
+    // Protected story words keep their canonical kanji at every level.
+    tokens.push({ s: word.text, r: toHiragana(word.reading), b: word.text, k: 'story', g: word.gloss });
     cursor += matched.match.length; start = cursor;
   }
   segment(text.slice(start));

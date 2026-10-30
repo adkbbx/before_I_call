@@ -4,44 +4,64 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Adds ～とき, ～たら, ～ている, ～と思います, potential forms and ～ても. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Copy every story word exactly in kanji when it is needed; do not insert unused words.\nWrite normal Japanese with no spaces between words. Outside story words, use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: よるに、なりました。和尚は、そとに、いきました。芳一は、しずかに、すわっていました。となりに、琵琶を、おきました。しずかに、していました。せきも、しませんでした。そうして、まっていました。すると、おとが、きこえました。だれかが、きました。その人は、芳一の、まえで、とまりました。その人は、こえで、よびました。「芳一！」芳一は、うごきませんでした。その人は、また、よびました。「芳一！」それでも、芳一は、しずかでした。その人は、おこりました。「どこに、いるか、みる」おもい、あしおとが、しました。あしおとが、きこえました。芳一の、となりに、とまりました。芳一は、とても、こわかったです。からだを、ふるわせていました。\n\n場面（原文）:\n遂に自分のすぐ傍であらあらしい声がこう云い出した――『ここに琵琶がある、だが、琵琶師と云っては――ただその耳が二つあるばかりだ！……道理で返事をしないはずだ、返事をする口がないのだ――両耳の外、琵琶師の身体は何も残っていない……よし殿様へこの耳を持って行こう――出来る限り殿様の仰せられた通りにした証拠に……』\nその瞬時に芳一は鉄のような指で両耳を掴まれ、引きちぎられたのを感じた！　痛さは非常であったが、それでも声はあげなかった。重もくるしい足踏みは縁側を通って退いて行き――庭に下り――道路の方へ通って行き――消えてしまった。芳一は頭の両側から濃い温いものの滴って来るのを感じた。が、あえて両手を上げる事もしなかった……\n日の出前に住職は帰って来た。急いですぐに裏の縁側の処へ行くと、何んだかねばねばしたものを踏みつけて滑り、そして慄然として声をあげた――それは提灯の光りで、そのねばねばしたものの血であった事を見たからである。しかし、芳一は入禅の姿勢でそこに坐っているのを住職は認めた――傷からはなお血をだらだら流して。"
+        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\n遂に自分のすぐ傍であらあらしい声がこう云い出した――『ここに琵琶がある、だが、琵琶師と云っては――ただその耳が二つあるばかりだ！……道理で返事をしないはずだ、返事をする口がないのだ――両耳の外、琵琶師の身体は何も残っていない……よし殿様へこの耳を持って行こう――出来る限り殿様の仰せられた通りにした証拠に……』\nその瞬時に芳一は鉄のような指で両耳を掴まれ、引きちぎられたのを感じた！　痛さは非常であったが、それでも声はあげなかった。重もくるしい足踏みは縁側を通って退いて行き――庭に下り――道路の方へ通って行き――消えてしまった。芳一は頭の両側から濃い温いものの滴って来るのを感じた。が、あえて両手を上げる事もしなかった……\n日の出前に住職は帰って来た。急いですぐに裏の縁側の処へ行くと、何んだかねばねばしたものを踏みつけて滑り、そして慄然として声をあげた――それは提灯の光りで、そのねばねばしたものの血であった事を見たからである。しかし、芳一は入禅の姿勢でそこに坐っているのを住職は認めた――傷からはなお血をだらだら流して。\n"
       }
     ]
   },
   "responses": [
-    "{\"sentences-\": [\"ついに、こえが、きこえました。\", \"「ここに、琵琶が、ある。」\", \"「でも、ひとは、いない。」\", \"「みみが、ふたつ、あるだけだ。」\", \"「くちが、ないから、いえない。」\", \"「このみみを、もっていく。」\", \"そう、いいました。\", \"つぎに、ゆびで、みみを、つかまれました。\", \"みみを、ひきちぎられました。\", \"とても、いたかったです。\", \"でも、こえを、だしませんでした。\", \"あしおとは、とおくに、いきました。\", \"そして、きえました。\", \"あたたかいものが、でてきました。\", \"でも、てを、あげませんでした。\", \"あさ、和尚が、かえってきました。\", \"和尚は、いそいで、いきました。\", \"そこで、なにかを、ふみました。\", \"それは、ちでした。\", \"芳一は、そこに、すわっていました。\", \"まだ、ちが、でていました。\"], \"question\": {\"prompt\": \"芳一は、どうしましたか。\", \"options\": [\"こえを、だしました。\", \"こえを、だしませんでした。\", \"みみを、もっていました。\"], \"answer\": 1}}",
-    "{\"sentences\": [\"ついに、こえが、きこえました。\", \"「ここに、琵琶が、ある。」\", \"「でも、ひとは、いない。」\", \"「みみが、ふたつ、あるだけだ。」\", \"「くちが、ないから、いえない。」\", \"「このみみを、もっていく。」\", \"そう、いいました。\", \"つぎに、ゆびで、みみを、つかまれました。\", \"みみを、ひきちぎられました。\", \"とても、いたかったです。\", \"でも、こえを、だしませんでした。\", \"あしおとは、とおくに、いきました。\", \"そして、きえました。\", \"あたたかいものが、でてきました。\", \"でも、てを、あげませんでした。\", \"あさ、和尚が、かえってきました。\", \"和尚は、いそいで、いきました。\", \"そこで、なにかを、ふみました。\", \"それは、ちでした。\", \"芳一は、そこに、すわっていました。\", \"まだ、ちが、でていました。\"], \"question\": {\"prompt\": \"芳一は、どうしましたか。\", \"options\": [\"こえを、だしました。\", \"こえを、だしませんでした。\", \"みみを、もっていました。\"], \"answer\": 1}}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"やがて、こえが、きこえました。\"}, {\"index\": 1, \"sentence\": \"「ここに、琵琶が、ある。」\"}, {\"index\": 5, \"sentence\": \"「このみみを、もっていく。」\"}, {\"index\": 7, \"sentence\": \"つぎに、ゆびで、みみを、もちました。\"}, {\"index\": 8, \"sentence\": \"みみを、とられました。\"}, {\"index\": 15, \"sentence\": \"あさ、和尚が、きました。\"}, {\"index\": 16, \"sentence\": \"和尚は、いそいで、いきました。\"}, {\"index\": 19, \"sentence\": \"芳一は、そこに、すわっていました。\"}]}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"そして、こえが、きこえました。\"}, {\"index\": 1, \"sentence\": \"「ここに、琵琶が、ある。」\"}, {\"index\": 5, \"sentence\": \"「このみみを、もっていく。」\"}, {\"index\": 7, \"sentence\": \"つぎに、みみを、もちました。\"}, {\"index\": 8, \"sentence\": \"みみを、とられました。\"}, {\"index\": 15, \"sentence\": \"あさ、和尚が、きました。\"}, {\"index\": 16, \"sentence\": \"和尚は、いそいで、いきました。\"}, {\"index\": 19, \"sentence\": \"芳一は、そこに、すわっていました。\"}]}",
-    "{\"rewrites\": [{\"index\": 1, \"sentence\": \"「ここに、琵琶が、ある。」\"}, {\"index\": 5, \"sentence\": \"「このみみを、もっていく。」\"}, {\"index\": 7, \"sentence\": \"つぎに、みみを、もちました。\"}, {\"index\": 8, \"sentence\": \"みみを、とられました。\"}, {\"index\": 15, \"sentence\": \"あさ、和尚が、きました。\"}, {\"index\": 16, \"sentence\": \"和尚は、いそいで、いきました。\"}, {\"index\": 19, \"sentence\": \"芳一は、そこに、すわっていました。\"}]}",
-    "{\"question\": {\"prompt\": \"ほういちは、どうしましたか。\", \"options\": [\"こえを、だしました。\", \"こえを、だしませんでした。\", \"みみを、もっていました。\"], \"answer\": 1}}",
-    "{\"glosses\": {\"れる\": \"passive voice marker\"}}"
+    "{\"sentencesにつながる\": [\"こわい声がすぐそばで聞こえました。\", \"そこに琵琶があると言いました。\", \"でも耳が2つあるだけだと思いました。\", \"口がないから返事をしないと思いました。\", \"この耳を殿様へ持っていきますと言いました。\", \"芳一は耳をつかまれました。\", \"耳をひきちぎられました。\", \"とても痛かったですが声を出しませんでした。\", \"足音がえんがわを通りました。\", \"足音は道へいって消えました。\", \"温かいものが流れてきました。\", \"芳一は手を上げませんでした。\", \"日の出前に和尚が帰ってきました。\", \"和尚はえんがわで滑りました。\", \"それは血でした。\", \"芳一はそこで座っていました。\", \"傷から血が流れていました。\"], \"question\": {\"prompt\": \"和尚がえんがわで見たものは何ですか。\", \"options\": [\"水\", \"血\", \"花\"], \"answer\": 1}}",
+    "{\"sentences\": [\"こわい声がすぐそばで聞こえました。\", \"そこに琵琶があると言いました。\", \"でも耳が2つあるだけだと思いました。\", \"口がないから返事をしないと思いました。\", \"この耳を殿様へ持っていきますと言いました。\", \"芳一は耳をつかまれました。\", \"耳をひきちぎられました。\", \"とても痛かったですが声を出しませんでした。\", \"足音がえんがわを通りました。\", \"足音は道へいって消えました。\", \"温かいものが流れてきました。\", \"芳一は手を上げませんでした。\", \"日の出前に和尚が帰ってきました。\", \"和尚はえんがわで滑りました。\", \"それは血でした。\", \"芳一はそこで座っていました。\", \"傷から血が流れていました。\"], \"question\": {\"prompt\": \"和尚がえんがわで見たものは何ですか。\", \"options\": [\"水\", \"血\", \"花\"], \"answer\": 1}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"こわいこえがそばで聞こえました。\"}, {\"index\": 1, \"sentence\": \"そこに琵琶があると言いました。\"}, {\"index\": 2, \"sentence\": \"でもみみが2つあるだけだと思いました。\"}, {\"index\": 3, \"sentence\": \"口がないからへんじをしないと思いました。\"}, {\"index\": 4, \"sentence\": \"このみみをとのさまへ持っていきますと言いました。\"}, {\"index\": 5, \"sentence\": \"芳一はみみをもち上げられました。\"}, {\"index\": 6, \"sentence\": \"みみをとりはぎされました。\"}, {\"index\": 7, \"sentence\": \"とてもいたかったですがこえを出しませんでした。\"}, {\"index\": 8, \"sentence\": \"あしおとがえんがわを通りました。\"}, {\"index\": 9, \"sentence\": \"あしおとは道へいってきえました。\"}, {\"index\": 10, \"sentence\": \"あたたかいものがながれてきました。\"}, {\"index\": 11, \"sentence\": \"芳一は手を上げませんでした。\"}, {\"index\": 12, \"sentence\": \"ひのでまえに和尚が帰ってきました。\"}, {\"index\": 13, \"sentence\": \"和尚はえんがわですべりました。\"}, {\"index\": 14, \"sentence\": \"それはちでした。\"}, {\"index\": 15, \"sentence\": \"芳一はそこですわっていました。\"}, {\"index\": 16, \"sentence\": \"きずからちがながれていました。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"こわい声がそばで聞こえました。\"}, {\"index\": 1, \"sentence\": \"そこに琵琶があると言いました。\"}, {\"index\": 2, \"sentence\": \"でもみみが2つあるだけだと思いました。\"}, {\"index\": 3, \"sentence\": \"口がないからへんじをしないと思いました。\"}, {\"index\": 4, \"sentence\": \"このみみをとのさまへ持っていきますと言いました。\"}, {\"index\": 5, \"sentence\": \"芳一はみみをもち上げられました。\"}, {\"index\": 6, \"sentence\": \"みみをとりはぎされました。\"}, {\"index\": 7, \"sentence\": \"とてもいたかったですが声を出しませんでした。\"}, {\"index\": 8, \"sentence\": \"あしおとがえんがわを通りました。\"}, {\"index\": 9, \"sentence\": \"あしおとは道へいってきえました。\"}, {\"index\": 10, \"sentence\": \"あたたかいものがながれてきました。\"}, {\"index\": 11, \"sentence\": \"芳一は手を上げませんでした。\"}, {\"index\": 12, \"sentence\": \"ひのでまえに和尚が帰ってきました。\"}, {\"index\": 13, \"sentence\": \"和尚はえんがわですべりました。\"}, {\"index\": 14, \"sentence\": \"それはちでした。\"}, {\"index\": 15, \"sentence\": \"芳一はそこですわっていました。\"}, {\"index\": 16, \"sentence\": \"きずからちがながれていました。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"こわいこえがそばで聞こえました。\"}, {\"index\": 4, \"sentence\": \"このみみをとのさまへ持っていきますと言いました。\"}, {\"index\": 5, \"sentence\": \"芳一はみみをもち上げられました。\"}, {\"index\": 6, \"sentence\": \"みみをとりはぎされました。\"}, {\"index\": 7, \"sentence\": \"とてもいたかったですがこえを出しませんでした。\"}, {\"index\": 8, \"sentence\": \"あしおとがえんがわを通りました。\"}, {\"index\": 10, \"sentence\": \"あたたかいものがながれてきました。\"}, {\"index\": 13, \"sentence\": \"和尚はえんがわですべりました。\"}, {\"index\": 16, \"sentence\": \"きずからちがながれていました。\"}]}",
+    "{\"question\": {\"prompt\": \"おしょうがえんがわで見たものは何ですか。\", \"options\": [\"ち\", \"水\", \"花\"], \"answer\": 0}}",
+    "{\"glosses\": {\"はむ\": \"to bite or eat\", \"られる\": \"passive voice marker\", \"ぎす\": \"from tearing apart\", \"れる\": \"passive voice marker\", \"ん\": \"nasal sound/particle\", \"らち\": \"from blood\"}}"
   ],
   "metrics": {
-    "kanjiCoverage": 0.125,
-    "kanjiDensity": 0.027777777777777776,
-    "firstCoverage": 0.8035714285714286,
-    "finalCoverage": 0.9019607843137255,
-    "retries": 3,
-    "seconds": 32.13648219999997,
+    "kanjiCoverage": 1,
+    "kanjiDensity": 0.11397058823529412,
+    "firstCoverage": 0.7241379310344828,
+    "finalCoverage": 0.734375,
+    "retries": 9,
+    "seconds": 62.29476030000008,
     "offendingFirst": [
-      "ついに",
-      "このむ",
-      "み",
-      "びで",
+      "すぐ",
+      "殿様",
       "つかむ",
       "れる",
       "ひきちぎる",
-      "かえって"
+      "足音",
+      "わ",
+      "温かい",
+      "流れる",
+      "日の出",
+      "ん",
+      "傷"
     ],
     "ghostWords": [
       "このむ",
       "み",
-      "れる"
+      "はむ",
+      "つかむ",
+      "れる",
+      "ぎす",
+      "わ",
+      "ながれる",
+      "日の出",
+      "ん",
+      "きずく",
+      "らち"
+    ],
+    "faithIssues": [
+      {
+        "sentence": "でもみみが2つあるだけだと言いました。",
+        "problem": "The original specifies these are the only parts of the body remaining (\"身体は何も残っていない\"), not just that there are two ears. Correction: Only the ears remain.",
+        "kind": "event"
+      }
     ]
   },
   "retelling": {
@@ -52,18 +72,17 @@
       {
         "tokens": [
           {
-            "s": "そして",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
+            "s": "こわい",
+            "k": "known",
+            "b": "こわい",
+            "g": "scary, frightening",
+            "gs": "jlpt"
           },
           {
             "s": "こえ",
-            "b": "こう",
             "k": "known",
-            "g": "like this, this way",
+            "b": "こえる",
+            "g": "to exceed, to cross over, to cross",
             "gs": "jlpt"
           },
           {
@@ -71,13 +90,21 @@
             "k": "plain"
           },
           {
-            "s": "、",
+            "s": "そば",
+            "k": "known",
+            "b": "そば",
+            "g": "near, close, beside; Japanese traditional buckwheat noodle",
+            "gs": "jlpt"
+          },
+          {
+            "s": "で",
             "k": "plain"
           },
           {
-            "s": "きこえ",
-            "b": "きこえる",
+            "s": "聞こえ",
             "k": "known",
+            "r": "きこえ",
+            "b": "聞こえる",
             "g": "to be heard, to be audible",
             "gs": "jlpt"
           },
@@ -98,11 +125,7 @@
       {
         "tokens": [
           {
-            "s": "「",
-            "k": "plain"
-          },
-          {
-            "s": "ここ",
+            "s": "そこ",
             "k": "plain"
           },
           {
@@ -110,286 +133,33 @@
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
             "s": "琵琶",
-            "hk": true,
             "r": "びわ",
             "b": "琵琶",
             "k": "story",
-            "g": "Japanese lute"
+            "g": "Japanese lute",
+            "hk": true
           },
           {
             "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "、",
             "k": "plain"
           },
           {
             "s": "ある",
-            "b": "ある",
             "k": "known",
+            "b": "ある",
             "g": "to be, to have",
             "gs": "jlpt"
           },
           {
-            "s": "。",
+            "s": "と",
             "k": "plain"
           },
           {
-            "s": "」",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "「",
-            "k": "plain"
-          },
-          {
-            "s": "でも",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "ひと",
-            "b": "ひと",
+            "s": "言い",
             "k": "known",
-            "g": "man, person",
-            "gs": "jlpt"
-          },
-          {
-            "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "い",
-            "b": "いる",
-            "k": "known",
-            "g": "(humble) to be (animate), to exist",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ない",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          },
-          {
-            "s": "」",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "「",
-            "k": "plain"
-          },
-          {
-            "s": "み",
-            "b": "みる",
-            "k": "known",
-            "g": "to see, to look",
-            "gs": "jlpt"
-          },
-          {
-            "s": "み",
-            "b": "みる",
-            "k": "known",
-            "g": "to see, to look",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "ふたつ",
-            "b": "ふたつ",
-            "k": "known",
-            "g": "two things",
-            "gs": "jlpt"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "ある",
-            "b": "ある",
-            "k": "known",
-            "g": "to be, to have",
-            "gs": "jlpt"
-          },
-          {
-            "s": "だけ",
-            "k": "plain"
-          },
-          {
-            "s": "だ",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          },
-          {
-            "s": "」",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "「",
-            "k": "plain"
-          },
-          {
-            "s": "くち",
-            "b": "くちる",
-            "k": "known",
-            "g": "to rot",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "ない",
-            "b": "ない",
-            "k": "known",
-            "g": "there isn't, doesn't have",
-            "gs": "jlpt"
-          },
-          {
-            "s": "から",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "いえ",
-            "b": "いえる",
-            "k": "known",
-            "g": "house, home",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ない",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          },
-          {
-            "s": "」",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "「",
-            "k": "plain"
-          },
-          {
-            "s": "このみ",
-            "b": "このむ",
-            "k": "ghost",
-            "g": "to like, to prefer",
-            "gs": "jlpt"
-          },
-          {
-            "s": "み",
-            "b": "み",
-            "k": "ghost",
-            "g": "body, main part",
-            "gs": "jlpt"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "もっ",
-            "b": "もつ",
-            "k": "known",
-            "g": "to hold, to carry; to possess",
-            "gs": "jlpt"
-          },
-          {
-            "s": "て",
-            "k": "plain"
-          },
-          {
-            "s": "いく",
-            "b": "いく",
-            "k": "known",
-            "g": "to go",
-            "gs": "jlpt"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          },
-          {
-            "s": "」",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "そう",
-            "b": "そう",
-            "k": "known",
-            "g": "yes; appears, to be the case",
-            "gs": "jlpt"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "いい",
-            "b": "いう",
-            "k": "known",
+            "r": "いい",
+            "b": "言う",
             "g": "to say",
             "gs": "jlpt"
           },
@@ -410,47 +180,60 @@
       {
         "tokens": [
           {
-            "s": "つぎ",
-            "b": "つぎ",
-            "k": "known",
-            "g": "next",
-            "gs": "jlpt"
-          },
-          {
-            "s": "に",
-            "k": "plain"
-          },
-          {
-            "s": "、",
+            "s": "でも",
             "k": "plain"
           },
           {
             "s": "み",
-            "b": "みる",
             "k": "known",
+            "b": "みる",
             "g": "to see, to look",
             "gs": "jlpt"
           },
           {
             "s": "み",
-            "b": "み",
-            "k": "ghost",
-            "g": "body, main part",
+            "k": "known",
+            "b": "みる",
+            "g": "to see, to look",
             "gs": "jlpt"
           },
           {
-            "s": "を",
+            "s": "が",
             "k": "plain"
           },
           {
-            "s": "、",
+            "s": "2",
             "k": "plain"
           },
           {
-            "s": "もち",
-            "b": "もつ",
+            "s": "つ",
+            "k": "plain"
+          },
+          {
+            "s": "ある",
             "k": "known",
-            "g": "to hold, to carry; to possess",
+            "b": "ある",
+            "g": "to be, to have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "だけ",
+            "k": "plain"
+          },
+          {
+            "s": "だ",
+            "k": "plain"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "言い",
+            "k": "known",
+            "r": "いい",
+            "b": "言う",
+            "g": "to say",
             "gs": "jlpt"
           },
           {
@@ -470,16 +253,89 @@
       {
         "tokens": [
           {
-            "s": "み",
-            "b": "みる",
+            "s": "口",
             "k": "known",
-            "g": "to see, to look",
+            "r": "くち",
+            "b": "口",
+            "g": "job opening; mouth",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "ない",
+            "k": "known",
+            "b": "ない",
+            "g": "there isn't, doesn't have",
+            "gs": "jlpt"
+          },
+          {
+            "s": "から",
+            "k": "plain"
+          },
+          {
+            "s": "へんじ",
+            "k": "known",
+            "b": "へんじる",
+            "g": "reply, answer",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "し",
+            "k": "known",
+            "b": "する",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ない",
+            "k": "plain"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "言い",
+            "k": "known",
+            "r": "いい",
+            "b": "言う",
+            "g": "to say",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "このみ",
+            "k": "ghost",
+            "b": "このむ",
+            "g": "to like, to prefer",
             "gs": "jlpt"
           },
           {
             "s": "み",
-            "b": "み",
             "k": "ghost",
+            "b": "み",
             "g": "body, main part",
             "gs": "jlpt"
           },
@@ -488,21 +344,168 @@
             "k": "plain"
           },
           {
-            "s": "、",
+            "s": "と",
             "k": "plain"
           },
           {
-            "s": "とら",
-            "b": "とる",
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "さま",
             "k": "known",
-            "g": "to take (a class); to get (a grade)",
+            "b": "さま",
+            "g": "Mr., Mrs., Ms.",
+            "gs": "jlpt"
+          },
+          {
+            "s": "へ",
+            "k": "plain"
+          },
+          {
+            "s": "持っ",
+            "k": "known",
+            "r": "もっ",
+            "b": "持つ",
+            "g": "to hold, to carry; to possess",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "いく",
+            "k": "known",
+            "b": "いく",
+            "g": "to go",
+            "gs": "jlpt"
+          },
+          {
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "言い",
+            "k": "known",
+            "r": "いい",
+            "b": "言う",
+            "g": "to say",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "芳一",
+            "r": "ほういち",
+            "b": "芳一",
+            "k": "story",
+            "g": "Hoichi, a blind musician",
+            "hk": true
+          },
+          {
+            "s": "はみ",
+            "k": "ghost",
+            "b": "はむ",
+            "g": "to nibble",
+            "gs": "model"
+          },
+          {
+            "s": "み",
+            "k": "ghost",
+            "b": "み",
+            "g": "body, main part",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "つかま",
+            "k": "ghost",
+            "b": "つかむ",
+            "g": "to seize, to catch, to grasp",
             "gs": "jlpt"
           },
           {
             "s": "れ",
-            "b": "れる",
             "k": "ghost",
-            "g": "passive voice marker",
+            "b": "れる",
+            "g": "to be (passive)",
+            "gs": "model"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "み",
+            "k": "known",
+            "b": "みる",
+            "g": "to see, to look",
+            "gs": "jlpt"
+          },
+          {
+            "s": "み",
+            "k": "ghost",
+            "b": "み",
+            "g": "body, main part",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "とり",
+            "k": "known",
+            "b": "とる",
+            "g": "to take (a class); to get (a grade)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "ぎさ",
+            "k": "ghost",
+            "b": "ぎす",
+            "g": "scratch",
+            "gs": "model"
+          },
+          {
+            "s": "れ",
+            "k": "ghost",
+            "b": "れる",
+            "g": "to be (passive)",
             "gs": "model"
           },
           {
@@ -523,19 +526,15 @@
         "tokens": [
           {
             "s": "とても",
-            "b": "とても",
             "k": "known",
+            "b": "とても",
             "g": "very (much), greatly, exceedingly",
             "gs": "jlpt"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
             "s": "いたかっ",
-            "b": "いたい",
             "k": "known",
+            "b": "いたい",
             "g": "hurt; painful; sore",
             "gs": "jlpt"
           },
@@ -548,25 +547,13 @@
             "k": "plain"
           },
           {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "でも",
-            "k": "plain"
-          },
-          {
-            "s": "、",
+            "s": "が",
             "k": "plain"
           },
           {
             "s": "こえ",
-            "b": "こえる",
             "k": "known",
+            "b": "こえる",
             "g": "to exceed, to cross over, to cross",
             "gs": "jlpt"
           },
@@ -575,13 +562,10 @@
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "だし",
-            "b": "だす",
+            "s": "出し",
             "k": "known",
+            "r": "だし",
+            "b": "出す",
             "g": "to take (something) out; to hand in (something)",
             "gs": "jlpt"
           },
@@ -610,47 +594,52 @@
       {
         "tokens": [
           {
-            "s": "あし",
-            "b": "あし",
+            "s": "足",
             "k": "known",
+            "r": "あし",
+            "b": "足",
             "g": "foot; leg",
             "gs": "jlpt"
           },
           {
             "s": "おと",
-            "b": "おと",
             "k": "known",
+            "b": "おと",
             "g": "sound, note",
             "gs": "jlpt"
           },
           {
-            "s": "は",
+            "s": "が",
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "とおく",
-            "b": "とおく",
+            "s": "えん",
             "k": "known",
-            "g": "far away, distant",
+            "b": "えむ",
+            "g": "Yen",
             "gs": "jlpt"
           },
           {
-            "s": "に",
+            "s": "が",
             "k": "plain"
           },
           {
-            "s": "、",
+            "s": "わ",
+            "k": "ghost",
+            "b": "わ",
+            "g": "ring, hoop, circle",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
             "k": "plain"
           },
           {
-            "s": "いき",
-            "b": "いく",
+            "s": "通り",
             "k": "known",
-            "g": "to go",
+            "r": "とおり",
+            "b": "通る",
+            "g": "to pass (by), to go through",
             "gs": "jlpt"
           },
           {
@@ -670,17 +659,52 @@
       {
         "tokens": [
           {
-            "s": "そして",
+            "s": "足",
+            "k": "known",
+            "r": "あし",
+            "b": "足",
+            "g": "foot; leg",
+            "gs": "jlpt"
+          },
+          {
+            "s": "おと",
+            "k": "known",
+            "b": "おと",
+            "g": "sound, note",
+            "gs": "jlpt"
+          },
+          {
+            "s": "は",
             "k": "plain"
           },
           {
-            "s": "、",
+            "s": "道",
+            "k": "known",
+            "r": "みち",
+            "b": "道",
+            "g": "road, street; way, directions",
+            "gs": "jlpt"
+          },
+          {
+            "s": "へ",
+            "k": "plain"
+          },
+          {
+            "s": "行っ",
+            "k": "known",
+            "r": "いっ",
+            "b": "行く",
+            "g": "to go",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
             "k": "plain"
           },
           {
             "s": "きえ",
-            "b": "きえる",
             "k": "known",
+            "b": "きえる",
             "g": "to vanish, to disappear",
             "gs": "jlpt"
           },
@@ -702,15 +726,15 @@
         "tokens": [
           {
             "s": "あたたかい",
-            "b": "あたたかい",
             "k": "known",
+            "b": "あたたかい",
             "g": "warm",
             "gs": "jlpt"
           },
           {
             "s": "もの",
-            "b": "もの",
             "k": "known",
+            "b": "もの",
             "g": "thing (concrete object)",
             "gs": "jlpt"
           },
@@ -719,14 +743,10 @@
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "で",
-            "b": "でる",
-            "k": "known",
-            "g": "to appear, to leave",
+            "s": "ながれ",
+            "k": "ghost",
+            "b": "ながれる",
+            "g": "to flow, to be washed away",
             "gs": "jlpt"
           },
           {
@@ -735,8 +755,8 @@
           },
           {
             "s": "き",
-            "b": "くる",
             "k": "known",
+            "b": "くる",
             "g": "to come",
             "gs": "jlpt"
           },
@@ -757,29 +777,34 @@
       {
         "tokens": [
           {
-            "s": "でも",
+            "s": "芳一",
+            "r": "ほういち",
+            "b": "芳一",
+            "k": "story",
+            "g": "Hoichi, a blind musician",
+            "hk": true
+          },
+          {
+            "s": "は",
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "て",
-            "k": "plain"
+            "s": "手",
+            "k": "known",
+            "r": "て",
+            "b": "手",
+            "g": "hand",
+            "gs": "jlpt"
           },
           {
             "s": "を",
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "あげ",
-            "b": "あげる",
+            "s": "上げ",
             "k": "known",
+            "r": "あげ",
+            "b": "上げる",
             "g": "to raise, to lift",
             "gs": "jlpt"
           },
@@ -808,37 +833,53 @@
       {
         "tokens": [
           {
-            "s": "あ",
-            "k": "plain"
+            "s": "日の出",
+            "k": "ghost",
+            "r": "ひので",
+            "b": "日の出",
+            "g": "sunrise",
+            "gs": "jlpt"
           },
           {
-            "s": "さ",
-            "k": "plain"
+            "s": "前",
+            "k": "known",
+            "r": "まえ",
+            "b": "前",
+            "g": "before, in front",
+            "gs": "jlpt"
           },
           {
-            "s": "、",
+            "s": "に",
             "k": "plain"
           },
           {
             "s": "和尚",
-            "hk": true,
             "r": "おしょう",
             "b": "和尚",
             "k": "story",
-            "g": "Buddhist head priest"
+            "g": "Buddhist head priest",
+            "hk": true
           },
           {
             "s": "が",
             "k": "plain"
           },
           {
-            "s": "、",
+            "s": "帰っ",
+            "k": "known",
+            "r": "かえっ",
+            "b": "帰る",
+            "g": "to go back, to go home, to return",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
             "k": "plain"
           },
           {
             "s": "き",
-            "b": "くる",
             "k": "known",
+            "b": "くる",
             "g": "to come",
             "gs": "jlpt"
           },
@@ -860,25 +901,36 @@
         "tokens": [
           {
             "s": "和尚",
-            "hk": true,
             "r": "おしょう",
             "b": "和尚",
             "k": "story",
-            "g": "Buddhist head priest"
+            "g": "Buddhist head priest",
+            "hk": true
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "、",
+            "s": "え",
             "k": "plain"
           },
           {
-            "s": "いそい",
-            "b": "いそぐ",
-            "k": "known",
-            "g": "to hurry, to be in a hurry, to rush",
+            "s": "ん",
+            "k": "ghost",
+            "b": "ん",
+            "g": "particle/nasal",
+            "gs": "model"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "わ",
+            "k": "ghost",
+            "b": "わ",
+            "g": "ring, hoop, circle",
             "gs": "jlpt"
           },
           {
@@ -886,61 +938,10 @@
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "いき",
-            "b": "いく",
+            "s": "すべり",
             "k": "known",
-            "g": "to go",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "そこで",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "なに",
-            "k": "plain"
-          },
-          {
-            "s": "か",
-            "k": "plain"
-          },
-          {
-            "s": "を",
-            "k": "plain"
-          },
-          {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "ふみ",
-            "b": "ふむ",
-            "k": "known",
-            "g": "to step on, to tread on",
+            "b": "すべる",
+            "g": "to slide, to slip",
             "gs": "jlpt"
           },
           {
@@ -968,13 +969,9 @@
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
             "s": "ち",
-            "b": "ちる",
             "k": "known",
+            "b": "ちる",
             "g": "to fall, to scatter (e.g., blossoms)",
             "gs": "jlpt"
           },
@@ -996,18 +993,14 @@
         "tokens": [
           {
             "s": "芳一",
-            "hk": true,
             "r": "ほういち",
             "b": "芳一",
             "k": "story",
-            "g": "Hoichi, a blind musician"
+            "g": "Hoichi, a blind musician",
+            "hk": true
           },
           {
             "s": "は",
-            "k": "plain"
-          },
-          {
-            "s": "、",
             "k": "plain"
           },
           {
@@ -1019,13 +1012,9 @@
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
             "s": "すわっ",
-            "b": "すわる",
             "k": "known",
+            "b": "すわる",
             "g": "to sit",
             "gs": "jlpt"
           },
@@ -1035,8 +1024,8 @@
           },
           {
             "s": "い",
-            "b": "いる",
             "k": "known",
+            "b": "いる",
             "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
@@ -1057,36 +1046,28 @@
       {
         "tokens": [
           {
-            "s": "まだ",
-            "b": "まだ",
-            "k": "known",
-            "g": "yet, still, besides",
+            "s": "きずか",
+            "k": "ghost",
+            "b": "きずく",
+            "g": "to build, to establish",
             "gs": "jlpt"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "ち",
-            "b": "ちる",
-            "k": "known",
-            "g": "to fall, to scatter (e.g., blossoms)",
-            "gs": "jlpt"
+            "s": "らち",
+            "k": "ghost",
+            "b": "らち",
+            "g": "conclusion",
+            "gs": "model"
           },
           {
             "s": "が",
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "で",
-            "b": "でる",
-            "k": "known",
-            "g": "to appear, to leave",
+            "s": "ながれ",
+            "k": "ghost",
+            "b": "ながれる",
+            "g": "to flow, to be washed away",
             "gs": "jlpt"
           },
           {
@@ -1095,8 +1076,8 @@
           },
           {
             "s": "い",
-            "b": "いる",
             "k": "known",
+            "b": "いる",
             "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
@@ -1119,40 +1100,73 @@
       "prompt": {
         "tokens": [
           {
-            "s": "ほういち",
-            "r": "ほういち",
-            "b": "芳一",
+            "s": "和尚",
+            "r": "おしょう",
+            "b": "和尚",
             "k": "story",
-            "g": "Hoichi, a blind musician"
+            "g": "Buddhist head priest",
+            "hk": true
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "え",
+            "k": "plain"
+          },
+          {
+            "s": "ん",
+            "k": "ghost",
+            "b": "ん",
+            "g": "particle/nasal",
+            "gs": "model"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "わ",
+            "k": "ghost",
+            "b": "わ",
+            "g": "ring, hoop, circle",
+            "gs": "jlpt"
+          },
+          {
+            "s": "で",
+            "k": "plain"
+          },
+          {
+            "s": "見",
+            "k": "known",
+            "r": "み",
+            "b": "見る",
+            "g": "to see, to look",
+            "gs": "jlpt"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "もの",
+            "k": "known",
+            "b": "もの",
+            "g": "thing (concrete object)",
+            "gs": "jlpt"
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
+            "s": "何",
+            "k": "plain",
+            "r": "なに"
           },
           {
-            "s": "どう",
-            "b": "どう",
-            "k": "known",
-            "g": "how, in what way",
-            "gs": "jlpt"
-          },
-          {
-            "s": "し",
-            "b": "する",
-            "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
+            "s": "です",
             "k": "plain"
           },
           {
@@ -1169,169 +1183,251 @@
         {
           "tokens": [
             {
-              "s": "こえ",
-              "b": "こえる",
+              "s": "水",
               "k": "known",
-              "g": "to exceed, to cross over, to cross",
+              "r": "みず",
+              "b": "水",
+              "g": "water",
               "gs": "jlpt"
-            },
-            {
-              "s": "を",
-              "k": "plain"
-            },
-            {
-              "s": "、",
-              "k": "plain"
-            },
-            {
-              "s": "だし",
-              "b": "だす",
-              "k": "known",
-              "g": "to take (something) out; to hand in (something)",
-              "gs": "jlpt"
-            },
-            {
-              "s": "ませ",
-              "k": "plain"
-            },
-            {
-              "s": "ん",
-              "k": "plain"
-            },
-            {
-              "s": "でし",
-              "k": "plain"
-            },
-            {
-              "s": "た",
-              "k": "plain"
-            },
-            {
-              "s": "。",
-              "k": "plain"
             }
           ]
         },
         {
           "tokens": [
             {
-              "s": "み",
-              "b": "みる",
+              "s": "花",
               "k": "known",
-              "g": "to see, to look",
+              "r": "はな",
+              "b": "花",
+              "g": "flower",
               "gs": "jlpt"
-            },
-            {
-              "s": "み",
-              "b": "み",
-              "k": "ghost",
-              "g": "body, main part",
-              "gs": "jlpt"
-            },
-            {
-              "s": "を",
-              "k": "plain"
-            },
-            {
-              "s": "、",
-              "k": "plain"
-            },
-            {
-              "s": "もっ",
-              "b": "もつ",
-              "k": "known",
-              "g": "to hold, to carry; to possess",
-              "gs": "jlpt"
-            },
-            {
-              "s": "て",
-              "k": "plain"
-            },
-            {
-              "s": "い",
-              "b": "いる",
-              "k": "known",
-              "g": "(humble) to be (animate), to exist",
-              "gs": "jlpt"
-            },
-            {
-              "s": "まし",
-              "k": "plain"
-            },
-            {
-              "s": "た",
-              "k": "plain"
-            },
-            {
-              "s": "。",
-              "k": "plain"
             }
           ]
         },
         {
           "tokens": [
             {
-              "s": "こえ",
-              "b": "こえる",
+              "s": "ち",
               "k": "known",
-              "g": "to exceed, to cross over, to cross",
+              "b": "ちる",
+              "g": "to fall, to scatter (e.g., blossoms)",
               "gs": "jlpt"
-            },
-            {
-              "s": "を",
-              "k": "plain"
-            },
-            {
-              "s": "、",
-              "k": "plain"
-            },
-            {
-              "s": "だし",
-              "b": "だす",
-              "k": "known",
-              "g": "to take (something) out; to hand in (something)",
-              "gs": "jlpt"
-            },
-            {
-              "s": "まし",
-              "k": "plain"
-            },
-            {
-              "s": "た",
-              "k": "plain"
-            },
-            {
-              "s": "。",
-              "k": "plain"
             }
           ]
         }
       ],
-      "answer": 0
+      "answer": 2
     },
     "metrics": {
-      "kanjiCoverage": 0.125,
-      "kanjiDensity": 0.027777777777777776,
-      "firstCoverage": 0.8035714285714286,
-      "finalCoverage": 0.9019607843137255,
-      "retries": 3,
-      "seconds": 32.13648219999997,
+      "kanjiCoverage": 1,
+      "kanjiDensity": 0.11397058823529412,
+      "firstCoverage": 0.7241379310344828,
+      "finalCoverage": 0.734375,
+      "retries": 9,
+      "seconds": 62.29476030000008,
       "offendingFirst": [
-        "ついに",
-        "このむ",
-        "み",
-        "びで",
+        "すぐ",
+        "殿様",
         "つかむ",
         "れる",
         "ひきちぎる",
-        "かえって"
+        "足音",
+        "わ",
+        "温かい",
+        "流れる",
+        "日の出",
+        "ん",
+        "傷"
       ],
       "ghostWords": [
         "このむ",
         "み",
-        "れる"
+        "はむ",
+        "つかむ",
+        "れる",
+        "ぎす",
+        "わ",
+        "ながれる",
+        "日の出",
+        "ん",
+        "きずく",
+        "らち"
+      ],
+      "faithIssues": [
+        {
+          "sentence": "でもみみが2つあるだけだと言いました。",
+          "problem": "The original specifies these are the only parts of the body remaining (\"身体は何も残っていない\"), not just that there are two ears. Correction: Only the ears remain.",
+          "kind": "event"
+        }
       ]
     }
   },
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "levelRepairs": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n遂に自分のすぐ傍であらあらしい声がこう云い出した――『ここに琵琶がある、だが、琵琶師と云っては――ただその耳が二つあるばかりだ！……道理で返事をしないはずだ、返事をする口がないのだ――両耳の外、琵琶師の身体は何も残っていない……よし殿様へこの耳を持って行こう――出来る限り殿様の仰せられた通りにした証拠に……』\nその瞬時に芳一は鉄のような指で両耳を掴まれ、引きちぎられたのを感じた！　痛さは非常であったが、それでも声はあげなかった。重もくるしい足踏みは縁側を通って退いて行き――庭に下り――道路の方へ通って行き――消えてしまった。芳一は頭の両側から濃い温いものの滴って来るのを感じた。が、あえて両手を上げる事もしなかった……\n日の出前に住職は帰って来た。急いですぐに裏の縁側の処へ行くと、何んだかねばねばしたものを踏みつけて滑り、そして慄然として声をあげた――それは提灯の光りで、そのねばねばしたものの血であった事を見たからである。しかし、芳一は入禅の姿勢でそこに坐っているのを住職は認めた――傷からはなお血をだらだら流して。\nCurrent retelling:\nこわいこえがそばで聞こえました。\nそこに琵琶があると言いました。\nでもみみが2つあるだけだと思いました。\n口がないからへんじをしないと思いました。\nこのみみをとのさまへ持っていきますと言いました。\n芳一はみみをもち上げられました。\nみみをとりはぎされました。\nとてもいたかったですがこえを出しませんでした。\nあしおとがえんがわを通りました。\nあしおとは道へいってきえました。\nあたたかいものがながれてきました。\n芳一は手を上げませんでした。\nひのでまえに和尚が帰ってきました。\n和尚はえんがわですべりました。\nそれはちでした。\n芳一はそこですわっていました。\nきずからちがながれていました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.0931899641577061,\"meanLength\":16.41176470588235,\"advancedShare\":0.328125}; vocabulary 0.75. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: このむ、み、はむ、もち、られる、ぎす、れる、わ、ながれる、ん、きずく、らち. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"こわい声がそばで聞こえました。\", \"そこに琵琶があると言いました。\", \"でも耳が2つあるだけだと思いました。\", \"口がないから返事をしないと思いました。\", \"この耳を殿様へ持っていきますと言いました。\", \"芳一は耳をつかまれました。\", \"耳をとりはぎされました。\", \"とてもいたかったですが声を出しませんでした。\", \"足音がえんがわを通りました。\", \"足音は道へいって消えました。\", \"あたたかいものが流れてきました。\", \"芳一は手を上げませんでした。\", \"日の出前に和尚が帰ってきました。\", \"和尚はえんがわですべりました。\", \"それは血でした。\", \"芳一はそこですわっていました。\", \"きずから血が流れていました。\"], \"question\": {\"prompt\": \"和尚はえんがわで何を見ましたか。\", \"options\": [\"琵琶を見ました。\", \"血を見ました。\", \"芳一の耳を見ました。\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n遂に自分のすぐ傍であらあらしい声がこう云い出した――『ここに琵琶がある、だが、琵琶師と云っては――ただその耳が二つあるばかりだ！……道理で返事をしないはずだ、返事をする口がないのだ――両耳の外、琵琶師の身体は何も残っていない……よし殿様へこの耳を持って行こう――出来る限り殿様の仰せられた通りにした証拠に……』\nその瞬時に芳一は鉄のような指で両耳を掴まれ、引きちぎられたのを感じた！　痛さは非常であったが、それでも声はあげなかった。重もくるしい足踏みは縁側を通って退いて行き――庭に下り――道路の方へ通って行き――消えてしまった。芳一は頭の両側から濃い温いものの滴って来るのを感じた。が、あえて両手を上げる事もしなかった……\n日の出前に住職は帰って来た。急いですぐに裏の縁側の処へ行くと、何んだかねばねばしたものを踏みつけて滑り、そして慄然として声をあげた――それは提灯の光りで、そのねばねばしたものの血であった事を見たからである。しかし、芳一は入禅の姿勢でそこに坐っているのを住職は認めた――傷からはなお血をだらだら流して。\nCurrent retelling:\nこわいこえがそばで聞こえました。\nそこに琵琶があると言いました。\nでもみみが2つあるだけだと思いました。\n口がないからへんじをしないと思いました。\nこのみみをとのさまへ持っていきますと言いました。\n芳一はみみをつかまれました。\nみみをとりはぎされました。\nとてもいたかったですがこえを出しませんでした。\n足音がえんがわを通りました。\n足音は道へいってきえました。\nあたたかいものがながれてきました。\n芳一は手を上げませんでした。\n日の出前に和尚が帰ってきました。\n和尚はえんがわですべりました。\nそれはちでした。\n芳一はそこですわっていました。\nきずからちがながれていました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.11764705882352941,\"meanLength\":16,\"advancedShare\":0.3225806451612903}; vocabulary 0.6935483870967742. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: このむ、み、はむ、つかむ、れる、ぎす、足音、わ、ながれる、日の出、ん、きずく、らち. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"こわいこえがそばで聞こえました。\", \"そこに琵琶があると言いました。\", \"でもみみが2つあるだけだと思いました。\", \"口がないからへんじをしないと思いました。\", \"このみみをとのさまへ持っていきますと言いました。\", \"芳一はみみを つかまれました。\", \"みみを とりはぎされました。\", \"とてもいたかったですが こえを出しませんでした。\", \"あしおとが えんがわを通りました。\", \"あしおとは 道へいって きえました。\", \"あたたかいものが ながれてきました。\", \"芳一は 手を上げませんでした。\", \"ひのいで 前に和尚が帰ってきました。\", \"和尚は えんがわで すべりました。\", \"それは 血でした。\", \"芳一は そこに すわっていました。\", \"きずから 血が ながれていました。\"], \"question\": {\"prompt\": \"和尚はえんがわで何をみましたか。\", \"options\": [\"琵琶をみました。\", \"血をみました。\", \"芳一の口をみました。\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n遂に自分のすぐ傍であらあらしい声がこう云い出した――『ここに琵琶がある、だが、琵琶師と云っては――ただその耳が二つあるばかりだ！……道理で返事をしないはずだ、返事をする口がないのだ――両耳の外、琵琶師の身体は何も残っていない……よし殿様へこの耳を持って行こう――出来る限り殿様の仰せられた通りにした証拠に……』\nその瞬時に芳一は鉄のような指で両耳を掴まれ、引きちぎられたのを感じた！　痛さは非常であったが、それでも声はあげなかった。重もくるしい足踏みは縁側を通って退いて行き――庭に下り――道路の方へ通って行き――消えてしまった。芳一は頭の両側から濃い温いものの滴って来るのを感じた。が、あえて両手を上げる事もしなかった……\n日の出前に住職は帰って来た。急いですぐに裏の縁側の処へ行くと、何んだかねばねばしたものを踏みつけて滑り、そして慄然として声をあげた――それは提灯の光りで、そのねばねばしたものの血であった事を見たからである。しかし、芳一は入禅の姿勢でそこに坐っているのを住職は認めた――傷からはなお血をだらだら流して。\nCurrent retelling:\nこわいこえがそばで聞こえました。\nそこに琵琶があると言いました。\nでもみみが2つあるだけだと思いました。\n口がないからへんじをしないと思いました。\nこのみみをとのさまへ持っていきますと言いました。\n芳一はみみをつかまれました。\nみみをとりはぎされました。\nとてもいたかったですがこえを出しませんでした。\nあしおとがえんがわを通りました。\nあしおとは道へいってきえました。\nあたたかいものがながれてきました。\n芳一は手を上げませんでした。\nひのいで前に和尚が帰ってきました。\n和尚はえんがわですべりました。\nそれはちでした。\n芳一はそこにすわっていました。\nきずからちがながれていました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.09386281588447654,\"meanLength\":16.294117647058822,\"advancedShare\":0.3384615384615385}; vocabulary 0.7384615384615385. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: このむ、み、はむ、つかむ、れる、ぎす、わ、ながれる、のく、ん、きずく、らち. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"こわい声がそばで聞こえました。\", \"そこに琵琶があると言いました。\", \"でも耳が2つあるだけだと思いました。\", \"口がないから返事をしないと思いました。\", \"この耳を殿様へ持っていきますと言いました。\", \"芳一は耳をつかまれました。\", \"耳をとりはぎされました。\", \"とてもいたかったですが声を出しませんでした。\", \"足音がえんがわを通りました。\", \"足音は道へいって消えました。\", \"あたたかいものがながれてきました。\", \"芳一は手を上げませんでした。\", \"日の出前に和尚が帰ってきました。\", \"和尚はえんがわですべりました。\", \"それは血でした。\", \"芳一はそこにすわっていました。\", \"きずから血がながれていました。\"], \"question\": {\"prompt\": \"和尚はえんがわで何をみましたか。\", \"options\": [\"琵琶をみました。\", \"血をみました。\", \"芳一の口をみました。\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: はむ、れる、ぎす、足音、ん、らち. Return JSON {\"glosses\":{\"はむ\":\"English gloss\",\"れる\":\"English gloss\",\"ぎす\":\"English gloss\",\"足音\":\"English gloss\",\"ん\":\"English gloss\",\"らち\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"はむ\": \"to nibble\", \"れる\": \"to be (passive)\", \"ぎす\": \"scratch\", \"足音\": \"footsteps\", \"ん\": \"nasal sound/hmm\", \"らち\": \"conclusion/settlement\"}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n遂に自分のすぐ傍であらあらしい声がこう云い出した――『ここに琵琶がある、だが、琵琶師と云っては――ただその耳が二つあるばかりだ！……道理で返事をしないはずだ、返事をする口がないのだ――両耳の外、琵琶師の身体は何も残っていない……よし殿様へこの耳を持って行こう――出来る限り殿様の仰せられた通りにした証拠に……』\nその瞬時に芳一は鉄のような指で両耳を掴まれ、引きちぎられたのを感じた！　痛さは非常であったが、それでも声はあげなかった。重もくるしい足踏みは縁側を通って退いて行き――庭に下り――道路の方へ通って行き――消えてしまった。芳一は頭の両側から濃い温いものの滴って来るのを感じた。が、あえて両手を上げる事もしなかった……\n日の出前に住職は帰って来た。急いですぐに裏の縁側の処へ行くと、何んだかねばねばしたものを踏みつけて滑り、そして慄然として声をあげた――それは提灯の光りで、そのねばねばしたものの血であった事を見たからである。しかし、芳一は入禅の姿勢でそこに坐っているのを住職は認めた――傷からはなお血をだらだら流して。\nCurrent retelling:\nこわいこえがそばで聞こえました。\nそこに琵琶があると言いました。\nでも、みみが2つあるだけだと言いました。\n口がないからへんじをしないと言いました。\nこのみみをとのさまへ持っていきますと言いました。\n芳一はみみをつかまれました。\nみみをとりはぎされました。\nとてもいたかったですがこえを出しませんでした。\n足音がえんがわを通りました。\n足音は道へいってきえました。\nあたたかいものがながれてきました。\n芳一は手を上げませんでした。\n日の出前に和尚が帰ってきました。\n和尚はえんがわですべりました。\nそれはちでした。\n芳一はそこにすわっていました。\nきずからちがながれていました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.11721611721611722,\"meanLength\":16.058823529411764,\"advancedShare\":0.2903225806451613}; vocabulary 0.6935483870967742. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: このむ、み、はむ、つかむ、れる、ぎす、足音、わ、ながれる、日の出、ん、きずく、らち. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences([\": [\"こわい声がそばで聞こえました。\", \"そこに琵琶があると言いました。\", \"でも耳が2つあるだけだと言いました。\", \"口がないから返事をしないと言いました。\", \"この耳を殿様へ持っていきますと言いました。\", \"芳一は耳をつかまれました。\", \"耳をとりはぎされました。\", \"とてもいたかったですが声を出しませんでした。\", \"足音がえんがわを通りました。\", \"足音は道へ行って消えました。\", \"あたたかいものがながれてきました。\", \"芳一は手を上げませんでした。\", \"日の出前に和尚が帰ってきました。\", \"和尚はえんがわですべりました。\", \"それは血でした。\", \"芳一はそこにすわっていました。\", \"きずから血がながれていました。\"]}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n遂に自分のすぐ傍であらあらしい声がこう云い出した――『ここに琵琶がある、だが、琵琶師と云っては――ただその耳が二つあるばかりだ！……道理で返事をしないはずだ、返事をする口がないのだ――両耳の外、琵琶師の身体は何も残っていない……よし殿様へこの耳を持って行こう――出来る限り殿様の仰せられた通りにした証拠に……』\nその瞬時に芳一は鉄のような指で両耳を掴まれ、引きちぎられたのを感じた！　痛さは非常であったが、それでも声はあげなかった。重もくるしい足踏みは縁側を通って退いて行き――庭に下り――道路の方へ通って行き――消えてしまった。芳一は頭の両側から濃い温いものの滴って来るのを感じた。が、あえて両手を上げる事もしなかった……\n日の出前に住職は帰って来た。急いですぐに裏の縁側の処へ行くと、何んだかねばねばしたものを踏みつけて滑り、そして慄然として声をあげた――それは提灯の光りで、そのねばねばしたものの血であった事を見たからである。しかし、芳一は入禅の姿勢でそこに坐っているのを住職は認めた――傷からはなお血をだらだら流して。\nCurrent retelling:\nこわいこえがそばで聞こえました。\nそこに琵琶があると言いました。\nでもみみが2つあるだけだと言いました。\n口がないからへんじをしないと言いました。\nこのみみをとのさまへ持っていきますと言いました。\n芳一はみみをつかまれました。\nみみをとりはぎされました。\nとてもいたかったですがこえを出しませんでした。\n足音がえんがわを通りました。\n足音は道へ行ってきえました。\nあたたかいものがながれてきました。\n芳一は手を上げませんでした。\n日の出前に和尚が帰ってきました。\n和尚はえんがわですべりました。\nそれはちでした。\n芳一はそこにすわっていました。\nきずからちがながれていました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.1213235294117647,\"meanLength\":16,\"advancedShare\":0.2903225806451613}; vocabulary 0.6935483870967742. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: このむ、み、はむ、つかむ、れる、ぎす、足音、わ、ながれる、日の出、ん、きずく、らち. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"こわい声がそばで聞こえました。\", \"そこに琵琶があると言いました。\", \"でも耳が2つあるだけだと言いました。\", \"口がないから返事をしないと言いました。\", \"この耳を殿さまへ持っていきますと言いました。\", \"芳一は耳をつかまれました。\", \"耳をとりはぎされました。\", \"とてもいたかったですが声を出しませんでした。\", \"足おとがえんがわを通りました。\", \"足おとは道へ行って消えました。\", \"あたたかいものがながれてきました。\", \"芳一は手を上げませんでした。\", \"ひので前に和尚が帰ってきました。\", \"和尚はえんがわですべりました。\", \"それは血でした。\", \"芳一はそこにすわっていました。\", \"きずから血がながれていました。\"], \"question\": {\"prompt\": \"和尚はえんがわで何を見ましたか。\", \"options\": [\"琵琶を見ました。\", \"血を見ました。\", \"耳を見ました。\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 芳一（ほういち）、琵琶（びわ）、平家（へいけ）、和尚（おしょう）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n遂に自分のすぐ傍であらあらしい声がこう云い出した――『ここに琵琶がある、だが、琵琶師と云っては――ただその耳が二つあるばかりだ！……道理で返事をしないはずだ、返事をする口がないのだ――両耳の外、琵琶師の身体は何も残っていない……よし殿様へこの耳を持って行こう――出来る限り殿様の仰せられた通りにした証拠に……』\nその瞬時に芳一は鉄のような指で両耳を掴まれ、引きちぎられたのを感じた！　痛さは非常であったが、それでも声はあげなかった。重もくるしい足踏みは縁側を通って退いて行き――庭に下り――道路の方へ通って行き――消えてしまった。芳一は頭の両側から濃い温いものの滴って来るのを感じた。が、あえて両手を上げる事もしなかった……\n日の出前に住職は帰って来た。急いですぐに裏の縁側の処へ行くと、何んだかねばねばしたものを踏みつけて滑り、そして慄然として声をあげた――それは提灯の光りで、そのねばねばしたものの血であった事を見たからである。しかし、芳一は入禅の姿勢でそこに坐っているのを住職は認めた――傷からはなお血をだらだら流して。\nCurrent retelling:\nこわいこえがそばで聞こえました。\nそこに琵琶があると言いました。\nでもみみが2つあるだけだと言いました。\n口がないからへんじをしないと言いました。\nこのみみをとのさまへ持っていきますと言いました。\n芳一はみみをつかまれました。\nみみをとりはぎされました。\nとてもいたかったですがこえを出しませんでした。\n足おとがえんがわを通りました。\n足おとは道へ行ってきえました。\nあたたかいものがながれてきました。\n芳一は手を上げませんでした。\nひので前に和尚が帰ってきました。\n和尚はえんがわですべりました。\nそれはちでした。\n芳一はそこにすわっていました。\nきずからちがながれていました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.10583941605839416,\"meanLength\":16.11764705882353,\"advancedShare\":0.31746031746031744}; vocabulary 0.746031746031746. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: このむ、み、はむ、つかむ、れる、ぎす、わ、ながれる、ん、きずく、らち. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"こわい声がそばで聞こえました。\", \"そこに琵琶があると言いました。\", \"でも耳が2つあるだけだと言いました。\", \"口がないから返事をしないと言いました。\", \"この耳を殿さまへ持っていくと言いました。\", \"芳一は耳をつかまれました。\", \"耳をとりはぎされました。\", \"とても痛かったですが声を出しませんでした。\", \"足おとが縁側を通りました。\", \"足おとは道へ行って消えました。\", \"あたたかいものがながれてきました。\", \"芳一は手を上げませんでした。\", \"日の出前に和尚が帰ってきました。\", \"和尚は縁側ですべりました。\", \"それは血でした。\", \"芳一はそこにすわっていました。\", \"きずから血がながれていました。\"], \"question\": {\"prompt\": \"和尚は縁側で何をみましたか。\", \"options\": [\"琵琶をみました。\", \"血をみました。\", \"芳一をみました。\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: はむ、れる、ぎす、ん、らち. Return JSON {\"glosses\":{\"はむ\":\"English gloss\",\"れる\":\"English gloss\",\"ぎす\":\"English gloss\",\"ん\":\"English gloss\",\"らち\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"はむ\": \"to nibble\", \"れる\": \"to be (passive)\", \"ぎす\": \"scratch\", \"ん\": \"particle/nasal\", \"らち\": \"conclusion\"}}"
+    }
+  ],
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n遂に自分のすぐ傍であらあらしい声がこう云い出した――『ここに琵琶がある、だが、琵琶師と云っては――ただその耳が二つあるばかりだ！……道理で返事をしないはずだ、返事をする口がないのだ――両耳の外、琵琶師の身体は何も残っていない……よし殿様へこの耳を持って行こう――出来る限り殿様の仰せられた通りにした証拠に……』\nその瞬時に芳一は鉄のような指で両耳を掴まれ、引きちぎられたのを感じた！　痛さは非常であったが、それでも声はあげなかった。重もくるしい足踏みは縁側を通って退いて行き――庭に下り――道路の方へ通って行き――消えてしまった。芳一は頭の両側から濃い温いものの滴って来るのを感じた。が、あえて両手を上げる事もしなかった……\n日の出前に住職は帰って来た。急いですぐに裏の縁側の処へ行くと、何んだかねばねばしたものを踏みつけて滑り、そして慄然として声をあげた――それは提灯の光りで、そのねばねばしたものの血であった事を見たからである。しかし、芳一は入禅の姿勢でそこに坐っているのを住職は認めた――傷からはなお血をだらだら流して。\n\n語り直し:\nこわいこえがそばで聞こえました。\nそこに琵琶があると言いました。\nでもみみが2つあるだけだと思いました。\n口がないからへんじをしないと思いました。\nこのみみをとのさまへ持っていきますと言いました。\n芳一はみみをつかまれました。\nみみをとりはぎされました。\nとてもいたかったですがこえを出しませんでした。\n足音がえんがわを通りました。\n足音は道へいってきえました。\nあたたかいものがながれてきました。\n芳一は手を上げませんでした。\n日の出前に和尚が帰ってきました。\n和尚はえんがわですべりました。\nそれはちでした。\n芳一はそこにすわっていました。\nきずからちがながれていました。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"でもみみが2つあるだけだと思いました。\", \"problem\": \"The ghost spoke the line, not the character's thought. Correction: 「みみが2つあるだけだと言いました」\", \"kind\": \"who\"}, {\"sentence\": \"口がないからへんじをしないと思いました。\", \"problem\": \"The ghost spoke the line, not the character's thought. Correction: 「口がないからへんじをしないと言いました」\", \"kind\": \"who\"}, {\"sentence\": \"でもみみが2つあるだけだと思いました。\", \"problem\": \"Number 2 must be written as 2, not 2つ in kana-based contexts, but the prompt specifically forbids kana for numbers. Correction: 「みみが2つ」->「みみが2つ」 is kana, but since the retelling uses '2' (digit), it is acceptable. Wait, the prompt says 'Number words must not be spelled in kana'. '2' is a digit. However, '二つ' in original is a number word. '2つ' is acceptable. No error here.\", \"kind\": \"number\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n遂に自分のすぐ傍であらあらしい声がこう云い出した――『ここに琵琶がある、だが、琵琶師と云っては――ただその耳が二つあるばかりだ！……道理で返事をしないはずだ、返事をする口がないのだ――両耳の外、琵琶師の身体は何も残っていない……よし殿様へこの耳を持って行こう――出来る限り殿様の仰せられた通りにした証拠に……』\nその瞬時に芳一は鉄のような指で両耳を掴まれ、引きちぎられたのを感じた！　痛さは非常であったが、それでも声はあげなかった。重もくるしい足踏みは縁側を通って退いて行き――庭に下り――道路の方へ通って行き――消えてしまった。芳一は頭の両側から濃い温いものの滴って来るのを感じた。が、あえて両手を上げる事もしなかった……\n日の出前に住職は帰って来た。急いですぐに裏の縁側の処へ行くと、何んだかねばねばしたものを踏みつけて滑り、そして慄然として声をあげた――それは提灯の光りで、そのねばねばしたものの血であった事を見たからである。しかし、芳一は入禅の姿勢でそこに坐っているのを住職は認めた――傷からはなお血をだらだら流して。\n\n語り直し:\nこわいこえがそばで聞こえました。\nそこに琵琶があると言いました。\nでもみみが2つあるだけだと言いました。\n口がないからへんじをしないと言いました。\nこのみみをとのさまへ持っていくと言いました。\n芳一はみみをつかまれました。\nみみをとりはぎされました。\nとてもいたかったですがこえを出しませんでした。\n足おとがえんがわを通りました。\n足おとは道へ行ってきえました。\nあたたかいものがながれてきました。\n芳一は手を上げませんでした。\n日の出前に和尚が帰ってきました。\n和尚はえんがわですべりました。\nそれはちでした。\n芳一はそこにすわっていました。\nきずからちがながれていました。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"でもみみが2つあるだけだと言いました。\", \"problem\": \"The original specifies these are the only parts of the body remaining (\\\"身体は何も残っていない\\\"), not just that there are two ears. Correction: Only the ears remain.\", \"kind\": \"event\"}]}"
+      }
+    ],
+    "rewrites": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Repair only the specified sentences at JLPT N4. Preserve all other sentences and events. Use natural Japanese, numeric digits for numbers, and maintain the meaning of the original. Return only JSON {\"rewrites\":[{\"index\":0,\"sentence\":\"...\"}]}."
+          },
+          {
+            "role": "user",
+            "content": "Original:\n遂に自分のすぐ傍であらあらしい声がこう云い出した――『ここに琵琶がある、だが、琵琶師と云っては――ただその耳が二つあるばかりだ！……道理で返事をしないはずだ、返事をする口がないのだ――両耳の外、琵琶師の身体は何も残っていない……よし殿様へこの耳を持って行こう――出来る限り殿様の仰せられた通りにした証拠に……』\nその瞬時に芳一は鉄のような指で両耳を掴まれ、引きちぎられたのを感じた！　痛さは非常であったが、それでも声はあげなかった。重もくるしい足踏みは縁側を通って退いて行き――庭に下り――道路の方へ通って行き――消えてしまった。芳一は頭の両側から濃い温いものの滴って来るのを感じた。が、あえて両手を上げる事もしなかった……\n日の出前に住職は帰って来た。急いですぐに裏の縁側の処へ行くと、何んだかねばねばしたものを踏みつけて滑り、そして慄然として声をあげた――それは提灯の光りで、そのねばねばしたものの血であった事を見たからである。しかし、芳一は入禅の姿勢でそこに坐っているのを住職は認めた――傷からはなお血をだらだら流して。\nSentences:\n0: こわいこえがそばで聞こえました。\n1: そこに琵琶があると言いました。\n2: でもみみが2つあるだけだと思いました。\n3: 口がないからへんじをしないと思いました。\n4: このみみをとのさまへ持っていきますと言いました。\n5: 芳一はみみをつかまれました。\n6: みみをとりはぎされました。\n7: とてもいたかったですがこえを出しませんでした。\n8: 足音がえんがわを通りました。\n9: 足音は道へいってきえました。\n10: あたたかいものがながれてきました。\n11: 芳一は手を上げませんでした。\n12: 日の出前に和尚が帰ってきました。\n13: 和尚はえんがわですべりました。\n14: それはちでした。\n15: 芳一はそこにすわっていました。\n16: きずからちがながれていました。\nIssues:\n[{\"sentence\":\"でもみみが2つあるだけだと思いました。\",\"problem\":\"The ghost spoke the line, not the character's thought. Correction: 「みみが2つあるだけだと言いました」\",\"kind\":\"who\"},{\"sentence\":\"口がないからへんじをしないと思いました。\",\"problem\":\"The ghost spoke the line, not the character's thought. Correction: 「口がないからへんじをしないと言いました」\",\"kind\":\"who\"},{\"sentence\":\"でもみみが2つあるだけだと思いました。\",\"problem\":\"Number 2 must be written as 2, not 2つ in kana-based contexts, but the prompt specifically forbids kana for numbers. Correction: 「みみが2つ」->「みみが2つ」 is kana, but since the retelling uses '2' (digit), it is acceptable. Wait, the prompt says 'Number words must not be spelled in kana'. '2' is a digit. However, '二つ' in original is a number word. '2つ' is acceptable. No error here.\",\"kind\":\"number\"}]\nRewrite exactly indexes: 2,3"
+          }
+        ],
+        "response": "{\"rewrites\": [{\"index\": 2, \"sentence\": \"でも、みみが2つあるだけだと言いました。\"}, {\"index\": 3, \"sentence\": \"口がないからへんじをしないと言いました。\"}]}"
+      }
+    ],
+    "before": [
+      {
+        "sentence": "でもみみが2つあるだけだと思いました。",
+        "problem": "The ghost spoke the line, not the character's thought. Correction: 「みみが2つあるだけだと言いました」",
+        "kind": "who"
+      },
+      {
+        "sentence": "口がないからへんじをしないと思いました。",
+        "problem": "The ghost spoke the line, not the character's thought. Correction: 「口がないからへんじをしないと言いました」",
+        "kind": "who"
+      },
+      {
+        "sentence": "でもみみが2つあるだけだと思いました。",
+        "problem": "Number 2 must be written as 2, not 2つ in kana-based contexts, but the prompt specifically forbids kana for numbers. Correction: 「みみが2つ」->「みみが2つ」 is kana, but since the retelling uses '2' (digit), it is acceptable. Wait, the prompt says 'Number words must not be spelled in kana'. '2' is a digit. However, '二つ' in original is a number word. '2つ' is acceptable. No error here.",
+        "kind": "number"
+      }
+    ],
+    "after": [
+      {
+        "sentence": "でもみみが2つあるだけだと言いました。",
+        "problem": "The original specifies these are the only parts of the body remaining (\"身体は何も残っていない\"), not just that there are two ears. Correction: Only the ears remain.",
+        "kind": "event"
+      }
+    ]
+  },
+  "ladderBuild": "P4b"
 }

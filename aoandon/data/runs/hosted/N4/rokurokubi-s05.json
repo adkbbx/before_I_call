@@ -4,43 +4,52 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Adds ～とき, ～たら, ～ている, ～と思います, potential forms and ～ても. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Copy every story word exactly in kanji when it is needed; do not insert unused words.\nWrite normal Japanese with no spaces between words. Outside story words, use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
       },
       {
         "role": "user",
-        "content": "前の場面（やさしく語り直したもの）: 男の人はやさしかったです。囘龍はその人がすきになりました。そこで男の人についていきました。道はせまかったです。道はあぶなかったです。ときどき、高いところを通りました。ときどき、木のねがありました。ときどき、おおきないわがありました。やっと山の上にきました。月があかるくひかっていました。小さな家がありました。家からあかるいひかりが出ていました。二人は足をあらいました。家のうしろにもりがありました。もりのむこうにたきがありました。たきがしろくひかっていました。たきがうごいていると思いました。\n\n場面（原文）:\n囘龍が案内者と共に小屋に入った時、四人の男女が炉にもやした小さな火で手を暖めているのを見た。僧に向って丁寧にお辞儀をして、最も恭しき態度で挨拶を云った。囘龍はこんな淋しい処に住んでいるこんな貧しい人々が、上品な挨拶の言葉を知っている事を不思議に思った。『これはよい人々だ』彼は考えた『誰かよく礼儀を知っている人から習ったに相違ない』それから外のものが『あるじ』と云っているその主人に向って云った。\n『その親切な言葉や、皆さんから受けたはなはだ丁寧なもてなしから、私はあなたを初めからのきこりとは思われない。たぶん以前は身分のある方でしたろう』\nきこりは微笑しながら答えた。"
+        "content": "前の場面（やさしく語り直したもの）: なし\n\n場面（原文）:\n囘龍が案内者と共に小屋に入った時、四人の男女が炉にもやした小さな火で手を暖めているのを見た。僧に向って丁寧にお辞儀をして、最も恭しき態度で挨拶を云った。囘龍はこんな淋しい処に住んでいるこんな貧しい人々が、上品な挨拶の言葉を知っている事を不思議に思った。『これはよい人々だ』彼は考えた『誰かよく礼儀を知っている人から習ったに相違ない』それから外のものが『あるじ』と云っているその主人に向って云った。\n『その親切な言葉や、皆さんから受けたはなはだ丁寧なもてなしから、私はあなたを初めからのきこりとは思われない。たぶん以前は身分のある方でしたろう』\nきこりは微笑しながら答えた。\n"
       }
     ]
   },
   "responses": [
-    "{\"sentencesにつながる\": null, \"sentences\": [\"囘龍と案内人が小屋に入りました。\", \"なかの火で手をあたためている人がいました。\", \"四人の男の人と女の人がいました。\", \"囘龍は丁寧にあいさつをしました。\", \"この人たちはとても上品だと思いました。\", \"だれかから習ったと思いました。\", \"そして、あるじの人に言いました。\", \"あなたはきこりではないと思います。\", \"まえは高い身分の人だったかもしれません。\", \"きこりはほほえんで答えました。\"], \"question\": {\"prompt\": \"囘龍は、小屋の人たちのなにを不思議に思いましたか。\", \"options\": [\"あいさつが上品なこと\", \"きこりであること\", \"火で手をあたためていること\"], \"answer\": 0}}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"囘龍とあんない人がいえに入りました。\"}, {\"index\": 1, \"sentence\": \"なかの火で手をあつくしている人がいました。\"}, {\"index\": 3, \"sentence\": \"囘龍はていねいに話をしました。\"}, {\"index\": 4, \"sentence\": \"この人たちはとてもいいと思いました。\"}, {\"index\": 6, \"sentence\": \"そして、主の人に言いました。\"}, {\"index\": 8, \"sentence\": \"まえはすごい人だったかもしれません。\"}, {\"index\": 9, \"sentence\": \"きこりはわらって答えました。\"}]}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"かいりゅうとあんない人がいえに入りました。\"}, {\"index\": 3, \"sentence\": \"かいりゅうはていねいに話をしました。\"}, {\"index\": 6, \"sentence\": \"そして、あるじの人に言いました。\"}, {\"index\": 8, \"sentence\": \"まえはすごい人だったと思います。\"}]}",
-    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"囘龍とあんない人がいえに入りました。\"}, {\"index\": 3, \"sentence\": \"囘龍はていねいに話をしました。\"}, {\"index\": 6, \"sentence\": \"そして、いえの人に言いました。\"}]}",
-    "{\"question\": {\"prompt\": \"かいりゅうは、いえの人たちのなにをふしぎに思いましたか。\", \"options\": [\"いい話し方をしたこと\", \"きこりであること\", \"火のそばにいたこと\"], \"answer\": 0}}",
-    "{\"glosses\": {\"話し方\": \"way of speaking\"}}"
+    "{\"sentencesにつながる\": [\"囘龍は案内の人と小屋に入りました。\", \"そこで4人の人が火で手を温めていました。\", \"囘龍はとても丁寧に挨拶をしました。\", \"人々も上品な言葉で答えました。\", \"囘龍は不思議だと思いました。\", \"貧しい人が丁寧な言葉を知っています。\", \"きっと誰かから習ったと思いました。\", \"囘龍は主人の人に話しました。\", \"あなたの言葉はとても丁寧です。\", \"あなたは前からきこりではありません。\", \"前は高い身分の人だったと思います。\", \"きこりは笑って答えました。\"], \"question\": {\"prompt\": \"囘龍はどうして不思議に思いましたか。\", \"options\": [\"小屋がとても広かったから。\", \"人々が丁寧な言葉を話したから。\", \"きこりが笑っていたから。\"], \"answer\": 1}}",
+    "{\"sentences\": [\"囘龍は案内の人と小屋に入りました。\", \"そこで4人の人が火で手を温めていました。\", \"囘龍はとても丁寧に挨拶をしました。\", \"人々も上品な言葉で答えました。\", \"囘龍は不思議だと思いました。\", \"貧しい人が丁寧な言葉を知っています。\", \"きっと誰かから習ったと思いました。\", \"囘龍は主人の人に話しました。\", \"あなたの言葉はとても丁寧です。\", \"あなたは前からきこりではありません。\", \"前は高い身分の人だったと思います。\", \"きこりは笑って答えました。\"], \"question\": {\"prompt\": \"囘龍はどうして不思議に思いましたか。\", \"options\": [\"小屋がとても広かったから。\", \"人々が丁寧な言葉を話したから。\", \"きこりが笑っていたから。\"], \"answer\": 1}}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"囘龍はあんないの人とこやに入りました。\"}, {\"index\": 1, \"sentence\": \"そこで4人の人が火で手をあたためていました。\"}, {\"index\": 2, \"sentence\": \"囘龍はとてもていねいにあいさつをしました。\"}, {\"index\": 3, \"sentence\": \"ひとびともじょうひんなことばで答えました。\"}, {\"index\": 4, \"sentence\": \"囘龍はふしぎだと思いました。\"}, {\"index\": 5, \"sentence\": \"まずしい人がていねいなことばを知っています。\"}, {\"index\": 6, \"sentence\": \"きっとだれかから習ったと思いました。\"}, {\"index\": 7, \"sentence\": \"囘龍はしゅじんの人に話しました。\"}, {\"index\": 8, \"sentence\": \"あなたのことばはとてもていねいです。\"}, {\"index\": 9, \"sentence\": \"あなたは前からきこりではありません。\"}, {\"index\": 10, \"sentence\": \"前は高いみぶんの人だったと思います。\"}, {\"index\": 11, \"sentence\": \"きこりはわらって答えました。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"囘龍はあんないの人とこやに入りました。\"}, {\"index\": 1, \"sentence\": \"そこで4人の人が火で手をあたためていました。\"}, {\"index\": 2, \"sentence\": \"囘龍はとてもていねいにあいさつをしました。\"}, {\"index\": 3, \"sentence\": \"ひとびともじょうひんなことばで答えました。\"}, {\"index\": 4, \"sentence\": \"囘龍はふしぎだと思いました。\"}, {\"index\": 5, \"sentence\": \"まずしい人がていねいなことばを知っています。\"}, {\"index\": 7, \"sentence\": \"囘龍はしゅじんの人に話しました。\"}, {\"index\": 10, \"sentence\": \"前は高いみぶんの人だったと思います。\"}]}",
+    "{\"rewrites\": [{\"index\": 0, \"sentence\": \"囘龍はあんないの人とこやに入りました。\"}, {\"index\": 1, \"sentence\": \"そこで4人の人が火で手をあたためていました。\"}, {\"index\": 2, \"sentence\": \"囘龍はとてもていねいにあいさつをしました。\"}, {\"index\": 3, \"sentence\": \"ひとびともじょうひんなことばで答えました。\"}, {\"index\": 4, \"sentence\": \"囘龍はふしぎだと思いました。\"}, {\"index\": 5, \"sentence\": \"まずしい人がていねいなことばを知っています。\"}, {\"index\": 7, \"sentence\": \"囘龍はしゅじんの人に話しました。\"}, {\"index\": 10, \"sentence\": \"前は高いみぶんの人だったと思います。\"}]}",
+    "{\"question\": {\"prompt\": \"かいりゅうはどうしてふしぎだと思いましたか。\", \"options\": [\"ひとびとがていねいなことばを話したから。\", \"いえがとても広かったから。\", \"きこりがわらっていたから。\"], \"answer\": 0}}",
+    "{\"glosses\": {\"とこ\": \"place\", \"あいさつ\": \"greeting\", \"びともじょうひんなことばで\": \"with elegant words\", \"はしゅ\": \"the master\", \"びとがていねいなことばを\": \"polite words by people\"}}"
   ],
   "metrics": {
-    "kanjiCoverage": 0.8461538461538461,
-    "kanjiDensity": 0.15757575757575756,
-    "firstCoverage": 0.8048780487804879,
-    "finalCoverage": 1,
-    "retries": 3,
-    "seconds": 20.45694989999989,
+    "kanjiCoverage": 1,
+    "kanjiDensity": 0.1320754716981132,
+    "firstCoverage": 0.8260869565217391,
+    "finalCoverage": 0.8297872340425532,
+    "retries": 9,
+    "seconds": 37.53330499999999,
     "offendingFirst": [
       "小屋",
-      "あたためる",
-      "あいさつ",
+      "温める",
+      "人々",
       "上品",
-      "あるじ",
-      "身分",
-      "しれる",
-      "ほほえむ"
+      "不思議",
+      "貧しい",
+      "主人",
+      "身分"
     ],
     "ghostWords": [
+      "とこ",
+      "あたためる",
+      "あいさつ",
       "ふしぎ",
-      "話し方"
-    ]
+      "まずしい",
+      "はしゅ",
+      "はみ",
+      "ぶん",
+      "びとがていねいなことばを"
+    ],
+    "faithIssues": []
   },
   "retelling": {
     "level": "N4",
@@ -51,20 +60,20 @@
         "tokens": [
           {
             "s": "囘龍",
-            "hk": true,
             "r": "かいりゅう",
             "b": "囘龍",
             "k": "story",
-            "g": "Kairyu, the warrior's monk name"
+            "g": "Kairyu, the warrior's monk name",
+            "hk": true
           },
           {
-            "s": "と",
+            "s": "は",
             "k": "plain"
           },
           {
             "s": "あん",
-            "b": "ある",
             "k": "known",
+            "b": "ある",
             "g": "to be, to have",
             "gs": "jlpt"
           },
@@ -74,22 +83,22 @@
           },
           {
             "s": "人",
+            "k": "known",
             "r": "ひと",
             "b": "人",
-            "k": "known",
             "g": "counter for people",
             "gs": "jlpt"
           },
           {
-            "s": "が",
-            "k": "plain"
+            "s": "とこ",
+            "k": "ghost",
+            "b": "とこ",
+            "g": "place/spot",
+            "gs": "model"
           },
           {
-            "s": "いえ",
-            "b": "いえる",
-            "k": "known",
-            "g": "house, home",
-            "gs": "jlpt"
+            "s": "や",
+            "k": "plain"
           },
           {
             "s": "に",
@@ -97,9 +106,9 @@
           },
           {
             "s": "入り",
+            "k": "known",
             "r": "はいり",
             "b": "入る",
-            "k": "known",
             "g": "to enter, to contain, to hold",
             "gs": "jlpt"
           },
@@ -120,10 +129,19 @@
       {
         "tokens": [
           {
-            "s": "なか",
-            "b": "なか",
+            "s": "そこで",
+            "k": "plain"
+          },
+          {
+            "s": "4",
+            "k": "plain"
+          },
+          {
+            "s": "人",
             "k": "known",
-            "g": "inside, middle, among",
+            "r": "にん",
+            "b": "人",
+            "g": "counter for people",
             "gs": "jlpt"
           },
           {
@@ -131,10 +149,22 @@
             "k": "plain"
           },
           {
+            "s": "人",
+            "k": "known",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
             "s": "火",
+            "k": "known",
             "r": "ひ",
             "b": "火",
-            "k": "known",
             "g": "fire",
             "gs": "jlpt"
           },
@@ -144,9 +174,9 @@
           },
           {
             "s": "手",
+            "k": "known",
             "r": "て",
             "b": "手",
-            "k": "known",
             "g": "hand",
             "gs": "jlpt"
           },
@@ -155,17 +185,10 @@
             "k": "plain"
           },
           {
-            "s": "あつく",
-            "b": "あつい",
-            "k": "known",
-            "g": "hot (in reference to weather), warm",
-            "gs": "jlpt"
-          },
-          {
-            "s": "し",
-            "b": "する",
-            "k": "known",
-            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+            "s": "あたため",
+            "k": "ghost",
+            "b": "あたためる",
+            "g": "to warm (up to someone/something), to heat (up to someone/something)",
             "gs": "jlpt"
           },
           {
@@ -173,116 +196,9 @@
             "k": "plain"
           },
           {
-            "s": "いる",
-            "b": "いる",
-            "k": "known",
-            "g": "(humble) to be (animate), to exist",
-            "gs": "jlpt"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
             "s": "い",
+            "k": "known",
             "b": "いる",
-            "k": "known",
-            "g": "(humble) to be (animate), to exist",
-            "gs": "jlpt"
-          },
-          {
-            "s": "まし",
-            "k": "plain"
-          },
-          {
-            "s": "た",
-            "k": "plain"
-          },
-          {
-            "s": "。",
-            "k": "plain"
-          }
-        ]
-      },
-      {
-        "tokens": [
-          {
-            "s": "四",
-            "r": "よん",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "にん",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "男",
-            "r": "おとこ",
-            "b": "男",
-            "k": "known",
-            "g": "man, male",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
-            "gs": "jlpt"
-          },
-          {
-            "s": "と",
-            "k": "plain"
-          },
-          {
-            "s": "女",
-            "r": "おんな",
-            "b": "女",
-            "k": "known",
-            "g": "woman, female",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
-            "k": "known",
-            "g": "counter for people",
-            "gs": "jlpt"
-          },
-          {
-            "s": "が",
-            "k": "plain"
-          },
-          {
-            "s": "い",
-            "b": "いる",
-            "k": "known",
             "g": "(humble) to be (animate), to exist",
             "gs": "jlpt"
           },
@@ -304,11 +220,11 @@
         "tokens": [
           {
             "s": "囘龍",
-            "hk": true,
             "r": "かいりゅう",
             "b": "囘龍",
             "k": "story",
-            "g": "Kairyu, the warrior's monk name"
+            "g": "Kairyu, the warrior's monk name",
+            "hk": true
           },
           {
             "s": "は",
@@ -316,8 +232,8 @@
           },
           {
             "s": "ていねい",
-            "b": "ていねい",
             "k": "known",
+            "b": "ていねい",
             "g": "polite, courteous, careful",
             "gs": "jlpt"
           },
@@ -326,12 +242,11 @@
             "k": "plain"
           },
           {
-            "s": "話",
-            "r": "はなし",
-            "b": "話",
-            "k": "known",
-            "g": "talk (chat), story",
-            "gs": "jlpt"
+            "s": "あいさつ",
+            "k": "ghost",
+            "b": "あいさつ",
+            "g": "greeting",
+            "gs": "model"
           },
           {
             "s": "を",
@@ -339,8 +254,8 @@
           },
           {
             "s": "し",
-            "b": "する",
             "k": "known",
+            "b": "する",
             "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
             "gs": "jlpt"
           },
@@ -361,41 +276,92 @@
       {
         "tokens": [
           {
-            "s": "この",
-            "k": "plain"
-          },
-          {
             "s": "人",
+            "k": "known",
             "r": "ひと",
             "b": "人",
-            "k": "known",
             "g": "counter for people",
             "gs": "jlpt"
           },
           {
             "s": "たち",
-            "b": "たち",
             "k": "known",
+            "b": "たち",
             "g": "plural suffix",
             "gs": "jlpt"
+          },
+          {
+            "s": "も",
+            "k": "plain"
+          },
+          {
+            "s": "きれい",
+            "k": "known",
+            "b": "きれい",
+            "g": "pretty, clean, tidy",
+            "gs": "jlpt"
+          },
+          {
+            "s": "な",
+            "k": "plain"
+          },
+          {
+            "s": "ことば",
+            "k": "known",
+            "b": "ことば",
+            "g": "language; word(s); expression(s)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "で",
+            "k": "plain"
+          },
+          {
+            "s": "答え",
+            "k": "known",
+            "r": "こたえ",
+            "b": "答える",
+            "g": "to answer, to reply",
+            "gs": "jlpt"
+          },
+          {
+            "s": "まし",
+            "k": "plain"
+          },
+          {
+            "s": "た",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "囘龍",
+            "r": "かいりゅう",
+            "b": "囘龍",
+            "k": "story",
+            "g": "Kairyu, the warrior's monk name",
+            "hk": true
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "とても",
-            "b": "とても",
-            "k": "known",
-            "g": "very (much), greatly, exceedingly",
+            "s": "ふしぎ",
+            "k": "ghost",
+            "b": "ふしぎ",
+            "g": "mystery, curiosity",
             "gs": "jlpt"
           },
           {
-            "s": "いい",
-            "b": "いい",
-            "k": "known",
-            "g": "good",
-            "gs": "jlpt"
+            "s": "だ",
+            "k": "plain"
           },
           {
             "s": "と",
@@ -403,9 +369,9 @@
           },
           {
             "s": "思い",
+            "k": "known",
             "r": "おもい",
             "b": "思う",
-            "k": "known",
             "g": "to think, to feel",
             "gs": "jlpt"
           },
@@ -425,6 +391,85 @@
       },
       {
         "tokens": [
+          {
+            "s": "まずしい",
+            "k": "ghost",
+            "b": "まずしい",
+            "g": "poor, needy",
+            "gs": "jlpt"
+          },
+          {
+            "s": "人",
+            "k": "known",
+            "r": "ひと",
+            "b": "人",
+            "g": "counter for people",
+            "gs": "jlpt"
+          },
+          {
+            "s": "が",
+            "k": "plain"
+          },
+          {
+            "s": "きれい",
+            "k": "known",
+            "b": "きれい",
+            "g": "pretty, clean, tidy",
+            "gs": "jlpt"
+          },
+          {
+            "s": "な",
+            "k": "plain"
+          },
+          {
+            "s": "ことば",
+            "k": "known",
+            "b": "ことば",
+            "g": "language; word(s); expression(s)",
+            "gs": "jlpt"
+          },
+          {
+            "s": "を",
+            "k": "plain"
+          },
+          {
+            "s": "知っ",
+            "k": "known",
+            "r": "しっ",
+            "b": "知る",
+            "g": "to know, to understand",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "い",
+            "k": "known",
+            "b": "いる",
+            "g": "(humble) to be (animate), to exist",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ます",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "きっと",
+            "k": "known",
+            "b": "きっと",
+            "g": "surely, definitely, undoubtedly, certainly",
+            "gs": "jlpt"
+          },
           {
             "s": "だれ",
             "k": "plain"
@@ -439,9 +484,9 @@
           },
           {
             "s": "習っ",
+            "k": "known",
             "r": "ならっ",
             "b": "習う",
-            "k": "known",
             "g": "to learn",
             "gs": "jlpt"
           },
@@ -455,9 +500,9 @@
           },
           {
             "s": "思い",
+            "k": "known",
             "r": "おもい",
             "b": "思う",
-            "k": "known",
             "g": "to think, to feel",
             "gs": "jlpt"
           },
@@ -478,16 +523,26 @@
       {
         "tokens": [
           {
-            "s": "そして",
-            "k": "plain"
+            "s": "囘龍",
+            "r": "かいりゅう",
+            "b": "囘龍",
+            "k": "story",
+            "g": "Kairyu, the warrior's monk name",
+            "hk": true
           },
           {
-            "s": "、",
-            "k": "plain"
+            "s": "はしゅ",
+            "k": "ghost",
+            "b": "はしゅ",
+            "g": "head of family",
+            "gs": "model"
           },
           {
-            "s": "いえ",
-            "k": "plain"
+            "s": "じん",
+            "k": "known",
+            "b": "じん",
+            "g": "counter for people",
+            "gs": "jlpt"
           },
           {
             "s": "の",
@@ -495,9 +550,9 @@
           },
           {
             "s": "人",
+            "k": "known",
             "r": "ひと",
             "b": "人",
-            "k": "known",
             "g": "counter for people",
             "gs": "jlpt"
           },
@@ -506,11 +561,11 @@
             "k": "plain"
           },
           {
-            "s": "言い",
-            "r": "いい",
-            "b": "言う",
+            "s": "話し",
             "k": "known",
-            "g": "to say",
+            "r": "はなし",
+            "b": "話す",
+            "g": "to speak",
             "gs": "jlpt"
           },
           {
@@ -534,13 +589,70 @@
             "k": "plain"
           },
           {
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "ことば",
+            "k": "known",
+            "b": "ことば",
+            "g": "language; word(s); expression(s)",
+            "gs": "jlpt"
+          },
+          {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "きこ",
-            "b": "きく",
+            "s": "とても",
             "k": "known",
+            "b": "とても",
+            "g": "very (much), greatly, exceedingly",
+            "gs": "jlpt"
+          },
+          {
+            "s": "ていねい",
+            "k": "known",
+            "b": "ていねい",
+            "g": "polite, courteous, careful",
+            "gs": "jlpt"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
+            "k": "plain"
+          }
+        ]
+      },
+      {
+        "tokens": [
+          {
+            "s": "あなた",
+            "k": "plain"
+          },
+          {
+            "s": "は",
+            "k": "plain"
+          },
+          {
+            "s": "前",
+            "k": "known",
+            "r": "まえ",
+            "b": "前",
+            "g": "before, in front",
+            "gs": "jlpt"
+          },
+          {
+            "s": "から",
+            "k": "plain"
+          },
+          {
+            "s": "きこ",
+            "k": "known",
+            "b": "きく",
             "g": "to hear, to listen, to ask",
             "gs": "jlpt"
           },
@@ -557,26 +669,18 @@
             "k": "plain"
           },
           {
-            "s": "ない",
-            "b": "ない",
+            "s": "あり",
             "k": "known",
-            "g": "there isn't, doesn't have",
+            "b": "ある",
+            "g": "to be, to have",
             "gs": "jlpt"
           },
           {
-            "s": "と",
+            "s": "ませ",
             "k": "plain"
           },
           {
-            "s": "思い",
-            "r": "おもい",
-            "b": "思う",
-            "k": "known",
-            "g": "to think, to feel",
-            "gs": "jlpt"
-          },
-          {
-            "s": "ます",
+            "s": "ん",
             "k": "plain"
           },
           {
@@ -588,37 +692,49 @@
       {
         "tokens": [
           {
-            "s": "まえ",
-            "b": "まえる",
-            "k": "known",
-            "g": "before, in front",
+            "s": "前",
+            "k": "plain",
+            "r": "ぜん"
+          },
+          {
+            "s": "はみ",
+            "k": "ghost",
+            "b": "はみ",
+            "g": "bit (of a bridle)",
+            "gs": "model"
+          },
+          {
+            "s": "ぶん",
+            "k": "ghost",
+            "b": "ぶん",
+            "g": "dividing, part, segment",
             "gs": "jlpt"
           },
           {
-            "s": "は",
+            "s": "が",
             "k": "plain"
           },
           {
-            "s": "すごい",
-            "b": "すごい",
+            "s": "あっ",
             "k": "known",
-            "g": "terrific, great",
+            "b": "ある",
+            "g": "to be, to have",
             "gs": "jlpt"
           },
           {
+            "s": "た",
+            "k": "plain"
+          },
+          {
             "s": "人",
+            "k": "known",
             "r": "ひと",
             "b": "人",
-            "k": "known",
             "g": "counter for people",
             "gs": "jlpt"
           },
           {
-            "s": "だっ",
-            "k": "plain"
-          },
-          {
-            "s": "た",
+            "s": "だ",
             "k": "plain"
           },
           {
@@ -627,9 +743,9 @@
           },
           {
             "s": "思い",
+            "k": "known",
             "r": "おもい",
             "b": "思う",
-            "k": "known",
             "g": "to think, to feel",
             "gs": "jlpt"
           },
@@ -647,8 +763,8 @@
         "tokens": [
           {
             "s": "きこ",
-            "b": "きく",
             "k": "known",
+            "b": "きく",
             "g": "to hear, to listen, to ask",
             "gs": "jlpt"
           },
@@ -662,8 +778,8 @@
           },
           {
             "s": "わらっ",
-            "b": "わらう",
             "k": "known",
+            "b": "わらう",
             "g": "to laugh, to smile",
             "gs": "jlpt"
           },
@@ -673,9 +789,9 @@
           },
           {
             "s": "答え",
+            "k": "known",
             "r": "こたえ",
             "b": "答える",
-            "k": "known",
             "g": "to answer, to reply",
             "gs": "jlpt"
           },
@@ -698,71 +814,44 @@
       "prompt": {
         "tokens": [
           {
-            "s": "かいりゅう",
+            "s": "囘龍",
             "r": "かいりゅう",
             "b": "囘龍",
             "k": "story",
-            "g": "Kairyu, the warrior's monk name"
+            "g": "Kairyu, the warrior's monk name",
+            "hk": true
           },
           {
             "s": "は",
             "k": "plain"
           },
           {
-            "s": "、",
-            "k": "plain"
-          },
-          {
-            "s": "いえ",
-            "k": "plain"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "人",
-            "r": "ひと",
-            "b": "人",
+            "s": "どうして",
             "k": "known",
-            "g": "counter for people",
+            "b": "どうして",
+            "g": "why, for what reason",
             "gs": "jlpt"
-          },
-          {
-            "s": "たち",
-            "b": "たち",
-            "k": "known",
-            "g": "plural suffix",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "なに",
-            "k": "plain"
-          },
-          {
-            "s": "を",
-            "k": "plain"
           },
           {
             "s": "ふしぎ",
-            "b": "ふしぎ",
             "k": "ghost",
+            "b": "ふしぎ",
             "g": "mystery, curiosity",
             "gs": "jlpt"
           },
           {
-            "s": "に",
+            "s": "だ",
+            "k": "plain"
+          },
+          {
+            "s": "と",
             "k": "plain"
           },
           {
             "s": "思い",
+            "k": "known",
             "r": "おもい",
             "b": "思う",
-            "k": "known",
             "g": "to think, to feel",
             "gs": "jlpt"
           },
@@ -788,95 +877,9 @@
         {
           "tokens": [
             {
-              "s": "火",
-              "r": "ひ",
-              "b": "火",
-              "k": "known",
-              "g": "fire",
-              "gs": "jlpt"
-            },
-            {
-              "s": "の",
-              "k": "plain"
-            },
-            {
-              "s": "そば",
-              "b": "そば",
-              "k": "known",
-              "g": "near, close, beside; Japanese traditional buckwheat noodle",
-              "gs": "jlpt"
-            },
-            {
-              "s": "に",
-              "k": "plain"
-            },
-            {
-              "s": "い",
-              "b": "いる",
-              "k": "known",
-              "g": "(humble) to be (animate), to exist",
-              "gs": "jlpt"
-            },
-            {
-              "s": "た",
-              "k": "plain"
-            },
-            {
-              "s": "こと",
-              "b": "こと",
-              "k": "known",
-              "g": "thing(s), matter(s), fact",
-              "gs": "jlpt"
-            }
-          ]
-        },
-        {
-          "tokens": [
-            {
-              "s": "いい",
-              "b": "いい",
-              "k": "known",
-              "g": "good",
-              "gs": "jlpt"
-            },
-            {
-              "s": "話し方",
-              "r": "はなしかた",
-              "b": "話し方",
-              "k": "ghost",
-              "g": "way of speaking",
-              "gs": "model"
-            },
-            {
-              "s": "を",
-              "k": "plain"
-            },
-            {
-              "s": "し",
-              "b": "する",
-              "k": "known",
-              "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
-              "gs": "jlpt"
-            },
-            {
-              "s": "た",
-              "k": "plain"
-            },
-            {
-              "s": "こと",
-              "b": "こと",
-              "k": "known",
-              "g": "thing(s), matter(s), fact",
-              "gs": "jlpt"
-            }
-          ]
-        },
-        {
-          "tokens": [
-            {
               "s": "きこ",
-              "b": "きく",
               "k": "known",
+              "b": "きく",
               "g": "to hear, to listen, to ask",
               "gs": "jlpt"
             },
@@ -885,19 +888,115 @@
               "k": "plain"
             },
             {
-              "s": "で",
+              "s": "が",
               "k": "plain"
             },
             {
-              "s": "ある",
-              "k": "plain"
-            },
-            {
-              "s": "こと",
-              "b": "こと",
+              "s": "わらっ",
               "k": "known",
-              "g": "thing(s), matter(s), fact",
+              "b": "わらう",
+              "g": "to laugh, to smile",
               "gs": "jlpt"
+            },
+            {
+              "s": "て",
+              "k": "plain"
+            },
+            {
+              "s": "い",
+              "k": "known",
+              "b": "いる",
+              "g": "(humble) to be (animate), to exist",
+              "gs": "jlpt"
+            },
+            {
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "から",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "ひと",
+              "k": "plain"
+            },
+            {
+              "s": "びとがていねいなことばを",
+              "k": "ghost",
+              "b": "びとがていねいなことばを",
+              "g": "people [using] polite language",
+              "gs": "model"
+            },
+            {
+              "s": "話し",
+              "k": "known",
+              "r": "はなし",
+              "b": "話す",
+              "g": "to speak",
+              "gs": "jlpt"
+            },
+            {
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "から",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
+            }
+          ]
+        },
+        {
+          "tokens": [
+            {
+              "s": "いえ",
+              "k": "known",
+              "b": "いう",
+              "g": "to say",
+              "gs": "jlpt"
+            },
+            {
+              "s": "が",
+              "k": "plain"
+            },
+            {
+              "s": "とても",
+              "k": "known",
+              "b": "とても",
+              "g": "very (much), greatly, exceedingly",
+              "gs": "jlpt"
+            },
+            {
+              "s": "広かっ",
+              "k": "known",
+              "r": "ひろかっ",
+              "b": "広い",
+              "g": "spacious; wide; broad",
+              "gs": "jlpt"
+            },
+            {
+              "s": "た",
+              "k": "plain"
+            },
+            {
+              "s": "から",
+              "k": "plain"
+            },
+            {
+              "s": "。",
+              "k": "plain"
             }
           ]
         }
@@ -905,27 +1004,186 @@
       "answer": 1
     },
     "metrics": {
-      "kanjiCoverage": 0.8461538461538461,
-      "kanjiDensity": 0.15757575757575756,
-      "firstCoverage": 0.8048780487804879,
-      "finalCoverage": 1,
-      "retries": 3,
-      "seconds": 20.45694989999989,
+      "kanjiCoverage": 1,
+      "kanjiDensity": 0.1320754716981132,
+      "firstCoverage": 0.8260869565217391,
+      "finalCoverage": 0.8297872340425532,
+      "retries": 9,
+      "seconds": 37.53330499999999,
       "offendingFirst": [
         "小屋",
-        "あたためる",
-        "あいさつ",
+        "温める",
+        "人々",
         "上品",
-        "あるじ",
-        "身分",
-        "しれる",
-        "ほほえむ"
+        "不思議",
+        "貧しい",
+        "主人",
+        "身分"
       ],
       "ghostWords": [
+        "とこ",
+        "あたためる",
+        "あいさつ",
         "ふしぎ",
-        "話し方"
-      ]
+        "まずしい",
+        "はしゅ",
+        "はみ",
+        "ぶん",
+        "びとがていねいなことばを"
+      ],
+      "faithIssues": []
     }
   },
-  "spellingRecheck": "Final spellings recovered verbatim from saved hosted responses; canonical story identity retained in token.b."
+  "levelRepairs": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n囘龍が案内者と共に小屋に入った時、四人の男女が炉にもやした小さな火で手を暖めているのを見た。僧に向って丁寧にお辞儀をして、最も恭しき態度で挨拶を云った。囘龍はこんな淋しい処に住んでいるこんな貧しい人々が、上品な挨拶の言葉を知っている事を不思議に思った。『これはよい人々だ』彼は考えた『誰かよく礼儀を知っている人から習ったに相違ない』それから外のものが『あるじ』と云っているその主人に向って云った。\n『その親切な言葉や、皆さんから受けたはなはだ丁寧なもてなしから、私はあなたを初めからのきこりとは思われない。たぶん以前は身分のある方でしたろう』\nきこりは微笑しながら答えた。\nCurrent retelling:\n囘龍はあんないの人とこやに入りました。\nそこで4人の人が火で手をあたためていました。\n囘龍はとてもていねいにあいさつをしました。\nひとびともじょうひんなことばで答えました。\n囘龍はふしぎだと思いました。\nまずしい人がていねいなことばを知っています。\nきっとだれかから習ったと思いました。\n囘龍はしゅじんの人に話しました。\nあなたのことばはとてもていねいです。\nあなたは前からきこりではありません。\n前は高いみぶんの人だったと思います。\nきこりはわらって答えました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.12669683257918551,\"meanLength\":18.416666666666668,\"advancedShare\":0.3111111111111111}; vocabulary 0.8. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: い、とこ、あたためる、あいさつ、びともじょうひんなことばで、ふしぎ、まずしい、はしゅ、ぶん. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentencesにつながる\": null, \"sentences\": [\"囘龍は案内の人と小屋に入りました。\", \"そこで4人の人が火で手をあたためていました。\", \"囘龍はとてもていねいに挨拶をしました。\", \"人々もじょうひんな言葉で答えました。\", \"囘龍はふしぎだと思いました。\", \"貧しい人がていねいな言葉を知っています。\", \"きっと誰かから習ったと思いました。\", \"囘龍は主人の人に話しました。\", \"あなたの言葉はとてもていねいです。\", \"あなたは前からきこりではありません。\", \"前は身分が高い人だったと思います。\", \"きこりはわらって答えました。\"], \"question\": {\"prompt\": \"囘龍はどうしてふしぎだと思いましたか。\", \"options\": [\"言葉がていねいだったから。\", \"小屋がとても大きかったから。\", \"人が4人もいたから。\"], \"answer\": 0}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n囘龍が案内者と共に小屋に入った時、四人の男女が炉にもやした小さな火で手を暖めているのを見た。僧に向って丁寧にお辞儀をして、最も恭しき態度で挨拶を云った。囘龍はこんな淋しい処に住んでいるこんな貧しい人々が、上品な挨拶の言葉を知っている事を不思議に思った。『これはよい人々だ』彼は考えた『誰かよく礼儀を知っている人から習ったに相違ない』それから外のものが『あるじ』と云っているその主人に向って云った。\n『その親切な言葉や、皆さんから受けたはなはだ丁寧なもてなしから、私はあなたを初めからのきこりとは思われない。たぶん以前は身分のある方でしたろう』\nきこりは微笑しながら答えた。\nCurrent retelling:\n囘龍はあんないの人と小屋に入りました。\nそこで4人の人が火で手をあたためていました。\n囘龍はとてもていねいにあいさつをしました。\nひとびともじょうひんなことばで答えました。\n囘龍はふしぎだと思いました。\nまずしい人がていねいなことばを知っています。\nきっとだれかから習ったと思いました。\n囘龍は主人の人に話しました。\nあなたのことばはとてもていねいです。\nあなたは前からきこりではありません。\n前はみぶんが高い人だったと思います。\nきこりはわらって答えました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.1461187214611872,\"meanLength\":18.25,\"advancedShare\":0.3409090909090909}; vocabulary 0.7727272727272727. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: い、小屋、あたためる、あいさつ、びともじょうひんなことばで、ふしぎ、まずしい、主人、はみ、ぶん. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"囘龍はあんないの人とこやに入りました。\", \"そこで4人の人が火で手をあたためていました。\", \"囘龍はとてもていねいにあいさつをしました。\", \"人たちもじょうひんなことばで答えました。\", \"囘龍はふしぎだと思いました。\", \"まずしい人がていねいなことばを知っています。\", \"きっとだれかから習ったと思いました。\", \"囘龍はしゅじんの人に話しました。\", \"あなたのことばはとてもていねいです。\", \"あなたはまえからきこりではありません。\", \"まえはみぶんが高い人だったと思います。\", \"きこりはわらって答えました。\"], \"question\": {\"prompt\": \"囘龍はどう思いましたか。\", \"options\": [\"人がこわいと思いました。\", \"人がていねいだと思いました。\", \"場所がきれいだと思いました。\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n囘龍が案内者と共に小屋に入った時、四人の男女が炉にもやした小さな火で手を暖めているのを見た。僧に向って丁寧にお辞儀をして、最も恭しき態度で挨拶を云った。囘龍はこんな淋しい処に住んでいるこんな貧しい人々が、上品な挨拶の言葉を知っている事を不思議に思った。『これはよい人々だ』彼は考えた『誰かよく礼儀を知っている人から習ったに相違ない』それから外のものが『あるじ』と云っているその主人に向って云った。\n『その親切な言葉や、皆さんから受けたはなはだ丁寧なもてなしから、私はあなたを初めからのきこりとは思われない。たぶん以前は身分のある方でしたろう』\nきこりは微笑しながら答えた。\nCurrent retelling:\n囘龍はあんないの人とこやに入りました。\nそこで4人の人が火で手をあたためていました。\n囘龍はとてもていねいにあいさつをしました。\n人たちもじょうひんなことばで答えました。\n囘龍はふしぎだと思いました。\nまずしい人がていねいなことばを知っています。\nきっとだれかから習ったと思いました。\n囘龍はしゅじんの人に話しました。\nあなたのことばはとてもていねいです。\nあなたはまえからきこりではありません。\nまえはみぶんが高い人だったと思います。\nきこりはわらって答えました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.12162162162162163,\"meanLength\":18.5,\"advancedShare\":0.2978723404255319}; vocabulary 0.7872340425531915. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: い、とこ、あたためる、あいさつ、ょうひんなことばで、ふしぎ、まずしい、はしゅ、はみ、ぶん. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"囘龍はあんないの人と小屋に入りました。\", \"そこで4人の人が火で手をあたためていました。\", \"囘龍はとてもていねいにあいさつをしました。\", \"人たちもじょうひんなことばで答えました。\", \"囘龍はふしぎだと思いました。\", \"まずしい人がていねいなことばを知っています。\", \"きっとだれかから習ったと思いました。\", \"囘龍はしゅじんの人に話しました。\", \"あなたのことばはとてもていねいです。\", \"あなたはまえからきこりではありません。\", \"まえはみぶんが高い人だったと思います。\", \"きこりはわらって答えました。\"], \"question\": {\"prompt\": \"囘龍はどうしてふしぎだと思いましたか。\", \"options\": [\"人が4人いたから。\", \"ことばがていねいだったから。\", \"小屋がとても広かったから。\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: あいさつ、ょうひんなことばで、はしゅ、はみ、びとがていねいなことばを. Return JSON {\"glosses\":{\"あいさつ\":\"English gloss\",\"ょうひんなことばで\":\"English gloss\",\"はしゅ\":\"English gloss\",\"はみ\":\"English gloss\",\"びとがていねいなことばを\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"あいさつ\": \"greeting\", \"ょうひんなことばで\": \"in elegant language\", \"はしゅ\": \"head of a family\", \"はみ\": \"bit (of a horse's bridle)\", \"びとがていねいなことばを\": \"people [using] polite language\"}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n囘龍が案内者と共に小屋に入った時、四人の男女が炉にもやした小さな火で手を暖めているのを見た。僧に向って丁寧にお辞儀をして、最も恭しき態度で挨拶を云った。囘龍はこんな淋しい処に住んでいるこんな貧しい人々が、上品な挨拶の言葉を知っている事を不思議に思った。『これはよい人々だ』彼は考えた『誰かよく礼儀を知っている人から習ったに相違ない』それから外のものが『あるじ』と云っているその主人に向って云った。\n『その親切な言葉や、皆さんから受けたはなはだ丁寧なもてなしから、私はあなたを初めからのきこりとは思われない。たぶん以前は身分のある方でしたろう』\nきこりは微笑しながら答えた。\nCurrent retelling:\n囘龍はあんないの人と小屋に入りました。\nそこで4人の人が火で手をあたためていました。\n囘龍はとてもていねいにあいさつをしました。\n人たちもじょうひんなことばで答えました。\n囘龍はふしぎだと思いました。\nまずしい人がていねいなことばを知っています。\nきっとだれかから習ったと思いました。\n囘龍はしゅじんの人に話しました。\nあなたのことばはとてもていねいです。\nあなたはまえからきこりではありません。\nまえはみぶんがあった人だと思います。\nきこりはわらって答えました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.12669683257918551,\"meanLength\":18.416666666666668,\"advancedShare\":0.3191489361702128}; vocabulary 0.7872340425531915. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: い、小屋、あたためる、あいさつ、ょうひんなことばで、ふしぎ、まずしい、はしゅ、はみ、ぶん. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentencesにつながる\": null, \"sentences\": [\"囘龍は案内の人とこやに入りました。\", \"そこで4人の人が火で手をあたためていました。\", \"囘龍はとてもていねいにあいさつをしました。\", \"人たちもじょうひんなことばで答えました。\", \"囘龍はふしぎだと思いました。\", \"まずしい人がていねいなことばを知っています。\", \"きっとだれかから習ったと思いました。\", \"囘龍はしゅじんの人に話しました。\", \"あなたのことばはとてもていねいです。\", \"あなたはまえからきこりではありません。\", \"まえはみぶんがあった人だと思います。\", \"きこりはわらって答えました。\"], \"question\": {\"prompt\": \"囘龍はどう思いましたか。\", \"options\": [\"人がこわいと思いました。\", \"人がていねいだと思いました。\", \"こやがきれいだと思いました。\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n囘龍が案内者と共に小屋に入った時、四人の男女が炉にもやした小さな火で手を暖めているのを見た。僧に向って丁寧にお辞儀をして、最も恭しき態度で挨拶を云った。囘龍はこんな淋しい処に住んでいるこんな貧しい人々が、上品な挨拶の言葉を知っている事を不思議に思った。『これはよい人々だ』彼は考えた『誰かよく礼儀を知っている人から習ったに相違ない』それから外のものが『あるじ』と云っているその主人に向って云った。\n『その親切な言葉や、皆さんから受けたはなはだ丁寧なもてなしから、私はあなたを初めからのきこりとは思われない。たぶん以前は身分のある方でしたろう』\nきこりは微笑しながら答えた。\nCurrent retelling:\n囘龍はあんないの人とこやに入りました。\nそこで4人の人が火で手をあたためていました。\n囘龍はとてもていねいにあいさつをしました。\n人たちもじょうひんなことばで答えました。\n囘龍はふしぎだと思いました。\nまずしい人がていねいなことばを知っています。\nきっとだれかから習ったと思いました。\n囘龍はしゅじんの人に話しました。\nあなたのことばはとてもていねいです。\nあなたはまえからきこりではありません。\nまえはみぶんがあった人だと思います。\nきこりはわらって答えました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.11764705882352941,\"meanLength\":18.416666666666668,\"advancedShare\":0.2978723404255319}; vocabulary 0.7872340425531915. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: い、とこ、あたためる、あいさつ、ょうひんなことばで、ふしぎ、まずしい、はしゅ、はみ、ぶん. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"囘龍は案内人と小屋に入りました。\", \"そこで4人の人が火で手を温めていました。\", \"囘龍はていねいにあいさつをしました。\", \"人たちもきれいな言葉で答えました。\", \"囘龍はふしぎだと思いました。\", \"貧しい人がきれいな言葉を知っています。\", \"きっと誰かから習ったと思いました。\", \"囘龍は主人の人に話しました。\", \"あなたの言葉はとてもていねいです。\", \"あなたは前からきこりではありません。\", \"前は身分があった人だと思います。\", \"きこりは笑って答えました。\"], \"question\": {\"prompt\": \"囘龍はどうしてふしぎだと思いましたか。\", \"options\": [\"人が4人もいたから。\", \"貧しい人がきれいな言葉を知っていたから。\", \"小屋に火があったから。\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT N4.\nUse です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.\nUse only vocabulary at or below N4. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.\nEach sentence is at most 28 characters, including punctuation. Split long sentences into several short sentences.\nKeep every event in the same order. Do not add events, people, feelings or explanations.\nStory words, in importance order: 囘龍（かいりゅう）、ろくろ首（ろくろくび）、変化（へんげ）. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.\nWrite normal Japanese with no spaces between words. Use ONLY these kanji: 一二九七人入八力十三上下口大女山川工土千夕子小中五六円天手文日月木水火犬出右四左本正田白目立万今元公切午友少心方牛父止兄冬北半古台外広母用世主代写去休先名字年早気百男町花見赤足車不仕会同多毎考肉自色行西何体作図売弟来社言走近学空金雨青音地安有死京国夜妹姉店明東歩画知長前南室後思海茶食以校夏家時紙通高強教理週魚鳥黒住医究者研場朝答買道間楽話電事使始服物屋度待持界発送重起院終習転運開集飲業漢歌聞語読親病別注洋特意味勉旅員動悪族着野生風新問銀題館駅料映私帰春昼秋計建英飯曜書品急真堂試借験質貸. This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.\nNarrative kanji density, including story words, must be 10–18 percent. Aim for 14 percent and mean sentence length 15–28 characters.\nNever spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.\nThen write one question at the same level, with three short options and one correct answer.\nReturn only JSON: {\"sentences\":[\"...\"],\"question\":{\"prompt\":\"...\",\"options\":[\"...\",\"...\",\"...\"],\"answer\":0}}"
+        },
+        {
+          "role": "user",
+          "content": "Original:\n囘龍が案内者と共に小屋に入った時、四人の男女が炉にもやした小さな火で手を暖めているのを見た。僧に向って丁寧にお辞儀をして、最も恭しき態度で挨拶を云った。囘龍はこんな淋しい処に住んでいるこんな貧しい人々が、上品な挨拶の言葉を知っている事を不思議に思った。『これはよい人々だ』彼は考えた『誰かよく礼儀を知っている人から習ったに相違ない』それから外のものが『あるじ』と云っているその主人に向って云った。\n『その親切な言葉や、皆さんから受けたはなはだ丁寧なもてなしから、私はあなたを初めからのきこりとは思われない。たぶん以前は身分のある方でしたろう』\nきこりは微笑しながら答えた。\nCurrent retelling:\n囘龍はあんない人と小屋に入りました。\nそこで4人の人が火で手をあたためていました。\n囘龍はていねいにあいさつをしました。\n人たちもきれいなことばで答えました。\n囘龍はふしぎだと思いました。\nまずしい人がきれいなことばを知っています。\nきっとだれかから習ったと思いました。\n囘龍は主人の人に話しました。\nあなたのことばはとてもていねいです。\nあなたは前からきこりではありません。\n前はみぶんがあった人だと思います。\nきこりはわらって答えました。\nRepair this retelling, preserving the original events. Current measurements: {\"kanjiCoverage\":1,\"kanjiDensity\":0.1523809523809524,\"meanLength\":17.5,\"advancedShare\":0.2826086956521739}; vocabulary 0.8260869565217391. Required kanji density 0.1–0.18, kanji coverage 1.0. Above-level vocabulary: 小屋、あたためる、あいさつ、ふしぎ、まずしい、主人、はみ、ぶん. Write at-level words in kanji, hard words in kana, story words in their exact kanji. Sentences at most 28 characters. Numbers in digits. \nReturn JSON {\"sentences\":[\"...\"]}."
+        }
+      ],
+      "response": "{\"sentences\": [\"囘龍は案内人とこやに入りました。\", \"そこで4人の人が火で手をあたためていました。\", \"囘龍はていねいにあいさつをしました。\", \"人たちもきれいなことばで答えました。\", \"囘龍はふしぎだと思いました。\", \"まずしい人がきれいなことばを知っています。\", \"きっとだれかから習ったと思いました。\", \"囘龍はしゅじんの人に話しました。\", \"あなたのことばはとてもていねいです。\", \"あなたは前からきこりではありません。\", \"前はみぶんがあった人だと思います。\", \"きこりはわらって答えました。\"], \"question\": {\"prompt\": \"囘龍は、きこりの人のことをどう思いましたか。\", \"options\": [\"とてもまずしい人だと思った。\", \"前はみぶんがあった人だと思った。\", \"ことばを習っていないと思った。\"], \"answer\": 1}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: とこ、あいさつ、はしゅ、はみ、びとがていねいなことばを. Return JSON {\"glosses\":{\"とこ\":\"English gloss\",\"あいさつ\":\"English gloss\",\"はしゅ\":\"English gloss\",\"はみ\":\"English gloss\",\"びとがていねいなことばを\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"とこ\": \"place/spot\", \"あいさつ\": \"greeting\", \"はしゅ\": \"head of family\", \"はみ\": \"bit (of a bridle)\", \"びとがていねいなことばを\": \"people [using] polite language\"}}"
+    }
+  ],
+  "faithfulness": {
+    "reviews": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n囘龍が案内者と共に小屋に入った時、四人の男女が炉にもやした小さな火で手を暖めているのを見た。僧に向って丁寧にお辞儀をして、最も恭しき態度で挨拶を云った。囘龍はこんな淋しい処に住んでいるこんな貧しい人々が、上品な挨拶の言葉を知っている事を不思議に思った。『これはよい人々だ』彼は考えた『誰かよく礼儀を知っている人から習ったに相違ない』それから外のものが『あるじ』と云っているその主人に向って云った。\n『その親切な言葉や、皆さんから受けたはなはだ丁寧なもてなしから、私はあなたを初めからのきこりとは思われない。たぶん以前は身分のある方でしたろう』\nきこりは微笑しながら答えた。\n\n語り直し:\n囘龍はあんないの人と小屋に入りました。\nそこで4人の人が火で手をあたためていました。\n囘龍はとてもていねいにあいさつをしました。\n人たちもじょうひんなことばで答えました。\n囘龍はふしぎだと思いました。\nまずしい人がていねいなことばを知っています。\nきっとだれかから習ったと思いました。\n囘龍はしゅじんの人に話しました。\nあなたのことばはとてもていねいです。\nあなたはまえからきこりではありません。\nまえはみぶんが高い人だったと思います。\nきこりはわらって答えました。"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"まえはみぶんが高い人だったと思います。\", \"problem\": \"「身分が高い」は不自然な表現。原文の「身分のある方」に基づき「身分があった」または「えらい人だった」とすべき。\", \"kind\": \"unnatural\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n囘龍が案内者と共に小屋に入った時、四人の男女が炉にもやした小さな火で手を暖めているのを見た。僧に向って丁寧にお辞儀をして、最も恭しき態度で挨拶を云った。囘龍はこんな淋しい処に住んでいるこんな貧しい人々が、上品な挨拶の言葉を知っている事を不思議に思った。『これはよい人々だ』彼は考えた『誰かよく礼儀を知っている人から習ったに相違ない』それから外のものが『あるじ』と云っているその主人に向って云った。\n『その親切な言葉や、皆さんから受けたはなはだ丁寧なもてなしから、私はあなたを初めからのきこりとは思われない。たぶん以前は身分のある方でしたろう』\nきこりは微笑しながら答えた。\n\n語り直し:\n囘龍はあんない人とこやに入りました。\nそこで4人の人が火で手をあたためていました。\n囘龍はていねいにあいさつをしました。\n人たちもきれいなことばで答えました。\n囘龍はふしぎだと思いました。\nまずしい人がきれいなことばを知っています。\nきっとだれかから習ったと思いました。\n囘龍はしゅじんの人に話しました。\nあなたのことばはとてもていねいです。\nあなたは前からきこりではありません。\n前はみぶんがあった人だと思います。\nきこりはわらって答えました。"
+          }
+        ],
+        "response": "{\"issues\": []}"
+      }
+    ],
+    "rewrites": [
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Repair only the specified sentences at JLPT N4. Preserve all other sentences and events. Use natural Japanese, numeric digits for numbers, and maintain the meaning of the original. Return only JSON {\"rewrites\":[{\"index\":0,\"sentence\":\"...\"}]}."
+          },
+          {
+            "role": "user",
+            "content": "Original:\n囘龍が案内者と共に小屋に入った時、四人の男女が炉にもやした小さな火で手を暖めているのを見た。僧に向って丁寧にお辞儀をして、最も恭しき態度で挨拶を云った。囘龍はこんな淋しい処に住んでいるこんな貧しい人々が、上品な挨拶の言葉を知っている事を不思議に思った。『これはよい人々だ』彼は考えた『誰かよく礼儀を知っている人から習ったに相違ない』それから外のものが『あるじ』と云っているその主人に向って云った。\n『その親切な言葉や、皆さんから受けたはなはだ丁寧なもてなしから、私はあなたを初めからのきこりとは思われない。たぶん以前は身分のある方でしたろう』\nきこりは微笑しながら答えた。\nSentences:\n0: 囘龍はあんないの人と小屋に入りました。\n1: そこで4人の人が火で手をあたためていました。\n2: 囘龍はとてもていねいにあいさつをしました。\n3: 人たちもじょうひんなことばで答えました。\n4: 囘龍はふしぎだと思いました。\n5: まずしい人がていねいなことばを知っています。\n6: きっとだれかから習ったと思いました。\n7: 囘龍はしゅじんの人に話しました。\n8: あなたのことばはとてもていねいです。\n9: あなたはまえからきこりではありません。\n10: まえはみぶんが高い人だったと思います。\n11: きこりはわらって答えました。\nIssues:\n[{\"sentence\":\"まえはみぶんが高い人だったと思います。\",\"problem\":\"「身分が高い」は不自然な表現。原文の「身分のある方」に基づき「身分があった」または「えらい人だった」とすべき。\",\"kind\":\"unnatural\"}]\nRewrite exactly indexes: 10"
+          }
+        ],
+        "response": "{\"rewrites\": [{\"index\": 10, \"sentence\": \"まえは身分があった人だと思います。\"}]}"
+      }
+    ],
+    "before": [
+      {
+        "sentence": "まえはみぶんが高い人だったと思います。",
+        "problem": "「身分が高い」は不自然な表現。原文の「身分のある方」に基づき「身分があった」または「えらい人だった」とすべき。",
+        "kind": "unnatural"
+      }
+    ],
+    "after": []
+  },
+  "ladderBuild": "P4b"
 }

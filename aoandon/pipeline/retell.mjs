@@ -2,10 +2,11 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { z } from 'zod';
-import { paths, providers, tales, levels, targets, sentenceCaps, maxRetries } from './config.mjs';
+import { paths, providers, tales, levels, targets, sentenceCaps, sentenceBands, densityBands, maxRetries } from './config.mjs';
 import { retellingSchema } from '../src/lib/schema.ts';
 import { loadVocab } from './jlpt.mjs';
 import { tokenizeForLevel, measure, kanjiMetrics, kanjiLevels } from './check.mjs';
+import { inDensityBand, numberWordIssues } from './ladder.mjs';
 const string = z.string().trim().min(1);
 export const questionShape = z.object({ prompt: string, options: z.tuple([string,string,string]), answer: z.union([z.literal(0),z.literal(1),z.literal(2)]) });
 const draftShape = z.object({ sentences: z.array(string).min(1), question: questionShape });
@@ -17,7 +18,7 @@ export function createProvider(config, fetchImpl = fetch) {
     const local = config.name === 'ollama';
     const response = await fetchImpl(`${config.baseUrl.replace(/\/$/,'')}${local ? '/api/chat' : '/chat/completions'}`, {
       method:'POST', headers:{'content-type':'application/json', ...(!local ? {Authorization:`Bearer ${config.apiKey}`} : {})},
-      signal:AbortSignal.timeout(180000), body:JSON.stringify(local ? {model:config.model,messages,stream:false,think:false,format:schema,options:{temperature:0.4,num_ctx:8192,num_predict:1536,repeat_penalty:1.15}} : {model:config.model,messages,response_format:{type:'json_object'},temperature:0.4,max_tokens:1536})
+      signal:AbortSignal.timeout(180000), body:JSON.stringify(local ? {model:config.model,messages,stream:false,think:false,format:schema,options:{temperature:0.4,num_ctx:8192,num_predict:1536,repeat_penalty:1.15}} : {model:config.model,messages,response_format:{type:'json_object'},temperature:0.4,max_tokens:4096})
     });
     if (!response.ok) throw new Error(`Provider HTTP ${response.status}`);
     const data = await response.json(); const content = local ? data.message?.content : data.choices?.[0]?.message?.content;
@@ -45,31 +46,33 @@ export function shuffleQuestion(question, seed) {
 export function systemPrompt(level, storyWords) {
   const rules = {
     N5: 'Picture-book style. Use です/ます and ました/ませんでした only, with ～て, ～たい, ～から and ～が (but). One idea per sentence. Replace personal names with roles (おさむらい, おぼうさん, おじいさん, わかい男), except the one main character listed as a story word.',
-    N4: 'Use です/ます and polite past forms. Adds ～とき, ～たら, ～ている, ～と思います, potential forms and ～ても. At most two named people per tale; use roles for the rest.',
-    N3: 'Plain past narration, adding ～ようだ, ～らしい, the passive and ～ために.'
+    N4: 'Use です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.',
+    N3: 'Plain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.'
   };
-  const allowed = Object.entries(kanjiLevels).filter(([,n]) => n >= Number(level.slice(1))).map(([c])=>c).join('');
+  const allowed = Object.entries(kanjiLevels).filter(([,n]) => level==='N3' ? n===3 : n >= Number(level.slice(1))).map(([c])=>c).join('');
   return `You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT ${level}.
 ${rules[level]}
 Use only vocabulary at or below ${level}. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.
 Each sentence is at most ${sentenceCaps[level]} characters, including punctuation. Split long sentences into several short sentences.
 Keep every event in the same order. Do not add events, people, feelings or explanations.
-Story words, in importance order: ${storyWords.map(w=>w.text+'（'+w.reading+'）').join('、') || 'なし'}. Use them only when needed, in hiragana when their kanji is above the level. Do not insert unused words.
-Write normal Japanese with no spaces between words. Use ONLY these kanji: ${allowed}. Write every other word in hiragana, even when its vocabulary is easy. Use simple roles instead of difficult names.
+Story words, in importance order: ${storyWords.map(w=>w.text+'（'+w.reading+'）').join('、') || 'なし'}. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.
+Write normal Japanese with no spaces between words. Use ONLY these kanji: ${allowed}.${level==='N3' ? ' All N5 and N4 kanji are also allowed.' : ''} This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.
+Narrative kanji density, including story words, must be ${densityBands[level].map(n=>Math.round(100*n)).join('–')} percent. Aim for ${level==='N5' ? 8 : level==='N4' ? 14 : 23} percent and mean sentence length ${sentenceBands[level].join('–')} characters.
+Never spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.
 Then write one question at the same level, with three short options and one correct answer.
 Return only JSON: {"sentences":["..."],"question":{"prompt":"...","options":["...","...","..."],"answer":0}}`;
 }
 export const needsRetry = (tokens, level) => {
   const m = {...measure(tokens), ...kanjiMetrics(tokens, level)};
-  return m.coverage < targets[level] || m.kanjiCoverage < (level === 'N3' ? .97 : .95) || (level === 'N5' && m.kanjiDensity > .12);
+  return m.coverage < targets[level] || m.kanjiCoverage < 1 || !inDensityBand(m.kanjiDensity,level) || numberWordIssues(tokens.map(t=>t.s).join('')).length>0;
 };
 export const plainOriginal = scene => scene.original.map(p=>p.map(r=>r.base).join('')).join('\n');
 // A provider sometimes puts a whole scene in one array item. Normalise before
 // indexed repairs so a request to rewrite index 0 cannot discard the whole scene.
 export const splitNarrative = text => text.match(/[^。]+。[」』]*|[^。]+$/gu) ?? [text];
-export async function retellScene({ taleId, scene, level, storyWords = [], vocab, provider, previous = '' }) {
+export async function retellScene({ taleId, scene, level, storyWords = [], vocab, provider, previous = '', feedback = '' }) {
   const started = performance.now(), responses = [];
-  const messages = [{role:'system',content:systemPrompt(level,storyWords)},{role:'user',content:`前の場面（やさしく語り直したもの）: ${previous || 'なし'}\n\n場面（原文）:\n${plainOriginal(scene)}`}];
+  const messages = [{role:'system',content:systemPrompt(level,storyWords)},{role:'user',content:`前の場面（やさしく語り直したもの）: ${previous || 'なし'}\n\n場面（原文）:\n${plainOriginal(scene)}\n${feedback}`}];
   const request = {model:provider.model,messages:structuredClone(messages)};
   const evidence = {request,responses};
   async function ask(shape, schema) {
@@ -89,8 +92,10 @@ export async function retellScene({ taleId, scene, level, storyWords = [], vocab
     let checked = await Promise.all(draft.sentences.map(check));
     const first = measure(checked.flatMap(s=>s.tokens)); let retries = 0;
     while ((needsRetry(checked.flatMap(s=>s.tokens), level) || draft.sentences.some(s=>[...s].length > sentenceCaps[level])) && retries < maxRetries) {
-      const offending = checked.map((s,index)=>({s,index})).filter(({s,index})=>s.offending.length || s.tokens.some(t=>t.hk) || [...draft.sentences[index]].length > sentenceCaps[level] || (level === 'N5' && s.kanjiDensity > .12));
-      messages.push({role:'user',content:`These sentences use words above ${level}: ${offending.map(({s,index})=>`${index}: "${draft.sentences[index]}" (words to avoid: ${s.offending.join(', ')}; write these kanji words in hiragana: ${s.tokens.filter(t=>t.hk).map(t=>t.s+' → '+(t.r ?? 'hiragana')).join(', ')}; maximum ${sentenceCaps[level]} characters; N5 kanji density at most 12%)`).join(' ')} Rewrite only these sentences, with the same meaning and the same rules. Return only JSON: {"rewrites": [{"index": n, "sentence": "..."}]}`});
+      const density=kanjiMetrics(checked.flatMap(s=>s.tokens),level).kanjiDensity;
+      const densityBad=!inDensityBand(density,level);
+      const offending = checked.map((s,index)=>({s,index})).filter(({s,index})=>s.offending.length || s.tokens.some(t=>t.hk&&t.k!=='story') || [...draft.sentences[index]].length > sentenceCaps[level] || densityBad || numberWordIssues(draft.sentences[index]).length);
+      messages.push({role:'user',content:`Level check: vocabulary target ${targets[level]}; non-story kanji coverage must be 1.0. Density ${(100*density).toFixed(1)}%, required ${densityBands[level].map(n=>100*n).join('–')}%. ${density<densityBands[level][0] ? 'Write at-level words in kanji, for example 人、見、来、言、年、時、話、思、知、夜、道、家、声、顔、死 where allowed. Do not replace these with kana.' : 'If density is too high, use simpler faithful expressions and permitted kana, never remove events.'} These sentences need repair: ${offending.map(({s,index})=>`${index}: "${draft.sentences[index]}" (words to avoid: ${s.offending.join(', ')}; write these kanji words in hiragana: ${s.tokens.filter(t=>t.hk&&t.k!=='story').map(t=>t.s+' → '+(t.r ?? 'hiragana')).join(', ')}; maximum ${sentenceCaps[level]} characters)`).join(' ')} Rewrite only these sentences, with the same meaning and the same rules. Never merge indexes or return empty strings. Preserve each sentence separately; short dialogue is acceptable during indexed repair. Never spell numbers in kana. Return only JSON: {"rewrites": [{"index": n, "sentence": "..."}]}`});
       const valid = new Set(offending.map(o=>o.index));
       const shape = z.object({rewrites:z.array(z.object({index:z.number().int(),sentence:string})).refine(rows=>rows.length===valid.size && new Set(rows.map(r=>r.index)).size===valid.size && rows.every(r=>valid.has(r.index)), {message:`Expected exactly one rewrite for each index: ${[...valid].join(', ')}. Do not include any other indexes`})});
       const result = await ask(shape,rewriteJson);
@@ -100,8 +105,8 @@ export async function retellScene({ taleId, scene, level, storyWords = [], vocab
     }
     let question = draft.question;
     let qChecked = await Promise.all([question.prompt,...question.options].map(check));
-    if (qChecked.some(s=>s.offending.length || s.tokens.some(t=>t.hk))) {
-      messages.push({role:'user',content:`Simplify only the question and its options to JLPT ${level}. Avoid: ${qChecked.flatMap(s=>s.offending).join(', ')}. Write hard kanji in hiragana: ${qChecked.flatMap(s=>s.tokens.filter(t=>t.hk).map(t=>t.s+' → '+t.r)).join(', ')}. Preserve the correct answer and meaning. Return only JSON: {"question":{"prompt":"...","options":["...","...","..."],"answer":0}}`});
+    if (qChecked.some(s=>s.offending.length || s.tokens.some(t=>t.hk&&t.k!=='story') || numberWordIssues(s.tokens.map(t=>t.s).join('')).length)) {
+      messages.push({role:'user',content:`Simplify only the question and its options to JLPT ${level}. Avoid: ${qChecked.flatMap(s=>s.offending).join(', ')}. Write hard kanji in hiragana: ${qChecked.flatMap(s=>s.tokens.filter(t=>t.hk&&t.k!=='story').map(t=>t.s+' → '+t.r)).join(', ')}. Write number words in numeric digits, never kana. Preserve the correct answer and meaning. Return only JSON: {"question":{"prompt":"...","options":["...","...","..."],"answer":0}}`});
       question = (await ask(z.object({question:questionShape}),{type:'object',properties:{question:questionJson},required:['question'],additionalProperties:false})).question;
     }
     question = shuffleQuestion(question,`${taleId}/${scene.id}/${level}`);
@@ -136,6 +141,13 @@ export async function runCli(args = process.argv.slice(2)) {
       if (!selectedScenes.includes('all') && !selectedScenes.includes(scene.id)) continue;
       if (existsSync(file) && !args.includes('--force')) { const old=JSON.parse(readFileSync(file,'utf8')); if (old.retelling) { previous=old.retelling.sentences.map(s=>s.tokens.map(t=>t.s).join('')).join(''); console.log(`${tale.id}/${scene.id}/${level}: skipped`); continue; } }
       const result=await retellScene({taleId:tale.id,scene,level,storyWords:readStoryWords(tale.id),vocab,provider,previous});
+      if(name==='hosted'&&!result.failed) {
+        const {repairLevel}=await import('./level-repair.mjs');
+        const {repairFaithfulness}=await import('./faithfulness.mjs');
+        const storyWords=readStoryWords(tale.id);
+        await repairLevel({run:result,scene,storyWords,vocab,provider});
+        await repairFaithfulness({run:result,taleId:tale.id,scene,storyWords,vocab,provider});
+      }
       mkdirSync(directory,{recursive:true}); writeFileSync(file,JSON.stringify(result,null,2)+'\n');
       if (result.failed) { failed=true; console.error(`${tale.id}/${scene.id}/${level}: FAILED: ${result.error}`); }
       else { previous=result.retelling.sentences.map(s=>s.tokens.map(t=>t.s).join('')).join(''); console.log(`${tale.id}/${scene.id}/${level}: ${result.metrics.firstCoverage.toFixed(3)} → ${result.metrics.finalCoverage.toFixed(3)}, ${result.metrics.seconds.toFixed(1)}s`); }
@@ -146,3 +158,4 @@ export async function runCli(args = process.argv.slice(2)) {
   if (failed) process.exitCode=1;
 }
 if (process.argv[1]?.endsWith('retell.mjs')) await runCli().catch(e=>{console.error(e.message);process.exitCode=1;});
+
