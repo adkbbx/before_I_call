@@ -210,7 +210,7 @@ Story measure: horizontal text keeps to 34 Japanese characters per line (`max-in
 
 The page is a stage, not a document. Each screen is full-bleed (`100svh`), with a fixed top bar of 56px (wordmark left; sound, about and ghost words right).
 
-- **Room:** the background image `room.webp` covers the stage (`object-position: center 40%`). The lantern sits on the centre axis at 40% height, about 30svh tall. The candle shelf spans the lower 22% (canvas, full width, max 1400px). The headline block sits above the lantern on desktop and below the shelf on phones: the wordmark, one line of explanation (max 46ch), the three level seals in a row, the primary action and the Demo night link.
+- **Room:** the background image `room.webp` covers the stage (`object-position: center 40%`) and is over-scanned by 12px so it can shift with the pointer. The Room is one centred column in normal flow, never absolute `svh` positions: headline (wordmark, subtitle, one 17px intro line of up to 60ch on a soft dark radial scrim) → lantern (`clamp(120px, 20svh, 240px)`) → candle shelf with the five level seals → Begin button and Demo night link → candle count. The candle canvas is a band behind the seals on screens of 1024px and wider (with a gap for the seals) and a block above them below that. The seals form one row from 720px and a centred 3 + 2 below it. At 1280x600, 1333x594, 1366x640, 1440x900 and 1920x1080 the title, intro, lantern, all seals and the Begin button fit without scrolling.
 - **Shelf:** five hanging scrolls in a row on wide screens (equal columns, 1240px max, 24px gaps), as a horizontal scroll-snap strip at 681 to 1023px, and stacked one per row on phones. Each scroll has an illustration (3:2) above a text block.
 - **Reader:** a single washi sheet centred on the dimmed room: `min(1100px, 94vw)` wide and `min(80svh, 780px)` tall on wide screens. In vertical mode text flows right to left; the sheet scrolls horizontally inside itself, and the page never scrolls sideways. A slim candle rail (72px) sits at the reading start (right in vertical mode, top in horizontal) showing this tale's scenes as small candles. Controls for writing mode, furigana mode and 原文 sit on the sheet's foot (horizontal) or left edge (vertical). The question and the blow-out control appear at the end of the text flow, in reading order.
 - **Original sheet (原文):** a second, narrower sheet (`min(520px, 92vw)`) slides over from the reading end and dims the main sheet to 40%. Esc or the close control returns.
@@ -266,7 +266,7 @@ The flame flares (scale 1.35, 150 ms), then flickers hard for 600 ms, and the li
 
 ### Lantern breathing
 
-The lantern image has a glow layer (a radial gradient of `andon` at 35%) that breathes over a 5 s cycle. Intensity = `0.55 + 0.45 × (1 − lit)`, so the spirit gets stronger as the room gets darker. Under 30 lit candles the paper of the lantern itself gains a faint inner flicker.
+The lantern image has a glow layer (a radial gradient of `andon` at 35%) that breathes between 0.5 and 0.9 of its intensity over a 5 s cycle, and a soft blue light pool spills on the floor under it. The paper has a faint flicker, and it brightens slightly when an ambient onibi drifts close. Intensity = `0.55 + 0.45 × (1 − lit)`, so the spirit gets stronger as the room gets darker. Under 30 lit candles the paper of the lantern itself gains a faint inner flicker.
 
 ### Hitodama (ghost words)
 
@@ -278,7 +278,18 @@ The first time a scene appears, each sentence fades in from `blur(2px)` and opac
 
 ### Shoji shadow
 
-When fewer than 30 candles are lit, a silhouette (`assets/shoji-silhouette.png`, 12% opacity, multiply) crosses the shoji in the room background over 8 s, linear, at most once every 90 s, and only on the Room screen. It never appears in the Reader. There are no jump scares.
+A silhouette (`assets/shoji-silhouette.webp`, 12% opacity, multiply) crosses behind the shoji in the room background over 8 s, linear: once about 12 s after the Room loads, then every 60 to 90 s. It appears on the Room only, never in the Reader, and waits while the tab is hidden. There are no jump scares.
+
+### Room alive (ambient layer)
+
+All Room effects share one `requestAnimationFrame` loop that stops while the tab is hidden; the candle canvas draws at 30 fps with `devicePixelRatio` capped at 2, and layout is measured only on resize and scroll, never inside the loop. Under `prefers-reduced-motion` all of this is static.
+
+- **Candle wave:** on the first Room view of a session (`sessionStorage`), lit candles ignite from the centre outward over about 1.6 s, then flicker. Out candles stay out.
+- **Flicker and light pool:** each flame scales 0.78 to 1.2 with a visible lean; a warm radial pool under each candle row follows the row's average flicker.
+- **Ambient onibi:** four small `andon-pale` wisps with an `andon` glow drift on slow sine paths at four depths (far ones smaller and blurrier), 0.35 to 0.7 opacity, behind the content. They are separate from the ghost-word wisps and `aria-hidden`.
+- **Floor mist:** two layered gradients drift left to right over 40 s and 64 s at about 10% opacity, behind the content.
+- **Parallax:** on fine pointers only, the background moves up to 8px and the lantern and candles up to 4px the other way, eased.
+- **Title ink:** on the first view of a session the wordmark bleeds in (blur 6px to 0, opacity 0 to 1, 900 ms).
 
 ### Reveal (the hundredth candle)
 

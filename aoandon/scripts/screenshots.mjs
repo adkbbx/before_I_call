@@ -20,7 +20,7 @@ try {
   const possible = [process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE, 'C:/Program Files/Google/Chrome/Application/chrome.exe', 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'].filter(Boolean);
   const executablePath = possible.find(p => existsSync(p));
   browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
-  async function context(width, reduced = false) { const c = await browser.newContext({ viewport: { width, height: width === 1440 ? 900 : width === 360 ? 740 : 844 }, reducedMotion: reduced ? 'reduce' : 'no-preference' }); const p = await c.newPage(); p.on('pageerror', e => errors.push(e.message)); return { c, p }; }
+  async function context(width, reduced = false, { height, fresh = false } = {}) { const c = await browser.newContext({ viewport: { width, height: height ?? (width === 1440 ? 900 : width === 360 ? 740 : 844) }, reducedMotion: reduced ? 'reduce' : 'no-preference' }); if (!fresh) await c.addInitScript(() => { try { sessionStorage.setItem('aoandon-room-seen', '1'); } catch {} }); const p = await c.newPage(); p.on('pageerror', e => errors.push(e.message)); return { c, p }; }
   async function ready(p) { await p.waitForFunction(() => !document.body.textContent.includes('The tales are being brought')); await p.evaluate(() => document.fonts.ready); await p.waitForTimeout(500); }
   async function shot(p, name, width) { await ready(p); const filename = `${name}-${width}.png`; await p.screenshot({ path: `${output}/${filename}`, fullPage: ['about', 'shelf'].includes(name) }); screenshots.push(filename); }
   async function noOverflow(p, name) { const sizes = await p.evaluate(() => ({ scroll: document.documentElement.scrollWidth, width: innerWidth })); assert.ok(sizes.scroll <= sizes.width, `${name} overflows: ${JSON.stringify(sizes)}`); checks.push(`${name}: no horizontal page scroll`); }
@@ -36,12 +36,18 @@ try {
     });
     for (const result of results) { assert.ok(result.ratio >= 3, 'Unselected seal contrast on night'); assert.notEqual(result.clip, 'none', 'Seal texture restricted to border'); }
   }
-  async function checkRoomSpacing(p) {
-    const rects = await p.evaluate(() => { const box = selector => { const r = document.querySelector(selector).getBoundingClientRect(); return { top:r.top, bottom:r.bottom, left:r.left, right:r.right }; }; return { label:box('.candle-field p'), lantern:box('.room-spirit'), canvas:box('.candle-field canvas') }; });
-    const overlap = (a,b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
-    assert.ok(!overlap(rects.label, rects.lantern), 'Candle label clears lantern');
-  }
-  async function checkShelf(p, width) {
+  async function checkRoomSpacing(p, { fold = true } = {}) {
+    const info = await p.evaluate(() => { const box = selector => { const r = document.querySelector(selector).getBoundingClientRect(); return { top:r.top, bottom:r.bottom, left:r.left, right:r.right }; }; return { intro:box('.room-line'), title:box('.room-title'), lantern:box('.room-spirit'), count:box('.candle-count'), begin:box('.room-actions .button-primary'), seals:[...document.querySelectorAll('.level-seal')].map(el => { const r = el.getBoundingClientRect(); return { top:r.top, bottom:r.bottom, left:r.left, right:r.right }; }), scroll:document.documentElement.scrollWidth, width:innerWidth, height:innerHeight }; });
+    const overlap = (a, b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+    assert.ok(!overlap(info.intro, info.lantern), `Intro clears lantern at ${info.width}x${info.height}`);
+    assert.ok(!overlap(info.count, info.lantern), 'Candle count clears lantern');
+    assert.ok(info.scroll <= info.width, `No horizontal page scroll at ${info.width}: ${info.scroll}`);
+    for (let i = 1; i < info.seals.length; i++) assert.ok(!overlap(info.seals[i - 1], info.seals[i]), 'Seals do not collide');
+    if (info.width >= 720) assert.equal(new Set(info.seals.map(s => Math.round(s.top))).size, 1, 'Five seals in one row');
+    if (info.width < 720) assert.equal(new Set(info.seals.map(s => Math.round(s.top))).size, 2, 'Seals wrap 3 + 2');
+    if (fold && info.width >= 720) { assert.ok(info.begin.bottom <= info.height, `Begin button above the fold at ${info.width}x${info.height}: ${info.begin.bottom}`); assert.ok(info.seals.every(s => s.bottom <= info.height) && info.lantern.bottom <= info.height && info.title.top >= 0); }
+    checks.push(`Room ${info.width}x${info.height}: intro clear of lantern, one-row/wrapped seals, no horizontal scroll${fold && info.width >= 720 ? ', Begin above the fold' : ''}`);
+  }  async function checkShelf(p, width) {
     await checkSeals(p); assert.equal(await p.locator('.scroll-card').count(), 5);
     const boxes = await p.locator('.scroll-card').evaluateAll(els => els.map(el => { const r=el.getBoundingClientRect(); return { top:r.top, bottom:r.bottom, left:r.left }; }));
     if (width >= 1024) { assert.equal(new Set(boxes.map(b => b.top)).size, 1); assert.equal(new Set(boxes.map(b => b.bottom)).size, 5, 'Five distinct hanging-scroll lengths'); }
@@ -86,8 +92,33 @@ try {
     checks.push(`${width}: reduced Room has no smoke or lantern flicker`);
     await reduced.c.close();
   }
-  { const { c, p } = await context(768); await p.goto(base + '/#/shelf'); await ready(p); await checkShelf(p, 768); await shot(p, 'shelf', 768); await c.close(); }
-  for (const width of [360, 680, 681, 1024]) { const { c, p } = await context(width); await p.goto(base); await ready(p); await checkRoomSpacing(p); await c.close(); }
+  for (const [width, height] of [[1280, 600], [1333, 594], [1366, 640], [1440, 900], [1920, 1080], [390, 844]]) {
+    const { c, p } = await context(width, false, { height }); await p.goto(base); await ready(p); await p.waitForTimeout(1800);
+    await checkRoomSpacing(p); const filename = `room-${width}x${height}.png`; await p.screenshot({ path: `${output}/${filename}` }); screenshots.push(filename); await c.close();
+  }
+  {
+    // First view of a session: ink-bleed title and the candle wave, then drifting onibi.
+    const { c, p } = await context(1440, false, { height: 900, fresh: true }); await p.goto(base); const t0 = Date.now();
+    assert.ok(await p.locator('.room-ink').count(), 'First view bleeds in the title');
+    await p.waitForTimeout(Math.max(0, 1000 - (Date.now() - t0))); await p.screenshot({ path: `${output}/room-motion-1s.png` }); screenshots.push('room-motion-1s.png');
+    const wisps = () => p.locator('.onibi').evaluateAll(els => els.map(el => el.style.transform));
+    const early = await wisps(); const lanternBefore = await p.locator('.room-spirit').getAttribute('style');
+    await p.mouse.move(40, 40); await p.mouse.move(1400, 860, { steps: 8 });
+    await p.waitForTimeout(Math.max(0, 6000 - (Date.now() - t0))); await p.screenshot({ path: `${output}/room-motion-6s.png` }); screenshots.push('room-motion-6s.png');
+    assert.equal((await wisps()).length, 4); assert.notDeepEqual(await wisps(), early, 'Ambient onibi drift');
+    const shift = await p.evaluate(() => ({ bg: getComputedStyle(document.querySelector('.room-background')).transform, lantern: getComputedStyle(document.querySelector('.room-spirit')).transform }));
+    assert.notEqual(shift.bg, 'none', 'Parallax moves the background'); assert.notEqual(shift.lantern, 'none', 'Parallax moves the lantern');
+    const maxShift = m => { const v = m.match(/matrix\(([^)]+)\)/)?.[1].split(',').map(Number) ?? [0, 0, 0, 0, 0, 0]; return Math.max(Math.abs(v[4]), Math.abs(v[5])); };
+    assert.ok(maxShift(shift.bg) <= 8.01 && maxShift(shift.lantern) <= 4.01, 'Parallax is clamped');
+    assert.ok(Number(await p.locator('.lantern-glow').evaluate(el => getComputedStyle(el).opacity)) > 0, 'Lantern glow visible');
+    await p.goto(`${base}/#/about`); await p.goto(`${base}/#/`); await p.waitForSelector('.room-title'); assert.equal(await p.locator('.room-ink').count(), 0, 'Title ink only on the first view of a session'); void lanternBefore;
+    checks.push('Room motion: first-view ink title, drifting onibi, clamped parallax, no replay on return'); await c.close();
+  }
+  { const { c, p } = await context(1440, true, { height: 900, fresh: true }); await p.goto(base); await ready(p);
+    assert.equal(await p.locator('.room-ink').count(), 0, 'Reduced motion: no ink bleed'); assert.equal(await p.locator('.onibi').first().evaluate(el => getComputedStyle(el).animationName), 'none'); assert.equal(await p.locator('.floor-mist i').first().evaluate(el => getComputedStyle(el).animationName), 'none');
+    const before = await p.locator('.onibi').evaluateAll(els => els.map(el => el.style.transform)); await p.waitForTimeout(600); assert.deepEqual(await p.locator('.onibi').evaluateAll(els => els.map(el => el.style.transform)), before, 'Reduced motion: onibi hold still');
+    checks.push('Reduced Room: no ink, no wave, onibi and mist still'); await c.close(); }  { const { c, p } = await context(768); await p.goto(base + '/#/shelf'); await ready(p); await checkShelf(p, 768); await shot(p, 'shelf', 768); await c.close(); }
+  for (const width of [360, 680, 681, 719, 720, 1024]) { const { c, p } = await context(width); await p.goto(base); await ready(p); await checkRoomSpacing(p, { fold: false }); await c.close(); }
   const small = await context(360);
   for (const [name, hash] of [['Room', '#/'], ['Shelf', '#/shelf'], ['About', '#/about']]) { await small.p.goto(`${base}/${hash}`); await ready(small.p); await noOverflow(small.p, name); }
   await small.p.getByRole('button', { name: /^Words that followed you:/ }).click(); await noOverflow(small.p, 'Export'); await small.p.keyboard.press('Escape');

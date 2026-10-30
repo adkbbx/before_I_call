@@ -1,8 +1,12 @@
-﻿@keyframes breathe { 50% { opacity:calc(var(--intensity) * .65); } }
+@keyframes breathe { 0%,100% { opacity:calc(var(--intensity) * .5); } 50% { opacity:calc(var(--intensity) * .9); } }
 @keyframes inner-flicker { 30%,70% { opacity:.96; } 50%,90% { opacity:1; } }
 .lantern-low img { animation:inner-flicker 1700ms var(--ease-candle) infinite; }
 @keyframes orbit { to { transform:rotate(calc(var(--angle) + 360deg)) translateX(var(--radius)); } }
-@keyframes shadow-pass { from { transform:translateX(0); } to { transform:translateX(80vw); } }
+@keyframes shadow-pass { from { transform:translateX(-110%); } to { transform:translateX(560%); } }
+@keyframes ink-bleed { from { opacity:0; filter:blur(6px); } to { opacity:1; filter:blur(0); } }
+@keyframes paper-flicker { 0%,100% { opacity:1; } 18% { opacity:.95; } 37% { opacity:.99; } 61% { opacity:.93; } 82% { opacity:.98; } }
+@keyframes mist-drift { from { transform:translateX(-50%); } to { transform:translateX(0); } }
+@keyframes onibi-pulse { 0%,100% { scale:.9; } 50% { scale:1.12; } }
 @keyframes ink { from { opacity:0; filter:blur(2px); } to { opacity:1; filter:blur(0); } }
 .ink { animation:ink var(--dur-ink) var(--ease-candle) both; }
 @keyframes extinguish { 0% { transform:scale(1); } 23% { transform:scale(1.2,.6); } 100% { transform:scale(0); opacity:0; } }
@@ -18,6 +22,7 @@
 .effects-paused *,.effects-paused *::before,.effects-paused *::after { animation-play-state:paused!important; }
 @media(prefers-reduced-motion:reduce) {
   .ink,.wisp,.lantern-glow,.lantern-low img,.shoji-shadow,.wrong-flare .flame { animation:none!important; opacity:1; filter:none; }
+  .room-ink,.room-spirit .lantern img,.onibi,.floor-mist i { animation:none!important; }
   .smoke,.shoji-shadow { display:none; }
   .room-background { transition:none!important; }
   .extinguishing .flame { animation:reveal-copy 150ms reverse forwards!important; }

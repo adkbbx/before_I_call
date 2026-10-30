@@ -1,28 +1,54 @@
-.room { position:relative; min-height:calc(100svh - 128px); text-align:center; }
-.room-headline { display:flex; flex-direction:column; align-items:center; position:relative; z-index:2; }
+/* The Room is one centred column in normal flow: headline, lantern, candle shelf with seals, actions, count. */
+.room { position:relative; display:flex; flex-direction:column; align-items:center; text-align:center; overflow-x:clip; }
+.room-headline { display:flex; flex-direction:column; align-items:center; position:relative; z-index:2; padding:4px 0; }
+/* A soft dark ground so the intro reads over the shoji painting. */
+.room-headline::before { content:''; position:absolute; z-index:-1; inset:-28px -140px -32px; background:radial-gradient(ellipse at center,rgba(10,12,18,.75) 0%,rgba(10,12,18,.6) 38%,transparent 72%); pointer-events:none; }
 .room-title { font:400 var(--type-display)/1.05 var(--font-display); letter-spacing:.04em; margin:0; }
 .room-headline>.subtitle-en { margin:12px 0; }
-.room-line { max-width:46ch; margin:0; font-size:16px; line-height:1.7; }
-.room-spirit { position:absolute; top:27svh; left:50%; transform:translateX(-50%); height:30svh; width:30svh; }
+.room-line { max-width:60ch; margin:0; font-size:17px; line-height:1.7; color:var(--color-moon); text-shadow:0 1px 14px rgba(10,12,18,.95); }
+.room-ink { animation:ink-bleed 900ms var(--ease-smoke) both; }
+
+.room-spirit { position:relative; z-index:1; flex:none; height:clamp(120px,20svh,240px); width:clamp(120px,20svh,240px); margin:8px 0 4px; }
 .lantern { height:100%; width:100%; position:relative; }
 .lantern img { height:100%; width:100%; object-fit:contain; position:relative; }
-.lantern-glow { position:absolute; inset:-40%; background:radial-gradient(ellipse,rgba(111,155,255,.35),transparent 65%); opacity:var(--intensity); animation:breathe var(--dur-breathe) ease-in-out infinite; }
-.room-headline .level-seals { margin-top:34svh; }
-.level-seals { display:flex; gap:16px; justify-content:center; }
-.level-seal { padding:0; border:0; background:none; color:var(--color-moon-dim); display:grid; justify-items:center; gap:8px; }
+.lantern-glow { position:absolute; inset:-40%; background:radial-gradient(ellipse,rgba(111,155,255,.35),transparent 65%); opacity:calc(var(--intensity) * .9); animation:breathe var(--dur-breathe) ease-in-out infinite; pointer-events:none; }
+.lantern-pool { display:none; }
+.room-spirit .lantern-pool { display:block; position:absolute; left:50%; bottom:-14%; width:210%; height:34%; transform:translateX(-50%); background:radial-gradient(ellipse at center,rgba(111,155,255,.34),rgba(111,155,255,.12) 45%,transparent 70%); opacity:var(--intensity); pointer-events:none; }
+.room-spirit .lantern img { animation:paper-flicker 3100ms var(--ease-candle) infinite; filter:brightness(calc(1 + var(--near,0) * .22)); }
+
+.room-shelf { position:relative; z-index:2; width:100%; padding:20px 0 14px; }
+.level-seals { display:flex; flex-wrap:wrap; gap:16px; justify-content:center; max-width:100%; position:relative; z-index:1; }
+.level-seal { padding:0; border:0; background:none; color:var(--color-moon-dim); display:grid; justify-items:center; gap:8px; flex:0 0 104px; min-width:0; }
 .level-seal-mark { width:64px; height:64px; border:2px solid var(--color-shu); border-radius:3px; display:grid; place-items:center; color:var(--color-shu); font:600 20px var(--font-story); position:relative; }
 .level-seal-mark::after { content:''; position:absolute; inset:-2px; background:url('/assets/hanko-frame.png') center/100% 100%; clip-path:polygon(evenodd,0 0,100% 0,100% 100%,0 100%,0 0,6px 6px,6px calc(100% - 6px),calc(100% - 6px) calc(100% - 6px),calc(100% - 6px) 6px,6px 6px); opacity:.85; pointer-events:none; }
 .level-seal.is-selected .level-seal-mark { background:var(--color-shu); color:var(--color-washi); }
 /* Unselected seals sit on the busy room: give them a dark ground and a brighter vermilion. */
 .level-seal:not(.is-selected) .level-seal-mark { background:rgba(10,12,18,.8); color:var(--color-shu-bright); }
-.level-seal-name { font:500 12px/1.4 var(--font-ui); letter-spacing:.08em; }
-.room-actions { display:grid; justify-items:center; gap:8px; margin-top:24px; }
+.level-seal-name { font:500 12px/1.4 var(--font-ui); letter-spacing:0; white-space:nowrap; }
+.room .level-seal-name { color:var(--color-moon); text-shadow:0 1px 8px rgba(10,12,18,.95); }
+
+/* The candle canvas is a band behind the seals on wide screens; the seals leave a gap in the middle. */
+.candle-field { pointer-events:none; height:150px; width:100%; }
+.candle-field canvas { width:100%; height:100%; display:block; }
+@media(min-width:1024px) {
+  .candle-field { position:absolute; z-index:0; left:50%; margin-left:calc(min(1400px,100vw) / -2); width:min(1400px,100vw); top:0; bottom:0; height:auto; }
+}
+
+.room-actions { position:relative; z-index:2; display:grid; justify-items:center; gap:4px; margin-top:12px; }
 .room-actions .button-primary { display:flex; gap:12px; align-items:center; text-decoration:none; }
-.room-demo { display:flex; flex-wrap:wrap; gap:4px 10px; justify-content:center; align-items:center; min-height:44px; font:500 12px/1.5 var(--font-ui); color:var(--color-moon-dim); }
-.demo-label { font:500 12px/1.5 var(--font-ui); color:var(--color-moon-dim); }
-.candle-field { position:absolute; left:50%; transform:translateX(-50%); width:min(1400px,100vw); top:52svh; height:19svh; pointer-events:none; }
-.candle-field canvas { width:100%; height:100%; }
-.candle-field p { position:absolute; top:-8px; left:16px; font:500 12px var(--font-ui); color:var(--color-moon-dim); }
+.room-demo { display:flex; flex-wrap:wrap; gap:4px 10px; justify-content:center; align-items:center; min-height:44px; font:500 12px/1.5 var(--font-ui); color:var(--color-moon); text-shadow:0 1px 8px rgba(10,12,18,.95); }
+.demo-label { margin:0; font:500 12px/1.5 var(--font-ui); color:var(--color-moon-dim); }
+.candle-count { position:relative; z-index:2; margin:0 0 8px; font:500 12px/1.5 var(--font-ui); color:var(--color-moon-dim); text-shadow:0 1px 8px rgba(10,12,18,.95); }
+
+/* Ambient layers sit behind the content: they never take clicks and never cover text. */
+.onibi-layer { position:fixed; inset:0; z-index:-1; pointer-events:none; overflow:hidden; }
+.onibi { position:absolute; left:0; top:0; border-radius:50%; opacity:var(--alpha); filter:blur(var(--blur)); background:radial-gradient(circle,var(--color-andon-pale) 0 18%,rgba(111,155,255,.55) 38%,rgba(111,155,255,0) 72%); animation:onibi-pulse 4.2s ease-in-out infinite; will-change:transform; }
+.onibi:nth-child(2) { animation-delay:-1.1s; }.onibi:nth-child(3) { animation-delay:-2.3s; }.onibi:nth-child(4) { animation-delay:-3.2s; }
+.floor-mist { position:fixed; left:0; right:0; bottom:0; height:26svh; z-index:-1; pointer-events:none; overflow:hidden; opacity:.1; -webkit-mask-image:linear-gradient(to top,#000 20%,transparent); mask-image:linear-gradient(to top,#000 20%,transparent); }
+.floor-mist i { position:absolute; inset:0 auto 0 0; width:200%; background:radial-gradient(ellipse 22% 55% at 25% 70%,var(--color-andon-pale),transparent 70%),radial-gradient(ellipse 18% 45% at 75% 55%,var(--color-moon),transparent 70%); background-size:50% 100%; background-repeat:repeat-x; animation:mist-drift 40s linear infinite; }
+.floor-mist i:last-child { opacity:.7; background-size:50% 85%; background-position:0 100%; animation-duration:64s; animation-delay:-20s; }
+.shoji-shadow { position:fixed; z-index:-1; top:10%; bottom:30%; left:0; width:20vw; opacity:.12; mix-blend-mode:multiply; animation:shadow-pass 8s linear forwards; pointer-events:none; }.shoji-shadow img { height:100%; }
+
 .hitodama { position:absolute; top:45%; left:50%; }
 .wisp { position:absolute; border:0; background:none; color:var(--color-andon-pale); width:24px; height:24px; padding:0; transform:rotate(var(--angle)) translateX(var(--radius)); animation:orbit var(--period) linear infinite; }
 .wisp::before { content:''; position:absolute; width:7px; height:10px; background:var(--color-andon-pale); border-radius:60% 40% 50% 50%; left:8px; top:6px; }
@@ -30,13 +56,22 @@
 .wisp i:nth-last-child(2) { top:22px; opacity:.3; }.wisp i:last-child { top:26px; opacity:.15; }
 .wisp span { display:none; position:absolute; width:max-content; max-width:160px; padding:8px; background:var(--color-night-raised); font-family:var(--font-story); bottom:24px; }
 .wisp:hover span,.wisp:focus span { display:block; }.wisp-overflow { color:var(--color-andon-pale); }
-.shoji-shadow { position:fixed; inset:10% auto 30% 0; width:20%; opacity:.12; mix-blend-mode:multiply; animation:shadow-pass 8s linear; pointer-events:none; }.shoji-shadow img { height:100%; }
 
-/* Five seals stay together on desktop and form a centered 3 + 2 on phones. */
-.level-seals { flex-wrap:wrap; max-width:100%; gap:16px; }
-.level-seal { flex:0 0 104px; min-width:0; }
-.level-seal-name { letter-spacing:0; white-space:nowrap; }
+/* Five seals in one row from 720px up; a centred 3 + 2 below that. */
+@media(max-width:719px) {
+  .room .level-seals { width:328px; column-gap:8px; row-gap:16px; }
+}
 @media(max-width:680px) {
-  .room .level-seals,.shelf-heading .level-seals { width:328px; column-gap:8px; row-gap:16px; justify-content:center; }
+  .shelf-heading .level-seals { width:328px; column-gap:8px; row-gap:16px; justify-content:center; }
   .level-seal { flex-basis:104px; }
+}
+/* Short windows: tighten the column so the Begin button stays above the fold. */
+@media(max-height:700px) and (min-width:720px) {
+  .room-title { font-size:min(var(--type-display),11svh); }
+  .room-headline>.subtitle-en { margin:6px 0 8px; }
+  .room-line { font-size:16px; line-height:1.6; max-width:68ch; }
+  .room { margin-top:-12px; }
+  .room-spirit { margin:4px 0 0; }
+  .room-shelf { padding:14px 0 10px; }
+  .room-actions { margin-top:8px; }
 }
