@@ -1,7 +1,7 @@
 // Data contracts shared by the pipeline output (public/tales/*.json) and the app. See PLAN.md "Data contracts".
 import { z } from 'zod';
 
-export const levels = ['N5', 'N4', 'N3'] as const;
+export const levels = ['N5', 'N4', 'N3', 'N2', 'N1'] as const;
 export const levelSchema = z.enum(levels);
 export type Level = z.infer<typeof levelSchema>;
 
@@ -57,6 +57,8 @@ export const sceneSchema = z
       N5: retellingSchema.optional(),
       N4: retellingSchema.optional(),
       N3: retellingSchema.optional(),
+      N2: retellingSchema.optional(),
+      N1: retellingSchema.optional(),
     }),
   })
   .superRefine((scene, ctx) => {
@@ -91,7 +93,7 @@ export const taleIndexSchema = z.object({
       translator: z.string().min(1),
       illustration: z.string().min(1),
       scenes: z.number().int().positive(),
-      coverage: z.object({ N5: z.number().min(0).max(1).optional(), N4: z.number().min(0).max(1).optional(), N3: z.number().min(0).max(1).optional() }),
+      coverage: z.object({ N5: z.number().min(0).max(1).optional(), N4: z.number().min(0).max(1).optional(), N3: z.number().min(0).max(1).optional(), N2: z.number().min(0).max(1).optional(), N1: z.number().min(0).max(1).optional() }),
     }),
   ),
 });

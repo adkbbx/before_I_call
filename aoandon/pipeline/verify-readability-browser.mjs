@@ -33,7 +33,7 @@ try {
         assert.equal(ruby.length,expected.length,'Above level ruby belongs only to hard kanji or protected story words');
         assert.match(await page.locator('.level-meter').textContent(),/words \d+% · kanji \d+%/);
         if(tale.id==='hoichi'&&index===4){await page.evaluate(()=>document.fonts.ready);await page.screenshot({path:`docs/screenshots/hard-kanji-hoichi-s05-${level}.png`,fullPage:true});}
-        if(tale.id==='mujina'&&index===0&&level==='N3'){await page.evaluate(()=>document.fonts.ready);await page.screenshot({path:'docs/screenshots/ladder-mujina-s01-N3.png',fullPage:true});}
+        if(tale.id==='mujina'&&index===0&&level==='N1'){await page.evaluate(()=>document.fonts.ready);await page.screenshot({path:'docs/screenshots/ladder-mujina-s01-N1.png',fullPage:true});}
         checks.push({tale:tale.id,scene:scene.id,level,hardTokens:tokens.filter(t=>t.hk).length,knownOrPlainHardTokens:tokens.filter(t=>t.hk&&['known','plain'].includes(t.k)).length});
         await context.close();
       }

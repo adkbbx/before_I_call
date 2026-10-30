@@ -29,3 +29,12 @@
 .wisp span { display:none; position:absolute; width:max-content; max-width:160px; padding:8px; background:var(--color-night-raised); font-family:var(--font-story); bottom:24px; }
 .wisp:hover span,.wisp:focus span { display:block; }.wisp-overflow { color:var(--color-andon-pale); }
 .shoji-shadow { position:fixed; inset:10% auto 30% 0; width:20%; opacity:.12; mix-blend-mode:multiply; animation:shadow-pass 8s linear; pointer-events:none; }.shoji-shadow img { height:100%; }
+
+/* Five seals stay together on desktop and form a centered 3 + 2 on phones. */
+.level-seals { flex-wrap:wrap; max-width:100%; gap:16px; }
+.level-seal { flex:0 0 104px; min-width:0; }
+.level-seal-name { letter-spacing:0; white-space:nowrap; }
+@media(max-width:680px) {
+  .room .level-seals,.shelf-heading .level-seals { width:328px; column-gap:8px; row-gap:16px; justify-content:center; }
+  .level-seal { flex-basis:104px; }
+}

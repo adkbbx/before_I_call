@@ -47,24 +47,28 @@ export function systemPrompt(level, storyWords) {
   const rules = {
     N5: 'Picture-book style. Use です/ます and ました/ませんでした only, with ～て, ～たい, ～から and ～が (but). One idea per sentence. Replace personal names with roles (おさむらい, おぼうさん, おじいさん, わかい男), except the one main character listed as a story word.',
     N4: 'Use です/ます and polite past forms. Use ～とき, ～たら, ～ている, ～と思います where natural. Write sentences of 15–28 characters. At most two named people per tale; use roles for the rest.',
-    N3: 'Plain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.'
+    N3: 'Plain past narration with connected sentences of 22–40 characters, using ～て, ～ので, ～のに, ～ようだ and the passive where natural. Use N3 vocabulary where it fits the original meaning.',
+    N2: 'Plain-form narration with connected clauses, sentences of 30–55 characters, N2 vocabulary and natural N2 grammar such as ～ものの, ～わけではない, ～にもかかわらず, ～ばかりか, ～に違いない.',
+    N1: 'Plain-form literary-leaning modern prose close to the original translator register, sentences of 35–70 characters. Narration uses である/だった/した, never です/ます/おります. N1 grammar such as ～ともなく, ～ずにはいられない, ～をものともせず, ～んばかり is allowed where faithful. Classical forms only inside quoted speech when present in the original.'
   };
   const allowed = Object.entries(kanjiLevels).filter(([,n]) => level==='N3' ? n===3 : n >= Number(level.slice(1))).map(([c])=>c).join('');
   return `You are Koizumi Setsu. Retell a Japanese ghost story aloud to a foreign friend learning JLPT ${level}.
 ${rules[level]}
-Use only vocabulary at or below ${level}. No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.
+Use only vocabulary at or below ${level}. ${level==='N1' ? 'Literary modern prose is allowed. Classical forms only inside quoted speech when the original has them.' : level==='N2' ? 'Use modern plain-form narration, no classical forms.' : 'No classical or literary forms (～ぬ, ～ず, ～けり, ～べし). No keigo beyond です/ます (no 申す, 参る, いたす, ござる). No idioms.'} No modern slang.
 Each sentence is at most ${sentenceCaps[level]} characters, including punctuation. Split long sentences into several short sentences.
 Keep every event in the same order. Do not add events, people, feelings or explanations.
+Grammar examples are optional: use a construction only when its exact logical relation matches the original. Never introduce a negation, contrast, certainty or conjecture just to demonstrate grammar. Join related original propositions into longer connected sentences at advanced levels.
+${['N2','N1'].includes(level)?'Use indirect reported speech to connect dialogue naturally to narration. Avoid sentence-final punctuation inside quotations: every 。！？ counts as a sentence boundary, even inside dialogue. Prefer one final 。 per array item.':''}
 Story words, in importance order: ${storyWords.map(w=>w.text+'（'+w.reading+'）').join('、') || 'なし'}. Keep their exact kanji when needed; the reader always supplies furigana. Do not insert unused words.
-Write normal Japanese with no spaces between words. Use ONLY these kanji: ${allowed}.${level==='N3' ? ' All N5 and N4 kanji are also allowed.' : ''} This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.
-Narrative kanji density, including story words, must be ${densityBands[level].map(n=>Math.round(100*n)).join('–')} percent. Aim for ${level==='N5' ? 8 : level==='N4' ? 14 : 23} percent and mean sentence length ${sentenceBands[level].join('–')} characters.
+Write normal Japanese with no spaces between words. Use ONLY these kanji: ${allowed}.${Number(level.slice(1))<=3 ? ` All kanji from easier levels (${['N5','N4','N3','N2'].filter(l=>Number(l.slice(1))>Number(level.slice(1))).join(', ')}) are also allowed.` : ''} This restriction excludes the listed story words. Write words with above-level kanji in kana. Write at-level words in kanji as normal Japanese does, never a kana-only retelling. Use simple roles instead of difficult names.
+Narrative kanji density, including story words, must be ${densityBands[level].map(n=>Math.round(100*n)).join('–')} percent. Aim for ${level==='N5' ? 8 : level==='N4' ? 14 : level==='N3' ? 23 : level==='N2' ? 30 : 36} percent and mean sentence length ${sentenceBands[level].join('–')} characters.
 Never spell numbers in kana. Write 三十年 or 30年, not さんじゅうねん. If a number word has above-level kanji, preserve it with furigana. Do not confuse rank (えらい人) with height (高い人), or the date someone died with when they saw a ghost.
 Then write one question at the same level, with three short options and one correct answer.
 Return only JSON: {"sentences":["..."],"question":{"prompt":"...","options":["...","...","..."],"answer":0}}`;
 }
 export const needsRetry = (tokens, level) => {
   const m = {...measure(tokens), ...kanjiMetrics(tokens, level)};
-  return m.coverage < targets[level] || m.kanjiCoverage < 1 || !inDensityBand(m.kanjiDensity,level) || numberWordIssues(tokens.map(t=>t.s).join('')).length>0;
+  return m.coverage < targets[level] || m.kanjiCoverage < 1 || !inDensityBand(m.kanjiDensity,level) || numberWordIssues(tokens.map(t=>t.s).join(''),tokens).length>0;
 };
 export const plainOriginal = scene => scene.original.map(p=>p.map(r=>r.base).join('')).join('\n');
 // A provider sometimes puts a whole scene in one array item. Normalise before
@@ -157,5 +161,5 @@ export async function runCli(args = process.argv.slice(2)) {
   await Promise.all(Array.from({length:3},()=>worker()));
   if (failed) process.exitCode=1;
 }
-if (process.argv[1]?.endsWith('retell.mjs')) await runCli().catch(e=>{console.error(e.message);process.exitCode=1;});
+if (process.argv[1]?.endsWith('retell.mjs')) runCli().catch(e=>{console.error(e.message);process.exitCode=1;});
 

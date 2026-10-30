@@ -10,7 +10,7 @@ export function regressionIssues(retelling,{taleId,sceneId}={}) {
     if(taleId==='hoichi'&&sceneId==='s05'&&/(?:高い|たかい)人/.test(sentence)&&!/(?:身分|しんぶん|地位|ちい)(?:の|が)(?:高い|たかい)人/.test(sentence))issues.push({sentence,kind:'who',problem:'The original means high social rank, not physical height. Use えらい人 or 身分の高い人.'});
     if(taleId==='yukionna'&&sceneId==='s03'&&sentence.includes('あなたをしぬようにしました'))issues.push({sentence,kind:'unnatural',problem:'Unnatural causative. The original means killed you. Use あなたをころしました, maintaining the original conditional and speaker.'});
     if(taleId==='yukionna'&&sceneId==='s03'&&/(?:自分|じぶん)と同じ/.test(sentence))issues.push({sentence,kind:'who',problem:'The source compares Minokichi to the OTHER WOODCUTTER she has just killed, not to the woman herself. Say she thought of killing him like the older woodcutter.'});
-    if(numberWordIssues(sentence).length)issues.push({sentence,kind:'number',problem:'Write number words in digits or permitted kanji, never kana. Preserve their numerical value.'});
+    if(numberWordIssues(sentence,s.tokens).length)issues.push({sentence,kind:'number',problem:'Write number words in digits or permitted kanji, never kana. Preserve their numerical value.'});
     return issues;
   });
 }
@@ -18,7 +18,7 @@ export async function askJson(provider, messages, shape, evidence) {
   for(let i=0;i<3;i++) {
     const raw=await provider.call(messages,{type:'object'});
     evidence.push({messages:structuredClone(messages),response:raw});
-    try{return shape.parse(repairJson(raw));}catch(error){
+    try{return await shape.parseAsync(repairJson(raw));}catch(error){
       if(i===2)throw new Error(`Invalid structured response: ${error.message.slice(0,200)}`);
       messages=[...messages,{role:'assistant',content:raw},{role:'user',content:`Return valid JSON only. Validation: ${error.message.slice(0,600)}`}];
     }
@@ -59,9 +59,12 @@ export async function repairFaithfulness({run,taleId,scene,storyWords,vocab,prov
   evidence.before??=issues;
   if(issues.length&&evidence.before.length===0)evidence.before=issues;
   if(issues.length) {
+    run.semanticCorrections=[...new Map([...(run.semanticCorrections??[]),...issues].map(i=>[JSON.stringify(i),i])).values()];
     const texts=await targetedRewrite({scene,retelling:run.retelling,issues,provider,evidence:evidence.rewrites});
     const {repairLevel}=await import('./level-repair.mjs');
-    await repairLevel({run,scene,storyWords,vocab,provider,texts});
+    // The bounded lexical/style loop has already run. Retokenize and check the
+    // targeted corrections without rewriting unrelated, reviewed sentences.
+    await repairLevel({run,scene,storyWords,vocab,provider,texts,rounds:0});
     evidence.after=await reviewFaithfulness({scene,retelling:run.retelling,provider,evidence:evidence.reviews});
   }else evidence.after=[];
   run.metrics.faithIssues=evidence.after;

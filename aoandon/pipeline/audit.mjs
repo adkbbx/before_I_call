@@ -81,15 +81,27 @@ async function main() {
   }
   writeFileSync('docs/samples.md',samples);
   const failures=[];
+  const p4cBaseline=existsSync('data/p4c-before.json')?JSON.parse(readFileSync('data/p4c-before.json','utf8')):[];
+  let p4cPreserved=0,p4cFlagged=0;
+  for(const unit of p4cBaseline)for(const level of ['N5','N4','N3']){
+    const raw=readFileSync(`data/runs/hosted/${level}/${unit.tale}-${unit.scene}.json`);
+    if(createHash('sha256').update(raw).digest('hex')===unit.hashes[level])p4cPreserved++;
+    else {
+      const run=JSON.parse(raw);
+      if(run.p4cLadderRetry?.before?.ladderOk===false)p4cFlagged++;
+      else failures.push(`${unit.tale}/${unit.scene}/${level}: changed without a five-level ladder flag`);
+    }
+  }
+  report+=`\nP4c preservation: ${p4cPreserved} N5–N3 runs byte-identical to P4b; ${p4cFlagged} changed after a recorded five-level ladder failure.\n`;
   const ladder=input.flatMap(t=>t.scenes.map(s=>({tale:t.id,scene:s.id,...checkLadder(s.retellings,vocab)})));
-  report+='\n## Scene ladder\n\nEach cell is N5 / N4 / N3. Vocabulary share counts N4+N3 entries among non-story content tokens, looking up their base form in the same JLPT vocabulary index.\n\n| Scene | Density | Mean sentence length | N4+N3 vocabulary share | ladderOk |\n|---|---|---|---|---|\n';
+  report+='\n## Scene ladder\n\nEach cell is N5 / N4 / N3 / N2 / N1. Vocabulary share counts N4–N1 entries among non-story content tokens, looking up their base form in the same JLPT vocabulary index.\n\n| Scene | Density | Mean sentence length | N4–N1 vocabulary share | ladderOk |\n|---|---|---|---|---|\n';
   const format=(row,key,pct=false)=>levels.map(l=>(row.stats[l][key]*(pct?100:1)).toFixed(2)+(pct?'%':'')).join(' / ');
   for(const row of ladder)report+=`| ${row.tale}/${row.scene} | ${format(row,'kanjiDensity',true)} | ${format(row,'meanLength')} | ${format(row,'advancedShare',true)} | ${row.ladderOk?'yes':row.reasons.join(', ')} |\n`;
   const rate=ladder.filter(r=>r.ladderOk).length/ladder.length;
   report+=`\nLadder pass rate: ${ladder.filter(r=>r.ladderOk).length}/${ladder.length} (${(rate*100).toFixed(2)}%).\n`;
   if(rate<.9)failures.push(`Ladder rate ${(rate*100).toFixed(2)}% is below 90%`);
   const summary=[];
-  report+='\n## Level means and cumulative kanji compliance\n\nStory-word kanji are the explicit list exception, always with furigana. Distinct non-story kanji below must all belong to the cumulative list. Density includes story words and punctuation; coverage excludes story words.\n\n| Level | Density | Sentence length | Vocabulary coverage | N4+N3 share | Distinct non-story kanji | All distinct kanji | Illegal tokens |\n|---|---:|---:|---:|---:|---:|---:|---:|\n';
+  report+='\n## Level means and cumulative kanji compliance\n\nStory-word kanji are the explicit list exception, always with furigana. Distinct non-story kanji below must all belong to the cumulative list. Density includes story words and punctuation; coverage excludes story words.\n\n| Level | Density | Sentence length | Vocabulary coverage | N4–N1 share | Distinct non-story kanji | All distinct kanji | Illegal tokens |\n|---|---:|---:|---:|---:|---:|---:|---:|\n';
   for(const level of levels) {
     const runs=input.flatMap(t=>t.scenes.map(s=>s.retellings[level]));
     const stats=runs.map(r=>levelStats(r,vocab));
@@ -106,12 +118,12 @@ async function main() {
       if(r.metrics.faithIssues===undefined)failures.push(`${level}: missing faithfulness review`);
       for(const sentence of [...r.sentences,r.question.prompt,...r.question.options]) {
         const text=sentence.tokens.map(t=>t.s).join('');
-        if(numberWordIssues(text).length)failures.push(`${level}: kana number ${text}`);
+        if(numberWordIssues(text,sentence.tokens).length)failures.push(`${level}: kana number ${text}`);
         for(const token of sentence.tokens)if(token.k==='story'&&(!token.r||!showFurigana(token,'above-level')))failures.push(`${level}: story word without ruby`);
       }
     }
   }
-  if(!(summary[0].meanLength<summary[1].meanLength&&summary[1].meanLength<summary[2].meanLength))failures.push('Mean sentence length is not strictly increasing');
+  for(const key of ['density','meanLength']) if(!summary.slice(1).every((r,i)=>summary[i][key]<r[key]))failures.push(`Mean ${key} is not strictly increasing`);
   // These are the four regressions named in the brief, checked against the real output.
   for(const level of ['N4','N3']) {
     const text=input.find(t=>t.id==='mujina').scenes[0].retellings[level].sentences.flatMap(s=>s.tokens).map(t=>t.s).join('');
@@ -137,7 +149,7 @@ async function main() {
       const original=beforeLadder.find(s=>s.tale===tale.id&&s.scene===scene.id);
       const r=run.retelling,hash=createHash('sha256').update(JSON.stringify({sentences:r.sentences,question:r.question})).digest('hex');
       if(hash===original.n5Hash)preservedN5++;
-      else if(run.faithfulness?.before?.length||run.ladderRetry||run.ladderSpellingRepair||run.questionRepairs?.length)flaggedN5++;
+      else if(run.faithfulness?.before?.length||run.ladderRetry||run.ladderSpellingRepair||run.questionRepairs?.length||run.p4cLadderRetry?.before?.ladderOk===false)flaggedN5++;
       else failures.push(`${tale.id}/${scene.id}/N5: content changed without a faithfulness or ladder flag`);
     }
     for(const issue of scene.retellings[level].metrics.faithIssues??[])findings.push({tale:tale.id,scene:scene.id,level,...issue});
@@ -166,7 +178,7 @@ async function main() {
   }
   const densities=input.flatMap(t=>t.scenes.map(s=>kanjiMetrics(s.retellings.N5.sentences.flatMap(s=>s.tokens),'N5').kanjiDensity));
   const density=densities.reduce((a,b)=>a+b,0)/densities.length;
-  report+=`\nN5 mean scene kanji density: ${(100*density).toFixed(2)}%. Sentence means in each tale must be at most 20 / 28 / 40 for N5 / N4 / N3.\n`;
+  report+=`\nN5 mean scene kanji density: ${(100*density).toFixed(2)}%. Sentence means in each tale must be at most 20 / 28 / 40 / 55 / 70 for N5 / N4 / N3 / N2 / N1.\n`;
   writeFileSync('docs/readability.md',report);
   if(density>.12) failures.push(`N5 mean density ${density}`);
   console.log(failures.length?failures.join('\n'):`Readability gate passed; ladder ${ladder.filter(r=>r.ladderOk).length}/${ladder.length}; density ${summary.map(r=>r.level+' '+(100*r.density).toFixed(2)+'%').join(', ')}`);

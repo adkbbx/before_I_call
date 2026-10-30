@@ -10,7 +10,7 @@ export function kanjiMetrics(tokens, level) {
   return { kanjiCoverage: nonStory.length ? nonStory.filter(c => !hasHardKanji(c, level)).length / nonStory.length : 1, kanjiDensity: chars.length ? kanji.length / chars.length : 0 };
 }
 export function normalizeText(text) {
-  return text.replace(/[ 　]/g, '').replace(/[０-９]/g, c => String.fromCharCode(c.charCodeAt(0) - 0xfee0));
+  return text.replaceAll('燈','灯').replaceAll('閂','かんぬき').replace(/[ 　]/g, '').replace(/[０-９]/g, c => String.fromCharCode(c.charCodeAt(0) - 0xfee0));
 }
 export function measure(tokens) {
   const counted = tokens.filter(t => t.k === 'known' || t.k === 'ghost');

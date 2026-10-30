@@ -23,11 +23,11 @@
   ],
   "metrics": {
     "kanjiCoverage": 1,
-    "kanjiDensity": 0.22580645161290322,
+    "kanjiDensity": 0.21875,
     "firstCoverage": 0.8727272727272727,
-    "finalCoverage": 0.96,
+    "finalCoverage": 0.9423076923076923,
     "retries": 9,
-    "seconds": 76.90030279999998,
+    "seconds": 91.52787789999998,
     "offendingFirst": [
       "殿様",
       "られる",
@@ -36,13 +36,13 @@
       "坊"
     ],
     "ghostWords": [
-      "れる",
-      "日間"
+      "日間",
+      "れる"
     ],
     "faithIssues": [
       {
-        "sentence": "あと6日の間、毎晩とのさまの前でひいてほしいので、",
-        "problem": "Number words must not be spelled in kana. Change 6 to 6 or 六.",
+        "sentence": "あと6日間、毎晩とのさまの前でえんそうしてほしいとのことです。",
+        "problem": "数字はかな表記せず「6日間」とするべき（指示：Number words must not be spelled in kana）。ただし、この文では「6」と表記されているため正解。しかし、原文の「これから後六日の間」は「今夜を除いた後6日間」であり、合計7日間の演奏を意味するため、文脈上の期間の整合性を確認。原文は「後六日の間」であり、語り直しの「あと6日間」は正確。再確認した結果、この文にエラーはない。",
         "kind": "number"
       }
     ]
@@ -319,24 +319,12 @@
             "k": "plain"
           },
           {
-            "s": "日",
-            "k": "known",
-            "r": "にち",
-            "b": "日",
-            "g": "~ day of the month, for ~ days",
-            "gs": "jlpt"
-          },
-          {
-            "s": "の",
-            "k": "plain"
-          },
-          {
-            "s": "間",
-            "k": "known",
-            "r": "ま",
-            "b": "間",
-            "g": "space, interval",
-            "gs": "jlpt"
+            "s": "日間",
+            "k": "ghost",
+            "r": "にちかん",
+            "b": "日間",
+            "g": "period of days",
+            "gs": "model"
           },
           {
             "s": "、",
@@ -382,10 +370,24 @@
             "k": "plain"
           },
           {
-            "s": "ひい",
+            "s": "えん",
             "k": "known",
-            "b": "ひく",
-            "g": "to pull, to draw; subtract",
+            "b": "えむ",
+            "g": "Yen",
+            "gs": "jlpt"
+          },
+          {
+            "s": "そう",
+            "k": "known",
+            "b": "そう",
+            "g": "yes; appears, to be the case",
+            "gs": "jlpt"
+          },
+          {
+            "s": "し",
+            "k": "known",
+            "b": "する",
+            "g": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
             "gs": "jlpt"
           },
           {
@@ -400,11 +402,26 @@
             "gs": "jlpt"
           },
           {
-            "s": "ので",
+            "s": "と",
             "k": "plain"
           },
           {
-            "s": "、",
+            "s": "の",
+            "k": "plain"
+          },
+          {
+            "s": "こと",
+            "k": "known",
+            "b": "こと",
+            "g": "thing(s), matter(s), fact",
+            "gs": "jlpt"
+          },
+          {
+            "s": "です",
+            "k": "plain"
+          },
+          {
+            "s": "。",
             "k": "plain"
           }
         ]
@@ -917,7 +934,7 @@
               "k": "ghost",
               "r": "にちかん",
               "b": "日間",
-              "g": "number of days",
+              "g": "period of days",
               "gs": "model"
             },
             {
@@ -1023,11 +1040,11 @@
     },
     "metrics": {
       "kanjiCoverage": 1,
-      "kanjiDensity": 0.22580645161290322,
+      "kanjiDensity": 0.21875,
       "firstCoverage": 0.8727272727272727,
-      "finalCoverage": 0.96,
+      "finalCoverage": 0.9423076923076923,
       "retries": 9,
-      "seconds": 76.90030279999998,
+      "seconds": 91.52787789999998,
       "offendingFirst": [
         "殿様",
         "られる",
@@ -1036,13 +1053,13 @@
         "坊"
       ],
       "ghostWords": [
-        "れる",
-        "日間"
+        "日間",
+        "れる"
       ],
       "faithIssues": [
         {
-          "sentence": "あと6日の間、毎晩とのさまの前でひいてほしいので、",
-          "problem": "Number words must not be spelled in kana. Change 6 to 6 or 六.",
+          "sentence": "あと6日間、毎晩とのさまの前でえんそうしてほしいとのことです。",
+          "problem": "数字はかな表記せず「6日間」とするべき（指示：Number words must not be spelled in kana）。ただし、この文では「6」と表記されているため正解。しかし、原文の「これから後六日の間」は「今夜を除いた後6日間」であり、合計7日間の演奏を意味するため、文脈上の期間の整合性を確認。原文は「後六日の間」であり、語り直しの「あと6日間」は正確。再確認した結果、この文にエラーはない。",
           "kind": "number"
         }
       ]
@@ -1174,6 +1191,24 @@
         }
       ],
       "response": "{\"glosses\": {\"れる\": \"passive/potential auxiliary\", \"日間\": \"number of days\"}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: 日間、御前. Return JSON {\"glosses\":{\"日間\":\"English gloss\",\"御前\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"日間\": \"number of days\", \"御前\": \"presence\"}}"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: 日間、れる. Return JSON {\"glosses\":{\"日間\":\"English gloss\",\"れる\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"日間\": \"period of days\", \"れる\": \"passive/potential auxiliary\"}}"
     }
   ],
   "faithfulness": {
@@ -1203,6 +1238,32 @@
           }
         ],
         "response": "{\"issues\": [{\"sentence\": \"あと6日の間、毎晩とのさまの前でひいてほしいので、\", \"problem\": \"Number words must not be spelled in kana. Change 6 to 6 or 六.\", \"kind\": \"number\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\nその女はこう云った――\n『私共は貴方が琵琶の名人であって、また謡う方でも肩を並べるもののない事は聞き及んでいた事では御座いますが、貴方が今晩御聴かせ下すったようなあんなお腕前をお有ちになろうとは思いも致しませんでした。殿様には大層御気に召し、貴方に十分な御礼を下さる御考えである由を御伝え申すようにとの事に御座います。が、これから後六日の間毎晩一度ずつ殿様の御前で演奏をお聞きに入れるようとの御意に御座います――その上で殿様にはたぶん御帰りの旅に上られる事と存じます。それ故明晩も同じ時刻に、ここへ御出向きなされませ。今夜、貴方を御案内いたしたあの家来が、また、御迎えに参るで御座いましょう……それからも一つ貴方に御伝えするように申しつけられた事が御座います。それは殿様がこの赤間ヶ関に御滞在中、貴方がこの御殿に御上りになる事を誰れにも御話しにならぬようとの御所望に御座います。殿様には御忍びの御旅行ゆえ、かような事はいっさい口外致さぬようにとの御上意によりますので。……ただ今、御自由に御坊に御帰りあそばせ』\n\n語り直しの文（JSON配列。sentenceは必ずこの配列の文字列をそのままコピーする）:\n[\"女は芳一が琵琶の名人だと聞いていたが、\",\"今夜のえんそうはそうぞう以上に良かったので、\",\"とのさまが気に入り、じゅうぶんな礼を出すと言った。\",\"あと6日間、毎晩とのさまの御前でえんそうしてほしいとのことです。\",\"明日も同じ時間にここに来るように言われた。\",\"今夜あんないした人が、また迎えに来るようだ。\",\"とのさまがここにいることはだれにも話してはいけないので、\",\"口に出さないように言われて、芳一はぼうに帰った。\"]"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"あと6日間、毎晩とのさまの御前でえんそうしてほしいとのことです。\", \"problem\": \"6 should be written as 6, but the rule says number words must not be spelled in kana; however, the retelling uses '6' which is fine. Wait, the instruction says 'Number words must not be spelled in kana' which means numbers should be digits. The problem is the number of days: 'これから後六日の間' includes tomorrow. The retelling says 'あと6日間' then '明日も', which is logically consistent, but '6' is used. Actually, looking closer: '六日' is the number. The retelling uses '6'. This is correct. Let's re-read: 'Number words must not be spelled in kana.' 6 is not kana. No error here.\", \"kind\": \"number\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\nその女はこう云った――\n『私共は貴方が琵琶の名人であって、また謡う方でも肩を並べるもののない事は聞き及んでいた事では御座いますが、貴方が今晩御聴かせ下すったようなあんなお腕前をお有ちになろうとは思いも致しませんでした。殿様には大層御気に召し、貴方に十分な御礼を下さる御考えである由を御伝え申すようにとの事に御座います。が、これから後六日の間毎晩一度ずつ殿様の御前で演奏をお聞きに入れるようとの御意に御座います――その上で殿様にはたぶん御帰りの旅に上られる事と存じます。それ故明晩も同じ時刻に、ここへ御出向きなされませ。今夜、貴方を御案内いたしたあの家来が、また、御迎えに参るで御座いましょう……それからも一つ貴方に御伝えするように申しつけられた事が御座います。それは殿様がこの赤間ヶ関に御滞在中、貴方がこの御殿に御上りになる事を誰れにも御話しにならぬようとの御所望に御座います。殿様には御忍びの御旅行ゆえ、かような事はいっさい口外致さぬようにとの御上意によりますので。……ただ今、御自由に御坊に御帰りあそばせ』\n\n語り直しの文（JSON配列。sentenceは必ずこの配列の文字列をそのままコピーする）:\n[\"女は芳一が琵琶の名人だと聞いていたが、\",\"今夜のえんそうはそうぞう以上に良かったので、\",\"とのさまが気に入り、じゅうぶんな礼を出すと言った。\",\"あと6日間、毎晩とのさまの前でえんそうしてほしいとのことです。\",\"明日も同じ時間にここに来るように言われた。\",\"今夜あんないした人が、また迎えに来るようだ。\",\"とのさまがここにいることはだれにも話してはいけないので、\",\"口に出さないように言われて、芳一はぼうに帰った。\"]"
+          }
+        ],
+        "response": "{\"issues\": [{\"sentence\": \"あと6日間、毎晩とのさまの前でえんそうしてほしいとのことです。\", \"problem\": \"数字はかな表記せず「6日間」とするべき（指示：Number words must not be spelled in kana）。ただし、この文では「6」と表記されているため正解。しかし、原文の「これから後六日の間」は「今夜を除いた後6日間」であり、合計7日間の演奏を意味するため、文脈上の期間の整合性を確認。原文は「後六日の間」であり、語り直しの「あと6日間」は正確。再確認した結果、この文にエラーはない。\", \"kind\": \"number\"}]}"
       }
     ],
     "rewrites": [
@@ -1218,6 +1279,19 @@
           }
         ],
         "response": "{\"rewrites\": [{\"index\": 3, \"sentence\": \"あと6日の間、毎晩とのさまの前でひいてほしいので、\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Repair only the specified sentences at JLPT N3. Preserve all other sentences and events. Use natural Japanese, numeric digits for numbers, and maintain the meaning of the original. Return only JSON {\"rewrites\":[{\"index\":0,\"sentence\":\"...\"}]}."
+          },
+          {
+            "role": "user",
+            "content": "Original:\nその女はこう云った――\n『私共は貴方が琵琶の名人であって、また謡う方でも肩を並べるもののない事は聞き及んでいた事では御座いますが、貴方が今晩御聴かせ下すったようなあんなお腕前をお有ちになろうとは思いも致しませんでした。殿様には大層御気に召し、貴方に十分な御礼を下さる御考えである由を御伝え申すようにとの事に御座います。が、これから後六日の間毎晩一度ずつ殿様の御前で演奏をお聞きに入れるようとの御意に御座います――その上で殿様にはたぶん御帰りの旅に上られる事と存じます。それ故明晩も同じ時刻に、ここへ御出向きなされませ。今夜、貴方を御案内いたしたあの家来が、また、御迎えに参るで御座いましょう……それからも一つ貴方に御伝えするように申しつけられた事が御座います。それは殿様がこの赤間ヶ関に御滞在中、貴方がこの御殿に御上りになる事を誰れにも御話しにならぬようとの御所望に御座います。殿様には御忍びの御旅行ゆえ、かような事はいっさい口外致さぬようにとの御上意によりますので。……ただ今、御自由に御坊に御帰りあそばせ』\nSentences:\n0: 女は芳一が琵琶の名人だと聞いていたが、\n1: 今夜のえんそうはそうぞう以上に良かったので、\n2: とのさまが気に入り、じゅうぶんな礼を出すと言った。\n3: あと6日間、毎晩とのさまの御前でえんそうしてほしいとのことです。\n4: 明日も同じ時間にここに来るように言われた。\n5: 今夜あんないした人が、また迎えに来るようだ。\n6: とのさまがここにいることはだれにも話してはいけないので、\n7: 口に出さないように言われて、芳一はぼうに帰った。\nIssues:\n[{\"sentence\":\"あと6日間、毎晩とのさまの御前でえんそうしてほしいとのことです。\",\"problem\":\"6 should be written as 6, but the rule says number words must not be spelled in kana; however, the retelling uses '6' which is fine. Wait, the instruction says 'Number words must not be spelled in kana' which means numbers should be digits. The problem is the number of days: 'これから後六日の間' includes tomorrow. The retelling says 'あと6日間' then '明日も', which is logically consistent, but '6' is used. Actually, looking closer: '六日' is the number. The retelling uses '6'. This is correct. Let's re-read: 'Number words must not be spelled in kana.' 6 is not kana. No error here.\",\"kind\":\"number\"}]\nRewrite exactly indexes: 3"
+          }
+        ],
+        "response": "{\"rewrites\": [{\"index\": 3, \"sentence\": \"あと6日間、毎晩殿様の前で演奏してほしいとのことです。\"}]}"
       }
     ],
     "before": [
@@ -1229,10 +1303,132 @@
     ],
     "after": [
       {
-        "sentence": "あと6日の間、毎晩とのさまの前でひいてほしいので、",
-        "problem": "Number words must not be spelled in kana. Change 6 to 6 or 六.",
+        "sentence": "あと6日間、毎晩とのさまの前でえんそうしてほしいとのことです。",
+        "problem": "数字はかな表記せず「6日間」とするべき（指示：Number words must not be spelled in kana）。ただし、この文では「6」と表記されているため正解。しかし、原文の「これから後六日の間」は「今夜を除いた後6日間」であり、合計7日間の演奏を意味するため、文脈上の期間の整合性を確認。原文は「後六日の間」であり、語り直しの「あと6日間」は正確。再確認した結果、この文にエラーはない。",
         "kind": "number"
       }
     ]
-  }
+  },
+  "localRepairs": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "Propose alternative wordings of ONLY the specified individual sentences in a Japanese story. Preserve every fact and event, do not pad or invent. Return JSON {\"candidates\":[{\"level\":\"N2\",\"index\":0,\"sentence\":\"...\"}]}. Give three alternatives per specified sentence. The lower level must remain easier, the higher level richer. Prefer precise harder vocabulary from the original for the higher level; use simpler synonyms for the lower level. Keep normal permitted kanji spellings. No modern slang."
+        },
+        {
+          "role": "user",
+          "content": "Original:\nその女はこう云った――\n『私共は貴方が琵琶の名人であって、また謡う方でも肩を並べるもののない事は聞き及んでいた事では御座いますが、貴方が今晩御聴かせ下すったようなあんなお腕前をお有ちになろうとは思いも致しませんでした。殿様には大層御気に召し、貴方に十分な御礼を下さる御考えである由を御伝え申すようにとの事に御座います。が、これから後六日の間毎晩一度ずつ殿様の御前で演奏をお聞きに入れるようとの御意に御座います――その上で殿様にはたぶん御帰りの旅に上られる事と存じます。それ故明晩も同じ時刻に、ここへ御出向きなされませ。今夜、貴方を御案内いたしたあの家来が、また、御迎えに参るで御座いましょう……それからも一つ貴方に御伝えするように申しつけられた事が御座います。それは殿様がこの赤間ヶ関に御滞在中、貴方がこの御殿に御上りになる事を誰れにも御話しにならぬようとの御所望に御座います。殿様には御忍びの御旅行ゆえ、かような事はいっさい口外致さぬようにとの御上意によりますので。……ただ今、御自由に御坊に御帰りあそばせ』\nCurrent five-level measurements: {\"N5\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.08661417322834646,\"meanLength\":12.7,\"advancedShare\":0.3225806451612903},\"N4\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.15432098765432098,\"meanLength\":16.2,\"advancedShare\":0.3684210526315789},\"N3\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.22580645161290322,\"meanLength\":46.5,\"advancedShare\":0.42},\"N2\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.2711864406779661,\"meanLength\":42.142857142857146,\"advancedShare\":0.475},\"N1\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.30666666666666664,\"meanLength\":37.5,\"advancedShare\":0.6219512195121951}}\nRequired: kanji density, mean sentence length, and N4–N1 vocabulary share all increase strictly. Repair the reversal between N3 and N2. Sentences to reword: [{\"level\":\"N3\",\"index\":3,\"text\":\"あと6日の間、毎晩とのさまの前でひいてほしいので、\",\"length\":25},{\"level\":\"N2\",\"index\":0,\"text\":\"女は芳一が琵琶の名人であることは知っていたものの、これほどの技術だとは思わなかったと言った。\",\"length\":46}]. Higher-level alternatives can use faithful formal equivalents (e.g. その時 → その瞬間, 言う → 伝える/告げる, 急に → 突然) ONLY when appropriate to the original. Sentence caps: {\"N5\":20,\"N4\":28,\"N3\":40,\"N2\":55,\"N1\":70}."
+        }
+      ],
+      "response": "{\"candidates\": [[\"level=\"]]}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "Propose alternative wordings of ONLY the specified individual sentences in a Japanese story. Preserve every fact and event, do not pad or invent. Return JSON {\"candidates\":[{\"level\":\"N2\",\"index\":0,\"sentence\":\"...\"}]}. Give three alternatives per specified sentence. The lower level must remain easier, the higher level richer. Prefer precise harder vocabulary from the original for the higher level; use simpler synonyms for the lower level. Keep normal permitted kanji spellings. No modern slang."
+        },
+        {
+          "role": "user",
+          "content": "Original:\nその女はこう云った――\n『私共は貴方が琵琶の名人であって、また謡う方でも肩を並べるもののない事は聞き及んでいた事では御座いますが、貴方が今晩御聴かせ下すったようなあんなお腕前をお有ちになろうとは思いも致しませんでした。殿様には大層御気に召し、貴方に十分な御礼を下さる御考えである由を御伝え申すようにとの事に御座います。が、これから後六日の間毎晩一度ずつ殿様の御前で演奏をお聞きに入れるようとの御意に御座います――その上で殿様にはたぶん御帰りの旅に上られる事と存じます。それ故明晩も同じ時刻に、ここへ御出向きなされませ。今夜、貴方を御案内いたしたあの家来が、また、御迎えに参るで御座いましょう……それからも一つ貴方に御伝えするように申しつけられた事が御座います。それは殿様がこの赤間ヶ関に御滞在中、貴方がこの御殿に御上りになる事を誰れにも御話しにならぬようとの御所望に御座います。殿様には御忍びの御旅行ゆえ、かような事はいっさい口外致さぬようにとの御上意によりますので。……ただ今、御自由に御坊に御帰りあそばせ』\nCurrent five-level measurements: {\"N5\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.08661417322834646,\"meanLength\":12.7,\"advancedShare\":0.3225806451612903},\"N4\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.15432098765432098,\"meanLength\":16.2,\"advancedShare\":0.3684210526315789},\"N3\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.22580645161290322,\"meanLength\":46.5,\"advancedShare\":0.42},\"N2\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.2711864406779661,\"meanLength\":42.142857142857146,\"advancedShare\":0.475},\"N1\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.30666666666666664,\"meanLength\":37.5,\"advancedShare\":0.6219512195121951}}\nRequired: kanji density, mean sentence length, and N4–N1 vocabulary share all increase strictly. Repair the reversal between N3 and N2. Sentences to reword: [{\"level\":\"N3\",\"index\":3,\"text\":\"あと6日の間、毎晩とのさまの前でひいてほしいので、\",\"length\":25},{\"level\":\"N2\",\"index\":0,\"text\":\"女は芳一が琵琶の名人であることは知っていたものの、これほどの技術だとは思わなかったと言った。\",\"length\":46}]. Higher-level alternatives can use faithful formal equivalents (e.g. その時 → その瞬間, 言う → 伝える/告げる, 急に → 突然) ONLY when appropriate to the original. Sentence caps: {\"N5\":20,\"N4\":28,\"N3\":40,\"N2\":55,\"N1\":70}."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"candidates\": [[\"level=\"]]}"
+        },
+        {
+          "role": "user",
+          "content": "Return valid JSON only. Validation: [\n  {\n    \"code\": \"too_small\",\n    \"minimum\": 2,\n    \"type\": \"array\",\n    \"inclusive\": true,\n    \"exact\": false,\n    \"message\": \"Array must contain at least 2 element(s)\",\n    \"path\": [\n      \"candidates\"\n    ]\n  },\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"object\",\n    \"received\": \"string\",\n    \"path\": [\n      \"candidates\",\n      0\n    ],\n    \"message\": \"Expected object, received string\"\n  }\n]"
+        }
+      ],
+      "response": "{\"candidates\": [{\"level\": \"N3\", \"index\": 3, \"sentence\": \"あと6日間、毎晩殿様の御前で演奏してほしいとのことです。\"}, {\"level\": \"N3\", \"index\": 3, \"sentence\": \"今後6日の間、毎晩殿様の御前でお弾きいただきたいと仰せです。\"}, {\"level\": \"N3\", \"index\": 3, \"sentence\": \"これから6日間、毎晩殿様の御前で演奏することを望まれています。\"}, {\"level\": \"N2\", \"index\": 0, \"sentence\": \"その女は、彼が琵琶の名手であることは聞き及んでいたが、これほどの腕前だとは思わなかったと述べた。\"}, {\"level\": \"N2\", \"index\": 0, \"sentence\": \"女は彼が琵琶の名人であることは承知していたが、まさかこれほどの技術をお持ちだとは思わなかったと告げた。\"}, {\"level\": \"N2\", \"index\": 0, \"sentence\": \"女は芳一が琵琶の名人であることは知っていたものの、今夜のような見事な腕前であるとは予想だにしていなかった。\"}]}"
+    }
+  ],
+  "p4cLadderRetry": {
+    "before": {
+      "ladderOk": false,
+      "reasons": [
+        "meanLength"
+      ],
+      "stats": {
+        "N5": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.08661417322834646,
+          "meanLength": 12.7,
+          "advancedShare": 0.3225806451612903
+        },
+        "N4": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.15432098765432098,
+          "meanLength": 16.2,
+          "advancedShare": 0.3684210526315789
+        },
+        "N3": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.22580645161290322,
+          "meanLength": 46.5,
+          "advancedShare": 0.42
+        },
+        "N2": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.25157232704402516,
+          "meanLength": 35.333333333333336,
+          "advancedShare": 0.4634146341463415
+        },
+        "N1": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.30666666666666664,
+          "meanLength": 37.5,
+          "advancedShare": 0.6219512195121951
+        }
+      }
+    },
+    "feedback": "Bounded sentence-level repair of the recorded five-level reversal."
+  },
+  "localLadderBefore": {
+    "ladderOk": false,
+    "reasons": [
+      "meanLength"
+    ],
+    "stats": {
+      "N5": {
+        "kanjiCoverage": 1,
+        "kanjiDensity": 0.08661417322834646,
+        "meanLength": 12.7,
+        "advancedShare": 0.3225806451612903
+      },
+      "N4": {
+        "kanjiCoverage": 1,
+        "kanjiDensity": 0.15432098765432098,
+        "meanLength": 16.2,
+        "advancedShare": 0.3684210526315789
+      },
+      "N3": {
+        "kanjiCoverage": 1,
+        "kanjiDensity": 0.22580645161290322,
+        "meanLength": 46.5,
+        "advancedShare": 0.42
+      },
+      "N2": {
+        "kanjiCoverage": 1,
+        "kanjiDensity": 0.25157232704402516,
+        "meanLength": 35.333333333333336,
+        "advancedShare": 0.4634146341463415
+      },
+      "N1": {
+        "kanjiCoverage": 1,
+        "kanjiDensity": 0.30666666666666664,
+        "meanLength": 37.5,
+        "advancedShare": 0.6219512195121951
+      }
+    }
+  },
+  "semanticCorrections": [
+    {
+      "sentence": "あと6日間、毎晩とのさまの御前でえんそうしてほしいとのことです。",
+      "problem": "6 should be written as 6, but the rule says number words must not be spelled in kana; however, the retelling uses '6' which is fine. Wait, the instruction says 'Number words must not be spelled in kana' which means numbers should be digits. The problem is the number of days: 'これから後六日の間' includes tomorrow. The retelling says 'あと6日間' then '明日も', which is logically consistent, but '6' is used. Actually, looking closer: '六日' is the number. The retelling uses '6'. This is correct. Let's re-read: 'Number words must not be spelled in kana.' 6 is not kana. No error here.",
+      "kind": "number"
+    }
+  ]
 }

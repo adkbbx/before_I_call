@@ -19,24 +19,20 @@
   ],
   "metrics": {
     "kanjiCoverage": 1,
-    "kanjiDensity": 0.2182741116751269,
+    "kanjiDensity": 0.20588235294117646,
     "firstCoverage": 0.9772727272727273,
-    "finalCoverage": 0.9787234042553191,
+    "finalCoverage": 0.9387755102040817,
     "retries": 1,
-    "seconds": 16.292795799999993,
+    "seconds": 19.005523899999996,
     "offendingFirst": [
       "罰"
     ],
     "ghostWords": [
-      "はじ"
+      "怖がる",
+      "はじ",
+      "かすみ"
     ],
-    "faithIssues": [
-      {
-        "sentence": "子供を大事にしないなら、ばちを与えます。",
-        "problem": "The original says she will treat him accordingly if the children have reason to complain, not that she will give him 'divine punishment' (ばち). Correct to something like 'ひどいことをします'.",
-        "kind": "invented"
-      }
-    ]
+    "faithIssues": []
   },
   "retelling": {
     "level": "N3",
@@ -98,20 +94,23 @@
             "gs": "jlpt"
           },
           {
-            "s": "た",
+            "s": "て",
             "k": "plain"
           },
           {
-            "s": "ので",
-            "k": "plain"
-          },
-          {
-            "s": "怖かっ",
+            "s": "ひどく",
             "k": "known",
-            "r": "こわかっ",
-            "b": "怖い",
-            "g": "scary, frightening",
+            "b": "ひどい",
+            "g": "terrible, awful, unfair, cruel",
             "gs": "jlpt"
+          },
+          {
+            "s": "怖がっ",
+            "k": "ghost",
+            "r": "こわがっ",
+            "b": "怖がる",
+            "g": "to be afraid",
+            "gs": "model"
           },
           {
             "s": "た",
@@ -641,14 +640,14 @@
             "gs": "jlpt"
           },
           {
-            "s": "くも",
-            "k": "known",
-            "b": "くも",
-            "g": "cloud",
-            "gs": "jlpt"
+            "s": "かすみ",
+            "k": "ghost",
+            "b": "かすみ",
+            "g": "mist/haze",
+            "gs": "model"
           },
           {
-            "s": "に",
+            "s": "と",
             "k": "plain"
           },
           {
@@ -687,15 +686,29 @@
             "gs": "jlpt"
           },
           {
-            "s": "に",
+            "s": "へ",
             "k": "plain"
           },
           {
-            "s": "登り",
+            "s": "と",
+            "k": "plain"
+          },
+          {
+            "s": "のぼっ",
             "k": "known",
-            "r": "のぼり",
-            "b": "登る",
+            "b": "のぼる",
             "g": "to climb",
+            "gs": "jlpt"
+          },
+          {
+            "s": "て",
+            "k": "plain"
+          },
+          {
+            "s": "いき",
+            "k": "known",
+            "b": "いく",
+            "g": "to go",
             "gs": "jlpt"
           },
           {
@@ -968,27 +981,33 @@
     },
     "metrics": {
       "kanjiCoverage": 1,
-      "kanjiDensity": 0.2182741116751269,
+      "kanjiDensity": 0.20588235294117646,
       "firstCoverage": 0.9772727272727273,
-      "finalCoverage": 0.9787234042553191,
+      "finalCoverage": 0.9387755102040817,
       "retries": 1,
-      "seconds": 16.292795799999993,
+      "seconds": 19.005523899999996,
       "offendingFirst": [
         "罰"
       ],
       "ghostWords": [
-        "はじ"
+        "怖がる",
+        "はじ",
+        "かすみ"
       ],
-      "faithIssues": [
-        {
-          "sentence": "子供を大事にしないなら、ばちを与えます。",
-          "problem": "The original says she will treat him accordingly if the children have reason to complain, not that she will give him 'divine punishment' (ばち). Correct to something like 'ひどいことをします'.",
-          "kind": "invented"
-        }
-      ]
+      "faithIssues": []
     }
   },
-  "levelRepairs": [],
+  "levelRepairs": [
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Give short English glosses for these Japanese words: 怖がる、かすみ. Return JSON {\"glosses\":{\"怖がる\":\"English gloss\",\"かすみ\":\"English gloss\"}}. Copy keys exactly."
+        }
+      ],
+      "response": "{\"glosses\": {\"怖がる\": \"to be afraid\", \"かすみ\": \"mist/haze\"}}"
+    }
+  ],
   "faithfulness": {
     "reviews": [
       {
@@ -1016,6 +1035,19 @@
           }
         ],
         "response": "{\"issues\": [{\"sentence\": \"子供を大事にしないなら、ばちを与えます。\", \"problem\": \"The original says she will treat him accordingly if the children have reason to complain, not that she will give him 'divine punishment' (ばち). Correct to something like 'ひどいことをします'.\", \"kind\": \"invented\"}]}"
+      },
+      {
+        "messages": [
+          {
+            "role": "system",
+            "content": "Compare a simplified Japanese ghost-story retelling with its original. Return JSON {\"issues\":[{\"sentence\":\"exact retelling sentence\",\"problem\":\"specific error and faithful correction\",\"kind\":\"number|who|event|death|invented|unnatural\"}]}. Use only one of those six kind values. Check numbers, who did what, event order, deaths versus sightings, invented claims, and unnatural Japanese or a word used with the wrong meaning. High rank is えらい人, not a tall 高い人. 約三十年前に死んだ means died about 30 years ago, NOT saw a ghost 30 years ago. Number words must not be spelled in kana. Simplification, omitted decorative details, ordinary contemporary spelling, and using roles instead of names are acceptable. 紀伊国坂 is the canonical story-word spelling of 紀国坂 and is explicitly correct. Do not demand advanced vocabulary. Report only concrete errors supported by the original. Return an empty array if there are none. Copy the exact sentence from the retelling including punctuation; never quote or combine fragments. For a missing necessary event use the closest existing sentence and explain what to restore."
+          },
+          {
+            "role": "user",
+            "content": "原文:\n『眠っている時にでも起きている時にでも、お前のように綺麗な人を見たのはその時だけだ。もちろんそれは人間じゃなかった。そしてわしはその女が恐ろしかった、――大変恐ろしかった、――がその女は大変白かった。……実際わしが見たのは夢であったかそれとも雪女であったか、分らないでいる』……\nお雪は縫物を投げ捨てて立ち上って巳之吉の坐っている処で、彼の上に屈んで、彼の顔に向って叫んだ、――\n『それは私、私、私でした。……それは雪でした。そしてその時あなたが、その事を一言でも云ったら、私はあなたを殺すと云いました。……そこに眠っている子供等がいなかったら、今すぐあなたを殺すのでした。でも今あなたは子供等を大事に大事になさる方がいい、もし子供等があなたに不平を云うべき理由でもあったら、私はそれ相当にあなたを扱うつもりだから』……\n彼女が叫んでいる最中、彼女の声は細くなって行った、風の叫びのように、――それから彼女は輝いた白い霞となって屋根の棟木の方へ上って、それから煙出しの穴を通ってふるえながら出て行った。……もう再び彼女は見られなかった。\n\n語り直しの文（JSON配列。sentenceは必ずこの配列の文字列をそのままコピーする）:\n[\"巳之吉は昔、白い女を見てひどく怖がったようです。\",\"お雪はそれを聞いて、怒って立ち上がりました。\",\"お雪はじぶんがあの女だったとさけびました。\",\"ひみつを話したら殺すと約束したはずだと言いました。\",\"子供がいるので、今は殺さないと言いました。\",\"子供を大事にしないなら、ばちを与えます。\",\"お雪の声は、吹雪のような音になりました。\",\"彼女は白いかすみとなって、やねの上へとのぼっていきました。\",\"あなから外へ出て、もう戻ってきませんでした。\"]"
+          }
+        ],
+        "response": "{\"issues\": []}"
       }
     ],
     "rewrites": [
@@ -1040,13 +1072,185 @@
         "kind": "event"
       }
     ],
-    "after": [
-      {
-        "sentence": "子供を大事にしないなら、ばちを与えます。",
-        "problem": "The original says she will treat him accordingly if the children have reason to complain, not that she will give him 'divine punishment' (ばち). Correct to something like 'ひどいことをします'.",
-        "kind": "invented"
-      }
-    ]
+    "after": []
   },
-  "ladderBuild": "P4b"
+  "ladderBuild": "P4b",
+  "localRepairs": [
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "Propose alternative wordings of ONLY the specified individual sentences in a Japanese story. Preserve every fact and event, do not pad or invent. Return JSON {\"candidates\":[{\"level\":\"N2\",\"index\":0,\"sentence\":\"...\"}]}. Give three alternatives per specified sentence. The lower level must remain easier, the higher level richer. Prefer precise harder vocabulary from the original for the higher level; use simpler synonyms for the lower level. Keep normal permitted kanji spellings. No modern slang."
+        },
+        {
+          "role": "user",
+          "content": "Original:\n『眠っている時にでも起きている時にでも、お前のように綺麗な人を見たのはその時だけだ。もちろんそれは人間じゃなかった。そしてわしはその女が恐ろしかった、――大変恐ろしかった、――がその女は大変白かった。……実際わしが見たのは夢であったかそれとも雪女であったか、分らないでいる』……\nお雪は縫物を投げ捨てて立ち上って巳之吉の坐っている処で、彼の上に屈んで、彼の顔に向って叫んだ、――\n『それは私、私、私でした。……それは雪でした。そしてその時あなたが、その事を一言でも云ったら、私はあなたを殺すと云いました。……そこに眠っている子供等がいなかったら、今すぐあなたを殺すのでした。でも今あなたは子供等を大事に大事になさる方がいい、もし子供等があなたに不平を云うべき理由でもあったら、私はそれ相当にあなたを扱うつもりだから』……\n彼女が叫んでいる最中、彼女の声は細くなって行った、風の叫びのように、――それから彼女は輝いた白い霞となって屋根の棟木の方へ上って、それから煙出しの穴を通ってふるえながら出て行った。……もう再び彼女は見られなかった。\nCurrent five-level measurements: {\"N5\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.07784431137724551,\"meanLength\":11.133333333333333,\"advancedShare\":0.18518518518518517},\"N4\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.13829787234042554,\"meanLength\":15.666666666666666,\"advancedShare\":0.25},\"N3\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.2182741116751269,\"meanLength\":21.88888888888889,\"advancedShare\":0.46808510638297873},\"N2\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.2804232804232804,\"meanLength\":31.5,\"advancedShare\":0.3958333333333333},\"N1\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.2842809364548495,\"meanLength\":37.375,\"advancedShare\":0.4230769230769231}}\nRequired: kanji density, mean sentence length, and N4–N1 vocabulary share all increase strictly. Repair the reversal between N3 and N2. Sentences to reword: [{\"level\":\"N3\",\"index\":0,\"text\":\"巳之吉は昔、白い女を見たので怖かったようです。\",\"length\":23},{\"level\":\"N2\",\"index\":4,\"text\":\"彼女の声はしだいに細くなり、やがて白いかすみとなって屋根へ消えた。\",\"length\":33}]. Higher-level alternatives can use faithful formal equivalents (e.g. その時 → その瞬間, 言う → 伝える/告げる, 急に → 突然) ONLY when appropriate to the original. Sentence caps: {\"N5\":20,\"N4\":28,\"N3\":40,\"N2\":55,\"N1\":70}."
+        }
+      ],
+      "response": "{\"candidates」:[{\": [{\"level\": \"N3\", \"index\": 0, \"sentence\": \"巳之吉は昔、白い女を見てひどく怖がったようです。\"}, {\"level\": \"N3\", \"index\": 0, \"sentence\": \"巳之吉はかつて、白い女を目にして恐怖を感じたようです。\"}, {\"level\": \"N3\", \"index\": 0, \"sentence\": \"昔、巳之吉は白い女を見たため、とても恐ろしかったようです。\"}], \"index 4\": [{\"level\": \"N2\", \"index\": 4, \"sentence\": \"彼女の声は次第に細くなり、やがて白い霞へと姿を変えて屋根の向こうへ消え去った。\"}, {\"level\": \"N2\", \"index\": 4, \"sentence\": \"彼女の声は次第に消え入り、やがて白い霞となって屋根の棟木を通り抜けて消えた。\"}, {\"level\": \"N2\", \"index\": 4, \"sentence\": \"彼女の声は次第に細くなって行き、やがて白い霞となって屋根の煙出しから消え失せた。\"}]}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "Propose alternative wordings of ONLY the specified individual sentences in a Japanese story. Preserve every fact and event, do not pad or invent. Return JSON {\"candidates\":[{\"level\":\"N2\",\"index\":0,\"sentence\":\"...\"}]}. Give three alternatives per specified sentence. The lower level must remain easier, the higher level richer. Prefer precise harder vocabulary from the original for the higher level; use simpler synonyms for the lower level. Keep normal permitted kanji spellings. No modern slang."
+        },
+        {
+          "role": "user",
+          "content": "Original:\n『眠っている時にでも起きている時にでも、お前のように綺麗な人を見たのはその時だけだ。もちろんそれは人間じゃなかった。そしてわしはその女が恐ろしかった、――大変恐ろしかった、――がその女は大変白かった。……実際わしが見たのは夢であったかそれとも雪女であったか、分らないでいる』……\nお雪は縫物を投げ捨てて立ち上って巳之吉の坐っている処で、彼の上に屈んで、彼の顔に向って叫んだ、――\n『それは私、私、私でした。……それは雪でした。そしてその時あなたが、その事を一言でも云ったら、私はあなたを殺すと云いました。……そこに眠っている子供等がいなかったら、今すぐあなたを殺すのでした。でも今あなたは子供等を大事に大事になさる方がいい、もし子供等があなたに不平を云うべき理由でもあったら、私はそれ相当にあなたを扱うつもりだから』……\n彼女が叫んでいる最中、彼女の声は細くなって行った、風の叫びのように、――それから彼女は輝いた白い霞となって屋根の棟木の方へ上って、それから煙出しの穴を通ってふるえながら出て行った。……もう再び彼女は見られなかった。\nCurrent five-level measurements: {\"N5\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.07784431137724551,\"meanLength\":11.133333333333333,\"advancedShare\":0.18518518518518517},\"N4\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.13829787234042554,\"meanLength\":15.666666666666666,\"advancedShare\":0.25},\"N3\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.2182741116751269,\"meanLength\":21.88888888888889,\"advancedShare\":0.46808510638297873},\"N2\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.2804232804232804,\"meanLength\":31.5,\"advancedShare\":0.3958333333333333},\"N1\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.2842809364548495,\"meanLength\":37.375,\"advancedShare\":0.4230769230769231}}\nRequired: kanji density, mean sentence length, and N4–N1 vocabulary share all increase strictly. Repair the reversal between N3 and N2. Sentences to reword: [{\"level\":\"N3\",\"index\":0,\"text\":\"巳之吉は昔、白い女を見たので怖かったようです。\",\"length\":23},{\"level\":\"N2\",\"index\":4,\"text\":\"彼女の声はしだいに細くなり、やがて白いかすみとなって屋根へ消えた。\",\"length\":33}]. Higher-level alternatives can use faithful formal equivalents (e.g. その時 → その瞬間, 言う → 伝える/告げる, 急に → 突然) ONLY when appropriate to the original. Sentence caps: {\"N5\":20,\"N4\":28,\"N3\":40,\"N2\":55,\"N1\":70}."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"candidates」:[{\": [{\"level\": \"N3\", \"index\": 0, \"sentence\": \"巳之吉は昔、白い女を見てひどく怖がったようです。\"}, {\"level\": \"N3\", \"index\": 0, \"sentence\": \"巳之吉はかつて、白い女を目にして恐怖を感じたようです。\"}, {\"level\": \"N3\", \"index\": 0, \"sentence\": \"昔、巳之吉は白い女を見たため、とても恐ろしかったようです。\"}], \"index 4\": [{\"level\": \"N2\", \"index\": 4, \"sentence\": \"彼女の声は次第に細くなり、やがて白い霞へと姿を変えて屋根の向こうへ消え去った。\"}, {\"level\": \"N2\", \"index\": 4, \"sentence\": \"彼女の声は次第に消え入り、やがて白い霞となって屋根の棟木を通り抜けて消えた。\"}, {\"level\": \"N2\", \"index\": 4, \"sentence\": \"彼女の声は次第に細くなって行き、やがて白い霞となって屋根の煙出しから消え失せた。\"}]}"
+        },
+        {
+          "role": "user",
+          "content": "Return valid JSON only. Validation: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"array\",\n    \"received\": \"undefined\",\n    \"path\": [\n      \"candidates\"\n    ],\n    \"message\": \"Required\"\n  }\n]"
+        }
+      ],
+      "response": "{\"candidates\": [{\"level\": \"N3\", \"index\": 0, \"sentence\": \"巳之吉は昔、白い女を見てひどく怖がったようです。\"}, {\"level\": \"N3\", \"index\": 0, \"sentence\": \"巳之吉はかつて、白い女を目にして恐怖を感じたようです。\"}, {\"level\": \"N3\", \"index\": 0, \"sentence\": \"昔、巳之吉は白い女を見たため、とても恐ろしかったようです。\"}, {\"level\": \"N2\", \"index\": 4, \"sentence\": \"彼女の声は次第に細くなり、やがて白い霞へと姿を変えて屋根の向こうへ消え去った。\"}, {\"level\": \"N2\", \"index\": 4, \"sentence\": \"彼女の声は次第に消え入り、やがて白い霞となって屋根の棟木を通り抜けて消えた。\"}, {\"level\": \"N2\", \"index\": 4, \"sentence\": \"彼女の声は次第に細くなって行き、やがて白い霞となって屋根の煙出しから消え失せた。\"}]}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "Propose alternative wordings of ONLY the specified individual sentences in a Japanese story. Preserve every fact and event, do not pad or invent. Return JSON {\"candidates\":[{\"level\":\"N2\",\"index\":0,\"sentence\":\"...\"}]}. Give three alternatives per specified sentence. The lower level must remain easier, the higher level richer. Prefer precise harder vocabulary from the original for the higher level; use simpler synonyms for the lower level. Keep normal permitted kanji spellings. No modern slang."
+        },
+        {
+          "role": "user",
+          "content": "Original:\n『眠っている時にでも起きている時にでも、お前のように綺麗な人を見たのはその時だけだ。もちろんそれは人間じゃなかった。そしてわしはその女が恐ろしかった、――大変恐ろしかった、――がその女は大変白かった。……実際わしが見たのは夢であったかそれとも雪女であったか、分らないでいる』……\nお雪は縫物を投げ捨てて立ち上って巳之吉の坐っている処で、彼の上に屈んで、彼の顔に向って叫んだ、――\n『それは私、私、私でした。……それは雪でした。そしてその時あなたが、その事を一言でも云ったら、私はあなたを殺すと云いました。……そこに眠っている子供等がいなかったら、今すぐあなたを殺すのでした。でも今あなたは子供等を大事に大事になさる方がいい、もし子供等があなたに不平を云うべき理由でもあったら、私はそれ相当にあなたを扱うつもりだから』……\n彼女が叫んでいる最中、彼女の声は細くなって行った、風の叫びのように、――それから彼女は輝いた白い霞となって屋根の棟木の方へ上って、それから煙出しの穴を通ってふるえながら出て行った。……もう再び彼女は見られなかった。\nCurrent five-level measurements: {\"N5\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.07784431137724551,\"meanLength\":11.133333333333333,\"advancedShare\":0.18518518518518517},\"N4\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.13829787234042554,\"meanLength\":15.666666666666666,\"advancedShare\":0.25},\"N3\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.21717171717171718,\"meanLength\":22,\"advancedShare\":0.4583333333333333},\"N2\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.2804232804232804,\"meanLength\":31.5,\"advancedShare\":0.3958333333333333},\"N1\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.2842809364548495,\"meanLength\":37.375,\"advancedShare\":0.4230769230769231}}\nRequired: kanji density, mean sentence length, and N4–N1 vocabulary share all increase strictly. Repair the reversal between N3 and N2. Sentences to reword: [{\"level\":\"N3\",\"index\":7,\"text\":\"彼女は白いくもになって、やねの上に登りました。\",\"length\":23},{\"level\":\"N2\",\"index\":3,\"text\":\"子供たちがいないなら今すぐ殺すが、彼らを大切にしろとおどした。\",\"length\":31}]. Higher-level alternatives can use faithful formal equivalents (e.g. その時 → その瞬間, 言う → 伝える/告げる, 急に → 突然) ONLY when appropriate to the original. Sentence caps: {\"N5\":20,\"N4\":28,\"N3\":40,\"N2\":55,\"N1\":70}."
+        }
+      ],
+      "response": "{\"candidates」:[{\": \"N3\", \"index\": 7, \"sentence\": \"彼女は白い霞へと姿を変え、屋根の上へと昇っていきました。\", \"level\": \"N3\"}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "Propose alternative wordings of ONLY the specified individual sentences in a Japanese story. Preserve every fact and event, do not pad or invent. Return JSON {\"candidates\":[{\"level\":\"N2\",\"index\":0,\"sentence\":\"...\"}]}. Give three alternatives per specified sentence. The lower level must remain easier, the higher level richer. Prefer precise harder vocabulary from the original for the higher level; use simpler synonyms for the lower level. Keep normal permitted kanji spellings. No modern slang."
+        },
+        {
+          "role": "user",
+          "content": "Original:\n『眠っている時にでも起きている時にでも、お前のように綺麗な人を見たのはその時だけだ。もちろんそれは人間じゃなかった。そしてわしはその女が恐ろしかった、――大変恐ろしかった、――がその女は大変白かった。……実際わしが見たのは夢であったかそれとも雪女であったか、分らないでいる』……\nお雪は縫物を投げ捨てて立ち上って巳之吉の坐っている処で、彼の上に屈んで、彼の顔に向って叫んだ、――\n『それは私、私、私でした。……それは雪でした。そしてその時あなたが、その事を一言でも云ったら、私はあなたを殺すと云いました。……そこに眠っている子供等がいなかったら、今すぐあなたを殺すのでした。でも今あなたは子供等を大事に大事になさる方がいい、もし子供等があなたに不平を云うべき理由でもあったら、私はそれ相当にあなたを扱うつもりだから』……\n彼女が叫んでいる最中、彼女の声は細くなって行った、風の叫びのように、――それから彼女は輝いた白い霞となって屋根の棟木の方へ上って、それから煙出しの穴を通ってふるえながら出て行った。……もう再び彼女は見られなかった。\nCurrent five-level measurements: {\"N5\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.07784431137724551,\"meanLength\":11.133333333333333,\"advancedShare\":0.18518518518518517},\"N4\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.13829787234042554,\"meanLength\":15.666666666666666,\"advancedShare\":0.25},\"N3\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.21717171717171718,\"meanLength\":22,\"advancedShare\":0.4583333333333333},\"N2\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.2804232804232804,\"meanLength\":31.5,\"advancedShare\":0.3958333333333333},\"N1\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.2842809364548495,\"meanLength\":37.375,\"advancedShare\":0.4230769230769231}}\nRequired: kanji density, mean sentence length, and N4–N1 vocabulary share all increase strictly. Repair the reversal between N3 and N2. Sentences to reword: [{\"level\":\"N3\",\"index\":7,\"text\":\"彼女は白いくもになって、やねの上に登りました。\",\"length\":23},{\"level\":\"N2\",\"index\":3,\"text\":\"子供たちがいないなら今すぐ殺すが、彼らを大切にしろとおどした。\",\"length\":31}]. Higher-level alternatives can use faithful formal equivalents (e.g. その時 → その瞬間, 言う → 伝える/告げる, 急に → 突然) ONLY when appropriate to the original. Sentence caps: {\"N5\":20,\"N4\":28,\"N3\":40,\"N2\":55,\"N1\":70}."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"candidates」:[{\": \"N3\", \"index\": 7, \"sentence\": \"彼女は白い霞へと姿を変え、屋根の上へと昇っていきました。\", \"level\": \"N3\"}"
+        },
+        {
+          "role": "user",
+          "content": "Return valid JSON only. Validation: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"array\",\n    \"received\": \"undefined\",\n    \"path\": [\n      \"candidates\"\n    ],\n    \"message\": \"Required\"\n  }\n]"
+        }
+      ],
+      "response": "{\"candidates\": [{\"level\": \"N3\", \"index\": 7, \"sentence\": \"彼女は白い霞へと姿を変え、屋根の上へと昇っていきました。\"}, {\"level\": \"N4\", \"index\": 7, \"sentence\": \"彼女は白い雲のようになって、屋根の上に登りました。\"}, {\"level\": \"N2\", \"index\": 7, \"sentence\": \"彼女は輝く白い霞となって屋根の棟木の方へ上り、煙出しの穴から消えていきました。\"}, {\"level\": \"N3\", \"index\": 3, \"sentence\": \"子供たちがいないなら今すぐ殺すが、彼らを大切にしろと彼女は脅した。\"}, {\"level\": \"N4\", \"index\": 3, \"sentence\": \"子供たちがいないならすぐに殺します。だから、大切にしてくださいと言った。\"}, {\"level\": \"N2\", \"index\": 3, \"sentence\": \"もし眠っている子供たちが不在であったなら即座に殺めていたが、今は彼らを大切になさる方がよいと告げた。\"}]}"
+    },
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "Propose alternative wordings of ONLY the specified individual sentences in a Japanese story. Preserve every fact and event, do not pad or invent. Return JSON {\"candidates\":[{\"level\":\"N2\",\"index\":0,\"sentence\":\"...\"}]}. Give three alternatives per specified sentence. The lower level must remain easier, the higher level richer. Prefer precise harder vocabulary from the original for the higher level; use simpler synonyms for the lower level. Keep normal permitted kanji spellings. No modern slang."
+        },
+        {
+          "role": "user",
+          "content": "Original:\n『眠っている時にでも起きている時にでも、お前のように綺麗な人を見たのはその時だけだ。もちろんそれは人間じゃなかった。そしてわしはその女が恐ろしかった、――大変恐ろしかった、――がその女は大変白かった。……実際わしが見たのは夢であったかそれとも雪女であったか、分らないでいる』……\nお雪は縫物を投げ捨てて立ち上って巳之吉の坐っている処で、彼の上に屈んで、彼の顔に向って叫んだ、――\n『それは私、私、私でした。……それは雪でした。そしてその時あなたが、その事を一言でも云ったら、私はあなたを殺すと云いました。……そこに眠っている子供等がいなかったら、今すぐあなたを殺すのでした。でも今あなたは子供等を大事に大事になさる方がいい、もし子供等があなたに不平を云うべき理由でもあったら、私はそれ相当にあなたを扱うつもりだから』……\n彼女が叫んでいる最中、彼女の声は細くなって行った、風の叫びのように、――それから彼女は輝いた白い霞となって屋根の棟木の方へ上って、それから煙出しの穴を通ってふるえながら出て行った。……もう再び彼女は見られなかった。\nCurrent five-level measurements: {\"N5\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.07784431137724551,\"meanLength\":11.133333333333333,\"advancedShare\":0.18518518518518517},\"N4\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.13829787234042554,\"meanLength\":15.666666666666666,\"advancedShare\":0.25},\"N3\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.21717171717171718,\"meanLength\":22,\"advancedShare\":0.4583333333333333},\"N2\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.2804232804232804,\"meanLength\":31.5,\"advancedShare\":0.3958333333333333},\"N1\":{\"kanjiCoverage\":1,\"kanjiDensity\":0.2842809364548495,\"meanLength\":37.375,\"advancedShare\":0.4230769230769231}}\nRequired: kanji density, mean sentence length, and N4–N1 vocabulary share all increase strictly. Repair the reversal between N3 and N2. Sentences to reword: [{\"level\":\"N3\",\"index\":7,\"text\":\"彼女は白いくもになって、やねの上に登りました。\",\"length\":23},{\"level\":\"N2\",\"index\":3,\"text\":\"子供たちがいないなら今すぐ殺すが、彼らを大切にしろとおどした。\",\"length\":31}]. Higher-level alternatives can use faithful formal equivalents (e.g. その時 → その瞬間, 言う → 伝える/告げる, 急に → 突然) ONLY when appropriate to the original. Sentence caps: {\"N5\":20,\"N4\":28,\"N3\":40,\"N2\":55,\"N1\":70}."
+        },
+        {
+          "role": "assistant",
+          "content": "{\"candidates」:[{\": \"N3\", \"index\": 7, \"sentence\": \"彼女は白い霞へと姿を変え、屋根の上へと昇っていきました。\", \"level\": \"N3\"}"
+        },
+        {
+          "role": "user",
+          "content": "Return valid JSON only. Validation: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"array\",\n    \"received\": \"undefined\",\n    \"path\": [\n      \"candidates\"\n    ],\n    \"message\": \"Required\"\n  }\n]"
+        },
+        {
+          "role": "assistant",
+          "content": "{\"candidates\": [{\"level\": \"N3\", \"index\": 7, \"sentence\": \"彼女は白い霞へと姿を変え、屋根の上へと昇っていきました。\"}, {\"level\": \"N4\", \"index\": 7, \"sentence\": \"彼女は白い雲のようになって、屋根の上に登りました。\"}, {\"level\": \"N2\", \"index\": 7, \"sentence\": \"彼女は輝く白い霞となって屋根の棟木の方へ上り、煙出しの穴から消えていきました。\"}, {\"level\": \"N3\", \"index\": 3, \"sentence\": \"子供たちがいないなら今すぐ殺すが、彼らを大切にしろと彼女は脅した。\"}, {\"level\": \"N4\", \"index\": 3, \"sentence\": \"子供たちがいないならすぐに殺します。だから、大切にしてくださいと言った。\"}, {\"level\": \"N2\", \"index\": 3, \"sentence\": \"もし眠っている子供たちが不在であったなら即座に殺めていたが、今は彼らを大切になさる方がよいと告げた。\"}]}"
+        },
+        {
+          "role": "user",
+          "content": "Return valid JSON only. Validation: [\n  {\n    \"code\": \"custom\",\n    \"message\": \"Use exactly these level/index pairs: N3/7, N2/3\",\n    \"path\": []\n  }\n]"
+        }
+      ],
+      "response": "{\"candidates\": [{\"level\": \"N3\", \"index\": 7, \"sentence\": \"彼女は白い霞となって、屋根の上へと昇っていきました。\"}, {\"level\": \"N3\", \"index\": 7, \"sentence\": \"彼女は白い霞に姿を変えて、屋根の上に登りました。\"}, {\"level\": \"N3\", \"index\": 7, \"sentence\": \"彼女は白い霞のようになり、屋根の上へ登っていきました。\"}, {\"level\": \"N2\", \"index\": 3, \"sentence\": \"子供たちが眠っていなければ即座に殺めていたが、今は彼らを大切になさる方がよいと脅した。\"}, {\"level\": \"N2\", \"index\": 3, \"sentence\": \"そこに子供たちが不在であったなら今すぐに殺していただろうが、彼らを大切に扱うよう告げた。\"}, {\"level\": \"N2\", \"index\": 3, \"sentence\": \"子供たちが居なければ直ちに殺していたところだが、彼らを大事になさるべきだと彼女は警告した。\"}]}"
+    }
+  ],
+  "p4cLadderRetry": {
+    "before": {
+      "ladderOk": false,
+      "reasons": [
+        "advancedShare"
+      ],
+      "stats": {
+        "N5": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.07784431137724551,
+          "meanLength": 11.133333333333333,
+          "advancedShare": 0.18518518518518517
+        },
+        "N4": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.13829787234042554,
+          "meanLength": 15.666666666666666,
+          "advancedShare": 0.25
+        },
+        "N3": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.2182741116751269,
+          "meanLength": 21.88888888888889,
+          "advancedShare": 0.46808510638297873
+        },
+        "N2": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.2648648648648649,
+          "meanLength": 30.833333333333332,
+          "advancedShare": 0.37777777777777777
+        },
+        "N1": {
+          "kanjiCoverage": 1,
+          "kanjiDensity": 0.2842809364548495,
+          "meanLength": 37.375,
+          "advancedShare": 0.4230769230769231
+        }
+      }
+    },
+    "feedback": "Bounded sentence-level repair of the recorded five-level reversal."
+  },
+  "localLadderBefore": {
+    "ladderOk": false,
+    "reasons": [
+      "advancedShare"
+    ],
+    "stats": {
+      "N5": {
+        "kanjiCoverage": 1,
+        "kanjiDensity": 0.07784431137724551,
+        "meanLength": 11.133333333333333,
+        "advancedShare": 0.18518518518518517
+      },
+      "N4": {
+        "kanjiCoverage": 1,
+        "kanjiDensity": 0.13829787234042554,
+        "meanLength": 15.666666666666666,
+        "advancedShare": 0.25
+      },
+      "N3": {
+        "kanjiCoverage": 1,
+        "kanjiDensity": 0.2182741116751269,
+        "meanLength": 21.88888888888889,
+        "advancedShare": 0.46808510638297873
+      },
+      "N2": {
+        "kanjiCoverage": 1,
+        "kanjiDensity": 0.2648648648648649,
+        "meanLength": 30.833333333333332,
+        "advancedShare": 0.37777777777777777
+      },
+      "N1": {
+        "kanjiCoverage": 1,
+        "kanjiDensity": 0.2842809364548495,
+        "meanLength": 37.375,
+        "advancedShare": 0.4230769230769231
+      }
+    }
+  }
 }

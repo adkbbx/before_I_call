@@ -5,6 +5,12 @@ import { vocabFromRows, loadVocab } from '../pipeline/jlpt.mjs';
 import { needsRetry, systemPrompt, repairJson, retellScene } from '../pipeline/retell.mjs';
 import { auditTales } from '../pipeline/audit.mjs';
 
+test('unlisted lamp variant is modernized before tokenization and level spelling checks',async()=>{
+  const r=await tokenizeForLevel('燈が消えた。','N1',{vocab:loadVocab()});
+  assert.ok(!r.tokens.some(t=>t.s.includes('燈')));
+  assert.equal(r.kanjiCoverage,1);
+});
+
 for (const [word, reading, expression] of [['僧','そう','そう'],['死','し','し'],['霊','れい','れい'],['復讐','ふくしゅう','復習']]) {
   test(`kanji vocabulary cannot borrow a homophone: ${word}`,async()=>{
     const vocab=vocabFromRows({N5:[{expression,reading,meaning:'different word'}]});
@@ -44,6 +50,13 @@ test('level prompts specify stricter sentence, grammar and kanji rules',()=>{
     assert.ok(prompt.includes('申す'));
   }
   assert.ok(systemPrompt('N5',[]).includes('Picture-book'));
+  for(const [level,cap,grammar] of [['N2',55,'～ものの'],['N1',70,'～ともなく']]){
+    const prompt=systemPrompt(level,[]);
+    assert.ok(prompt.includes(`at most ${cap} characters`));
+    assert.ok(prompt.includes(grammar));
+    assert.ok(prompt.includes('No modern slang'));
+    assert.ok(prompt.includes('All kanji from easier levels'));
+  }
 });
 
 test('kanji-only retries are bounded at three and retain hard-kanji readings',async()=>{

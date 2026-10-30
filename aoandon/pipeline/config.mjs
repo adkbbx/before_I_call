@@ -13,15 +13,15 @@ export const paths = {
   metrics: join(root, 'docs', 'metrics.md'),
 };
 
-export const levels = /** @type {const} */ (['N5', 'N4', 'N3']);
+export const levels = /** @type {const} */ (['N5', 'N4', 'N3', 'N2', 'N1']);
 
 /** Coverage the checker loop aims for before it stops retrying (PLAN.md, Retell loop). */
-export const targets = { N5: 0.95, N4: 0.95, N3: 0.97 };
+export const targets = { N5: 0.95, N4: 0.95, N3: 0.97, N2: 0.97, N1: 0.98 };
 
 /** Sentence length caps in characters per level. */
-export const sentenceCaps = { N5: 20, N4: 28, N3: 40 };
-export const densityBands = { N5: [0, 0.12], N4: [0.10, 0.18], N3: [0.18, 0.28] };
-export const sentenceBands = { N5: [6, 20], N4: [15, 28], N3: [22, 40] };
+export const sentenceCaps = { N5: 20, N4: 28, N3: 40, N2: 55, N1: 70 };
+export const densityBands = { N5: [0, 0.12], N4: [0.10, 0.18], N3: [0.18, 0.28], N2: [0.25, 0.35], N1: [0.30, 0.42] };
+export const sentenceBands = { N5: [6, 20], N4: [15, 28], N3: [22, 40], N2: [30, 55], N1: [35, 70] };
 
 export const maxRetries = 3;
 
