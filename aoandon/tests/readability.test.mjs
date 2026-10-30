@@ -18,7 +18,9 @@ for (const [word, reading, expression] of [['僧','そう','そう'],['死','し
     assert.ok(result.tokens.some(t=>t.k==='ghost'),JSON.stringify(result));
     assert.ok(!result.tokens.some(t=>t.k==='known'),JSON.stringify(result));
     const kana=await tokenizeForLevel(reading,'N5',{vocab});
-    assert.ok(kana.tokens.some(t=>t.k==='known'));
+    // A lone kana is a fragment, never a word: it must not be marked hard.
+    if ([...reading].length===1) assert.ok(!kana.tokens.some(t=>t.k==='ghost'),JSON.stringify(kana));
+    else assert.ok(kana.tokens.some(t=>t.k==='known'),JSON.stringify(kana));
   });
 }
 test('hard kanji includes story words and unlisted Han, independently of vocabulary',async()=>{

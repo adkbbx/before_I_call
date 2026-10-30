@@ -1,8 +1,12 @@
 import { plural } from './plural.ts';
-import { levels, type Token, type Tale, type Level, type TaleIndex, type Sentence } from './schema.ts';
+import { levels, type Token, type Tale, type Level, type TaleIndex, type Sentence, type Metrics } from './schema.ts';
 import type { FuriganaMode, WritingMode } from './prefs.ts';
 import { sceneKey, type NightState } from './night.ts';
 export const sentenceText = (s: Sentence) => s.tokens.map(t => t.s).join('');
+export function levelMeterText(level: Level, metrics: Pick<Metrics, 'finalCoverage' | 'kanjiCoverage'>): string {
+  const kanji = metrics.kanjiCoverage === undefined ? 'kanji unchecked' : metrics.kanjiCoverage === 1 ? `kanji all ${level}` : `${Math.round(metrics.kanjiCoverage * 100)}% of kanji at your level`;
+  return `${level} · ${Math.round(metrics.finalCoverage * 100)}% of words at your level · ${kanji}`;
+}
 export function showFurigana(token: Token, mode: FuriganaMode): boolean {
   return !!token.r && (token.k === 'story' || (mode === 'all' && (token.k !== 'plain' || !!token.hk)) || (mode === 'above-level' && !!token.hk));
 }

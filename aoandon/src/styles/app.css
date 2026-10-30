@@ -32,5 +32,7 @@ h1 { line-height:1.2; }
 .horizontal .reading-flow { flex:1; min-height:0; max-height:none; }
 .reveal { overflow:clip; }
 @media(max-width:680px) {
-  .horizontal .reader-sheet { height:calc(100svh - 224px); min-height:500px; }
+  /* On phones the whole story flows first and the page scrolls; controls follow it. */
+  .horizontal .reader-sheet { height:auto; min-height:0; }
+  .horizontal .reading-flow { flex:none; max-height:none; overflow:visible; }
 }

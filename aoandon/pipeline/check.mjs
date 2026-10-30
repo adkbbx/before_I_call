@@ -1,6 +1,30 @@
 // Token kinds and coverage follow PLAN.md; story spans are protected before tokenisation.
 import { getTokenizer, toHiragana, isContentWord } from './tokenize.mjs';
 import { readFileSync } from 'node:fs';
+import { normalize } from './jlpt.mjs';
+const kanaOnly = text => /^[\p{Script=Hiragana}\p{Script=Katakana}ー]+$/u.test(text);
+const readingIndexes = new WeakMap();
+function readingIndex(vocab) {
+  if (readingIndexes.has(vocab)) return readingIndexes.get(vocab);
+  const index = new Map();
+  for (const level of ['N5', 'N4', 'N3', 'N2', 'N1']) for (const entry of vocab.byLevel[level] ?? []) {
+    const base = normalize(entry.expression).find(s => [...s].some(isKanji));
+    if (!base) continue;
+    for (const r of normalize(entry.reading).map(toHiragana)) {
+      if (r.length < 2 || !kanaOnly(r)) continue;
+      const bucket = index.get(r[0]) ?? [];
+      if (!bucket.some(w => w.reading === r)) bucket.push({ reading: r, base, entry });
+      index.set(r[0], bucket);
+    }
+  }
+  for (const bucket of index.values()) bucket.sort((a, b) => b.reading.length - a.reading.length);
+  readingIndexes.set(vocab, index);
+  return index;
+}
+export function isKanaFragment(t) {
+  return kanaOnly(t.surface_form) && ([...t.surface_form].length === 1 ||
+    t.pos === '接頭詞' || ['接頭詞', '接尾', '非自立'].includes(t.pos_detail_1));
+}
 export const kanjiLevels = JSON.parse(readFileSync(new URL('../data/jlpt/kanji-levels.json', import.meta.url), 'utf8'));
 export const isKanji = c => /\p{Script=Han}|々/u.test(c);
 export const hasHardKanji = (text, level) => [...text].some(c => isKanji(c) && (kanjiLevels[c] ?? 0) < Number(level.slice(1)));
@@ -19,13 +43,32 @@ export function measure(tokens) {
 export async function tokenizeForLevel(text, level, { storyWords = [], vocab }) {
   text = normalizeText(text);
   const tokenizer = await getTokenizer(), allowed = vocab.cumulative(level), tokens = [];
+  const readings = readingIndex(vocab);
   const words = storyWords.flatMap(word => [...new Set([normalizeText(word.text), normalizeText(toHiragana(word.reading))])].filter(Boolean).map(match => ({ word, match }))).sort((a,b) => b.match.length - a.match.length);
   function segment(part) {
-    for (const t of tokenizer.tokenize(part)) {
+    const parsed = tokenizer.tokenize(part);
+    for (let i = 0; i < parsed.length; i++) {
+      const t = parsed[i];
+      // Match dictionary readings before classifying kuromoji's fragments.
+      // Whole token boundaries prevent cutting an inflected word in half;
+      // particles and nominalisers cannot start a lexical span.
+      // A verb or adjective stem plus its ending (い + た) is not a word to merge.
+      const lexicalStart = ((isContentWord(t) && t.pos_detail_1 !== '非自立') || t.pos === '接頭詞') && !['動詞', '形容詞'].includes(t.pos);
+      let merged;
+      if (lexicalStart && kanaOnly(t.surface_form)) for (const word of readings.get(toHiragana(t.surface_form)[0]) ?? []) {
+        let surface = '', end = i;
+        while (end < parsed.length && kanaOnly(parsed[end].surface_form) && surface.length < word.reading.length) surface += parsed[end++].surface_form;
+        if (toHiragana(surface) === word.reading) { merged = { ...word, surface, end }; break; }
+      }
+      if (merged) {
+        tokens.push({ s: merged.surface, b: merged.base, k: allowed.has(merged.reading) ? 'known' : 'ghost', g: merged.entry.meaning, gs: 'jlpt' });
+        i = merged.end - 1;
+        continue;
+      }
       const s = t.surface_form, b = t.basic_form === '*' ? s : t.basic_form;
       const reading = toHiragana(t.reading ?? s), kana = ![...s].some(isKanji);
       const keys = [b, s, ...(kana ? [reading] : []), ...(t.pos === '副詞' ? [b + 'と', ...(kana ? [reading + 'と'] : [])] : [])];
-      const content = isContentWord(t), entry = keys.map(k => vocab.lookup(k)).find(Boolean);
+      const content = isContentWord(t) && !isKanaFragment(t), entry = keys.map(k => vocab.lookup(k)).find(Boolean);
       const token = { s, k: content ? keys.some(k => allowed.has(k)) ? 'known' : 'ghost' : 'plain' };
       if (/[一-龯々〆ヵヶ]/u.test(s) && t.reading) token.r = reading;
       if (content) { token.b = b; if (entry) { token.g = entry.meaning; token.gs = 'jlpt'; } }
