@@ -52,3 +52,5 @@ Deploy files for a static site are included for Render (`render.yaml`) and Digit
 ## Credits
 
 Stories: Lafcadio Hearn (小泉八雲), Japanese translations by 戸川明三 and 田部隆次, from [Aozora Bunko](https://www.aozora.gr.jp/index_pages/person258.html). Vocabulary: [open-anki-jlpt-decks](https://github.com/jamsinclair/open-anki-jlpt-decks) (MIT), based on Jonathan Waller's JLPT lists at tanos.co.uk. Kanji levels: [kanji-data](https://github.com/davidluzgouveia/kanji-data) (MIT). Model: Gemma 4 (31B on DigitalOcean serverless inference). See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+Sound effects generated with ElevenLabs.

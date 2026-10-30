@@ -300,9 +300,9 @@ All Room effects share one `requestAnimationFrame` loop that stops while the tab
 
 Under reduced motion this becomes a 400 ms crossfade straight to step 4.
 
-### Sound (off by default)
+### Sound (on by default)
 
-Sound is generated with WebAudio only, with no audio files: soft wind (filtered noise at -36 dB), a tiny puff on extinguish and a low lantern hum on Reveal. A toggle sits in the top bar, the state is remembered, and nothing plays before the first user gesture.
+Sound is sampled audio generated with ElevenLabs (`public/assets/sounds/`, listed in `manifest.json`), played through WebAudio on three gain channels: ambience 0.22, events 0.5, bell and arrival 0.6. Nothing loads or plays before the first pointer or key gesture; a saved "off" is respected, and the tab is muted while hidden. Loops fade in and out over 1.2 s. The room ambience runs on the Room, Shelf and Reader (Reader at half gain) and stops on the Reveal, where the lantern hum takes over after the temple bell, with the arrival at 1.2 s. If a file fails to load, the old procedural tones (wind, puff, hum) stand in. The top-bar toggle reads Sound on or Sound off, and the Room shows a small hint line until audio is running. Reduced motion affects visuals only; sound follows the toggle.
 
 ## Components
 

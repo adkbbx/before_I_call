@@ -24,6 +24,7 @@ Every entry must be checked against its source before publishing. P2 and P5 conf
 
 - **Gemma 4** (Google), open weights, used under its licence, through Ollama locally and DigitalOcean serverless inference.
 - Images were generated with OpenAI gpt-image-2 (see ASSETS.md).
+- Sound effects generated with ElevenLabs (sound effects API, model eleven_text_to_sound_v2); see public/assets/sounds/manifest.json for the prompts.
 
 ## Kanji levels
 

@@ -55,8 +55,9 @@ test('gloss placement: edges and oversized slips stay inside either writing mode
 });
 test('prefs tolerate blocked storage, malformed JSON and invalid values', () => {
   const denied = { getItem: () => { throw new Error(); }, setItem: () => { throw new Error(); } };
-  assert.deepEqual(loadPrefs(denied), { sound: false, furigana: 'above-level' }); assert.equal(savePrefs({ sound: true, furigana: 'all' }, denied), false);
-  for (const raw of ['null', 'false', '{', '{"writing":"diagonal","furigana":"bad","sound":"true"}']) { const p = loadPrefs({ getItem: () => raw, setItem: () => {} }); assert.equal(p.sound, false); assert.equal(p.furigana, 'above-level'); }
+  assert.deepEqual(loadPrefs(denied), { sound: true, furigana: 'above-level' }); assert.equal(savePrefs({ sound: true, furigana: 'all' }, denied), false);
+  for (const raw of ['null', 'false', '{', '{"writing":"diagonal","furigana":"bad","sound":"true"}']) { const p = loadPrefs({ getItem: () => raw, setItem: () => {} }); assert.equal(p.sound, true); assert.equal(p.furigana, 'above-level'); }
+  assert.equal(loadPrefs({ getItem: () => '{"sound":false}', setItem: () => {} }).sound, false, 'a saved false is respected');
   let raw = ''; const store = { getItem: () => raw, setItem: (_: string, v: string) => { raw = v; } };
   assert.equal(savePrefs({ sound: true, furigana: 'off', writing: 'vertical' }, store), true); assert.deepEqual(loadPrefs(store), { sound: true, furigana: 'off', writing: 'vertical' });
 });
