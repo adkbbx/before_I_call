@@ -33,7 +33,8 @@ export function CandleField({ out }: { out: number }) {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, width, height);
       const columns = width < 680 ? 25 : 50, rows = 100 / columns;
       for (let i = 0; i < 100; i++) {
-        const gap = width >= 1024 ? 340 : 0, unit = (i % columns + .5) / columns;
+        // The centre gap leaves room for the five level seals and their labels.
+        const gap = width >= 1024 ? 620 : 0, unit = (i % columns + .5) / columns;
         const x = 10 + unit * (width - 20 - gap) + (unit >= .5 ? gap : 0), y = height - 16 - Math.floor(i / columns) * (height - 46) / rows;
         const seed = ((i * 1664525 + 1013904223) >>> 0) / 4294967296, wave = reduced ? .5 : (Math.sin(time / (2800 + seed * 1800) * Math.PI * 2 + seed * 40) + 1) / 2;
         ctx.fillStyle = '#ddd0b5'; ctx.fillRect(x - 2, y, 4, 18); ctx.fillStyle = '#c9b994'; ctx.fillRect(x - 2, y, 4, 1); ctx.fillStyle = '#4b463d'; ctx.fillRect(x - .5, y - 3, 1, 4);

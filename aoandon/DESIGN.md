@@ -21,6 +21,7 @@ colors:
   sumi-soft: "#4b463d"
   shu: "#c23a22"
   shu-deep: "#9b2a17"
+  shu-bright: "#ef6a4f"
   focus: "#cfe0ff"
 typography:
   display:
@@ -180,7 +181,7 @@ The palette comes from a night room: lacquered darkness, paper, ink, fire and on
 
 ### Accent
 
-- `shu` (vermilion) marks hanko level seals, the primary action ("Begin the night", "Blow out the candle") and the selected level. It appears at most twice on any screen. `shu-deep` is its hover and pressed state.
+- `shu` (vermilion) marks hanko level seals, the primary action ("Begin the night", "Blow out the candle") and the selected level. It appears at most twice on any screen. `shu-deep` is its hover and pressed state. `shu-bright` is the text of an unselected seal on its dark backing over the room, about 6:1.
 
 ### Neutrals
 
