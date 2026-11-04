@@ -12,7 +12,7 @@ from fastapi import APIRouter, HTTPException, Request, Response
 from pydantic import BaseModel, Field, ValidationError
 from typing import Literal
 from server import model_endpoint
-from server.analytics import database
+from server.storage import database
 from server.llm_tracing import Turn
 
 router = APIRouter()
@@ -38,9 +38,7 @@ def configured():
 
 def reserve(visitor):
     day = time.strftime('%Y-%m-%d', time.gmtime())
-    with database() as db:
-        db.execute('CREATE TABLE IF NOT EXISTS preparation_budget (day TEXT, visitor TEXT)')
-        db.execute('BEGIN IMMEDIATE')
+    with database(write=True) as db:
         db.execute('DELETE FROM preparation_budget WHERE day<?', (day,))
         total = db.execute('SELECT COUNT(*) FROM preparation_budget WHERE day=?', (day,)).fetchone()[0]
         count = db.execute('SELECT COUNT(*) FROM preparation_budget WHERE day=? AND visitor=?', (day, visitor)).fetchone()[0]

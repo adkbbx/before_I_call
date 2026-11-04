@@ -3,7 +3,7 @@ import os
 import time
 from uuid import UUID, uuid4
 from fastapi import HTTPException
-from server.analytics import database
+from server.storage import database
 
 def reserve(ticket: str, visitor: str | None, seconds: int) -> str:
     try:
@@ -11,10 +11,8 @@ def reserve(ticket: str, visitor: str | None, seconds: int) -> str:
     except ValueError:
         browser = str(uuid4())
     day = time.strftime('%Y-%m-%d', time.gmtime())
-    with database() as connection:
-        connection.execute('CREATE TABLE IF NOT EXISTS call_budget (ticket TEXT PRIMARY KEY, day TEXT, visitor TEXT, seconds INTEGER)')
+    with database(write=True) as connection:
         # Serialize check-and-reserve even if more than one request arrives together.
-        connection.execute('BEGIN IMMEDIATE')
         connection.execute('DELETE FROM call_budget WHERE day<?', (day,))
         total = connection.execute('SELECT COALESCE(SUM(seconds),0) FROM call_budget WHERE day=?', (day,)).fetchone()[0]
         count = connection.execute('SELECT COUNT(*) FROM call_budget WHERE day=? AND visitor=?', (day, browser)).fetchone()[0]
@@ -26,5 +24,5 @@ def reserve(ticket: str, visitor: str | None, seconds: int) -> str:
     return browser
 
 def release(ticket: str):
-    with database() as connection:
+    with database(write=True) as connection:
         connection.execute('DELETE FROM call_budget WHERE ticket=?', (ticket,))

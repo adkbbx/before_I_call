@@ -10,7 +10,7 @@ from uuid import UUID, uuid4
 import httpx
 from pydantic import BaseModel, Field
 from server import model_endpoint
-from server.analytics import database
+from server.storage import database
 from server.llm_tracing import Turn
 
 lock = asyncio.Lock()
@@ -25,9 +25,7 @@ class Selection(BaseModel):
 
 def reserve(visitor):
     day=time.strftime('%Y-%m-%d',time.gmtime())
-    with database() as db:
-        db.execute('CREATE TABLE IF NOT EXISTS vocabulary_budget (day TEXT, visitor TEXT)')
-        db.execute('BEGIN IMMEDIATE')
+    with database(write=True) as db:
         db.execute('DELETE FROM vocabulary_budget WHERE day<?',(day,))
         total=db.execute('SELECT COUNT(*) FROM vocabulary_budget WHERE day=?',(day,)).fetchone()[0]
         count=db.execute('SELECT COUNT(*) FROM vocabulary_budget WHERE day=? AND visitor=?',(day,visitor)).fetchone()[0]

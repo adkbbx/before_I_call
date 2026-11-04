@@ -2,14 +2,13 @@
 import json
 import os
 import secrets
-import sqlite3
 import time
-from contextlib import contextmanager
-from pathlib import Path
 from typing import Literal
 from uuid import UUID
 from fastapi import APIRouter, HTTPException, Request, Response
 from pydantic import BaseModel, ConfigDict, Field
+
+from server.storage import database, snapshot, freeze_sqlite
 
 router = APIRouter(prefix='/api/analytics')
 
@@ -31,26 +30,6 @@ class Event(BaseModel):
     name: Literal['visit', 'page', 'demo_start', 'live_start', 'live_connected', 'practice_finish', 'action', 'call_error']
     properties: Properties = Field(default_factory=Properties)
 
-@contextmanager
-def database():
-    path = Path(os.getenv('ANALYTICS_DB_PATH', 'work/analytics.sqlite3'))
-    path.parent.mkdir(parents=True, exist_ok=True)
-    connection = sqlite3.connect(path, timeout=10)
-    connection.row_factory = sqlite3.Row
-    connection.executescript('''
-      PRAGMA journal_mode=WAL;
-      CREATE TABLE IF NOT EXISTS visitors (id TEXT PRIMARY KEY);
-      CREATE TABLE IF NOT EXISTS visits (id TEXT PRIMARY KEY, visitor TEXT, at REAL);
-      CREATE TABLE IF NOT EXISTS events (id TEXT PRIMARY KEY, session TEXT, name TEXT, at REAL, properties TEXT);
-      CREATE INDEX IF NOT EXISTS event_time ON events(at);
-      CREATE INDEX IF NOT EXISTS event_session ON events(session);
-    ''')
-    try:
-        with connection:
-            yield connection
-    finally:
-        connection.close()
-
 def origin(request):
     expected = os.getenv('APP_ORIGIN') or str(request.base_url).rstrip('/')
     if request.headers.get('origin') and request.headers['origin'] != expected:
@@ -60,16 +39,16 @@ def origin(request):
 def collect(event: Event, request: Request):
     origin(request)
     now = time.time()
-    with database() as connection:
+    with database(write=True) as connection:
         recent = connection.execute('SELECT COUNT(*) FROM events WHERE session=? AND at>?', (str(event.session), now - 3600)).fetchone()[0]
         if recent >= 500:
             raise HTTPException(429, 'Too many analytics events.')
-        connection.execute('INSERT OR IGNORE INTO visitors VALUES (?)', (str(event.visitor),))
+        connection.execute('INSERT INTO visitors VALUES (?) ON CONFLICT DO NOTHING', (str(event.visitor),))
         if event.name == 'visit':
-            inserted = connection.execute('INSERT OR IGNORE INTO visits VALUES (?,?,?)', (str(event.session), str(event.visitor), now))
+            inserted = connection.execute('INSERT INTO visits VALUES (?,?,?) ON CONFLICT DO NOTHING', (str(event.session), str(event.visitor), now))
             if not inserted.rowcount:
                 return Response(status_code=204)
-        connection.execute('INSERT OR IGNORE INTO events VALUES (?,?,?,?,?)', (str(event.id), str(event.session), event.name, now, event.properties.model_dump_json(exclude_none=True)))
+        connection.execute('INSERT INTO events VALUES (?,?,?,?,?) ON CONFLICT DO NOTHING', (str(event.id), str(event.session), event.name, now, event.properties.model_dump_json(exclude_none=True)))
         connection.execute('DELETE FROM events WHERE at<?', (now - 90 * 86400,))
     return Response(status_code=204)
 
@@ -81,10 +60,7 @@ def count():
 
 @router.get('/report')
 def report(request: Request):
-    key = os.getenv('ANALYTICS_ADMIN_KEY', '')
-    supplied = request.headers.get('authorization', '').removeprefix('Bearer ')
-    if not key or not secrets.compare_digest(key, supplied):
-        raise HTTPException(401, 'Enter the analytics admin key.')
+    require_admin(request)
     since = time.time() - 30 * 86400
     with database() as connection:
         visits = connection.execute('SELECT COUNT(*) FROM visits').fetchone()[0]
@@ -116,3 +92,24 @@ def report(request: Request):
             if properties.get('duration') is not None:
                 durations.append(properties['duration'])
     return {'visits': visits, 'estimated_visitors': visitors, 'window_days': 30, 'counts': counts, 'daily_visits': days, 'languages': languages, 'scenarios': scenarios, 'actions': actions, 'outcomes': outcomes, 'average_duration': round(sum(durations) / len(durations)) if durations else 0, 'journeys': journeys}
+
+
+def require_admin(request):
+    key = os.getenv('ANALYTICS_ADMIN_KEY', '')
+    supplied = request.headers.get('authorization', '').removeprefix('Bearer ')
+    if not key or not secrets.compare_digest(key, supplied):
+        raise HTTPException(401, 'Enter the analytics admin key.')
+
+
+@router.get('/backup')
+def backup(request: Request, response: Response):
+    require_admin(request)
+    response.headers['Cache-Control'] = 'no-store'
+    return snapshot()
+
+
+@router.post('/migration/{action}')
+def migration(action: Literal['freeze', 'unfreeze'], request: Request):
+    require_admin(request)
+    freeze_sqlite(action == 'freeze')
+    return {'frozen': action == 'freeze'}

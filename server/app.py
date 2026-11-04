@@ -219,7 +219,14 @@ def prompt_version(target_language: str) -> str:
 
 
 @app.get('/api/health')
-async def health():
+def health():
+    if os.getenv('ANALYTICS_DATABASE_URL'):
+        from server.storage import database
+        try:
+            with database() as connection:
+                connection.execute('SELECT 1 FROM visitors LIMIT 1').fetchall()
+        except Exception:
+            raise HTTPException(503, 'Saved data is temporarily unavailable.') from None
     return {'ok': True, 'tracing_available': llm_tracing.enabled(), 'llm_proxy_available': llm_proxy_configured(), 'preparation_available': preparation_configured(), 'live_available': configured(), 'local_available': local_voice.available(), 'max_call_seconds': int(os.getenv('MAX_CALL_SECONDS', '120')), 'access_code_required': bool(os.getenv('LIVE_ACCESS_CODE')), 'provider': 'elevenlabs', 'missing_settings': [key for key in REQUIRED if not os.getenv(key)]}
 
 
