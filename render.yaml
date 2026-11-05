@@ -2,15 +2,11 @@ services:
   - type: web
     name: before-i-call
     runtime: docker
-    plan: starter
+    plan: free
     healthCheckPath: /api/health
-    disk:
-      name: usage-data
-      mountPath: /var/data
-      sizeGB: 1
     envVars:
-      - key: ANALYTICS_DB_PATH
-        value: /var/data/analytics.sqlite3
+      - key: ANALYTICS_DATABASE_URL
+        sync: false
       - key: ANALYTICS_ADMIN_KEY
         generateValue: true
       - key: ELEVENLABS_API_KEY
