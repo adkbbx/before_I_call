@@ -9,7 +9,7 @@ import json
 import secrets
 import sys
 from pathlib import Path
-from urllib.parse import quote, urlsplit, urlunsplit
+from urllib.parse import quote, unquote, urlsplit, urlunsplit
 
 import psycopg
 from dotenv import dotenv_values
@@ -34,7 +34,7 @@ def provision(admin_url, runtime_file):
     existed = runtime_file.exists()
     if existed:
         runtime_url = dotenv_values(runtime_file)['ANALYTICS_DATABASE_URL']
-        password = __import__('urllib.parse', fromlist=['unquote']).unquote(urlsplit(runtime_url).password)
+        password = unquote(urlsplit(runtime_url).password)
     else:
         password = secrets.token_urlsafe(32)
         parts = urlsplit(admin_url)
@@ -78,8 +78,9 @@ def import_backup(admin_url, source):
     from psycopg.rows import dict_row
     with psycopg.connect(admin_url, sslmode='require', connect_timeout=15,
                          prepare_threshold=None, row_factory=dict_row) as db:
-        db.execute('SET LOCAL search_path TO before_i_call')
+        db.execute(sql.SQL('SET LOCAL search_path TO {}').format(sql.Identifier(SCHEMA)))
         db.execute('SELECT pg_advisory_xact_lock(487309211)')
+        db.execute('SET LOCAL extra_float_digits TO 3')
         existing = {table: db.execute(sql.SQL('SELECT * FROM {}').format(sql.Identifier(table))).fetchall()
                     for table in TABLES}
         if any(existing.values()):

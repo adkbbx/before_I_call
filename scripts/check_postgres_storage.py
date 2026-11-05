@@ -1,7 +1,9 @@
 """Run existing behavior checks on an isolated, disposable real Postgres schema."""
 import argparse
+import json
 import os
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -20,6 +22,7 @@ from test_cost_controls import CostTests
 from test_preparation import PreparationTests
 from test_vocabulary import VocabularyTests
 from test_storage import StorageTests
+import migrate_storage
 
 
 def main():
@@ -57,6 +60,29 @@ def main():
 
     try:
         with patch.object(storage, 'SCHEMA', schema):
+            # Exact timestamp/Unicode preservation, duplicates and safe replay.
+            sample = {table: [] for table in storage.TABLES}
+            sample['visitors'] = [{'id': 'synthetic-visitor'}]
+            sample['visits'] = [{'id': 'synthetic-visit', 'visitor': 'synthetic-visitor', 'at': 1792058005.718494}]
+            sample['events'] = [{'id': 'synthetic-event', 'session': 'synthetic-visit', 'name': 'action',
+                                 'at': 1792058005.718494, 'properties': '{"action":"download"}'}]
+            sample['preparation_budget'] = [{'day': '2026-11-05', 'visitor': 'synthetic-visitor'}] * 2
+            with tempfile.TemporaryDirectory() as directory, patch.object(migrate_storage, 'SCHEMA', schema):
+                source = Path(directory) / 'synthetic-backup.json'
+                source.write_text(json.dumps({'format': 'before-i-call-storage-v1', 'tables': sample}), encoding='utf-8')
+                migrate_storage.import_backup(admin, source)
+                migrate_storage.import_backup(admin, source)
+                with patch.dict(os.environ, {'ANALYTICS_DATABASE_URL': runtime}):
+                    assert migrate_storage.digest(storage.snapshot()['tables']) == migrate_storage.digest(sample)
+                changed = json.loads(source.read_text())
+                changed['tables']['visitors'].append({'id': 'different'})
+                source.write_text(json.dumps(changed), encoding='utf-8')
+                try:
+                    migrate_storage.import_backup(admin, source)
+                except RuntimeError:
+                    pass
+                else:
+                    raise AssertionError('Changed backup was accepted over existing data')
             suite = unittest.TestSuite()
             for base in (AnalyticsTests, CostTests, PreparationTests, VocabularyTests):
                 suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(postgres_class(base)))

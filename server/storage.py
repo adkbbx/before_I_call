@@ -51,6 +51,7 @@ def database(*, write=False):
         with psycopg.connect(url, sslmode='require', connect_timeout=10,
                              prepare_threshold=None, row_factory=postgres_row) as connection:
             connection.execute(sql.SQL('SET LOCAL search_path TO {}').format(sql.Identifier(SCHEMA)))
+            connection.execute('SET LOCAL extra_float_digits TO 3')
             connection.execute("SET LOCAL statement_timeout TO '15s'")
             if write:
                 # Same check-and-reserve exclusion as SQLite BEGIN IMMEDIATE.
